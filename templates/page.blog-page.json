@@ -403,78 +403,6 @@
         "cta_padding_right": 25
       }
     },
-    "timeline_progress_6DUtxg": {
-      "type": "timeline-progress",
-      "blocks": {
-        "checkpoint_zqagmX": {
-          "type": "checkpoint",
-          "settings": {
-            "title": "1 Week",
-            "image": "shopify://shop_images/calendar_refactor_36x38_15a66f4a-1ba9-477e-978e-caab61e04d9d.jpg",
-            "letf_title": "1 Week",
-            "icon": "⚡",
-            "text": "Likely lift in energy, mood, and cognition.",
-            "card": true,
-            "card_bg_color": "#ffeef2",
-            "card_text_color": "#333333"
-          }
-        },
-        "checkpoint_hadFnV": {
-          "type": "checkpoint",
-          "settings": {
-            "title": "1 Month",
-            "image": "shopify://shop_images/calendar_refactor_36x38_15a66f4a-1ba9-477e-978e-caab61e04d9d.jpg",
-            "letf_title": "1 month",
-            "icon": "🙂",
-            "text": "Abundance of B vitamins leads to better mood and energy.",
-            "card": true,
-            "card_bg_color": "#ffeef2",
-            "card_text_color": "#333333"
-          }
-        },
-        "checkpoint_Wbi3DH": {
-          "type": "checkpoint",
-          "settings": {
-            "title": "1 Month",
-            "image": "shopify://shop_images/calendar_refactor_36x38_15a66f4a-1ba9-477e-978e-caab61e04d9d.jpg",
-            "letf_title": "1 week",
-            "icon": "🙂",
-            "text": "Abundance of B vitamins leads to better mood and energy.",
-            "card": true,
-            "card_bg_color": "#ffeef2",
-            "card_text_color": "#333333"
-          }
-        }
-      },
-      "block_order": [
-        "checkpoint_zqagmX",
-        "checkpoint_hadFnV",
-        "checkpoint_Wbi3DH"
-      ],
-      "name": "Timeline Progress IDE testing",
-      "settings": {
-        "heading": "What Should I Expect From Consistent Use?",
-        "heading_color": "#000000",
-        "heading_tag": "h2",
-        "left_image": "shopify://shop_images/comp_col_prod1.avif",
-        "right_image": "shopify://shop_images/primal-pot_518x673_8340a3f1-0f40-40ce-bbfe-a74b9d408a0d.webp",
-        "timeline_bg_color": "#ffffff",
-        "timeline_item_bg_color": "#ffeef2",
-        "timeline_text_color": "#333333",
-        "timeline_padding_top": 50,
-        "timeline_padding_bottom": 50,
-        "timeline_margin_top": 0,
-        "timeline_margin_bottom": 0,
-        "cta_label": "Unlock Your True Power",
-        "cta_link": "shopify://collections",
-        "cta_bg_color": "#ff3366",
-        "cta_text_color": "#ffffff",
-        "cta_padding_top": 15,
-        "cta_padding_bottom": 15,
-        "cta_padding_left": 25,
-        "cta_padding_right": 25
-      }
-    },
     "section_E8QNML": {
       "type": "section",
       "blocks": {
@@ -1114,6 +1042,78 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
+    },
+    "timeline_progress_ReY9Je": {
+      "type": "timeline-progress",
+      "blocks": {
+        "checkpoint_QUwKnc": {
+          "type": "checkpoint",
+          "settings": {
+            "title": "1 Week",
+            "image": "shopify://shop_images/calendar_refactor_36x38_15a66f4a-1ba9-477e-978e-caab61e04d9d.jpg",
+            "letf_title": "1 Week",
+            "icon": "⚡",
+            "text": "Likely lift in energy, mood, and cognition.",
+            "card": true,
+            "card_bg_color": "#ffeef2",
+            "card_text_color": "#333333"
+          }
+        },
+        "checkpoint_3Y3WEJ": {
+          "type": "checkpoint",
+          "settings": {
+            "title": "1 Month",
+            "image": "shopify://shop_images/calendar_refactor_36x38_15a66f4a-1ba9-477e-978e-caab61e04d9d.jpg",
+            "letf_title": "1 Month",
+            "icon": "🙂",
+            "text": "Abundance of B vitamins leads to better mood and energy.",
+            "card": true,
+            "card_bg_color": "#ffeef2",
+            "card_text_color": "#333333"
+          }
+        },
+        "checkpoint_E3Mrzg": {
+          "type": "checkpoint",
+          "settings": {
+            "title": "2 Months",
+            "image": "shopify://shop_images/calendar_refactor_36x38_15a66f4a-1ba9-477e-978e-caab61e04d9d.jpg",
+            "letf_title": "2 Months",
+            "icon": "💪",
+            "text": "Consistent Vitamin A can help skin and vision.",
+            "card": false,
+            "card_bg_color": "#ffeef2",
+            "card_text_color": "#333333"
+          }
+        }
+      },
+      "block_order": [
+        "checkpoint_QUwKnc",
+        "checkpoint_3Y3WEJ",
+        "checkpoint_E3Mrzg"
+      ],
+      "name": "Timeline Progress IDE",
+      "settings": {
+        "heading": "What Should I Expect From Consistent Use? nothing",
+        "heading_color": "#000000",
+        "heading_tag": "h2",
+        "left_image": "shopify://shop_images/primal-pot_518x673_8340a3f1-0f40-40ce-bbfe-a74b9d408a0d.webp",
+        "right_image": "shopify://shop_images/s4_product2_479x648_bcfa41aa-341e-4df1-996d-4e40782eda58.webp",
+        "timeline_bg_color": "#ffffff",
+        "timeline_item_bg_color": "#ffeef2",
+        "timeline_text_color": "#333333",
+        "timeline_padding_top": 50,
+        "timeline_padding_bottom": 50,
+        "timeline_margin_top": 0,
+        "timeline_margin_bottom": 0,
+        "cta_label": "Unlock Your True Power",
+        "cta_link": "shopify://collections",
+        "cta_bg_color": "#ff3366",
+        "cta_text_color": "#ffffff",
+        "cta_padding_top": 15,
+        "cta_padding_bottom": 15,
+        "cta_padding_left": 25,
+        "cta_padding_right": 25
+      }
     }
   },
   "order": [
@@ -1121,10 +1121,10 @@
     "section_WBgfQn",
     "section_tpcbfx",
     "timeline_section_gxYzat",
-    "timeline_progress_6DUtxg",
     "section_E8QNML",
     "section_PbACW4",
     "section_VnLiPX",
-    "section_Gc3NVg"
+    "section_Gc3NVg",
+    "timeline_progress_ReY9Je"
   ]
 }
