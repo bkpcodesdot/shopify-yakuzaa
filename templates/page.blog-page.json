@@ -431,24 +431,11 @@
             "card_bg_color": "#ffeef2",
             "card_text_color": "#333333"
           }
-        },
-        "checkpoint_7AQCwB": {
-          "type": "checkpoint",
-          "settings": {
-            "title": "2 Months",
-            "letf_title": "",
-            "icon": "💪",
-            "text": "Consistent Vitamin A can help skin and vision.",
-            "card": false,
-            "card_bg_color": "#ffeef2",
-            "card_text_color": "#333333"
-          }
         }
       },
       "block_order": [
         "checkpoint_zqagmX",
-        "checkpoint_hadFnV",
-        "checkpoint_7AQCwB"
+        "checkpoint_hadFnV"
       ],
       "name": "Timeline Progress IDE testing",
       "settings": {
