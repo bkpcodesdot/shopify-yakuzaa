@@ -1,0 +1,576 @@
+{% doc %}
+  @prompt
+    Create fulll animation section for telling prodcut story with section with text
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-product-story-{{ ai_gen_id }} {
+    position: relative;
+    padding: 60px 20px;
+    background-color: {{ block.settings.background_color }};
+    overflow: hidden;
+    min-height: 100vh;display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-product-story-container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ai-product-story-content-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .ai-product-story-text-{{ ai_gen_id }} {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  .ai-product-story-text-{{ ai_gen_id }}.animate {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+  }
+
+  .ai-product-story-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.heading_color }};
+    margin: 0 0 24px 0;
+    line-height: 1.2;font-weight: 700;
+  }
+
+  .ai-product-story-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    line-height: 1.6;
+    margin-bottom: 32px;}
+
+  .ai-product-story-features-{{ ai_gen_id }} {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .ai-product-story-feature-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  .ai-product-story-feature-{{ ai_gen_id }}.animate {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .ai-product-story-feature-icon-{{ ai_gen_id }} {
+    width: 24px;
+    height: 24px;
+    margin-right: 16px;
+    color: {{ block.settings.accent_color }};
+    flex-shrink: 0;
+  }
+
+  .ai-product-story-feature-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.feature_text_size }}px;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-product-story-visual-{{ ai_gen_id }} {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-product-story-image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    opacity: 0;
+    transform: scale(0.8) rotate(-5deg);
+  }
+
+  .ai-product-story-image-wrapper-{{ ai_gen_id }}.animate {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+  }
+
+  .ai-product-story-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .ai-product-story-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: #f4f4f4;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .ai-product-story-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .ai-product-story-floating-elements-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .ai-product-story-floating-circle-{{ ai_gen_id }} {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, {{ block.settings.accent_color }}20, {{ block.settings.accent_color }}10);
+    opacity: 0;}
+
+  .ai-product-story-floating-circle-{{ ai_gen_id }}.animate {
+    opacity: 1;
+    animation: ai-product-story-float-{{ ai_gen_id }} 6s ease-in-out infinite;
+  }
+
+  .ai-product-story-floating-circle-1-{{ ai_gen_id }} {
+    width: 100px;
+    height: 100px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+
+  .ai-product-story-floating-circle-2-{{ ai_gen_id }} {
+    width: 60px;
+    height: 60px;
+    top: 60%;
+    right: 15%;
+    animation-delay: 2s;
+  }
+
+  .ai-product-story-floating-circle-3-{{ ai_gen_id }} {
+    width: 80px;
+    height: 80px;
+    bottom: 30%;
+    left: 5%;
+    animation-delay: 4s;
+  }
+
+  @keyframes ai-product-story-float-{{ ai_gen_id }} {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(180deg);
+    }
+  }
+
+  .ai-product-story-button-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    padding: 16px 32px;
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_text_size }}px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .ai-product-story-button-{{ ai_gen_id }}.animate {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 1s ease-out 0.8s, transform 1s ease-out 0.8s;
+  }
+
+  .ai-product-story-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-product-story-{{ ai_gen_id }} {
+      padding: 40px 20px;
+      min-height: auto;
+    }
+
+    .ai-product-story-content-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      text-align: center;
+    }
+
+    .ai-product-story-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.8 }}px;
+    }
+
+    .ai-product-story-floating-circle-{{ ai_gen_id }} {
+      display: none;
+    }
+  }
+{% endstyle %}<product-story-{{ ai_gen_id }}
+  class="ai-product-story-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-product-story-floating-elements-{{ ai_gen_id }}">
+    <div class="ai-product-story-floating-circle-{{ ai_gen_id }} ai-product-story-floating-circle-1-{{ ai_gen_id }}"></div>
+    <div class="ai-product-story-floating-circle-{{ ai_gen_id }} ai-product-story-floating-circle-2-{{ ai_gen_id }}"></div>
+    <div class="ai-product-story-floating-circle-{{ ai_gen_id }} ai-product-story-floating-circle-3-{{ ai_gen_id }}"></div>
+  </div>
+
+  <div class="ai-product-story-container-{{ ai_gen_id }}">
+    <div class="ai-product-story-content-{{ ai_gen_id }}">
+      <div class="ai-product-story-text-{{ ai_gen_id }}">
+        {% if block.settings.heading != blank %}
+          <h2 class="ai-product-story-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+        {% endif %}
+
+        {% if block.settings.description != blank %}
+          <div class="ai-product-story-description-{{ ai_gen_id }}">{{ block.settings.description }}</div>
+        {% endif %}
+
+        {% if block.settings.feature_1 != blank or block.settings.feature_2 != blank or block.settings.feature_3 != blank %}
+          <ul class="ai-product-story-features-{{ ai_gen_id }}">
+            {% if block.settings.feature_1 != blank %}
+              <li class="ai-product-story-feature-{{ ai_gen_id }}" data-delay="0.2">
+                <svg class="ai-product-story-feature-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+                <span class="ai-product-story-feature-text-{{ ai_gen_id }}">{{ block.settings.feature_1 }}</span>
+              </li>
+            {% endif %}
+            {% if block.settings.feature_2 != blank %}
+              <li class="ai-product-story-feature-{{ ai_gen_id }}" data-delay="0.4">
+                <svg class="ai-product-story-feature-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+                <span class="ai-product-story-feature-text-{{ ai_gen_id }}">{{ block.settings.feature_2 }}</span>
+              </li>
+            {% endif %}
+            {% if block.settings.feature_3 != blank %}
+              <li class="ai-product-story-feature-{{ ai_gen_id }}" data-delay="0.6">
+                <svg class="ai-product-story-feature-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+                <span class="ai-product-story-feature-text-{{ ai_gen_id }}">{{ block.settings.feature_3 }}</span>
+              </li>
+            {% endif %}
+          </ul>
+        {% endif %}
+
+        {% if block.settings.button_text != blank %}
+          <a href="{{ block.settings.button_link }}" class="ai-product-story-button-{{ ai_gen_id }}">
+            {{ block.settings.button_text }}
+          </a>
+        {% endif %}
+      </div>
+
+      <div class="ai-product-story-visual-{{ ai_gen_id }}">
+        <div class="ai-product-story-image-wrapper-{{ ai_gen_id }}">
+          {% if block.settings.product_image %}
+            <img
+              src="{{ block.settings.product_image | image_url: width: 600}}"
+              alt="{{ block.settings.product_image.alt | escape }}"
+              class="ai-product-story-image-{{ ai_gen_id }}"
+              loading="lazy"
+              width="{{ block.settings.product_image.width }}"
+              height="{{ block.settings.product_image.height }}"
+            >
+          {% else %}
+            <div class="ai-product-story-image-placeholder-{{ ai_gen_id }}">
+              {{ 'product-apparel-1' | placeholder_svg_tag }}
+              <div class="ai-product-story-empty-state-{{ ai_gen_id }}">
+                Add a product image to tell your story
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</product-story-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ProductStory{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.hasAnimated = false;
+      }
+
+      connectedCallback() {
+        this.setupIntersectionObserver();
+      }
+
+      setupIntersectionObserver() {
+        const options = {
+          threshold: 0.3,
+          rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && !this.hasAnimated) {
+              this.triggerAnimations();
+              this.hasAnimated = true;
+            }
+          });
+        }, options);
+
+        observer.observe(this);
+      }
+
+      triggerAnimations() {
+        const textElement = this.querySelector('.ai-product-story-text-{{ ai_gen_id }}');
+        const imageWrapper = this.querySelector('.ai-product-story-image-wrapper-{{ ai_gen_id }}');
+        const features = this.querySelectorAll('.ai-product-story-feature-{{ ai_gen_id }}');
+        const button = this.querySelector('.ai-product-story-button-{{ ai_gen_id }}');
+        const floatingElements = this.querySelectorAll('.ai-product-story-floating-circle-{{ ai_gen_id }}');
+
+        setTimeout(() => {
+          if (textElement) textElement.classList.add('animate');}, 100);
+
+        setTimeout(() => {
+          if (imageWrapper) imageWrapper.classList.add('animate');
+        }, 300);
+
+        features.forEach((feature, index) => {
+          const delay = parseFloat(feature.dataset.delay) || 0;
+          setTimeout(() => {
+            feature.classList.add('animate');
+          }, 500 + (delay * 1000));
+        });
+
+        if (button) {
+          setTimeout(() => {
+            button.classList.add('animate');
+          }, 800);
+        }
+
+        floatingElements.forEach((element, index) => {
+          setTimeout(() => {
+            element.classList.add('animate');
+          }, 1000 + (index * 200));
+        });
+      }
+    }
+
+    customElements.define('product-story-{{ ai_gen_id }}', ProductStory{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product story animation",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Discover the story behind our product"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Every product has a story to tell. From concept to creation, we've crafted something truly special that will transform your experience.</p>"
+    },
+    {
+      "type": "text",
+      "id": "feature_1",
+      "label": "Feature 1",
+      "default": "Premium quality materials"
+    },
+    {
+      "type": "text",
+      "id": "feature_2",
+      "label": "Feature 2",
+      "default": "Sustainable manufacturing"
+    },
+    {
+      "type": "text",
+      "id": "feature_3",
+      "label": "Feature 3",
+      "default": "Lifetime warranty"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#000f9f"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button color",
+      "default": "#000f9f"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button hover color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "feature_text_size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Feature text size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Button text size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Image border radius",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product story animation"
+    }
+  ]
+}
+{% endschema %}

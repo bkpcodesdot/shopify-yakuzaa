@@ -1,0 +1,418 @@
+{% doc %}
+  @prompt
+    Create a Shopify section called "Text with Image Highlight".  
+    
+    The section should look like the example provided:  
+    
+    1. **Layout**  
+       - Text content on top.  
+       - Image (single, full-width, with rounded corners option) below the text.  
+       - Additional paragraph text below the image.  
+    
+    2. **Text Styling**  
+       - Allow multiple rich text blocks.  
+       - Support bold, italic, underline.  
+       - Support custom text color with emphasis on **pink (#FF4081)** and **black (#000000)**.  
+       - Option to highlight specific text with a different color.  
+    
+    3. **Customization Settings**  
+       - Heading text (rich text).  
+       - Paragraph text (rich text).  
+       - Text alignment (left, center, right).  
+       - Image picker with option for border radius.  
+       - Color controls for:  
+         - Primary text color.  
+         - Highlight text color (pink, black, or custom).  
+       - Padding and margin controls.  
+       - Background color option for the entire section.  
+    
+    4. **Responsiveness**  
+       - On desktop: image stays below the text, full width.  
+       - On mobile: text and image stack naturally with spacing.  
+    
+    This section must replicate a blog-style content block with **pink and black text highlights** and an image in between two text paragraphs., display: grid
+    ;
+        grid-template-columns: 1fr 400px;
+        gap: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    set this section with this css, whole section sholud be with in display: grid
+    ;
+        grid-template-columns: 1fr 400px;
+        gap: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    this layout, back tot revert m ydesing, <p><strong>For thousands of years, women were nourished by the land: they ate nose-to-tail.</strong> They honored the body by feeding it the parts that made it strong, fertile, and calm - including the parts we now throw away.</p>
+    
+    set like this font, set image in Your highlighted heading goes here above the text image section, main image section set to below text Your highlighted heading goes here text, remove side image
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-text-image-highlight-{{ ai_gen_id }} {
+    background-color: {{ block.settings.section_background_color }};
+    padding: {{ block.settings.section_padding_top }}px {{ block.settings.section_padding_horizontal }}px {{ block.settings.section_padding_bottom }}px;
+  }
+
+  .ai-text-image-highlight__container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-text-image-highlight__content-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.content_spacing }}px;
+  }
+
+  .ai-text-image-highlight__heading-{{ ai_gen_id }} {
+    color: {{ block.settings.primary_text_color }};
+    text-align: {{ block.settings.text_alignment }};
+    margin: 0;
+    font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+    font-weight: {{ settings.type_body_font.weight }};
+    font-size: {{ block.settings.heading_font_size }}px;
+    line-height: 1.4;
+  }
+
+  .ai-text-image-highlight__heading-{{ ai_gen_id }} strong {
+    color: {{ block.settings.highlight_text_color }};
+    font-weight: 700;
+  }
+
+  .ai-text-image-highlight__heading-{{ ai_gen_id }} em {
+    color: {{ block.settings.highlight_text_color }};
+    font-style: italic;
+  }
+
+  .ai-text-image-highlight__main-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    display: block;
+  }
+
+  .ai-text-image-highlight__main-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    min-height: 300px;
+    background-color: #f4f4f4;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-text-image-highlight__main-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 200px;
+    max-height: 200px;
+    opacity: 0.5;
+  }
+
+  .ai-text-image-highlight__main-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 16px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 4px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .ai-text-image-highlight__paragraph-{{ ai_gen_id }} {
+    color: {{ block.settings.primary_text_color }};
+    text-align: {{ block.settings.text_alignment }};
+    margin: 0;
+    line-height: 1.6;
+    font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+    font-weight: {{ settings.type_body_font.weight }};
+    font-size: {{ block.settings.body_font_size }}px;
+  }
+
+  .ai-text-image-highlight__paragraph-{{ ai_gen_id }} strong {
+    color: {{ block.settings.highlight_text_color }};
+    font-weight: 700;
+  }
+
+  .ai-text-image-highlight__paragraph-{{ ai_gen_id }} em {
+    color: {{ block.settings.highlight_text_color }};
+    font-style: italic;
+  }
+
+  .ai-text-image-highlight__paragraph-{{ ai_gen_id }} u {
+    color: {{ block.settings.highlight_text_color }};
+    text-decoration: underline;
+  }
+
+  .ai-text-image-highlight__bottom-text-{{ ai_gen_id }} {
+    color: {{ block.settings.primary_text_color }};
+    text-align: {{ block.settings.text_alignment }};
+    margin: 0;
+    line-height: 1.6;
+    font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+    font-weight: {{ settings.type_body_font.weight }};
+    font-size: {{ block.settings.body_font_size }}px;
+  }
+
+  .ai-text-image-highlight__bottom-text-{{ ai_gen_id }} strong {
+    color: {{ block.settings.highlight_text_color }};
+    font-weight: 700;
+  }
+
+  .ai-text-image-highlight__bottom-text-{{ ai_gen_id }} em {
+    color: {{ block.settings.highlight_text_color }};
+    font-style: italic;
+  }
+
+  .ai-text-image-highlight__bottom-text-{{ ai_gen_id }} u {
+    color: {{ block.settings.highlight_text_color }};
+    text-decoration: underline;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-text-image-highlight-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_top | times: 0.7 }}px {{ block.settings.section_padding_horizontal | times: 0.7 }}px {{ block.settings.section_padding_bottom | times: 0.7 }}px;
+    }
+
+    .ai-text-image-highlight__content-{{ ai_gen_id }} {
+      gap: {{ block.settings.content_spacing | times: 0.8 }}px;
+    }
+
+    .ai-text-image-highlight__main-image-placeholder-{{ ai_gen_id }} {
+      min-height: 250px;
+    }
+
+    .ai-text-image-highlight__heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_font_size | times: 0.9 }}px;
+    }
+
+    .ai-text-image-highlight__paragraph-{{ ai_gen_id }},
+    .ai-text-image-highlight__bottom-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.body_font_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<div
+  class="ai-text-image-highlight-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-text-image-highlight__container-{{ ai_gen_id }}">
+    <div class="ai-text-image-highlight__content-{{ ai_gen_id }}">
+      {% if block.settings.heading_text != blank %}
+        <div class="ai-text-image-highlight__heading-{{ ai_gen_id }}">
+          {{ block.settings.heading_text }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.main_image %}
+        <img
+          src="{{ block.settings.main_image | image_url: width: 1200 }}"
+          alt="{{ block.settings.main_image.alt | escape }}"
+          class="ai-text-image-highlight__main-image-{{ ai_gen_id }}"
+          loading="lazy"
+          width="{{ block.settings.main_image.width }}"
+          height="{{ block.settings.main_image.height }}"
+        >
+      {% else %}
+        <div class="ai-text-image-highlight__main-image-placeholder-{{ ai_gen_id }}">
+          {{ 'image' | placeholder_svg_tag }}
+          <div class="ai-text-image-highlight__main-empty-state-{{ ai_gen_id }}">
+            Add an image below the heading
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.paragraph_text != blank %}
+        <div class="ai-text-image-highlight__paragraph-{{ ai_gen_id }}">
+          {{ block.settings.paragraph_text }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.bottom_text != blank %}
+        <div class="ai-text-image-highlight__bottom-text-{{ ai_gen_id }}">
+          {{ block.settings.bottom_text }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Text with image highlight",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "richtext",
+      "id": "heading_text",
+      "label": "Heading text",
+      "default": "<h2>Your <strong>highlighted</strong> heading goes here</h2>"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main image"
+    },
+    {
+      "type": "richtext",
+      "id": "paragraph_text",
+      "label": "Paragraph text",
+      "default": "<p><strong>For thousands of years, women were nourished by the land: they ate nose-to-tail.</strong> They honored the body by feeding it the parts that made it strong, fertile, and calm - including the parts we now throw away.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "bottom_text",
+      "label": "Additional text",
+      "default": "<p>Additional paragraph text that appears below the main content. Perfect for <strong>highlighting</strong> key points or adding <em>emphasis</em> to your content.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading font size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "body_font_size",
+      "label": "Body font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "content_spacing",
+      "label": "Content spacing",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Image style"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "primary_text_color",
+      "label": "Primary text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "highlight_text_color",
+      "label": "Highlight text color",
+      "default": "#FF4081"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "section_padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text with image highlight"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}

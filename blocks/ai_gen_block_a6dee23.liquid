@@ -1,0 +1,844 @@
+{% doc %}
+  @prompt
+    New Message
+    Create a 3-column comparison chart section for Shopify with the following structure:
+    
+    Section Title at the top: editable.
+    
+    Three Columns Layout:
+    
+    Left Column: Product image (editable), product title (editable), and a vertical list of checkmarks or crosses (✅ ❌). Each row should be editable in the customizer. Add horizontal divider lines between rows.
+    
+    Middle Column: A box with only one heading: 'Pound For Pound, Which Has More:' (editable text). No checkmarks or crosses here.
+    
+    Right Column: Product image (editable), product title (editable), and a vertical list of checkmarks or crosses (✅ ❌), matching the same number of rows as the left column. Also include horizontal divider lines.
+    
+    Style:
+    
+    Clean, mobile-responsive design.
+    
+    Middle column background: dark purple (#3b0a45), white text, rounded corners.
+    
+    Section heading color: pink (#d12c85).
+    
+    Divider lines: light gray.
+    
+    Center everything neatly aligned.
+    
+    The final design should look like a comparison chart, with ✅ ❌ in the left and right columns, and only a heading in the middle column.", show heading title in center column, want to set feature title in middle column only
+    , make in mobile view like desktop view same layout, Left product Yes Replace with the background color pink & border rounded &  ❌ No it sholud be #2f0147 background color, Default settings:
+       - Use ✔ checkmark in pink (#ff69b4)
+       - Use ✘ cross in blue (#0052cc)
+       - VS panel background in dark purple (#3d0052) with white text.
+       - Rounded corners and subtle box shadows for cards., Feature 1 sholud be 13 sets
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-comparison-chart-{{ ai_gen_id }} {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position:relative;
+  }
+
+  .ai-comparison-chart__title-{{ ai_gen_id }} {
+    text-align: center;
+    color: #d12c85;
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    padding-bottom:80px;
+  }
+
+  .ai-comparison-chart__container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    {% comment %} gap: 20px; {% endcomment %}
+    align-items: start;
+    border: 1px solid #2f0147;
+    border-radius: 10px;
+}
+  .ai-comparison-chart__column-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    border-radius: 12px;
+    padding: 20px 0;
+  }
+
+  .ai-comparison-chart__product-image-{{ ai_gen_id }} {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    position: absolute;
+    overflow: hidden;
+    top: -72px;
+}
+.ai-supplement-feature__heading-azmxxynlcdlfiwmdvuaigenblock98cee17rd4fcn {
+  max-width: 436px;
+  margin: 0 auto;
+  margin-top: 115px;
+}
+  .ai-comparison-chart__product-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-comparison-chart__image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-comparison-chart__image-placeholder-{{ ai_gen_id }} svg {
+    width: 60px;
+    height: 60px;
+    opacity: 0.5;
+  }
+
+  .ai-comparison-chart__product-title-{{ ai_gen_id }} {
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 24px;
+    color: #333;
+    padding:14px;
+
+}
+
+  .ai-comparison-chart__features-{{ ai_gen_id }} {
+    width: 100%;
+    {% comment %} max-width: 250px; {% endcomment %}
+  }
+
+  .ai-comparison-chart__feature-row-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    border-bottom: 1px solid #63357b;
+    min-height: 58px;
+  }
+
+  .ai-comparison-chart__feature-row-{{ ai_gen_id }}:last-child {
+    border-bottom: none;
+  }
+
+  .ai-comparison-chart__feature-icon-{{ ai_gen_id }} {
+    font-size: 11px;
+    padding: 7px 10px;
+    border-radius: 100%;
+    color: white;
+    font-weight: bold;
+    min-width: 0px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+  .ai-comparison-chart__feature-icon-{{ ai_gen_id }}--check {
+    background-color: #ff69b4;
+  }
+.ai-comparison-chart__middle-feature-arnvywwuwyjnwrmvtaaigenblocka6dee23ru3cqj {
+    padding: 10px 20px !important;
+    min-height: 60px !important;
+}
+  .ai-comparison-chart__feature-icon-{{ ai_gen_id }}--cross {
+    background-color:#3d0052;
+  }
+
+  .ai-comparison-chart__middle-column-{{ ai_gen_id }} {
+    background-color: #3d0052;
+    color: white;
+    padding: 30px 0px;
+    border-radius: 12px;
+    text-align: center;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    {% comment %} margin-top: 146px; {% endcomment %}
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .ai-comparison-chart__middle-title-{{ ai_gen_id }} {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    line-height: 1.3;
+    width: 100%;
+    max-width: 300px;
+    padding:14px;
+}
+
+  .ai-comparison-chart__middle-features-{{ ai_gen_id }} {
+    width: 100%;
+  }
+
+  .ai-comparison-chart__middle-feature-{{ ai_gen_id }} {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 14px;
+    min-height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-comparison-chart__middle-feature-{{ ai_gen_id }}:last-child {
+    border-bottom: none;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-comparison-chart-{{ ai_gen_id }} {
+      padding: 30px 15px;
+    }
+.ai-comparison-chart__middle-column-arnvywwuwyjnwrmvtaaigenblocka6dee23ru3cqj {
+    padding: 10px 0!important; 
+    min-width: 150px;
+   margin-top: 0 !important; 
+}
+#shopify-section-template--19513531236509__section_E8QNML .ai-comparison-chart__title-arnvywwuwyjnwrmvtaaigenblocka6dee23ru3cqj {
+    max-width: 387px;
+    margin-bottom: 40px;
+    width: 100%;
+    font-size: 22px;
+    margin:0 auto;
+}
+    .ai-comparison-chart__title-{{ ai_gen_id }} {
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+
+    .ai-comparison-chart__product-image-{{ ai_gen_id }} {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 12px;
+    top: -44px;
+}
+    
+.ai-comparison-chart__container-arnvywwuwyjnwrmvtaaigenblocka6dee23ru3cqj {
+    align-items: normal;
+    
+}
+    .ai-comparison-chart__product-title-{{ ai_gen_id }} {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .ai-comparison-chart__middle-column-{{ ai_gen_id }} {
+      padding: 20px 15px;
+      min-width: 150px;
+
+    }
+
+    .ai-comparison-chart__middle-title-{{ ai_gen_id }} {
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+  
+    .ai-comparison-chart__middle-feature-{{ ai_gen_id }} {
+      padding: 10px 0;
+      min-height: 40px;
+    }
+
+    .ai-comparison-chart__feature-icon-{{ ai_gen_id }} {
+      font-size: 20px;
+      padding: 6px 12px;
+      min-width: 50px;
+    }
+    .ai-comparison-chart__feature-icon-arnvywwuwyjnwrmvtaaigenblocka6dee23ru3cqj {
+    font-size: 14px;
+    padding: 6px 12px;
+    min-width: 27px;
+}
+  }
+
+  @media screen and (max-width: 480px) {
+    .ai-comparison-chart__container-{{ ai_gen_id }} {
+      gap: 10px;
+    }
+#shopify-section-template--19513531236509__section_E8QNML .ai-comparison-chart__title-arnvywwuwyjnwrmvtaaigenblocka6dee23ru3cqj {
+    max-width: 230px;
+    font-size: 17px;
+    margin: 0 auto;
+}
+    .ai-comparison-chart__column-{{ ai_gen_id }} {
+      padding: 12px;
+    }
+
+    .ai-comparison-chart__product-image-{{ ai_gen_id }} {
+      width: 80px;
+      height: 80px;
+    }
+
+    .ai-comparison-chart__middle-column-{{ ai_gen_id }} {
+      min-width: 120px;
+      margin-top: 92px;
+    }
+
+    .ai-comparison-chart__middle-title-{{ ai_gen_id }} {
+      font-size: 14px;
+    }
+
+    .ai-comparison-chart__middle-feature-{{ ai_gen_id }} {
+      font-size: 12px;
+    }
+.ai-comparison-chart__product-image-arnvywwuwyjnwrmvtaaigenblocka6dee23ru3cqj {
+    width: 85px;
+    height: 79px;
+    margin-bottom: 12px;
+    top: -18px;
+}
+#shopify-section-template--19513531236509__section_E8QNML .ai-comparison-chart__title-arnvywwuwyjnwrmvtaaigenblocka6dee23ru3cqj {
+    max-width: 200px!important;
+    font-size: 18px !important;
+}
+    .ai-comparison-chart__feature-icon-{{ ai_gen_id }} {
+      font-size: 18px;
+      padding: 4px 8px;
+      min-width: 40px;
+    }
+  }
+{% endstyle %}
+<section class="">
+ {% if block.settings.section_title != blank %}
+    <h2 class="ai-comparison-chart__title-{{ ai_gen_id }}">{{ block.settings.section_title }}</h2>
+  {% endif %}
+</section>
+<div class="ai-comparison-chart-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  
+
+  <div class="ai-comparison-chart__container-{{ ai_gen_id }}">
+    <div class="ai-comparison-chart__column-{{ ai_gen_id }}">
+      <div class="ai-comparison-chart__product-image-{{ ai_gen_id }}">
+        {% if block.settings.left_product_image %}
+          <img
+            src="{{ block.settings.left_product_image | image_url: width: 300 }}"
+            alt="{{ block.settings.left_product_image.alt | escape }}"
+            loading="lazy"
+            width="300"
+            height="300"
+          >
+        {% else %}
+          <div class="ai-comparison-chart__image-placeholder-{{ ai_gen_id }}">
+            {{ 'product-apparel-1' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+      </div>
+      
+      {% if block.settings.left_product_title != blank %}
+        <h3 class="ai-comparison-chart__product-title-{{ ai_gen_id }}">{{ block.settings.left_product_title }}</h3>
+      {% endif %}
+
+      <div class="ai-comparison-chart__features-{{ ai_gen_id }}">
+        {% for i in (1..13) %}
+          {% assign feature_key = 'feature_' | append: i | append: '_left' %}
+          {% assign feature_value = block.settings[feature_key] %}
+          {% if feature_value != blank %}
+            <div class="ai-comparison-chart__feature-row-{{ ai_gen_id }}">
+              <span class="ai-comparison-chart__feature-icon-{{ ai_gen_id }} ai-comparison-chart__feature-icon-{{ ai_gen_id }}--{% if feature_value == 'check' %}check{% else %}cross{% endif %}">
+                {% if feature_value == 'check' %}✔
+                {% else %}✘
+                {% endif %}
+              </span>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="ai-comparison-chart__column-{{ ai_gen_id }} ai-comparison-chart__middle-column-{{ ai_gen_id }}">
+      {% if block.settings.middle_title != blank %}
+        <h3 class="ai-comparison-chart__middle-title-{{ ai_gen_id }}">{{ block.settings.middle_title }}</h3>
+      {% endif %}
+
+      <div class="ai-comparison-chart__middle-features-{{ ai_gen_id }}">
+        {% for i in (1..13) %}
+          {% assign feature_title_key = 'feature_' | append: i | append: '_title' %}
+          {% assign feature_title = block.settings[feature_title_key] %}
+          {% assign feature_left_key = 'feature_' | append: i | append: '_left' %}
+          {% assign feature_left = block.settings[feature_left_key] %}
+          {% if feature_title != blank and feature_left != blank %}
+            <div class="ai-comparison-chart__middle-feature-{{ ai_gen_id }}">
+              {{ feature_title }}</div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="ai-comparison-chart__column-{{ ai_gen_id }}">
+      <div class="ai-comparison-chart__product-image-{{ ai_gen_id }}">
+        {% if block.settings.right_product_image %}
+          <img
+            src="{{ block.settings.right_product_image | image_url: width: 300 }}"
+            alt="{{ block.settings.right_product_image.alt | escape }}"
+            loading="lazy"
+            width="300"
+            height="300"
+          >
+        {% else %}
+          <div class="ai-comparison-chart__image-placeholder-{{ ai_gen_id }}">
+            {{ 'product-apparel-1' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+      </div>
+      
+      {% if block.settings.right_product_title != blank %}
+        <h3 class="ai-comparison-chart__product-title-{{ ai_gen_id }}">{{ block.settings.right_product_title }}</h3>
+      {% endif %}
+
+      <div class="ai-comparison-chart__features-{{ ai_gen_id }}">
+        {% for i in (1..13) %}
+          {% assign feature_key = 'feature_' | append: i | append: '_right' %}
+          {% assign feature_value = block.settings[feature_key] %}
+          {% if feature_value != blank %}
+            <div class="ai-comparison-chart__feature-row-{{ ai_gen_id }}">
+              <span class="ai-comparison-chart__feature-icon-{{ ai_gen_id }} ai-comparison-chart__feature-icon-{{ ai_gen_id }}--{% if feature_value == 'check' %}check{% else %}cross{% endif %}">
+                {% if feature_value == 'check' %}
+                  ✔
+                {% else %}
+                  ✘
+                {% endif %}
+              </span>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product comparison chart",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section settings"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section title",
+      "default": "Product Comparison"
+    },
+    {
+      "type": "header",
+      "content": "Left product"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_product_image",
+      "label": "Product image"
+    },
+    {
+      "type": "text",
+      "id": "left_product_title",
+      "label": "Product title",
+      "default": "Product A"
+    },
+    {
+      "type": "header",
+      "content": "Middle column"
+    },
+    {
+      "type": "text",
+      "id": "middle_title",
+      "label": "Middle column title",
+      "default": "VS"
+    },
+    {
+      "type": "header",
+      "content": "Right product"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_product_image",
+      "label": "Product image"
+    },
+    {
+      "type": "text",
+      "id": "right_product_title",
+      "label": "Product title",
+      "default": "Product B"
+    },
+    {
+      "type": "header",
+      "content": "Feature 1"
+    },
+    {
+      "type": "text",
+      "id": "feature_1_title",
+      "label": "Feature name",
+      "default": "Protein"
+    },
+    {
+      "type": "select",
+      "id": "feature_1_left",
+      "label": "Left product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ],
+      "default": "check"
+    },
+    {
+      "type": "select",
+      "id": "feature_1_right",
+      "label": "Right product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "header",
+      "content": "Feature 2"
+    },
+    {
+      "type": "text",
+      "id": "feature_2_title",
+      "label": "Feature name",
+      "default": "Vitamins"
+    },
+    {
+      "type": "select",
+      "id": "feature_2_left",
+      "label": "Left product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ],
+      "default": "check"
+    },
+    {
+      "type": "select",
+      "id": "feature_2_right",
+      "label": "Right product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ],
+      "default": "check"
+    },
+    {
+      "type": "header",
+      "content": "Feature 3"
+    },
+    {
+      "type": "text",
+      "id": "feature_3_title",
+      "label": "Feature name",
+      "default": "Minerals"
+    },
+    {
+      "type": "select",
+      "id": "feature_3_left",
+      "label": "Left product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "select",
+      "id": "feature_3_right",
+      "label": "Right product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ],
+      "default": "check"
+    },
+    {
+      "type": "header",
+      "content": "Feature 4"
+    },
+    {
+      "type": "text",
+      "id": "feature_4_title",
+      "label": "Feature name"
+    },
+    {
+      "type": "select",
+      "id": "feature_4_left",
+      "label": "Left product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ]
+    },
+    {
+      "type": "select",
+      "id": "feature_4_right",
+      "label": "Right product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Feature 5"
+    },
+    {
+      "type": "text",
+      "id": "feature_5_title",
+      "label": "Feature name"
+    },
+    {
+      "type": "select",
+      "id": "feature_5_left",
+      "label": "Left product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ]
+    },
+    {
+      "type": "select",
+      "id": "feature_5_right",
+      "label": "Right product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Feature 6"
+    },
+    {
+      "type": "text",
+      "id": "feature_6_title",
+      "label": "Feature name"
+    },
+    {
+      "type": "select",
+      "id": "feature_6_left",
+      "label": "Left product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ]
+    },
+    {
+      "type": "select",
+      "id": "feature_6_right",
+      "label": "Right product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Feature 7"
+    },
+    {
+      "type": "text",
+      "id": "feature_7_title",
+      "label": "Feature name"
+    },
+    {
+      "type": "select",
+      "id": "feature_7_left",
+      "label": "Left product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ]
+    },
+    {
+      "type": "select",
+      "id": "feature_7_right",
+      "label": "Right product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Feature 8"
+    },
+    {
+      "type": "text",
+      "id": "feature_8_title",
+      "label": "Feature name"
+    },
+    {
+      "type": "select",
+      "id": "feature_8_left",
+      "label": "Left product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ]
+    },
+    {
+      "type": "select",
+      "id": "feature_8_right",
+      "label": "Right product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Feature 9"
+    },
+    {
+      "type": "text",
+      "id": "feature_9_title",
+      "label": "Feature name"
+    },
+    {
+      "type": "select",
+      "id": "feature_9_left",
+      "label": "Left product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ]
+    },
+    {
+      "type": "select",
+      "id": "feature_9_right",
+      "label": "Right product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Feature 10"
+    },
+    {
+      "type": "text",
+      "id": "feature_10_title",
+      "label": "Feature name"
+    },
+    {
+      "type": "select",
+      "id": "feature_10_left",
+      "label": "Left product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ]
+    },
+    {
+      "type": "select",
+      "id": "feature_10_right",
+      "label": "Right product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Feature 11"
+    },
+    {
+      "type": "text",
+      "id": "feature_11_title",
+      "label": "Feature name"
+    },
+    {
+      "type": "select",
+      "id": "feature_11_left",
+      "label": "Left product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ]
+    },
+    {
+      "type": "select",
+      "id": "feature_11_right",
+      "label": "Right product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Feature 12"
+    },
+    {
+      "type": "text",
+      "id": "feature_12_title",
+      "label": "Feature name"
+    },
+    {
+      "type": "select",
+      "id": "feature_12_left",
+      "label": "Left product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ]
+    },
+    {
+      "type": "select",
+      "id": "feature_12_right",
+      "label": "Right product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Feature 13"
+    },
+    {
+      "type": "text",
+      "id": "feature_13_title",
+      "label": "Feature name"
+    },
+    {
+      "type": "select",
+      "id": "feature_13_left",
+      "label": "Left product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ]
+    },
+    {
+      "type": "select",
+      "id": "feature_13_right",
+      "label": "Right product",
+      "options": [
+        {"value": "check", "label": "✔ Yes"},
+        {"value": "cross", "label": "✘ No"}
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product comparison chart"
+    }
+  ]
+}
+{% endschema %}

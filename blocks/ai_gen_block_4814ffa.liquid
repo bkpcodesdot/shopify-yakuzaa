@@ -1,0 +1,1646 @@
+{% doc %}
+  @prompt
+    Create a Facebook-style comment section for a Shopify product page with the following layout and functionality:
+    
+    Layout & Style:
+    
+    Title at top: Comments (editable).
+    
+    Input box with profile icon placeholder + 'Add a comment...' text field (editable).
+    
+    Comment feed displayed in a threaded layout:
+    
+    Profile photo on the left (editable/uploadable avatar).
+    
+    Comment author name (bold, editable).
+    
+    Comment text (editable, multiline support).
+    
+    Row under each comment with:
+    
+    Like (with counter, clickable to increase).
+    
+    Reply button (expands a reply input box).
+    
+    Timestamp (e.g., “39 min ago”, editable mock or real-time).
+    
+    Replies:
+    
+    Indented replies under parent comment.
+    
+    Same structure (profile photo, name, text, like, reply, timestamp).
+    
+    Features:
+    
+    Editable dummy data (default comments with avatars, names, and text).
+    
+    Profile image upload or placeholder avatar.
+    
+    Like button with counter toggle (increment/decrement).
+    
+    Auto timestamp generator (time since posted).
+    
+    Expand/collapse replies.
+    
+    Pagination or "Load more comments" button if many.
+    
+    Customization in Shopify Theme Editor:
+    
+    Add/Edit/Delete comments.
+    
+    Toggle replies on/off.
+    
+    Enable/disable like button.
+    
+    Customize colors (Facebook-style: white background, gray border, blue like).
+    
+    Control max comments displayed.
+    
+    Mobile responsive:
+    
+    Profile photo shrinks.
+    
+    Comments stack neatly with replies indented.
+    
+    The final result should look and feel like a Facebook comment thread with editable avatars, names, comment text, likes, replies, and timestamps., also set if i can add comment then show that new comment in list, add more comment with reply and like, set full width of this section
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-fb-comments-{{ ai_gen_id }} {
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .ai-fb-comments__title-{{ ai_gen_id }} {
+    font-size: 20px;
+    font-weight:600;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 16px 0;
+  }
+
+  .ai-fb-comments__input-section-{{ ai_gen_id }} {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .ai-fb-comments__avatar-{{ ai_gen_id }} {
+    width: 48px;
+    height: 48px;
+    {% comment %} border-radius: 50%; {% endcomment %}
+    flex-shrink: 0;
+    overflow: hidden;
+    background-color: #e4e6ea;
+  }
+
+  .ai-fb-comments__avatar-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-fb-comments__avatar-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #e4e6ea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-fb-comments__avatar-placeholder-{{ ai_gen_id }} svg {
+    width: 20px;
+    height: 20px;
+    color: #65676b;
+  }
+
+  .ai-fb-comments__input-wrapper-{{ ai_gen_id }} {
+    flex: 1;
+    position: relative;
+    width: 100%;
+  }
+
+  .ai-fb-comments__input-{{ ai_gen_id }} {
+    width: 100%;
+    background-color: #f0f2f5;
+    border: none;
+    border-radius: 0px;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: {{ block.settings.text_color }};
+    resize: none;
+    min-height: 36px;
+    box-sizing: border-box;
+  }
+
+  .ai-fb-comments__input-{{ ai_gen_id }}:focus {
+    outline: 2px solid {{ block.settings.like_color }};
+  }
+
+  .ai-fb-comments__input-{{ ai_gen_id }}::placeholder {
+    color: #65676b;
+  }
+
+  .ai-fb-comments__submit-btn-{{ ai_gen_id }} {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: {{ block.settings.like_color }};
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .ai-fb-comments__submit-btn-{{ ai_gen_id }}.active {
+    display: flex;
+  }
+
+  .ai-fb-comments__submit-btn-{{ ai_gen_id }} svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .ai-fb-comments__feed-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .ai-fb-comments__comment-{{ ai_gen_id }} {
+    display: flex;
+    {% comment %} gap: 12px; {% endcomment %}
+    align-items: flex-start;
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+
+  .ai-fb-comments__comment-{{ ai_gen_id }}.new-comment {
+    animation: ai-fb-comment-appear-{{ ai_gen_id }} 0.5s ease-out;
+  }
+
+  @keyframes ai-fb-comment-appear-{{ ai_gen_id }} {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .ai-fb-comments__comment-content-{{ ai_gen_id }} {
+    flex: 1;
+    width: 100%;
+  }
+
+  .ai-fb-comments__comment-bubble-{{ ai_gen_id }} {
+    {% comment %} background-color: #f0f2f5; {% endcomment %}
+    border-radius: 16px;
+    padding: 8px 12px;
+    padding-top: 0px;
+    margin-bottom: 4px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .ai-fb-comments__author-{{ ai_gen_id }} {
+    font-weight: bold;
+    font-size: 14px;
+    {% comment %} color: {{ block.settings.text_color }}; {% endcomment %}
+    color: #3b5998;
+    margin-bottom: 2px;
+  }
+
+  .ai-fb-comments__text-{{ ai_gen_id }} {
+    font-size: 14px;
+    color: {{ block.settings.text_color }};
+    line-height: 1.3;
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .ai-fb-comments__actions-{{ ai_gen_id }} {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 12px;
+    flex-wrap: wrap;
+  }
+
+  .ai-fb-comments__like-btn-{{ ai_gen_id }} {
+    background: none;
+    border: none;
+    color: #627aad;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .ai-fb-comments__like-btn-{{ ai_gen_id }}.liked {
+    color: {{ block.settings.like_color }};
+  }
+
+  .ai-fb-comments__reply-btn-{{ ai_gen_id }} {
+    background: none;
+    border: none;
+    color: #627aad;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 0;}
+
+  .ai-fb-comments__timestamp-{{ ai_gen_id }} {
+    color: #627aad;
+    font-size: 12px;
+  }
+
+  .ai-fb-comments__replies-{{ ai_gen_id }} {
+    margin-left: 52px;
+    margin-top: 8px;display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: calc(100% - 52px);
+  }
+
+  .ai-fb-comments__reply-input-{{ ai_gen_id }} {
+    margin-left: 52px;
+    margin-top: 8px;
+    display: none;
+    width: calc(100% - 52px);
+  }
+
+  .ai-fb-comments__reply-input-{{ ai_gen_id }}.active {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .ai-fb-comments__reply-input-{{ ai_gen_id }} .ai-fb-comments__avatar-{{ ai_gen_id }} {
+    width: 32px;
+    height: 32px;
+  }
+
+  .ai-fb-comments__reply-input-{{ ai_gen_id }} .ai-fb-comments__input-{{ ai_gen_id }} {
+    font-size: 13px;
+    min-height: 32px;
+    padding: 6px 12px;
+  }
+
+  .ai-fb-comments__load-more-{{ ai_gen_id }} {
+    background: none;
+    border: none;
+    color: {{ block.settings.like_color }};
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 8px 0;
+    margin-top: 16px;
+    width: 100%;
+    text-align: left;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-fb-comments-{{ ai_gen_id }} {
+      padding: 16px;
+    }
+
+    .ai-fb-comments__avatar-{{ ai_gen_id }} {
+      width: 32px;
+      height: 32px;
+    }
+
+    .ai-fb-comments__input-section-{{ ai_gen_id }} {
+      gap: 8px;
+    }
+
+    .ai-fb-comments__comment-{{ ai_gen_id }} {
+      gap: 8px;
+    }
+
+    .ai-fb-comments__replies-{{ ai_gen_id }} {
+      margin-left: 40px;
+      width: calc(100% - 40px);
+    }
+
+    .ai-fb-comments__reply-input-{{ ai_gen_id }} {
+      margin-left: 40px;
+      width: calc(100% - 40px);
+    }
+
+    .ai-fb-comments__actions-{{ ai_gen_id }} {
+      gap: 12px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .ai-fb-comments-{{ ai_gen_id }} {
+      padding: 12px;
+    }
+
+    .ai-fb-comments__replies-{{ ai_gen_id }} {
+      margin-left: 32px;
+      width: calc(100% - 32px);
+    }
+
+    .ai-fb-comments__reply-input-{{ ai_gen_id }} {
+      margin-left: 32px;
+      width: calc(100% - 32px);
+    }
+
+    .ai-fb-comments__actions-{{ ai_gen_id }} {
+      gap: 8px;
+      margin-left: 8px;
+    }
+  }
+{% endstyle %}
+
+<fb-comments-{{ ai_gen_id }} class="ai-fb-comments-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <h3 class="ai-fb-comments__title-{{ ai_gen_id }}">{{ block.settings.title }}</h3>
+  
+  {% if block.settings.allow_new_comments %}
+    <div class="ai-fb-comments__input-section-{{ ai_gen_id }}">
+      <div class="ai-fb-comments__avatar-{{ ai_gen_id }}">
+        {% if block.settings.user_avatar %}
+          <img src="{{ block.settings.user_avatar | image_url: width: 80}}" alt="Your avatar">
+        {% else %}
+          <div class="ai-fb-comments__avatar-placeholder-{{ ai_gen_id }}">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+          </div>
+        {% endif %}
+      </div>
+      <div class="ai-fb-comments__input-wrapper-{{ ai_gen_id }}">
+        <textarea
+          class="ai-fb-comments__input-{{ ai_gen_id }} main-input" 
+          placeholder="{{ block.settings.input_placeholder }}"
+          rows="1"
+        ></textarea>
+        <button class="ai-fb-comments__submit-btn-{{ ai_gen_id }}" type="button">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="ai-fb-comments__feed-{{ ai_gen_id }}">
+    {% for i in (1..6) %}
+      {% liquid
+        assign comment_enabled_key = 'comment_' | append: i | append: '_enabled'
+        assign comment_avatar_key = 'comment_' | append: i | append: '_avatar'
+        assign comment_author_key = 'comment_' | append: i | append: '_author'
+        assign comment_text_key = 'comment_' | append: i | append: '_text'
+        assign comment_likes_key = 'comment_' | append: i | append: '_likes'
+        assign comment_timestamp_key = 'comment_' | append: i | append: '_timestamp'
+        assign comment_has_replies_key = 'comment_' | append: i | append: '_has_replies'
+
+        assign comment_enabled = block.settings[comment_enabled_key]
+        assign comment_avatar = block.settings[comment_avatar_key]
+        assign comment_author = block.settings[comment_author_key]
+        assign comment_text = block.settings[comment_text_key]
+        assign comment_likes = block.settings[comment_likes_key]
+        assign comment_timestamp = block.settings[comment_timestamp_key]
+        assign comment_has_replies = block.settings[comment_has_replies_key]
+      %}
+
+      {% if comment_enabled %}
+        <div class="ai-fb-comments__comment-{{ ai_gen_id }}" data-comment-id="{{ i }}">
+          <div class="ai-fb-comments__avatar-{{ ai_gen_id }}">
+            {% if comment_avatar %}
+              <img src="{{ comment_avatar | image_url: width: 80}}" alt="{{ comment_author }}">
+            {% else %}
+              <div class="ai-fb-comments__avatar-placeholder-{{ ai_gen_id }}">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+              </div>
+            {% endif %}
+          </div>
+          
+          <div class="ai-fb-comments__comment-content-{{ ai_gen_id }}">
+            <div class="ai-fb-comments__comment-bubble-{{ ai_gen_id }}">
+              <div class="ai-fb-comments__author-{{ ai_gen_id }}">{{ comment_author }}</div>
+              <p class="ai-fb-comments__text-{{ ai_gen_id }}">{{ comment_text }}</p>
+            </div>
+            
+            <div class="ai-fb-comments__actions-{{ ai_gen_id }}">
+              {% if block.settings.enable_likes %}
+                <button class="ai-fb-comments__like-btn-{{ ai_gen_id }}" data-likes="{{ comment_likes }}">
+                  Like<span class="like-count">{% if comment_likes > 0 %}({{ comment_likes }}){% endif %}</span>
+                </button>
+              {% endif %}
+              {% if block.settings.enable_replies %}
+                <button class="ai-fb-comments__reply-btn-{{ ai_gen_id }}">Reply</button>
+              {% endif %}<span class="ai-fb-comments__timestamp-{{ ai_gen_id }}">{{ comment_timestamp }}</span>
+            </div>
+
+            {% if block.settings.enable_replies %}
+              <div class="ai-fb-comments__reply-input-{{ ai_gen_id }}">
+                <div class="ai-fb-comments__avatar-{{ ai_gen_id }}">
+                  {% if block.settings.user_avatar %}
+                    <img src="{{ block.settings.user_avatar | image_url: width: 64 }}" alt="Your avatar">
+                  {% else %}
+                    <div class="ai-fb-comments__avatar-placeholder-{{ ai_gen_id }}">
+                      <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                      </svg>
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="ai-fb-comments__input-wrapper-{{ ai_gen_id }}">
+                  <textarea 
+                    class="ai-fb-comments__input-{{ ai_gen_id }} reply-input" 
+                    placeholder="Write a reply..."
+                    rows="1"
+                  ></textarea>
+                  <button class="ai-fb-comments__submit-btn-{{ ai_gen_id }}" type="button">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            {% endif %}
+
+            {% if comment_has_replies and block.settings.enable_replies %}
+              <div class="ai-fb-comments__replies-{{ ai_gen_id }}">
+                {% for j in (1..2) %}
+                  {% liquid
+                    assign reply_avatar_key = 'comment_' | append: i | append: '_reply_' | append: j | append: '_avatar'
+                    assign reply_author_key = 'comment_' | append: i | append: '_reply_' | append: j | append: '_author'
+                    assign reply_text_key = 'comment_' | append: i | append: '_reply_' | append: j | append: '_text'
+                    assign reply_likes_key = 'comment_' | append: i | append: '_reply_' | append: j | append: '_likes'
+                    assign reply_timestamp_key = 'comment_' | append: i | append: '_reply_' | append: j | append: '_timestamp'
+                    assign reply_enabled_key = 'comment_' | append: i | append: '_reply_' | append: j | append: '_enabled'
+
+                    assign reply_avatar = block.settings[reply_avatar_key]
+                    assign reply_author = block.settings[reply_author_key]
+                    assign reply_text = block.settings[reply_text_key]
+                    assign reply_likes = block.settings[reply_likes_key]
+                    assign reply_timestamp = block.settings[reply_timestamp_key]
+                    assign reply_enabled = block.settings[reply_enabled_key]
+                  %}
+
+                  {% if reply_enabled %}
+                    <div class="ai-fb-comments__comment-{{ ai_gen_id }}" data-reply-id="{{ j }}">
+                      <div class="ai-fb-comments__avatar-{{ ai_gen_id }}">
+                        {% if reply_avatar %}
+                          <img src="{{ reply_avatar | image_url: width: 64 }}" alt="{{ reply_author }}">
+                        {% else %}
+                          <div class="ai-fb-comments__avatar-placeholder-{{ ai_gen_id }}">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                          </div>
+                        {% endif %}
+                      </div>
+                      
+                      <div class="ai-fb-comments__comment-content-{{ ai_gen_id }}">
+                        <div class="ai-fb-comments__comment-bubble-{{ ai_gen_id }}">
+                          <div class="ai-fb-comments__author-{{ ai_gen_id }}">{{ reply_author }}</div>
+                          <p class="ai-fb-comments__text-{{ ai_gen_id }}">{{ reply_text }}</p>
+                        </div>
+                        
+                        <div class="ai-fb-comments__actions-{{ ai_gen_id }}">
+                          {% if block.settings.enable_likes %}
+                            <button class="ai-fb-comments__like-btn-{{ ai_gen_id }}" data-likes="{{ reply_likes }}">
+                              Like
+                              <span class="like-count">{% if reply_likes > 0 %}({{ reply_likes }}){% endif %}</span>
+                            </button>
+                          {% endif %}
+                          {% if block.settings.enable_replies %}
+                            <button class="ai-fb-comments__reply-btn-{{ ai_gen_id }}">Reply</button>
+                          {% endif %}
+                          <span class="ai-fb-comments__timestamp-{{ ai_gen_id }}">{{ reply_timestamp }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    {% if block.settings.show_load_more %}
+      <button class="ai-fb-comments__load-more-{{ ai_gen_id }}">Load more comments</button>
+    {% endif %}
+  </div>
+</fb-comments-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class FbComments{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.commentCounter = 1000;
+      }
+
+      connectedCallback() {
+        this.setupEventListeners();
+        this.setupInputListeners();
+      }
+
+      setupEventListeners() {
+        this.addEventListener('click', (e) => {
+          if (e.target.classList.contains('ai-fb-comments__like-btn-{{ ai_gen_id }}')) {
+            this.handleLike(e.target);
+          }if (e.target.classList.contains('ai-fb-comments__reply-btn-{{ ai_gen_id }}')) {
+            this.handleReply(e.target);
+          }
+          if (e.target.classList.contains('ai-fb-comments__submit-btn-{{ ai_gen_id }}')) {
+            this.handleSubmit(e.target);
+          }
+        });
+
+        this.addEventListener('keydown', (e) => {
+          if (e.target.classList.contains('ai-fb-comments__input-{{ ai_gen_id }}') && e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            const submitBtn = e.target.parentElement.querySelector('.ai-fb-comments__submit-btn-{{ ai_gen_id }}');
+            if (submitBtn && submitBtn.classList.contains('active')) {
+              this.handleSubmit(submitBtn);
+            }
+          }
+        });
+      }
+
+      setupInputListeners() {
+        const inputs = this.querySelectorAll('.ai-fb-comments__input-{{ ai_gen_id }}');
+        inputs.forEach(input => {
+          input.addEventListener('input', (e) => {
+            this.toggleSubmitButton(e.target);
+          });
+
+          input.addEventListener('focus', (e) => {
+            this.toggleSubmitButton(e.target);
+          });
+
+          input.addEventListener('blur', (e) => {
+            setTimeout(() => {
+              if (!e.target.value.trim()) {
+                this.toggleSubmitButton(e.target);
+              }
+            }, 100);
+          });
+        });
+      }
+
+      toggleSubmitButton(input) {
+        const submitBtn = input.parentElement.querySelector('.ai-fb-comments__submit-btn-{{ ai_gen_id }}');
+        if (submitBtn) {
+          if (input.value.trim()) {
+            submitBtn.classList.add('active');
+          } else {
+            submitBtn.classList.remove('active');
+          }
+        }
+      }
+
+      handleLike(button) {
+        const currentLikes = parseInt(button.dataset.likes) || 0;
+        const isLiked = button.classList.contains('liked');
+        const newLikes = isLiked ? Math.max(0, currentLikes - 1) : currentLikes + 1;
+        
+        button.dataset.likes = newLikes;
+        button.classList.toggle('liked');
+        
+        const likeCount = button.querySelector('.like-count');
+        likeCount.textContent = newLikes > 0 ? `(${newLikes})` : '';
+      }
+
+      handleReply(button) {
+        const comment = button.closest('.ai-fb-comments__comment-{{ ai_gen_id }}');
+        const replyInput = comment.querySelector('.ai-fb-comments__reply-input-{{ ai_gen_id }}');
+        
+        if (replyInput) {
+          replyInput.classList.toggle('active');
+          if (replyInput.classList.contains('active')) {
+            const textarea = replyInput.querySelector('textarea');
+            textarea.focus();
+          }
+        }
+      }
+
+      handleSubmit(button) {
+        const inputWrapper = button.parentElement;
+        const textarea = inputWrapper.querySelector('textarea');
+        const text = textarea.value.trim();
+        
+        if (!text) return;
+
+        const isReply = textarea.classList.contains('reply-input');
+        if (isReply) {
+          this.addReply(button, text);
+        } else {
+          this.addNewComment(text);
+        }
+
+        textarea.value = '';
+        button.classList.remove('active');
+        const replyInput = textarea.closest('.ai-fb-comments__reply-input-{{ ai_gen_id }}');
+        if (replyInput) {
+          replyInput.classList.remove('active');
+        }
+      }
+
+      addNewComment(text) {
+        const feed = this.querySelector('.ai-fb-comments__feed-{{ ai_gen_id }}');
+        const userAvatar = this.querySelector('.ai-fb-comments__input-section-{{ ai_gen_id }} .ai-fb-comments__avatar-{{ ai_gen_id }}').innerHTML;
+        
+        const commentHtml = `
+          <div class="ai-fb-comments__comment-{{ ai_gen_id }} new-comment" data-comment-id="${this.commentCounter++}">
+            <div class="ai-fb-comments__avatar-{{ ai_gen_id }}">
+              ${userAvatar}
+            </div>
+            <div class="ai-fb-comments__comment-content-{{ ai_gen_id }}">
+              <div class="ai-fb-comments__comment-bubble-{{ ai_gen_id }}">
+                <div class="ai-fb-comments__author-{{ ai_gen_id }}">You</div>
+                <p class="ai-fb-comments__text-{{ ai_gen_id }}">${this.escapeHtml(text)}</p>
+              </div>
+              <div class="ai-fb-comments__actions-{{ ai_gen_id }}">
+                ${this.getLikeButton()}
+                ${this.getReplyButton()}
+                <span class="ai-fb-comments__timestamp-{{ ai_gen_id }}">now</span>
+              </div>${this.getReplyInput()}
+            </div>
+          </div>
+        `;
+
+        feed.insertAdjacentHTML('afterbegin', commentHtml);
+        
+        setTimeout(() => {
+          const newComment = feed.querySelector('.new-comment');
+          if (newComment) {
+            newComment.classList.remove('new-comment');
+          }
+        }, 500);
+      }
+
+      addReply(button, text) {
+        const comment = button.closest('.ai-fb-comments__comment-{{ ai_gen_id }}');
+        const userAvatar = this.querySelector('.ai-fb-comments__input-section-{{ ai_gen_id }} .ai-fb-comments__avatar-{{ ai_gen_id }}').innerHTML;
+        
+        let repliesContainer = comment.querySelector('.ai-fb-comments__replies-{{ ai_gen_id }}');
+        
+        if (!repliesContainer) {
+          const commentContent = comment.querySelector('.ai-fb-comments__comment-content-{{ ai_gen_id }}');
+          const replyInput = commentContent.querySelector('.ai-fb-comments__reply-input-{{ ai_gen_id }}');
+          
+          repliesContainer = document.createElement('div');
+          repliesContainer.className = 'ai-fb-comments__replies-{{ ai_gen_id }}';
+          commentContent.insertBefore(repliesContainer, replyInput);
+        }
+
+        const replyHtml = `
+          <div class="ai-fb-comments__comment-{{ ai_gen_id }} new-comment" data-reply-id="${this.commentCounter++}">
+            <div class="ai-fb-comments__avatar-{{ ai_gen_id }}">
+              ${userAvatar}
+            </div>
+            <div class="ai-fb-comments__comment-content-{{ ai_gen_id }}">
+              <div class="ai-fb-comments__comment-bubble-{{ ai_gen_id }}">
+                <div class="ai-fb-comments__author-{{ ai_gen_id }}">You</div>
+                <p class="ai-fb-comments__text-{{ ai_gen_id }}">${this.escapeHtml(text)}</p>
+              </div>
+              <div class="ai-fb-comments__actions-{{ ai_gen_id }}">
+                ${this.getLikeButton()}
+                ${this.getReplyButton()}
+                <span class="ai-fb-comments__timestamp-{{ ai_gen_id }}">now</span>
+              </div>
+            </div>
+          </div>
+        `;
+
+        repliesContainer.insertAdjacentHTML('beforeend', replyHtml);
+        
+        setTimeout(() => {
+          const newReply = repliesContainer.querySelector('.new-comment');
+          if (newReply) {
+            newReply.classList.remove('new-comment');
+          }
+        }, 500);
+      }
+
+      getLikeButton() {
+        const enableLikes = {{ block.settings.enable_likes | json }};
+        return enableLikes ? `
+          <button class="ai-fb-comments__like-btn-{{ ai_gen_id }}" data-likes="0">
+            Like
+            <span class="like-count"></span>
+          </button>
+        ` : '';
+      }
+
+      getReplyButton() {
+        const enableReplies = {{ block.settings.enable_replies | json }};
+        return enableReplies ? `
+          <button class="ai-fb-comments__reply-btn-{{ ai_gen_id }}">Reply</button>
+        ` : '';
+      }
+
+      getReplyInput() {
+        const enableReplies = {{ block.settings.enable_replies | json }};
+        if (!enableReplies) return '';
+        
+        const userAvatar = this.querySelector('.ai-fb-comments__input-section-{{ ai_gen_id }} .ai-fb-comments__avatar-{{ ai_gen_id }}').innerHTML;
+        
+        return `
+          <div class="ai-fb-comments__reply-input-{{ ai_gen_id }}">
+            <div class="ai-fb-comments__avatar-{{ ai_gen_id }}">
+              ${userAvatar}
+            </div>
+            <div class="ai-fb-comments__input-wrapper-{{ ai_gen_id }}">
+              <textarea 
+                class="ai-fb-comments__input-{{ ai_gen_id }} reply-input" 
+                placeholder="Write a reply..."
+                rows="1"
+              ></textarea>
+              <button class="ai-fb-comments__submit-btn-{{ ai_gen_id }}" type="button">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+    }
+
+    customElements.define('fb-comments-{{ ai_gen_id }}', FbComments{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Facebook comments",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Comments"
+    },
+    {
+      "type": "checkbox",
+      "id": "allow_new_comments",
+      "label": "Allow new comments",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "input_placeholder",
+      "label": "Input placeholder",
+      "default": "Add a comment..."
+    },
+    {
+      "type": "image_picker",
+      "id": "user_avatar",
+      "label": "Your avatar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_load_more",
+      "label": "Show load more button",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Features"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_likes",
+      "label": "Enable like button",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_replies",
+      "label": "Enable replies",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#050505"
+    },
+    {
+      "type": "color",
+      "id": "like_color",
+      "label": "Like color",
+      "default": "#1877f2"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Comment1"
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_1_enabled",
+      "label": "Enable comment 1",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "comment_1_avatar",
+      "label": "Avatar"
+    },
+    {
+      "type": "text",
+      "id": "comment_1_author",
+      "label": "Author name",
+      "default": "Sarah Johnson"
+    },
+    {
+      "type": "textarea",
+      "id": "comment_1_text",
+      "label": "Comment text",
+      "default": "This product looks amazing! Can't wait to try it out."
+    },
+    {
+      "type": "range",
+      "id": "comment_1_likes",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Likes",
+      "default": 5
+    },
+    {
+      "type": "text",
+      "id": "comment_1_timestamp",
+      "label": "Timestamp",
+      "default": "2h"
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_1_has_replies",
+      "label": "Show replies",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_1_reply_1_enabled",
+      "label": "Enable reply 1",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "comment_1_reply_1_avatar",
+      "label": "Reply 1 avatar"
+    },
+    {
+      "type": "text",
+      "id": "comment_1_reply_1_author",
+      "label": "Reply 1 author",
+      "default": "Mike Chen"
+    },
+    {
+      "type": "textarea",
+      "id": "comment_1_reply_1_text",
+      "label": "Reply 1 text",
+      "default": "I agree! Just ordered mine."
+    },
+    {
+      "type": "range",
+      "id": "comment_1_reply_1_likes",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "label": "Reply 1 likes",
+      "default": 2
+    },
+    {
+      "type": "text",
+      "id": "comment_1_reply_1_timestamp",
+      "label": "Reply 1 timestamp",
+      "default": "1h"
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_1_reply_2_enabled",
+      "label": "Enable reply 2",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "comment_1_reply_2_avatar",
+      "label": "Reply 2 avatar"
+    },
+    {
+      "type": "text",
+      "id": "comment_1_reply_2_author",
+      "label": "Reply 2 author",
+      "default": "Lisa Park"
+    },
+    {
+      "type": "textarea",
+      "id": "comment_1_reply_2_text",
+      "label": "Reply 2 text",
+      "default": "Same here! Great choice."
+    },
+    {
+      "type": "range",
+      "id": "comment_1_reply_2_likes",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "label": "Reply 2 likes",
+      "default": 1
+    },
+    {
+      "type": "text",
+      "id": "comment_1_reply_2_timestamp",
+      "label": "Reply 2 timestamp",
+      "default": "45m"
+    },
+    {
+      "type": "header",
+      "content": "Comment 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_2_enabled",
+      "label": "Enable comment 2",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "comment_2_avatar",
+      "label": "Avatar"
+    },
+    {
+      "type": "text",
+      "id": "comment_2_author",
+      "label": "Author name",
+      "default": "Alex Rodriguez"
+    },
+    {
+      "type": "textarea",
+      "id": "comment_2_text",
+      "label": "Comment text",
+      "default": "Great quality and fast shipping. Highly recommend!"
+    },
+    {
+      "type": "range",
+      "id": "comment_2_likes",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Likes",
+      "default": 8
+    },
+    {
+      "type": "text",
+      "id": "comment_2_timestamp",
+      "label": "Timestamp",
+      "default": "4h"
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_2_has_replies",
+      "label": "Show replies",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_2_reply_1_enabled",
+      "label": "Enable reply 1",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "comment_2_reply_1_avatar",
+      "label": "Reply 1 avatar"
+    },
+    {
+      "type": "text",
+      "id": "comment_2_reply_1_author",
+      "label": "Reply 1 author",
+      "default": "Jessica Wu"
+    },
+    {
+      "type": "textarea",
+      "id": "comment_2_reply_1_text",
+      "label": "Reply 1 text",
+      "default": "How long did shipping take?"
+    },
+    {
+      "type": "range",
+      "id": "comment_2_reply_1_likes",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "label": "Reply 1 likes",
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "comment_2_reply_1_timestamp",
+      "label": "Reply 1 timestamp",
+      "default": "3h"
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_2_reply_2_enabled",
+      "label": "Enable reply 2",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "comment_2_reply_2_avatar",
+      "label": "Reply 2 avatar"
+    },
+    {
+      "type": "text",
+      "id": "comment_2_reply_2_author",
+      "label": "Reply 2 author",
+      "default": "Alex Rodriguez"
+    },
+    {
+      "type": "textarea",
+      "id": "comment_2_reply_2_text",
+      "label": "Reply 2 text",
+      "default": "Only 2 days! Super fast."
+    },
+    {
+      "type": "range",
+      "id": "comment_2_reply_2_likes",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "label": "Reply 2 likes",
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "comment_2_reply_2_timestamp",
+      "label": "Reply 2 timestamp",
+      "default": "2h"
+    },
+    {
+      "type": "header",
+      "content": "Comment 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_3_enabled",
+      "label": "Enable comment 3",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "comment_3_avatar",
+      "label": "Avatar"
+    },
+    {
+      "type": "text",
+      "id": "comment_3_author",
+      "label": "Author name",
+      "default": "Emma Wilson"
+    },
+    {
+      "type": "textarea",
+      "id": "comment_3_text",
+      "label": "Comment text",
+      "default": "Perfect fit and exactly as described. Will definitely buy again!"
+    },
+    {
+      "type": "range",
+      "id": "comment_3_likes",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Likes",
+      "default": 12
+    },
+    {
+      "type": "text",
+      "id": "comment_3_timestamp",
+      "label": "Timestamp",
+      "default": "6h"
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_3_has_replies",
+      "label": "Show replies",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_3_reply_1_enabled",
+      "label": "Enable reply 1",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "comment_3_reply_1_avatar",
+      "label": "Reply 1 avatar"
+    },
+    {
+      "type": "text",
+      "id": "comment_3_reply_1_author",
+      "label": "Reply 1 author",
+      "default": "David Kim"
+    },
+    {
+      "type": "textarea",
+      "id": "comment_3_reply_1_text",
+      "label": "Reply 1 text",
+      "default": "What size did you get?"
+    },
+    {
+      "type": "range",
+      "id": "comment_3_reply_1_likes",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "label": "Reply 1 likes",
+      "default": 1
+    },
+    {
+      "type": "text",
+      "id": "comment_3_reply_1_timestamp",
+      "label": "Reply 1 timestamp",
+      "default": "5h"
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_3_reply_2_enabled",
+      "label": "Enable reply 2",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "comment_3_reply_2_avatar",
+      "label": "Reply 2 avatar"
+    },
+    {
+      "type": "text",
+      "id": "comment_3_reply_2_author",
+      "label": "Reply 2 author",
+      "default": "Emma Wilson"
+    },
+    {
+      "type": "textarea",
+      "id": "comment_3_reply_2_text",
+      "label": "Reply 2 text",
+      "default": "I got medium and it fits perfectly!"
+    },
+    {
+      "type": "range",
+      "id": "comment_3_reply_2_likes",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "label": "Reply 2 likes",
+      "default": 2
+    },
+    {
+      "type": "text",
+      "id": "comment_3_reply_2_timestamp",
+      "label": "Reply 2 timestamp",
+      "default": "4h"
+    },
+    {
+      "type": "header",
+      "content": "Comment 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_4_enabled",
+      "label": "Enable comment 4",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "comment_4_avatar",
+      "label": "Avatar"
+    },
+    {
+      "type": "text",
+      "id": "comment_4_author",
+      "label": "Author name",
+      "default": "Ryan Thompson"
+    },
+    {
+      "type": "textarea",
+      "id": "comment_4_text",
+      "label": "Comment text",
+      "default": "Love the design! Exactly what I was looking for."
+    },
+    {
+      "type": "range",
+      "id": "comment_4_likes",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Likes",
+      "default": 7
+    },
+    {
+      "type": "text",
+      "id": "comment_4_timestamp",
+      "label": "Timestamp",
+      "default": "8h"
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_4_has_replies",
+      "label": "Show replies",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_4_reply_1_enabled",
+      "label": "Enable reply 1",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "comment_4_reply_1_avatar",
+      "label": "Reply 1 avatar"
+    },
+    {
+      "type": "text",
+      "id": "comment_4_reply_1_author",
+      "label": "Reply 1 author",
+      "default": "Store Owner"
+    },
+    {
+      "type": "textarea",
+      "id": "comment_4_reply_1_text",
+      "label": "Reply 1 text",
+      "default": "Thank you so much! We're glad you love it!"
+    },
+    {
+      "type": "range",
+      "id": "comment_4_reply_1_likes",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "label": "Reply 1 likes",
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "comment_4_reply_1_timestamp",
+      "label": "Reply 1 timestamp",
+      "default": "7h"
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_4_reply_2_enabled",
+      "label": "Enable reply 2",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "comment_4_reply_2_avatar",
+      "label": "Reply 2 avatar"
+    },
+    {
+      "type": "text",
+      "id": "comment_4_reply_2_author",
+      "label": "Reply 2 author",
+      "default": "Ryan Thompson"
+    },
+    {
+      "type": "textarea",
+      "id": "comment_4_reply_2_text",
+      "label": "Reply 2 text",
+      "default": "Keep up the great work!"
+    },
+    {
+      "type": "range",
+      "id": "comment_4_reply_2_likes",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "label": "Reply 2 likes",
+      "default": 1
+    },
+    {
+      "type": "text",
+      "id": "comment_4_reply_2_timestamp",
+      "label": "Reply 2 timestamp",
+      "default": "6h"
+    },
+    {
+      "type": "header",
+      "content": "Comment 5"
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_5_enabled",
+      "label": "Enable comment 5",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "comment_5_avatar",
+      "label": "Avatar"
+    },
+    {
+      "type": "text",
+      "id": "comment_5_author",
+      "label": "Author name",
+      "default": "Maria Garcia"
+    },
+    {
+      "type": "textarea",
+      "id": "comment_5_text",
+      "label": "Comment text",
+      "default": "Bought this as a gift and my friend absolutely loves it!"
+    },
+    {
+      "type": "range",
+      "id": "comment_5_likes",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Likes",
+      "default": 9
+    },
+    {
+      "type": "text",
+      "id": "comment_5_timestamp",
+      "label": "Timestamp",
+      "default": "10h"
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_5_has_replies",
+      "label": "Show replies",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_5_reply_1_enabled",
+      "label": "Enable reply 1",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "comment_5_reply_1_avatar",
+      "label": "Reply 1 avatar"
+    },
+    {
+      "type": "text",
+      "id": "comment_5_reply_1_author",
+      "label": "Reply 1 author",
+      "default": "Sophie Lee"
+    },
+    {
+      "type": "textarea",
+      "id": "comment_5_reply_1_text",
+      "label": "Reply 1 text",
+      "default": "That's so sweet! Great gift choice."
+    },
+    {
+      "type": "range",
+      "id": "comment_5_reply_1_likes",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "label": "Reply 1 likes",
+      "default": 2
+    },
+    {
+      "type": "text",
+      "id": "comment_5_reply_1_timestamp",
+      "label": "Reply 1 timestamp",
+      "default": "9h"
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_5_reply_2_enabled",
+      "label": "Enable reply 2",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "comment_5_reply_2_avatar",
+      "label": "Reply 2 avatar"
+    },
+    {
+      "type": "text",
+      "id": "comment_5_reply_2_author",
+      "label": "Reply 2 author",
+      "default": "Maria Garcia"
+    },
+    {
+      "type": "textarea",
+      "id": "comment_5_reply_2_text",
+      "label": "Reply 2 text",
+      "default": "Thanks! I might get one for myself too 😊"
+    },
+    {
+      "type": "range",
+      "id": "comment_5_reply_2_likes",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "label": "Reply 2 likes",
+      "default": 5
+    },
+    {
+      "type": "text",
+      "id": "comment_5_reply_2_timestamp",
+      "label": "Reply 2 timestamp",
+      "default": "8h"
+    },
+    {
+      "type": "header",
+      "content": "Comment 6"
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_6_enabled",
+      "label": "Enable comment 6",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "comment_6_avatar",
+      "label": "Avatar"
+    },
+    {
+      "type": "text",
+      "id": "comment_6_author",
+      "label": "Author name",
+      "default": "James Miller"
+    },
+    {
+      "type": "textarea",
+      "id": "comment_6_text",
+      "label": "Comment text",
+      "default": "Outstanding customer service and product quality. 5 stars!"
+    },
+    {
+      "type": "range",
+      "id": "comment_6_likes",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Likes",
+      "default": 15
+    },
+    {
+      "type": "text",
+      "id": "comment_6_timestamp",
+      "label": "Timestamp",
+      "default": "12h"
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_6_has_replies",
+      "label": "Show replies",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_6_reply_1_enabled",
+      "label": "Enable reply 1",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "comment_6_reply_1_avatar",
+      "label": "Reply 1 avatar"
+    },
+    {
+      "type": "text",
+      "id": "comment_6_reply_1_author",
+      "label": "Reply 1 author",
+      "default": "Store Owner"
+    },
+    {
+      "type": "textarea",
+      "id": "comment_6_reply_1_text",
+      "label": "Reply 1 text",
+      "default": "Thank you for the amazing review! We appreciate your business."
+    },
+    {
+      "type": "range",
+      "id": "comment_6_reply_1_likes",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "label": "Reply 1 likes",
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "comment_6_reply_1_timestamp",
+      "label": "Reply 1 timestamp",
+      "default": "11h"
+    },
+    {
+      "type": "checkbox",
+      "id": "comment_6_reply_2_enabled",
+      "label": "Enable reply 2",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "comment_6_reply_2_avatar",
+      "label": "Reply 2 avatar"
+    },
+    {
+      "type": "text",
+      "id": "comment_6_reply_2_author",
+      "label": "Reply 2 author",
+      "default": "Customer"
+    },
+    {
+      "type": "textarea",
+      "id": "comment_6_reply_2_text",
+      "label": "Reply 2 text",
+      "default": "Couldn't agree more!"
+    },
+    {
+      "type": "range",
+      "id": "comment_6_reply_2_likes",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "label": "Reply 2 likes",
+      "default": 1
+    },
+    {
+      "type": "text",
+      "id": "comment_6_reply_2_timestamp",
+      "label": "Reply 2 timestamp",
+      "default": "10h"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Facebook comments"
+    }
+  ]
+}
+{% endschema %}

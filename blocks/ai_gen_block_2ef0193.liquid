@@ -1,0 +1,865 @@
+{% doc %}
+  @prompt
+    Create a 3-step instructional section for Shopify with the following layout and features:
+    
+    Layout:
+    
+    Section background: light pink (#fef3f7) with editable paint splatter overlays (uploadable).
+    
+    Centered title at top: How To Use (editable text).
+    
+    Below, 3 equal columns in a row (responsive).
+    
+    Each Step (column):
+    
+    Circular step number badge at top (editable, 1–3).
+    
+    Media container (GIF or video upload, autoplay & loop, muted).
+    
+    Editable: upload image, GIF, or short MP4.
+    
+    Rounded corners with pink border & subtle shadow.
+    
+    Step description text (editable, bold heading + subtext).
+    Example:
+    
+    Step 1 → Open Bag & Enjoy The Smell. It’s Peppermint!
+    
+    Step 2 → Pour Into Your Free Badass Bamboo Lid Glass Jar.
+    
+    Step 3 → Take 1 Capsule With Each Meal. 2 daily.
+    
+    Support small extra note below step text (optional).
+    
+    Design & Style:
+    
+    Step numbers inside circular pink badge with white text.
+    
+    Dotted connecting line between steps on desktop (hidden on mobile).
+    
+    Bold dark purple text (#3b0a45).
+    
+    Mobile responsive:
+    
+    Stacked layout (step 1 → 2 → 3).
+    
+    Step numbers remain centered above videos.
+    
+    Customization in Shopify Theme Editor:
+    
+    Change section title.
+    
+    Upload/replace GIFs or videos for each step.
+    
+    Edit step number labels, titles, and subtitles.
+    
+    Adjust colors for badges, text, and borders.
+    
+    The final design should look like a modern instructional step section with autoplay GIFs/videos instead of static images., want to set bg image, chnage image to video 
+    i want to setvideo there, i want to set video
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-instructional-section-{{ ai_gen_id }} {
+    background-color: {{ block.settings.background_color }};
+    {% if block.settings.background_image %}
+      background-image: url('{{ block.settings.background_image | image_url: width: 1920 }}');
+      background-size: {{ block.settings.background_size }};
+      background-position: {{ block.settings.background_position }};
+      background-repeat: {{ block.settings.background_repeat }};
+    {% endif %}
+    padding: {{ block.settings.section_padding }}px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ai-instructional-section-{{ ai_gen_id }}__background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.background_overlay_color }};
+    opacity: {{ block.settings.background_overlay_opacity | divided_by: 100.0 }};
+    z-index: 1;
+  }
+
+  .ai-instructional-section-{{ ai_gen_id }}__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .ai-instructional-section-{{ ai_gen_id }}__overlay img {
+    position: absolute;
+    max-width: 200px;
+    opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};
+  }
+
+  .ai-instructional-section-{{ ai_gen_id }}__overlay-1 {
+    top: 10%;
+    left: 5%;
+    transform: rotate(-15deg);
+  }
+
+  .ai-instructional-section-{{ ai_gen_id }}__overlay-2 {
+    top: 20%;
+    right: 8%;
+    transform: rotate(25deg);
+  }
+
+  .ai-instructional-section-{{ ai_gen_id }}__overlay-3 {
+    bottom: 15%;
+    left: 10%;
+    transform: rotate(10deg);
+  }
+
+  .ai-instructional-section-{{ ai_gen_id }}__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 3;
+  }
+
+  .ai-instructional-section-{{ ai_gen_id }}__title {
+    text-align: center;
+    margin: 0 0 {{ block.settings.title_margin_bottom }}px;
+    color: {{ block.settings.title_color }};
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: bold;
+  }
+
+  .ai-instructional-section-{{ ai_gen_id }}__steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: {{ block.settings.step_gap }}px;
+    position: relative;
+  }
+
+  .ai-instructional-section-{{ ai_gen_id }}__connector {
+    position: absolute;
+    top: {{ block.settings.badge_size | divided_by: 2 }}px;
+    left: calc(33.33% + {{ block.settings.badge_size | divided_by: 2 }}px);
+    right: calc(33.33% + {{ block.settings.badge_size | divided_by: 2 }}px);
+    height: 2px;
+    background: repeating-linear-gradient(
+      to right,
+      {{ block.settings.connector_color }} 0,
+      {{ block.settings.connector_color }} 8px,
+      transparent 8px,
+      transparent 16px
+    );
+    z-index: 1;
+  }
+
+  .ai-instructional-section-{{ ai_gen_id }}__step {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ai-instructional-section-{{ ai_gen_id }}__badge {
+    width: {{ block.settings.badge_size }}px;
+    height: {{ block.settings.badge_size }}px;
+    background-color: {{ block.settings.badge_color }};
+    color: {{ block.settings.badge_text_color }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: {{ block.settings.badge_font_size }}px;
+    margin: 0 auto {{ block.settings.badge_margin_bottom }}px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .ai-instructional-section-{{ ai_gen_id }}__media-container {
+    position: relative;
+    width: 100%;
+    max-width: {{ block.settings.media_max_width }}px;
+    margin: 0 auto {{ block.settings.media_margin_bottom }}px;
+    border-radius: {{ block.settings.media_border_radius }}px;
+    border: {{ block.settings.media_border_width }}px solid {{ block.settings.media_border_color }};
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: #f8f8f8;
+    aspect-ratio: 16 / 9;
+  }
+
+  .ai-instructional-section-{{ ai_gen_id }}__video,
+  .ai-instructional-section-{{ ai_gen_id }}__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ai-instructional-section-{{ ai_gen_id }}__media-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f8f8;
+    position: relative;
+  }
+
+  .ai-instructional-section-{{ ai_gen_id }}__media-placeholder svg {
+    width: 80px;
+    height: 80px;
+    opacity: 0.3;
+    margin-bottom: 10px;
+  }
+
+  .ai-instructional-section-{{ ai_gen_id }}__media-placeholder-text {
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    max-width: 80%;
+  }
+
+  .ai-instructional-section-{{ ai_gen_id }}__step-content {
+    color: {{ block.settings.step_text_color }};
+  }
+
+  .ai-instructional-section-{{ ai_gen_id }}__step-title {
+    font-size: {{ block.settings.step_title_size }}px;
+    font-weight: bold;
+    margin: 0 0 {{ block.settings.step_title_margin }}px;
+    line-height: 1.3;
+  }
+
+  .ai-instructional-section-{{ ai_gen_id }}__step-description {
+    font-size: {{ block.settings.step_description_size }}px;
+    line-height: 1.4;
+    margin: 0 0 {{ block.settings.step_description_margin }}px;
+  }
+
+  .ai-instructional-section-{{ ai_gen_id }}__step-note {
+    font-size: {{ block.settings.step_note_size }}px;
+    color: {{ block.settings.step_note_color }};
+    font-style: italic;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-instructional-section-{{ ai_gen_id }}__steps {
+      grid-template-columns: 1fr;
+      gap: {{ block.settings.mobile_step_gap }}px;
+    }
+
+    .ai-instructional-section-{{ ai_gen_id }}__connector {
+      display: none;
+    }
+
+    .ai-instructional-section-{{ ai_gen_id }}__overlay img {
+      max-width: 120px;
+    }
+
+    .ai-instructional-section-{{ ai_gen_id }}__title {
+      font-size: {{ block.settings.title_size | times: 0.8 }}px;
+    }
+
+    .ai-instructional-section-{{ ai_gen_id }}__step-title {
+      font-size: {{ block.settings.step_title_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-instructional-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.background_overlay_opacity > 0 %}
+    <div class="ai-instructional-section-{{ ai_gen_id }}__background-overlay"></div>
+  {% endif %}
+
+  <div class="ai-instructional-section-{{ ai_gen_id }}__overlay">
+    {% if block.settings.overlay_1 %}
+      <img src="{{ block.settings.overlay_1 | image_url: width: 200 }}" alt="" class="ai-instructional-section-{{ ai_gen_id }}__overlay-1">
+    {% endif %}
+    {% if block.settings.overlay_2 %}
+      <img src="{{ block.settings.overlay_2 | image_url: width: 200 }}" alt="" class="ai-instructional-section-{{ ai_gen_id }}__overlay-2">
+    {% endif %}
+    {% if block.settings.overlay_3 %}
+      <img src="{{ block.settings.overlay_3 | image_url: width: 200 }}" alt="" class="ai-instructional-section-{{ ai_gen_id }}__overlay-3">
+    {% endif %}
+  </div>
+
+  <div class="ai-instructional-section-{{ ai_gen_id }}__container">
+    {% if block.settings.section_title != blank %}
+      <h2 class="ai-instructional-section-{{ ai_gen_id }}__title">{{ block.settings.section_title }}</h2>
+    {% endif %}
+
+    <div class="ai-instructional-section-{{ ai_gen_id }}__steps">
+      <div class="ai-instructional-section-{{ ai_gen_id }}__connector"></div>
+
+      {% for i in (1..3) %}
+        {% liquid
+          assign step_number_key = 'step_' | append: i | append: '_number'
+          assign step_video_key = 'step_' | append: i | append: '_video'
+          assign step_image_key = 'step_' | append: i | append: '_image'
+          assign step_title_key = 'step_' | append: i | append: '_title'
+          assign step_description_key = 'step_' | append: i | append: '_description'
+          assign step_note_key = 'step_' | append: i | append: '_note'
+
+          assign step_number = block.settings[step_number_key]
+          assign step_video = block.settings[step_video_key]
+          assign step_image = block.settings[step_image_key]
+          assign step_title = block.settings[step_title_key]
+          assign step_description = block.settings[step_description_key]
+          assign step_note = block.settings[step_note_key]
+        %}
+
+        <div class="ai-instructional-section-{{ ai_gen_id }}__step">
+          <div class="ai-instructional-section-{{ ai_gen_id }}__badge">
+            {{ step_number | default: i }}
+          </div>
+
+          <div class="ai-instructional-section-{{ ai_gen_id }}__media-container">
+            {% if step_video %}
+              <video
+                class="ai-instructional-section-{{ ai_gen_id }}__video"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+              >
+                <source src="{{ step_video.sources[0].url }}" type="{{ step_video.sources[0].mime_type }}">
+              </video>
+            {% elsif step_image %}
+              <img
+                src="{{ step_image | image_url: width: 600 }}"
+                alt="{{ step_image.alt | escape }}"
+                class="ai-instructional-section-{{ ai_gen_id }}__image"
+                loading="lazy"
+                width="{{ step_image.width }}"
+                height="{{ step_image.height }}"
+              >
+            {% else %}
+              <div class="ai-instructional-section-{{ ai_gen_id }}__media-placeholder">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                <div class="ai-instructional-section-{{ ai_gen_id }}__media-placeholder-text">
+                  Upload video or image for step {{ i }}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="ai-instructional-section-{{ ai_gen_id }}__step-content">
+            {% if step_title != blank %}
+              <h3 class="ai-instructional-section-{{ ai_gen_id }}__step-title">{{ step_title }}</h3>
+            {% endif %}
+            {% if step_description != blank %}
+              <p class="ai-instructional-section-{{ ai_gen_id }}__step-description">{{ step_description }}</p>
+            {% endif %}
+            {% if step_note != blank %}
+              <p class="ai-instructional-section-{{ ai_gen_id }}__step-note">{{ step_note }}</p>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "3-step instructions",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "select",
+      "id": "background_size",
+      "label": "Background size",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        },
+        {
+          "value": "auto",
+          "label": "Original"
+        }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "background_position",
+      "label": "Background position",
+      "options": [
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "top center",
+          "label": "Top"
+        },
+        {
+          "value": "bottom center",
+          "label": "Bottom"
+        },
+        {
+          "value": "left center",
+          "label": "Left"
+        },
+        {
+          "value": "right center",
+          "label": "Right"
+        }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "select",
+      "id": "background_repeat",
+      "label": "Background repeat",
+      "options": [
+        {
+          "value": "no-repeat",
+          "label": "No repeat"
+        },
+        {
+          "value": "repeat",
+          "label": "Repeat"
+        },
+        {
+          "value": "repeat-x",
+          "label": "Repeat horizontally"
+        },
+        {
+          "value": "repeat-y",
+          "label": "Repeat vertically"
+        }
+      ],
+      "default": "no-repeat"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#fef3f7"
+    },
+    {
+      "type": "color",
+      "id": "background_overlay_color",
+      "label": "Background overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "background_overlay_opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "Background overlay opacity",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section padding",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Section title"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section title",
+      "default": "How To Use"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#3b0a45"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Title size",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "title_margin_bottom",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Title bottom margin",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Paint splatter overlays"
+    },
+    {
+      "type": "image_picker",
+      "id": "overlay_1",
+      "label": "Overlay image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "overlay_2",
+      "label": "Overlay image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "overlay_3",
+      "label": "Overlay image 3"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Step layout"
+    },
+    {
+      "type": "range",
+      "id": "step_gap",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Step gap (desktop)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_step_gap",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Step gap (mobile)",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "connector_color",
+      "label": "Connector line color",
+      "default": "#e91e63"
+    },
+    {
+      "type": "header",
+      "content": "Step badges"
+    },
+    {
+      "type": "range",
+      "id": "badge_size",
+      "min": 40,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Badge size",
+      "default": 60
+    },
+    {
+      "type": "color",
+      "id": "badge_color",
+      "label": "Badge background",
+      "default": "#e91e63"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Badge font size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "badge_margin_bottom",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Badge bottom margin",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Media styling"
+    },
+    {
+      "type": "range",
+      "id": "media_max_width",
+      "min": 200,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "label": "Media max width",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "media_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Media border radius",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "media_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Media border width",
+      "default": 2
+    },
+    {
+      "type": "color",
+      "id": "media_border_color",
+      "label": "Media border color",
+      "default": "#e91e63"
+    },
+    {
+      "type": "range",
+      "id": "media_margin_bottom",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Media bottom margin",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Step text styling"
+    },
+    {
+      "type": "color",
+      "id": "step_text_color",
+      "label": "Step text color",
+      "default": "#3b0a45"
+    },
+    {
+      "type": "range",
+      "id": "step_title_size",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Step title size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "step_title_margin",
+      "min": 5,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Step title bottom margin",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "step_description_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Step description size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "step_description_margin",
+      "min": 5,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Step description bottom margin",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "step_note_size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Step note size",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "step_note_color",
+      "label": "Step note color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Step 1"
+    },
+    {
+      "type": "text",
+      "id": "step_1_number",
+      "label": "Step number",
+      "default": "1"
+    },
+    {
+      "type": "video",
+      "id": "step_1_video",
+      "label": "Step video"
+    },
+    {
+      "type": "image_picker",
+      "id": "step_1_image",
+      "label": "Step image (fallback if no video)"
+    },
+    {
+      "type": "text",
+      "id": "step_1_title",
+      "label": "Step title",
+      "default": "Open Bag & Enjoy The Smell"
+    },
+    {
+      "type": "textarea",
+      "id": "step_1_description",
+      "label": "Step description",
+      "default": "It's Peppermint!"
+    },
+    {
+      "type": "text",
+      "id": "step_1_note",
+      "label": "Additional note"
+    },
+    {
+      "type": "header",
+      "content": "Step 2"
+    },
+    {
+      "type": "text",
+      "id": "step_2_number",
+      "label": "Step number",
+      "default": "2"
+    },
+    {
+      "type": "video",
+      "id": "step_2_video",
+      "label": "Step video"
+    },
+    {
+      "type": "image_picker",
+      "id": "step_2_image",
+      "label": "Step image (fallback if no video)"
+    },
+    {
+      "type": "text",
+      "id": "step_2_title",
+      "label": "Step title",
+      "default": "Pour Into Your Free Badass Bamboo Lid Glass Jar"
+    },
+    {
+      "type": "textarea",
+      "id": "step_2_description",
+      "label": "Step description"
+    },
+    {
+      "type": "text",
+      "id": "step_2_note",
+      "label": "Additional note"
+    },
+    {
+      "type": "header",
+      "content": "Step 3"
+    },
+    {
+      "type": "text",
+      "id": "step_3_number",
+      "label": "Step number",
+      "default": "3"
+    },
+    {
+      "type": "video",
+      "id": "step_3_video",
+      "label": "Step video"
+    },
+    {
+      "type": "image_picker",
+      "id": "step_3_image",
+      "label": "Step image (fallback if no video)"
+    },
+    {
+      "type": "text",
+      "id": "step_3_title",
+      "label": "Step title",
+      "default": "Take 1 Capsule With Each Meal"
+    },
+    {
+      "type": "textarea",
+      "id": "step_3_description",
+      "label": "Step description",
+      "default": "2 daily."
+    },
+    {
+      "type": "text",
+      "id": "step_3_note",
+      "label": "Additional note"
+    }
+  ],
+  "presets": [
+    {
+      "name": "3-step instructions"
+    }
+  ]
+}
+{% endschema %}

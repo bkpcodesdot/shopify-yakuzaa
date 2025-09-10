@@ -1,0 +1,978 @@
+{% doc %}
+  @prompt
+    Create a 3-column comparison chart section for Shopify with the following structure:
+    Section Title at the top: editable.
+    Three Columns Layout:
+    Left Column: Product image (editable), product title (editable), and a vertical list of checkmarks or crosses (✅ ❌). Each row should be editable in the customizer. Add horizontal divider lines between rows.Middle Column: A box with only one heading: 'Pound For Pound, Which Has More:' (editable text). No checkmarks or crosses here.
+    Right Column: Product image (editable), product title (editable), and a vertical list of checkmarks or crosses (✅ ❌), matching the same number of rows as the left column. Also include horizontal divider lines.Style:Clean, mobile-responsive design.
+    Middle column background: dark purple (#3b0a45), white text, rounded corners.
+    Section heading color: pink (#d12c85).
+    Divider lines: light gray.
+    Center everything neatly aligned.
+    The final design should look like a comparison chart, with ✅ ❌ in the left and right columns, and only a heading in the middle column.", show heading title in center column, want to set feature title in middle column only
+    , make in mobile view like desktop view same layout
+    set ✅ to white color true icon set in pink circle and ❌ to set white cross icon set in puple circle.
+    one more thing all column' row alignment set in one line not up down. , current design perfect 
+    just add feature title in middle column with alignment to left right column, perfect but alignment not proper first column first item align to middle and third column
+    also set border around all column with editable, Create a 3-column product comparison chart section with the following layout and style:
+    Top Section:
+    A centered heading: Why Organ Superfoods CRUSH Green Juice (editable text).
+    'CRUSH' should be styled in pink (#d12c85).
+    
+    Columns Layout:
+    
+    Left Column
+    
+    Product image (uploadable).
+    
+    Product title (editable, default: Primal Queen’s Beef Organs Superfoods).
+    A vertical list of ✅ and ❌ icons fo✅ and ❌ icons, A vertical list of ✅ and ❌ icons for each feature row (editable).
+    
+    Features List Example (must be editable rows):
+    
+    Vitamins A & K2
+    
+    Vitamins B6 & B12
+    
+    Choline
+    
+    Copper, Zinc, Iron
+    
+    Carnosine
+    
+    Carnitine, Creatine
+    
+    Selenium, Magnesium
+    
+    Omega-3 Fatty Acids
+    
+    False Hype
+    
+    Lab Made & Synthetic Ingredients
+    
+    Binders & Fillers
+    
+    Fake Colors & Dyes
+    
+    Gross Tasting
+    
+    Design Requirements:
+    
+    Table/grid layout with 3 aligned columns.
+    
+    Each row must have horizontal dividers (light gray).
+    
+    Middle column background = dark p
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-comparison-chart-{{ ai_gen_id }} {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-comparison-chart__heading-{{ ai_gen_id }} {
+    text-align: center;
+    font-size: {{ block.settings.heading_size }}px;
+    margin-bottom: 40px;
+    color: {{ block.settings.heading_color }};
+  }
+
+  .ai-comparison-chart__crush-{{ ai_gen_id }} {
+    color: {{ block.settings.crush_color }};
+  }
+
+  .ai-comparison-chart__container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    align-items: start;
+    {% if block.settings.show_border %}
+      border: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
+      border-radius: {{ block.settings.border_radius }}px;
+      overflow: hidden;
+    {% endif %}
+  }
+
+  .ai-comparison-chart__column-{{ ai_gen_id }} {
+    {% if block.settings.show_border %}
+      border-right: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
+    {% endif %}
+  }
+
+  .ai-comparison-chart__column-{{ ai_gen_id }}:last-child {
+    border-right: none;
+  }
+
+  .ai-comparison-chart__column--middle-{{ ai_gen_id }} {
+    background-color: {{ block.settings.middle_bg_color }};
+    color: {{ block.settings.middle_text_color }};
+  }
+
+  .ai-comparison-chart__product-section-{{ ai_gen_id }} {
+    padding: 20px;
+    text-align: center;
+    {% if block.settings.show_border %}
+      border-bottom: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
+    {% endif %}
+  }
+
+  .ai-comparison-chart__middle-header-{{ ai_gen_id }} {
+    padding: 20px;
+    text-align: center;
+    {% if block.settings.show_border %}
+      border-bottom: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
+    {% endif %}
+    padding-top: {{ block.settings.middle_top_spacing }}px;
+  }
+
+  .ai-comparison-chart__product-image-{{ ai_gen_id }} {
+    width: 100%;
+    max-width: 150px;
+    margin: 0 auto 15px;
+    display: block;
+  }
+
+  .ai-comparison-chart__product-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    max-width: 150px;
+    margin: 0 auto 15px;
+    aspect-ratio: 1;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-comparison-chart__product-image-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.5;
+  }
+
+  .ai-comparison-chart__empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+  }
+
+  .ai-comparison-chart__product-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.product_title_size }}px;
+    font-weight: 600;
+    margin: 0;
+    color: {{ block.settings.product_title_color }};
+  }
+
+  .ai-comparison-chart__middle-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.middle_heading_size }}px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .ai-comparison-chart__features-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ai-comparison-chart__feature-row-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: {{ block.settings.row_padding }}px 20px;
+    {% if block.settings.show_border %}
+      border-bottom: {{ block.settings.border_width }}px solid {{ block.settings.divider_color }};
+    {% endif %}
+    min-height: {{ block.settings.row_height }}px;
+  }
+
+  .ai-comparison-chart__feature-row-{{ ai_gen_id }}:last-child {
+    border-bottom: none;
+  }
+
+  .ai-comparison-chart__feature-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.feature_title_size }}px;
+    color: {{ block.settings.feature_title_color }};
+    text-align: center;
+    padding: {{ block.settings.row_padding }}px 20px;
+    {% if block.settings.show_border %}
+      border-bottom: {{ block.settings.border_width }}px solid {{ block.settings.divider_color }};
+    {% endif %}
+    min-height: {{ block.settings.row_height }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+  }
+
+  .ai-comparison-chart__feature-title-{{ ai_gen_id }}:last-child {
+    border-bottom: none;
+  }
+
+  .ai-comparison-chart__icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-comparison-chart__icon--check-{{ ai_gen_id }} {
+    background-color: {{ block.settings.check_bg_color }};
+  }
+
+  .ai-comparison-chart__icon--cross-{{ ai_gen_id }} {
+    background-color: {{ block.settings.cross_bg_color }};
+  }
+
+  .ai-comparison-chart__icon-{{ ai_gen_id }} svg {
+    width: {{ block.settings.icon_size | times: 0.6 }}px;
+    height: {{ block.settings.icon_size | times: 0.6 }}px;
+    fill: white;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-comparison-chart-{{ ai_gen_id }} {
+      padding: 20px 10px;
+    }
+
+    .ai-comparison-chart__heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.8 }}px;
+      margin-bottom: 30px;
+    }
+
+    .ai-comparison-chart__product-section-{{ ai_gen_id }},
+    .ai-comparison-chart__middle-header-{{ ai_gen_id }} {
+      padding: 15px 10px;
+    }
+
+    .ai-comparison-chart__feature-row-{{ ai_gen_id }},
+    .ai-comparison-chart__feature-title-{{ ai_gen_id }} {
+      padding: {{ block.settings.row_padding }}px 10px;
+    }
+
+    .ai-comparison-chart__product-image-{{ ai_gen_id }},
+    .ai-comparison-chart__product-image-placeholder-{{ ai_gen_id }} {
+      max-width: 120px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-comparison-chart-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.section_heading != blank %}
+    <h2 class="ai-comparison-chart__heading-{{ ai_gen_id }}">
+      {% assign heading_parts = block.settings.section_heading | split: 'CRUSH' %}
+      {% if heading_parts.size > 1 %}
+        {{ heading_parts[0] }}<span class="ai-comparison-chart__crush-{{ ai_gen_id }}">CRUSH</span>{{ heading_parts[1] }}
+      {% else %}
+        {{ block.settings.section_heading }}
+      {% endif %}
+    </h2>
+  {% endif %}
+
+  <div class="ai-comparison-chart__container-{{ ai_gen_id }}">
+    <div class="ai-comparison-chart__column-{{ ai_gen_id }}">
+      <div class="ai-comparison-chart__product-section-{{ ai_gen_id }}">
+        {% if block.settings.left_product_image %}
+          <img
+            src="{{ block.settings.left_product_image | image_url: width: 300 }}"
+            alt="{{ block.settings.left_product_image.alt | escape }}"
+            class="ai-comparison-chart__product-image-{{ ai_gen_id }}"
+            loading="lazy"
+            width="300"
+            height="300"
+          >
+        {% else %}
+          <div class="ai-comparison-chart__product-image-placeholder-{{ ai_gen_id }}">
+            {{ 'product-apparel-1' | placeholder_svg_tag }}
+            <div class="ai-comparison-chart__empty-state-{{ ai_gen_id }}">
+              Add product image
+            </div>
+          </div>
+        {% endif %}
+
+        {% if block.settings.left_product_title != blank %}
+          <h3 class="ai-comparison-chart__product-title-{{ ai_gen_id }}">{{ block.settings.left_product_title }}</h3>
+        {% endif %}
+      </div>
+
+      <div class="ai-comparison-chart__features-{{ ai_gen_id }}">
+        {% for i in (1..13) %}
+          {% assign feature_key = 'left_feature_' | append: i %}
+          {% assign feature_title_key = 'feature_title_' | append: i %}
+          {% assign feature_value = block.settings[feature_key] %}
+          {% assign feature_title = block.settings[feature_title_key] %}
+          {% if feature_title != blank %}
+            <div class="ai-comparison-chart__feature-row-{{ ai_gen_id }}">
+              {% if feature_value != blank %}
+                <div class="ai-comparison-chart__icon-{{ ai_gen_id }} ai-comparison-chart__icon--{{ feature_value }}-{{ ai_gen_id }}">
+                  {% if feature_value == 'check' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                  {% else %}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="ai-comparison-chart__column-{{ ai_gen_id }} ai-comparison-chart__column--middle-{{ ai_gen_id }}">
+      <div class="ai-comparison-chart__middle-header-{{ ai_gen_id }}">
+        {% if block.settings.middle_heading != blank %}
+          <h3 class="ai-comparison-chart__middle-heading-{{ ai_gen_id }}">{{ block.settings.middle_heading }}</h3>
+        {% endif %}
+      </div>
+
+      <div class="ai-comparison-chart__features-{{ ai_gen_id }}">
+        {% for i in (1..13) %}
+          {% assign feature_title_key = 'feature_title_' | append: i %}
+          {% assign feature_title = block.settings[feature_title_key] %}
+          {% if feature_title != blank %}
+            <div class="ai-comparison-chart__feature-title-{{ ai_gen_id }}">
+              {{ feature_title }}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="ai-comparison-chart__column-{{ ai_gen_id }}">
+      <div class="ai-comparison-chart__product-section-{{ ai_gen_id }}">
+        {% if block.settings.right_product_image %}
+          <img
+            src="{{ block.settings.right_product_image | image_url: width: 300 }}"
+            alt="{{ block.settings.right_product_image.alt | escape }}"
+            class="ai-comparison-chart__product-image-{{ ai_gen_id }}"
+            loading="lazy"
+            width="300"
+            height="300"
+          >
+        {% else %}
+          <div class="ai-comparison-chart__product-image-placeholder-{{ ai_gen_id }}">
+            {{ 'product-apparel-1' | placeholder_svg_tag }}
+            <div class="ai-comparison-chart__empty-state-{{ ai_gen_id }}">
+              Add product image
+            </div>
+          </div>
+        {% endif %}
+
+        {% if block.settings.right_product_title != blank %}
+          <h3 class="ai-comparison-chart__product-title-{{ ai_gen_id }}">{{ block.settings.right_product_title }}</h3>
+        {% endif %}
+      </div>
+
+      <div class="ai-comparison-chart__features-{{ ai_gen_id }}">
+        {% for i in (1..13) %}
+          {% assign feature_key = 'right_feature_' | append: i %}
+          {% assign feature_title_key = 'feature_title_' | append: i %}
+          {% assign feature_value = block.settings[feature_key] %}
+          {% assign feature_title = block.settings[feature_title_key] %}
+          {% if feature_title != blank %}
+            <div class="ai-comparison-chart__feature-row-{{ ai_gen_id }}">
+              {% if feature_value != blank %}
+                <div class="ai-comparison-chart__icon-{{ ai_gen_id }} ai-comparison-chart__icon--{{ feature_value }}-{{ ai_gen_id }}">
+                  {% if feature_value == 'check' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                  {% else %}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product comparison chart",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section heading"
+    },
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section heading",
+      "default": "Why Organ Superfoods CRUSH Green Juice"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "crush_color",
+      "label": "CRUSH text color",
+      "default": "#d12c85"
+    },
+    {
+      "type": "header",
+      "content": "Middle column"
+    },
+    {
+      "type": "text",
+      "id": "middle_heading",
+      "label": "Middle column heading",
+      "default": "Pound For Pound, Which Has More:"
+    },
+    {
+      "type": "range",
+      "id": "middle_heading_size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Middle heading size",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "middle_bg_color",
+      "label": "Middle column background",
+      "default": "#3b0a45"
+    },
+    {
+      "type": "color",
+      "id": "middle_text_color",
+      "label": "Middle column text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "middle_top_spacing",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Middle column top spacing",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Left product"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_product_image",
+      "label": "Left product image"
+    },
+    {
+      "type": "text",
+      "id": "left_product_title",
+      "label": "Left product title",
+      "default": "Primal Queen's Beef Organs Superfoods"
+    },
+    {
+      "type": "header",
+      "content": "Right product"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_product_image",
+      "label": "Right product image"
+    },
+    {
+      "type": "text",
+      "id": "right_product_title",
+      "label": "Right product title",
+      "default": "Green Juice"
+    },
+    {
+      "type": "header",
+      "content": "Features"
+    },
+    {
+      "type": "text",
+      "id": "feature_title_1",
+      "label": "Feature 1 title",
+      "default": "Vitamins A & K2"
+    },
+    {
+      "type": "select",
+      "id": "left_feature_1",
+      "label": "Left product feature 1",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "check"
+    },
+    {
+      "type": "select",
+      "id": "right_feature_1",
+      "label": "Right product feature 1",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "text",
+      "id": "feature_title_2",
+      "label": "Feature 2 title",
+      "default": "Vitamins B6 & B12"
+    },
+    {
+      "type": "select",
+      "id": "left_feature_2",
+      "label": "Left product feature 2",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "check"
+    },
+    {
+      "type": "select",
+      "id": "right_feature_2",
+      "label": "Right product feature 2",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "text",
+      "id": "feature_title_3",
+      "label": "Feature 3 title",
+      "default": "Choline"
+    },
+    {
+      "type": "select",
+      "id": "left_feature_3",
+      "label": "Left product feature 3",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "check"
+    },
+    {
+      "type": "select",
+      "id": "right_feature_3",
+      "label": "Right product feature 3",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "text",
+      "id": "feature_title_4",
+      "label": "Feature 4 title",
+      "default": "Copper, Zinc, Iron"
+    },
+    {
+      "type": "select",
+      "id": "left_feature_4",
+      "label": "Left product feature 4",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "check"
+    },
+    {
+      "type": "select",
+      "id": "right_feature_4",
+      "label": "Right product feature 4",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "text",
+      "id": "feature_title_5",
+      "label": "Feature 5 title",
+      "default": "Carnosine"
+    },
+    {
+      "type": "select",
+      "id": "left_feature_5",
+      "label": "Left product feature 5",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "check"
+    },
+    {
+      "type": "select",
+      "id": "right_feature_5",
+      "label": "Right product feature 5",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "text",
+      "id": "feature_title_6",
+      "label": "Feature 6 title",
+      "default": "Carnitine, Creatine"
+    },
+    {
+      "type": "select",
+      "id": "left_feature_6",
+      "label": "Left product feature 6",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "check"
+    },
+    {
+      "type": "select",
+      "id": "right_feature_6",
+      "label": "Right product feature 6",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "text",
+      "id": "feature_title_7",
+      "label": "Feature 7 title",
+      "default": "Selenium, Magnesium"
+    },
+    {
+      "type": "select",
+      "id": "left_feature_7",
+      "label": "Left product feature 7",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "check"
+    },
+    {
+      "type": "select",
+      "id": "right_feature_7",
+      "label": "Right product feature 7",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "text",
+      "id": "feature_title_8",
+      "label": "Feature 8 title",
+      "default": "Omega-3 Fatty Acids"
+    },
+    {
+      "type": "select",
+      "id": "left_feature_8",
+      "label": "Left product feature 8",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "check"
+    },
+    {
+      "type": "select",
+      "id": "right_feature_8",
+      "label": "Right product feature 8",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "text",
+      "id": "feature_title_9",
+      "label": "Feature 9 title",
+      "default": "False Hype"
+    },
+    {
+      "type": "select",
+      "id": "left_feature_9",
+      "label": "Left product feature 9",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "select",
+      "id": "right_feature_9",
+      "label": "Right product feature 9",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "check"
+    },
+    {
+      "type": "text",
+      "id": "feature_title_10",
+      "label": "Feature 10 title",
+      "default": "Lab Made & Synthetic Ingredients"
+    },
+    {
+      "type": "select",
+      "id": "left_feature_10",
+      "label": "Left product feature 10",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "select",
+      "id": "right_feature_10",
+      "label": "Right product feature 10",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "check"
+    },
+    {
+      "type": "text",
+      "id": "feature_title_11",
+      "label": "Feature 11 title",
+      "default": "Binders & Fillers"
+    },
+    {
+      "type": "select",
+      "id": "left_feature_11",
+      "label": "Left product feature 11",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "select",
+      "id": "right_feature_11",
+      "label": "Right product feature 11",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "check"
+    },
+    {
+      "type": "text",
+      "id": "feature_title_12",
+      "label": "Feature 12 title",
+      "default": "Fake Colors & Dyes"
+    },
+    {
+      "type": "select",
+      "id": "left_feature_12",
+      "label": "Left product feature 12",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "select",
+      "id": "right_feature_12",
+      "label": "Right product feature 12",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "check"
+    },
+    {
+      "type": "text",
+      "id": "feature_title_13",
+      "label": "Feature 13 title",
+      "default": "Gross Tasting"
+    },
+    {
+      "type": "select",
+      "id": "left_feature_13",
+      "label": "Left product feature 13",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "select",
+      "id": "right_feature_13",
+      "label": "Right product feature 13",
+      "options": [
+        {"value": "check", "label": "✅ Yes"},
+        {"value": "cross", "label": "❌ No"}
+      ],
+      "default": "check"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "product_title_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Product title size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "product_title_color",
+      "label": "Product title color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "feature_title_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Feature title size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "feature_title_color",
+      "label": "Feature title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 20,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "check_bg_color",
+      "label": "Check icon background",
+      "default": "#d12c85"
+    },
+    {
+      "type": "color",
+      "id": "cross_bg_color",
+      "label": "Cross icon background",
+      "default": "#3b0a45"
+    },
+    {
+      "type": "range",
+      "id": "row_height",
+      "min": 40,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Row height",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "row_padding",
+      "min": 5,
+      "max": 25,
+      "step": 5,
+      "unit": "px",
+      "label": "Row padding",
+      "default": 15
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "header",
+      "content": "Borders"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border",
+      "label": "Show borders",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Border width",
+      "default": 2
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product comparison chart"
+    }
+  ]
+}
+{% endschema %}

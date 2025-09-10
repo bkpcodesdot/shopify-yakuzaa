@@ -1,0 +1,532 @@
+{% doc %}
+  @prompt
+    Goal: Create an eye-catching hero banner that lists the benefits and introduces the brand's origin story.
+    
+    Prompt for Shopify AI:
+    "Generate a hero banner section for my Shopify store.
+    
+    Content:
+    
+    Main Headline: "Here’s Why I Fell In Love With Beef Organ Superfoods"
+    
+    Benefits List: Display these 5 points with heart icons (❤️) next to them:
+    
+    13 vitamins
+    
+    9 essential minerals
+    
+    Natural omega 3 fatty acids
+    
+    Straight from the source rather than lab-made
+    
+    Original superfood from our ancestors
+    
+    Body Text: "Here’s The Problem... Eating beef organs is not fun (and yes, I tried it myself). I wanted to get all the benefits, but in an easy way that I didn’t have to force myself to do. That’s when Primal Queen movement was born (which is now an army of thousands of Queens that have taken back their health)."
+    
+    Closing Statement: "One Single Capsule with Every Meal That Provides The Exact Beef Organ Superfoods You Need."
+    
+    Tagline: "100% formulated by women, for women (sorry guys!)"
+    
+    CTA Button: "Discover The Benefits"
+    
+    Design & Style:
+    
+    Overall Vibe: Clean, modern, but with a natural and slightly "primal" or earthy feel. It should feel healthy and empowering.
+    
+    Color Palette:
+    
+    Primary Background Color: A soft, creamy off-white (#F9F5F0) or a very light earthy pink (#F8E9E9).
+    
+    Text Color: Dark charcoal gray (#333333) for readability.
+    
+    Accent Color: A rich, earthy burgundy/wine red (#8B2E35 or #A52A2A) for the hearts, headlines, and the CTA button.
+    
+    Image:
+    
+    Prompt for AI Image Generator (for a background or side image): "A modern, clean photoshoot of a glass jar of dark red beef organ capsules on a natural wood table. Next to it, place a small bowl of fresh, raw, high-quality beef liver and heart for visual context. Soft, natural lighting. Style is minimalist and health-focused."
+    
+    Placement: Prefer the image on the right side with the text content on the left.
+    
+    Layout: Use a two-column layout on desktop (image right, text left). Stack vertically on mobile. Ensure the text is highly read
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-hero-banner-{{ ai_gen_id }} {
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.section_padding }}px 20px;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+  }
+
+  .ai-hero-banner__container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+  }
+
+  .ai-hero-banner__content-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .ai-hero-banner__headline-{{ ai_gen_id }} {
+    color: {{ block.settings.headline_color }};
+    font-size: {{ block.settings.headline_size }}px;
+    line-height: 1.2;
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .ai-hero-banner__benefits-{{ ai_gen_id }} {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ai-hero-banner__benefit-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.text_size }}px;
+    font-weight: 500;
+  }
+
+  .ai-hero-banner__heart-{{ ai_gen_id }} {
+    color: {{ block.settings.accent_color }};
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .ai-hero-banner__body-text-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.text_size }}px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .ai-hero-banner__closing-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.text_size | plus: 2 }}px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .ai-hero-banner__tagline-{{ ai_gen_id }} {
+    color: {{ block.settings.accent_color }};
+    font-size: {{ block.settings.text_size | minus: 1 }}px;
+    font-style: italic;
+    margin: 0;
+  }
+
+  .ai-hero-banner__cta-{{ ai_gen_id }} {
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    padding: 16px 32px;
+    border: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_text_size }}px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: flex-start;
+  }
+
+  .ai-hero-banner__cta-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+  }
+
+  .ai-hero-banner__image-container-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    overflow: hidden;
+  }
+
+  .ai-hero-banner__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .ai-hero-banner__image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-hero-banner__image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 200px;
+    max-height: 200px;
+    opacity: 0.3;
+  }
+
+  .ai-hero-banner__empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-hero-banner__container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      text-align: center;
+    }
+
+    .ai-hero-banner__headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.headline_size | times: 0.8 }}px;
+    }
+
+    .ai-hero-banner__image-container-{{ ai_gen_id }} {
+      height: 300px;
+      order: -1;
+    }
+
+    .ai-hero-banner__cta-{{ ai_gen_id }} {
+      align-self: center;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .ai-hero-banner-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding | times: 0.7 }}px 15px;
+    }
+
+    .ai-hero-banner__headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.headline_size | times: 0.7 }}px;
+    }
+
+    .ai-hero-banner__benefits-{{ ai_gen_id }} {
+      text-align: left;
+    }
+  }
+{% endstyle %}<section
+  class="ai-hero-banner-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-hero-banner__container-{{ ai_gen_id }}">
+    <div class="ai-hero-banner__content-{{ ai_gen_id }}">
+      {% if block.settings.headline != blank %}
+        <h1 class="ai-hero-banner__headline-{{ ai_gen_id }}">
+          {{ block.settings.headline }}
+        </h1>
+      {% endif %}
+
+      {% if block.settings.show_benefits %}
+        <ul class="ai-hero-banner__benefits-{{ ai_gen_id }}">
+          {% if block.settings.benefit_1 != blank %}
+            <li class="ai-hero-banner__benefit-{{ ai_gen_id }}">
+              <span class="ai-hero-banner__heart-{{ ai_gen_id }}">❤️</span>
+              {{ block.settings.benefit_1 }}
+            </li>
+          {% endif %}
+          {% if block.settings.benefit_2 != blank %}
+            <li class="ai-hero-banner__benefit-{{ ai_gen_id }}">
+              <span class="ai-hero-banner__heart-{{ ai_gen_id }}">❤️</span>
+              {{ block.settings.benefit_2 }}
+            </li>
+          {% endif %}
+          {% if block.settings.benefit_3 != blank %}
+            <li class="ai-hero-banner__benefit-{{ ai_gen_id }}">
+              <span class="ai-hero-banner__heart-{{ ai_gen_id }}">❤️</span>
+              {{ block.settings.benefit_3 }}
+            </li>
+          {% endif %}
+          {% if block.settings.benefit_4 != blank %}
+            <li class="ai-hero-banner__benefit-{{ ai_gen_id }}">
+              <span class="ai-hero-banner__heart-{{ ai_gen_id }}">❤️</span>
+              {{ block.settings.benefit_4 }}
+            </li>
+          {% endif %}
+          {% if block.settings.benefit_5 != blank %}
+            <li class="ai-hero-banner__benefit-{{ ai_gen_id }}">
+              <span class="ai-hero-banner__heart-{{ ai_gen_id }}">❤️</span>
+              {{ block.settings.benefit_5 }}
+            </li>
+          {% endif %}
+        </ul>
+      {% endif %}
+
+      {% if block.settings.body_text != blank %}
+        <div class="ai-hero-banner__body-text-{{ ai_gen_id }}">
+          {{ block.settings.body_text }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.closing_statement != blank %}
+        <p class="ai-hero-banner__closing-{{ ai_gen_id }}">
+          {{ block.settings.closing_statement }}
+        </p>
+      {% endif %}
+
+      {% if block.settings.tagline != blank %}
+        <p class="ai-hero-banner__tagline-{{ ai_gen_id }}">
+          {{ block.settings.tagline }}
+        </p>
+      {% endif %}
+
+      {% if block.settings.cta_text != blank %}
+        <a
+          href="{{ block.settings.cta_link }}"
+          class="ai-hero-banner__cta-{{ ai_gen_id }}"
+        >
+          {{ block.settings.cta_text }}
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="ai-hero-banner__image-container-{{ ai_gen_id }}">
+      {% if block.settings.hero_image %}
+        <img
+          src="{{ block.settings.hero_image | image_url: width: 800 }}"
+          alt="{{ block.settings.hero_image.alt | escape }}"
+          class="ai-hero-banner__image-{{ ai_gen_id }}"
+          loading="lazy"
+          width="{{ block.settings.hero_image.width }}"
+          height="{{ block.settings.hero_image.height }}"
+        >
+      {% else %}
+        <div class="ai-hero-banner__image-placeholder-{{ ai_gen_id }}">
+          {{ 'product-apparel-1' | placeholder_svg_tag }}<div class="ai-hero-banner__empty-state-{{ ai_gen_id }}">
+            Add your product image here
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero banner with benefits",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Here's Why I Fell In Love With Beef Organ Superfoods"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_benefits",
+      "label": "Show benefits list",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "benefit_1",
+      "label": "Benefit 1",
+      "default": "13 vitamins"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2",
+      "label": "Benefit 2",
+      "default": "9 essential minerals"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3",
+      "label": "Benefit 3",
+      "default": "Natural omega 3 fatty acids"
+    },
+    {
+      "type": "text",
+      "id": "benefit_4",
+      "label": "Benefit 4",
+      "default": "Straight from the source rather than lab-made"
+    },
+    {
+      "type": "text",
+      "id": "benefit_5",
+      "label": "Benefit 5",
+      "default": "Original superfood from our ancestors"
+    },
+    {
+      "type": "richtext",
+      "id": "body_text",
+      "label": "Body text",
+      "default": "<p>Here's The Problem... Eating beef organs is not fun (and yes, I tried it myself). I wanted to get all the benefits, but in an easy way that I didn't have to force myself to do. That's when Primal Queen movement was born (which is now an army of thousands of Queens that have taken back their health).</p>"
+    },
+    {
+      "type": "text",
+      "id": "closing_statement",
+      "label": "Closing statement",
+      "default": "One Single Capsule with Every Meal That Provides The Exact Beef Organ Superfoods You Need."
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "100% formulated by women, for women (sorry guys!)"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button text",
+      "default": "Discover The Benefits"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#F9F5F0"
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Headline color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#8B2E35"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button color",
+      "default": "#8B2E35"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button hover color",
+      "default": "#A52A2A"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "headline_size",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Headline size",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button text size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Image border radius",
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero banner with benefits"
+    }
+  ]
+}
+{% endschema %}

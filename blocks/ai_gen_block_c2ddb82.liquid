@@ -1,0 +1,1262 @@
+{% doc %}
+  @prompt
+    Create a 2-column product offer section for Shopify with the following layout and style:
+    
+    Section Title:
+    
+    Centered heading: Join Primal Queen Today (editable).
+    
+    Subheading: September has a high risk of selling out. X purchases made today. (editable text and number).
+    
+    Columns Layout:
+    
+    Two product cards side-by-side (mobile responsive → stack vertically).
+    
+    Left Product Card (editable):
+    
+    Banner/ribbon at the top: 1 Month Free Special Offer (editable).
+    
+    Title: 3 Month AutoShip & Save (editable).
+    
+    Product images with a slider (uploadable multiple images).
+    
+    Feature/benefits list with ✅ checkmarks (each row editable).
+    
+    Price section:
+    
+    Original price (strikethrough).
+    
+    Discounted price (highlighted).
+    
+    Savings note (editable).
+    
+    Quantity selector ( + / - buttons).
+    
+    Green Add to Cart button (customizable).
+    
+    Delivery & guarantee info at the bottom (editable text).
+    
+    Countdown timer for shipping cutoff (optional).
+    
+    Right Product Card (editable):
+    
+    Title: 1 Month Subscribe & Save (editable).
+    
+    Product images with slider (uploadable).
+    
+    Feature/benefits list with ✅ checkmarks (editable).
+    
+    Price section:
+    
+    Subscription price (editable).
+    
+    Special savings note (editable).
+    
+    Quantity selector.
+    
+    Green Add to Cart button.
+    
+    Delivery & guarantee info.
+    
+    Shipping cutoff text (editable).
+    
+    Design & Style:
+    
+    Background: light pink (#fde6f2).
+    
+    Product cards: white background, rounded corners, subtle border/shadow.
+    
+    Checkmarks: green or pink.
+    
+    Buttons: bright green (#00b050) with white text.
+    
+    Price styling: original crossed out in red, final price bold black.
+    
+    Mobile responsive layout.
+    
+    All content (title, images, features, prices, colors, buttons, icons) should be fully editable in the Shopify Theme Editor., 3 month autoship column bg is pink 
+    1 month subscribe column bg white 
+    all section bg lightpink color
+    set border of both column 
+    
+    all things are editable, set also feature with price with strike or not editable , set feature wise price in both column, show image slider below main image in both product, set border of both column
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-product-offer-{{ ai_gen_id }} {
+    background-color: {{ block.settings.section_background_color }};
+    padding: 40px 20px;
+  }
+
+  .ai-product-offer__container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-product-offer__header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .ai-product-offer__title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_font_size }}px;
+    color: {{ block.settings.title_color }};
+    margin: 0 0 16px;font-weight: 700;
+  }
+
+  .ai-product-offer__subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtitle_font_size }}px;
+    color: {{ block.settings.subtitle_color }};
+    margin: 0;
+  }
+
+  .ai-product-offer__cards-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 40px;
+  }
+
+  .ai-product-offer__card-{{ ai_gen_id }} {
+    border: {{ block.settings.card_border_width }}px solid {{ block.settings.card_border_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);position: relative;
+    overflow: hidden;
+  }
+
+  .ai-product-offer__card--left-{{ ai_gen_id }} {
+    background-color: {{ block.settings.left_card_bg_color }};
+    border: {{ block.settings.left_card_border_width }}px solid {{ block.settings.left_card_border_color }};
+  }
+
+  .ai-product-offer__card--right-{{ ai_gen_id }} {
+    background-color: {{ block.settings.right_card_bg_color }};
+    border: {{ block.settings.right_card_border_width }}px solid {{ block.settings.right_card_border_color }};
+  }
+
+  .ai-product-offer__banner-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: {{ block.settings.banner_bg_color }};
+    color: {{ block.settings.banner_text_color }};
+    text-align: center;
+    padding: 8px;
+    font-size:14px;
+    font-weight: 600;
+  }
+
+  .ai-product-offer__card-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.card_title_font_size }}px;
+    color: {{ block.settings.card_title_color }};
+    margin: 30px 0 20px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .ai-product-offer__images-{{ ai_gen_id }} {
+    margin-bottom: 20px;
+  }
+
+  .ai-product-offer__main-image-{{ ai_gen_id }} {
+    position: relative;
+    height: 250px;
+    overflow: hidden;border-radius: 8px;
+    margin-bottom: 15px;
+  }
+
+  .ai-product-offer__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+  }
+
+  .ai-product-offer__image--active-{{ ai_gen_id }} {
+    display: block;
+  }
+
+  .ai-product-offer__image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;}
+
+  .ai-product-offer__image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 200px;
+    max-height: 200px;
+  }
+
+  .ai-product-offer__thumbnail-slider-{{ ai_gen_id }} {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    overflow-x: auto;
+    padding: 5px 0;
+  }
+
+  .ai-product-offer__thumbnail-{{ ai_gen_id }} {
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;flex-shrink: 0;
+  }
+
+  .ai-product-offer__thumbnail--active-{{ ai_gen_id }} {
+    border-color: {{ block.settings.thumbnail_active_border_color }};
+  }
+
+  .ai-product-offer__thumbnail-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-product-offer__thumbnail-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-product-offer__thumbnail-placeholder-{{ ai_gen_id }} svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .ai-product-offer__features-{{ ai_gen_id }} {
+    margin-bottom: 20px;
+  }
+
+  .ai-product-offer__feature-{{ ai_gen_id }} {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .ai-product-offer__checkmark-{{ ai_gen_id }} {
+    color: {{ block.settings.checkmark_color }};
+    font-size: 16px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .ai-product-offer__feature-text-{{ ai_gen_id }} {
+    font-size: 14px;
+    color: {{ block.settings.feature_text_color }};
+    line-height: 1.4;
+  }
+
+  .ai-product-offer__feature-price-{{ ai_gen_id }} {
+    font-weight: 600;
+    margin-left: 4px;
+  }
+
+  .ai-product-offer__feature-price--strike-{{ ai_gen_id }} {
+    text-decoration: line-through;
+    color: {{ block.settings.strike_price_color }};
+  }
+
+  .ai-product-offer__pricing-{{ ai_gen_id }} {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .ai-product-offer__original-price-{{ ai_gen_id }} {
+    font-size: 18px;
+    color: {{ block.settings.strike_price_color }};
+    text-decoration: line-through;margin-right: 8px;
+  }
+
+  .ai-product-offer__current-price-{{ ai_gen_id }} {
+    font-size: 24px;
+    color: {{ block.settings.current_price_color }};
+    font-weight: 700;
+  }
+
+  .ai-product-offer__savings-{{ ai_gen_id }} {
+    font-size: 14px;
+    color: {{ block.settings.savings_color }};
+    margin-top: 4px;
+  }
+
+  .ai-product-offer__quantity-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .ai-product-offer__quantity-btn-{{ ai_gen_id }} {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .ai-product-offer__quantity-input-{{ ai_gen_id }} {
+    width: 60px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 16px;
+  }
+
+  .ai-product-offer__add-to-cart-{{ ai_gen_id }} {
+    width: 100%;
+    background-color: {{ block.settings.button_bg_color }};
+    color: {{ block.settings.button_text_color }};
+    border: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-product-offer__add-to-cart-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_bg_color }};
+  }
+
+  .ai-product-offer__delivery-info-{{ ai_gen_id }} {
+    font-size: 12px;
+    color: {{ block.settings.delivery_info_color }};
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .ai-product-offer__countdown-{{ ai_gen_id }} {
+    background-color: {{ block.settings.countdown_bg_color }};
+    color: {{ block.settings.countdown_text_color }};
+    padding: 8px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-product-offer__cards-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .ai-product-offer__card-{{ ai_gen_id }} {
+      padding: 20px;
+    }
+
+    .ai-product-offer__title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_font_size | times: 0.8 }}px;
+    }
+
+    .ai-product-offer__subtitle-{{ ai_gen_id }} {
+      font-size: {{ block.settings.subtitle_font_size | times: 0.9 }}px;
+    }
+
+    .ai-product-offer__thumbnail-slider-{{ ai_gen_id }} {
+      justify-content: flex-start;
+    }
+  }
+{% endstyle %}
+
+<product-offer-{{ ai_gen_id }} class="ai-product-offer-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-product-offer__container-{{ ai_gen_id }}">
+    <div class="ai-product-offer__header-{{ ai_gen_id }}">
+      {% if block.settings.section_title != blank %}
+        <h2 class="ai-product-offer__title-{{ ai_gen_id }}">{{ block.settings.section_title }}</h2>
+      {% endif %}
+      {% if block.settings.section_subtitle != blank %}
+        <p class="ai-product-offer__subtitle-{{ ai_gen_id }}">{{ block.settings.section_subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <div class="ai-product-offer__cards-{{ ai_gen_id }}">
+      <div class="ai-product-offer__card-{{ ai_gen_id }} ai-product-offer__card--left-{{ ai_gen_id }}">
+        {% if block.settings.left_banner_text != blank %}
+          <div class="ai-product-offer__banner-{{ ai_gen_id }}">{{ block.settings.left_banner_text }}</div>
+        {% endif %}
+
+        {% if block.settings.left_card_title != blank %}
+          <h3 class="ai-product-offer__card-title-{{ ai_gen_id }}">{{ block.settings.left_card_title }}</h3>
+        {% endif %}
+
+        <div class="ai-product-offer__images-{{ ai_gen_id }}" data-card="left">
+          {% assign left_images = block.settings.left_image_1 | append: ',' | append: block.settings.left_image_2 | append: ',' | append: block.settings.left_image_3 | split: ',' %}
+          {% assign left_image_count = 0 %}
+          {% for image_url in left_images %}
+            {% if image_url != blank %}
+              {% assign left_image_count = left_image_count | plus: 1 %}{% endif %}
+          {% endfor %}<div class="ai-product-offer__main-image-{{ ai_gen_id }}">
+            {% if left_image_count > 0 %}
+              {% if block.settings.left_image_1 != blank %}
+                <img src="{{ block.settings.left_image_1 | image_url: width: 500}}" alt="Product image 1" class="ai-product-offer__image-{{ ai_gen_id }} ai-product-offer__image--active-{{ ai_gen_id }}" data-index="0">
+              {% endif %}
+              {% if block.settings.left_image_2 != blank %}
+                <img src="{{ block.settings.left_image_2 | image_url: width: 500}}" alt="Product image 2" class="ai-product-offer__image-{{ ai_gen_id }}" data-index="1">
+              {% endif %}
+              {% if block.settings.left_image_3 != blank %}
+                <img src="{{ block.settings.left_image_3 | image_url: width: 500 }}" alt="Product image 3" class="ai-product-offer__image-{{ ai_gen_id }}" data-index="2">
+              {% endif %}
+            {% else %}
+              <div class="ai-product-offer__image-placeholder-{{ ai_gen_id }}">
+                {{ 'product-apparel-1' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+          </div>
+
+          {% if left_image_count > 1 %}
+            <div class="ai-product-offer__thumbnail-slider-{{ ai_gen_id }}">
+              {% if block.settings.left_image_1 != blank %}
+                <div class="ai-product-offer__thumbnail-{{ ai_gen_id }} ai-product-offer__thumbnail--active-{{ ai_gen_id }}" data-index="0">
+                  <img src="{{ block.settings.left_image_1 | image_url: width: 100}}" alt="Thumbnail 1">
+                </div>
+              {% endif %}
+              {% if block.settings.left_image_2 != blank %}
+                <div class="ai-product-offer__thumbnail-{{ ai_gen_id }}" data-index="1">
+                  <img src="{{ block.settings.left_image_2 | image_url: width: 100 }}" alt="Thumbnail 2">
+                </div>
+              {% endif %}
+              {% if block.settings.left_image_3 != blank %}
+                <div class="ai-product-offer__thumbnail-{{ ai_gen_id }}" data-index="2">
+                  <img src="{{ block.settings.left_image_3 | image_url: width: 100 }}" alt="Thumbnail 3">
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="ai-product-offer__features-{{ ai_gen_id }}">
+          {% for i in (1..5) %}
+            {% assign feature_key = 'left_feature_' | append: i %}
+            {% assign price_key = 'left_feature_' | append: i | append: '_price' %}
+            {% assign strike_key = 'left_feature_' | append: i | append: '_strike' %}
+            
+            {% if block.settings[feature_key] != blank %}
+              <div class="ai-product-offer__feature-{{ ai_gen_id }}">
+                <span class="ai-product-offer__checkmark-{{ ai_gen_id }}">✅</span>
+                <span class="ai-product-offer__feature-text-{{ ai_gen_id }}">
+                  {{ block.settings[feature_key] }}
+                  {% if block.settings[price_key] != blank %}
+                    <span class="ai-product-offer__feature-price-{{ ai_gen_id }} {% if block.settings[strike_key] %}ai-product-offer__feature-price--strike-{{ ai_gen_id }}{% endif %}">
+                      {{ block.settings[price_key] }}
+                    </span>
+                  {% endif %}
+                </span>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <div class="ai-product-offer__pricing-{{ ai_gen_id }}">
+          {% if block.settings.left_original_price != blank %}
+            <span class="ai-product-offer__original-price-{{ ai_gen_id }}">{{ block.settings.left_original_price }}</span>
+          {% endif %}
+          {% if block.settings.left_current_price != blank %}
+            <span class="ai-product-offer__current-price-{{ ai_gen_id }}">{{ block.settings.left_current_price }}</span>
+          {% endif %}
+          {% if block.settings.left_savings_text != blank %}
+            <div class="ai-product-offer__savings-{{ ai_gen_id }}">{{ block.settings.left_savings_text }}</div>
+          {% endif %}
+        </div>
+
+        <div class="ai-product-offer__quantity-{{ ai_gen_id }}">
+          <button class="ai-product-offer__quantity-btn-{{ ai_gen_id }}" data-action="decrease" data-card="left">-</button>
+          <input type="number" class="ai-product-offer__quantity-input-{{ ai_gen_id }}" value="1" min="1" data-card="left">
+          <button class="ai-product-offer__quantity-btn-{{ ai_gen_id }}" data-action="increase" data-card="left">+</button>
+        </div>
+
+        <button class="ai-product-offer__add-to-cart-{{ ai_gen_id }}" data-card="left">
+          {{ block.settings.left_button_text }}
+        </button>
+
+        {% if block.settings.left_delivery_info != blank %}
+          <div class="ai-product-offer__delivery-info-{{ ai_gen_id }}">{{ block.settings.left_delivery_info }}</div>
+        {% endif %}
+
+        {% if block.settings.show_countdown and block.settings.countdown_text != blank %}
+          <div class="ai-product-offer__countdown-{{ ai_gen_id }}">{{ block.settings.countdown_text }}</div>
+        {% endif %}
+      </div>
+
+      <div class="ai-product-offer__card-{{ ai_gen_id }} ai-product-offer__card--right-{{ ai_gen_id }}">
+        {% if block.settings.right_card_title != blank %}
+          <h3 class="ai-product-offer__card-title-{{ ai_gen_id }}">{{ block.settings.right_card_title }}</h3>
+        {% endif %}
+
+        <div class="ai-product-offer__images-{{ ai_gen_id }}" data-card="right">
+          {% assign right_images = block.settings.right_image_1 | append: ',' | append: block.settings.right_image_2 | append: ',' | append: block.settings.right_image_3 | split: ',' %}
+          {% assign right_image_count = 0 %}
+          {% for image_url in right_images %}
+            {% if image_url != blank %}
+              {% assign right_image_count = right_image_count | plus: 1 %}
+            {% endif %}
+          {% endfor %}
+
+          <div class="ai-product-offer__main-image-{{ ai_gen_id }}">
+            {% if right_image_count > 0 %}
+              {% if block.settings.right_image_1 != blank %}
+                <img src="{{ block.settings.right_image_1 | image_url: width: 500 }}" alt="Product image 1" class="ai-product-offer__image-{{ ai_gen_id }} ai-product-offer__image--active-{{ ai_gen_id }}" data-index="0">
+              {% endif %}
+              {% if block.settings.right_image_2 != blank %}
+                <img src="{{ block.settings.right_image_2 | image_url: width: 500 }}" alt="Product image 2" class="ai-product-offer__image-{{ ai_gen_id }}" data-index="1">
+              {% endif %}
+              {% if block.settings.right_image_3 != blank %}
+                <img src="{{ block.settings.right_image_3 | image_url: width: 500 }}" alt="Product image 3" class="ai-product-offer__image-{{ ai_gen_id }}" data-index="2">
+              {% endif %}
+            {% else %}
+              <div class="ai-product-offer__image-placeholder-{{ ai_gen_id }}">
+                {{ 'product-apparel-1' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+          </div>
+
+          {% if right_image_count > 1 %}
+            <div class="ai-product-offer__thumbnail-slider-{{ ai_gen_id }}">
+              {% if block.settings.right_image_1 != blank %}
+                <div class="ai-product-offer__thumbnail-{{ ai_gen_id }} ai-product-offer__thumbnail--active-{{ ai_gen_id }}" data-index="0">
+                  <img src="{{ block.settings.right_image_1 | image_url: width: 100 }}" alt="Thumbnail 1">
+                </div>
+              {% endif %}
+              {% if block.settings.right_image_2 != blank %}
+                <div class="ai-product-offer__thumbnail-{{ ai_gen_id }}" data-index="1">
+                  <img src="{{ block.settings.right_image_2 | image_url: width: 100 }}" alt="Thumbnail 2">
+                </div>
+              {% endif %}
+              {% if block.settings.right_image_3 != blank %}
+                <div class="ai-product-offer__thumbnail-{{ ai_gen_id }}" data-index="2">
+                  <img src="{{ block.settings.right_image_3 | image_url: width: 100 }}" alt="Thumbnail 3">
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="ai-product-offer__features-{{ ai_gen_id }}">
+          {% for i in (1..5) %}
+            {% assign feature_key = 'right_feature_' | append: i %}
+            {% assign price_key = 'right_feature_' | append: i | append: '_price' %}
+            {% assign strike_key = 'right_feature_' | append: i | append: '_strike' %}
+            
+            {% if block.settings[feature_key] != blank %}
+              <div class="ai-product-offer__feature-{{ ai_gen_id }}">
+                <span class="ai-product-offer__checkmark-{{ ai_gen_id }}">✅</span>
+                <span class="ai-product-offer__feature-text-{{ ai_gen_id }}">
+                  {{ block.settings[feature_key] }}
+                  {% if block.settings[price_key] != blank %}
+                    <span class="ai-product-offer__feature-price-{{ ai_gen_id }} {% if block.settings[strike_key] %}ai-product-offer__feature-price--strike-{{ ai_gen_id }}{% endif %}">
+                      {{ block.settings[price_key] }}
+                    </span>
+                  {% endif %}
+                </span>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <div class="ai-product-offer__pricing-{{ ai_gen_id }}">
+          {% if block.settings.right_current_price != blank %}
+            <span class="ai-product-offer__current-price-{{ ai_gen_id }}">{{ block.settings.right_current_price }}</span>
+          {% endif %}
+          {% if block.settings.right_savings_text != blank %}
+            <div class="ai-product-offer__savings-{{ ai_gen_id }}">{{ block.settings.right_savings_text }}</div>
+          {% endif %}
+        </div>
+
+        <div class="ai-product-offer__quantity-{{ ai_gen_id }}">
+          <button class="ai-product-offer__quantity-btn-{{ ai_gen_id }}" data-action="decrease" data-card="right">-</button>
+          <input type="number" class="ai-product-offer__quantity-input-{{ ai_gen_id }}" value="1" min="1" data-card="right">
+          <button class="ai-product-offer__quantity-btn-{{ ai_gen_id }}" data-action="increase" data-card="right">+</button>
+        </div>
+
+        <button class="ai-product-offer__add-to-cart-{{ ai_gen_id }}" data-card="right">
+          {{ block.settings.right_button_text }}
+        </button>
+
+        {% if block.settings.right_delivery_info != blank %}
+          <div class="ai-product-offer__delivery-info-{{ ai_gen_id }}">{{ block.settings.right_delivery_info }}</div>
+        {% endif %}
+
+        {% if block.settings.right_shipping_cutoff != blank %}
+          <div class="ai-product-offer__countdown-{{ ai_gen_id }}">{{ block.settings.right_shipping_cutoff }}</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</product-offer-{{ ai_gen_id }}>
+
+<script>
+(function() {
+  class ProductOffer{{ ai_gen_id }} extends HTMLElement {
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      this.setupImageSliders();
+      this.setupQuantityControls();
+      this.setupAddToCart();
+    }
+
+    setupImageSliders() {
+      const imageContainers = this.querySelectorAll('.ai-product-offer__images-{{ ai_gen_id }}');
+      
+      imageContainers.forEach(container => {
+        const thumbnails = container.querySelectorAll('.ai-product-offer__thumbnail-{{ ai_gen_id }}');
+        const images = container.querySelectorAll('.ai-product-offer__image-{{ ai_gen_id }}');
+        
+        thumbnails.forEach(thumbnail => {
+          thumbnail.addEventListener('click', () => {
+            const index = parseInt(thumbnail.dataset.index);
+            images.forEach(img => img.classList.remove('ai-product-offer__image--active-{{ ai_gen_id }}'));
+            thumbnails.forEach(thumb => thumb.classList.remove('ai-product-offer__thumbnail--active-{{ ai_gen_id }}'));
+            
+            if (images[index]) {
+              images[index].classList.add('ai-product-offer__image--active-{{ ai_gen_id }}');
+            }
+            thumbnail.classList.add('ai-product-offer__thumbnail--active-{{ ai_gen_id }}');
+          });
+        });
+      });
+    }
+
+    setupQuantityControls() {
+      const quantityBtns = this.querySelectorAll('.ai-product-offer__quantity-btn-{{ ai_gen_id }}');
+      
+      quantityBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const action = btn.dataset.action;
+          const card = btn.dataset.card;
+          const input = this.querySelector(`.ai-product-offer__quantity-input-{{ ai_gen_id }}[data-card="${card}"]`);
+          let currentValue = parseInt(input.value);
+          
+          if (action === 'increase') {
+            input.value = currentValue + 1;
+          } else if (action === 'decrease' && currentValue > 1) {
+            input.value = currentValue - 1;
+          }
+        });
+      });
+    }
+
+    setupAddToCart() {
+      const addToCartBtns = this.querySelectorAll('.ai-product-offer__add-to-cart-{{ ai_gen_id }}');
+      
+      addToCartBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const card = btn.dataset.card;
+          const quantityInput = this.querySelector(`.ai-product-offer__quantity-input-{{ ai_gen_id }}[data-card="${card}"]`);
+          const quantity = parseInt(quantityInput.value);
+          
+          console.log(`Add to cart clicked for ${card} card with quantity: ${quantity}`);
+        });
+      });
+    }
+  }
+
+  customElements.define('product-offer-{{ ai_gen_id }}', ProductOffer{{ ai_gen_id }});
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Product offer section",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section title",
+      "default": "Join Primal Queen Today"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section subtitle",
+      "default": "September has a high risk of selling out. 127 purchases made today."
+    },
+    {
+      "type": "header",
+      "content": "Section colors"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section background",
+      "default": "#fde6f2"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Title font size",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "subtitle_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle font size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "card_title_font_size",
+      "min": 16,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Card title font size",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "General card styling"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Default card border color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Default card border width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "thumbnail_active_border_color",
+      "label": "Active thumbnail border",
+      "default": "#00b050"
+    },
+    {
+      "type": "header",
+      "content": "Left card styling"
+    },
+    {
+      "type": "color",
+      "id": "left_card_bg_color",
+      "label": "Left card background",
+      "default": "#fde6f2"
+    },
+    {
+      "type": "color",
+      "id": "left_card_border_color",
+      "label": "Left card border color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "range",
+      "id": "left_card_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Left card border width",
+      "default": 2
+    },
+    {
+      "type": "header",
+      "content": "Right card styling"
+    },
+    {
+      "type": "color",
+      "id": "right_card_bg_color",
+      "label": "Right card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "right_card_border_color",
+      "label": "Right card border color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "range",
+      "id": "right_card_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Right card border width",
+      "default": 2
+    },
+    {
+      "type": "header",
+      "content": "Left card content"
+    },
+    {
+      "type": "text",
+      "id": "left_banner_text",
+      "label": "Banner text",
+      "default": "1 Month Free Special Offer"
+    },
+    {
+      "type": "color",
+      "id": "banner_bg_color",
+      "label": "Banner background",
+      "default": "#ff6b6b"
+    },
+    {
+      "type": "color",
+      "id": "banner_text_color",
+      "label": "Banner text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "left_card_title",
+      "label": "Card title",
+      "default": "3 Month AutoShip & Save"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image_1",
+      "label": "Product image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image_2",
+      "label": "Product image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image_3",
+      "label": "Product image 3"
+    },
+    {
+      "type": "text",
+      "id": "left_feature_1",
+      "label": "Feature 1",
+      "default": "Premium quality ingredients"
+    },
+    {
+      "type": "text",
+      "id": "left_feature_1_price",
+      "label": "Feature 1 price"
+    },
+    {
+      "type": "checkbox",
+      "id": "left_feature_1_strike",
+      "label": "Strike through feature 1 price",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "left_feature_2",
+      "label": "Feature 2",
+      "default": "Free shipping on all orders"
+    },
+    {
+      "type": "text",
+      "id": "left_feature_2_price",
+      "label": "Feature 2 price"
+    },
+    {
+      "type": "checkbox",
+      "id": "left_feature_2_strike",
+      "label": "Strike through feature 2 price",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "left_feature_3",
+      "label": "Feature 3",
+      "default": "30-day money back guarantee"
+    },
+    {
+      "type": "text",
+      "id": "left_feature_3_price",
+      "label": "Feature 3 price"
+    },
+    {
+      "type": "checkbox",
+      "id": "left_feature_3_strike",
+      "label": "Strike through feature 3 price",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "left_feature_4",
+      "label": "Feature 4"
+    },
+    {
+      "type": "text",
+      "id": "left_feature_4_price",
+      "label": "Feature 4 price"
+    },
+    {
+      "type": "checkbox",
+      "id": "left_feature_4_strike",
+      "label": "Strike through feature 4 price",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "left_feature_5",
+      "label": "Feature 5"
+    },
+    {
+      "type": "text",
+      "id": "left_feature_5_price",
+      "label": "Feature 5 price"
+    },
+    {
+      "type": "checkbox",
+      "id": "left_feature_5_strike",
+      "label": "Strike through feature 5 price",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "left_original_price",
+      "label": "Original price",
+      "default": "$149.99"
+    },
+    {
+      "type": "text",
+      "id": "left_current_price",
+      "label": "Current price",
+      "default": "$99.99"
+    },
+    {
+      "type": "text",
+      "id": "left_savings_text",
+      "label": "Savings text",
+      "default": "Save $50.00"
+    },
+    {
+      "type": "text",
+      "id": "left_button_text",
+      "label": "Button text",
+      "default": "Add to Cart"
+    },
+    {
+      "type": "text",
+      "id": "left_delivery_info",
+      "label": "Delivery info",
+      "default": "Free shipping & 30-day guarantee"
+    },
+    {
+      "type": "header",
+      "content": "Right card content"
+    },
+    {
+      "type": "text",
+      "id": "right_card_title",
+      "label": "Card title",
+      "default": "1 Month Subscribe & Save"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image_1",
+      "label": "Product image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image_2",
+      "label": "Product image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image_3",
+      "label": "Product image 3"
+    },
+    {
+      "type": "text",
+      "id": "right_feature_1",
+      "label": "Feature 1",
+      "default": "Monthly delivery"
+    },
+    {
+      "type": "text",
+      "id": "right_feature_1_price",
+      "label": "Feature 1 price"
+    },
+    {
+      "type": "checkbox",
+      "id": "right_feature_1_strike",
+      "label": "Strike through feature 1 price",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "right_feature_2",
+      "label": "Feature 2",
+      "default": "Cancel anytime"
+    },
+    {
+      "type": "text",
+      "id": "right_feature_2_price",
+      "label": "Feature 2 price"
+    },
+    {
+      "type": "checkbox",
+      "id": "right_feature_2_strike",
+      "label": "Strike through feature 2 price",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "right_feature_3",
+      "label": "Feature 3",
+      "default": "Exclusive member pricing"
+    },
+    {
+      "type": "text",
+      "id": "right_feature_3_price",
+      "label": "Feature 3 price"
+    },
+    {
+      "type": "checkbox",
+      "id": "right_feature_3_strike",
+      "label": "Strike through feature 3 price",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "right_feature_4",
+      "label": "Feature 4"
+    },
+    {
+      "type": "text",
+      "id": "right_feature_4_price",
+      "label": "Feature 4 price"
+    },
+    {
+      "type": "checkbox",
+      "id": "right_feature_4_strike",
+      "label": "Strike through feature 4 price",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "right_feature_5",
+      "label": "Feature 5"
+    },
+    {
+      "type": "text",
+      "id": "right_feature_5_price",
+      "label": "Feature 5 price"
+    },
+    {
+      "type": "checkbox",
+      "id": "right_feature_5_strike",
+      "label": "Strike through feature 5 price",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "right_current_price",
+      "label": "Subscription price",
+      "default": "$39.99/month"
+    },
+    {
+      "type": "text",
+      "id": "right_savings_text",
+      "label": "Savings text",
+      "default": "Save 20% with subscription"
+    },
+    {
+      "type": "text",
+      "id": "right_button_text",
+      "label": "Button text",
+      "default": "Subscribe Now"
+    },
+    {
+      "type": "text",
+      "id": "right_delivery_info",
+      "label": "Delivery info",
+      "default": "Free shipping & cancel anytime"
+    },
+    {
+      "type": "text",
+      "id": "right_shipping_cutoff",
+      "label": "Shipping cutoff text",
+      "default": "Order by 2PM for same-day shipping"
+    },
+    {
+      "type": "header",
+      "content": "Feature styling"
+    },
+    {
+      "type": "color",
+      "id": "checkmark_color",
+      "label": "Checkmark color",
+      "default": "#00b050"
+    },
+    {
+      "type": "color",
+      "id": "feature_text_color",
+      "label": "Feature text color",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "Price styling"
+    },
+    {
+      "type": "color",
+      "id": "strike_price_color",
+      "label": "Strike price color",
+      "default": "#ff0000"
+    },
+    {
+      "type": "color",
+      "id": "current_price_color",
+      "label": "Current price color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "savings_color",
+      "label": "Savings text color",
+      "default": "#00b050"
+    },
+    {
+      "type": "header",
+      "content": "Button styling"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background",
+      "default": "#00b050"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Button hover background",
+      "default": "#008040"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Additional styling"
+    },
+    {
+      "type": "color",
+      "id": "delivery_info_color",
+      "label": "Delivery info color",
+      "default": "#666666"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_countdown",
+      "label": "Show countdown timer",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "countdown_text",
+      "label": "Countdown text",
+      "default": "Order within 2 hours for same-day shipping"
+    },
+    {
+      "type": "color",
+      "id": "countdown_bg_color",
+      "label": "Countdown background",
+      "default": "#ff6b6b"
+    },
+    {
+      "type": "color",
+      "id": "countdown_text_color",
+      "label": "Countdown text color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product offer section"
+    }
+  ]
+}
+{% endschema %}

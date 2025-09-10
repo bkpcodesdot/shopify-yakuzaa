@@ -1,0 +1,620 @@
+{% doc %}
+  @prompt
+    Create a 2-column section for Shopify that looks like a premium supplement feature highlight.
+    
+    Layout:
+    
+    Left Column:
+    
+    A heading: Inside Every Capsule, You’ll Find: (editable text).
+    
+    A product image (capsules) at the bottom (image uploadable).
+    
+    Right Column:
+    
+    A vertical list of 4 feature cards, each with:
+    
+    An icon (editable, default supplement/health icons).
+    
+    A title (e.g., Ovary, Uterus, Heart, Liver).
+    
+    A short bolded statement (e.g., A source of natural hormone precursors).
+    
+    Supporting description text (editable).
+    
+    Each card should have rounded corners, white background, light shadow, and spacing.
+    
+    Design & Style:
+    
+    Background: light pink (#fde6f2 or similar).
+    
+    Section title: bold, dark purple (#3b0a45).
+    
+    Feature card title: bold, dark purple (#3b0a45).
+    
+    Highlighted keywords inside text should be pink (#d12c85).
+    
+    Mobile responsive with stacked layout.
+    
+    
+    The section should be fully customizable in the Shopify Theme Editor (icons, text, colors, images)., card format like card 1 all text in black then second card text in pink like AlterNet continue , set title also in pink in card , in mobile first set title
+    
+    also set customizable icon i can update it., feature icon editable means i can upload icon from system
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-supplement-features-{{ ai_gen_id }} {
+    background-color: {{ block.settings.background_color }};
+    padding: 60px 20px;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .ai-supplement-features__container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .ai-supplement-features__left-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top:100px;
+  }
+
+  .ai-supplement-features__heading-{{ ai_gen_id }} {
+    color: #3b0a45;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+  .ai-supplement-features__product-image-{{ ai_gen_id }} {
+    width: 100%;
+    max-width: 400px;
+    margin-top: auto;
+  }
+
+  .ai-supplement-features__product-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    position: absolute;
+    max-width: 500px;
+    bottom: 0;
+    left: 0;
+    top: 40%;
+    rotate: 22deg;
+}
+
+  .ai-supplement-features__image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: #f8f8f8;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-supplement-features__image-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-supplement-features__empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+  }
+
+  .ai-supplement-features__right-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .ai-supplement-features__card-{{ ai_gen_id }} {
+    background: {{ block.settings.card_background }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .ai-supplement-features__icon-wrapper-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-supplement-features__icon-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .ai-supplement-features__icon-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-supplement-features__icon-placeholder-{{ ai_gen_id }} svg {
+    width: 70%;
+    height: 70%;
+    opacity: 0.4;
+  }
+
+  .ai-supplement-features__content-{{ ai_gen_id }} {
+    flex: 1;
+  }
+
+  .ai-supplement-features__card-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.card_title_size }}px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+  }
+
+  .ai-supplement-features__card-statement-{{ ai_gen_id }} {
+    font-size: {{ block.settings.statement_size }}px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+  }
+
+  .ai-supplement-features__card-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .ai-supplement-features__card-1-{{ ai_gen_id }} .ai-supplement-features__card-title-{{ ai_gen_id }},
+  .ai-supplement-features__card-1-{{ ai_gen_id }} .ai-supplement-features__card-statement-{{ ai_gen_id }},
+  .ai-supplement-features__card-1-{{ ai_gen_id }} .ai-supplement-features__card-description-{{ ai_gen_id }} {
+    color: {{ block.settings.card_text_color_1 }};
+  }
+
+  .ai-supplement-features__card-2-{{ ai_gen_id }} .ai-supplement-features__card-title-{{ ai_gen_id }},
+  .ai-supplement-features__card-2-{{ ai_gen_id }} .ai-supplement-features__card-statement-{{ ai_gen_id }},
+  .ai-supplement-features__card-2-{{ ai_gen_id }} .ai-supplement-features__card-description-{{ ai_gen_id }} {
+    color: {{ block.settings.card_text_color_2 }};
+  }
+
+  .ai-supplement-features__card-3-{{ ai_gen_id }} .ai-supplement-features__card-title-{{ ai_gen_id }},
+  .ai-supplement-features__card-3-{{ ai_gen_id }} .ai-supplement-features__card-statement-{{ ai_gen_id }},
+  .ai-supplement-features__card-3-{{ ai_gen_id }} .ai-supplement-features__card-description-{{ ai_gen_id }} {
+    color: {{ block.settings.card_text_color_3 }};
+  }
+
+  .ai-supplement-features__card-4-{{ ai_gen_id }} .ai-supplement-features__card-title-{{ ai_gen_id }},
+  .ai-supplement-features__card-4-{{ ai_gen_id }} .ai-supplement-features__card-statement-{{ ai_gen_id }},
+  .ai-supplement-features__card-4-{{ ai_gen_id }} .ai-supplement-features__card-description-{{ ai_gen_id }} {
+    color: {{ block.settings.card_text_color_4 }};
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-supplement-features-{{ ai_gen_id }} {
+    padding-left:16px;
+    padding-right:16px;
+    padding-bottom:100px;
+    }
+.ai-supplement-features__product-image-aegr5rghurkkvmxewbaigenblock075f036qnajrn img {
+    max-width: 171px;
+    bottom: 0;
+    left: 0;
+    top: 85%;
+    rotate: 22deg;
+}
+    .ai-supplement-features__container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+    }
+.ai-supplement-features__left-aegr5rghurkkvmxewbaigenblock075f036qnajrn{
+margin-top:0px;}
+    .ai-supplement-features__left-{{ ai_gen_id }} {
+      gap: 30px;
+    }
+.ai-supplement-features__container-aegr5rghurkkvmxewbaigenblock075f036qnajrn {
+    gap: 10px;
+
+}
+    .ai-supplement-features__heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.8 }}px;
+    }
+
+    .ai-supplement-features__card-{{ ai_gen_id }} {
+      padding: 20px;
+      gap: 12px;
+    }
+
+    .ai-supplement-features__icon-wrapper-{{ ai_gen_id }} {
+      width: {{ block.settings.icon_size | times: 0.8 }}px;
+      height: {{ block.settings.icon_size | times: 0.8 }}px;
+    }
+  }
+   @media screen and (max-width: 576px) {
+  .ai-supplement-features__right-aegr5rghurkkvmxewbaigenblock075f036qnajrn {
+    order: 2;
+}
+.ai-supplement-features__left-aegr5rghurkkvmxewbaigenblock075f036qnajrn {
+  margin-top: 0px;
+}
+.ai-supplement-features-aegr5rghurkkvmxewbaigenblock075f036qnajrn{
+padding-bottom:180px;}
+
+.ai-supplement-features__container-aegr5rghurkkvmxewbaigenblock075f036qnajrn {
+
+    gap: 0px;
+}
+.ai-supplement-features__product-image-aegr5rghurkkvmxewbaigenblock075f036qnajrn img {
+    max-width: 200px;
+    bottom: 0;
+    left: 0;
+    top: 80%;
+    rotate: 22deg;
+}
+}
+
+{% endstyle %}
+
+<div class="ai-supplement-features-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-supplement-features__container-{{ ai_gen_id }}">
+    <div class="ai-supplement-features__left-{{ ai_gen_id }}">
+      {% if block.settings.heading != blank %}
+        <h2 class="ai-supplement-features__heading-{{ ai_gen_id }}">
+          {{ block.settings.heading }}
+        </h2>
+      {% endif %}
+
+      <div class="ai-supplement-features__product-image-{{ ai_gen_id }}">
+        {% if block.settings.product_image %}
+          <img
+            src="{{ block.settings.product_image | image_url: width: 800 }}"
+            alt="{{ block.settings.product_image.alt | escape }}"
+            loading="lazy"
+            width="{{ block.settings.product_image.width }}"
+            height="{{ block.settings.product_image.height }}"
+          >
+        {% else %}
+          <div class="ai-supplement-features__image-placeholder-{{ ai_gen_id }}">
+            {{ 'product-apparel-1' | placeholder_svg_tag }}
+            <div class="ai-supplement-features__empty-state-{{ ai_gen_id }}">
+              Add a product image
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="ai-supplement-features__right-{{ ai_gen_id }}">
+      {% for i in (1..4) %}
+        {% liquid
+          assign card_title_key = 'card_' | append: i | append: '_title'
+          assign card_statement_key = 'card_' | append: i | append: '_statement'
+          assign card_description_key = 'card_' | append: i | append: '_description'
+          assign card_icon_key = 'card_' | append: i | append: '_icon'
+
+          assign card_title = block.settings[card_title_key]
+          assign card_statement = block.settings[card_statement_key]
+          assign card_description = block.settings[card_description_key]
+          assign card_icon = block.settings[card_icon_key]
+        %}
+
+        <div class="ai-supplement-features__card-{{ ai_gen_id }} ai-supplement-features__card-{{ i }}-{{ ai_gen_id }}">
+          <div class="ai-supplement-features__icon-wrapper-{{ ai_gen_id }}">
+            {% if card_icon %}
+              <img
+                src="{{ card_icon | image_url: width: 100 }}"
+                alt="{{ card_icon.alt | escape }}"
+                class="ai-supplement-features__icon-{{ ai_gen_id }}"
+                loading="lazy"
+              >
+            {% else %}
+              <div class="ai-supplement-features__icon-placeholder-{{ ai_gen_id }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/>
+                </svg>
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="ai-supplement-features__content-{{ ai_gen_id }}">
+            {% if card_title != blank %}
+              <h3 class="ai-supplement-features__card-title-{{ ai_gen_id }}">
+                {{ card_title }}
+              </h3>
+            {% endif %}
+
+            {% if card_statement != blank %}
+              <p class="ai-supplement-features__card-statement-{{ ai_gen_id }}">
+                {{ card_statement }}
+              </p>
+            {% endif %}
+
+            {% if card_description != blank %}
+              <div class="ai-supplement-features__card-description-{{ ai_gen_id }}">
+                {{ card_description }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Supplement features",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Inside Every Capsule, You'll Find:"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#fde6f2"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#3b0a45"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color_1",
+      "label": "Card 1 text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color_2",
+      "label": "Card 2 text color",
+      "default": "#d12c85"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color_3",
+      "label": "Card 3 text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color_4",
+      "label": "Card 4 text color",
+      "default": "#d12c85"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "card_title_size",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Card title size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "statement_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Statement size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Description size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 30,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "Card 1"
+    },
+    {
+      "type": "text",
+      "id": "card_1_title",
+      "label": "Title",
+      "default": "Ovary"
+    },
+    {
+      "type": "text",
+      "id": "card_1_statement",
+      "label": "Statement",
+      "default": "A source of natural hormone precursors"
+    },
+    {
+      "type": "richtext",
+      "id": "card_1_description",
+      "label": "Description",
+      "default": "<p>Supporting reproductive health with essential nutrients and compounds.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_1_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "header",
+      "content": "Card 2"
+    },
+    {
+      "type": "text",
+      "id": "card_2_title",
+      "label": "Title",
+      "default": "Uterus"
+    },
+    {
+      "type": "text",
+      "id": "card_2_statement",
+      "label": "Statement",
+      "default": "Promotes healthy uterine function"
+    },
+    {
+      "type": "richtext",
+      "id": "card_2_description",
+      "label": "Description",
+      "default": "<p>Essential nutrients that support optimal uterine health and function.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_2_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "header",
+      "content": "Card 3"
+    },
+    {
+      "type": "text",
+      "id": "card_3_title",
+      "label": "Title",
+      "default": "Heart"
+    },
+    {
+      "type": "text",
+      "id": "card_3_statement",
+      "label": "Statement",
+      "default": "Supports cardiovascular wellness"
+    },
+    {
+      "type": "richtext",
+      "id": "card_3_description",
+      "label": "Description",
+      "default": "<p>Heart-healthy compounds that promote cardiovascular function and circulation.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_3_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "header",
+      "content": "Card 4"
+    },
+    {
+      "type": "text",
+      "id": "card_4_title",
+      "label": "Title",
+      "default": "Liver"
+    },
+    {
+      "type": "text",
+      "id": "card_4_statement",
+      "label": "Statement",
+      "default": "Enhances natural detoxification"
+    },
+    {
+      "type": "richtext",
+      "id": "card_4_description",
+      "label": "Description",
+      "default": "<p>Liver-supporting nutrients that aid in natural detoxification processes.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_4_icon",
+      "label": "Icon"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Supplement features"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,688 @@
+{% doc %}
+  @prompt
+    Create a 2-column promotional banner section for Shopify with the following layout and style:
+    
+    Layout:
+    
+    Full-width section with a light pink splatter background image (uploadable & editable).
+    
+    Rounded card with two columns:
+    
+    Left Column:
+    
+    Product image (uploadable, supports transparent PNG or lifestyle photo).
+    
+    Image should support multiple sizes and align vertically center.
+    
+    Right Column (content box):
+    
+    Dark purple background (#3b0a45) with pink rounded border.
+    
+    Heading text (editable):
+    Due to high demand and shortage of beef organs, September has a very high risk of selling out ⚠️
+    
+    Allow inline text highlighting (e.g., "September" in pink #d12c85).
+    
+    Large green CTA button (editable text): UNLOCK YOUR TRUE POWER
+    
+    CTA button should include an icon (optional, editable).
+    
+    Design & Style:
+    
+    Section background: pink splatter graphic (uploadable, editable).
+    
+    Right content box: white text, bold heading.
+    
+    Pink highlight option for keywords inside text.
+    
+    CTA button: green gradient (#00b050 → #009f47), bold uppercase text in white, rounded corners.
+    
+    Fully mobile responsive:
+    
+    On desktop → image left, content right.
+    
+    On mobile → image stacked on top, content below.
+    
+    Customization in Shopify Theme Editor:
+    
+    Upload background image.
+    
+    Upload product image.
+    
+    Edit heading text & highlighted keywords.
+    
+    Edit CTA button text, link, and color.
+    
+    Adjust colors, padding, and border radius.
+    
+    The final design should look like a modern product highlight banner with call-to-action, exactly as shown in the sample., set pink border of box, set pink border to card layout, right side column height set in full height and text an buton set in center of ox, remove padding between both column
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-promo-banner-{{ ai_gen_id }} {
+    width: 100%;
+    padding: {{ block.settings.section_padding_top }}px 20px {{ block.settings.section_padding_bottom }}px;
+    background-image: url('{{ block.settings.background_image | image_url: width: 2000 }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-promo-banner-placeholder-{{ ai_gen_id }} {
+    background-color: #fce4ec;
+    background-image: radial-gradient(circle at 20% 30%, rgba(233, 30, 99, 0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 70%, rgba(233, 30, 99, 0.15) 0%, transparent 50%),
+                      radial-gradient(circle at 40% 80%, rgba(233, 30, 99, 0.08) 0%, transparent 50%);
+  }
+
+  .ai-promo-banner-card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background_color }};
+    border: {{ block.settings.card_border_width }}px solid {{ block.settings.card_border_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    padding: {{ block.settings.card_padding }}px;
+    max-width: 1200px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    min-height: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .ai-promo-banner-image-column-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .ai-promo-banner-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    max-width: {{ block.settings.image_max_width }}px;
+    border-radius: {{ block.settings.image_border_radius }}px;
+  }
+
+  .ai-promo-banner-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    max-width: {{ block.settings.image_max_width }}px;
+    aspect-ratio: 1;
+    background-color: #f5f5f5;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-promo-banner-image-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-promo-banner-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    padding: 8px 12px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 4px;
+  }
+
+  .ai-promo-banner-content-column-{{ ai_gen_id }} {
+    background-color: {{ block.settings.content_background_color }};
+    border: {{ block.settings.content_border_width }}px solid {{ block.settings.content_border_color }};
+    border-radius: {{ block.settings.content_border_radius }}px;
+    padding: {{ block.settings.content_padding }}px;
+    color: {{ block.settings.content_text_color }};
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    min-height: 100%;
+  }
+
+  .ai-promo-banner-content-wrapper-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: {{ block.settings.heading_margin_bottom }}px;
+  }
+
+  .ai-promo-banner-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_font_size }}px;
+    font-weight: {{ block.settings.heading_font_weight }};
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .ai-promo-banner-highlight-{{ ai_gen_id }} {
+    color: {{ block.settings.highlight_color }};
+  }
+
+  .ai-promo-banner-cta-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+    background: linear-gradient(135deg, {{ block.settings.button_color_start }}, {{ block.settings.button_color_end }});
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-weight: {{ block.settings.button_font_weight }};
+    font-size: {{ block.settings.button_font_size }}px;
+    text-transform: {{ block.settings.button_text_transform }};
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .ai-promo-banner-cta-{{ ai_gen_id }}:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .ai-promo-banner-cta-icon-{{ ai_gen_id }} {
+    width: {{ block.settings.button_icon_size }}px;
+    height: {{ block.settings.button_icon_size }}px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-promo-banner-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_top | times: 0.7 }}px 15px {{ block.settings.section_padding_bottom | times: 0.7 }}px;
+      min-height: 300px;
+    }
+
+    .ai-promo-banner-card-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: {{ block.settings.card_padding | times: 0.8 }}px;min-height: auto;
+    }
+
+    .ai-promo-banner-image-column-{{ ai_gen_id }} {
+      order: {{ block.settings.mobile_image_order }};
+      padding: 15px;
+    }
+
+    .ai-promo-banner-content-column-{{ ai_gen_id }} {
+      order: {{ block.settings.mobile_content_order }};
+      padding: {{ block.settings.content_padding | times: 0.8 }}px;
+      min-height: 300px;
+    }
+
+    .ai-promo-banner-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_font_size | times: 0.85 }}px;
+    }
+
+    .ai-promo-banner-cta-{{ ai_gen_id }} {
+      padding: {{ block.settings.button_padding_vertical | times: 0.9 }}px {{ block.settings.button_padding_horizontal | times: 0.9 }}px;
+      font-size: {{ block.settings.button_font_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}<div 
+  class="ai-promo-banner-{{ ai_gen_id }} {% unless block.settings.background_image %}ai-promo-banner-placeholder-{{ ai_gen_id }}{% endunless %}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-promo-banner-card-{{ ai_gen_id }}">
+    <div class="ai-promo-banner-image-column-{{ ai_gen_id }}">
+      {% if block.settings.product_image %}
+        <img
+          src="{{ block.settings.product_image | image_url: width: 800 }}"
+          alt="{{ block.settings.product_image.alt | escape }}"
+          class="ai-promo-banner-image-{{ ai_gen_id }}"
+          loading="lazy"
+          width="{{ block.settings.product_image.width }}"
+          height="{{ block.settings.product_image.height }}"
+        >
+      {% else %}
+        <div class="ai-promo-banner-image-placeholder-{{ ai_gen_id }}">
+          {{ 'product-apparel-1' | placeholder_svg_tag }}
+          <div class="ai-promo-banner-empty-state-{{ ai_gen_id }}">
+            Add a product image
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="ai-promo-banner-content-column-{{ ai_gen_id }}">
+      <div class="ai-promo-banner-content-wrapper-{{ ai_gen_id }}">
+        {% if block.settings.heading != blank %}
+          <h2 class="ai-promo-banner-heading-{{ ai_gen_id }}">
+            {% assign heading_parts = block.settings.heading | split: block.settings.highlight_text %}
+            {% if heading_parts.size > 1 and block.settings.highlight_text != blank %}
+              {{ heading_parts[0] }}<span class="ai-promo-banner-highlight-{{ ai_gen_id }}">{{ block.settings.highlight_text }}</span>{{ heading_parts[1] }}
+            {% else %}
+              {{ block.settings.heading }}
+            {% endif %}
+          </h2>
+        {% endif %}
+
+        {% if block.settings.button_text != blank %}
+          <a
+            href="{{ block.settings.button_link | default: '#' }}"
+            class="ai-promo-banner-cta-{{ ai_gen_id }}">
+            {% if block.settings.show_button_icon %}
+              <svg class="ai-promo-banner-cta-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+            {% endif %}
+            {{ block.settings.button_text }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Promotional banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Product image"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image"
+    },
+    {
+      "type": "range",
+      "id": "image_max_width",
+      "min": 200,
+      "max": 600,
+      "step": 20,
+      "unit": "px",
+      "label": "Maximum width",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading text",
+      "default": "Due to high demand and shortage of beef organs, September has a very high risk of selling out ⚠️"
+    },
+    {
+      "type": "text",
+      "id": "highlight_text",
+      "label": "Text to highlight",
+      "default": "September"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight color",
+      "default": "#d12c85"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading font size",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Heading font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "heading_margin_bottom",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Heading bottom margin",
+      "default": 25
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "UNLOCK YOUR TRUE POWER"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button_icon",
+      "label": "Show button icon",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "button_icon_size",
+      "min": 12,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "button_color_start",
+      "label": "Button gradient start",
+      "default": "#00b050"
+    },
+    {
+      "type": "color",
+      "id": "button_color_end",
+      "label": "Button gradient end",
+      "default": "#009f47"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Button font size",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "button_font_weight",
+      "label": "Button font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "select",
+      "id": "button_text_transform",
+      "label": "Button text case",
+      "options": [
+        {
+          "value": "none",
+          "label": "Normal"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Button vertical padding",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "min": 16,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "label": "Button horizontal padding",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border color",
+      "default": "#d12c85"
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "min": 0,
+      "max": 6,
+      "step": 1,
+      "unit": "px",
+      "label": "Card border width",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Card padding",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Content box style"
+    },
+    {
+      "type": "color",
+      "id": "content_background_color",
+      "label": "Content background",
+      "default": "#3b0a45"
+    },
+    {
+      "type": "color",
+      "id": "content_border_color",
+      "label": "Content border color",
+      "default": "#d12c85"
+    },
+    {
+      "type": "range",
+      "id": "content_border_width",
+      "min": 0,
+      "max": 6,
+      "step": 1,
+      "unit": "px",
+      "label": "Content border width",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "content_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Content border radius",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "content_text_color",
+      "label": "Content text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "content_padding",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Content padding",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Mobile layout"
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_order",
+      "label": "Image position on mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "Top"
+        },
+        {
+          "value": "2",
+          "label": "Bottom"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "select",
+      "id": "mobile_content_order",
+      "label": "Content position on mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "Top"
+        },
+        {
+          "value": "2",
+          "label": "Bottom"
+        }
+      ],
+      "default": "2"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promotional banner"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,782 @@
+{% doc %}
+  @prompt
+    Create a "Benefits Timeline" section with a vertical progress bar that connects circular number markers. The section should have a clean, modern design with a dark background to make the content pop.
+    
+    **Layout & Structure:**
+    - Use a two-column layout on desktop, stacked on mobile.
+    - On the left: A vertical timeline with a progress bar and circular markers for each time point (1 Week, 1 Month, 2 Months, 3 Months, 6 Months). 
+    - On the right: Content cards that correspond to each time point.
+    
+    **Timeline (Left Column):**
+    - Vertical progress bar: Start with a neutral color (e.g., light gray). 
+    - Interactive circular markers: When a user scrolls to a specific time point, the progress bar fills from the bottom to that point and changes color (e.g., from gray to a vibrant gold or peach #E8B882). The passed markers also change to the same accent color.
+    - Markers are numbered (1, 2, 3, 4, 5) and have a label below (1 Week, 1 Month, etc.).
+    
+    **Content (Right Column):**
+    - Each time point has a heading (e.g., "1 Week") and a list of benefits below it.
+    - Use the exact benefit text from the provided image.
+    - Typography: Clean, sans-serif font. Headings are bold and slightly larger.
+    
+    **Color Scheme:**
+    - Background: Dark charcoal or black (#1A1A1A or #000000).
+    - Text: White (#FFFFFF).
+    - Accent/Progress Color: A warm peach or gold (#E8B882, #D4A574, or #FFD700).
+    - Inactive Elements: Light gray (#CCCCCC)
+    **Functionality:**
+    - The section should be animated. As the user scrolls down the page, the progress bar fills to the current time point and the corresponding marker lights up.
+    - The content for the current time point should be highlighted or be the most prominent.
+    
+    **Inspiration:**
+    - Follow the exact structure and content from the provided image for the benefits.
+    - Use a modern, minimalist aesthetic similar to the reference.
+    
+    Please use HTML, CSS, and JavaScript if needed to achieve the interactive scrolling animation., Period 1 benefits set in background color #ffe0eb when scroll d, Accent will only plan circle the left side there are add 1 week in beside of the 1 week pink box same as all card left side text right side oink card, make speace between 1 week text or progress bar both of side set as 50% 50% width smae width and when we on scroll dwon the card wil come with animation hide or add, 1 week  with icon <path d="M31.0781 17.0617H20.7187L21.9375 1.8273L7.92188 21.9367H18.2812L17.0625 37.171L31.0781 17.0617Z" fill="#FFBC42" style="fill:#FFBC42;fill:color(display-p3 1.
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-benefits-timeline-{{ ai_gen_id }} {
+    background-color: {{ block.settings.background_color }};
+    color: {{ block.settings.text_color }};
+    padding: {{ block.settings.section_padding }}px 20px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .ai-benefits-timeline-container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    align-items: start;
+  }
+div#shopify-block-ASGhrMTBkbHIwczRaO__ai_gen_block_7e3322d_aBF7cV {
+    width: 1200px;
+    margin: 0 auto;
+}
+  .ai-benefits-timeline-header-{{ ai_gen_id }} {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .ai-benefits-timeline-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: 700;
+    margin: 0 0 20px;
+        color: #2f0147;
+    line-height: 1.2;
+  }
+
+  .ai-benefits-timeline-title-{{ ai_gen_id }} .sm-hidden {
+    display: none;
+  }
+
+  .ai-benefits-timeline-title-{{ ai_gen_id }} .sm-max-md-block {
+    display: none;
+  }
+
+  .ai-benefits-timeline-title-{{ ai_gen_id }} .md-block {
+    display: none;
+  }
+
+  .ai-benefits-timeline-subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtitle_size }}px;
+    opacity: 0.8;
+    margin: 0;
+  }
+
+  .ai-benefits-timeline-progress-{{ ai_gen_id }} {
+    position: sticky;
+    top: 100px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 40px;
+    position: relative;
+  }
+
+  .ai-benefits-timeline-track-{{ ai_gen_id }} {
+    position: absolute;
+    left: 47%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background-color: {{ block.settings.inactive_color }};
+    border-radius: 2px;
+  }
+
+  .ai-benefits-timeline-fill-{{ ai_gen_id }} {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 0%;
+    background-color: {{ block.settings.accent_color }};
+    border-radius: 2px;
+    transition: height 0.6s ease;
+  }
+
+  .ai-benefits-timeline-marker-{{ ai_gen_id }} {
+    position: relative;
+    z-index: 2;
+    width: {{ block.settings.marker_size }}px;
+    height: {{ block.settings.marker_size }}px;
+    border-radius: 50%;
+    background-color: {{ block.settings.inactive_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+  }
+
+  .ai-benefits-timeline-marker-{{ ai_gen_id }}.active {
+    background-color: {{ block.settings.accent_color }};
+    transform: scale(1.1);
+  }
+
+  .ai-benefits-timeline-marker-number-{{ ai_gen_id }} {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    transition: color 0.4s ease;
+  }
+
+  .ai-benefits-timeline-marker-{{ ai_gen_id }}.active .ai-benefits-timeline-marker-number-{{ ai_gen_id }} {
+    color: white;
+  }
+
+  .ai-benefits-timeline-marker-label-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    right: calc(100% + 20px);
+    transform: translateY(-50%);
+    font-size: 18px;
+    font-weight: 600;
+    white-space: nowrap;
+    color: {{ block.settings.text_color }};
+    transition: color 0.4s ease;
+  }
+
+  .ai-benefits-timeline-marker-{{ ai_gen_id }}.active .ai-benefits-timeline-marker-label-{{ ai_gen_id }} {
+    color: {{ block.settings.accent_color }};
+  }
+
+  .ai-benefits-timeline-content-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    padding-left: 40px;
+  }
+
+  .ai-benefits-timeline-period-{{ ai_gen_id }} {
+    padding: 40px;
+    border-radius: {{ block.settings.card_border_radius }}px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.6s ease;
+    opacity: 0;
+    transform: translateX(50px);
+    position: relative;
+  }
+
+  .ai-benefits-timeline-period-{{ ai_gen_id }}:first-child {
+    background-color: {{ block.settings.active_card_bg }};
+    border-color: {{ block.settings.accent_color }};
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .ai-benefits-timeline-period-{{ ai_gen_id }}:first-child .ai-benefits-timeline-period-title-{{ ai_gen_id }} {
+    color: {{ block.settings.card_text_color }};
+  }
+
+  .ai-benefits-timeline-period-{{ ai_gen_id }}:first-child .ai-benefits-timeline-benefit-{{ ai_gen_id }} {
+    color: {{ block.settings.card_text_color }};
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .ai-benefits-timeline-period-{{ ai_gen_id }}:first-child .ai-benefits-timeline-benefit-icon-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_text_color }};
+  }
+
+  .ai-benefits-timeline-period-{{ ai_gen_id }}:first-child .ai-benefits-timeline-benefit-icon-{{ ai_gen_id }}::after {
+    color: {{ block.settings.active_card_bg }};
+  }
+
+  .ai-benefits-timeline-period-{{ ai_gen_id }}.visible {
+    opacity: 0.6;
+    transform: translateX(0);
+  }
+
+  .ai-benefits-timeline-period-{{ ai_gen_id }}.active {
+    opacity: 1;
+    background-color: {{ block.settings.active_card_bg }};
+    border-color: {{ block.settings.accent_color }};
+    transform: translateX(0) translateY(-5px);
+    box-shadow: 0 10px 30px rgba(232, 184, 130, 0.2);
+  }
+
+  .ai-benefits-timeline-period-{{ ai_gen_id }}.active .ai-benefits-timeline-period-title-{{ ai_gen_id }} {
+    color: {{ block.settings.card_text_color }};
+  }
+.ai-benefits-timeline-progress-asghrmtbkbhiwczraoaigenblock7e3322dabf7cv {
+    left: 30%;
+}
+  .ai-benefits-timeline-period-{{ ai_gen_id }}.active .ai-benefits-timeline-benefit-{{ ai_gen_id }} {
+    color: {{ block.settings.card_text_color }};
+  }
+
+  .ai-benefits-timeline-period-{{ ai_gen_id }}.hidden {
+    opacity: 0;
+    transform: translateX(-50px);
+    pointer-events: none;
+  }
+
+  .ai-benefits-timeline-period-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.period_title_size }}px;
+    font-weight: 700;
+    margin: 0 0 20px;
+    color: {{ block.settings.accent_color }};
+    transition: color 0.4s ease;
+  }
+
+  .ai-benefits-timeline-benefits-{{ ai_gen_id }} {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ai-benefits-timeline-benefit-{{ ai_gen_id }} {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: {{ block.settings.benefit_text_size }}px;
+    line-height: 1.5;
+    transition: all 0.4s ease;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .ai-benefits-timeline-period-{{ ai_gen_id }}.visible .ai-benefits-timeline-benefit-{{ ai_gen_id }} {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .ai-benefits-timeline-benefit-{{ ai_gen_id }}:nth-child(1) { transition-delay: 0.1s; }
+  .ai-benefits-timeline-benefit-{{ ai_gen_id }}:nth-child(2) { transition-delay: 0.2s; }
+  .ai-benefits-timeline-benefit-{{ ai_gen_id }}:nth-child(3) { transition-delay: 0.3s; }
+  .ai-benefits-timeline-benefit-{{ ai_gen_id }}:nth-child(4) { transition-delay: 0.4s; }
+  .ai-benefits-timeline-benefit-{{ ai_gen_id }}:nth-child(5) { transition-delay: 0.5s; }
+
+  .ai-benefits-timeline-benefit-icon-{{ ai_gen_id }} {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: {{ block.settings.accent_color }};
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .ai-benefits-timeline-period-{{ ai_gen_id }}.active .ai-benefits-timeline-benefit-icon-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_text_color }};
+  }
+
+  .ai-benefits-timeline-benefit-icon-{{ ai_gen_id }}::after {
+    content: '✓';
+    color: {{ block.settings.background_color }};
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .ai-benefits-timeline-period-{{ ai_gen_id }}.active .ai-benefits-timeline-benefit-icon-{{ ai_gen_id }}::after {
+    color: {{ block.settings.active_card_bg }};
+  }
+
+  @media screen and (max-width: 639px) {
+    .ai-benefits-timeline-title-{{ ai_gen_id }} .sm-hidden {
+      display: inline;
+    }
+  }
+
+  @media screen and (min-width: 640px) and (max-width: 767px) {
+    .ai-benefits-timeline-title-{{ ai_gen_id }} .sm-max-md-block {
+      display: inline;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .ai-benefits-timeline-title-{{ ai_gen_id }} .md-block {
+      display: inline;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-benefits-timeline-container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .ai-benefits-timeline-progress-{{ ai_gen_id }} {
+      position: relative;
+      top: 0;
+      height: 80px;
+      flex-direction: row;
+      width: 100%;
+      overflow-x: auto;
+      padding: 0 20px;
+    }
+
+    .ai-benefits-timeline-track-{{ ai_gen_id }} {
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      height: 4px;
+    }
+
+    .ai-benefits-timeline-fill-{{ ai_gen_id }} {
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0%;
+      height: 4px;
+    }
+
+    .ai-benefits-timeline-marker-{{ ai_gen_id }} {
+      flex-shrink: 0;
+    }
+
+    .ai-benefits-timeline-marker-label-{{ ai_gen_id }} {
+      top: calc(100% + 5px);
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+      font-size: 12px;
+    }
+
+    .ai-benefits-timeline-content-{{ ai_gen_id }} {
+      gap: 40px;
+      padding-left: 0;
+    }
+
+    .ai-benefits-timeline-period-{{ ai_gen_id }} {
+      padding: 30px 20px;
+    }
+  }
+{% endstyle %}
+
+<benefits-timeline-{{ ai_gen_id }}
+  class="ai-benefits-timeline-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-benefits-timeline-container-{{ ai_gen_id }}">
+    <div class="ai-benefits-timeline-header-{{ ai_gen_id }}">
+      <h2 class="ai-benefits-timeline-title-{{ ai_gen_id }}">
+        What Should I <br class="sm-hidden"> Expect From <br class="sm-max-md-block"> Consistent <br class="md-block"> <br class="sm-hidden"> Use of Primal Queen?
+      </h2>
+      {% if block.settings.subtitle != blank %}
+        <p class="ai-benefits-timeline-subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <div class="ai-benefits-timeline-progress-{{ ai_gen_id }}">
+      <div class="ai-benefits-timeline-track-{{ ai_gen_id }}"></div>
+      <div class="ai-benefits-timeline-fill-{{ ai_gen_id }}"></div>
+      
+      {% for i in (1..5) %}
+        {% assign period_key = 'period_' | append: i %}
+        {% assign title_key = period_key | append: '_title' %}
+        {% assign benefits_key = period_key | append: '_benefits' %}
+        
+        {% if block.settings[title_key] != blank %}
+          <div class="ai-benefits-timeline-marker-{{ ai_gen_id }} {% if forloop.first %}active{% endif %}" data-period="{{ i }}">
+            <div class="ai-benefits-timeline-marker-number-{{ ai_gen_id }}">{{ i }}</div>
+            <div class="ai-benefits-timeline-marker-label-{{ ai_gen_id }}">
+              {{ block.settings[title_key] }}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="ai-benefits-timeline-content-{{ ai_gen_id }}">
+      {% for i in (1..5) %}
+        {% assign period_key = 'period_' | append: i %}
+        {% assign title_key = period_key | append: '_title' %}
+        {% assign benefits_key = period_key | append: '_benefits' %}
+        
+        {% if block.settings[title_key] != blank %}
+          <div class="ai-benefits-timeline-period-{{ ai_gen_id }} {% if forloop.first %}active{% endif %}" data-period="{{ i }}">
+            <h3 class="ai-benefits-timeline-period-title-{{ ai_gen_id }}">
+              {{ block.settings[title_key] }}
+            </h3>
+            {% if block.settings[benefits_key] != blank %}
+              <ul class="ai-benefits-timeline-benefits-{{ ai_gen_id }}">
+                {% assign benefits = block.settings[benefits_key] | split: '|' %}
+                {% for benefit in benefits %}
+                  {% assign trimmed_benefit = benefit | strip %}
+                  {% if trimmed_benefit != blank %}
+                    <li class="ai-benefits-timeline-benefit-{{ ai_gen_id }}">
+                      <div class="ai-benefits-timeline-benefit-icon-{{ ai_gen_id }}"></div>
+                      <span>{{ trimmed_benefit }}</span>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</benefits-timeline-{{ ai_gen_id }}>
+
+<script>
+(function() {
+  class BenefitsTimeline{{ ai_gen_id }} extends HTMLElement {
+    constructor() {
+      super();
+      this.periods = [];
+      this.markers = [];
+      this.progressFill = null;
+      this.currentActive = 0;
+      this.visiblePeriods = new Set();
+    }
+
+    connectedCallback() {
+      this.periods = Array.from(this.querySelectorAll('.ai-benefits-timeline-period-{{ ai_gen_id }}'));
+      this.markers = Array.from(this.querySelectorAll('.ai-benefits-timeline-marker-{{ ai_gen_id }}'));
+      this.progressFill = this.querySelector('.ai-benefits-timeline-fill-{{ ai_gen_id }}');
+      
+      this.updateProgress(0);
+      this.setupIntersectionObserver();
+      this.setupVisibilityObserver();
+    }
+
+    setupVisibilityObserver() {
+      const visibilityOptions = {
+        root: null,
+        rootMargin: '0px 0px -30% 0px',
+        threshold: 0.1
+      };
+
+      const visibilityObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const periodIndex = parseInt(entry.target.dataset.period);
+          
+          if (entry.isIntersecting) {
+            this.visiblePeriods.add(periodIndex);
+            entry.target.classList.add('visible');
+          } else {
+            this.visiblePeriods.delete(periodIndex);
+            if (entry.boundingClientRect.top > 0) {
+              entry.target.classList.remove('visible');
+              entry.target.classList.add('hidden');
+            }
+          }
+        });
+      }, visibilityOptions);
+
+      this.periods.forEach((period) => {
+        visibilityObserver.observe(period);
+      });
+    }
+
+    setupIntersectionObserver() {
+      const options = {
+        root: null,
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const periodIndex = parseInt(entry.target.dataset.period) - 1;
+            this.updateProgress(periodIndex);
+          }
+        });
+      }, options);
+
+      this.periods.forEach((period) => {
+        observer.observe(period);
+      });
+    }
+
+    updateProgress(activeIndex) {
+      if (activeIndex === this.currentActive) return;
+      
+      const previousActive = this.currentActive;
+      this.currentActive = activeIndex;
+      
+      this.periods.forEach((period, index) => {
+        period.classList.remove('hidden');
+        
+        if (index === activeIndex) {
+          period.classList.add('active');
+        } else if (index === previousActive) {
+          period.classList.remove('active');
+          if (index < activeIndex) {
+            setTimeout(() => {
+              if (!this.visiblePeriods.has(index + 1)) {
+                period.classList.add('hidden');
+              }
+            }, 300);
+          }
+        } else {
+          period.classList.remove('active');
+        }
+      });
+
+      this.markers.forEach((marker, index) => {
+        marker.classList.toggle('active', index === activeIndex);
+      });
+
+      if (this.progressFill && this.markers.length > 0) {
+        const progress = this.markers.length > 1
+          ? (activeIndex / (this.markers.length - 1)) * 100 
+          : 0;
+        this.progressFill.style.height = `${Math.max(0, Math.min(100, progress))}%`;
+      }
+    }
+  }
+
+  customElements.define('benefits-timeline-{{ ai_gen_id }}', BenefitsTimeline{{ ai_gen_id }});
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Benefits timeline",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Track your progress and see the amazing benefits unfold over time"
+    },
+    {
+      "type": "header",
+      "content": "Period 1"
+    },
+    {
+      "type": "text",
+      "id": "period_1_title",
+      "label": "Period title",
+      "default": "1 Week"
+    },
+    {
+      "type": "textarea",
+      "id": "period_1_benefits",
+      "label": "Benefits (separate with |)",
+      "default": "Increased energy levels|Better sleep quality|Improved mood|Reduced cravings"
+    },
+    {
+      "type": "header",
+      "content": "Period 2"
+    },
+    {
+      "type": "text",
+      "id": "period_2_title",
+      "label": "Period title",
+      "default": "1 Month"
+    },
+    {
+      "type": "textarea",
+      "id": "period_2_benefits",
+      "label": "Benefits (separate with |)",
+      "default": "Noticeable weight loss|Clearer skin|Enhanced mental clarity|Stronger immune system"
+    },
+    {
+      "type": "header",
+      "content": "Period 3"
+    },
+    {
+      "type": "text",
+      "id": "period_3_title",
+      "label": "Period title",
+      "default": "2 Months"
+    },
+    {
+      "type": "textarea",
+      "id": "period_3_benefits",
+      "label": "Benefits (separate with |)",
+      "default": "Improved muscle tone|Better digestion|Increased confidence|Stable blood sugar levels"
+    },
+    {
+      "type": "header",
+      "content": "Period 4"
+    },
+    {
+      "type": "text",
+      "id": "period_4_title",
+      "label": "Period title",
+      "default": "3 Months"
+    },
+    {
+      "type": "textarea",
+      "id": "period_4_benefits",
+      "label": "Benefits (separate with |)",
+      "default": "Significant body transformation|Enhanced endurance|Improved heart health|Better stress management"
+    },
+    {
+      "type": "header",
+      "content": "Period 5"
+    },
+    {
+      "type": "text",
+      "id": "period_5_title",
+      "label": "Period title",
+      "default": "6 Months"
+    },
+    {
+      "type": "textarea",
+      "id": "period_5_benefits",
+      "label": "Benefits (separate with |)",
+      "default": "Complete lifestyle transformation|Optimal health markers|Peak physical condition|Long-term habit formation"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#E8B882"
+    },
+    {
+      "type": "color",
+      "id": "inactive_color",
+      "label": "Inactive color",
+      "default": "#CCCCCC"
+    },
+    {
+      "type": "color",
+      "id": "active_card_bg",
+      "label": "Active card background",
+      "default": "#ffe0eb"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Active card text color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Title size",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "period_title_size",
+      "min": 20,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Period title size",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "benefit_text_size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Benefit text size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "min": 40,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "label": "Section padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "marker_size",
+      "min": 40,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Marker size",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefits timeline"
+    }
+  ]
+}
+{% endschema %}
