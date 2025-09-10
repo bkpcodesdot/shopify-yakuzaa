@@ -431,11 +431,25 @@
             "card_bg_color": "#ffeef2",
             "card_text_color": "#333333"
           }
+        },
+        "checkpoint_Wbi3DH": {
+          "type": "checkpoint",
+          "settings": {
+            "title": "1 Month",
+            "image": "shopify://shop_images/calendar_refactor_36x38_15a66f4a-1ba9-477e-978e-caab61e04d9d.jpg",
+            "letf_title": "1 week",
+            "icon": "🙂",
+            "text": "Abundance of B vitamins leads to better mood and energy.",
+            "card": true,
+            "card_bg_color": "#ffeef2",
+            "card_text_color": "#333333"
+          }
         }
       },
       "block_order": [
         "checkpoint_zqagmX",
-        "checkpoint_hadFnV"
+        "checkpoint_hadFnV",
+        "checkpoint_Wbi3DH"
       ],
       "name": "Timeline Progress IDE testing",
       "settings": {
