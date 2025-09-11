@@ -352,31 +352,37 @@
     font-size: 19px;
 }
 }
-/* When timeline item becomes active → circle fills */
-.timeline-item.active .timeline-checkpoint::before {
-  background: black;
-}
 </style>
 
 <script>
 (function () {
+  // Intersection Observer setup
   var observer = new IntersectionObserver(function (entries, observer) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
-        entry.target.classList.add("active");
-        observer.unobserve(entry.target); // trigger only once
+        entry.target.classList.add("active"); // trigger slide animation
+
+        // Add background color for right-side cards only
+        if (entry.target.classList.contains("timeline-card")) {
+          entry.target.style.backgroundColor = "#ffe0eb";
+        }
+
+        observer.unobserve(entry.target); // animate only once
       }
     });
-  }, { threshold: 0.25 }); // adjust threshold for when the circle fills
+  }, { threshold: 0.15 });
 
+  // Select all timeline items inside the section
   var timelineItems = document.querySelectorAll("#timeline-progress-{{ section.id }} .timeline-item");
 
   timelineItems.forEach(function (item, index) {
+    // Alternate left/right classes
     if (index % 2 === 0) {
       item.classList.add("timeline-item-left");
     } else {
       item.classList.add("timeline-item-right");
     }
+
     observer.observe(item);
   });
 })();
@@ -388,6 +394,7 @@ document.addEventListener("scroll", () => {
   const rect = timeline.getBoundingClientRect();
   const windowHeight = window.innerHeight;
 
+  // how much of timeline is visible
   const scrollProgress = Math.min(
     Math.max(((windowHeight - rect.top) / (rect.height + windowHeight)) * 100, 0),
     100
@@ -395,8 +402,8 @@ document.addEventListener("scroll", () => {
 
   timeline.style.setProperty("--progress", scrollProgress + "%");
 });
-</script>
 
+</script>
 
 
 
