@@ -356,33 +356,23 @@
 
 <script>
 (function () {
-  // Intersection Observer setup
   var observer = new IntersectionObserver(function (entries, observer) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
-        entry.target.classList.add("active"); // trigger slide animation
-
-        // Add background color for right-side cards only
-        if (entry.target.classList.contains("timeline-card")) {
-          entry.target.style.backgroundColor = "#ffe0eb";
-        }
-
+        entry.target.classList.add("active"); // slide + checkpoint fill
         observer.unobserve(entry.target); // animate only once
       }
     });
   }, { threshold: 0.15 });
 
-  // Select all timeline items inside the section
   var timelineItems = document.querySelectorAll("#timeline-progress-{{ section.id }} .timeline-item");
 
   timelineItems.forEach(function (item, index) {
-    // Alternate left/right classes
     if (index % 2 === 0) {
       item.classList.add("timeline-item-left");
     } else {
       item.classList.add("timeline-item-right");
     }
-
     observer.observe(item);
   });
 })();
@@ -394,7 +384,6 @@ document.addEventListener("scroll", () => {
   const rect = timeline.getBoundingClientRect();
   const windowHeight = window.innerHeight;
 
-  // how much of timeline is visible
   const scrollProgress = Math.min(
     Math.max(((windowHeight - rect.top) / (rect.height + windowHeight)) * 100, 0),
     100
@@ -402,8 +391,43 @@ document.addEventListener("scroll", () => {
 
   timeline.style.setProperty("--progress", scrollProgress + "%");
 });
-
 </script>
+<style>
+  /* Timeline vertical progress */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, black var(--progress), #ddd var(--progress));
+  transition: background 0.3s ease;
+}
+
+/* Circle checkpoint */
+.timeline-checkpoint::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid black;
+  background: white;
+  transition: background-color 0.4s ease, transform 0.3s ease;
+}
+
+/* When active → fill black */
+.timeline-item.active .timeline-checkpoint::before {
+  background: black;
+  transform: translate(-50%, -50%) scale(1.1); /* subtle pop effect */
+}
+
+</style>
 
 
 
