@@ -359,11 +359,11 @@
   var observer = new IntersectionObserver(function (entries, observer) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
-        entry.target.classList.add("active"); // slide + checkpoint fill
-        observer.unobserve(entry.target); // animate only once
+        entry.target.classList.add("active");
+        observer.unobserve(entry.target); // trigger only once
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.25 }); // adjust threshold for when the circle fills
 
   var timelineItems = document.querySelectorAll("#timeline-progress-{{ section.id }} .timeline-item");
 
@@ -392,9 +392,7 @@ document.addEventListener("scroll", () => {
   timeline.style.setProperty("--progress", scrollProgress + "%");
 });
 </script>
-<style>
-  
-</style>
+
 
 
 
