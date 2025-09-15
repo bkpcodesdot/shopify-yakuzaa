@@ -223,9 +223,10 @@
 
 <div class="ai-health-campaign-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
 
-  <h1 class="ai-health-campaign__heading-{{ ai_gen_id }}">
-    {{ block.settings.main_heading }}
-  </h1>
+ <h2 class="ai-health-campaign__subheading-{{ ai_gen_id }}">
+  {{ block.settings.heading_part1 }} <span>{{ block.settings.highlight_word }}</span> {{ block.settings.heading_part2 }}
+</h2>
+
 
   <div class="ai-health-campaign__subtitle-{{ ai_gen_id }}">
     {{ block.settings.subtitle_text }}
