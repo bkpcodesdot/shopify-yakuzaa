@@ -264,10 +264,12 @@
 
       {% if symptom_enabled %}
         <div class="ai-symptom-box-{{ ai_gen_id }}">
+        <div class="number-with-text">
           <div class="ai-symptom-number-{{ ai_gen_id }}">{{ i }}.
           {% if symptom_title != blank %}
             <h3 class="ai-symptom-title-{{ ai_gen_id }}">{{ symptom_title }}</h3>
           {% endif %}
+          </div>
           </div>
           
           
