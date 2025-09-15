@@ -1,6 +1,447 @@
+{% doc %}
+  @prompt
+    Create a custom Shopify section called "Before & After Article Section".
+    
+    The section should include the following customizable settings in the theme editor:
+    
+    1. Heading (rich text with bold and color option support, e.g. "I Thought I Was Just Tired and Bloated... Then I Learned What Was Really Happening Inside My Gut")
+    2. Subheading/Description (text block below the heading, editable)
+    3. Author details:
+       - Author image (image picker)
+       - Author name (text field, e.g. "Dr. John K.")
+       - Publish date (date picker or text field)
+    4. Before/After Image comparison:
+       - Before image (image picker)
+       - Before label text (default: "Before")
+       - After image (image picker)
+       - After label text (default: "After")
+    5. Reading time estimate (text field, e.g. "Estimated 5-7 Minute Read") with option to enable/disable.
+    6. Background color option (color picker)
+    7. Text alignment (left/center)
+    8. Section padding (top/bottom spacing controls)
+    
+    Layout:
+    - Heading at the top (center aligned by default).
+    - Subheading/description just below heading.
+    - Author details in a row (author image small circle + text beside it).
+    - Below that, two side-by-side images (Before on left, After on right) with labels overlaid at the bottom of each image.
+    - Reading time displayed at the bottom with a highlighted background (editable color).
+    
+    Make the section fully responsive for desktop and mobile.
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-before-after-article-{{ ai_gen_id }} {
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.padding_top }}px 20px {{ block.settings.padding_bottom }}px;
+  }
+
+  .ai-before-after-article__container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: {{ block.settings.text_alignment }};
+  }
+
+  .ai-before-after-article__heading-{{ ai_gen_id }} {
+    font-size: 32px;
+    line-height: 1.3;
+    margin: 0 0 16px;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-before-after-article__description-{{ ai_gen_id }} {
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 0 0 24px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.8;
+  }
+
+  .ai-before-after-article__author-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 32px;
+    {% if block.settings.text_alignment == 'center' %}
+      justify-content: center;
+    {% endif %}
+  }
+
+  .ai-before-after-article__author-image-{{ ai_gen_id }} {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .ai-before-after-article__author-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-before-after-article__author-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-before-after-article__author-placeholder-{{ ai_gen_id }} svg {
+    width: 24px;
+    height: 24px;
+    color: #999;
+  }
+
+  .ai-before-after-article__author-info-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .ai-before-after-article__author-name-{{ ai_gen_id }} {
+    font-size: 16px;
+    font-weight: 600;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+  }
+
+  .ai-before-after-article__publish-date-{{ ai_gen_id }} {
+    font-size: 14px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  .ai-before-after-article__images-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 0 0 24px;
+  }
+
+  .ai-before-after-article__image-container-{{ ai_gen_id }} {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+  }
+
+  .ai-before-after-article__image-container-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-before-after-article__image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-before-after-article__image-placeholder-{{ ai_gen_id }} svg {
+    width: 60px;
+    height: 60px;
+    color: #999;
+  }
+
+  .ai-before-after-article__image-label-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    color: white;
+    padding: 20px 16px 16px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .ai-before-after-article__reading-time-{{ ai_gen_id }} {
+    display: inline-block;
+    background-color: {{ block.settings.reading_time_bg_color }};
+    color: {{ block.settings.reading_time_text_color }};
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-before-after-article__heading-{{ ai_gen_id }} {
+      font-size: 24px;
+    }
+
+    .ai-before-after-article__description-{{ ai_gen_id }} {
+      font-size: 16px;
+    }
+
+    .ai-before-after-article__images-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .ai-before-after-article__author-{{ ai_gen_id }} {
+      justify-content: flex-start;
+    }
+  }
+{% endstyle %}
+
+<div
+  class="ai-before-after-article-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-before-after-article__container-{{ ai_gen_id }}">
+    {% if block.settings.heading != blank %}
+      <h2 class="ai-before-after-article__heading-{{ ai_gen_id }}">
+        {{ block.settings.heading }}
+      </h2>
+    {% endif %}
+
+    {% if block.settings.description != blank %}
+      <div class="ai-before-after-article__description-{{ ai_gen_id }}">
+        {{ block.settings.description }}
+      </div>
+    {% endif %}<div class="ai-before-after-article__author-{{ ai_gen_id }}"><div class="ai-before-after-article__author-image-{{ ai_gen_id }}">
+        {% if block.settings.author_image %}
+          <img
+            src="{{ block.settings.author_image | image_url: width: 100}}"
+            alt="{{ block.settings.author_name | escape }}"
+            loading="lazy"
+            width="100"
+            height="100"
+          >
+        {% else %}
+          <div class="ai-before-after-article__author-placeholder-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+          </div>
+        {% endif %}
+      </div>
+      <div class="ai-before-after-article__author-info-{{ ai_gen_id }}">
+        {% if block.settings.author_name != blank %}
+          <div class="ai-before-after-article__author-name-{{ ai_gen_id }}">
+            {{ block.settings.author_name }}
+          </div>
+        {% endif %}
+        {% if block.settings.publish_date != blank %}
+          <div class="ai-before-after-article__publish-date-{{ ai_gen_id }}">
+            {{ block.settings.publish_date }}
+          </div>
+        {% endif %}
+      </div>
+    </div><div class="ai-before-after-article__images-{{ ai_gen_id }}">
+      <div class="ai-before-after-article__image-container-{{ ai_gen_id }}">
+        {% if block.settings.before_image %}
+          <img
+            src="{{ block.settings.before_image | image_url: width: 600 }}"
+            alt="{{ block.settings.before_label | escape }}"
+            loading="lazy"
+            width="{{ block.settings.before_image.width }}"
+            height="{{ block.settings.before_image.height }}"
+          >
+        {% else %}
+          <div class="ai-before-after-article__image-placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+        <div class="ai-before-after-article__image-label-{{ ai_gen_id }}">
+          {{ block.settings.before_label }}
+        </div>
+      </div>
+
+      <div class="ai-before-after-article__image-container-{{ ai_gen_id }}">
+        {% if block.settings.after_image %}
+          <img
+            src="{{ block.settings.after_image | image_url: width: 600 }}"
+            alt="{{ block.settings.after_label | escape }}"
+            loading="lazy"
+            width="{{ block.settings.after_image.width }}"
+            height="{{ block.settings.after_image.height }}"
+          >
+        {% else %}
+          <div class="ai-before-after-article__image-placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+        <div class="ai-before-after-article__image-label-{{ ai_gen_id }}">
+          {{ block.settings.after_label }}
+        </div>
+      </div>
+    </div>
+
+    {% if block.settings.show_reading_time and block.settings.reading_time != blank %}
+      <div class="ai-before-after-article__reading-time-{{ ai_gen_id }}">
+        {{ block.settings.reading_time }}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Before & After Article",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>I Thought I Was Just Tired and Bloated... Then I Learned What Was Really Happening Inside My Gut</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Discover the shocking truth about gut health and how it affects your daily energy levels."
+    },
+    {
+      "type": "header",
+      "content": "Author"
+    },
+    {
+      "type": "image_picker",
+      "id": "author_image",
+      "label": "Author image"
+    },
+    {
+      "type": "text",
+      "id": "author_name",
+      "label": "Author name",
+      "default": "Dr. John K."
+    },
+    {
+      "type": "text",
+      "id": "publish_date",
+      "label": "Publish date",
+      "default": "March 15, 2024"
+    },
+    {
+      "type": "header",
+      "content": "Before & After Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "Before image"
+    },
+    {
+      "type": "text",
+      "id": "before_label",
+      "label": "Before label",
+      "default": "Before"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "After image"
+    },
+    {
+      "type": "text",
+      "id": "after_label",
+      "label": "After label",
+      "default": "After"
+    },
+    {
+      "type": "header",
+      "content": "Reading Time"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reading_time",
+      "label": "Show reading time",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "reading_time",
+      "label": "Reading time text",
+      "default": "Estimated 5-7 Minute Read"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "reading_time_bg_color",
+      "label": "Reading time background",
+      "default": "#f0f0f0"
+    },
+    {
+      "type": "color",
+      "id": "reading_time_text_color",
+      "label": "Reading time text",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Before & After Article"
+    }
+  ],
+  "tag": null
+}
 {% endschema %}
