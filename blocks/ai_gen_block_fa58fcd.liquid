@@ -231,8 +231,7 @@
   <div class="ai-symptoms-header-{{ ai_gen_id }}">
     {% if block.settings.section_title != blank %}
      <h2 class="ai-symptoms-title-{{ ai_gen_id }}">
-  {{ block.settings.title_before }} <span>{{ block.settings.title_highlight }}</span> {{ block.settings.title_after }}
-</h2>
+  {{ block.settings.title_before }} <span>{{ block.settings.title_highlight }}</span>
 
     {% endif %}
     
@@ -324,12 +323,6 @@
   "id": "title_highlight",
   "label": "Highlighted word"
 },
-{
-  "type": "text",
-  "id": "title_after",
-  "label": "Title (after highlight)"
-},
-
     {
       "type": "text",
       "id": "section_subtitle",
