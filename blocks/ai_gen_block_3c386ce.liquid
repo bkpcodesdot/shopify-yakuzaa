@@ -179,7 +179,8 @@ font-size:22px;
   }
 
   .ai-parasite-info-item-{{ ai_gen_id }} {
-    display: flex;
+  display: grid;
+    grid-template-columns: 128px auto;
     align-items: flex-start;
     gap: 15px;
     margin-bottom: 25px;
@@ -189,8 +190,6 @@ font-size:22px;
   }
 
   .ai-parasite-info-item-image-{{ ai_gen_id }} {
-    width: {{ block.settings.item_image_size }}px;
-    height: {{ block.settings.item_image_size }}px;
     flex-shrink: 0;border-radius: 8px;
     overflow: hidden;
     background-color: #f4f4f4;
