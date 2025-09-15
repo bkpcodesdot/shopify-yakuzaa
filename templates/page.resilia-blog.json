@@ -135,7 +135,7 @@
             "section_padding": 60,
             "title_color": "#000000",
             "title_size": 32,
-            "subtitle_color": "#666666",
+            "subtitle_color": "#000000",
             "subtitle_size": 18,
             "box_background": "#ffffff",
             "box_border_color": "#ff6b35",
