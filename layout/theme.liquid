@@ -21,7 +21,12 @@
       blocking="render"
       id="view-transition-render-blocker"
     >
-
+<style>
+  /* Apply SF Pro Display globally */
+  html, body, h1, h2, h3, h4, h5, h6, p, a, span, div, li {
+    font-family: 'SF Pro Display', sans-serif !important;
+  }
+</style>
     {%- render 'meta-tags' -%}
     {%- render 'fonts' -%}
     {%- render 'scripts' -%}
@@ -40,7 +45,7 @@
     <div id="header-group">
       {% sections 'header-group' %}
     </div>
- font-family: 'SF Pro Display', sans-serif;
+
     <script
       src="{{ 'critical.js' | asset_url }}"
       type="module"
