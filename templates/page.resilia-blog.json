@@ -85,15 +85,14 @@
         "ai_gen_block_67c047c_Btj49L": {
           "type": "ai_gen_block_67c047c",
           "settings": {
-            "banner_text": "Take Care Of Yourself",
-            "banner_button_text": "SHOP NOW",
-            "banner_button_link": "",
             "banner_bg_color": "#006400",
             "banner_text_color": "#ffffff",
             "banner_button_color": "#228b22",
             "banner_button_text_color": "#ffffff",
             "banner_button_hover_color": "#32cd32",
-            "main_heading": "The Hidden Epidemic No One Talks About",
+            "heading_part1": "The Hidden",
+            "highlight_word": "Epidemic",
+            "heading_part2": "No One Talks About",
             "subtitle_text": "<p>Millions of people walk around every day feeling 'off'. <em>Tired, bloated, foggy, and craving sugar.</em> Without ever getting a clear diagnosis.</p>",
             "first_paragraph": "<p>They chalk it up to stress, age, or diet. But according to researchers, many of these symptoms may have a far more unexpected root cause: <strong>Parasitic infections and fungal overgrowth in the gut.</strong></p>",
             "main_image": "shopify://shop_images/parasitic_growth_compressed.webp",
