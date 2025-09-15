@@ -37,13 +37,15 @@
 {% style %}
   .ai-before-after-article-{{ ai_gen_id }} {
     background-color: {{ block.settings.background_color }};
+    margin-left: auto;
+    margin-right: auto;
     padding: {{ block.settings.padding_top }}px 20px {{ block.settings.padding_bottom }}px;
+    ma
   }
 
   .ai-before-after-article__container-{{ ai_gen_id }} {
     max-width: 728px;
-    margin-left: auto;
-    margin-right: auto;
+    
     text-align: {{ block.settings.text_alignment }};
   }
 
