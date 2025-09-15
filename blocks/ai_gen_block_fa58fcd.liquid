@@ -311,7 +311,10 @@ display:flex;
                     {{ 'image' | placeholder_svg_tag }}
                   </div>
                 {% endif %}
-              </div><span>{{ symptom_science_text }}</span>
+              </div><span>
+  <em><strong>Science Says:</strong></em>
+  <em> {{ symptom_science_text }}</em>
+</span>
             </div>
           {% endif %}
         </div>
