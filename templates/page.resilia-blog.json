@@ -126,7 +126,8 @@
         "ai_gen_block_fa58fcd_bheNQJ": {
           "type": "ai_gen_block_fa58fcd",
           "settings": {
-            "section_title": "Symptoms That Could Be a Sign of Internal Imbalance",
+            "title_before": "Symptoms That Could Be a Sign of",
+            "title_highlight": "Internal Imbalance",
             "section_subtitle": "And why you shouldn't ignore them.",
             "cta_text": "TRY RESILIA RISK-FREE",
             "cta_link": "",
