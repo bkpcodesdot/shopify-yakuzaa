@@ -64,14 +64,14 @@
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
 {% style %}
- .blog-card{
-  max-width: 728px;
-    margin: 0 auto;
-    box-sizing: border-box;
-}
+
   .ai-symptoms-section-{{ ai_gen_id }} {
     padding: {{ block.settings.section_padding }}px 20px;
     background-color: {{ block.settings.section_background }};
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    box-sizing: border-box;
     
   }
   .ai-symptoms-header-{{ ai_gen_id }} {
