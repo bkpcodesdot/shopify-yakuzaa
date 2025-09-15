@@ -39,41 +39,6 @@
     font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
     line-height: 1.6;
   }
-
-  .ai-health-campaign__banner-{{ ai_gen_id }} {
-    background-color: {{ block.settings.banner_bg_color }};
-    padding: 12px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 40px;
-    border-radius: {{ block.settings.banner_border_radius }}px;
-  }
-
-  .ai-health-campaign__banner-text-{{ ai_gen_id }} {
-    color: {{ block.settings.banner_text_color }};
-    font-size: {{ block.settings.banner_text_size }}px;
-    font-weight: 500;
-    margin: 0;
-  }
-
-  .ai-health-campaign__banner-button-{{ ai_gen_id }} {
-    background-color: {{ block.settings.banner_button_color }};
-    color: {{ block.settings.banner_button_text_color }};
-    padding: 8px 16px;
-    border: none;
-    border-radius: {{ block.settings.banner_button_radius }}px;
-    font-size: {{ block.settings.banner_button_text_size }}px;
-    font-weight: 600;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  .ai-health-campaign__banner-button-{{ ai_gen_id }}:hover {
-    background-color: {{ block.settings.banner_button_hover_color }};
-  }
-
   .ai-health-campaign__heading-{{ ai_gen_id }} {
     font-size: {{ block.settings.heading_size }}px;
     font-weight: 700;
@@ -180,7 +145,7 @@
     max-height: 150px;
     opacity: 0.3;
   }
- span {
+ .ai-health-campaign__heading span {
     color: #e26900;
 }
   .ai-health-campaign__cta-container-{{ ai_gen_id }} {
