@@ -159,7 +159,8 @@ color:#e26900;
   }
 
   .ai-before-after-article__reading-time-{{ ai_gen_id }} {
-    display: inline-block;
+   max-width: 200px;
+    margin: 0 auto;
     background-color: {{ block.settings.reading_time_bg_color }};
     color: {{ block.settings.reading_time_text_color }};
     padding: 8px 16px;
