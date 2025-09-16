@@ -1,6 +1,631 @@
+{% doc %}
+  @prompt
+    Create a timeline section with the same structure and layout as the reference design.
+        
+        Section Layout & Structure:
+        
+        Title Section:
+        
+        Heading uses <h2> tag.
+        
+        Text: Your Resilia <span>Reset</span> Timeline.
+        
+        Word inside <span> (Reset) is orange.
+        
+        Fully editable heading text.
+        
+        Description Section:
+        
+        3 lines of editable description text.
+        
+        Center aligned, standard font size.
+        
+        Timeline Section:
+        
+        Vertical timeline line on the left side, with circle markers for each step (green by default).
+        
+        On the right side, timeline cards with:
+        
+        Card container: light green background, rounded corners, thin green border.
+        
+        First row:
+        
+        Small logo/icon (uploadable + replaceable).
+        
+        Bold editable title (e.g., "Week 1–2: Relief Begins").
+        
+        Divider: green horizontal line.
+        
+        Second row: short, editable single-line description.
+        
+        Cards are aligned to the right of the timeline line, stacked vertically.
+        
+        CTA Button:
+        
+        Full-width button at the bottom.
+        
+        Background: orange.
+        
+        Text: TRY RESILIA RISK-FREE (editable).
+        
+        Rounded corners, bold white text.
+        
+        Hover effect: darker orange.
+        
+        Design & Styling:
+        
+        Title bold, with <span> color highlight.
+        
+        Timeline line + markers: green by default, fully editable color.
+        
+        Cards: rounded corners, subtle shadow, light background.
+        
+        Text font: modern, clean, medium size.
+        
+        Responsive:
+        
+        On desktop, timeline appears left with cards on right.
+        
+        On mobile, timeline collapses into single column, cards stack with timeline marker on top.
+        
+        Customization Options:
+        
+        All text editable.
+        
+        Icons replaceable (SVG or PNG upload).
+        
+        Colors (orange, green, black, white) fully customizable.
+        
+        Number of timeline steps adjustable (add/remove cards).
+        
+        Button text, style, and link fully editable.
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-timeline-section-{{ ai_gen_id }} {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-timeline-header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .ai-timeline-heading-{{ ai_gen_id }} {
+    font-size: 48px;
+    font-weight: bold;
+    margin: 0 0 20px 0;
+    color: {{ block.settings.heading_color }};
+  }
+
+  .ai-timeline-heading-{{ ai_gen_id }} .ai-timeline-highlight-{{ ai_gen_id }} {
+    color: {{ block.settings.highlight_color }};
+  }
+
+  .ai-timeline-description-{{ ai_gen_id }} {
+    font-size: 18px;
+    line-height: 1.6;
+    color: {{ block.settings.text_color }};
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .ai-timeline-container-{{ ai_gen_id }} {
+    position: relative;
+    margin: 60px 0;
+  }
+
+  .ai-timeline-line-{{ ai_gen_id }} {
+    position: absolute;
+    left: 30px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: {{ block.settings.timeline_color }};
+  }
+
+  .ai-timeline-item-{{ ai_gen_id }} {
+    position: relative;
+    margin-bottom: 40px;
+    padding-left: 80px;
+  }
+
+  .ai-timeline-marker-{{ ai_gen_id }} {
+    position: absolute;
+    left: 18px;
+    top: 20px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: {{ block.settings.timeline_color }};
+    border: 3px solid #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .ai-timeline-card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background }};
+    border: 2px solid {{ block.settings.card_border_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .ai-timeline-card-header-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .ai-timeline-icon-{{ ai_gen_id }} {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+
+  .ai-timeline-icon-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .ai-timeline-icon-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-timeline-icon-placeholder-{{ ai_gen_id }} svg {
+    width: 24px;
+    height: 24px;
+    color: #999;
+  }
+
+  .ai-timeline-card-title-{{ ai_gen_id }} {
+    font-size: 20px;
+    font-weight: bold;
+    color: {{ block.settings.card_title_color }};
+    margin: 0;
+  }
+
+  .ai-timeline-divider-{{ ai_gen_id }} {
+    height: 2px;
+    background-color: {{ block.settings.timeline_color }};
+    margin: 16px 0;
+  }
+
+  .ai-timeline-card-description-{{ ai_gen_id }} {
+    font-size: 16px;
+    line-height: 1.5;
+    color: {{ block.settings.card_text_color }};
+    margin: 0;
+  }
+
+  .ai-timeline-cta-{{ ai_gen_id }} {
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  .ai-timeline-button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 18px 40px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .ai-timeline-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-timeline-section-{{ ai_gen_id }} {
+      padding: 40px 16px;
+    }
+
+    .ai-timeline-heading-{{ ai_gen_id }} {
+      font-size: 32px;
+    }
+
+    .ai-timeline-description-{{ ai_gen_id }} {
+      font-size: 16px;
+    }
+
+    .ai-timeline-line-{{ ai_gen_id }} {
+      left: 20px;
+    }
+
+    .ai-timeline-item-{{ ai_gen_id }} {
+      padding-left: 60px;
+    }
+
+    .ai-timeline-marker-{{ ai_gen_id }} {
+      left: 8px;
+    }
+
+    .ai-timeline-card-{{ ai_gen_id }} {
+      padding: 20px;
+    }
+
+    .ai-timeline-card-header-{{ ai_gen_id }} {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .ai-timeline-card-title-{{ ai_gen_id }} {
+      font-size: 18px;
+    }
+
+    .ai-timeline-button-{{ ai_gen_id }} {
+      padding: 16px 32px;
+      font-size: 16px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-timeline-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-timeline-header-{{ ai_gen_id }}">
+    {% if block.settings.heading != blank %}
+      <h2 class="ai-timeline-heading-{{ ai_gen_id }}">
+        {% assign heading_parts = block.settings.heading | split: block.settings.highlight_word %}
+        {% if heading_parts.size > 1 %}
+          {{ heading_parts[0] }}<span class="ai-timeline-highlight-{{ ai_gen_id }}">{{ block.settings.highlight_word }}</span>{{ heading_parts[1] }}
+        {% else %}
+          {{ block.settings.heading }}
+        {% endif %}
+      </h2>
+    {% endif %}
+    
+    {% if block.settings.description != blank %}
+      <div class="ai-timeline-description-{{ ai_gen_id }}">
+        {{ block.settings.description }}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="ai-timeline-container-{{ ai_gen_id }}">
+    <div class="ai-timeline-line-{{ ai_gen_id }}"></div>
+    
+    {% for i in (1..5) %}
+      {% liquid
+        assign step_enabled_key = 'step_' | append: i | append: '_enabled'
+        assign step_icon_key = 'step_' | append: i | append: '_icon'
+        assign step_title_key = 'step_' | append: i | append: '_title'
+        assign step_description_key = 'step_' | append: i | append: '_description'
+        
+        assign step_enabled = block.settings[step_enabled_key]
+        assign step_icon = block.settings[step_icon_key]
+        assign step_title = block.settings[step_title_key]
+        assign step_description = block.settings[step_description_key]
+      %}
+      
+      {% if step_enabled %}
+        <div class="ai-timeline-item-{{ ai_gen_id }}">
+          <div class="ai-timeline-marker-{{ ai_gen_id }}"></div>
+          <div class="ai-timeline-card-{{ ai_gen_id }}">
+            <div class="ai-timeline-card-header-{{ ai_gen_id }}">
+              <div class="ai-timeline-icon-{{ ai_gen_id }}">
+                {% if step_icon %}
+                  <img src="{{ step_icon | image_url: width: 80 }}" alt="{{ step_title | escape }}" loading="lazy">
+                {% else %}
+                  <div class="ai-timeline-icon-placeholder-{{ ai_gen_id }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                      <circle cx="8.5" cy="8.5" r="1.5"/>
+                      <polyline points="21,15 16,10 5,21"/>
+                    </svg>
+                  </div>
+                {% endif %}
+              </div>
+              {% if step_title != blank %}
+                <h3 class="ai-timeline-card-title-{{ ai_gen_id }}">{{ step_title }}</h3>
+              {% endif %}
+            </div>
+            <div class="ai-timeline-divider-{{ ai_gen_id }}"></div>
+            {% if step_description != blank %}
+              <p class="ai-timeline-card-description-{{ ai_gen_id }}">{{ step_description }}</p>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {% if block.settings.button_text != blank %}
+    <div class="ai-timeline-cta-{{ ai_gen_id }}">
+      <a href="{{ block.settings.button_link }}" class="ai-timeline-button-{{ ai_gen_id }}">
+        {{ block.settings.button_text }}
+      </a>
+    </div>
+  {% endif %}
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Timeline section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading text",
+      "default": "Your Resilia Reset Timeline"
+    },
+    {
+      "type": "text",
+      "id": "highlight_word",
+      "label": "Word to highlight",
+      "default": "Reset"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight color",
+      "default": "#ff6b35"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Follow your personalized journey to wellness with our proven timeline approach that delivers real results.</p>"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Description color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Timeline style"
+    },
+    {
+      "type": "color",
+      "id": "timeline_color",
+      "label": "Timeline color",
+      "default": "#4CAF50"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#f8fdf8"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border color",
+      "default": "#4CAF50"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card text color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Timeline step 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "step_1_enabled",
+      "label": "Enable step 1",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "step_1_icon",
+      "label": "Step 1 icon"
+    },
+    {
+      "type": "text",
+      "id": "step_1_title",
+      "label": "Step 1 title",
+      "default": "Week 1–2: Relief Begins"
+    },
+    {
+      "type": "text",
+      "id": "step_1_description",
+      "label": "Step 1 description",
+      "default": "Initial symptoms start to improve as your body begins to respond to treatment."
+    },
+    {
+      "type": "header",
+      "content": "Timeline step 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "step_2_enabled",
+      "label": "Enable step 2",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "step_2_icon",
+      "label": "Step 2 icon"
+    },
+    {
+      "type": "text",
+      "id": "step_2_title",
+      "label": "Step 2 title",
+      "default": "Week 3–4: Momentum Builds"
+    },
+    {
+      "type": "text",
+      "id": "step_2_description",
+      "label": "Step 2 description",
+      "default": "Noticeable improvements in energy levels and overall well-being become apparent."
+    },
+    {
+      "type": "header",
+      "content": "Timeline step 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "step_3_enabled",
+      "label": "Enable step 3",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "step_3_icon",
+      "label": "Step 3 icon"
+    },
+    {
+      "type": "text",
+      "id": "step_3_title",
+      "label": "Step 3 title",
+      "default": "Week 5–8: Transformation"
+    },
+    {
+      "type": "text",
+      "id": "step_3_description",
+      "label": "Step 3 description",
+      "default": "Significant positive changes in health markers and quality of life."
+    },
+    {
+      "type": "header",
+      "content": "Timeline step 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "step_4_enabled",
+      "label": "Enable step 4",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "step_4_icon",
+      "label": "Step 4 icon"
+    },
+    {
+      "type": "text",
+      "id": "step_4_title",
+      "label": "Step 4 title",
+      "default": "Week 9–12: Full Reset"
+    },
+    {
+      "type": "text",
+      "id": "step_4_description",
+      "label": "Step 4 description",
+      "default": "Complete transformation with sustained improvements and renewed vitality."
+    },
+    {
+      "type": "header",
+      "content": "Timeline step 5"
+    },
+    {
+      "type": "checkbox",
+      "id": "step_5_enabled",
+      "label": "Enable step 5",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "step_5_icon",
+      "label": "Step 5 icon"
+    },
+    {
+      "type": "text",
+      "id": "step_5_title",
+      "label": "Step 5 title",
+      "default": "Ongoing: Maintenance"
+    },
+    {
+      "type": "text",
+      "id": "step_5_description",
+      "label": "Step 5 description",
+      "default": "Continued support and monitoring to maintain your health improvements."
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "TRY RESILIA RISK-FREE"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#ff6b35"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button hover background",
+      "default": "#e55a2b"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Timeline section"
+    }
+  ]
+}
 {% endschema %}
