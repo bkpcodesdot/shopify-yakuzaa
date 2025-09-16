@@ -203,6 +203,7 @@
 
   .ai-advertorial-cta-btn-{{ ai_gen_id }} {
     display: inline-block;
+    border: 1px solid  {{ block.settings.cta_bg_color }};
     background-color: {{ block.settings.cta_bg_color }};
     color: {{ block.settings.cta_text_color }};
     padding: 18px 40px;
@@ -220,9 +221,10 @@
   }
 
   .ai-advertorial-cta-btn-{{ ai_gen_id }}:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    background-color: {{ block.settings.cta_hover_bg_color }};
+    {% comment %} transform: translateY(-2px); {% endcomment %}
+    {% comment %} box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); {% endcomment %}
+    background-color: #fff;
+    color: {{ block.settings.cta_bg_color }};
   }
 
   .ai-advertorial-empty-state-{{ ai_gen_id }} {
