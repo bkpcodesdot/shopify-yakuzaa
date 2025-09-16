@@ -290,7 +290,7 @@
           "type": "ai_gen_block_7cce95a",
           "name": "Treatment warning",
           "settings": {
-            "heading": "<p>What Happens If You Don't Treat It?</p>",
+            "heading": "<p>What Happens If You <strong>Don't Treat It?</strong></p>",
             "highlight_color": "#ff6b35",
             "heading_size": 34,
             "intro_text": "<p>Understanding the consequences of leaving conditions untreated is crucial for making informed health decisions. Here's what you need to know about the potential risks and complications.</p>",
