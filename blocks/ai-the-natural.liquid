@@ -357,7 +357,7 @@
   }
 
   .ai-product-showcase__cta-button-{{ ai_gen_id }} {
-    display: inline-block;
+    display:block;
     background-color: {{ block.settings.button_bg_color }};
     color: {{ block.settings.button_text_color }};
     padding: 15px 40px;
@@ -367,12 +367,13 @@
     font-size: {{ block.settings.button_text_size }}px;
     transition: background-color 0.3s ease;
     width: 100%;
-    max-width: 400px;
     text-align: center;
   }
 
   .ai-product-showcase__cta-button-{{ ai_gen_id }}:hover {
     background-color: {{ block.settings.button_hover_bg_color }};
+    color:white;
+    border:2px solid #EE882F;
   }
 
   @media screen and (max-width: 768px) {
