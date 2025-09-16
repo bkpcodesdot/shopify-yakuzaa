@@ -329,7 +329,7 @@
           "type": "ai-the-natural",
           "name": "Product showcase",
           "settings": {
-            "intro_text": "<p>Discover our revolutionary approach to wellness that combines the power of nature with cutting-edge scientific research. Our carefully formulated products are designed to support your health journey with proven ingredients and innovative delivery methods.</p>",
+            "intro_text": "<p>Thousands are turning to <strong>Resilia™ Oil of Oregano Softgels</strong> as it’s a premium, science-backed formula designed to do what most products can’t: penetrate parasite and candida biofilms, eliminate them at the source, and restore balance across your entire gut ecosystem.</p><p><br/>Unlike other supplements that focus on just one benefit (like probiotics or digestive enzymes), Resilia™ offers broad-spectrum support for your gut, brain, metabolism, skin, and immune system All in a simple 2-capsule daily routine.</p>",
             "main_image": "shopify://shop_images/oil_of_oregano_main.webp",
             "show_features": true,
             "icon_size": 30,
