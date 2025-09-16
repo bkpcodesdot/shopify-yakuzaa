@@ -52,6 +52,11 @@
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
 {% style %}
+  #shopify-block-{{ ai_gen_id }} {
+    margin: 0 auto;
+    max-width: 726px;
+}
+  }
   .ai-advertorial-section-{{ ai_gen_id }} {
     width: 100%;
     max-width: 800px;
