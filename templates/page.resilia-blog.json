@@ -288,6 +288,7 @@
         },
         "ai_gen_block_a68978b_tETaYf": {
           "type": "ai_gen_block_a68978b",
+          "disabled": true,
           "settings": {
             "heading": "<p><strong>Why Most People Don't Know They're Infected</strong></p>",
             "heading_color": "#000000",
