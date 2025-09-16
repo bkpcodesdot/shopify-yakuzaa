@@ -286,6 +286,44 @@
           },
           "blocks": {}
         },
+        "ai_gen_block_7cce95a_YpEcic": {
+          "type": "ai_gen_block_7cce95a",
+          "name": "Treatment warning",
+          "settings": {
+            "heading": "<p>What Happens If You <span>Don't Treat It?</span></p>",
+            "highlight_color": "#FF6B35",
+            "heading_size": 36,
+            "intro_text": "<p>Understanding the consequences of leaving conditions untreated is crucial for making informed health decisions. Here's what you need to know about the potential risks and complications.</p>",
+            "point_1_title": "They Reproduce Fast",
+            "point_1_description": "Multiply quickly, especially with sugar or stress.",
+            "point_2_title": "They Steal Nutrients",
+            "point_2_description": "Feed on your vitamins and minerals.",
+            "point_3_title": "They Disrupt Digestion",
+            "point_3_description": "Waste slows digestion and causes cravings.",
+            "point_4_title": "They Drain Your Energy",
+            "point_4_description": "Overwork your immune system, leaving you exhausted.",
+            "point_5_title": "They Trigger Inflammation",
+            "point_5_description": "Release toxins that spread inflammation.",
+            "point_6_title": "They Mess With Hormones",
+            "point_6_description": "Throw off mood, immunity, and hormone balance.",
+            "closing_text": "<p>Don't let these issues compound over time. Taking action now can prevent more serious complications and help you maintain optimal health and well-being.</p>",
+            "button_text": "TRY RESILIA RISK-FREE",
+            "button_link": "",
+            "background_color": "#ffffff",
+            "text_color": "#000000",
+            "icon_color": "#DC2626",
+            "button_color": "#FF6B35",
+            "button_text_color": "#ffffff",
+            "button_hover_color": "#E55A2B",
+            "text_size": 16,
+            "point_title_size": 18,
+            "point_text_size": 14,
+            "button_text_size": 16,
+            "icon_size": 30,
+            "button_border_radius": 8
+          },
+          "blocks": {}
+        },
         "ai_gen_block_a68978b_tETaYf": {
           "type": "ai_gen_block_a68978b",
           "disabled": true,
@@ -329,6 +367,47 @@
             "mobile_padding_horizontal": 16
           },
           "blocks": {}
+        },
+        "ai_gen_block_0e57bdf_tm9DDF": {
+          "type": "ai_gen_block_0e57bdf",
+          "settings": {
+            "heading": "What Happens If You Don't Treat It?",
+            "highlight_text": "Don't Treat It",
+            "highlight_color": "#ff6b35",
+            "heading_size": 36,
+            "intro_text": "<p>Without proper treatment, harmful organisms can multiply rapidly in your system, leading to a cascade of health issues that affect your energy, digestion, and overall well-being.</p>",
+            "closing_text": "<p>Don't let these issues compound over time. Take action now to restore your body's natural balance and reclaim your health before these problems become more serious.</p>",
+            "media_border_radius": 8,
+            "point_1_title": "They Reproduce Fast",
+            "point_1_desc": "Multiply quickly, especially with sugar or stress.",
+            "point_2_title": "They Steal Nutrients",
+            "point_2_desc": "Feed on your vitamins and minerals.",
+            "point_3_title": "They Disrupt Digestion",
+            "point_3_desc": "Waste slows digestion and causes cravings.",
+            "point_4_title": "They Drain Your Energy",
+            "point_4_desc": "Overwork your immune system, leaving you exhausted.",
+            "point_5_title": "They Trigger Inflammation",
+            "point_5_desc": "Release toxins that spread inflammation.",
+            "point_6_title": "They Mess With Hormones",
+            "point_6_desc": "Throw off mood, immunity, and hormone balance.",
+            "button_text": "TRY RESILIA RISK-FREE",
+            "button_link": "",
+            "button_color": "#ff6b35",
+            "button_hover_color": "#e55a2b",
+            "button_text_color": "#ffffff",
+            "button_text_size": 16,
+            "button_border_radius": 8,
+            "background_color": "#ffffff",
+            "text_color": "#000000",
+            "icon_color": "#dc3545",
+            "icon_text_color": "#ffffff",
+            "text_size": 16,
+            "point_title_size": 18,
+            "point_desc_size": 14,
+            "icon_size": 30,
+            "section_padding": 60
+          },
+          "blocks": {}
         }
       },
       "block_order": [
@@ -337,7 +416,9 @@
         "ai_gen_block_fa58fcd_bheNQJ",
         "ai_gen_block_3c386ce_Lcqp4R",
         "ai_gen_block_b8e8a74_Tr4UAG",
-        "ai_gen_block_a68978b_tETaYf"
+        "ai_gen_block_7cce95a_YpEcic",
+        "ai_gen_block_a68978b_tETaYf",
+        "ai_gen_block_0e57bdf_tm9DDF"
       ],
       "name": "t:names.custom_section",
       "settings": {
@@ -367,10 +448,48 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
+    },
+    "what_happens_if_VWwJV8": {
+      "type": "what-happens-if",
+      "name": "Treatment warning",
+      "settings": {
+        "heading": "<p>What Happens If You Don't Treat It?</p>",
+        "highlight_color": "#FF6B35",
+        "heading_size": 36,
+        "intro_text": "<p>Understanding the consequences of leaving conditions untreated is crucial for making informed health decisions. Here's what you need to know about the potential risks and complications.</p>",
+        "point_1_title": "They Reproduce Fast",
+        "point_1_description": "Multiply quickly, especially with sugar or stress.",
+        "point_2_title": "They Steal Nutrients",
+        "point_2_description": "Feed on your vitamins and minerals.",
+        "point_3_title": "They Disrupt Digestion",
+        "point_3_description": "Waste slows digestion and causes cravings.",
+        "point_4_title": "They Drain Your Energy",
+        "point_4_description": "Overwork your immune system, leaving you exhausted.",
+        "point_5_title": "They Trigger Inflammation",
+        "point_5_description": "Release toxins that spread inflammation.",
+        "point_6_title": "They Mess With Hormones",
+        "point_6_description": "Throw off mood, immunity, and hormone balance.",
+        "closing_text": "<p>Don't let these issues compound over time. Taking action now can prevent more serious complications and help you maintain optimal health and well-being.</p>",
+        "button_text": "TRY RESILIA RISK-FREE",
+        "button_link": "",
+        "background_color": "#ffffff",
+        "text_color": "#000000",
+        "icon_color": "#DC2626",
+        "button_color": "#FF6B35",
+        "button_text_color": "#ffffff",
+        "button_hover_color": "#E55A2B",
+        "text_size": 16,
+        "point_title_size": 18,
+        "point_text_size": 14,
+        "button_text_size": 16,
+        "icon_size": 30,
+        "button_border_radius": 8
+      }
     }
   },
   "order": [
     "main",
-    "section_c9EAaG"
+    "section_c9EAaG",
+    "what_happens_if_VWwJV8"
   ]
 }
