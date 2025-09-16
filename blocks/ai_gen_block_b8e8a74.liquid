@@ -207,7 +207,6 @@
     background-color: {{ block.settings.cta_bg_color }};
     color: {{ block.settings.cta_text_color }};
     padding: 18px 40px;
-    border: none;
     border-radius: {{ block.settings.cta_border_radius }}px;
     font-size: {{ block.settings.cta_font_size }}px;
     font-weight: 700;
@@ -215,7 +214,7 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    {% comment %} box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); {% endcomment %}
     width: 100%;
     transition: all .3s;
     {% comment %} max-width: 400px; {% endcomment %}
