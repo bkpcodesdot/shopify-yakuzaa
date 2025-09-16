@@ -324,50 +324,6 @@
             "button_border_radius": 8
           },
           "blocks": {}
-        },
-        "ai_gen_block_a68978b_tETaYf": {
-          "type": "ai_gen_block_a68978b",
-          "disabled": true,
-          "settings": {
-            "heading": "<p><strong>Why Most People Don't Know They're Infected</strong></p>",
-            "heading_color": "#000000",
-            "heading_size": 36,
-            "heading_alignment": "center",
-            "subheading": "How gut invaders hide, survive, and manipulate your body, backed by science.",
-            "subheading_color": "#666666",
-            "subheading_size": 18,
-            "main_image": "shopify://shop_images/gut_infected_desktop.webp",
-            "main_image_width": "auto",
-            "description": "<p>One of the biggest reasons parasites, fungi, and harmful microbes go untreated is because they're incredibly good at hiding. These organisms have evolved sophisticated survival mechanisms that allow them to evade detection by both your immune system and standard medical tests.</p>",
-            "description_color": "#333333",
-            "description_alignment": "center",
-            "show_second_image": true,
-            "second_image": "shopify://shop_images/guts_internal.webp",
-            "second_image_size": "medium",
-            "second_image_alignment": "center",
-            "bottom_description": "<p>This is why traditional approaches often fail to identify the root cause of chronic symptoms. Our comprehensive testing and targeted protocols are designed to uncover these hidden threats and restore your body's natural balance.</p>",
-            "bottom_description_color": "#333333",
-            "bottom_description_alignment": "center",
-            "button_text": "TRY RESILIA RISK-FREE",
-            "button_link": "",
-            "button_background_color": "#ff6b35",
-            "button_text_color": "#ffffff",
-            "button_hover_color": "#e55a2b",
-            "button_hover_text_color": "#ffffff",
-            "button_border_radius": 8,
-            "button_alignment": "center",
-            "background_color": "#ffffff",
-            "layout_width": "contained",
-            "padding_top": 60,
-            "padding_bottom": 60,
-            "padding_horizontal": 20,
-            "content_spacing": 32,
-            "mobile_text_alignment": "inherit",
-            "mobile_padding_top": 40,
-            "mobile_padding_bottom": 40,
-            "mobile_padding_horizontal": 16
-          },
-          "blocks": {}
         }
       },
       "block_order": [
@@ -376,8 +332,7 @@
         "ai_gen_block_fa58fcd_bheNQJ",
         "ai_gen_block_3c386ce_Lcqp4R",
         "ai_gen_block_b8e8a74_Tr4UAG",
-        "ai_gen_block_7cce95a_YpEcic",
-        "ai_gen_block_a68978b_tETaYf"
+        "ai_gen_block_7cce95a_YpEcic"
       ],
       "name": "t:names.custom_section",
       "settings": {
