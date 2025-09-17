@@ -358,8 +358,8 @@ font-weight:bold;
           {% endfor %}
         </div>
       </div>
-<div class="adv-content__body-content content-default" style="margin-bottom: {{ section.settings.margin_bottom }}px;">
-  <p>{{ section.settings.body_text }}</p>
+<div class="adv-content__body-content content-default" style="margin-bottom: {{ block.settings.margin_bottom }}px;">
+  <p>{{ block.settings.body_text }}</p>
 </div>
        {% if block.settings.button_text != blank %}
       <div class="Solution-table">
@@ -511,6 +511,12 @@ font-weight:bold;
       "label": "Image border radius",
       "default": 16
     },
+ {
+          "type": "richtext",
+          "id": "body_text",
+          "label": "Body Text",
+          "default": "<p>It’s your body and your health. Take control of it. Try Resilia™ Oil of Oregano Softgels today and experience the difference for yourself.</p>"
+        },
     {
       "type": "range",
       "id": "icon_size",
