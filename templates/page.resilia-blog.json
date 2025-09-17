@@ -536,19 +536,19 @@
             "icon_size": 24,
             "feature_1_enabled": true,
             "feature_1_icon": "shopify://shop_images/leaves_green.png",
-            "feature_1_title": "Clinically Proven",
+            "feature_1_title": "100% Natural, Plant-Based Ingredients",
             "feature_2_enabled": true,
             "feature_2_icon": "shopify://shop_images/tube_green.png",
-            "feature_2_title": "Natural Ingredients",
+            "feature_2_title": "Clinically Supported Formula",
             "feature_3_enabled": true,
             "feature_3_icon": "shopify://shop_images/green_hand.svg",
-            "feature_3_title": "Fast Acting",
+            "feature_3_title": "Only 2 Softgels a Day",
             "feature_4_enabled": true,
             "feature_4_icon": "shopify://shop_images/head_green.svg",
-            "feature_4_title": "Safe & Gentle",
+            "feature_4_title": "Made in the USA in a GMP-Certified Facility",
             "feature_5_enabled": true,
             "feature_5_icon": "shopify://shop_images/green_shield.svg",
-            "feature_5_title": "Money Back Guarantee"
+            "feature_5_title": "Trusted by Thousands with Real Results"
           },
           "blocks": {}
         }
