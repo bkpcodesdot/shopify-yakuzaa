@@ -104,11 +104,14 @@ font-weight:bold;
     font-family:'Roboto'!important;
 
   }
+  .Sulution-table-btn{
+    color: {{ block.settings.button_text_color }} !important;
+  }
 .Solution-table{
     display:block;
     padding: {{ block.settings.button_padding }}px {{ block.settings.button_padding | times: 1.5 }}px;
     background-color: {{ block.settings.button_background_color }};
-    color: {{ block.settings.button_text_color }};
+    
     text-decoration: none;
     border-radius: {{ block.settings.button_border_radius }}px;
     font-family: {{ block.settings.button_font_family.family }}, {{ block.settings.button_font_family.fallback_families }};
