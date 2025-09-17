@@ -335,11 +335,13 @@ font-weight:bold;
         </div>
       </div>
 
-      <div class="ai-solution-right-column-{{ ai_gen_id }}">
-        
-
-        
+       {% if block.settings.button_text != blank %}
+      <div class="Solution-table">
+        <a href="{{ block.settings.button_link }}" class="Sulution-table-btn">
+          {{ block.settings.button_text }}
+        </a>
       </div>
+    {% endif %}
     </div>
   </div>
 </div>
