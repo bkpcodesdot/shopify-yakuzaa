@@ -511,6 +511,45 @@
             "button_border_radius": 8
           },
           "blocks": {}
+        },
+        "ai_gen_block_fc3854b_qfRciB": {
+          "type": "ai_gen_block_fc3854b",
+          "settings": {
+            "heading": "<p>The Natural, Science-Backed <span>Solution</span></p>",
+            "intro_text": "<p>Discover our revolutionary approach that combines the power of nature with cutting-edge science. Our carefully formulated solution addresses the root cause of your concerns while being gentle on your body. Experience the difference that comes from years of research and development, backed by clinical studies and real customer results.</p>",
+            "background_color": "#ffffff",
+            "heading_color": "#000000",
+            "highlight_color": "#ff6b35",
+            "text_color": "#666666",
+            "feature_title_color": "#000000",
+            "feature_description_color": "#666666",
+            "icon_background_color": "#e8f5e8",
+            "icon_color": "#22c55e",
+            "heading_size": 36,
+            "text_size": 16,
+            "feature_title_size": 18,
+            "feature_description_size": 14,
+            "section_padding_top": 60,
+            "section_padding_bottom": 60,
+            "image_border_radius": 16,
+            "icon_size": 40,
+            "feature_1_enabled": true,
+            "feature_1_title": "Clinically Proven",
+            "feature_1_description": "Backed by scientific research and clinical studies",
+            "feature_2_enabled": true,
+            "feature_2_title": "Natural Ingredients",
+            "feature_2_description": "Made with pure, natural ingredients you can trust",
+            "feature_3_enabled": true,
+            "feature_3_title": "Fast Acting",
+            "feature_3_description": "See results in as little as 24 hours",
+            "feature_4_enabled": true,
+            "feature_4_title": "Safe & Gentle",
+            "feature_4_description": "Gentle formula suitable for all skin types",
+            "feature_5_enabled": true,
+            "feature_5_title": "Money Back Guarantee",
+            "feature_5_description": "100% satisfaction guaranteed or your money back"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
@@ -522,7 +561,8 @@
         "ai_gen_block_7cce95a_YpEcic",
         "ai_the_natural_yDJR6L",
         "ai_timeline_section_KH88je",
-        "ai_gen_block_c0c557c_APaLRx"
+        "ai_gen_block_c0c557c_APaLRx",
+        "ai_gen_block_fc3854b_qfRciB"
       ],
       "name": "t:names.custom_section",
       "settings": {
