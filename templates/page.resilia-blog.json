@@ -515,8 +515,9 @@
         "ai_gen_block_fc3854b_qfRciB": {
           "type": "ai_gen_block_fc3854b",
           "settings": {
-            "heading": "<p>The Natural, Science-Backed <span>Solution</span></p>",
+            "heading": "<p>The Natural, Science-Backed Solution</p>",
             "intro_text": "<p>Discover our revolutionary approach that combines the power of nature with cutting-edge science. Our carefully formulated solution addresses the root cause of your concerns while being gentle on your body. Experience the difference that comes from years of research and development, backed by clinical studies and real customer results.</p>",
+            "main_image": "shopify://shop_images/oil_of_oregano_2_desktop.webp",
             "background_color": "#ffffff",
             "heading_color": "#000000",
             "highlight_color": "#ff6b35",
