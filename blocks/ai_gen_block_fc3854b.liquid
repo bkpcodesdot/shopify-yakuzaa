@@ -280,7 +280,7 @@
           </div>
         </div>
         <div class="ai-solution-features-{{ ai_gen_id }}">
-          {% for i in (1..3) %}
+          {% for i in (1..5) %}
             {% liquid
               assign feature_enabled_key = 'feature_' | append: i | append: '_enabled'
               assign feature_icon_key = 'feature_' | append: i | append: '_icon'
@@ -324,49 +324,7 @@
       <div class="ai-solution-right-column-{{ ai_gen_id }}">
         
 
-        <div class="ai-solution-additional-features-{{ ai_gen_id }}">
-          <div class="ai-solution-features-{{ ai_gen_id }}">
-            {% for i in (4..5) %}
-              {% liquid
-                assign feature_enabled_key = 'feature_' | append: i | append: '_enabled'
-                assign feature_icon_key = 'feature_' | append: i | append: '_icon'
-                assign feature_title_key = 'feature_' | append: i | append: '_title'
-                assign feature_description_key = 'feature_' | append: i | append: '_description'
-
-                assign feature_enabled = block.settings[feature_enabled_key]
-                assign feature_icon = block.settings[feature_icon_key]
-                assign feature_title = block.settings[feature_title_key]
-                assign feature_description = block.settings[feature_description_key]
-              %}
-
-              {% if feature_enabled %}
-                <div class="ai-solution-feature-{{ ai_gen_id }}">
-                  <div class="ai-solution-feature-icon-{{ ai_gen_id }}">
-                    {% if feature_icon != blank %}
-                      <img
-                        src="{{ feature_icon | image_url: width: 100}}"
-                        alt="{{ feature_title | escape }}"
-                        loading="lazy"
-                        width="100"
-                        height="100"
-                      >
-                    {% else %}
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20,6 9,17 4,12"></polyline>
-                      </svg>
-                    {% endif %}
-                  </div>
-                  <div class="ai-solution-feature-content-{{ ai_gen_id }}">
-                    {% if feature_title != blank %}
-                      <h3 class="ai-solution-feature-title-{{ ai_gen_id }}">{{ feature_title }}</h3>
-                    {% endif %}
-            
-                  </div>
-                </div>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
+        
       </div>
     </div>
   </div>
