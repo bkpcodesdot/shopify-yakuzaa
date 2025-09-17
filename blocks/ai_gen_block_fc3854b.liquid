@@ -105,7 +105,7 @@ font-weight:bold;
 
   }
 .Solution-table{
-display:block;
+    display:block;
     padding: {{ block.settings.button_padding }}px {{ block.settings.button_padding | times: 1.5 }}px;
     background-color: {{ block.settings.button_background_color }};
     color: {{ block.settings.button_text_color }};
@@ -121,7 +121,10 @@ display:block;
   .ai-solution-heading-{{ ai_gen_id }} strong {
     color: {{ block.settings.highlight_color }};
   }
-
+.Solution-table:hover {
+    background-color: {{ block.settings.button_hover_color }};
+    color: {{ block.settings.button_hover_text_color }};
+  }
   .ai-solution-intro-{{ ai_gen_id }} {
     font-size: {{ block.settings.text_size }}px;
     line-height: 1.6;
