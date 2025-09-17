@@ -255,12 +255,6 @@
             {{ block.settings.heading }}
           </h2>
         {% endif %}
-
-        {% if block.settings.intro_text != blank %}
-          <div class="ai-solution-intro-{{ ai_gen_id }}">
-            {{ block.settings.intro_text }}
-          </div>
-        {% endif %}
 <div class="ai-solution-image-section-{{ ai_gen_id }}"><div class="ai-solution-image-wrapper-{{ ai_gen_id }}">
             {% if block.settings.main_image %}
               <img
@@ -279,6 +273,12 @@
             {% endif %}
           </div>
         </div>
+        {% if block.settings.intro_text != blank %}
+          <div class="ai-solution-intro-{{ ai_gen_id }}">
+            {{ block.settings.intro_text }}
+          </div>
+        {% endif %}
+
         <div class="ai-solution-features-{{ ai_gen_id }}">
           {% for i in (1..3) %}
             {% liquid
