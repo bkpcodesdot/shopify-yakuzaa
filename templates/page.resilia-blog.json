@@ -515,7 +515,7 @@
         "ai_gen_block_e7b2981_nU84Kd": {
           "type": "ai_gen_block_e7b2981",
           "settings": {
-            "title": "<p>What Customers Are Saying After Trying Resilia</p>",
+            "title": "<p>What Customers Are <strong>Saying </strong>After Trying Resilia</p>",
             "title_color": "#000000",
             "highlight_color": "#ff6b35",
             "title_font_size": 36,
