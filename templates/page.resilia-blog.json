@@ -515,7 +515,7 @@
         "ai_gen_block_fc3854b_qfRciB": {
           "type": "ai_gen_block_fc3854b",
           "settings": {
-            "heading": "<p>The Natural, Science-Backed Solution</p>",
+            "heading": "<p>Start <strong>Reclaiming </strong>Your Gut Health Today            </p>",
             "intro_text": "<p>Discover our revolutionary approach that combines the power of nature with cutting-edge science. Our carefully formulated solution addresses the root cause of your concerns while being gentle on your body. Experience the difference that comes from years of research and development, backed by clinical studies and real customer results.</p>",
             "main_image": "shopify://shop_images/oil_of_oregano_2_desktop.webp",
             "background_color": "#ffffff",
@@ -533,27 +533,22 @@
             "section_padding_top": 60,
             "section_padding_bottom": 60,
             "image_border_radius": 16,
-            "icon_size": 40,
+            "icon_size": 24,
             "feature_1_enabled": true,
             "feature_1_icon": "shopify://shop_images/leaves_green.png",
             "feature_1_title": "Clinically Proven",
-            "feature_1_description": "Backed by scientific research and clinical studies",
             "feature_2_enabled": true,
             "feature_2_icon": "shopify://shop_images/tube_green.png",
             "feature_2_title": "Natural Ingredients",
-            "feature_2_description": "Made with pure, natural ingredients you can trust",
             "feature_3_enabled": true,
             "feature_3_icon": "shopify://shop_images/green_hand.svg",
             "feature_3_title": "Fast Acting",
-            "feature_3_description": "See results in as little as 24 hours",
             "feature_4_enabled": true,
             "feature_4_icon": "shopify://shop_images/head_green.svg",
             "feature_4_title": "Safe & Gentle",
-            "feature_4_description": "Gentle formula suitable for all skin types",
             "feature_5_enabled": true,
             "feature_5_icon": "shopify://shop_images/green_shield.svg",
-            "feature_5_title": "Money Back Guarantee",
-            "feature_5_description": "100% satisfaction guaranteed or your money back"
+            "feature_5_title": "Money Back Guarantee"
           },
           "blocks": {}
         }
