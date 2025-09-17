@@ -521,7 +521,6 @@
             "heading_color": "#000000",
             "text_color": "#666666",
             "feature_title_color": "#000000",
-            "feature_description_color": "#666666",
             "icon_background_color": "#e8f5e8",
             "icon_color": "#22c55e",
             "heading_size": 18,
@@ -543,10 +542,20 @@
             "feature_3_title": "Only 2 Softgels a Day",
             "feature_4_enabled": true,
             "feature_4_icon": "shopify://shop_images/head_green.svg",
+            "button_text": "TRY RESILIA RISK-FREE",
+            "button_link": "",
             "feature_4_title": "Made in the USA in a GMP-Certified Facility",
             "feature_5_enabled": true,
             "feature_5_icon": "shopify://shop_images/green_shield.svg",
-            "feature_5_title": "Trusted by Thousands with Real Results"
+            "feature_5_title": "Trusted by Thousands with Real Results",
+            "button_font_family": "inter_n5",
+            "button_font_size": 16,
+            "button_background_color": "#ee882f",
+            "button_text_color": "#ffffff",
+            "button_hover_color": "#ffffff",
+            "button_hover_text_color": "#ee882f",
+            "button_padding": 16,
+            "button_border_radius": 8
           },
           "blocks": {}
         }
