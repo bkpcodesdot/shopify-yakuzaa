@@ -453,7 +453,6 @@
         },
         "ai_gen_block_c0c557c_APaLRx": {
           "type": "ai_gen_block_c0c557c",
-          "disabled": true,
           "settings": {
             "section_background_color": "#ffffff",
             "section_padding": 50,
