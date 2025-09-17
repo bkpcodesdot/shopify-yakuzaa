@@ -532,7 +532,7 @@
             "name_color": "#000000",
             "verified_color": "#666666",
             "name_font_size": 14,
-            "verified_font_size": 12,
+            "verified_font_size": 14,
             "icon_size": 24,
             "testimonial_1_enabled": true,
             "testimonial_1_quote": "“This little softgel is magic. I’ve tried everything for my gut, and nothing worked like Resilia.”",
