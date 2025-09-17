@@ -362,9 +362,11 @@ font-size: 18px;}
           {% endfor %}
         </div>
       </div>
+        {% if block.settings.body_text != blank %}
 <div class="adv-content__body-content content-default" style="margin-bottom: {{ block.settings.margin_bottom }}px;">
   <p>{{ block.settings.body_text }}</p>
 </div>
+ {% endif %}
        {% if block.settings.button_text != blank %}
       <div class="Solution-table">
         <a href="{{ block.settings.button_link }}" class="Sulution-table-btn">
