@@ -1146,10 +1146,12 @@
       ],
       "name": "Customer Testimonials",
       "settings": {
-        "title": "<p>What Customers Are Saying After Trying Resilia</p>",
+        "title": "<p>What Customers Are <strong>Saying</strong> After Trying Resilia</p>",
         "title_color": "#000000",
         "highlight_color": "#ff6b35",
         "title_font_size": 32,
+        "card_background_color": "#f8f9fa",
+        "card_border_color": "#4caf50",
         "description": "<p>Real customers sharing their experiences with our product. See what they have to say about the results they've achieved and how it has transformed their daily routine.</p>",
         "description_color": "#000000",
         "description_font_size": 16,
