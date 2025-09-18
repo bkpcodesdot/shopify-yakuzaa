@@ -27,9 +27,6 @@
       <div class="before">
         <img src="{{ section.settings.before_image | img_url: '800x' }}" alt="Before">
       </div>
-      <div class="after">
-        <img src="{{ section.settings.after_image | img_url: '800x' }}" alt="After">
-      </div>
     </div>
   {%- endif -%}
 
@@ -86,11 +83,6 @@
       "type": "image_picker",
       "id": "before_image",
       "label": "Before Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "after_image",
-      "label": "After Image"
     }
   ],
   "presets": [
