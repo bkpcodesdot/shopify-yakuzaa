@@ -765,6 +765,40 @@
         "cta_text": "TRY RESILIA RISK-FREE",
         "cta_link": ""
       }
+    },
+    "parasite_candida_info_dEdQ9n": {
+      "type": "parasite-candida-info",
+      "name": "Parasite info section",
+      "settings": {
+        "main_title": "How Do Parasites and Candida Get Inside Us?",
+        "highlight_text": "Parasites and Candida",
+        "intro_text": "<p>Understanding how these harmful organisms enter our bodies is the <strong>first step</strong> in protecting ourselves.</p>",
+        "main_image": "shopify://shop_images/parasites_microbes.webp",
+        "subsection_title": "How parasites and candida sneak in:",
+        "bottom_line_title": "Bottom line?",
+        "bottom_line_text": "<p>These organisms are everywhere. The key is <strong>supporting your body's defenses</strong>.</p>",
+        "cta_text": "TRY RESILIA RISK-FREE",
+        "cta_link": "",
+        "section_background": "#ffffff",
+        "title_color": "#000000",
+        "highlight_color": "#ff6b35",
+        "text_color": "#333333",
+        "item_background": "#f9f9f9",
+        "button_background": "#ff6b35",
+        "button_hover_background": "#e55a2b",
+        "button_text_color": "#ffffff",
+        "title_size": 36,
+        "subsection_title_size": 24,
+        "item_title_size": 18,
+        "text_size": 16,
+        "bottom_title_size": 22,
+        "button_text_size": 16,
+        "section_padding": 50,
+        "image_border_radius": 8,
+        "item_border_radius": 8,
+        "button_padding": 16,
+        "button_border_radius": 8
+      }
     }
   },
   "order": [
@@ -772,6 +806,7 @@
     "section_c9EAaG",
     "blog_artical_section_E8pjA6",
     "health_awareness_section_iPAWDy",
-    "symptoms_list_section_FTtLjq"
+    "symptoms_list_section_FTtLjq",
+    "parasite_candida_info_dEdQ9n"
   ]
 }
