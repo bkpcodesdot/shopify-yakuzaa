@@ -768,6 +768,64 @@
     },
     "parasite_candida_info_dEdQ9n": {
       "type": "parasite-candida-info",
+      "blocks": {
+        "sneak_in_item_7QkRVR": {
+          "type": "sneak_in_item",
+          "settings": {
+            "image": "shopify://shop_images/antibiotic_use.avif",
+            "title": "Contaminated Food",
+            "description": "Unwashed fruits and vegetables, undercooked meat, and contaminated water sources can harbor parasites."
+          }
+        },
+        "sneak_in_item_fqKAbh": {
+          "type": "sneak_in_item",
+          "settings": {
+            "image": "shopify://shop_images/pets.avif",
+            "title": "Contaminated Food",
+            "description": "Unwashed fruits and vegetables, undercooked meat, and contaminated water sources can harbor parasites."
+          }
+        },
+        "sneak_in_item_EjtiYK": {
+          "type": "sneak_in_item",
+          "settings": {
+            "image": "shopify://shop_images/contaminated_food.webp",
+            "title": "Contaminated Food",
+            "description": "Unwashed fruits and vegetables, undercooked meat, and contaminated water sources can harbor parasites."
+          }
+        },
+        "sneak_in_item_JWzbtQ": {
+          "type": "sneak_in_item",
+          "settings": {
+            "image": "shopify://shop_images/travels.jpg",
+            "title": "Contaminated Food",
+            "description": "Unwashed fruits and vegetables, undercooked meat, and contaminated water sources can harbor parasites."
+          }
+        },
+        "sneak_in_item_KC74JC": {
+          "type": "sneak_in_item",
+          "settings": {
+            "image": "shopify://shop_images/public.webp",
+            "title": "Contaminated Food",
+            "description": "Unwashed fruits and vegetables, undercooked meat, and contaminated water sources can harbor parasites."
+          }
+        },
+        "sneak_in_item_mfhiQx": {
+          "type": "sneak_in_item",
+          "settings": {
+            "image": "shopify://shop_images/high-sugar.jpg",
+            "title": "Contaminated Food",
+            "description": "Unwashed fruits and vegetables, undercooked meat, and contaminated water sources can harbor parasites."
+          }
+        }
+      },
+      "block_order": [
+        "sneak_in_item_7QkRVR",
+        "sneak_in_item_fqKAbh",
+        "sneak_in_item_EjtiYK",
+        "sneak_in_item_JWzbtQ",
+        "sneak_in_item_KC74JC",
+        "sneak_in_item_mfhiQx"
+      ],
       "name": "Parasite info section",
       "settings": {
         "main_title": "How Do Parasites and Candida Get Inside Us?",
