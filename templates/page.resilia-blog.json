@@ -962,35 +962,40 @@
           "type": "feature",
           "settings": {
             "icon": "shopify://shop_images/green_sugar.svg",
-            "title": "Eliminate parasites and candida naturally"
+            "title": "Eliminate parasites and candida naturally",
+            "description": "<p>Feature description text.</p>"
           }
         },
         "feature_QypA8H": {
           "type": "feature",
           "settings": {
             "icon": "shopify://shop_images/green_gut.svg",
-            "title": "Reduce inflammation and bloating"
+            "title": "Reduce inflammation and bloating",
+            "description": "<p>Feature description text.</p>"
           }
         },
         "feature_cbVPTh": {
           "type": "feature",
           "settings": {
             "icon": "shopify://shop_images/green_plant.svg",
-            "title": "Restore gut balance and immune strength"
+            "title": "Restore gut balance and immune strength",
+            "description": "<p>Feature description text.</p>"
           }
         },
         "feature_WEmehp": {
           "type": "feature",
           "settings": {
             "icon": "shopify://shop_images/green_enegergy.svg",
-            "title": "Improve energy, focus, and mental clarity"
+            "title": "Improve energy, focus, and mental clarity",
+            "description": "<p>Feature description text.</p>"
           }
         },
         "feature_Jb4VyD": {
           "type": "feature",
           "settings": {
             "icon": "shopify://shop_images/green_fire.svg",
-            "title": "Stop sugar cravings at the root"
+            "title": "Stop sugar cravings at the root",
+            "description": "<p>Feature description text.</p>"
           }
         }
       },
@@ -1017,7 +1022,19 @@
         "column_2_title": "Black Seed Oil (Thymoquinone)",
         "column_2_content": "<p>Enhances absorption and breaks down parasite biofilms, which allow these organisms to hide and resist treatment.</p>",
         "cta_text": "TRY RESILIA RISK-FREE",
-        "cta_link": ""
+        "cta_link": "",
+        "heading_color": "#000000",
+        "heading_font_size": 34,
+        "highlight_color": "#ff6600",
+        "intro_text_color": "#333333",
+        "intro_font_size": 18,
+        "subheading_color": "#111111",
+        "subheading_font_size": 22,
+        "feature_text_color": "#000000",
+        "feature_font_size": 16,
+        "cta_bg_color": "#000000",
+        "cta_text_color": "#ffffff",
+        "cta_font_size": 16
       }
     }
   },
