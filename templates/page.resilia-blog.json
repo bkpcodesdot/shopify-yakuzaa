@@ -710,15 +710,14 @@
       "type": "symptoms-list-section",
       "name": "Symptoms list",
       "settings": {
-        "title_before": "",
-        "title_highlight": "",
+        "title_before": "Symptoms That Could Be a Sign of",
+        "title_highlight": "Internal Imbalance",
         "section_subtitle": "And why you shouldn't ignore them.",
-        "cta_text": "TRY RESILIA RISK-FREE",
-        "cta_link": "",
         "section_background": "#ffffff",
         "section_padding": 60,
         "title_color": "#000000",
         "title_size": 32,
+        "title_highlight_color": "#e26900",
         "subtitle_color": "#666666",
         "subtitle_size": 16,
         "box_background": "#ffffff",
@@ -762,7 +761,9 @@
         "symptom_5_title": "Brain Fog",
         "symptom_5_description": "Mental cloudiness, poor concentration, and memory issues can stem from inflammation and nutritional gaps.",
         "symptom_5_science_text": "Science Says: Omega-3s are crucial for brain function",
-        "symptom_5_icon": "shopify://shop_images/science_icons.svg"
+        "symptom_5_icon": "shopify://shop_images/science_icons.svg",
+        "cta_text": "TRY RESILIA RISK-FREE",
+        "cta_link": ""
       }
     }
   },
