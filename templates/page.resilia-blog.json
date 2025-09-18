@@ -957,14 +957,69 @@
     },
     "product_showcase_caDFrM": {
       "type": "product-showcase",
+      "blocks": {
+        "feature_iwNtzR": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/green_sugar.svg",
+            "title": "New Feature",
+            "description": "Add a short description for this feature"
+          }
+        },
+        "feature_QypA8H": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/green_gut.svg",
+            "title": "New Feature",
+            "description": "Add a short description for this feature"
+          }
+        },
+        "feature_cbVPTh": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/green_plant.svg",
+            "title": "New Feature",
+            "description": "Add a short description for this feature"
+          }
+        },
+        "feature_WEmehp": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/green_enegergy.svg",
+            "title": "New Feature",
+            "description": "Add a short description for this feature"
+          }
+        },
+        "feature_Jb4VyD": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/green_fire.svg",
+            "title": "New Feature",
+            "description": "Add a short description for this feature"
+          }
+        }
+      },
+      "block_order": [
+        "feature_iwNtzR",
+        "feature_QypA8H",
+        "feature_cbVPTh",
+        "feature_WEmehp",
+        "feature_Jb4VyD"
+      ],
       "name": "Product showcase",
       "settings": {
         "heading_text": "The Natural, Science-Backed",
         "highlight_word": "Solution",
         "intro_text": "<p>Discover our revolutionary approach to wellness...</p>",
+        "main_image": "shopify://shop_images/oil_of_oregano_2_desktop.webp",
         "show_features": true,
-        "icon_size": 30,
-        "check_icon_color": "#28a745"
+        "subheading": "Compare our solutions",
+        "column_1_title": "Column 1",
+        "column_1_content": "<p>Details for column 1.</p>",
+        "column_2_title": "Column 2",
+        "column_2_content": "<p>Details for column 2.</p>",
+        "cta_text": "Shop Now",
+        "cta_link": ""
       }
     }
   },
