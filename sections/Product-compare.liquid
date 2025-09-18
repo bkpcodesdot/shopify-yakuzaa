@@ -279,64 +279,259 @@
 
 {% schema %}
 {
-  "name": "Product compare",
+  "name": "AI Comparison Table",
   "settings": [
-    { "type": "text", "id": "heading_text", "label": "Main heading", "default": "The Natural, Science-Backed" },
-    { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#000000" },
-    { "type": "range", "id": "heading_size", "min": 12, "max": 72, "step": 1, "unit": "px", "label": "Heading font size", "default": 32 },
-
-    { "type": "text", "id": "highlight_word", "label": "Highlight word", "default": "Solution" },
-    { "type": "color", "id": "highlight_color", "label": "Highlight color", "default": "#ff0000" },
-    { "type": "range", "id": "highlight_size", "min": 12, "max": 72, "step": 1, "unit": "px", "label": "Highlight font size", "default": 32 },
-
-    { "type": "richtext", "id": "intro_text", "label": "Introduction text", "default": "<p>Discover our revolutionary approach to wellness...</p>" },
-    { "type": "color", "id": "intro_color", "label": "Intro text color", "default": "#333333" },
-    { "type": "range", "id": "intro_size", "min": 12, "max": 36, "step": 1, "unit": "px", "label": "Intro font size", "default": 16 },
-
-    { "type": "image_picker", "id": "main_image", "label": "Main product image" },
-    { "type": "checkbox", "id": "show_features", "label": "Show feature points", "default": true },
-    { "type": "color", "id": "feature_color", "label": "Feature text color", "default": "#000000" },
-    { "type": "range", "id": "feature_size", "min": 10, "max": 30, "step": 1, "unit": "px", "label": "Feature font size", "default": 14 },
-
-    { "type": "image_picker", "id": "secondary_image", "label": "Secondary image" },
-    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Compare our solutions" },
-    { "type": "color", "id": "subheading_color", "label": "Subheading color", "default": "#000000" },
-    { "type": "range", "id": "subheading_size", "min": 12, "max": 48, "step": 1, "unit": "px", "label": "Subheading font size", "default": 20 },
-
-    { "type": "image_picker", "id": "column_1_image", "label": "Column 1 image" },
-    { "type": "text", "id": "column_1_title", "label": "Column 1 title", "default": "Column 1" },
-    { "type": "richtext", "id": "column_1_content", "label": "Column 1 content", "default": "<p>Details for column 1.</p>" },
-
-    { "type": "image_picker", "id": "column_2_image", "label": "Column 2 image" },
-    { "type": "text", "id": "column_2_title", "label": "Column 2 title", "default": "Column 2" },
-    { "type": "richtext", "id": "column_2_content", "label": "Column 2 content", "default": "<p>Details for column 2.</p>" },
-
-    { "type": "color", "id": "column_title_color", "label": "Column title color", "default": "#000000" },
-    { "type": "range", "id": "column_title_size", "min": 12, "max": 36, "step": 1, "unit": "px", "label": "Column title font size", "default": 18 },
-    { "type": "color", "id": "column_content_color", "label": "Column content color", "default": "#333333" },
-    { "type": "range", "id": "column_content_size", "min": 10, "max": 24, "step": 1, "unit": "px", "label": "Column content font size", "default": 14 },
-
-    { "type": "checkbox", "id": "enable_alternating_rows", "label": "Enable alternating column styles", "default": false },
-
-    { "type": "text", "id": "cta_text", "label": "Button text", "default": "Shop Now" },
-    { "type": "url", "id": "cta_link", "label": "Button link" },
-    { "type": "color", "id": "cta_bg", "label": "Button background color", "default": "#000000" },
-    { "type": "color", "id": "cta_color", "label": "Button text color", "default": "#ffffff" },
-    { "type": "range", "id": "cta_size", "min": 12, "max": 36, "step": 1, "unit": "px", "label": "Button font size", "default": 16 }
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding (px)",
+      "default": 40,
+      "min": 0,
+      "max": 100
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_alternating_rows",
+      "label": "Enable alternating rows",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "table_row_alt_background",
+      "label": "Alternate row background color",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "color",
+      "id": "table_border_color",
+      "label": "Table border color",
+      "default": "#cccccc"
+    },
+    {
+      "type": "range",
+      "id": "table_border_radius",
+      "label": "Table border radius (px)",
+      "default": 5,
+      "min": 0,
+      "max": 50
+    },
+   {
+  "type": "text",
+  "id": "heading_text",
+  "label": "Heading text",
+  "default": "How Resilia Stands Apart from the Rest"
+},
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading font size",
+      "default": 32,
+      "min": 12,
+      "max": 72
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "heading_accent_color",
+      "label": "Heading accent color",
+      "default": "#ee882f"
+    },
+   {
+  "type": "text",
+  "id": "subheading_text",
+  "label": "Subheading text",
+  "default": "How Resilia Stands Apart from the Rest"
+},
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading font size",
+      "default": 24,
+      "min": 12,
+      "max": 48
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "intro_size",
+      "label": "Intro font size",
+      "default": 16,
+      "min": 12,
+      "max": 36
+    },
+    {
+      "type": "color",
+      "id": "intro_color",
+      "label": "Intro text color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "table_text_color",
+      "label": "Table text color",
+      "default": "#000000"
+    },
+   
+    {
+      "type": "range",
+      "id": "table_font_size",
+      "label": "Table font size",
+      "default": 14,
+      "min": 10,
+      "max": 24
+    },
+    {
+      "type": "color",
+      "id": "product_column_background",
+      "label": "Product column background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "feature_column_background",
+      "label": "Feature column background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "competitor_column_background",
+      "label": "Competitor column background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "check_icon_color",
+      "label": "Check icon color",
+      "default": "#016401"
+    },
+    {
+      "type": "color",
+      "id": "cross_icon_color",
+      "label": "Cross icon color",
+      "default": "#ff0000"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button background color",
+      "default": "#016401"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Button font size",
+      "default": 16,
+      "min": 12,
+      "max": 36
+    },
+    {
+      "type": "range",
+      "id": "button_padding",
+      "label": "Button padding",
+      "default": 12,
+      "min": 0,
+      "max": 50
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button border radius",
+      "default": 5,
+      "min": 0,
+      "max": 50
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button hover background color",
+      "default": "#014801"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button hover text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_text",
+      "label": "Intro text"
+    }
   ],
   "blocks": [
     {
       "type": "feature",
-      "name": "Feature Point",
+      "name": "Feature",
       "settings": [
-        { "type": "image_picker", "id": "icon", "label": "Feature icon" },
-        { "type": "text", "id": "title", "label": "Feature title", "default": "New Feature" }
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product image"
+        },
+        { "type": "text", "id": "feature_1", "label": "Feature 1" },
+        { "type": "select", "id": "competitor_1", "label": "Competitor 1", "options": [ { "value": "check", "label": "✅" }, { "value": "cross", "label": "❌" } ], "default": "cross" },
+        { "type": "text", "id": "feature_2", "label": "Feature 2" },
+        { "type": "select", "id": "competitor_2", "label": "Competitor 2", "options": [ { "value": "check", "label": "✅" }, { "value": "cross", "label": "❌" } ], "default": "cross" },
+        { "type": "text", "id": "feature_3", "label": "Feature 3" },
+        { "type": "select", "id": "competitor_3", "label": "Competitor 3", "options": [ { "value": "check", "label": "✅" }, { "value": "cross", "label": "❌" } ], "default": "cross" },
+        { "type": "text", "id": "feature_4", "label": "Feature 4" },
+        { "type": "select", "id": "competitor_4", "label": "Competitor 4", "options": [ { "value": "check", "label": "✅" }, { "value": "cross", "label": "❌" } ], "default": "cross" },
+        { "type": "text", "id": "feature_5", "label": "Feature 5" },
+        { "type": "select", "id": "competitor_5", "label": "Competitor 5", "options": [ { "value": "check", "label": "✅" }, { "value": "cross", "label": "❌" } ], "default": "cross" },
+        { "type": "text", "id": "feature_6", "label": "Feature 6" },
+        { "type": "select", "id": "competitor_6", "label": "Competitor 6", "options": [ { "value": "check", "label": "✅" }, { "value": "cross", "label": "❌" } ], "default": "cross" },
+        { "type": "text", "id": "feature_7", "label": "Feature 7" },
+        { "type": "select", "id": "competitor_7", "label": "Competitor 7", "options": [ { "value": "check", "label": "✅" }, { "value": "cross", "label": "❌" } ], "default": "cross" },
+        { "type": "text", "id": "feature_8", "label": "Feature 8" },
+        { "type": "select", "id": "competitor_8", "label": "Competitor 8", "options": [ { "value": "check", "label": "✅" }, { "value": "cross", "label": "❌" } ], "default": "cross" }
       ]
     }
   ],
   "max_blocks": 10,
   "presets": [
-    { "name": "Product compare" }
+    { "name": "AI Comparison Table" }
   ]
 }
 {% endschema %}
