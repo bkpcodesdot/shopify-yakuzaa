@@ -962,40 +962,35 @@
           "type": "feature",
           "settings": {
             "icon": "shopify://shop_images/green_sugar.svg",
-            "title": "Eliminate parasites and candida naturally",
-            "description": ""
+            "title": "Eliminate parasites and candida naturally"
           }
         },
         "feature_QypA8H": {
           "type": "feature",
           "settings": {
             "icon": "shopify://shop_images/green_gut.svg",
-            "title": "Reduce inflammation and bloating",
-            "description": ""
+            "title": "Reduce inflammation and bloating"
           }
         },
         "feature_cbVPTh": {
           "type": "feature",
           "settings": {
             "icon": "shopify://shop_images/green_plant.svg",
-            "title": "Restore gut balance and immune strength",
-            "description": ""
+            "title": "Restore gut balance and immune strength"
           }
         },
         "feature_WEmehp": {
           "type": "feature",
           "settings": {
             "icon": "shopify://shop_images/green_enegergy.svg",
-            "title": "Improve energy, focus, and mental clarity",
-            "description": ""
+            "title": "Improve energy, focus, and mental clarity"
           }
         },
         "feature_Jb4VyD": {
           "type": "feature",
           "settings": {
             "icon": "shopify://shop_images/green_fire.svg",
-            "title": "Stop sugar cravings at the root",
-            "description": ""
+            "title": "Stop sugar cravings at the root"
           }
         }
       },
@@ -1010,17 +1005,17 @@
       "settings": {
         "heading_text": "The Natural, Science-Backed",
         "highlight_word": "Solution",
-        "intro_text": "<p>Discover our revolutionary approach to wellness...</p>",
+        "intro_text": "<p>Thousands are turning to <strong>Resilia™ Oil of Oregano Softgels</strong> as it’s a premium, science-backed formula designed to do what most products can’t: penetrate parasite and candida biofilms, eliminate them at the source, and restore balance across your entire gut ecosystem.</p><p>Unlike other supplements that focus on just one benefit (like probiotics or digestive enzymes), Resilia™ offers broad-spectrum support for your gut, brain, metabolism, skin, and immune system All in a simple 2-capsule daily routine.</p>",
         "main_image": "shopify://shop_images/oil_of_oregano_main.webp",
         "show_features": true,
         "secondary_image": "shopify://shop_images/oil_of_oregano_1_desktop.webp",
-        "subheading": "Compare our solutions",
+        "subheading": "How it works:",
         "column_1_image": "shopify://shop_images/carvacrol.webp",
-        "column_1_title": "Column 1",
-        "column_1_content": "<p>Details for column 1.</p>",
+        "column_1_title": "Oregano Oil (70% Carvacrol)",
+        "column_1_content": "<p>Proven in clinical studies to have potent antimicrobial, antifungal, and antiparasitic effects. Carvacrol disrupts parasite membranes and kills Candida cells without harming beneficial bacteria.</p>",
         "column_2_image": "shopify://shop_images/black_seed_oil.webp",
-        "column_2_title": "Column 2",
-        "column_2_content": "<p>Details for column 2.</p>",
+        "column_2_title": "Black Seed Oil (Thymoquinone)",
+        "column_2_content": "<p>Enhances absorption and breaks down parasite biofilms, which allow these organisms to hide and resist treatment.</p>",
         "cta_text": "TRY RESILIA RISK-FREE",
         "cta_link": ""
       }
