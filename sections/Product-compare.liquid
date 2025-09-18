@@ -196,81 +196,86 @@
 
 
 
-
-<div class="product-showcase">
-  <h2 style="color: {{ section.settings.heading_color }}; font-size: {{ section.settings.heading_size }}px;">
-    {{ section.settings.heading_text }}
-    <span style="color: {{ section.settings.highlight_color }}; font-size: {{ section.settings.highlight_size }}px;">
-      {{ section.settings.highlight_word }}
-    </span>
-  </h2>
-
-  <div class="intro-text" style="color: {{ section.settings.intro_color }}; font-size: {{ section.settings.intro_size }}px;">
-    {{ section.settings.intro_text }}
-  </div>
-
-  {% if section.settings.main_image != blank %}
-    <img src="{{ section.settings.main_image | img_url: 'large' }}" alt="Main Product" />
-  {% endif %}
-
-  {% if section.settings.show_features %}
-    <div class="features">
-      {% for block in section.blocks %}
-        {% if block.type == 'feature' %}
-          <div class="feature-point">
-            {% if block.settings.icon != blank %}
-              <img src="{{ block.settings.icon | img_url: '50x50' }}" alt="Feature Icon" />
-            {% endif %}
-            <p style="color: {{ section.settings.feature_color }}; font-size: {{ section.settings.feature_size }}px;">
-              {{ block.settings.title }}
-            </p>
-          </div>
+{% for block in section.blocks %}
+  {% assign ai_gen_id = block.id %}
+  <div class="ai-comparison-table-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+    <div class="ai-comparison-table__container-{{ ai_gen_id }}">
+      <div class="ai-comparison-table__header-{{ ai_gen_id }}">
+        {% if block.settings.heading != blank %}
+          <h2 class="ai-comparison-table__heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
         {% endif %}
-      {% endfor %}
-    </div>
-  {% endif %}
+        {% if block.settings.subheading != blank %}
+          <h3 class="ai-comparison-table__subheading-{{ ai_gen_id }}">{{ block.settings.subheading }}</h3>
+        {% endif %}
+        {% if block.settings.intro_text != blank %}
+          <div class="ai-comparison-table__intro-{{ ai_gen_id }}">{{ block.settings.intro_text }}</div>
+        {% endif %}
+      </div>
 
-  {% if section.settings.secondary_image != blank %}
-    <img src="{{ section.settings.secondary_image | img_url: 'large' }}" alt="Secondary Product" />
-  {% endif %}
+      <div class="ai-comparison-table__table-wrapper-{{ ai_gen_id }}">
+        <table class="ai-comparison-table__table-{{ ai_gen_id }}">
+          <tbody>
+            <tr class="ai-comparison-table__row-{{ ai_gen_id }}">
+              <td class="ai-comparison-table__cell-{{ ai_gen_id }} ai-comparison-table__cell--product-{{ ai_gen_id }}">
+                {% if block.settings.product_image %}
+                  <img 
+                    src="{{ block.settings.product_image | image_url: width: 400 }}" 
+                    alt="{{ block.settings.product_image.alt | escape }}"
+                    class="ai-comparison-table__product-image-{{ ai_gen_id }}"
+                    loading="lazy"
+                  >
+                {% else %}
+                  <div class="ai-comparison-table__product-placeholder-{{ ai_gen_id }}">
+                    {{ 'product-1' | placeholder_svg_tag }}
+                  </div>
+                {% endif %}
+              </td>
+              <td class="ai-comparison-table__cell-{{ ai_gen_id }} ai-comparison-table__cell--feature-{{ ai_gen_id }}">
+                <span>Feature</span>
+              </td>
+              <td class="ai-comparison-table__cell-{{ ai_gen_id }} ai-comparison-table__cell--competitor-{{ ai_gen_id }}">
+                <span>Other Brands</span>
+              </td>
+            </tr>
 
-  <h3 style="color: {{ section.settings.subheading_color }}; font-size: {{ section.settings.subheading_size }}px;">
-    {{ section.settings.subheading }}
-  </h3>
+            {% for i in (1..8) %}
+              {% assign feature_key = 'feature_' | append: i %}
+              {% assign competitor_key = 'competitor_' | append: i %}
+              {% assign feature_text = block.settings[feature_key] %}
+              {% assign competitor_value = block.settings[competitor_key] %}
+              
+              {% if feature_text != blank %}
+                <tr class="ai-comparison-table__row-{{ ai_gen_id }}">
+                  <td class="ai-comparison-table__cell-{{ ai_gen_id }} ai-comparison-table__cell--product-{{ ai_gen_id }}">
+                    <span class="ai-comparison-table__icon-{{ ai_gen_id }} ai-comparison-table__icon--check-{{ ai_gen_id }}">✅</span>
+                  </td>
+                  <td class="ai-comparison-table__cell-{{ ai_gen_id }} ai-comparison-table__cell--feature-{{ ai_gen_id }}">
+                    {{ feature_text }}
+                  </td>
+                  <td class="ai-comparison-table__cell-{{ ai_gen_id }} ai-comparison-table__cell--competitor-{{ ai_gen_id }}">
+                    {% if competitor_value == 'check' %}
+                      <span class="ai-comparison-table__icon-{{ ai_gen_id }} ai-comparison-table__icon--check-{{ ai_gen_id }}">✅</span>
+                    {% else %}
+                      <span class="ai-comparison-table__icon-{{ ai_gen_id }} ai-comparison-table__icon--cross-{{ ai_gen_id }}">❌</span>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
 
-  <div class="columns">
-    {% for col in (1..2) %}
-  {% assign image_key = "column_" | append: col | append: "_image" %}
-  {% assign title_key = "column_" | append: col | append: "_title" %}
-  {% assign content_key = "column_" | append: col | append: "_content" %}
-
-  {% assign image = section.settings[image_key] %}
-  {% assign title = section.settings[title_key] %}
-  {% assign content = section.settings[content_key] %}
-  {% assign row_modulo = forloop.index0 | modulo: 2 %}
-
-  <div class="column{% if section.settings.enable_alternating_rows and row_modulo == 1 %} alt{% endif %}">
-    {% if image != blank %}
-      <img src="{{ image | img_url: 'medium' }}" alt="Column {{ col }} Image" />
-    {% endif %}
-    <h4 style="color: {{ section.settings.column_title_color }}; font-size: {{ section.settings.column_title_size }}px;">
-      {{ title }}
-    </h4>
-    <div class="column-content" style="color: {{ section.settings.column_content_color }}; font-size: {{ section.settings.column_content_size }}px;">
-      {{ content }}
+      {% if block.settings.button_text != blank %}
+        <div class="ai-comparison-table__button-wrapper-{{ ai_gen_id }}">
+          <a href="{{ block.settings.button_link }}" class="ai-comparison-table__button-{{ ai_gen_id }}">
+            {{ block.settings.button_text }}
+          </a>
+        </div>
+      {% endif %}
     </div>
   </div>
 {% endfor %}
-
-  </div>
-
-  {% if section.settings.cta_text != blank %}
-    <a href="{{ section.settings.cta_link }}" class="cta-btn"
-       style="background-color: {{ section.settings.cta_bg }}; color: {{ section.settings.cta_color }}; font-size: {{ section.settings.cta_size }}px;">
-      {{ section.settings.cta_text }}
-    </a>
-  {% endif %}
-</div>
 
 {% schema %}
 {
