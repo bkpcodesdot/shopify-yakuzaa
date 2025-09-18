@@ -160,18 +160,6 @@
 {% endstyle %}
 
 <div class="ai-advertorial-section">
-  {% if section.settings.show_top_bar %}
-    <div class="ai-advertorial-top-bar">
-      {% if section.settings.top_bar_text != blank %}
-        <div class="ai-advertorial-top-bar-text">{{ section.settings.top_bar_text }}</div>
-      {% endif %}
-      {% if section.settings.shop_now_text != blank %}
-        <a href="{{ section.settings.shop_now_link }}" class="ai-advertorial-shop-now-btn">
-          {{ section.settings.shop_now_text }}
-        </a>
-      {% endif %}
-    </div>
-  {% endif %}
 
   <div class="ai-advertorial-content">
     {% if section.settings.show_heading and section.settings.heading != blank %}
