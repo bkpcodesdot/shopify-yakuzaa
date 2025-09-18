@@ -997,13 +997,6 @@
             "title": "Stop sugar cravings at the root",
             "description": "<p>Feature description text.</p>"
           }
-        },
-        "feature_DVdBk9": {
-          "type": "feature",
-          "settings": {
-            "title": "New Feature",
-            "description": "<p>Feature description text.</p>"
-          }
         }
       },
       "block_order": [
@@ -1011,8 +1004,7 @@
         "feature_QypA8H",
         "feature_cbVPTh",
         "feature_WEmehp",
-        "feature_Jb4VyD",
-        "feature_DVdBk9"
+        "feature_Jb4VyD"
       ],
       "name": "Product showcase",
       "settings": {
@@ -1044,6 +1036,80 @@
         "cta_text_color": "#ffffff",
         "cta_font_size": 16
       }
+    },
+    "timeline_section_hy7Kqq": {
+      "type": "Timeline-section",
+      "blocks": {
+        "step_GadDNp": {
+          "type": "step",
+          "settings": {
+            "icon": "shopify://shop_images/head_green.svg",
+            "title": "Week 1–2: Relief Begins",
+            "text": "Experience noticeable relief as Resilia begins to reset your system."
+          }
+        },
+        "step_hDXXw6": {
+          "type": "step",
+          "settings": {
+            "icon": "shopify://shop_images/green_shield.svg",
+            "title": "Week 1–2: Relief Begins",
+            "text": "Experience noticeable relief as Resilia begins to reset your system."
+          }
+        },
+        "step_MHRVQT": {
+          "type": "step",
+          "settings": {
+            "icon": "shopify://shop_images/green_hand.svg",
+            "title": "Week 1–2: Relief Begins",
+            "text": "Experience noticeable relief as Resilia begins to reset your system."
+          }
+        },
+        "step_9ya6xR": {
+          "type": "step",
+          "settings": {
+            "icon": "shopify://shop_images/green_digestive.svg",
+            "title": "Week 1–2: Relief Begins",
+            "text": "Experience noticeable relief as Resilia begins to reset your system."
+          }
+        }
+      },
+      "block_order": [
+        "step_GadDNp",
+        "step_hDXXw6",
+        "step_MHRVQT",
+        "step_9ya6xR"
+      ],
+      "name": "Animated Timeline",
+      "settings": {
+        "heading": "<p>Your Resilia Reset Timeline</p>",
+        "heading_color": "#000000",
+        "highlight_color": "#FF6B35",
+        "heading_size": 36,
+        "description": "<p>Follow our proven timeline to experience relief and recovery. Each step is designed to support your journey back to wellness.</p>",
+        "description_color": "#666666",
+        "description_size": 16,
+        "circle_background": "#FFFFFF",
+        "circle_border_color": "#4CAF50",
+        "circle_inner_color": "#4CAF50",
+        "circle_size": 40,
+        "circle_border_width": 3,
+        "line_color": "#4CAF50",
+        "line_width": 4,
+        "card_background": "#F1F8E9",
+        "card_border_color": "#4CAF50",
+        "card_border_radius": 12,
+        "card_title_color": "#000000",
+        "card_title_size": 18,
+        "card_description_color": "#333333",
+        "card_description_size": 14,
+        "button_text": "TRY RESILIA RISK-FREE",
+        "button_link": "",
+        "button_background": "#ee882f",
+        "button_hover_background": "#ffffff",
+        "button_text_color": "#FFFFFF",
+        "button_border_radius": 6,
+        "button_text_size": 16
+      }
     }
   },
   "order": [
@@ -1056,6 +1122,7 @@
     "ide_section_test_4rfFkU",
     "affected_section_jNRXxq",
     "treat_section_UPyHXq",
-    "product_showcase_caDFrM"
+    "product_showcase_caDFrM",
+    "timeline_section_hy7Kqq"
   ]
 }
