@@ -142,7 +142,7 @@
       </div>
       <div class="author-name">
         {% if section.settings.author_name != blank %}
-          <div class="ai-before-after-article__author-name-{{ ai_gen_id }}">|{{ section.settings.author_name }}</div>
+          <div class="ai-before-after-article__author-name-{{ ai_gen_id }}">{{ section.settings.author_name }}|</div>
         {% endif %}
         {% if section.settings.publish_date != blank %}
           <div class="ai-before-after-article__publish-date-{{ ai_gen_id }}">{{ section.settings.publish_date }}</div>
