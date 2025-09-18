@@ -1,0 +1,515 @@
+{% style %}
+.ai-advertorial-section {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.ai-advertorial-top-bar {
+  background-color: {{ section.settings.top_bar_bg_color }};
+  padding: 12px 20px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.ai-advertorial-top-bar-text {
+  color: {{ section.settings.top_bar_text_color }};
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.ai-advertorial-shop-now-btn {
+  background-color: {{ section.settings.shop_now_bg_color }};
+  color: {{ section.settings.shop_now_text_color }};
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: opacity 0.3s ease;
+}
+
+.ai-advertorial-shop-now-btn:hover {
+  opacity: 0.9;
+}
+
+.ai-advertorial-content {
+  padding: 40px 20px;
+  background-color: {{ section.settings.content_bg_color }};
+}
+
+.ai-advertorial-heading {
+  font-size: {{ section.settings.heading_size }}px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 20px;
+  color: {{ section.settings.heading_color }};
+}
+
+.ai-advertorial-heading-highlight {
+  color: {{ section.settings.heading_highlight_color }};
+}
+
+.ai-advertorial-subtitle {
+  font-size: {{ section.settings.subtitle_size }}px;
+  margin: 0 0 40px;
+  color: {{ section.settings.subtitle_color }};
+  font-weight: 500;
+}
+
+.ai-advertorial-hero-image,
+.ai-advertorial-second-image {
+  margin: 40px 0;
+  text-align: center;
+}
+
+.ai-advertorial-hero-image img,
+.ai-advertorial-second-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.ai-advertorial-text-block {
+  margin: 0 0 30px;
+}
+
+.ai-advertorial-text-block p {
+  font-size: {{ section.settings.body_text_size }}px;
+  line-height: 1.6;
+  color: {{ section.settings.body_text_color }};
+  margin: 0 0 20px;
+}
+
+.ai-advertorial-text-block p:last-child {
+  margin-bottom: 0;
+}
+
+.ai-advertorial-cta-section {
+  margin: 50px 0 0;
+  text-align: center;
+}
+
+.ai-advertorial-cta-btn {
+  display: inline-block;
+  border: 2px solid {{ section.settings.cta_bg_color }};
+  background-color: {{ section.settings.cta_bg_color }};
+  color: {{ section.settings.cta_text_color }};
+  padding: 18px 40px;
+  border-radius: {{ section.settings.cta_border_radius }}px;
+  font-size: {{ section.settings.cta_font_size }}px;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.ai-advertorial-cta-btn:hover {
+  background-color: #fff;
+  color: {{ section.settings.cta_bg_color }};
+}
+
+@media screen and (max-width: 768px) {
+  .ai-advertorial-content {
+    padding: 30px 15px;
+  }
+
+  .ai-advertorial-heading {
+    font-size: calc({{ section.settings.heading_size }}px * 0.8);
+  }
+
+  .ai-advertorial-subtitle {
+    font-size: calc({{ section.settings.subtitle_size }}px * 0.9);
+  }
+
+  .ai-advertorial-top-bar {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .ai-advertorial-cta-btn {
+    padding: 16px 30px;
+    font-size: calc({{ section.settings.cta_font_size }}px * 0.9);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .ai-advertorial-content {
+    padding: 20px 10px;
+  }
+
+  .ai-advertorial-heading {
+    font-size: calc({{ section.settings.heading_size }}px * 0.7);
+  }
+
+  .ai-advertorial-subtitle {
+    font-size: calc({{ section.settings.subtitle_size }}px * 0.8);
+  }
+}
+{% endstyle %}
+
+<div class="ai-advertorial-section">
+  {% if section.settings.show_top_bar %}
+    <div class="ai-advertorial-top-bar">
+      {% if section.settings.top_bar_text != blank %}
+        <div class="ai-advertorial-top-bar-text">{{ section.settings.top_bar_text }}</div>
+      {% endif %}
+      {% if section.settings.shop_now_text != blank %}
+        <a href="{{ section.settings.shop_now_link }}" class="ai-advertorial-shop-now-btn">
+          {{ section.settings.shop_now_text }}
+        </a>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="ai-advertorial-content">
+    {% if section.settings.show_heading and section.settings.heading != blank %}
+      <h1 class="ai-advertorial-heading">
+        {% assign heading_parts = section.settings.heading | split: section.settings.highlight_text %}
+        {% if heading_parts.size > 1 %}
+          {{ heading_parts[0] }}<span class="ai-advertorial-heading-highlight">{{ section.settings.highlight_text }}</span>{{ heading_parts[1] }}
+        {% else %}
+          {{ section.settings.heading }}
+        {% endif %}
+      </h1>
+    {% endif %}
+
+    {% if section.settings.show_subtitle and section.settings.subtitle != blank %}
+      <div class="ai-advertorial-subtitle">{{ section.settings.subtitle }}</div>
+    {% endif %}
+
+    {% if section.settings.show_hero_image %}
+      <div class="ai-advertorial-hero-image">
+        {% if section.settings.hero_image %}
+          <img src="{{ section.settings.hero_image | image_url: width: 800 }}" alt="{{ section.settings.hero_image.alt | escape }}" loading="lazy">
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.show_text_block_1 and section.settings.text_block_1 != blank %}
+      <div class="ai-advertorial-text-block">{{ section.settings.text_block_1 }}</div>
+    {% endif %}
+
+    {% if section.settings.show_text_block_2 and section.settings.text_block_2 != blank %}
+      <div class="ai-advertorial-text-block">{{ section.settings.text_block_2 }}</div>
+    {% endif %}
+
+    {% if section.settings.show_second_image %}
+      <div class="ai-advertorial-second-image">
+        {% if section.settings.second_image %}
+          <img src="{{ section.settings.second_image | image_url: width: 800 }}" alt="{{ section.settings.second_image.alt | escape }}" loading="lazy">
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.show_text_block_3 and section.settings.text_block_3 != blank %}
+      <div class="ai-advertorial-text-block">{{ section.settings.text_block_3 }}</div>
+    {% endif %}
+
+    {% if section.settings.show_cta and section.settings.cta_text != blank %}
+      <div class="ai-advertorial-cta-section">
+        <a href="{{ section.settings.cta_link }}" class="ai-advertorial-cta-btn">{{ section.settings.cta_text }}</a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Advertorial section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Top bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_top_bar",
+      "label": "Show top bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "top_bar_text",
+      "label": "Top bar text",
+      "default": "Take Care Of Yourself"
+    },
+    {
+      "type": "color",
+      "id": "top_bar_bg_color",
+      "label": "Background color",
+      "default": "#4CAF50"
+    },
+    {
+      "type": "color",
+      "id": "top_bar_text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "shop_now_text",
+      "label": "Shop now button text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "shop_now_link",
+      "label": "Shop now button link"
+    },
+    {
+      "type": "color",
+      "id": "shop_now_bg_color",
+      "label": "Shop now button color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "shop_now_text_color",
+      "label": "Shop now text color",
+      "default": "#4CAF50"
+    },
+    {
+      "type": "header",
+      "content": "Main heading"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show heading",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading text",
+      "default": "Why Most People Don't Know They're Infected"
+    },
+    {
+      "type": "text",
+      "id": "highlight_text",
+      "label": "Text to highlight",
+      "default": "Don't Know"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 36
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "heading_highlight_color",
+      "label": "Highlight color",
+      "default": "#FF6B35"
+    },
+    {
+      "type": "header",
+      "content": "Subtitle"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_subtitle",
+      "label": "Show subtitle",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle text",
+      "default": "How gut invaders hide, survive, and manipulate your body, backed by science"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Hero image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_hero_image",
+      "label": "Show hero image",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "header",
+      "content": "Text content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_text_block_1",
+      "label": "Show first text block",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "text_block_1",
+      "label": "First text block",
+      "default": "<p>One of the biggest reasons <strong>parasites, fungi, and harmful microbes</strong> go untreated is because they're <em>incredibly good at hiding</em>.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_text_block_2",
+      "label": "Show second text block",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "text_block_2",
+      "label": "Second text block",
+      "default": "<p>These microscopic invaders have evolved sophisticated survival mechanisms that allow them to <strong>evade detection</strong> by both your immune system and conventional testing methods.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_text_block_3",
+      "label": "Show third text block",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "text_block_3",
+      "label": "Third text block",
+      "default": "<p>They create a <strong>slimy protective shield</strong> around themselves called a biofilm, making them nearly impossible to eliminate with standard treatments.</p>"
+    },
+    {
+      "type": "range",
+      "id": "body_text_size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Body text size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "body_text_color",
+      "label": "Body text color",
+      "default": "#444444"
+    },
+    {
+      "type": "header",
+      "content": "Second image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_second_image",
+      "label": "Show second image",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "second_image",
+      "label": "Second image"
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta",
+      "label": "Show CTA button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA button text",
+      "default": "TRY RESILIA RISK-FREE"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA button link"
+    },
+    {
+      "type": "range",
+      "id": "cta_font_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "CTA font size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "cta_border_radius",
+      "min": 0,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "label": "CTA border radius",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "CTA background color",
+      "default": "#FF6B35"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "CTA text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "General styling"
+    },
+    {
+      "type": "color",
+      "id": "content_bg_color",
+      "label": "Content background color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Advertorial section"
+    }
+  ]
+}
+{% endschema %}

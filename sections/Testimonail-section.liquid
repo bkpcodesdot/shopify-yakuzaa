@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% assign ai_gen_id = section.id | replace: '_', '' | downcase %}
 
 <div class="ai-testimonials-{{ ai_gen_id }}">
@@ -138,3 +139,145 @@
   ]
 }
 {% endschema %}
+=======
+{% assign ai_gen_id = section.id | replace: '_', '' | downcase %}
+
+<div class="ai-testimonials-{{ ai_gen_id }}">
+  <div class="ai-testimonials-header-{{ ai_gen_id }}">
+    {% if section.settings.title != blank %}
+      <h2>{{ section.settings.title }}</h2>
+    {% endif %}
+
+    {% if section.settings.subtitle != blank %}
+      <p>{{ section.settings.subtitle }}</p>
+    {% endif %}
+  </div>
+
+  <div class="ai-testimonials-list-{{ ai_gen_id }}">
+    {% if section.settings.testimonial_1 != blank %}
+      <div class="testimonial-item">
+        <blockquote>{{ section.settings.testimonial_1 }}</blockquote>
+        {% if section.settings.author_1 != blank %}
+          <cite>- {{ section.settings.author_1 }}</cite>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.testimonial_2 != blank %}
+      <div class="testimonial-item">
+        <blockquote>{{ section.settings.testimonial_2 }}</blockquote>
+        {% if section.settings.author_2 != blank %}
+          <cite>- {{ section.settings.author_2 }}</cite>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.testimonial_3 != blank %}
+      <div class="testimonial-item">
+        <blockquote>{{ section.settings.testimonial_3 }}</blockquote>
+        {% if section.settings.author_3 != blank %}
+          <cite>- {{ section.settings.author_3 }}</cite>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  .ai-testimonials-{{ ai_gen_id }} {
+    padding: 40px 20px;
+    text-align: center;
+  }
+  .ai-testimonials-header-{{ ai_gen_id }} h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  .ai-testimonials-header-{{ ai_gen_id }} p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 30px;
+  }
+  .ai-testimonials-list-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .ai-testimonials-list-{{ ai_gen_id }} .testimonial-item {
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 16px;
+  }
+  .ai-testimonials-list-{{ ai_gen_id }} .testimonial-item blockquote {
+    margin: 0;
+    font-style: italic;
+  }
+  .ai-testimonials-list-{{ ai_gen_id }} .testimonial-item cite {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+  }
+  @media(min-width: 768px) {
+    .ai-testimonials-list-{{ ai_gen_id }} {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Customer Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "What our customers say"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Real feedback from happy customers"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial_1",
+      "label": "Testimonial 1"
+    },
+    {
+      "type": "text",
+      "id": "author_1",
+      "label": "Author 1"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial_2",
+      "label": "Testimonial 2"
+    },
+    {
+      "type": "text",
+      "id": "author_2",
+      "label": "Author 2"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial_3",
+      "label": "Testimonial 3"
+    },
+    {
+      "type": "text",
+      "id": "author_3",
+      "label": "Author 3"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customer Testimonials",
+      "category": "Testimonials"
+    }
+  ]
+}
+{% endschema %}
+>>>>>>> 9c2b615072302807e4ad7943dd5035b31b10c6a5
