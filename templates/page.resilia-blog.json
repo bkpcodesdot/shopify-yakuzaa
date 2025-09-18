@@ -675,12 +675,7 @@
       "type": "Health-awareness-section",
       "name": "Health awareness campaign",
       "settings": {
-        "banner_bg_color": "#006400",
-        "banner_text_color": "#ffffff",
-        "banner_button_color": "#228b22",
-        "banner_button_text_color": "#ffffff",
-        "banner_button_hover_color": "#32cd32",
-        "heading_part1": "The Hidden Epidemic No One Talks About",
+        "heading_part1": "<p>The Hidden <strong>Epidemic </strong>No One Talks About</p>",
         "highlight_word": "",
         "heading_part2": "",
         "subtitle_text": "<p>Millions of people walk around every day feeling 'off'. <em>Tired, bloated, foggy, and craving sugar.</em> Without ever getting a clear diagnosis.</p>",
