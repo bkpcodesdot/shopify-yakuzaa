@@ -885,20 +885,12 @@
       "type": "affected-section",
       "name": "Advertorial section",
       "settings": {
-        "show_top_bar": true,
-        "top_bar_text": "Take Care Of Yourself",
-        "top_bar_bg_color": "#4CAF50",
-        "top_bar_text_color": "#FFFFFF",
-        "shop_now_text": "SHOP NOW",
-        "shop_now_link": "",
-        "shop_now_bg_color": "#FFFFFF",
-        "shop_now_text_color": "#4CAF50",
         "show_heading": true,
         "heading": "Why Most People Don't Know They're Infected",
         "highlight_text": "Don't Know",
         "heading_size": 36,
-        "heading_color": "#333333",
-        "heading_highlight_color": "#FF6B35",
+        "heading_color": "#000000",
+        "heading_highlight_color": "#e26900",
         "show_subtitle": true,
         "subtitle": "How gut invaders hide, survive, and manipulate your body, backed by science",
         "subtitle_size": 18,
@@ -920,9 +912,9 @@
         "cta_link": "",
         "cta_font_size": 18,
         "cta_border_radius": 8,
-        "cta_bg_color": "#FF6B35",
-        "cta_text_color": "#FFFFFF",
-        "content_bg_color": "#FFFFFF"
+        "cta_bg_color": "#ff6b35",
+        "cta_text_color": "#ffffff",
+        "content_bg_color": "#ffffff"
       }
     }
   },
