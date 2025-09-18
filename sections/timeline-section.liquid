@@ -1,0 +1,466 @@
+{% assign section_id = section.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-timeline-container-{{ section_id }} {
+    max-width: 726px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    position: relative;
+  }
+
+  .ai-timeline-header-{{ section_id }} {
+    margin-bottom: 20px;
+  }
+
+  .ai-timeline-heading-{{ section_id }} {
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: bold;
+    margin: 0 0 20px;
+    color: {{ section.settings.heading_color }};
+  }
+
+  .ai-timeline-heading-{{ section_id }} strong {
+    color: {{ section.settings.highlight_color }};
+  }
+
+  .ai-timeline-description-{{ section_id }} {
+    font-size: {{ section.settings.description_size }}px;
+    color: {{ section.settings.description_color }};
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .ai-timeline-main-{{ section_id }} {
+    display: flex;
+    gap: 40px;
+    margin: 10px 0;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .ai-timeline-line-container-{{ section_id }} {
+    position: absolute;
+    left: 0;
+    top:-27px;
+    width: {{ section.settings.circle_size }}px;
+  }
+
+  .ai-timeline-cards-container-{{ section_id }} {
+    flex: 1;
+    margin-left: calc({{ section.settings.circle_size }}px + 40px);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .ai-timeline-circle-{{ section_id }} {
+    width: {{ section.settings.circle_size }}px;
+    height: {{ section.settings.circle_size }}px;
+    border-radius: 50%;
+    background-color: {{ section.settings.circle_background }};
+    border: {{ section.settings.circle_border_width }}px solid {{ section.settings.circle_border_color }};
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-timeline-circle-inner-{{ section_id }} {
+    width: calc({{ section.settings.circle_size }}px - {{ section.settings.circle_border_width | times: 4 }}px);
+    height: calc({{ section.settings.circle_size }}px - {{ section.settings.circle_border_width | times: 4 }}px);
+    border-radius: 50%;
+    background-color: {{ section.settings.circle_inner_color }};
+  }
+
+  .ai-timeline-line-{{ section_id }} {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: {{ section.settings.line_width }}px;
+    background-color: {{ section.settings.line_color }};
+    z-index: 1;
+  }
+
+  .ai-timeline-card-{{ section_id }} {
+    background-color: {{ section.settings.card_background }};
+    border: 2px solid {{ section.settings.card_border_color }};
+    border-radius: {{ section.settings.card_border_radius }}px;
+    padding: 20px 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .ai-timeline-card-header-{{ section_id }} {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .ai-timeline-card-title-{{ section_id }} {
+    font-size: {{ section.settings.card_title_size }}px;
+    font-weight: bold;
+    color: {{ section.settings.card_title_color }};
+    margin: 0;
+  }
+
+  .ai-timeline-card-description-{{ section_id }} {
+    font-size: {{ section.settings.card_description_size }}px;
+    color: {{ section.settings.card_description_color }};
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .ai-timeline-cta-{{ section_id }} {
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  .ai-timeline-button-{{ section_id }} {
+    display: block;
+    padding: 16px 32px;
+    background-color: {{ section.settings.button_background }};
+    color: {{ section.settings.button_text_color }};
+    border-radius: {{ section.settings.button_border_radius }}px;
+    font-weight: bold;
+    font-size: {{ section.settings.button_text_size }}px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .ai-timeline-button-{{ section_id }}:hover {
+    background-color: {{ section.settings.button_hover_background }};
+    color:#ee882f;
+    border:1px solid #ee882f;
+  }
+
+  @media(max-width:768px){
+    .ai-timeline-main-{{ section_id }} {
+      flex-direction: column;
+    }
+    .ai-timeline-cards-container-{{ section_id }} {
+      margin-left: 0;
+    }
+    .ai-timeline-line-container-{{ section_id }} {
+      left: -20px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-timeline-container-{{ section_id }}">
+  <div class="ai-timeline-header-{{ section_id }}">
+    {% if section.settings.heading != blank %}
+      <h2 class="ai-timeline-heading-{{ section_id }}">
+        {{ section.settings.heading | replace: '<span>', '<span class="highlight">' }}
+      </h2>
+    {% endif %}
+    {% if section.settings.description != blank %}
+      <div class="ai-timeline-description-{{ section_id }}">
+        {{ section.settings.description }}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="ai-timeline-main-{{ section_id }}">
+    <div class="ai-timeline-line-container-{{ section_id }}" data-line></div>
+    <div class="ai-timeline-cards-container-{{ section_id }}">
+      {% for block in section.blocks %}
+        <div class="ai-timeline-card-{{ section_id }}" data-card>
+          <div class="ai-timeline-card-header-{{ section_id }}">
+            {% if block.settings.icon != blank %}
+              <img src="{{ block.settings.icon | image_url: width: 60 }}" alt="Step icon" style="width:30px;height:30px;">
+            {% endif %}
+            <h3 class="ai-timeline-card-title-{{ section_id }}">{{ block.settings.title }}</h3>
+          </div>
+          <p class="ai-timeline-card-description-{{ section_id }}">{{ block.settings.text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% if section.settings.button_text != blank %}
+    <div class="ai-timeline-cta-{{ section_id }}">
+      <a href="{{ section.settings.button_link }}" class="ai-timeline-button-{{ section_id }}">
+        {{ section.settings.button_text }}
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+<script>
+  (function(){
+    const section = document.querySelector('.ai-timeline-container-{{ section_id }}');
+    if(!section) return;
+    const lineContainer = section.querySelector('[data-line]');
+    const cards = section.querySelectorAll('[data-card]');
+    lineContainer.innerHTML = '';
+    cards.forEach((card, i) => {
+      const top = card.offsetTop + card.offsetHeight/2;
+      const circle = document.createElement('div');
+      circle.className = 'ai-timeline-circle-{{ section_id }}';
+      circle.style.top = `${top - {{ section.settings.circle_size | divided_by:2 }}}px`;
+      circle.innerHTML = '<div class="ai-timeline-circle-inner-{{ section_id }}"></div>';
+      lineContainer.appendChild(circle);
+      if(i < cards.length - 1){
+        const next = cards[i+1];
+        const nextTop = next.offsetTop + next.offsetHeight/2;
+        const line = document.createElement('div');
+        line.className = 'ai-timeline-line-{{ section_id }}';
+        line.style.top = `${top}px`;
+        line.style.height = `${nextTop - top}px`;
+        lineContainer.appendChild(line);
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Animated Timeline",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Your Resilia <span>Reset</span> Timeline</p>"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight color",
+      "default": "#FF6B35"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 36
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Follow our proven timeline to experience relief and recovery. Each step is designed to support your journey back to wellness.</p>"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Description size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "circle_background",
+      "label": "Circle background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "circle_border_color",
+      "label": "Circle border color",
+      "default": "#4CAF50"
+    },
+    {
+      "type": "color",
+      "id": "circle_inner_color",
+      "label": "Circle inner color",
+      "default": "#4CAF50"
+    },
+    {
+      "type": "range",
+      "id": "circle_size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Circle size",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "circle_border_width",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "unit": "px",
+      "label": "Circle border width",
+      "default": 3
+    },
+    {
+      "type": "color",
+      "id": "line_color",
+      "label": "Line color",
+      "default": "#4CAF50"
+    },
+    {
+      "type": "range",
+      "id": "line_width",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Line width",
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#F1F8E9"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border color",
+      "default": "#4CAF50"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card title color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "card_title_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Card title size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "card_description_color",
+      "label": "Card description color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "card_description_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Card description size",
+      "default": 14
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "TRY RESILIA RISK-FREE"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#FF6B35"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button hover background",
+      "default": "#e65c25"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Button text size",
+      "default": 16
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Timeline Step",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Step icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step title",
+          "default": "Week 1–2: Relief Begins"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Step description",
+          "default": "Experience noticeable relief as Resilia begins to reset your system."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Animated Timeline",
+      "blocks": [
+        { "type": "step" },
+        { "type": "step" },
+        { "type": "step" }
+      ]
+    }
+  ]
+}
+{% endschema %}
