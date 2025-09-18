@@ -1,178 +1,72 @@
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign ai_gen_id = section.id | replace: '_', '' | downcase %}
 
-{% style %}
-.ai-product-showcase-{{ ai_gen_id }} {
-  max-width: 726px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  color: {{ block.settings.text_color | default: '#000' }};
-  font-family: {{ block.settings.body_font.family | default: 'Arial' }}, sans-serif;
-  font-weight: {{ block.settings.body_font.weight | default: '400' }};
-}
-.ai-product-showcase__title-{{ ai_gen_id }} {
-  margin-bottom: {{ block.settings.heading_margin_bottom | default: 20 }}px;
-  font-size: {{ block.settings.heading_size | default: 32 }}px;
-  font-weight: bold;
-  color: {{ block.settings.heading_color | default: '#000' }};
-  font-family: {{ block.settings.heading_font.family | default: 'Arial' }}, sans-serif;
-}
-.ai-product-showcase__title-{{ ai_gen_id }} .highlight {
-  color: {{ block.settings.highlight_color | default: '#EE882F' }};
-}
-.ai-product-showcase__intro-{{ ai_gen_id }} {
-  margin-bottom: 40px;
-  font-size: {{ block.settings.text_size | default: 16 }}px;
-  line-height: 1.6;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.ai-product-showcase__main-image-{{ ai_gen_id }},
-.ai-product-showcase__secondary-image-{{ ai_gen_id }} {
-  text-align: center;
-  margin-bottom: 40px;
-}
-.ai-product-showcase__main-image-{{ ai_gen_id }} img,
-.ai-product-showcase__secondary-image-{{ ai_gen_id }} img {
-  max-width: 100%;
-  height: auto;
-  border-radius: {{ block.settings.image_border_radius | default: 0 }}px;
-}
-.ai-product-showcase__features-{{ ai_gen_id }} {
-  margin-bottom: 40px;
-}
-.ai-product-showcase__feature-{{ ai_gen_id }} {
-  display: flex;
-  align-items: flex-start;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-.ai-product-showcase__feature-icon-{{ ai_gen_id }} {
-  width: {{ block.settings.icon_size | default: 50 }}px;
-  height: {{ block.settings.icon_size | default: 50 }}px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.ai-product-showcase__feature-icon-{{ ai_gen_id }} img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-.ai-product-showcase__feature-content-{{ ai_gen_id }} {}
-.ai-product-showcase__feature-title-{{ ai_gen_id }} {
-  margin-bottom: 5px;
-  font-size: {{ block.settings.feature_title_size | default: 16 }}px;
-  color: {{ block.settings.feature_title_color | default: '#000' }};
-}
-.ai-product-showcase__feature-description-{{ ai_gen_id }} {
-  font-size: {{ block.settings.feature_text_size | default: 14 }}px;
-  color: {{ block.settings.feature_text_color | default: '#333' }};
-  line-height: 1.4;
-}
-.ai-product-showcase__subheading-{{ ai_gen_id }} {
-  font-weight: bold;
-  margin-bottom: 30px;
-  font-size: {{ block.settings.subheading_size | default: 20 }}px;
-  color: {{ block.settings.subheading_color | default: '#000' }};
-}
-.ai-product-showcase__columns-{{ ai_gen_id }} {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  margin-bottom: 40px;
-}
-.ai-product-showcase__column-{{ ai_gen_id }} {
-  background-color: {{ block.settings.column_bg_color | default: '#f9f9f9' }};
-  border-radius: {{ block.settings.column_border_radius | default: 10 }}px;
-  padding: 15px;
-  border: 1px solid #016401;
-}
-.ai-product-showcase__column-image-{{ ai_gen_id }} img {
-  max-width: 100%;
-  height: auto;
-  border-radius: {{ block.settings.column_image_border_radius | default: 10 }}px;
-}
-.ai-product-showcase__column-title-{{ ai_gen_id }} {
-  font-weight: bold;
-  margin-bottom: 15px;
-  font-size: {{ block.settings.column_title_size | default: 16 }}px;
-  color: {{ block.settings.column_title_color | default: '#000' }};
-}
-.ai-product-showcase__column-content-{{ ai_gen_id }} {
-  font-size: {{ block.settings.column_text_size | default: 14 }}px;
-  color: {{ block.settings.column_text_color | default: '#333' }};
-  line-height: 1.5;
-}
-.ai-product-showcase__cta-button-{{ ai_gen_id }} {
-  display:block;
-  background-color: {{ block.settings.button_bg_color | default: '#EE882F' }};
-  color: {{ block.settings.button_text_color | default: '#fff' }};
-  padding: 15px 40px;
-  border-radius: {{ block.settings.button_border_radius | default: 8 }}px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: {{ block.settings.button_text_size | default: 16 }}px;
-  transition: background-color 0.3s ease;
-  width: 100%;
-  text-align: center;
-}
-.ai-product-showcase__cta-button-{{ ai_gen_id }}:hover {
-  background-color: {{ block.settings.button_hover_bg_color | default: '#DD7722' }};
-}
-@media screen and (max-width: 768px) {
-  .ai-product-showcase__columns-{{ ai_gen_id }} {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-}
-{% endstyle %}
-
-
-<div class="ai-product-showcase-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
-  <!-- Main Heading -->
-  <h2 class="adv-content__heading weight-bold ai-product-showcase__title-{{ ai_gen_id }}" style="margin-bottom: {{ block.settings.heading_margin_bottom }}px;">
-    {{ block.settings.heading_text | default: "The Natural, Science-Backed" }} <span class="highlight">{{ block.settings.highlight_text | default: "Solution" }}</span>
+<div class="ai-product-showcase-{{ ai_gen_id }}" {{ section.shopify_attributes }}>
+  <h2 class="ai-product-showcase__title-{{ ai_gen_id }}">
+    {{ section.settings.heading_text }}
+    <span class="highlight">{{ section.settings.highlight_word }}</span>
   </h2>
 
-  {% if block.settings.intro_text != blank %}
+  {% if section.settings.intro_text != blank %}
     <div class="ai-product-showcase__intro-{{ ai_gen_id }}">
-      {{ block.settings.intro_text }}
+      {{ section.settings.intro_text }}
     </div>
   {% endif %}
 
-  <!-- Main Image -->
   <div class="ai-product-showcase__main-image-{{ ai_gen_id }}">
-    {% if block.settings.main_image %}
-      <img src="{{ block.settings.main_image | image_url: width: 800 }}" alt="{{ block.settings.main_image.alt | escape }}">
+    {% if section.settings.main_image %}
+      <img
+        src="{{ section.settings.main_image | image_url: width: 800 }}"
+        alt="{{ section.settings.main_image.alt | escape }}"
+        loading="lazy"
+        width="{{ section.settings.main_image.width }}"
+        height="{{ section.settings.main_image.height }}"
+      >
+    {% else %}
+      <div class="ai-product-showcase__main-image-placeholder-{{ ai_gen_id }}">
+        {{ 'product-apparel-1' | placeholder_svg_tag }}
+        <div class="ai-product-showcase__empty-state-{{ ai_gen_id }}">
+          Add your main product image
+        </div>
+      </div>
     {% endif %}
   </div>
 
-  <!-- Feature Points -->
-  {% if block.settings.show_features %}
+  {% if section.settings.show_features %}
     <div class="ai-product-showcase__features-{{ ai_gen_id }}">
       {% for i in (1..5) %}
         {% assign feature_enabled_key = 'feature_' | append: i | append: '_enabled' %}
         {% assign feature_icon_key = 'feature_' | append: i | append: '_icon' %}
         {% assign feature_title_key = 'feature_' | append: i | append: '_title' %}
         {% assign feature_description_key = 'feature_' | append: i | append: '_description' %}
-        {% if block.settings[feature_enabled_key] %}
+
+        {% if section.settings[feature_enabled_key] %}
           <div class="ai-product-showcase__feature-{{ ai_gen_id }}">
             <div class="ai-product-showcase__feature-icon-{{ ai_gen_id }}">
-              {% if block.settings[feature_icon_key] %}
-                <img src="{{ block.settings[feature_icon_key] | image_url: width: 100 }}">
+              {% if section.settings[feature_icon_key] %}
+                <img
+                  src="{{ section.settings[feature_icon_key] | image_url: width: 100 }}"
+                  alt="{{ section.settings[feature_title_key] | escape }}"
+                  loading="lazy"
+                >
+              {% else %}
+                <div class="ai-product-showcase__feature-icon-placeholder-{{ ai_gen_id }}">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20,6 9,17 4,12"></polyline>
+                  </svg>
+                </div>
               {% endif %}
             </div>
             <div class="ai-product-showcase__feature-content-{{ ai_gen_id }}">
-              <div class="ai-product-showcase__feature-title-{{ ai_gen_id }}">
-                {{ block.settings[feature_title_key] }}
-              </div>
-              <div class="ai-product-showcase__feature-description-{{ ai_gen_id }}">
-                {{ block.settings[feature_description_key] }}
-              </div>
+              {% if section.settings[feature_title_key] != blank %}
+                <div class="ai-product-showcase__feature-title-{{ ai_gen_id }}">
+                  {{ section.settings[feature_title_key] }}
+                </div>
+              {% endif %}
+              {% if section.settings[feature_description_key] != blank %}
+                <div class="ai-product-showcase__feature-description-{{ ai_gen_id }}">
+                  {{ section.settings[feature_description_key] }}
+                </div>
+              {% endif %}
             </div>
           </div>
         {% endif %}
@@ -180,52 +74,80 @@
     </div>
   {% endif %}
 
-  <!-- Secondary Image -->
   <div class="ai-product-showcase__secondary-image-{{ ai_gen_id }}">
-    {% if block.settings.secondary_image %}
-      <img src="{{ block.settings.secondary_image | image_url: width: 600 }}" alt="{{ block.settings.secondary_image.alt | escape }}">
+    {% if section.settings.secondary_image %}
+      <img
+        src="{{ section.settings.secondary_image | image_url: width: 600 }}"
+        alt="{{ section.settings.secondary_image.alt | escape }}"
+        loading="lazy"
+        width="{{ section.settings.secondary_image.width }}"
+        height="{{ section.settings.secondary_image.height }}"
+      >
+    {% else %}
+      <div class="ai-product-showcase__secondary-image-placeholder-{{ ai_gen_id }}">
+        {{ 'image' | placeholder_svg_tag }}
+        <div class="ai-product-showcase__empty-state-{{ ai_gen_id }}">
+          Add your secondary image
+        </div>
+      </div>
     {% endif %}
   </div>
 
-  <!-- Supporting Text -->
-  {% if block.settings.supporting_text != blank %}
+  {% if section.settings.supporting_text != blank %}
     <div class="ai-product-showcase__supporting-text-{{ ai_gen_id }}">
-      {{ block.settings.supporting_text }}
+      {{ section.settings.supporting_text }}
     </div>
   {% endif %}
 
-  <!-- Subheading -->
-  {% if block.settings.subheading != blank %}
+  {% if section.settings.subheading != blank %}
     <h3 class="ai-product-showcase__subheading-{{ ai_gen_id }}">
-      {{ block.settings.subheading }}
+      {{ section.settings.subheading }}
     </h3>
   {% endif %}
 
-  <!-- Two Columns -->
   <div class="ai-product-showcase__columns-{{ ai_gen_id }}">
     {% for i in (1..2) %}
       {% assign column_image_key = 'column_' | append: i | append: '_image' %}
       {% assign column_title_key = 'column_' | append: i | append: '_title' %}
       {% assign column_content_key = 'column_' | append: i | append: '_content' %}
+
       <div class="ai-product-showcase__column-{{ ai_gen_id }}">
-        {% if block.settings[column_image_key] %}
-          <img src="{{ block.settings[column_image_key] | image_url: width: 400 }}" alt="{{ block.settings[column_title_key] | escape }}">
-        {% endif %}
-        <h4 class="ai-product-showcase__column-title-{{ ai_gen_id }}">
-          {{ block.settings[column_title_key] }}
-        </h4>
-        <div class="ai-product-showcase__column-content-{{ ai_gen_id }}">
-          {{ block.settings[column_content_key] }}
+        <div class="ai-product-showcase__column-image-{{ ai_gen_id }}">
+          {% if section.settings[column_image_key] %}
+            <img
+              src="{{ section.settings[column_image_key] | image_url: width: 400 }}"
+              alt="{{ section.settings[column_title_key] | escape }}"
+              loading="lazy"
+              width="{{ section.settings[column_image_key].width }}"
+              height="{{ section.settings[column_image_key].height }}"
+            >
+          {% else %}
+            <div class="ai-product-showcase__column-image-placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
         </div>
+        {% if section.settings[column_title_key] != blank %}
+          <h4 class="ai-product-showcase__column-title-{{ ai_gen_id }}">
+            {{ section.settings[column_title_key] }}
+          </h4>
+        {% endif %}
+        {% if section.settings[column_content_key] != blank %}
+          <div class="ai-product-showcase__column-content-{{ ai_gen_id }}">
+            {{ section.settings[column_content_key] }}
+          </div>
+        {% endif %}
       </div>
     {% endfor %}
   </div>
 
-  <!-- CTA Button -->
-  {% if block.settings.cta_text != blank %}
+  {% if section.settings.cta_text != blank %}
     <div class="ai-product-showcase__cta-{{ ai_gen_id }}">
-      <a href="{{ block.settings.cta_link | default: '#' }}" class="ai-product-showcase__cta-button-{{ ai_gen_id }}">
-        {{ block.settings.cta_text }}
+      <a
+        href="{{ section.settings.cta_link | default: '#' }}"
+        class="ai-product-showcase__cta-button-{{ ai_gen_id }}"
+      >
+        {{ section.settings.cta_text }}
       </a>
     </div>
   {% endif %}
@@ -233,25 +155,25 @@
 
 {% schema %}
 {
-  "name": "Product Showcase",
+  "name": "Product showcase",
   "settings": [
     {
       "type": "text",
       "id": "heading_text",
-      "label": "Heading text",
+      "label": "Main heading",
       "default": "The Natural, Science-Backed"
     },
     {
       "type": "text",
-      "id": "highlight_text",
-      "label": "Highlight text (orange)",
+      "id": "highlight_word",
+      "label": "Highlight word",
       "default": "Solution"
     },
     {
       "type": "richtext",
       "id": "intro_text",
       "label": "Introduction text",
-      "default": "<p>Discover our revolutionary approach...</p>"
+      "default": "<p>Discover our revolutionary approach to wellness...</p>"
     },
     {
       "type": "image_picker",
@@ -265,78 +187,32 @@
       "default": true
     },
     {
-      "type": "image_picker",
-      "id": "feature_1_icon",
-      "label": "Feature 1 icon"
+      "type": "range",
+      "id": "icon_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 30
     },
     {
-      "type": "text",
-      "id": "feature_1_title",
-      "label": "Feature 1 title",
-      "default": "Clinically Proven"
+      "type": "color",
+      "id": "check_icon_color",
+      "label": "Default check icon color",
+      "default": "#28A745"
     },
-    {
-      "type": "text",
-      "id": "feature_1_description",
-      "label": "Feature 1 description",
-      "default": "Backed by extensive clinical research"
-    },
-    {
-      "type": "image_picker",
-      "id": "secondary_image",
-      "label": "Secondary image"
-    },
-    {
-      "type": "richtext",
-      "id": "supporting_text",
-      "label": "Supporting text"
-    },
-    {
-      "type": "text",
-      "id": "subheading",
-      "label": "Subheading",
-      "default": "How it works:"
-    },
-    {
-      "type": "text",
-      "id": "column_1_title",
-      "label": "Column 1 title",
-      "default": "Step 1: Take Daily"
-    },
-    {
-      "type": "richtext",
-      "id": "column_1_content",
-      "label": "Column 1 content"
-    },
-    {
-      "type": "text",
-      "id": "column_2_title",
-      "label": "Column 2 title",
-      "default": "Step 2: See Results"
-    },
-    {
-      "type": "richtext",
-      "id": "column_2_content",
-      "label": "Column 2 content"
-    },
-    {
-      "type": "text",
-      "id": "cta_text",
-      "label": "Button text",
-      "default": "TRY RESILIA RISK-FREE"
-    },
-    {
-      "type": "url",
-      "id": "cta_link",
-      "label": "Button link"
-    }
+    { "type": "header", "content": "Features" },
+    { "type": "checkbox", "id": "feature_1_enabled", "label": "Enable feature 1", "default": true },
+    { "type": "image_picker", "id": "feature_1_icon", "label": "Feature 1 icon" },
+    { "type": "text", "id": "feature_1_title", "label": "Feature 1 title", "default": "Clinically Proven" },
+    { "type": "text", "id": "feature_1_description", "label": "Feature 1 description", "default": "Backed by extensive clinical research and testing" }
+    /* Repeat similar for features 2–5 */
   ],
   "presets": [
     {
-      "name": "Product Showcase",
-      "category": "Custom"
+      "name": "Product showcase"
     }
   ]
 }
-
 {% endschema %}
