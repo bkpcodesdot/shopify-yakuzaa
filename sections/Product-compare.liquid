@@ -1,142 +1,250 @@
-<style>
-/* Section wrapper */
-.ai-comparison-table-{{ section.id }} {
-  background-color: {{ section.settings.section_background_color }};
-  padding: {{ section.settings.section_padding }}px;
-  margin: 0 auto;
-  max-width: 100%;
-}
+{% assign ai_gen_id = section.id | replace: '_', '' | downcase %}
 
-/* Container */
-.ai-comparison-table__container-{{ section.id }} {
-  max-width: 726px;
-  margin: 0 auto;
-}
+<div class="ai-comparison-table-{{ ai_gen_id }}" {{ section.shopify_attributes }}>
+  <div class="ai-comparison-table__container-{{ ai_gen_id }}">
+    <div class="ai-comparison-table__header-{{ ai_gen_id }}">
+      {% if section.settings.heading != blank %}
+        <h2 class="ai-comparison-table__heading-{{ ai_gen_id }}">{{ section.settings.heading }}</h2>
+      {% endif %}
+      
+      {% if section.settings.subheading != blank %}
+        <h3 class="ai-comparison-table__subheading-{{ ai_gen_id }}">{{ section.settings.subheading }}</h3>
+      {% endif %}
+      
+      {% if section.settings.intro_text != blank %}
+        <div class="ai-comparison-table__intro-{{ ai_gen_id }}">{{ section.settings.intro_text }}</div>
+      {% endif %}
+    </div>
 
-/* Heading */
-.ai-comparison-table__heading-{{ section.id }} {
-  font-size: {{ section.settings.heading_size }}px;
-  color: {{ section.settings.heading_color }};
-  margin-bottom: 16px;
-}
-
-/* Subheading */
-.ai-comparison-table__subheading-{{ section.id }} {
-  font-size: {{ section.settings.subheading_size }}px;
-  color: {{ section.settings.subheading_color }};
-  margin-bottom: 24px;
-}
-
-/* Intro */
-.ai-comparison-table__intro-{{ section.id }} {
-  font-size: {{ section.settings.intro_size }}px;
-  color: {{ section.settings.intro_color }};
-  margin-bottom: 40px;
-}
-
-/* Table */
-.ai-comparison-table__table-wrapper-{{ section.id }} {
-  overflow-x: auto;
-  margin-bottom: 40px;
-  border: 1px solid {{ section.settings.table_border_color }};
-  border-radius: {{ section.settings.table_border_radius }}px;
-}
-
-.ai-comparison-table__table-{{ section.id }} {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: center;
-}
-
-.ai-comparison-table__row-{{ section.id }} {
-  display: grid;
-  grid-template-columns: 2.5fr 4fr 2.5fr;
-  border-bottom: 1px solid {{ section.settings.table_border_color }};
-}
-
-.ai-comparison-table__row-{{ section.id }}:nth-child(even) {
-  {% if section.settings.enable_alternating_rows %}
-  background-color: {{ section.settings.table_row_alt_background }};
-  {% endif %}
-}
-
-.ai-comparison-table__cell-{{ section.id }} {
-  padding: 16px;
-  color: {{ section.settings.table_text_color }};
-}
-
-.ai-comparison-table__cell--product-{{ section.id }} {
-  background-color: {{ section.settings.product_column_background }};
-}
-
-.ai-comparison-table__cell--feature-{{ section.id }} {
-  background-color: {{ section.settings.feature_column_background }};
-}
-
-.ai-comparison-table__cell--competitor-{{ section.id }} {
-  background-color: {{ section.settings.competitor_column_background }};
-}
-
-/* Buttons */
-.ai-comparison-table__button-{{ section.id }} {
-  display: inline-block;
-  padding: {{ section.settings.button_padding }}px;
-  background-color: {{ section.settings.button_background_color }};
-  color: {{ section.settings.button_text_color }};
-  border-radius: {{ section.settings.button_border_radius }}px;
-  font-size: {{ section.settings.button_font_size }}px;
-  text-decoration: none;
-}
-.ai-comparison-table__button-{{ section.id }}:hover {
-  background-color: {{ section.settings.button_hover_color }};
-  color: {{ section.settings.button_hover_text_color }};
-}
-</style>
-
-<div class="ai-comparison-table-{{ section.id }}">
-  <div class="ai-comparison-table__container-{{ section.id }}">
-    {% if section.settings.heading_text != blank %}
-      <h2 class="ai-comparison-table__heading-{{ section.id }}">{{ section.settings.heading_text }}</h2>
-    {% endif %}
-    {% if section.settings.subheading_text != blank %}
-      <h3 class="ai-comparison-table__subheading-{{ section.id }}">{{ section.settings.subheading_text }}</h3>
-    {% endif %}
-    {% if section.settings.intro_text != blank %}
-      <div class="ai-comparison-table__intro-{{ section.id }}">{{ section.settings.intro_text }}</div>
-    {% endif %}
-
-    <div class="ai-comparison-table__table-wrapper-{{ section.id }}">
-      <table class="ai-comparison-table__table-{{ section.id }}">
+    <div class="ai-comparison-table__table-wrapper-{{ ai_gen_id }}">
+      <table class="ai-comparison-table__table-{{ ai_gen_id }}">
         <tbody>
-          {% for block in section.blocks %}
-            <tr class="ai-comparison-table__row-{{ section.id }}">
-              <td class="ai-comparison-table__cell--product-{{ section.id }}">
-                {% if block.settings.product_image %}
-                  <img src="{{ block.settings.product_image | image_url: width: 65 }}" alt="{{ block.settings.product_image.alt }}">
-                {% else %}
-                  <div style="width:65px; height:65px; background:#f4f4f4;"></div>
-                {% endif %}
-              </td>
-              <td class="ai-comparison-table__cell--feature-{{ section.id }}">
-                {{ block.settings.feature_1 }}
-              </td>
-              <td class="ai-comparison-table__cell--competitor-{{ section.id }}">
-                {% if block.settings.competitor_1 == 'check' %}✅{% else %}❌{% endif %}
-              </td>
-            </tr>
+          <tr class="ai-comparison-table__row-{{ ai_gen_id }}">
+            <td class="ai-comparison-table__cell-{{ ai_gen_id }} ai-comparison-table__cell--product-{{ ai_gen_id }}">
+              {% if section.settings.product_image %}
+                <img 
+                  src="{{ section.settings.product_image | image_url: width: 400 }}" 
+                  alt="{{ section.settings.product_image.alt | escape }}"
+                  class="ai-comparison-table__product-image-{{ ai_gen_id }}"
+                  loading="lazy"
+                  width="{{ section.settings.product_image.width }}"
+                  height="{{ section.settings.product_image.height }}"
+                >
+              {% else %}
+                <div class="ai-comparison-table__product-placeholder-{{ ai_gen_id }}">
+                  {{ 'product-1' | placeholder_svg_tag }}
+                </div>
+              {% endif %}
+            </td>
+            <td class="ai-comparison-table__cell-{{ ai_gen_id }} ai-comparison-table__cell--feature-{{ ai_gen_id }}">
+              <span>Feature</span>
+            </td>
+            <td class="ai-comparison-table__cell-{{ ai_gen_id }} ai-comparison-table__cell--competitor-{{ ai_gen_id }}">
+              <span>Other Brands</span>
+            </td>
+          </tr>
+
+          {% for i in (1..8) %}
+            {% assign feature_key = 'feature_' | append: i %}
+            {% assign competitor_key = 'competitor_' | append: i %}
+            {% assign feature_text = section.settings[feature_key] %}
+            {% assign competitor_value = section.settings[competitor_key] %}
+            
+            {% if feature_text != blank %}
+              <tr class="ai-comparison-table__row-{{ ai_gen_id }}">
+                <td class="ai-comparison-table__cell-{{ ai_gen_id }} ai-comparison-table__cell--product-{{ ai_gen_id }}">
+                  <span class="ai-comparison-table__icon-{{ ai_gen_id }} ai-comparison-table__icon--check-{{ ai_gen_id }}">✅</span>
+                </td>
+                <td class="ai-comparison-table__cell-{{ ai_gen_id }} ai-comparison-table__cell--feature-{{ ai_gen_id }}">
+                  {{ feature_text }}
+                </td>
+                <td class="ai-comparison-table__cell-{{ ai_gen_id }} ai-comparison-table__cell--competitor-{{ ai_gen_id }}">
+                  {% if competitor_value == 'check' %}
+                    <span class="ai-comparison-table__icon-{{ ai_gen_id }} ai-comparison-table__icon--check-{{ ai_gen_id }}">✅</span>
+                  {% else %}
+                    <span class="ai-comparison-table__icon-{{ ai_gen_id }} ai-comparison-table__icon--cross-{{ ai_gen_id }}">❌</span>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endif %}
           {% endfor %}
         </tbody>
       </table>
     </div>
 
     {% if section.settings.button_text != blank %}
-      <a href="{{ section.settings.button_link }}" class="ai-comparison-table__button-{{ section.id }}">
-        {{ section.settings.button_text }}
-      </a>
+      <div class="ai-comparison-table__button-wrapper-{{ ai_gen_id }}">
+        <a href="{{ section.settings.button_link }}" class="ai-comparison-table__button-{{ ai_gen_id }}">
+          {{ section.settings.button_text }}
+        </a>
+      </div>
     {% endif %}
   </div>
 </div>
 
+{% style %}
+  /* Include your entire CSS here exactly as in the block version, just replace "block" with "section" in settings references */
+  .ai-comparison-table-{{ ai_gen_id }} {
+    background-color: {{ section.settings.section_background_color }};
+    padding: {{ section.settings.section_padding }}px;
+    margin:0 auto;
+  }
+
+  .ai-comparison-table__container-{{ ai_gen_id }} {
+    max-width: 726px;
+    margin: 0 auto;
+  }
+
+  .ai-comparison-table__header-{{ ai_gen_id }} {
+    text-align: {{ section.settings.text_alignment }};
+    margin-bottom: 40px;
+  }
+
+  .ai-comparison-table__heading-{{ ai_gen_id }} {
+    font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
+    font-weight: {{ section.settings.heading_font.weight }};
+    font-size: {{ section.settings.heading_size }}px;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 16px 0;
+    line-height: 1.2;
+  }
+
+  .ai-comparison-table__heading-{{ ai_gen_id }} span {
+    color: {{ section.settings.heading_accent_color }};
+  }
+
+  .ai-comparison-table__subheading-{{ ai_gen_id }} {
+    font-family: {{ section.settings.subheading_font.family }}, {{ section.settings.subheading_font.fallback_families }};
+    font-weight: {{ section.settings.subheading_font.weight }};
+    font-size: {{ section.settings.subheading_size }}px;
+    color: {{ section.settings.subheading_color }};
+    margin: 0 0 24px 0;
+    line-height: 1.4;
+  }
+
+  .ai-comparison-table__intro-{{ ai_gen_id }} {
+    font-family: {{ section.settings.intro_font.family }}, {{ section.settings.intro_font.fallback_families }};
+    font-weight: {{ section.settings.intro_font.weight }};
+    font-size: {{ section.settings.intro_size }}px;
+    color: {{ section.settings.intro_color }};
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+
+  .ai-comparison-table__table-wrapper-{{ ai_gen_id }} {
+    overflow-x: auto;
+    margin-bottom: 40px;
+    border: 1px solid #016401;
+    border-radius: 5px;
+  }
+
+  .ai-comparison-table__table-{{ ai_gen_id }} {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid {{ section.settings.table_border_color }};
+    border-radius: {{ section.settings.table_border_radius }}px;
+    overflow: hidden;
+    text-align:center;
+  }
+
+  .ai-comparison-table__row-{{ ai_gen_id }} {
+    border-bottom: 1px solid {{ section.settings.table_border_color }};
+    display: grid;
+    grid-template-columns: 2.5fr 4fr 2.5fr;
+    align-items:center;
+    justify-content: center;
+  }
+
+  .ai-comparison-table__row-{{ ai_gen_id }}:last-child {
+    border-bottom: none;
+  }
+
+  {% if section.settings.enable_alternating_rows %}
+    .ai-comparison-table__row-{{ ai_gen_id }}:nth-child(even) {
+      background-color: {{ section.settings.table_row_alt_background }};
+    }
+  {% endif %}
+
+  .ai-comparison-table__cell-{{ ai_gen_id }} {
+    padding: 16px;
+    vertical-align: middle;
+    font-family: {{ section.settings.table_font.family }}, {{ section.settings.table_font.fallback_families }};
+    font-weight: {{ section.settings.table_font.weight }};
+    font-size: {{ section.settings.table_font_size }}px;
+    color: {{ section.settings.table_text_color }};
+  }
+
+  .ai-comparison-table__cell--product-{{ ai_gen_id }} {
+    text-align: center;
+    background-color: {{ section.settings.product_column_background }};
+  }
+
+  .ai-comparison-table__cell--feature-{{ ai_gen_id }} {
+    background-color: {{ section.settings.feature_column_background }};
+  }
+
+  .ai-comparison-table__cell--competitor-{{ ai_gen_id }} {
+    text-align: center;
+    background-color: {{ section.settings.competitor_column_background }};
+  }
+
+  .ai-comparison-table__product-image-{{ ai_gen_id }} {
+    width: 100%;
+    max-width: 65px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .ai-comparison-table__icon-{{ ai_gen_id }} {
+    font-size:17px;
+    font-weight: bold;
+  }
+
+  .ai-comparison-table__icon--check-{{ ai_gen_id }} {
+    color: {{ section.settings.check_icon_color }};
+  }
+
+  .ai-comparison-table__icon--cross-{{ ai_gen_id }} {
+    color: {{ section.settings.cross_icon_color }};
+  }
+
+  .ai-comparison-table__button-wrapper-{{ ai_gen_id }} {
+    text-align: {{ section.settings.text_alignment }};
+  }
+
+  .ai-comparison-table__button-{{ ai_gen_id }} {
+    display:block;
+    padding: {{ section.settings.button_padding }}px {{ section.settings.button_padding | times: 1.5 }}px;
+    background-color: {{ section.settings.button_background_color }};
+    color: {{ section.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ section.settings.button_border_radius }}px;
+    font-family: {{ section.settings.button_font_family.family }}, {{ section.settings.button_font_family.fallback_families }};
+    font-weight: {{ section.settings.button_font_family.weight }};
+    font-size: {{ section.settings.button_font_size }}px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    text-align:center;
+  }
+
+  .ai-comparison-table__button-{{ ai_gen_id }}:hover {
+    background-color: {{ section.settings.button_hover_color }};
+    color: {{ section.settings.button_hover_text_color }};
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-comparison-table__table-{{ ai_gen_id }} { font-size: 14px; }
+    .ai-comparison-table__cell-{{ ai_gen_id }} { padding: 12px 8px; }
+    .ai-comparison-table__heading-{{ ai_gen_id }} { font-size: {{ section.settings.heading_size | times: 0.8 }}px; }
+    .ai-comparison-table__subheading-{{ ai_gen_id }} { font-size: {{ section.settings.subheading_size | times: 0.9 }}px; }
+    .ai-comparison-table__intro-{{ ai_gen_id }} { font-size: {{ section.settings.intro_size | times: 0.9 }}px; }
+  }
+
+  @media screen and (max-width: 576px) {
+    .ai-comparison-table__cell-{{ ai_gen_id }} { font-size:14px; }
+  }
+{% endstyle %}
 
 {% schema %}
 {
