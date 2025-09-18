@@ -210,6 +210,20 @@
         {% if section.settings.second_image %}
           <img src="{{ section.settings.second_image | image_url: width: 800 }}" alt="{{ section.settings.second_image.alt | escape }}" loading="lazy">
         {% endif %}
+        {% if section.settings.video_file %}
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      width="100%"
+      height="auto"
+    >
+      <source src="{{ section.settings.video_file.sources[0].url }}" type="{{ section.settings.video_file.sources[0].mime_type }}">
+      <source src="{{ section.settings.video_file.sources[1].url }}" type="{{ section.settings.video_file.sources[1].mime_type }}">
+      Your browser does not support the video tag.
+    </video>
+  {% endif %}
       </div>
     {% endif %}
 
