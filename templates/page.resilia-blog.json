@@ -845,7 +845,7 @@
         "button_background": "#ee882f",
         "button_hover_background": "#ffffff",
         "button_text_color": "#ffffff",
-        "title_size": 32,
+        "title_size": 30,
         "subsection_title_size": 24,
         "item_title_size": 18,
         "text_size": 18,
