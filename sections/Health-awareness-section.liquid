@@ -7,30 +7,6 @@
   font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
   line-height: 1.6;
 }
-.ai-health-campaign__banner-{{ section_id }} {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: {{ section.settings.banner_bg_color }};
-  color: {{ section.settings.banner_text_color }};
-  padding: 10px 20px;
-  border-radius: {{ section.settings.banner_border_radius }}px;
-}
-.ai-health-campaign__banner-text-{{ section_id }} {
-  font-size: {{ section.settings.banner_text_size }}px;
-  margin: 0;
-}
-.ai-health-campaign__banner-btn-{{ section_id }} {
-  background-color: {{ section.settings.banner_button_color }};
-  color: {{ section.settings.banner_button_text_color }};
-  padding: 8px 16px;
-  border-radius: {{ section.settings.banner_button_radius }}px;
-  font-size: {{ section.settings.banner_button_text_size }}px;
-  text-decoration: none;
-}
-.ai-health-campaign__banner-btn-{{ section_id }}:hover {
-  background-color: {{ section.settings.banner_button_hover_color }};
-}
 .ai-health-campaign__heading-{{ section_id }} {
   font-size: {{ section.settings.heading_size }}px;
   font-weight: 700;
@@ -86,14 +62,6 @@
 {% endstyle %}
 
 <section id="ai-health-campaign" class="ai-health-campaign-{{ section_id }}">
-  <div class="ai-health-campaign__banner-{{ section_id }}">
-    <p class="ai-health-campaign__banner-text-{{ section_id }}">
-      {{ section.settings.banner_text }}
-    </p>
-    <a href="{{ section.settings.banner_button_link }}" class="ai-health-campaign__banner-btn-{{ section_id }}">
-      {{ section.settings.banner_button_text }}
-    </a>
-  </div>
 
   <h2 class="ai-health-campaign__heading-{{ section_id }}">
     {{ section.settings.heading_part1 }} <span>{{ section.settings.highlight_word }}</span> {{ section.settings.heading_part2 }}
