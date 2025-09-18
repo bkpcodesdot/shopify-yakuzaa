@@ -964,10 +964,7 @@
         "intro_text": "<p>Discover our revolutionary approach to wellness...</p>",
         "show_features": true,
         "icon_size": 30,
-        "check_icon_color": "#28A745",
-        "feature_1_enabled": true,
-        "feature_1_title": "Clinically Proven",
-        "feature_1_description": "Backed by extensive clinical research and testing"
+        "check_icon_color": "#28a745"
       }
     }
   },

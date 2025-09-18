@@ -342,14 +342,34 @@
       "id": "check_icon_color",
       "label": "Default check icon color",
       "default": "#28A745"
-    },
-    { "type": "header", "content": "Features" },
-    { "type": "checkbox", "id": "feature_1_enabled", "label": "Enable feature 1", "default": true },
-    { "type": "image_picker", "id": "feature_1_icon", "label": "Feature 1 icon" },
-    { "type": "text", "id": "feature_1_title", "label": "Feature 1 title", "default": "Clinically Proven" },
-    { "type": "text", "id": "feature_1_description", "label": "Feature 1 description", "default": "Backed by extensive clinical research and testing" }
-    /* Repeat similar for features 2–5 */
+    }
   ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Point",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Feature icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature title",
+          "default": "New Feature"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Feature description",
+          "default": "Add a short description for this feature"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
   "presets": [
     {
       "name": "Product showcase"
@@ -357,3 +377,4 @@
   ]
 }
 {% endschema %}
+
