@@ -1,13 +1,177 @@
 {% assign ai_gen_id = section.id | replace: '_', '' | downcase %}
 
-{% assign ai_gen_id = section.id %}
+{% style %}
+/* Container */
+.ai-symptoms-section-{{ ai_gen_id }} {
+  padding: {{ section.settings.section_padding }}px 20px;
+  background-color: {{ section.settings.section_background }};
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 726px;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* Header */
+.ai-symptoms-header-{{ ai_gen_id }} {
+  margin-bottom: 32px;
+}
+.ai-symptoms-title-{{ ai_gen_id }} {
+  font-size: {{ section.settings.title_size }}px;
+  color: {{ section.settings.title_color }};
+  margin: 0 0 8px 0;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: left;
+}
+.ai-symptoms-title-{{ ai_gen_id }} span {
+  color: {{ section.settings.title_highlight_color | default: '#e26900' }};
+}
+
+/* Subtitle */
+.ai-symptoms-subtitle-{{ ai_gen_id }} {
+  font-size: {{ section.settings.subtitle_size }}px;
+  color: {{ section.settings.subtitle_color }};
+  margin: 0;
+  text-align: left;
+  font-weight: 400;
+}
+
+/* List */
+.ai-symptoms-list-{{ ai_gen_id }} {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 30px 0 24px;
+}
+
+/* Box */
+.ai-symptom-box-{{ ai_gen_id }} {
+  border: 2px solid {{ section.settings.box_border_color }};
+  border-radius: {{ section.settings.box_border_radius }}px;
+  background: {{ section.settings.box_background }};
+  padding: 20px;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  box-sizing: border-box;
+}
+.ai-symptom-box-{{ ai_gen_id }}:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+/* Top row: number + title */
+.ai-symptom-top-{{ ai_gen_id }} {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.ai-symptom-number-{{ ai_gen_id }} {
+  font-size: {{ section.settings.number_size }}px;
+  font-weight: 800;
+  color: {{ section.settings.box_border_color }};
+  flex-shrink: 0;
+  line-height: 1;
+}
+.ai-symptom-title-{{ ai_gen_id }} {
+  font-size: {{ section.settings.symptom_title_size }}px;
+  font-weight: 700;
+  color: {{ section.settings.symptom_title_color }};
+  margin: 0;
+  line-height: 1.25;
+}
+
+/* Divider */
+.ai-symptom-divider-{{ ai_gen_id }} {
+  height: 2px;
+  background: {{ section.settings.box_border_color }};
+  margin: 12px 0;
+  width: 100%;
+}
+
+/* Description - two line clamp */
+.ai-symptom-description-{{ ai_gen_id }} {
+  font-size: {{ section.settings.description_size }}px;
+  color: {{ section.settings.description_color }};
+  margin: 0 0 12px 0;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Science row */
+.ai-symptom-science-{{ ai_gen_id }} {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: {{ section.settings.science_text_size }}px;
+  color: {{ section.settings.science_text_color }};
+  font-style: normal;
+}
+.ai-symptom-science-icon-{{ ai_gen_id }} {
+  width: {{ section.settings.science_icon_size }}px;
+  height: {{ section.settings.science_icon_size }}px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ai-symptom-science-icon-{{ ai_gen_id }} img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* CTA */
+.ai-symptoms-cta-{{ ai_gen_id }} {
+  text-align: center;
+  margin-top: 18px;
+}
+.ai-symptoms-button-{{ ai_gen_id }} {
+  display: inline-block;
+  background: {{ section.settings.button_background }};
+  color: {{ section.settings.button_text_color }};
+  padding: {{ section.settings.button_padding }}px 28px;
+  border-radius: {{ section.settings.button_border_radius }}px;
+  text-decoration: none;
+  font-size: {{ section.settings.button_text_size }}px;
+  font-weight: 700;
+  transition: background 0.18s ease, transform 0.18s ease;
+  border: none;
+}
+.ai-symptoms-button-{{ ai_gen_id }}:hover {
+  background: {{ section.settings.button_hover_background }};
+  transform: translateY(-3px);
+}
+
+/* Mobile */
+@media (max-width: 749px) {
+  .ai-symptoms-section-{{ ai_gen_id }} {
+    padding: {{ section.settings.section_padding | times: 0.7 }}px 16px;
+  }
+  .ai-symptom-box-{{ ai_gen_id }} {
+    padding: 16px;
+  }
+  .ai-symptoms-button-{{ ai_gen_id }} {
+    width: 100%;
+    display: block;
+    padding: 14px;
+  }
+  .ai-symptom-top-{{ ai_gen_id }} {
+    gap: 10px;
+  }
+}
+{% endstyle %}
 
 <section class="ai-symptoms-section-{{ ai_gen_id }}" {{ section.shopify_attributes }}>
   <div class="ai-symptoms-header-{{ ai_gen_id }}">
     {% if section.settings.title_before != blank %}
       <h2 class="ai-symptoms-title-{{ ai_gen_id }}">
         {{ section.settings.title_before }}
-        <span>{{ section.settings.title_highlight }}</span>
+        {% if section.settings.title_highlight != blank %}
+          <span>{{ section.settings.title_highlight }}</span>
+        {% endif %}
       </h2>
     {% endif %}
     {% if section.settings.section_subtitle != blank %}
@@ -16,114 +180,57 @@
   </div>
 
   <div class="ai-symptoms-list-{{ ai_gen_id }}">
-    {%- for i in (1..5) -%}
-      {% capture enabled %}symptom_{{ i }}_enabled{% endcapture %}
-      {% capture title %}symptom_{{ i }}_title{% endcapture %}
-      {% capture description %}symptom_{{ i }}_description{% endcapture %}
-      {% capture science_text %}symptom_{{ i }}_science_text{% endcapture %}
-      {% capture icon %}symptom_{{ i }}_icon{% endcapture %}
+    {% for i in (1..5) %}
+      {% capture enabled_key %}symptom_{{ i }}_enabled{% endcapture %}
+      {% capture title_key %}symptom_{{ i }}_title{% endcapture %}
+      {% capture desc_key %}symptom_{{ i }}_description{% endcapture %}
+      {% capture science_key %}symptom_{{ i }}_science_text{% endcapture %}
+      {% capture icon_key %}symptom_{{ i }}_icon{% endcapture %}
 
-      {% if section.settings[enabled] %}
-        <div class="ai-symptom-box-{{ ai_gen_id }}">
-          <div class="ai-symptom-number-{{ ai_gen_id }}">{{ i }}.</div>
-          
-          {% if section.settings[title] != blank %}
-            <h3 class="ai-symptom-title-{{ ai_gen_id }}">{{ section.settings[title] }}</h3>
-          {% endif %}
-          
+      {% if section.settings[enabled_key] %}
+        <article class="ai-symptom-box-{{ ai_gen_id }}" aria-labelledby="symptom-{{ ai_gen_id }}-{{ i }}">
+          <div class="ai-symptom-top-{{ ai_gen_id }}">
+            <div class="ai-symptom-number-{{ ai_gen_id }}">{{ i }}.</div>
+
+            {% if section.settings[title_key] != blank %}
+              <h3 id="symptom-{{ ai_gen_id }}-{{ i }}" class="ai-symptom-title-{{ ai_gen_id }}">{{ section.settings[title_key] }}</h3>
+            {% endif %}
+          </div>
+
           <div class="ai-symptom-divider-{{ ai_gen_id }}"></div>
-          
-          {% if section.settings[description] != blank %}
-            <p class="ai-symptom-description-{{ ai_gen_id }}">{{ section.settings[description] }}</p>
+
+          {% if section.settings[desc_key] != blank %}
+            <p class="ai-symptom-description-{{ ai_gen_id }}">{{ section.settings[desc_key] }}</p>
           {% endif %}
-          
-          {% if section.settings[science_text] != blank %}
+
+          {% if section.settings[science_key] != blank %}
             <div class="ai-symptom-science-{{ ai_gen_id }}">
               <div class="ai-symptom-science-icon-{{ ai_gen_id }}">
-                {% if section.settings[icon] != blank %}
-                  <img src="{{ section.settings[icon] | image_url: width: 100 }}" alt="Science icon" loading="lazy">
+                {% if section.settings[icon_key] != blank %}
+                  <img src="{{ section.settings[icon_key] | image_url: width: 200 }}" alt="icon for {{ section.settings[title_key] }}">
                 {% else %}
                   {{ 'image' | placeholder_svg_tag }}
                 {% endif %}
               </div>
-              <span><em><strong>Science Says:</strong></em> <em>{{ section.settings[science_text] }}</em></span>
+              <div><strong>Science Says:</strong> <span style="font-style:italic; padding-left:6px;">{{ section.settings[science_key] }}</span></div>
             </div>
           {% endif %}
-        </div>
+        </article>
       {% endif %}
-    {%- endfor -%}
+    {% endfor %}
   </div>
 
   {% if section.settings.cta_text != blank %}
     <div class="ai-symptoms-cta-{{ ai_gen_id }}">
-      <a href="{{ section.settings.cta_link }}" class="ai-symptoms-button-{{ ai_gen_id }}">
-        {{ section.settings.cta_text }}
-      </a>
-    </div>
-  {% endif %}
-</section>
-{% assign ai_gen_id = section.id %}
-
-<section class="ai-symptoms-section-{{ ai_gen_id }}" {{ section.shopify_attributes }}>
-  <div class="ai-symptoms-header-{{ ai_gen_id }}">
-    {% if section.settings.title_before != blank %}
-      <h2 class="ai-symptoms-title-{{ ai_gen_id }}">
-        {{ section.settings.title_before }}
-        <span>{{ section.settings.title_highlight }}</span>
-      </h2>
-    {% endif %}
-    {% if section.settings.section_subtitle != blank %}
-      <p class="ai-symptoms-subtitle-{{ ai_gen_id }}">{{ section.settings.section_subtitle }}</p>
-    {% endif %}
-  </div>
-
-  <div class="ai-symptoms-list-{{ ai_gen_id }}">
-    {%- for i in (1..5) -%}
-      {% capture enabled %}symptom_{{ i }}_enabled{% endcapture %}
-      {% capture title %}symptom_{{ i }}_title{% endcapture %}
-      {% capture description %}symptom_{{ i }}_description{% endcapture %}
-      {% capture science_text %}symptom_{{ i }}_science_text{% endcapture %}
-      {% capture icon %}symptom_{{ i }}_icon{% endcapture %}
-
-      {% if section.settings[enabled] %}
-        <div class="ai-symptom-box-{{ ai_gen_id }}">
-          <div class="ai-symptom-number-{{ ai_gen_id }}">{{ i }}.</div>
-          
-          {% if section.settings[title] != blank %}
-            <h3 class="ai-symptom-title-{{ ai_gen_id }}">{{ section.settings[title] }}</h3>
-          {% endif %}
-          
-          <div class="ai-symptom-divider-{{ ai_gen_id }}"></div>
-          
-          {% if section.settings[description] != blank %}
-            <p class="ai-symptom-description-{{ ai_gen_id }}">{{ section.settings[description] }}</p>
-          {% endif %}
-          
-          {% if section.settings[science_text] != blank %}
-            <div class="ai-symptom-science-{{ ai_gen_id }}">
-              <div class="ai-symptom-science-icon-{{ ai_gen_id }}">
-                {% if section.settings[icon] != blank %}
-                  <img src="{{ section.settings[icon] | image_url: width: 100 }}" alt="Science icon" loading="lazy">
-                {% else %}
-                  {{ 'image' | placeholder_svg_tag }}
-                {% endif %}
-              </div>
-              <span><em><strong>Science Says:</strong></em> <em>{{ section.settings[science_text] }}</em></span>
-            </div>
-          {% endif %}
-        </div>
+      {% if section.settings.cta_link != blank %}
+        <a href="{{ section.settings.cta_link }}" class="ai-symptoms-button-{{ ai_gen_id }}">{{ section.settings.cta_text }}</a>
+      {% else %}
+        <span class="ai-symptoms-button-{{ ai_gen_id }}">{{ section.settings.cta_text }}</span>
       {% endif %}
-    {%- endfor -%}
-  </div>
-
-  {% if section.settings.cta_text != blank %}
-    <div class="ai-symptoms-cta-{{ ai_gen_id }}">
-      <a href="{{ section.settings.cta_link }}" class="ai-symptoms-button-{{ ai_gen_id }}">
-        {{ section.settings.cta_text }}
-      </a>
     </div>
   {% endif %}
 </section>
+
 {% schema %}
 {
   "name": "Symptoms list",
@@ -135,29 +242,20 @@
     {
       "type": "text",
       "id": "title_before",
-      "label": "Title (before highlight)"
+      "label": "Title (before highlight)",
+      "default": "Symptoms That Could Be a Sign of Internal Imbalance"
     },
     {
       "type": "text",
       "id": "title_highlight",
-      "label": "Highlighted word"
+      "label": "Highlighted word",
+      "default": "Imbalance"
     },
     {
       "type": "text",
       "id": "section_subtitle",
       "label": "Section subtitle",
       "default": "And why you shouldn't ignore them."
-    },
-    {
-      "type": "text",
-      "id": "cta_text",
-      "label": "Button text",
-      "default": "TRY RESILIA RISK-FREE"
-    },
-    {
-      "type": "url",
-      "id": "cta_link",
-      "label": "Button link"
     },
 
     {
@@ -173,12 +271,12 @@
     {
       "type": "range",
       "id": "section_padding",
-      "min": 20,
-      "max": 100,
-      "step": 5,
+      "label": "Section padding (px)",
+      "min": 10,
+      "max": 120,
+      "step": 2,
       "unit": "px",
-      "label": "Section padding",
-      "default": 60
+      "default": 40
     },
 
     {
@@ -189,17 +287,23 @@
       "type": "color",
       "id": "title_color",
       "label": "Title color",
-      "default": "#000000"
+      "default": "#111111"
     },
     {
       "type": "range",
       "id": "title_size",
-      "min": 16,
+      "label": "Title font size (px)",
+      "min": 18,
       "max": 48,
-      "step": 2,
+      "step": 1,
       "unit": "px",
-      "label": "Title size",
-      "default": 32
+      "default": 28
+    },
+    {
+      "type": "color",
+      "id": "title_highlight_color",
+      "label": "Title highlight color",
+      "default": "#e26900"
     },
     {
       "type": "color",
@@ -210,11 +314,11 @@
     {
       "type": "range",
       "id": "subtitle_size",
+      "label": "Subtitle font size (px)",
       "min": 12,
-      "max": 24,
+      "max": 22,
       "step": 1,
       "unit": "px",
-      "label": "Subtitle size",
       "default": 16
     },
 
@@ -237,38 +341,43 @@
     {
       "type": "range",
       "id": "box_border_radius",
+      "label": "Box border radius (px)",
       "min": 0,
-      "max": 20,
-      "step": 2,
+      "max": 30,
+      "step": 1,
       "unit": "px",
-      "label": "Box border radius",
-      "default": 8
+      "default": 10
     },
     {
       "type": "range",
       "id": "number_size",
-      "min": 16,
-      "max": 32,
-      "step": 2,
+      "label": "Symptom number size (px)",
+      "min": 14,
+      "max": 36,
+      "step": 1,
       "unit": "px",
-      "label": "Number size",
       "default": 20
     },
     {
       "type": "color",
       "id": "symptom_title_color",
       "label": "Symptom title color",
-      "default": "#000000"
+      "default": "#111111"
     },
     {
       "type": "range",
       "id": "symptom_title_size",
+      "label": "Symptom title size (px)",
       "min": 14,
       "max": 28,
       "step": 1,
       "unit": "px",
-      "label": "Symptom title size",
       "default": 18
+    },
+
+    {
+      "type": "header",
+      "content": "Description & science"
     },
     {
       "type": "color",
@@ -279,11 +388,11 @@
     {
       "type": "range",
       "id": "description_size",
+      "label": "Description font size (px)",
       "min": 12,
       "max": 20,
       "step": 1,
       "unit": "px",
-      "label": "Description size",
       "default": 14
     },
     {
@@ -295,21 +404,21 @@
     {
       "type": "range",
       "id": "science_text_size",
+      "label": "Science text size (px)",
       "min": 10,
-      "max": 16,
+      "max": 18,
       "step": 1,
       "unit": "px",
-      "label": "Science text size",
-      "default": 12
+      "default": 13
     },
     {
       "type": "range",
       "id": "science_icon_size",
-      "min": 16,
-      "max": 32,
-      "step": 2,
+      "label": "Science icon size (px)",
+      "min": 12,
+      "max": 40,
+      "step": 1,
       "unit": "px",
-      "label": "Science icon size",
       "default": 20
     },
 
@@ -338,31 +447,31 @@
     {
       "type": "range",
       "id": "button_text_size",
+      "label": "Button text size (px)",
       "min": 12,
       "max": 20,
       "step": 1,
       "unit": "px",
-      "label": "Button text size",
       "default": 16
     },
     {
       "type": "range",
       "id": "button_padding",
-      "min": 10,
-      "max": 25,
+      "label": "Button vertical padding (px)",
+      "min": 8,
+      "max": 30,
       "step": 1,
       "unit": "px",
-      "label": "Button padding",
-      "default": 16
+      "default": 12
     },
     {
       "type": "range",
       "id": "button_border_radius",
+      "label": "Button border radius (px)",
       "min": 0,
-      "max": 20,
-      "step": 2,
+      "max": 30,
+      "step": 1,
       "unit": "px",
-      "label": "Button border radius",
       "default": 8
     },
 
@@ -389,10 +498,10 @@
       "default": "Feeling tired all the time, even after a full night's sleep, could indicate underlying nutritional deficiencies or hormonal imbalances."
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "symptom_1_science_text",
       "label": "Science text",
-      "default": "Science Says: Low B12 and iron levels are common culprits"
+      "default": "Low B12 and iron levels are common culprits"
     },
     {
       "type": "image_picker",
@@ -423,10 +532,10 @@
       "default": "Bloating, irregular bowel movements, or stomach discomfort may signal an imbalanced gut microbiome affecting overall health."
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "symptom_2_science_text",
       "label": "Science text",
-      "default": "Science Says: 70% of immune function starts in the gut"
+      "default": "70% of immune function starts in the gut"
     },
     {
       "type": "image_picker",
@@ -457,10 +566,10 @@
       "default": "Unexplained irritability, anxiety, or depression can be linked to nutrient deficiencies and hormonal fluctuations."
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "symptom_3_science_text",
       "label": "Science text",
-      "default": "Science Says: Magnesium deficiency affects 80% of adults"
+      "default": "Magnesium deficiency affects 80% of adults"
     },
     {
       "type": "image_picker",
@@ -491,10 +600,10 @@
       "default": "Difficulty falling asleep or staying asleep often relates to cortisol imbalances and inadequate mineral levels."
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "symptom_4_science_text",
       "label": "Science text",
-      "default": "Science Says: Melatonin production requires proper nutrition"
+      "default": "Melatonin production requires proper nutrition"
     },
     {
       "type": "image_picker",
@@ -525,15 +634,31 @@
       "default": "Mental cloudiness, poor concentration, and memory issues can stem from inflammation and nutritional gaps."
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "symptom_5_science_text",
       "label": "Science text",
-      "default": "Science Says: Omega-3s are crucial for brain function"
+      "default": "Omega-3s are crucial for brain function"
     },
     {
       "type": "image_picker",
       "id": "symptom_5_icon",
       "label": "Science icon"
+    },
+
+    {
+      "type": "header",
+      "content": "CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "TRY RESILIA RISK-FREE"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Button Link"
     }
   ],
   "presets": [
