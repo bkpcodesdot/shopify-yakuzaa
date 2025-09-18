@@ -955,16 +955,19 @@
         "button_border_radius": 8
       }
     },
-    "product_showcase_wm8pP6": {
+    "product_showcase_caDFrM": {
       "type": "product-showcase",
-      "name": "Product Showcase",
+      "name": "Product showcase",
       "settings": {
         "heading_text": "The Natural, Science-Backed",
-        "intro_text": "<p>Discover our revolutionary approach...</p>",
-        "main_image": "shopify://shop_images/oil_of_oregano_main.webp",
+        "highlight_word": "Solution",
+        "intro_text": "<p>Discover our revolutionary approach to wellness...</p>",
         "show_features": true,
+        "icon_size": 30,
+        "check_icon_color": "#28A745",
+        "feature_1_enabled": true,
         "feature_1_title": "Clinically Proven",
-        "feature_1_description": "Backed by extensive clinical research"
+        "feature_1_description": "Backed by extensive clinical research and testing"
       }
     }
   },
@@ -978,6 +981,6 @@
     "ide_section_test_4rfFkU",
     "affected_section_jNRXxq",
     "treat_section_UPyHXq",
-    "product_showcase_wm8pP6"
+    "product_showcase_caDFrM"
   ]
 }
