@@ -997,6 +997,13 @@
             "title": "Stop sugar cravings at the root",
             "description": "<p>Feature description text.</p>"
           }
+        },
+        "feature_DVdBk9": {
+          "type": "feature",
+          "settings": {
+            "title": "New Feature",
+            "description": "<p>Feature description text.</p>"
+          }
         }
       },
       "block_order": [
@@ -1004,7 +1011,8 @@
         "feature_QypA8H",
         "feature_cbVPTh",
         "feature_WEmehp",
-        "feature_Jb4VyD"
+        "feature_Jb4VyD",
+        "feature_DVdBk9"
       ],
       "name": "Product showcase",
       "settings": {
