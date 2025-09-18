@@ -1,3 +1,202 @@
+<style>
+.ai-comparison-table-{{ ai_gen_id }} {
+  background-color: {{ block.settings.section_background_color }};
+  padding: {{ block.settings.section_padding }}px;
+  margin: 0 auto;
+}
+
+.ai-comparison-table__container-{{ ai_gen_id }} {
+  max-width: 726px;
+  margin: 0 auto;
+}
+
+.ai-comparison-table__header-{{ ai_gen_id }} {
+  text-align: {{ block.settings.text_alignment }};
+  margin-bottom: 40px;
+}
+
+.ai-comparison-table__heading-{{ ai_gen_id }} {
+  font-family: {{ block.settings.heading_font.family }}, {{ block.settings.heading_font.fallback_families }};
+  font-weight: {{ block.settings.heading_font.weight }};
+  font-size: {{ block.settings.heading_size }}px;
+  color: {{ block.settings.heading_color }};
+  margin: 0 0 16px 0;
+  line-height: 1.2;
+}
+
+.ai-comparison-table__heading-{{ ai_gen_id }} span {
+  color: {{ block.settings.heading_accent_color }};
+}
+
+.ai-comparison-table__subheading-{{ ai_gen_id }} {
+  font-family: {{ block.settings.subheading_font.family }}, {{ block.settings.subheading_font.fallback_families }};
+  font-weight: {{ block.settings.subheading_font.weight }};
+  font-size: {{ block.settings.subheading_size }}px;
+  color: {{ block.settings.subheading_color }};
+  margin: 0 0 24px 0;
+  line-height: 1.4;
+}
+
+.ai-comparison-table__intro-{{ ai_gen_id }} {
+  font-family: {{ block.settings.intro_font.family }}, {{ block.settings.intro_font.fallback_families }};
+  font-weight: {{ block.settings.intro_font.weight }};
+  font-size: {{ block.settings.intro_size }}px;
+  color: {{ block.settings.intro_color }};
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.ai-comparison-table__table-wrapper-{{ ai_gen_id }} {
+  overflow-x: auto;
+  margin-bottom: 40px;
+  border: 1px solid #016401;
+  border-radius: 5px;
+}
+
+.ai-comparison-table__table-{{ ai_gen_id }} {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid {{ block.settings.table_border_color }};
+  border-radius: {{ block.settings.table_border_radius }}px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.ai-comparison-table__row-{{ ai_gen_id }} {
+  border-bottom: 1px solid {{ block.settings.table_border_color }};
+  display: grid;
+  grid-template-columns: 2.5fr 4fr 2.5fr;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai-comparison-table__row-{{ ai_gen_id }}:last-child {
+  border-bottom: none;
+}
+
+{% if block.settings.enable_alternating_rows %}
+.ai-comparison-table__row-{{ ai_gen_id }}:nth-child(even) {
+  background-color: {{ block.settings.table_row_alt_background }};
+}
+{% endif %}
+
+.ai-comparison-table__cell-{{ ai_gen_id }} {
+  padding: 16px;
+  vertical-align: middle;
+  font-family: {{ block.settings.table_font.family }}, {{ block.settings.table_font.fallback_families }};
+  font-weight: {{ block.settings.table_font.weight }};
+  font-size: {{ block.settings.table_font_size }}px;
+  color: {{ block.settings.table_text_color }};
+}
+
+.ai-comparison-table__cell--product-{{ ai_gen_id }} {
+  text-align: center;
+  background-color: {{ block.settings.product_column_background }};
+}
+
+.ai-comparison-table__cell--feature-{{ ai_gen_id }} {
+  background-color: {{ block.settings.feature_column_background }};
+}
+
+.ai-comparison-table__cell--competitor-{{ ai_gen_id }} {
+  text-align: center;
+  background-color: {{ block.settings.competitor_column_background }};
+}
+
+.ai-comparison-table__product-image-{{ ai_gen_id }} {
+  width: 100%;
+  max-width: 65px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.ai-comparison-table__product-placeholder-{{ ai_gen_id }} {
+  width: 100%;
+  max-width: 200px;
+  height: 200px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.ai-comparison-table__product-placeholder-{{ ai_gen_id }} svg {
+  width: 60%;
+  height: 60%;
+  opacity: 0.5;
+}
+
+.ai-comparison-table__icon-{{ ai_gen_id }} {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.ai-comparison-table__icon--check-{{ ai_gen_id }} {
+  color: {{ block.settings.check_icon_color }};
+}
+
+.ai-comparison-table__icon--cross-{{ ai_gen_id }} {
+  color: {{ block.settings.cross_icon_color }};
+}
+
+.ai-comparison-table__button-wrapper-{{ ai_gen_id }} {
+  text-align: {{ block.settings.text_alignment }};
+}
+
+.ai-comparison-table__button-{{ ai_gen_id }} {
+  display: block;
+  padding: {{ block.settings.button_padding }}px {{ block.settings.button_padding | times: 1.5 }}px;
+  background-color: {{ block.settings.button_background_color }};
+  color: {{ block.settings.button_text_color }};
+  text-decoration: none;
+  border-radius: {{ block.settings.button_border_radius }}px;
+  font-family: {{ block.settings.button_font_family.family }}, {{ block.settings.button_font_family.fallback_families }};
+  font-weight: {{ block.settings.button_font_family.weight }};
+  font-size: {{ block.settings.button_font_size }}px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.ai-comparison-table__button-{{ ai_gen_id }}:hover {
+  background-color: {{ block.settings.button_hover_color }};
+  color: {{ block.settings.button_hover_text_color }};
+}
+
+@media screen and (max-width: 768px) {
+  .ai-comparison-table__table-{{ ai_gen_id }} {
+    font-size: 14px;
+  }
+  .ai-comparison-table__cell-{{ ai_gen_id }} {
+    padding: 12px 8px;
+  }
+  .ai-comparison-table__heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size | times: 0.8 }}px;
+  }
+  .ai-comparison-table__subheading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subheading_size | times: 0.9 }}px;
+  }
+  .ai-comparison-table__intro-{{ ai_gen_id }} {
+    font-size: {{ block.settings.intro_size | times: 0.9 }}px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .ai-comparison-table-{{ ai_gen_id }} {
+    padding: 0 0px;
+  }
+  .ai-comparison-table__cell-{{ ai_gen_id }} {
+    font-size: 14px;
+  }
+}
+</style>
+
+
+
+
 <div class="product-showcase">
   <h2 style="color: {{ section.settings.heading_color }}; font-size: {{ section.settings.heading_size }}px;">
     {{ section.settings.heading_text }}
