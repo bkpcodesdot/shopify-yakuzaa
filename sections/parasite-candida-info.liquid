@@ -36,8 +36,9 @@
     width: 100%;
     height: auto;
     display: block;
+    aspect-ratio: 182 / 85;
     object-fit: cover;
-  }
+}
 
   .ai-parasite-info-subsection-title {
     font-size: {{ section.settings.subsection_title_size }}px;
@@ -90,7 +91,7 @@
   }
 
   .ai-parasite-info-cta {
-    display: inline-block;
+    display: block;
     background-color: {{ section.settings.button_background }};
     color: {{ section.settings.button_text_color }};
     padding: {{ section.settings.button_padding }}px {{ section.settings.button_padding | times: 1.5 }}px;
