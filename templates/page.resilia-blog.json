@@ -1091,7 +1091,7 @@
         "circle_background": "#ffffff",
         "circle_border_color": "#4caf50",
         "circle_inner_color": "#4caf50",
-        "circle_size": 40,
+        "circle_size": 26,
         "circle_border_width": 3,
         "line_color": "#4caf50",
         "line_width": 4,
