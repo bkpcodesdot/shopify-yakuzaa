@@ -172,35 +172,44 @@
         {% assign feature_description_key = 'feature_' | append: i | append: '_description' %}
 
         {% if section.settings[feature_enabled_key] %}
-          <div class="ai-product-showcase__feature-{{ ai_gen_id }}">
-            <div class="ai-product-showcase__feature-icon-{{ ai_gen_id }}">
-              {% if section.settings[feature_icon_key] %}
-                <img
-                  src="{{ section.settings[feature_icon_key] | image_url: width: 100 }}"
-                  alt="{{ section.settings[feature_title_key] | escape }}"
-                  loading="lazy"
-                >
-              {% else %}
-                <div class="ai-product-showcase__feature-icon-placeholder-{{ ai_gen_id }}">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20,6 9,17 4,12"></polyline>
-                  </svg>
-                </div>
-              {% endif %}
-            </div>
-            <div class="ai-product-showcase__feature-content-{{ ai_gen_id }}">
-              {% if section.settings[feature_title_key] != blank %}
-                <div class="ai-product-showcase__feature-title-{{ ai_gen_id }}">
-                  {{ section.settings[feature_title_key] }}
-                </div>
-              {% endif %}
-              {% if section.settings[feature_description_key] != blank %}
-                <div class="ai-product-showcase__feature-description-{{ ai_gen_id }}">
-                  {{ section.settings[feature_description_key] }}
-                </div>
-              {% endif %}
-            </div>
+         {% if section.blocks.size > 0 %}
+  <div class="ai-product-showcase__features-{{ ai_gen_id }}">
+    {% for block in section.blocks %}
+      {% if block.type == 'feature' %}
+        <div class="ai-product-showcase__feature-{{ ai_gen_id }}">
+          <div class="ai-product-showcase__feature-icon-{{ ai_gen_id }}">
+            {% if block.settings.icon %}
+              <img
+                src="{{ block.settings.icon | image_url: width: 100 }}"
+                alt="{{ block.settings.title | escape }}"
+                loading="lazy"
+              >
+            {% else %}
+              <div class="ai-product-showcase__feature-icon-placeholder-{{ ai_gen_id }}">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+              </div>
+            {% endif %}
           </div>
+          <div class="ai-product-showcase__feature-content-{{ ai_gen_id }}">
+            {% if block.settings.title != blank %}
+              <div class="ai-product-showcase__feature-title-{{ ai_gen_id }}">
+                {{ block.settings.title }}
+              </div>
+            {% endif %}
+            {% if block.settings.description != blank %}
+              <div class="ai-product-showcase__feature-description-{{ ai_gen_id }}">
+                {{ block.settings.description }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}
+
         {% endif %}
       {% endfor %}
     </div>
