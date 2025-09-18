@@ -1011,14 +1011,17 @@
         "heading_text": "The Natural, Science-Backed",
         "highlight_word": "Solution",
         "intro_text": "<p>Discover our revolutionary approach to wellness...</p>",
-        "main_image": "shopify://shop_images/oil_of_oregano_2_desktop.webp",
+        "main_image": "shopify://shop_images/oil_of_oregano_main.webp",
         "show_features": true,
+        "secondary_image": "shopify://shop_images/oil_of_oregano_1_desktop.webp",
         "subheading": "Compare our solutions",
+        "column_1_image": "shopify://shop_images/carvacrol.webp",
         "column_1_title": "Column 1",
         "column_1_content": "<p>Details for column 1.</p>",
+        "column_2_image": "shopify://shop_images/black_seed_oil.webp",
         "column_2_title": "Column 2",
         "column_2_content": "<p>Details for column 2.</p>",
-        "cta_text": "Shop Now",
+        "cta_text": "TRY RESILIA RISK-FREE",
         "cta_link": ""
       }
     }
