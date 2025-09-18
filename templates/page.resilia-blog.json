@@ -670,11 +670,52 @@
         "padding_top": 40,
         "padding_bottom": 40
       }
+    },
+    "health_awareness_section_iPAWDy": {
+      "type": "Health-awareness-section",
+      "name": "Health awareness campaign",
+      "settings": {
+        "banner_bg_color": "#006400",
+        "banner_text_color": "#ffffff",
+        "banner_button_color": "#228B22",
+        "banner_button_text_color": "#ffffff",
+        "banner_button_hover_color": "#32CD32",
+        "heading_part1": "The Hidden Epidemic No One Talks About",
+        "highlight_word": "",
+        "heading_part2": "",
+        "subtitle_text": "<p>Millions of people walk around every day feeling 'off'. <em>Tired, bloated, foggy, and craving sugar.</em> Without ever getting a clear diagnosis.</p>",
+        "first_paragraph": "<p>They chalk it up to stress, age, or diet. But according to researchers, many of these symptoms may have a far more unexpected root cause: <strong>Parasitic infections and fungal overgrowth in the gut.</strong></p>",
+        "main_image": "shopify://shop_images/parasitic_growth_compressed.webp",
+        "who_paragraph": "<p>According to the World Health Organization (WHO), <strong>up to 25%</strong> of the world's population is infected with intestinal parasites. In areas with poor water sanitation or even frequent travel, that number can spike to <strong>50%</strong>.</p>",
+        "symptoms_paragraph": "<p>But parasites don't always cause dramatic symptoms at first. In fact, many people walk around for years feeling tired, bloated, and mentally foggy never realizing the root of their issues may be parasitic or fungal overgrowth like <em>Candida Albicans</em>.</p>",
+        "graph_image": "shopify://shop_images/estimated_global_infection_rates.svg",
+        "final_paragraph": "<p>These organisms thrive in your gut, feed off your nutrients, mess with your digestion, and release toxins into your bloodstream. Over time, they can wreak havoc on your immune system, your mood, your skin, and your energy levels.</p>",
+        "cta_button_text": "TRY RESILIA RISK-FREE",
+        "cta_button_link": "",
+        "cta_button_color": "#f58220",
+        "cta_button_text_color": "#ffffff",
+        "cta_button_hover_color": "#e6730e",
+        "heading_size": 34,
+        "text_size": 16,
+        "banner_text_size": 14,
+        "banner_button_text_size": 12,
+        "cta_button_text_size": 16,
+        "highlight_color": "#e26900",
+        "heading_color": "#000000",
+        "text_color": "#333333",
+        "bold_text_color": "#000000",
+        "emphasis_color": "#666666",
+        "banner_border_radius": 8,
+        "banner_button_radius": 4,
+        "image_border_radius": 8,
+        "cta_button_radius": 8
+      }
     }
   },
   "order": [
     "main",
     "section_c9EAaG",
-    "blog_artical_section_E8pjA6"
+    "blog_artical_section_E8pjA6",
+    "health_awareness_section_iPAWDy"
   ]
 }
