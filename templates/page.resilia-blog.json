@@ -962,40 +962,40 @@
           "type": "feature",
           "settings": {
             "icon": "shopify://shop_images/green_sugar.svg",
-            "title": "New Feature",
-            "description": "Add a short description for this feature"
+            "title": "Eliminate parasites and candida naturally",
+            "description": ""
           }
         },
         "feature_QypA8H": {
           "type": "feature",
           "settings": {
             "icon": "shopify://shop_images/green_gut.svg",
-            "title": "New Feature",
-            "description": "Add a short description for this feature"
+            "title": "Reduce inflammation and bloating",
+            "description": ""
           }
         },
         "feature_cbVPTh": {
           "type": "feature",
           "settings": {
             "icon": "shopify://shop_images/green_plant.svg",
-            "title": "New Feature",
-            "description": "Add a short description for this feature"
+            "title": "Restore gut balance and immune strength",
+            "description": ""
           }
         },
         "feature_WEmehp": {
           "type": "feature",
           "settings": {
             "icon": "shopify://shop_images/green_enegergy.svg",
-            "title": "New Feature",
-            "description": "Add a short description for this feature"
+            "title": "Improve energy, focus, and mental clarity",
+            "description": ""
           }
         },
         "feature_Jb4VyD": {
           "type": "feature",
           "settings": {
             "icon": "shopify://shop_images/green_fire.svg",
-            "title": "New Feature",
-            "description": "Add a short description for this feature"
+            "title": "Stop sugar cravings at the root",
+            "description": ""
           }
         }
       },
