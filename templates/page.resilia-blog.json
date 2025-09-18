@@ -1110,6 +1110,46 @@
         "button_border_radius": 6,
         "button_text_size": 16
       }
+    },
+    "ai_testimonial_section_gimyNb": {
+      "type": "Ai-testimonial-section",
+      "blocks": {
+        "testimonial_NVwEtm": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "“This little softgel is magic. I’ve tried everything for my gut, and nothing worked like Resilia.”",
+            "name": "Jenna B., 42 y.o.",
+            "age": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_NVwEtm"
+      ],
+      "name": "Customer Testimonials",
+      "settings": {
+        "title": "<p>What Customers Are Saying After Trying Resilia</p>",
+        "title_color": "#000000",
+        "highlight_color": "#FF6B35",
+        "title_font_size": 36,
+        "description": "<p>Real customers sharing their experiences with our product. See what they have to say about the results they've achieved and how it has transformed their daily routine.</p>",
+        "description_color": "#666666",
+        "description_font_size": 16,
+        "verified_label": "Verified Customer",
+        "name_color": "#000000",
+        "verified_color": "#666666",
+        "name_font_size": 14,
+        "verified_font_size": 12,
+        "icon_size": 24,
+        "button_text": "TRY RESILIA RISK-FREE",
+        "button_link": "",
+        "button_background_color": "#FF6B35",
+        "button_hover_color": "#E55A2B",
+        "button_text_color": "#FFFFFF",
+        "button_font_size": 16,
+        "button_border_radius": 8,
+        "section_background_color": "#FFFFFF"
+      }
     }
   },
   "order": [
@@ -1123,6 +1163,7 @@
     "affected_section_jNRXxq",
     "treat_section_UPyHXq",
     "product_showcase_caDFrM",
-    "timeline_section_hy7Kqq"
+    "timeline_section_hy7Kqq",
+    "ai_testimonial_section_gimyNb"
   ]
 }
