@@ -22,7 +22,7 @@
     </div>
   {%- endif -%}
 
-  {%- if section.settings.before_image != blank and section.settings.after_image != blank -%}
+  {%- if section.settings.before_image != blank -%}
     <div class="ai-before-after-article__images">
       <div class="before">
         <img src="{{ section.settings.before_image | img_url: '800x' }}" alt="Before">
