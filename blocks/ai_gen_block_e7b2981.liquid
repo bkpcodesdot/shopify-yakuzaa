@@ -1,0 +1,645 @@
+{% doc %}
+  @prompt
+    "Create a customer testimonial section with the same structure and layout as the reference design.
+    Section Layout & Structure:
+    Title Section:
+    Use <h2> tag for heading.
+    Text: What Customers Are <span>Saying</span> After Trying Resilia.
+    Word inside <span> (Saying) should be styled in orange.
+    Fully editable title text.
+    Description Section:
+    3 lines of editable description text under the title.
+    Center aligned, standard readable font size.
+    Testimonial Cards (3 columns):
+    3 equal-width columns in a row (responsive → collapse into single column on mobile).
+    Each column styled as a card:
+    Light background, thin green border, rounded corners.
+    First part: 3–4 lines of editable customer testimonial (quote).
+    Second part (footer):
+    Small logo/icon (green check icon by default, fully replaceable).
+    Customer name + age in bold.
+    Second line with "Verified Customer" label in smaller text.
+    CTA Button:
+    Full-width button below testimonials.
+    Background: orange.
+    Text: TRY RESILIA RISK-FREE (editable).
+    Rounded corners, bold white text.
+    Hover effect: darker orange.
+    Design & Styling:
+    Title: bold, with highlighted <span> word in orange.
+    Testimonials: cards evenly spaced with equal padding, green borders, light background.
+    Text inside cards: testimonial quote italic or styled to stand out.
+    Verified Customer info: smaller, aligned left inside card.
+    Button: centered, full width, strong call-to-action style.
+    Responsive Behavior:
+    On desktop: 3 columns side by side.
+    On mobile: collapses to single column stacked vertically.
+    Customization Options:
+    All text editable (title, description, testimonials, button).
+    Colors (orange, green, white, black) fully customizable.
+    Icons replaceable (upload SVG/PNG).
+    Number of testimonials adjustable (add/remove columns).
+    CTA button text, color, and link fully editable.
+    Deliver as a responsive Shopify section with full editing flexibility, matching the reference design exactly.
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-testimonials-{{ ai_gen_id }} {
+    padding: 0px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: {{ block.settings.section_background_color }};
+  }
+div#shopify-block-ASm1IUmNuUVFZYitXL__ai_gen_block_e7b2981_nU84Kd {
+    width: 100%;
+    max-width: 726px;
+    margin: 0 auto;
+}
+  .ai-testimonials-header-{{ ai_gen_id }} {
+   
+    margin-bottom: 50px;
+  }
+
+  .ai-testimonials-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_font_size }}px;
+    font-weight: bold;
+    color: {{ block.settings.title_color }};
+    margin: 0 0 20px 0;
+    line-height: 1.2;
+  }
+
+  .ai-testimonials-title-{{ ai_gen_id }} strong {
+    color: {{ block.settings.highlight_color }};
+  }
+
+  .ai-testimonials-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_font_size }}px;
+    color: {{ block.settings.description_color }};
+    line-height: 1.6;
+    max-width: 600px;
+  }
+
+  .ai-testimonials-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 50px;
+  }
+
+  .ai-testimonial-card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background_color }};
+    border: {{ block.settings.card_border_width }}px solid {{ block.settings.card_border_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 200px;
+  }
+
+  .ai-testimonial-quote-{{ ai_gen_id }} {
+    font-size: {{ block.settings.quote_font_size }}px;
+    color: {{ block.settings.quote_color }};
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+
+  .ai-testimonial-footer-{{ ai_gen_id }} {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: auto;
+  }
+
+  .ai-testimonial-icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .ai-testimonial-icon-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .ai-testimonial-icon-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.card_border_color }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-testimonial-icon-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    fill: {{ block.settings.highlight_color }};
+  }
+
+  .ai-testimonial-customer-{{ ai_gen_id }} {
+    flex-grow: 1;
+  }
+
+  .ai-testimonial-name-{{ ai_gen_id }} {
+    font-size: {{ block.settings.name_font_size }}px;
+    font-weight: bold;
+    color: {{ block.settings.name_color }};
+    margin: 0 0 4px 0;
+    line-height: 1.2;
+  }
+
+  .ai-testimonial-verified-{{ ai_gen_id }} {
+    font-size: {{ block.settings.verified_font_size }}px;
+    color: {{ block.settings.verified_color }};
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .ai-testimonials-cta-{{ ai_gen_id }} {
+    text-align: center;
+  }
+
+  .ai-testimonials-button-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: 18px 40px;
+    background-color: {{ block.settings.button_background_color }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    font-size: {{ block.settings.button_font_size }}px;
+    font-weight: bold;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .ai-testimonials-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+    color:#ee882f;
+    border:1px solid #ee882f;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-testimonials-{{ ai_gen_id }} {
+      padding: 40px 15px;
+    }
+
+    .ai-testimonials-grid-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .ai-testimonial-card-{{ ai_gen_id }} {
+      padding: 25px 20px;
+      min-height: auto;
+    }
+
+    .ai-testimonials-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_font_size | times: 0.8 }}px;
+    }
+
+    .ai-testimonials-button-{{ ai_gen_id }} {
+      padding: 16px 30px;
+    }
+  }
+   @media screen and (max-width: 576px) {
+  .ai-testimonial-quote-{{ ai_gen_id }} {
+    font-size:15px;
+  }
+  .ai-testimonials-description-{{ ai_gen_id }} {
+    font-size:15px;
+  }
+  .ai-testimonials-header-{{ ai_gen_id }} {
+    margin-bottom:10px;
+  }
+
+}
+{% endstyle %}
+
+<div class="ai-testimonials-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-testimonials-header-{{ ai_gen_id }}">
+    {% if block.settings.title != blank %}
+      <h2 class="ai-testimonials-title-{{ ai_gen_id }}">
+        {{ block.settings.title }}
+      </h2>
+    {% endif %}
+    
+    {% if block.settings.description != blank %}
+      <div class="ai-testimonials-description-{{ ai_gen_id }}">
+        {{ block.settings.description }}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="ai-testimonials-grid-{{ ai_gen_id }}">
+    {% for i in (1..3) %}
+      {% liquid
+        assign quote_key = 'testimonial_' | append: i | append: '_quote'
+        assign name_key = 'testimonial_' | append: i | append: '_name'
+        assign age_key = 'testimonial_' | append: i | append: '_age'
+        assign icon_key = 'testimonial_' | append: i | append: '_icon'
+        assign enabled_key = 'testimonial_' | append: i | append: '_enabled'
+
+        assign quote = block.settings[quote_key]
+        assign name = block.settings[name_key]
+        assign age = block.settings[age_key]
+        assign icon = block.settings[icon_key]
+        assign enabled = block.settings[enabled_key]
+      %}
+
+      {% if enabled %}
+        <div class="ai-testimonial-card-{{ ai_gen_id }}">
+          {% if quote != blank %}
+            <div class="ai-testimonial-quote-{{ ai_gen_id }}">
+              {{ quote }}
+            </div>
+          {% endif %}
+
+          <div class="ai-testimonial-footer-{{ ai_gen_id }}">
+            <div class="ai-testimonial-icon-{{ ai_gen_id }}">
+              {% if icon %}
+                <img src="{{ icon | image_url: width: 50 }}" alt="Customer verification icon" loading="lazy">
+              {% else %}
+                <div class="ai-testimonial-icon-placeholder-{{ ai_gen_id }}">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                  </svg>
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="ai-testimonial-customer-{{ ai_gen_id }}">
+              {% if name != blank or age != blank %}
+                <div class="ai-testimonial-name-{{ ai_gen_id }}">
+                  {% if name != blank %}{{ name }}{% endif %}{% if age != blank %}, {{ age }}{% endif %}
+                </div>
+              {% endif %}
+              <div class="ai-testimonial-verified-{{ ai_gen_id }}">
+                {{ block.settings.verified_label }}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {% if block.settings.button_text != blank %}
+    <div class="ai-testimonials-cta-{{ ai_gen_id }}">
+      <a href="{{ block.settings.button_link }}" class="ai-testimonials-button-{{ ai_gen_id }}">
+        {{ block.settings.button_text }}
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Customer testimonials",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>What Customers Are <span>Saying</span> After Trying Resilia</p>"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight color",
+      "default": "#FF6B35"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Title font size",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Real customers sharing their experiences with our product. See what they have to say about the results they've achieved and how it has transformed their daily routine.</p>"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "description_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Description font size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card background",
+      "default": "#F8F9FA"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border color",
+      "default": "#4CAF50"
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Card border width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Quote style"
+    },
+    {
+      "type": "color",
+      "id": "quote_color",
+      "label": "Quote color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "quote_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Quote font size",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Customer info"
+    },
+    {
+      "type": "text",
+      "id": "verified_label",
+      "label": "Verified label",
+      "default": "Verified Customer"
+    },
+    {
+      "type": "color",
+      "id": "name_color",
+      "label": "Name color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "verified_color",
+      "label": "Verified text color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "name_font_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Name font size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "verified_font_size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Verified text font size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Testimonial 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "testimonial_1_enabled",
+      "label": "Show testimonial 1",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial_1_quote",
+      "label": "Quote",
+      "default": "This product has completely changed my life! I've been using it for 3 months now and the results are amazing. I feel more energetic and confident than ever before."
+    },
+    {
+      "type": "text",
+      "id": "testimonial_1_name",
+      "label": "Customer name",
+      "default": "Sarah Johnson"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_1_age",
+      "label": "Customer age",
+      "default": "32"
+    },
+    {
+      "type": "image_picker",
+      "id": "testimonial_1_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "header",
+      "content": "Testimonial 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "testimonial_2_enabled",
+      "label": "Show testimonial 2",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial_2_quote",
+      "label": "Quote",
+      "default": "I was skeptical at first, but after trying this for just 2 weeks, I noticed significant improvements. The quality is outstanding and customer service is excellent."
+    },
+    {
+      "type": "text",
+      "id": "testimonial_2_name",
+      "label": "Customer name",
+      "default": "Michael Chen"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_2_age",
+      "label": "Customer age",
+      "default": "45"
+    },
+    {
+      "type": "image_picker",
+      "id": "testimonial_2_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "header",
+      "content": "Testimonial 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "testimonial_3_enabled",
+      "label": "Show testimonial 3",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial_3_quote",
+      "label": "Quote",
+      "default": "Best purchase I've made this year! The results speak for themselves. I've recommended this to all my friends and family. Absolutely worth every penny."
+    },
+    {
+      "type": "text",
+      "id": "testimonial_3_name",
+      "label": "Customer name",
+      "default": "Emma Rodriguez"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_3_age",
+      "label": "Customer age",
+      "default": "28"
+    },
+    {
+      "type": "image_picker",
+      "id": "testimonial_3_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "TRY RESILIA RISK-FREE"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button background",
+      "default": "#FF6B35"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button hover color",
+      "default": "#E55A2B"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button font size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Section style"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section background",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customer testimonials"
+    }
+  ]
+}
+{% endschema %}

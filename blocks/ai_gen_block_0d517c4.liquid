@@ -1,0 +1,1131 @@
+{% doc %}
+  @prompt
+    Create a Shopify section called "Product Comparison Table" that highlights how one product stands apart from competitors. The layout should include:
+    
+    Heading + Subheading – editable text with customization for font, size, color, and alignment.
+    
+    Intro Paragraph – editable rich text with full font, size, and color controls.
+    
+    Comparison Table:
+    
+    Left column: product image (uploadable).
+    
+    Middle column: feature names (text, editable).
+    
+    Right column: competitor comparison.
+    
+    Each row should have a toggle to select a ✔️ (checkmark) or ❌ (cross).
+    
+    Allow background color, border color, text color, and font-size customization for each column.
+    
+    Button – customizable text, link, color, background color, padding, border radius, and font-size.
+    
+    Style Customization Options Required:
+    
+    Section background color and padding.
+    
+    Heading font family, size, weight, and color.
+    
+    Table font size, font family, text color.
+    
+    Table row background colors (alternating row option).
+    
+    Icon (✔️/❌) color control.
+    
+    Button full styling (text, link, font, size, color, hover color, border radius).
+    
+    The section must be responsive on desktop and mobile, with the table stacking properly on smaller screens., not showing to the frontend side not working, How Resilia <span>Stands Apart</span> from the Rest
+                </h2> heading set this & whole section in all device responisve
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-comparison-table-{{ ai_gen_id }} {
+    background-color: {{ block.settings.section_background_color }};
+    padding: {{ block.settings.section_padding_top }}px 0 {{ block.settings.section_padding_bottom }}px;
+  }
+
+  .ai-comparison-table__container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ai-comparison-table__header-{{ ai_gen_id }} {
+    text-align: {{ block.settings.text_alignment }};
+    margin-bottom: 40px;
+  }
+
+  .ai-comparison-table__heading-{{ ai_gen_id }} {
+    font-family: {{ block.settings.heading_font.family }}, {{ block.settings.heading_font.fallback_families }};
+    font-weight: {{ block.settings.heading_font.weight }};
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.heading_color }};
+    margin: 0 0 16px;
+    line-height: 1.2;
+  }
+
+  .ai-comparison-table__heading-span-{{ ai_gen_id }} {
+    color: {{ block.settings.heading_span_color }};
+  }
+
+  .ai-comparison-table__subheading-{{ ai_gen_id }} {
+    font-family: {{ block.settings.subheading_font.family }}, {{ block.settings.subheading_font.fallback_families }};
+    font-weight: {{ block.settings.subheading_font.weight }};
+    font-size: {{ block.settings.subheading_size }}px;
+    color: {{ block.settings.subheading_color }};
+    margin: 0 0 24px;
+    line-height: 1.4;
+  }
+
+  .ai-comparison-table__intro-{{ ai_gen_id }} {
+    font-family: {{ block.settings.intro_font.family }}, {{ block.settings.intro_font.fallback_families }};
+    font-size: {{ block.settings.intro_size }}px;
+    color: {{ block.settings.intro_color }};
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+
+  .ai-comparison-table__table-wrapper-{{ ai_gen_id }} {
+    overflow-x: auto;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ai-comparison-table__table-{{ ai_gen_id }} {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    font-family: {{ block.settings.table_font.family }}, {{ block.settings.table_font.fallback_families }};
+    font-size: {{ block.settings.table_font_size }}px;
+    color: {{ block.settings.table_text_color }};
+  }
+
+  .ai-comparison-table__header-row-{{ ai_gen_id }} {
+    background-color: {{ block.settings.header_background_color }};
+  }
+
+  .ai-comparison-table__header-cell-{{ ai_gen_id }} {
+    padding: 20px 16px;
+    text-align: center;
+    font-weight: 600;
+    border-bottom: 2px solid {{ block.settings.table_border_color }};
+    color: {{ block.settings.header_text_color }};
+    white-space: nowrap;
+  }
+
+  .ai-comparison-table__row-{{ ai_gen_id }} {
+    border-bottom: 1px solid {{ block.settings.table_border_color }};
+  }
+
+  {% if block.settings.alternating_rows %}
+    .ai-comparison-table__row-{{ ai_gen_id }}:nth-child(even) {
+      background-color: {{ block.settings.alt_row_background_color }};
+    }
+    .ai-comparison-table__row-{{ ai_gen_id }}:nth-child(odd) {
+      background-color: {{ block.settings.row_background_color }};
+    }
+  {% else %}
+    .ai-comparison-table__row-{{ ai_gen_id }} {
+      background-color: {{ block.settings.row_background_color }};
+    }
+  {% endif %}
+
+  .ai-comparison-table__cell-{{ ai_gen_id }} {
+    padding: 16px;
+    text-align: center;
+    vertical-align: middle;
+    border-right: 1px solid {{ block.settings.table_border_color }};
+  }
+
+  .ai-comparison-table__cell-{{ ai_gen_id }}:last-child {
+    border-right: none;
+  }
+
+  .ai-comparison-table__cell--feature-{{ ai_gen_id }} {
+    text-align: left;
+    font-weight: 500;
+  }
+
+  .ai-comparison-table__product-image-{{ ai_gen_id }} {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .ai-comparison-table__product-placeholder-{{ ai_gen_id }} {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 8px;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-comparison-table__product-placeholder-{{ ai_gen_id }} svg {
+    width: 60px;
+    height: 60px;
+    opacity: 0.5;
+  }
+
+  .ai-comparison-table__icon-{{ ai_gen_id }} {
+    font-size: 24px;
+    line-height: 1;
+    font-weight: bold;
+  }
+
+  .ai-comparison-table__icon--check-{{ ai_gen_id }} {
+    color: {{ block.settings.check_icon_color }};
+  }
+
+  .ai-comparison-table__icon--cross-{{ ai_gen_id }} {
+    color: {{ block.settings.cross_icon_color }};
+  }
+
+  .ai-comparison-table__button-wrapper-{{ ai_gen_id }} {
+    text-align: {{ block.settings.text_alignment }};
+  }
+
+  .ai-comparison-table__button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+    background-color: {{ block.settings.button_background_color }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-family: {{ block.settings.button_font.family }}, {{ block.settings.button_font.fallback_families }};
+    font-size: {{ block.settings.button_font_size }}px;
+    font-weight: {{ block.settings.button_font.weight }};
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .ai-comparison-table__button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+    color: {{ block.settings.button_hover_text_color }};
+  }
+
+  @media screen and (max-width: 1024px) {
+    .ai-comparison-table__container-{{ ai_gen_id }} {
+      padding: 0 16px;
+    }
+
+    .ai-comparison-table__heading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.heading_size }}px * 0.85);
+    }
+
+    .ai-comparison-table__subheading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.subheading_size }}px * 0.9);
+    }
+
+    .ai-comparison-table__intro-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.intro_size }}px * 0.95);
+    }
+
+    .ai-comparison-table__header-cell-{{ ai_gen_id }} {
+      padding: 16px 12px;
+      font-size: calc({{ block.settings.table_font_size }}px * 0.95);
+    }
+
+    .ai-comparison-table__cell-{{ ai_gen_id }} {
+      padding: 14px 12px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-comparison-table__container-{{ ai_gen_id }} {
+      padding: 0 12px;
+    }
+
+    .ai-comparison-table__header-{{ ai_gen_id }} {
+      margin-bottom: 30px;
+    }
+
+    .ai-comparison-table__heading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.heading_size }}px * 0.7);
+      line-height: 1.3;
+    }
+
+    .ai-comparison-table__subheading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.subheading_size }}px * 0.8);
+    }
+
+    .ai-comparison-table__intro-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.intro_size }}px * 0.9);
+      margin-bottom: 30px;
+    }
+
+    .ai-comparison-table__table-wrapper-{{ ai_gen_id }} {
+      margin-bottom: 30px;
+    }
+
+    .ai-comparison-table__table-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.table_font_size }}px * 0.9);
+      min-width: 500px;
+    }
+
+    .ai-comparison-table__header-cell-{{ ai_gen_id }} {
+      padding: 12px 8px;
+      font-size: calc({{ block.settings.table_font_size }}px * 0.85);
+    }
+
+    .ai-comparison-table__cell-{{ ai_gen_id }} {
+      padding: 12px 8px;
+    }
+
+    .ai-comparison-table__product-image-{{ ai_gen_id }},
+    .ai-comparison-table__product-placeholder-{{ ai_gen_id }} {
+      width: 80px;
+      height: 80px;
+    }
+
+    .ai-comparison-table__product-placeholder-{{ ai_gen_id }} svg {
+      width: 48px;
+      height: 48px;
+    }
+
+    .ai-comparison-table__icon-{{ ai_gen_id }} {
+      font-size: 20px;
+    }
+
+    .ai-comparison-table__button-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.button_font_size }}px * 0.9);
+      padding: calc({{ block.settings.button_padding_vertical }}px * 0.8) calc({{ block.settings.button_padding_horizontal }}px * 0.8);
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .ai-comparison-table__container-{{ ai_gen_id }} {
+      padding: 0 8px;
+    }
+
+    .ai-comparison-table__heading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.heading_size }}px * 0.6);
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .ai-comparison-table__subheading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.subheading_size }}px * 0.75);
+      margin-bottom: 16px;
+    }
+
+    .ai-comparison-table__intro-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.intro_size }}px * 0.85);
+      margin-bottom: 24px;
+    }
+
+    .ai-comparison-table__table-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.table_font_size }}px * 0.8);
+      min-width: 450px;
+    }
+
+    .ai-comparison-table__header-cell-{{ ai_gen_id }} {
+      padding: 10px 6px;
+      font-size: calc({{ block.settings.table_font_size }}px * 0.8);
+    }
+
+    .ai-comparison-table__cell-{{ ai_gen_id }} {
+      padding: 10px 6px;
+    }
+
+    .ai-comparison-table__product-image-{{ ai_gen_id }},
+    .ai-comparison-table__product-placeholder-{{ ai_gen_id }} {
+      width: 60px;
+      height: 60px;
+    }
+
+    .ai-comparison-table__product-placeholder-{{ ai_gen_id }} svg {
+      width: 36px;
+      height: 36px;
+    }
+
+    .ai-comparison-table__icon-{{ ai_gen_id }} {
+      font-size: 18px;
+    }
+
+    .ai-comparison-table__button-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.button_font_size }}px * 0.85);
+      padding: calc({{ block.settings.button_padding_vertical }}px * 0.7) calc({{ block.settings.button_padding_horizontal }}px * 0.7);
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-comparison-table-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-comparison-table__container-{{ ai_gen_id }}">
+    <div class="ai-comparison-table__header-{{ ai_gen_id }}">
+      {% if block.settings.heading != blank %}
+        <h2 class="ai-comparison-table__heading-{{ ai_gen_id }}">
+          How Resilia <span class="ai-comparison-table__heading-span-{{ ai_gen_id }}">Stands Apart</span> from the Rest
+        </h2>
+      {% endif %}
+      
+      {% if block.settings.subheading != blank %}
+        <h3 class="ai-comparison-table__subheading-{{ ai_gen_id }}">{{ block.settings.subheading }}</h3>
+      {% endif %}
+      
+      {% if block.settings.intro_text != blank %}
+        <div class="ai-comparison-table__intro-{{ ai_gen_id }}">{{ block.settings.intro_text }}</div>
+      {% endif %}
+    </div>
+
+    <div class="ai-comparison-table__table-wrapper-{{ ai_gen_id }}">
+      <table class="ai-comparison-table__table-{{ ai_gen_id }}">
+        <thead>
+          <tr class="ai-comparison-table__header-row-{{ ai_gen_id }}">
+            <th class="ai-comparison-table__header-cell-{{ ai_gen_id }}">{{ block.settings.column_1_header }}</th>
+            <th class="ai-comparison-table__header-cell-{{ ai_gen_id }}">{{ block.settings.column_2_header }}</th>
+            <th class="ai-comparison-table__header-cell-{{ ai_gen_id }}">{{ block.settings.column_3_header }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="ai-comparison-table__row-{{ ai_gen_id }}">
+            <td class="ai-comparison-table__cell-{{ ai_gen_id }}">
+              {% if block.settings.product_image %}
+                <img
+                  src="{{ block.settings.product_image | image_url: width: 200 }}"
+                  alt="{{ block.settings.product_image.alt | escape }}"
+                  class="ai-comparison-table__product-image-{{ ai_gen_id }}"
+                  loading="lazy"
+                  width="100"
+                  height="100"
+                >
+              {% else %}
+                <div class="ai-comparison-table__product-placeholder-{{ ai_gen_id }}">
+                  {{ 'product-1' | placeholder_svg_tag }}
+                </div>
+              {% endif %}
+            </td>
+            <td class="ai-comparison-table__cell-{{ ai_gen_id }}">{{ block.settings.product_name }}</td>
+            <td class="ai-comparison-table__cell-{{ ai_gen_id }}">{{ block.settings.competitor_name }}</td>
+          </tr>
+          
+          {% for i in (1..8) %}
+            {% assign feature_key = 'feature_' | append: i %}
+            {% assign product_value_key = 'product_value_' | append: i %}
+            {% assign competitor_value_key = 'competitor_value_' | append: i %}
+            
+            {% assign feature_name = block.settings[feature_key] %}
+            {% assign product_value = block.settings[product_value_key] %}
+            {% assign competitor_value = block.settings[competitor_value_key] %}
+            
+            {% if feature_name != blank %}
+              <tr class="ai-comparison-table__row-{{ ai_gen_id }}">
+                <td class="ai-comparison-table__cell-{{ ai_gen_id }} ai-comparison-table__cell--feature-{{ ai_gen_id }}">{{ feature_name }}</td>
+                <td class="ai-comparison-table__cell-{{ ai_gen_id }}">
+                  {% if product_value == 'check' %}
+                    <span class="ai-comparison-table__icon-{{ ai_gen_id }} ai-comparison-table__icon--check-{{ ai_gen_id }}">✓</span>
+                  {% elsif product_value == 'cross' %}
+                    <span class="ai-comparison-table__icon-{{ ai_gen_id }} ai-comparison-table__icon--cross-{{ ai_gen_id }}">✗</span>
+                  {% else %}
+                    {{ product_value }}
+                  {% endif %}
+                </td>
+                <td class="ai-comparison-table__cell-{{ ai_gen_id }}">
+                  {% if competitor_value == 'check' %}
+                    <span class="ai-comparison-table__icon-{{ ai_gen_id }} ai-comparison-table__icon--check-{{ ai_gen_id }}">✓</span>
+                  {% elsif competitor_value == 'cross' %}
+                    <span class="ai-comparison-table__icon-{{ ai_gen_id }} ai-comparison-table__icon--cross-{{ ai_gen_id }}">✗</span>
+                  {% else %}
+                    {{ competitor_value }}
+                  {% endif %}
+                </td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% if block.settings.button_text != blank %}
+      <div class="ai-comparison-table__button-wrapper-{{ ai_gen_id }}">
+        <a href="{{ block.settings.button_link }}" class="ai-comparison-table__button-{{ ai_gen_id }}">
+          {{ block.settings.button_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product comparison table",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section settings"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "checkbox",
+      "id": "heading",
+      "label": "Show heading",
+      "default": true
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Font",
+      "default": "inter_n7"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 16,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Font size",
+      "default": 36
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "heading_span_color",
+      "label": "Highlight color",
+      "default": "#0066cc"
+    },
+    {
+      "type": "header",
+      "content": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "See how we compare to the competition"
+    },
+    {
+      "type": "font_picker",
+      "id": "subheading_font",
+      "label": "Font",
+      "default": "inter_n5"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Font size",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Intro text"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_text",
+      "label": "Intro text",
+      "default": "<p>Our product stands out from the competition with superior features and unmatched quality.</p>"
+    },
+    {
+      "type": "font_picker",
+      "id": "intro_font",
+      "label": "Font",
+      "default": "inter_n4"
+    },
+    {
+      "type": "range",
+      "id": "intro_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "intro_color",
+      "label": "Color",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "Table headers"
+    },
+    {
+      "type": "text",
+      "id": "column_1_header",
+      "label": "Column 1 header",
+      "default": "Features"
+    },
+    {
+      "type": "text",
+      "id": "column_2_header",
+      "label": "Column 2 header",
+      "default": "Resilia"
+    },
+    {
+      "type": "text",
+      "id": "column_3_header",
+      "label": "Column 3 header",
+      "default": "Competitors"
+    },
+    {
+      "type": "header",
+      "content": "Product information"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image"
+    },
+    {
+      "type": "text",
+      "id": "product_name",
+      "label": "Product name",
+      "default": "Resilia Product"
+    },
+    {
+      "type": "text",
+      "id": "competitor_name",
+      "label": "Competitor name",
+      "default": "Other Products"
+    },
+    {
+      "type": "header",
+      "content": "Features"
+    },
+    {
+      "type": "text",
+      "id": "feature_1",
+      "label": "Feature 1",
+      "default": "Premium Quality"
+    },
+    {
+      "type": "select",
+      "id": "product_value_1",
+      "label": "Our product value 1",
+      "options": [
+        {
+          "value": "check",
+          "label": "✓ Check"
+        },
+        {
+          "value": "cross",
+          "label": "✗ Cross"
+        }
+      ],
+      "default": "check"
+    },
+    {
+      "type": "select",
+      "id": "competitor_value_1",
+      "label": "Competitor value 1",
+      "options": [
+        {
+          "value": "check",
+          "label": "✓ Check"
+        },
+        {
+          "value": "cross",
+          "label": "✗ Cross"
+        }
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "text",
+      "id": "feature_2",
+      "label": "Feature 2",
+      "default": "24/7 Support"
+    },
+    {
+      "type": "select",
+      "id": "product_value_2",
+      "label": "Our product value 2",
+      "options": [
+        {
+          "value": "check",
+          "label": "✓ Check"
+        },
+        {
+          "value": "cross",
+          "label": "✗ Cross"
+        }
+      ],
+      "default": "check"
+    },
+    {
+      "type": "select",
+      "id": "competitor_value_2",
+      "label": "Competitor value 2",
+      "options": [
+        {
+          "value": "check",
+          "label": "✓ Check"
+        },
+        {
+          "value": "cross",
+          "label": "✗ Cross"
+        }
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "text",
+      "id": "feature_3",
+      "label": "Feature 3",
+      "default": "Free Shipping"
+    },
+    {
+      "type": "select",
+      "id": "product_value_3",
+      "label": "Our product value 3",
+      "options": [
+        {
+          "value": "check",
+          "label": "✓ Check"
+        },
+        {
+          "value": "cross",
+          "label": "✗ Cross"
+        }
+      ],
+      "default": "check"
+    },
+    {
+      "type": "select",
+      "id": "competitor_value_3",
+      "label": "Competitor value 3",
+      "options": [
+        {
+          "value": "check",
+          "label": "✓ Check"
+        },
+        {
+          "value": "cross",
+          "label": "✗ Cross"
+        }
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "text",
+      "id": "feature_4",
+      "label": "Feature 4",
+      "default": "Money Back Guarantee"
+    },
+    {
+      "type": "select",
+      "id": "product_value_4",
+      "label": "Our product value 4",
+      "options": [
+        {
+          "value": "check",
+          "label": "✓ Check"
+        },
+        {
+          "value": "cross",
+          "label": "✗ Cross"
+        }
+      ],
+      "default": "check"
+    },
+    {
+      "type": "select",
+      "id": "competitor_value_4",
+      "label": "Competitor value 4",
+      "options": [
+        {
+          "value": "check",
+          "label": "✓ Check"
+        },
+        {
+          "value": "cross",
+          "label": "✗ Cross"
+        }
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "text",
+      "id": "feature_5",
+      "label": "Feature 5"
+    },
+    {
+      "type": "select",
+      "id": "product_value_5",
+      "label": "Our product value 5",
+      "options": [
+        {
+          "value": "check",
+          "label": "✓ Check"
+        },
+        {
+          "value": "cross",
+          "label": "✗ Cross"
+        }
+      ],
+      "default": "check"
+    },
+    {
+      "type": "select",
+      "id": "competitor_value_5",
+      "label": "Competitor value 5",
+      "options": [
+        {
+          "value": "check",
+          "label": "✓ Check"
+        },
+        {
+          "value": "cross",
+          "label": "✗ Cross"
+        }
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "text",
+      "id": "feature_6",
+      "label": "Feature 6"
+    },
+    {
+      "type": "select",
+      "id": "product_value_6",
+      "label": "Our product value 6",
+      "options": [
+        {
+          "value": "check",
+          "label": "✓ Check"
+        },
+        {
+          "value": "cross",
+          "label": "✗ Cross"
+        }
+      ],
+      "default": "check"
+    },
+    {
+      "type": "select",
+      "id": "competitor_value_6",
+      "label": "Competitor value 6",
+      "options": [
+        {
+          "value": "check",
+          "label": "✓ Check"
+        },
+        {
+          "value": "cross",
+          "label": "✗ Cross"
+        }
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "text",
+      "id": "feature_7",
+      "label": "Feature 7"
+    },
+    {
+      "type": "select",
+      "id": "product_value_7",
+      "label": "Our product value 7",
+      "options": [
+        {
+          "value": "check",
+          "label": "✓ Check"
+        },
+        {
+          "value": "cross",
+          "label": "✗ Cross"
+        }
+      ],
+      "default": "check"
+    },
+    {
+      "type": "select",
+      "id": "competitor_value_7",
+      "label": "Competitor value 7",
+      "options": [
+        {
+          "value": "check",
+          "label": "✓ Check"
+        },
+        {
+          "value": "cross",
+          "label": "✗ Cross"
+        }
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "text",
+      "id": "feature_8",
+      "label": "Feature 8"
+    },
+    {
+      "type": "select",
+      "id": "product_value_8",
+      "label": "Our product value 8",
+      "options": [
+        {
+          "value": "check",
+          "label": "✓ Check"
+        },
+        {
+          "value": "cross",
+          "label": "✗ Cross"
+        }
+      ],
+      "default": "check"
+    },
+    {
+      "type": "select",
+      "id": "competitor_value_8",
+      "label": "Competitor value 8",
+      "options": [
+        {
+          "value": "check",
+          "label": "✓ Check"
+        },
+        {
+          "value": "cross",
+          "label": "✗ Cross"
+        }
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "header",
+      "content": "Table style"
+    },
+    {
+      "type": "font_picker",
+      "id": "table_font",
+      "label": "Font",
+      "default": "inter_n4"
+    },
+    {
+      "type": "range",
+      "id": "table_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "table_text_color",
+      "label": "Text color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "table_border_color",
+      "label": "Border color",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "color",
+      "id": "header_background_color",
+      "label": "Header background color",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "header_text_color",
+      "label": "Header text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "row_background_color",
+      "label": "Row background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "alternating_rows",
+      "label": "Alternating row colors",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "alt_row_background_color",
+      "label": "Alternate row background color",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "color",
+      "id": "check_icon_color",
+      "label": "Check icon color",
+      "default": "#00a651"
+    },
+    {
+      "type": "color",
+      "id": "cross_icon_color",
+      "label": "Cross icon color",
+      "default": "#d82c0d"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "font_picker",
+      "id": "button_font",
+      "label": "Font",
+      "default": "inter_n5"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Hover background color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "min": 16,
+      "max": 64,
+      "step": 4,
+      "unit": "px",
+      "label": "Horizontal padding",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product comparison table"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}

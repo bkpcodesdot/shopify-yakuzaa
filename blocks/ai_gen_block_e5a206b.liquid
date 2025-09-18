@@ -1,0 +1,431 @@
+{% doc %}
+  @prompt
+    Create a custom Shopify section called "Before & After Article Section".
+    
+    The section should include the following customizable settings in the theme editor:
+    
+    1. Heading (rich text with bold and color option support, e.g. "I Thought I Was Just Tired and Bloated... Then I Learned What Was Really Happening Inside My Gut")
+    2. Subheading/Description (text block below the heading, editable)
+    3. Author details:
+       - Author image (image picker)
+       - Author name (text field, e.g. "Dr. John K.")
+       - Publish date (date picker or text field)
+    4. Before/After Image comparison:
+       - Before image (image picker)
+       - Before label text (default: "Before")
+       - After image (image picker)
+       - After label text (default: "After")
+    5. Reading time estimate (text field, e.g. "Estimated 5-7 Minute Read") with option to enable/disable.
+    6. Background color option (color picker)
+    7. Text alignment (left/center)
+    8. Section padding (top/bottom spacing controls)
+    
+    Layout:
+    - Heading at the top (center aligned by default).
+    - Subheading/description just below heading.
+    - Author details in a row (author image small circle + text beside it).
+    - Below that, two side-by-side images (Before on left, After on right) with labels overlaid at the bottom of each image.
+    - Reading time displayed at the bottom with a highlighted background (editable color).
+    
+    Make the section fully responsive for desktop and mobile., container width sholud be - max-width: 728px; there  are only one image not after or before,     the container sholud be margin-left: auto;
+        margin-right: auto;, Reading time background have border color & option add to the custmization,  “I Thought I Was Just Tired and Bloated… Then I Learned What Was <span>Really Happening</span> Inside My Gut”
+                </h1>
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-before-after-article-{{ ai_gen_id }} {
+    background-color: {{ block.settings.background_color }};
+    margin-left: auto;
+    margin-right: auto;
+    padding: {{ block.settings.padding_top }}px 20px {{ block.settings.padding_bottom }}px;
+  }
+
+  .ai-before-after-article__container-{{ ai_gen_id }} {
+    max-width: 728px;
+    
+    text-align: {{ block.settings.text_alignment }};
+  }
+
+  .ai-before-after-article__heading-{{ ai_gen_id }} {
+    font-size:38px;
+    line-height: 40px;
+    margin: 0 0 16px;
+    font-weight:600;
+    color: {{ block.settings.text_color }};
+  }
+ .ai-before-after-article__heading-acdr0m0uxa0xyunptdaigenblocke5a206b3dzqhj strong{
+color:#e26900;
+}
+  .ai-before-after-article__heading-{{ ai_gen_id }} span {
+    color: {{ block.settings.heading_highlight_color }};
+  }
+
+  .ai-before-after-article__description-{{ ai_gen_id }} {
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 0 0 24px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.8;
+  }
+
+  .ai-before-after-article__author-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 32px;
+    {% if block.settings.text_alignment == 'center' %}
+      justify-content: center;
+    {% endif %}
+  }
+
+  .ai-before-after-article__author-image-{{ ai_gen_id }} {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .ai-before-after-article__author-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-before-after-article__author-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-before-after-article__author-placeholder-{{ ai_gen_id }} svg {
+    width: 24px;
+    height: 24px;
+    color: #999;
+  }
+
+  .ai-before-after-article__author-info-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .ai-before-after-article__author-name-{{ ai_gen_id }} {
+    font-size: 16px;
+    font-weight: 500;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+  }
+
+  .ai-before-after-article__publish-date-{{ ai_gen_id }} {
+    font-size: 16px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  .ai-before-after-article__image-container-{{ ai_gen_id }} {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 0 0 24px;
+  }
+
+  .ai-before-after-article__image-container-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-height:340px;
+  }
+
+  .ai-before-after-article__image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-before-after-article__image-placeholder-{{ ai_gen_id }} svg {
+    width: 60px;
+    height: 60px;
+    color: #999;
+  }
+
+  .ai-before-after-article__reading-time-{{ ai_gen_id }} {
+   width: 100%;
+    max-width: 274px;
+    margin: 0 auto;
+    background-color: #085e0305;
+    color: #085e03;
+    align-items: center;
+    padding: 8px 16px;
+    display: flex;
+    border-radius: 5px;
+    font-size: 18px;
+    gap:5px;
+    border: 1px solid #085e03;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-before-after-article__heading-{{ ai_gen_id }} {
+      font-size: 24px;
+    }
+
+    .ai-before-after-article__description-{{ ai_gen_id }} {
+      font-size: 16px;
+    }
+
+    .ai-before-after-article__author-{{ ai_gen_id }} {
+      justify-content: flex-start;
+    }
+  }
+{% endstyle %}<div
+  class="ai-before-after-article-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-before-after-article__container-{{ ai_gen_id }}">
+    {% if block.settings.heading != blank %}
+      <h1 class="ai-before-after-article__heading-{{ ai_gen_id }}">
+        {{ block.settings.heading }}
+      </h1>
+    {% endif %}
+
+    {% if block.settings.description != blank %}
+      <div class="ai-before-after-article__description-{{ ai_gen_id }}">
+        {{ block.settings.description }}
+      </div>
+    {% endif %}
+
+    <div class="ai-before-after-article__author-{{ ai_gen_id }}">
+      <div class="ai-before-after-article__author-image-{{ ai_gen_id }}">
+        {% if block.settings.author_image %}
+          <img
+            src="{{ block.settings.author_image | image_url: width: 100}}"
+            alt="{{ block.settings.author_name | escape }}"
+            loading="lazy"
+            width="100"
+            height="100"
+          >
+        {% else %}
+          <div class="ai-before-after-article__author-placeholder-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+          </div>
+        {% endif %}
+      </div>
+      <div class="ai-before-after-article__author-info-{{ ai_gen_id }}">
+        {% if block.settings.author_name != blank %}
+          <div class="ai-before-after-article__author-name-{{ ai_gen_id }}">
+            {{ block.settings.author_name }}
+          </div>
+        {% endif %}
+        {% if block.settings.publish_date != blank %}
+          <div class="ai-before-after-article__publish-date-{{ ai_gen_id }}">
+            {{ block.settings.publish_date }}
+          </div>
+        {% endif %}
+      </div>
+    </div><div class="ai-before-after-article__image-container-{{ ai_gen_id }}">
+      {% if block.settings.article_image %}
+        <img
+          src="{{ block.settings.article_image | image_url: width: 800 }}"
+          alt="{{ block.settings.article_image.alt | escape }}"
+          loading="lazy"
+          width="{{ block.settings.article_image.width }}"
+          height="{{ block.settings.article_image.height }}"
+        >
+      {% else %}
+        <div class="ai-before-after-article__image-placeholder-{{ ai_gen_id }}">
+          {{ 'image' | placeholder_svg_tag }}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if block.settings.show_reading_time and block.settings.reading_time != blank %}
+     <div id="ai-health-campaign" class="ai-before-after-article__reading-time-{{ ai_gen_id }}" style="cursor: pointer;">
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="10" viewBox="0 0 11 10" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.252621 0.56461C0.0352372 0.696563 -0.0603891 0.949726 0.0397643 1.12825C0.0886859 1.21549 5.18571 5.81103 5.2877 5.85988C5.3341 5.8821 5.4296 5.90026 5.5 5.90026C5.5704 5.90026 5.6659 5.8821 5.7123 5.85988C5.81429 5.81103 10.9113 1.21549 10.9602 1.12825C11.0604 0.949726 10.9648 0.696563 10.7474 0.56461C10.6315 0.494247 10.4151 0.478413 10.298 0.531706C10.2605 0.548777 9.16562 1.52003 7.86491 2.69006L5.5 4.81739L3.13509 2.69006C1.83438 1.52003 0.739496 0.548777 0.702001 0.531706C0.584926 0.478413 0.36851 0.494247 0.252621 0.56461ZM0.252621 4.16435C0.0352372 4.2963 -0.0603891 4.54946 0.0397643 4.72799C0.0886859 4.81522 5.18571 9.41077 5.2877 9.45962C5.3341 9.48183 5.4296 9.5 5.5 9.5C5.5704 9.5 5.6659 9.48183 5.7123 9.45962C5.81429 9.41077 10.9113 4.81522 10.9602 4.72799C11.0604 4.54946 10.9648 4.2963 10.7474 4.16435C10.6315 4.09398 10.4151 4.07815 10.298 4.13144C10.2605 4.14851 9.16562 5.11977 7.86491 6.28979L5.5 8.41713L3.13509 6.28979C1.83438 5.11977 0.739496 4.14851 0.702001 4.13144C0.584926 4.07815 0.36851 4.09398 0.252621 4.16435Z" fill="#085E03"></path>
+                  </svg><span>Estimated <b>{{ block.settings.reading_time }} </b></span>
+
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Article section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>I Thought I Was Just Tired and Bloated… Then I Learned What Was <span>Really Happening</span> Inside My Gut</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Discover the shocking truth about gut health and how it affects your daily energy levels."
+    },
+    {
+      "type": "header",
+      "content": "Author"
+    },
+    {
+      "type": "image_picker",
+      "id": "author_image",
+      "label": "Author image"
+    },
+    {
+      "type": "text",
+      "id": "author_name",
+      "label": "Author name",
+      "default": "Dr. John K."
+    },
+    {
+      "type": "text",
+      "id": "publish_date",
+      "label": "Publish date",
+      "default": "March 15, 2024"
+    },
+    {
+      "type": "header",
+      "content": "Article image"
+    },
+    {
+      "type": "image_picker",
+      "id": "article_image",
+      "label": "Article image"
+    },
+    {
+      "type": "header",
+      "content": "Reading time"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reading_time",
+      "label": "Show reading time",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "reading_time",
+      "label": "Reading time text",
+      "default": "Estimated 5-7 Minute Read"
+    },
+    {
+      "type": "color",
+      "id": "reading_time_bg_color",
+      "label": "Background",
+      "default": "#f0f0f0"
+    },
+    {
+      "type": "color",
+      "id": "reading_time_text_color",
+      "label": "Text",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "reading_time_border_color",
+      "label": "Border",
+      "default": "#cccccc"
+    },
+    {
+      "type": "range",
+      "id": "reading_time_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Border width",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Article section"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}
+ <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const button = document.querySelector(".ai-before-after-article__reading-time-acdr0m0uxa0xyunptdaigenblocke5a206b3dzqhj");
+    const target = document.getElementById("ai-health-campaign");
+
+    if (button && target) {
+      button.addEventListener("click", function (e) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth" });
+      });
+    }
+  });
+</script>

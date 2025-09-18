@@ -1,0 +1,687 @@
+{% doc %}
+  @prompt
+    Create a fully responsive Shopify section that replicates the layout and style of the provided advertorial design. The section must include the following editable elements in the Shopify editor:
+    
+    Top Bar
+    
+    A green background bar with editable text (e.g., "Take Care Of Yourself")
+    
+    Editable "SHOP NOW" link button.
+    
+    Main Heading & Subheading
+    
+    Large editable heading with mixed-color text (e.g., “Why Most People Don’t Know They’re Infected” where part of the text can be highlighted in a different color).
+    
+    Editable subtitle text below it (e.g., “How gut invaders hide, survive, and manipulate your body, backed by science”).
+    
+    Hero Image
+    
+    Editable image upload field (first gut illustration).
+    
+    Body Content (Text Blocks)
+    
+    Multiple rich-text blocks with editable bold/italic highlights.
+    
+    Example: “One of the biggest reasons parasites, fungi, and harmful microbes go untreated is because they’re incredibly good at hiding.”
+    
+    Second Illustration
+    
+    Editable image upload field (intestinal diagram with labels).
+    
+    Additional Text Block
+    
+    Editable paragraph with bold/italic emphasis (e.g., “They create a slimy protective shield around themselves…”).
+    
+    CTA Button
+    
+    Full-width, centered, orange button with editable label (e.g., “TRY RESILIA RISK-FREE”).
+    
+    Editable button link.
+    
+    Requirements:
+    
+    All text, images, colors, and button links must be editable via the Shopify editor.
+    
+    Responsive design for mobile, tablet, and desktop.
+    
+    Spacing and typography should be clean and modern, matching the provided layout.
+    
+    Allow optional hiding/showing of each block (top bar, heading, image, text, CTA) in editor.
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+
+#shopify-block-AeXIwcmpENTU4M0g0b__ai_gen_block_b8e8a74_Tr4UAG{
+  margin: 0 auto;
+    max-width: 728px !important;
+    width: 100%;
+}
+.ai-advertorial-section-{{ ai_gen_id }} p{ 
+  font-family: 'Roboto' !important;
+}
+
+  .ai-advertorial-section-{{ ai_gen_id }} {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .ai-advertorial-top-bar-{{ ai_gen_id }} {
+    background-color: {{ block.settings.top_bar_bg_color }};
+    padding: 12px 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .ai-advertorial-top-bar-text-{{ ai_gen_id }} {
+    color: {{ block.settings.top_bar_text_color }};
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .ai-advertorial-shop-now-btn-{{ ai_gen_id }} {
+    background-color: {{ block.settings.shop_now_bg_color }};
+    color: {{ block.settings.shop_now_text_color }};
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: opacity 0.3s ease;
+  }
+
+  .ai-advertorial-shop-now-btn-{{ ai_gen_id }}:hover {
+    opacity: 0.9;
+  }
+
+  .ai-advertorial-content-{{ ai_gen_id }} {
+    padding: 40px 20px;
+    background-color: {{ block.settings.content_bg_color }};
+  }
+
+  .ai-advertorial-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 20px;
+    color: {{ block.settings.heading_color }};
+  }
+
+  .ai-advertorial-heading-highlight-{{ ai_gen_id }} {
+    color: {{ block.settings.heading_highlight_color }};
+  }
+
+  .ai-advertorial-subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtitle_size }}px;
+    line-height: 0.2;
+    margin: 0 0 40px;
+    color: {{ block.settings.subtitle_color }};
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .ai-advertorial-hero-image-{{ ai_gen_id }} {
+    margin: 0 0 40px;
+    text-align: center;
+  }
+
+  .ai-advertorial-hero-image-{{ ai_gen_id }} img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .ai-advertorial-hero-placeholder-{{ ai_gen_id }} {
+    background-color: #f8f8f8;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .ai-advertorial-hero-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    opacity: 0.5;
+  }
+
+  .ai-advertorial-text-block-{{ ai_gen_id }} {
+    margin: 0 0 30px;
+  }
+
+  .ai-advertorial-text-block-{{ ai_gen_id }} p {
+    font-size: {{ block.settings.body_text_size }}px;
+    line-height: 1.6;
+    color: {{ block.settings.body_text_color }};
+    margin: 0 0 20px;
+  }
+
+  .ai-advertorial-text-block-{{ ai_gen_id }} p:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-advertorial-second-image-{{ ai_gen_id }} {
+    margin: 40px 0;
+    text-align: center;
+  }
+
+  .ai-advertorial-second-image-{{ ai_gen_id }} img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .ai-advertorial-second-placeholder-{{ ai_gen_id }} {
+    background-color: #f8f8f8;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .ai-advertorial-second-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    opacity: 0.5;
+  }
+
+  .ai-advertorial-cta-section-{{ ai_gen_id }} {
+    margin: 50px 0 0;
+    text-align: center;
+  }
+
+  .ai-advertorial-cta-btn-{{ ai_gen_id }} {
+    display: inline-block;
+    border: 2px solid {{ block.settings.cta_bg_color }};
+    background-color: {{ block.settings.cta_bg_color }};
+    color: {{ block.settings.cta_text_color }};
+    padding: 18px 40px;
+    border-radius: {{ block.settings.cta_border_radius }}px;
+    font-size: {{ block.settings.cta_font_size }}px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    {% comment %} box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); {% endcomment %}
+    width: 100%;
+    transition: all .3s;
+    {% comment %} max-width: 400px; {% endcomment %}
+  }
+
+  .ai-advertorial-cta-btn-{{ ai_gen_id }}:hover {
+    {% comment %} transform: translateY(-2px); {% endcomment %}
+    {% comment %} box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); {% endcomment %}
+    background-color: #fff;
+    color: {{ block.settings.cta_bg_color }};
+  }
+
+  .ai-advertorial-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #999;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-advertorial-content-{{ ai_gen_id }} {
+      padding: 30px 15px;
+    }
+
+    .ai-advertorial-heading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.heading_size }}px * 0.8);
+    }
+
+    .ai-advertorial-subtitle-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.subtitle_size }}px * 0.9);
+      font-family: 'Roboto';
+    }
+
+    .ai-advertorial-top-bar-{{ ai_gen_id }} {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .ai-advertorial-cta-btn-{{ ai_gen_id }} {
+      padding: 16px 30px;
+      font-size: calc({{ block.settings.cta_font_size }}px * 0.9);
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .ai-advertorial-content-{{ ai_gen_id }} {
+      padding: 20px 10px;
+    }
+
+    .ai-advertorial-heading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.heading_size }}px * 0.7);
+    }
+
+    .ai-advertorial-subtitle-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.subtitle_size }}px * 0.8);
+    }
+  }
+{% endstyle %}
+
+<div class="ai-advertorial-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.show_top_bar %}
+    <div class="ai-advertorial-top-bar-{{ ai_gen_id }}">
+      {% if block.settings.top_bar_text != blank %}
+        <div class="ai-advertorial-top-bar-text-{{ ai_gen_id }}">
+          {{ block.settings.top_bar_text }}
+        </div>
+      {% endif %}
+      {% if block.settings.shop_now_text != blank %}
+        <a 
+          href="{{ block.settings.shop_now_link }}" 
+          class="ai-advertorial-shop-now-btn-{{ ai_gen_id }}"
+        >
+          {{ block.settings.shop_now_text }}
+        </a>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="ai-advertorial-content-{{ ai_gen_id }}">
+    {% if block.settings.show_heading and block.settings.heading != blank %}
+      <h1 class="ai-advertorial-heading-{{ ai_gen_id }}">
+        {% assign heading_parts = block.settings.heading | split: block.settings.highlight_text %}
+        {% if heading_parts.size > 1 %}
+          {{ heading_parts[0] }}<span class="ai-advertorial-heading-highlight-{{ ai_gen_id }}">{{ block.settings.highlight_text }}</span>{{ heading_parts[1] }}
+        {% else %}
+          {{ block.settings.heading }}
+        {% endif %}
+      </h1>
+    {% endif %}
+
+    {% if block.settings.show_subtitle and block.settings.subtitle != blank %}
+      <div class="ai-advertorial-subtitle-{{ ai_gen_id }}">
+        {{ block.settings.subtitle }}
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_hero_image %}
+      <div class="ai-advertorial-hero-image-{{ ai_gen_id }}">
+        {% if block.settings.hero_image %}
+          <img
+            src="{{ block.settings.hero_image | image_url: width: 800 }}"
+            alt="{{ block.settings.hero_image.alt | escape }}"
+            loading="lazy"
+            width="{{ block.settings.hero_image.width }}"
+            height="{{ block.settings.hero_image.height }}"
+          >
+        {% else %}
+          <div class="ai-advertorial-hero-placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+            <div class="ai-advertorial-empty-state-{{ ai_gen_id }}">
+              Add hero image
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_text_block_1 and block.settings.text_block_1 != blank %}
+      <div class="ai-advertorial-text-block-{{ ai_gen_id }}">
+        {{ block.settings.text_block_1 }}
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_text_block_2 and block.settings.text_block_2 != blank %}
+      <div class="ai-advertorial-text-block-{{ ai_gen_id }}">
+        {{ block.settings.text_block_2 }}
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_second_image %}
+      <div class="ai-advertorial-second-image-{{ ai_gen_id }}">
+        {% if block.settings.second_image %}
+          <img
+            src="{{ block.settings.second_image | image_url: width: 800 }}"
+            alt="{{ block.settings.second_image.alt | escape }}"
+            loading="lazy"
+            width="{{ block.settings.second_image.width }}"
+            height="{{ block.settings.second_image.height }}"
+          >
+        {% else %}
+          <div class="ai-advertorial-second-placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+            <div class="ai-advertorial-empty-state-{{ ai_gen_id }}">
+              Add second image
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_text_block_3 and block.settings.text_block_3 != blank %}
+      <div class="ai-advertorial-text-block-{{ ai_gen_id }}">
+        {{ block.settings.text_block_3 }}
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_cta and block.settings.cta_text != blank %}
+      <div class="ai-advertorial-cta-section-{{ ai_gen_id }}">
+        <a 
+          href="{{ block.settings.cta_link }}" 
+          class="ai-advertorial-cta-btn-{{ ai_gen_id }}"
+        >
+          {{ block.settings.cta_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Advertorial section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Top bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_top_bar",
+      "label": "Show top bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "top_bar_text",
+      "label": "Top bar text",
+      "default": "Take Care Of Yourself"
+    },
+    {
+      "type": "color",
+      "id": "top_bar_bg_color",
+      "label": "Background color",
+      "default": "#4CAF50"
+    },
+    {
+      "type": "color",
+      "id": "top_bar_text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "shop_now_text",
+      "label": "Shop now button text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "shop_now_link",
+      "label": "Shop now button link"
+    },
+    {
+      "type": "color",
+      "id": "shop_now_bg_color",
+      "label": "Shop now button color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "shop_now_text_color",
+      "label": "Shop now text color",
+      "default": "#4CAF50"
+    },
+    {
+      "type": "header",
+      "content": "Main heading"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show heading",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading text",
+      "default": "Why Most People Don't Know They're Infected"
+    },
+    {
+      "type": "text",
+      "id": "highlight_text",
+      "label": "Text to highlight",
+      "default": "Don't Know"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 36
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "heading_highlight_color",
+      "label": "Highlight color",
+      "default": "#FF6B35"
+    },
+    {
+      "type": "header",
+      "content": "Subtitle"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_subtitle",
+      "label": "Show subtitle",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle text",
+      "default": "How gut invaders hide, survive, and manipulate your body, backed by science"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Hero image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_hero_image",
+      "label": "Show hero image",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "header",
+      "content": "Text content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_text_block_1",
+      "label": "Show first text block",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "text_block_1",
+      "label": "First text block",
+      "default": "<p>One of the biggest reasons <strong>parasites, fungi, and harmful microbes</strong> go untreated is because they're <em>incredibly good at hiding</em>.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_text_block_2",
+      "label": "Show second text block",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "text_block_2",
+      "label": "Second text block",
+      "default": "<p>These microscopic invaders have evolved sophisticated survival mechanisms that allow them to <strong>evade detection</strong> by both your immune system and conventional testing methods.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_text_block_3",
+      "label": "Show third text block",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "text_block_3",
+      "label": "Third text block",
+      "default": "<p>They create a <strong>slimy protective shield</strong> around themselves called a biofilm, making them nearly impossible to eliminate with standard treatments.</p>"
+    },
+    {
+      "type": "range",
+      "id": "body_text_size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Body text size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "body_text_color",
+      "label": "Body text color",
+      "default": "#444444"
+    },
+    {
+      "type": "header",
+      "content": "Second image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_second_image",
+      "label": "Show second image",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "second_image",
+      "label": "Second image"
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta",
+      "label": "Show CTA button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA button text",
+      "default": "TRY RESILIA RISK-FREE"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA button link"
+    },
+    {
+      "type": "range",
+      "id": "cta_font_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "CTA font size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "cta_border_radius",
+      "min": 0,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "label": "CTA border radius",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "CTA background color",
+      "default": "#FF6B35"
+    },
+    {
+      "type": "color",
+      "id": "cta_hover_bg_color",
+      "label": "CTA hover background color",
+      "default": "#E55A2B"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "CTA text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "General styling"
+    },
+    {
+      "type": "color",
+      "id": "content_bg_color",
+      "label": "Content background color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Advertorial section"
+    }
+  ]
+}
+{% endschema %}

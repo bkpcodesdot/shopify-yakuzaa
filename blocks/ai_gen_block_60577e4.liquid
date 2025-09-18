@@ -1,0 +1,1287 @@
+{% doc %}
+  @prompt
+    Create a Shopify section called "Blog + Sticky Product Offer".  
+    The layout should be a two-column design:  
+    
+    1. **Left side (Blog/Content area)**  
+       - Rich text editor for blog content (with heading, subheading, and paragraph fields).  
+       - Image picker for feature image inside the blog.  
+       - All text should be editable in customization.  
+       - Allow padding, margin, background color, text color settings from theme editor.  
+    
+    2. **Right side (Sticky Product Offer card)**  
+       - This column should remain fixed while scrolling.  
+       - Customizable heading (e.g., "Special Offer").  
+       - Product selector to choose a product from Shopify catalog.  
+       - Show product image, title, price, compare-at price, and discount badge.  
+       - Add bullet point list with customizable text items (e.g., “30-day supply delivered monthly”, “Free bamboo jar” etc.)  
+       - Quantity selector (+ / –).  
+       - "Add to Cart" button linked to the chosen product variant.  
+       - Extra settings for background color, text color, border radius, and shadow.  
+       - Countdown timer field (optional) with custom date/time.  
+       - Guarantee text and delivery note fields (customizable).  
+    
+    3. **General Settings**  
+       - Section padding (top, bottom, left, right).  
+       - Background color and text color for the whole section.  
+       - Mobile responsive: blog should stack above product card.  
+    
+    Ensure the right product card stays fixed on desktop while scrolling through blog text., 30-day supply delivered monthly, Free shipping on orders over $50, with price "Your engaging subheading here" is in #e32875 color <p><strong>And it’s not because we’re doing something wrong.</strong> It’s because we’ve been taken so far out of alignment with <strong>what our biology actually needs to thrive.</strong></p>
+    add like this my blog content, special offer car sholud be with this background color #ffdeea and heading of the special offter background color is  #f0f757 give special offer card border black add to cart background color is green all options sholud be add to custimization,  Add this four text with right arrow in green color bottom of the ADD TO Cart buttonDelivery montly, 365 Day Guarantee, Online portal for easy cancel, skip, or pause.
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-blog-offer-{{ ai_gen_id }} {
+    padding: {{ block.settings.section_padding_top }}px {{ block.settings.section_padding_horizontal }}px {{ block.settings.section_padding_bottom }}px {{ block.settings.section_padding_horizontal }}px;
+    background-color: {{ block.settings.section_background_color }};
+    color: {{ block.settings.section_text_color }};
+  }
+
+  .ai-blog-offer-container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} {
+    padding: {{ block.settings.blog_padding }}px;
+    background-color: {{ block.settings.blog_background_color }};
+    color: {{ block.settings.blog_text_color }};
+    border-radius: {{ block.settings.blog_border_radius }}px;
+  }
+
+  .ai-blog-heading-{{ ai_gen_id }} {
+    font-size: 24px;
+    margin: 0 0 16px 0;
+    color: #E32875;
+  }
+
+  .ai-blog-subheading-{{ ai_gen_id }} {
+    font-size: 20px;
+    margin: 0 0 24px 0;
+    color: #303030;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+
+  .ai-blog-image-{{ ai_gen_id }} {
+    width: 100%;
+    margin: 24px 0;
+    border-radius: {{ block.settings.blog_border_radius }}px;
+  }
+
+  .ai-blog-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 300px;
+    background-color: #f4f4f4;
+    border-radius: {{ block.settings.blog_border_radius }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 24px 0;
+    position: relative;
+  }
+
+  .ai-blog-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 200px;
+    max-height: 200px;
+  }
+
+  .ai-blog-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #666;
+    font-size: 14px;
+  }
+
+  .ai-blog-text-{{ ai_gen_id }} {
+    font-size: 20px;
+    line-height: 1.6;
+    color:#303030;
+  }
+
+  .ai-product-offer-{{ ai_gen_id }} {
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+    background-color: {{ block.settings.offer_background_color }};
+    color: {{ block.settings.offer_text_color }};
+    border-radius: {{ block.settings.offer_border_radius }}px;
+    border: {{ block.settings.offer_border_width }}px {{ block.settings.offer_border_style }} {{ block.settings.offer_border_color }};
+    padding: 0 24px;
+    {% if block.settings.offer_shadow_enabled %}
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    {% endif %}
+  }
+
+  .ai-offer-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.offer_heading_size }}px;
+    margin: -24px -24px 20px -24px;
+    padding: 16px 24px;
+    text-align: center;
+    font-weight: 600;
+    background-color: {{ block.settings.offer_heading_background }};
+    color: {{ block.settings.offer_heading_text_color }};
+    border-radius: {{ block.settings.offer_border_radius }}px {{ block.settings.offer_border_radius }}px 0 0;
+  }
+
+  .ai-product-card-{{ ai_gen_id }} {
+    margin-bottom: 20px;
+  }
+
+  .ai-product-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 16px;
+  }
+
+  .ai-product-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 200px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .ai-product-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100px;
+    height: 100px;
+  }
+
+  .ai-product-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #666;
+    font-size: 12px;
+  }
+
+  .ai-product-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.product_title_size }}px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: {{ block.settings.product_title_color }};
+  }
+
+  .ai-product-price-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .ai-current-price-{{ ai_gen_id }} {
+    font-size: {{ block.settings.current_price_size }}px;
+    font-weight: 600;
+    color: {{ block.settings.current_price_color }};
+  }
+
+  .ai-compare-price-{{ ai_gen_id }} {
+    font-size: {{ block.settings.compare_price_size }}px;
+    text-decoration: line-through;
+    color: {{ block.settings.compare_price_color }};
+    opacity: 0.6;
+  }
+
+  .ai-discount-badge-{{ ai_gen_id }} {
+    background-color: {{ block.settings.discount_badge_background }};
+    color: {{ block.settings.discount_badge_text }};
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .ai-bullet-list-{{ ai_gen_id }} {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+  }
+
+  .ai-bullet-list-{{ ai_gen_id }} li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    font-size: {{ block.settings.bullet_text_size }}px;
+    color: {{ block.settings.bullet_text_color }};
+  }
+
+  .ai-bullet-list-{{ ai_gen_id }} li:before {
+    content: "{{ block.settings.bullet_icon }}";
+    position: absolute;
+    left: 0;
+    color: {{ block.settings.bullet_icon_color }};
+    font-weight: bold;
+  }
+
+  .ai-countdown-timer-{{ ai_gen_id }} {
+    background-color: {{ block.settings.countdown_background }};
+    color: {{ block.settings.countdown_text_color }};
+    padding: 12px;
+    border-radius: 6px;
+    text-align: center;
+    margin: 16px 0;
+    font-weight: 600;
+    font-size: {{ block.settings.countdown_text_size }}px;
+  }
+
+  .ai-quantity-selector-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .ai-quantity-btn-{{ ai_gen_id }} {
+    width: 36px;
+    height: 36px;
+    border: 1px solid {{ block.settings.quantity_border_color }};
+    background: {{ block.settings.quantity_button_background }};
+    color: {{ block.settings.quantity_button_text }};
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .ai-quantity-btn-{{ ai_gen_id }}:hover {
+    background: {{ block.settings.quantity_button_hover }};
+  }
+
+  .ai-quantity-input-{{ ai_gen_id }} {
+    width: 60px;
+    height: 36px;
+    text-align: center;
+    border: 1px solid {{ block.settings.quantity_border_color }};
+    background: {{ block.settings.quantity_input_background }};
+    color: {{ block.settings.quantity_input_text }};
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  .ai-add-to-cart-btn-{{ ai_gen_id }} {
+    width: 100%;
+    background-color: {{ block.settings.button_background_color }};
+    color: {{ block.settings.button_text_color }};
+    border: {{ block.settings.button_border_width }}px {{ block.settings.button_border_style }} {{ block.settings.button_border_color }};
+    padding: 16px;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_text_size }}px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 16px 0;
+    transition: all 0.3s ease;
+  }
+
+  .ai-add-to-cart-btn-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+    color: {{ block.settings.button_hover_text_color }};
+    border-color: {{ block.settings.button_hover_border_color }};
+  }
+
+  .ai-features-list-{{ ai_gen_id }} {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+  }
+
+  .ai-features-list-{{ ai_gen_id }} li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: {{ block.settings.features_text_size }}px;
+    color: {{ block.settings.features_text_color }};
+  }
+
+  .ai-features-arrow-{{ ai_gen_id }} {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: {{ block.settings.features_arrow_color }};
+  }
+
+  .ai-guarantee-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.guarantee_text_size }}px;
+    text-align: center;
+    color: {{ block.settings.guarantee_text_color }};
+    margin: 12px 0;
+  }
+
+  .ai-delivery-note-{{ ai_gen_id }} {
+    font-size: {{ block.settings.delivery_text_size }}px;
+    text-align: center;
+    color: {{ block.settings.delivery_text_color }};
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-blog-offer-container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .ai-product-offer-{{ ai_gen_id }} {
+      position: static;
+      order: -1;
+    }
+
+    .ai-blog-offer-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_top | divided_by: 2 }}px {{ block.settings.section_padding_horizontal | divided_by: 2 }}px {{ block.settings.section_padding_bottom | divided_by: 2 }}px {{ block.settings.section_padding_horizontal | divided_by: 2 }}px;
+    }
+  }
+{% endstyle %}
+
+<blog-sticky-offer-{{ ai_gen_id }}
+  class="ai-blog-offer-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-blog-offer-container-{{ ai_gen_id }}">
+    <div class="ai-blog-content-{{ ai_gen_id }}">
+      {% if block.settings.blog_heading != blank %}
+        <h1 class="ai-blog-heading-{{ ai_gen_id }}">{{ block.settings.blog_heading }}</h1>
+      {% endif %}
+
+      {% if block.settings.blog_subheading != blank %}
+        <h2 class="ai-blog-subheading-{{ ai_gen_id }}">{{ block.settings.blog_subheading }}</h2>
+      {% endif %}
+
+      {% if block.settings.blog_image %}
+        <img
+          src="{{ block.settings.blog_image | image_url: width: 800 }}"
+          alt="{{ block.settings.blog_image.alt | escape }}"
+          class="ai-blog-image-{{ ai_gen_id }}"
+          loading="lazy"
+          width="{{ block.settings.blog_image.width }}"
+          height="{{ block.settings.blog_image.height }}"
+        >
+      {% else %}
+        <div class="ai-blog-image-placeholder-{{ ai_gen_id }}">
+          {{ 'image' | placeholder_svg_tag }}
+          <div class="ai-blog-empty-state-{{ ai_gen_id }}">Add a featured image</div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.blog_content != blank %}
+        <div class="ai-blog-text-{{ ai_gen_id }}">{{ block.settings.blog_content }}</div>
+      {% endif %}
+
+      {% if block.settings.blog_content_one != blank %}
+        <div class="ai-blog-text-{{ ai_gen_id }}">{{ block.settings.blog_content_one }}</div>
+      {% endif %}
+       {% if block.settings.blog_image %}
+        <img
+          src="{{ block.settings.blog_image_one | image_url: width: 800 }}"
+          alt="{{ block.settings.blog_image.alt | escape }}"
+          class="ai-blog-image-{{ ai_gen_id }}"
+          loading="lazy"
+          width="{{ block.settings.blog_image.width }}"
+          height="{{ block.settings.blog_image.height }}"
+        >
+      {% else %}
+        <div class="ai-blog-image-placeholder-{{ ai_gen_id }}">
+          {{ 'image' | placeholder_svg_tag }}
+          <div class="ai-blog-empty-state-{{ ai_gen_id }}">Add a featured image</div>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="ai-product-offer-{{ ai_gen_id }}">
+      {% if block.settings.offer_heading != blank %}
+        <h3 class="ai-offer-heading-{{ ai_gen_id }}">{{ block.settings.offer_heading }}</h3>
+      {% endif %}
+
+      <div class="ai-product-card-{{ ai_gen_id }}">
+        {% if block.settings.featured_product %}
+          {% assign product = block.settings.featured_product %}
+          
+          {% if product.featured_image %}
+            <img
+              src="{{ product.featured_image | image_url: width: 400 }}"
+              alt="{{ product.featured_image.alt | escape }}"
+              class="ai-product-image-{{ ai_gen_id }}"
+              loading="lazy"
+            >
+          {% else %}
+            <div class="ai-product-image-placeholder-{{ ai_gen_id }}">
+              {{ 'product-apparel-1' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+
+          <h4 class="ai-product-title-{{ ai_gen_id }}">{{ product.title }}</h4>
+
+          <div class="ai-product-price-{{ ai_gen_id }}">
+            <span class="ai-current-price-{{ ai_gen_id }}">{{ product.price | money }}</span>
+            {% if product.compare_at_price > product.price %}
+              <span class="ai-compare-price-{{ ai_gen_id }}">{{ product.compare_at_price | money }}</span>
+              {% assign discount_percentage = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
+              <span class="ai-discount-badge-{{ ai_gen_id }}">{{ discount_percentage }}% OFF</span>
+            {% endif %}
+          </div>
+        {% else %}
+          <div class="ai-product-image-placeholder-{{ ai_gen_id }}">
+            {{ 'product-apparel-1' | placeholder_svg_tag }}
+            <div class="ai-product-empty-state-{{ ai_gen_id }}">Select a product</div>
+          </div>
+          <h4 class="ai-product-title-{{ ai_gen_id }}">Product Title</h4>
+          <div class="ai-product-price-{{ ai_gen_id }}">
+            <span class="ai-current-price-{{ ai_gen_id }}">$0.00</span>
+          </div>
+        {% endif %}
+      </div>
+
+      {% if block.settings.bullet_point_1 != blank or block.settings.bullet_point_2 != blank or block.settings.bullet_point_3 != blank %}
+        <ul class="ai-bullet-list-{{ ai_gen_id }}">
+          {% if block.settings.bullet_point_1 != blank %}
+            <li>{{ block.settings.bullet_point_1 }}</li>
+          {% endif %}
+          {% if block.settings.bullet_point_2 != blank %}
+            <li>{{ block.settings.bullet_point_2 }}</li>
+          {% endif %}
+          {% if block.settings.bullet_point_3 != blank %}
+            <li>{{ block.settings.bullet_point_3 }}</li>
+          {% endif %}
+        </ul>
+      {% endif %}
+
+      {% if block.settings.countdown_enabled and block.settings.countdown_date != blank %}
+        <div class="ai-countdown-timer-{{ ai_gen_id }}" data-countdown="{{ block.settings.countdown_date }}">
+          <div class="countdown-display">Limited Time Offer!</div>
+        </div>
+      {% endif %}
+
+      <div class="ai-quantity-selector-{{ ai_gen_id }}">
+        <button class="ai-quantity-btn-{{ ai_gen_id }}" data-action="decrease">−</button>
+        <input type="number" class="ai-quantity-input-{{ ai_gen_id }}" value="1" min="1" data-quantity>
+        <button class="ai-quantity-btn-{{ ai_gen_id }}" data-action="increase">+</button>
+      </div>
+
+      <button class="ai-add-to-cart-btn-{{ ai_gen_id }}" data-add-to-cart>
+        {{ block.settings.button_text }}
+      </button>
+
+      {% if block.settings.feature_1 != blank or block.settings.feature_2 != blank or block.settings.feature_3 != blank or block.settings.feature_4 != blank %}
+        <ul class="ai-features-list-{{ ai_gen_id }}">
+          {% if block.settings.feature_1 != blank %}
+            <li>
+              <svg class="ai-features-arrow-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9,18 15,12 9,6"></polyline>
+              </svg>
+              {{ block.settings.feature_1 }}
+            </li>
+          {% endif %}
+          {% if block.settings.feature_2 != blank %}
+            <li>
+              <svg class="ai-features-arrow-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9,18 15,12 9,6"></polyline>
+              </svg>
+              {{ block.settings.feature_2 }}
+            </li>
+          {% endif %}
+          {% if block.settings.feature_3 != blank %}
+            <li>
+              <svg class="ai-features-arrow-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9,18 15,12 9,6"></polyline>
+              </svg>
+              {{ block.settings.feature_3 }}
+            </li>
+          {% endif %}
+          {% if block.settings.feature_4 != blank %}
+            <li>
+              <svg class="ai-features-arrow-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9,18 15,12 9,6"></polyline>
+              </svg>
+              {{ block.settings.feature_4 }}
+            </li>
+          {% endif %}
+        </ul>
+      {% endif %}
+
+      {% if block.settings.guarantee_text != blank %}
+        <div class="ai-guarantee-text-{{ ai_gen_id }}">{{ block.settings.guarantee_text }}</div>
+      {% endif %}
+
+      {% if block.settings.delivery_note != blank %}
+        <div class="ai-delivery-note-{{ ai_gen_id }}">{{ block.settings.delivery_note }}</div>
+      {% endif %}
+    </div>
+  </div>
+</blog-sticky-offer-{{ ai_gen_id }}>
+
+<script>
+(function() {
+  class BlogStickyOffer{{ai_gen_id}} extends HTMLElement {
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      this.setupQuantitySelector();
+      this.setupAddToCart();
+      this.setupCountdown();
+    }
+
+    setupQuantitySelector() {
+      const decreaseBtn = this.querySelector('[data-action="decrease"]');
+      const increaseBtn = this.querySelector('[data-action="increase"]');
+      const quantityInput = this.querySelector('[data-quantity]');
+
+      if (decreaseBtn && increaseBtn && quantityInput) {
+        decreaseBtn.addEventListener('click', () => {
+          const currentValue = parseInt(quantityInput.value);
+          if (currentValue > 1) {
+            quantityInput.value = currentValue - 1;
+          }
+        });
+
+        increaseBtn.addEventListener('click', () => {
+          const currentValue = parseInt(quantityInput.value);
+          quantityInput.value = currentValue + 1;
+        });
+      }
+    }
+
+    setupAddToCart() {
+      const addToCartBtn = this.querySelector('[data-add-to-cart]');
+      const quantityInput = this.querySelector('[data-quantity]');
+
+      if (addToCartBtn) {
+        addToCartBtn.addEventListener('click', () => {
+          const productId = {{ block.settings.featured_product.id | default: 'null' }};
+          const variantId = {{ block.settings.featured_product.selected_or_first_available_variant.id | default: 'null' }};
+          const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+
+          if (productId && variantId) {
+            const formData = {
+              items: [{
+                id: variantId,
+                quantity: quantity
+              }]
+            };
+
+            fetch('/cart/add.js', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+              window.location.href = '/cart';
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+          }
+        });
+      }
+    }
+
+    setupCountdown() {
+      const countdownElement = this.querySelector('[data-countdown]');
+      if (!countdownElement) return;
+
+      const targetDate = countdownElement.getAttribute('data-countdown');
+      if (!targetDate) return;
+
+      const countdownDate = new Date(targetDate).getTime();
+
+      const updateCountdown = () => {
+        const now = new Date().getTime();
+        const distance = countdownDate - now;
+
+        if (distance < 0) {
+          countdownElement.innerHTML = '<div class="countdown-display">Offer Expired</div>';
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownElement.innerHTML = `
+          <div class="countdown-display">
+            ${days}d ${hours}h ${minutes}m ${seconds}s
+          </div>
+        `;
+      };
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    }
+  }
+
+  customElements.define('blog-sticky-offer-{{ ai_gen_id }}', BlogStickyOffer{{ai_gen_id}});
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Blog + Sticky Offer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section settings"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_horizontal",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Horizontal padding",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "section_text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Blog content"
+    },
+    {
+      "type": "text",
+      "id": "blog_heading",
+      "label": "Heading",
+      "default": "Blog Post Title"
+    },
+    {
+      "type": "text",
+      "id": "blog_subheading",
+      "label": "Subheading",
+      "default": "Your engaging subheading here"
+    },
+    {
+      "type": "color",
+      "id": "blog_subheading_color",
+      "label": "Subheading color",
+      "default": "#e32875"
+    },
+    {
+      "type": "image_picker",
+      "id": "blog_image",
+      "label": "Featured image"
+    },
+    {
+      "type": "image_picker",
+      "id": "blog_image_one",
+      "label": "Featured image"
+    },
+    {
+      "type": "richtext",
+      "id": "blog_content",
+      "label": "Blog content",
+      "default": "<p><strong>And it's not because we're doing something wrong.</strong> It's because we've been taken so far out of alignment with <strong>what our biology actually needs to thrive.</strong></p>"
+    },
+     {
+      "type": "richtext",
+      "id": "blog_content_one",
+      "label": "Blog content-one"
+    
+    },
+    {
+      "type": "range",
+      "id": "blog_padding",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Content padding",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "blog_background_color",
+      "label": "Content background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "blog_text_color",
+      "label": "Content text color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "blog_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "blog_heading_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "blog_subheading_size",
+      "min": 14,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Subheading size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "blog_text_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Product offer card"
+    },
+    {
+      "type": "text",
+      "id": "offer_heading",
+      "label": "Offer heading",
+      "default": "Special Offer"
+    },
+    {
+      "type": "color",
+      "id": "offer_heading_background",
+      "label": "Heading background",
+      "default": "#f0f757"
+    },
+    {
+      "type": "color",
+      "id": "offer_heading_text_color",
+      "label": "Heading text color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "offer_heading_size",
+      "min": 16,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "offer_background_color",
+      "label": "Card background",
+      "default": "#ffdeea"
+    },
+    {
+      "type": "color",
+      "id": "offer_text_color",
+      "label": "Card text color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "offer_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "offer_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Border width",
+      "default": 2
+    },
+    {
+      "type": "select",
+      "id": "offer_border_style",
+      "label": "Border style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "Solid"
+        },
+        {
+          "value": "dashed",
+          "label": "Dashed"
+        },
+        {
+          "value": "dotted",
+          "label": "Dotted"
+        }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "color",
+      "id": "offer_border_color",
+      "label": "Border color",
+      "default": "#000000"
+    },
+    {
+      "type": "checkbox",
+      "id": "offer_shadow_enabled",
+      "label": "Enable shadow",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Product details"
+    },
+    {
+      "type": "product",
+      "id": "featured_product",
+      "label": "Featured product"
+    },
+    {
+      "type": "range",
+      "id": "product_title_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Product title size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "product_title_color",
+      "label": "Product title color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "current_price_size",
+      "min": 16,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Current price size",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "current_price_color",
+      "label": "Current price color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "compare_price_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Compare price size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "compare_price_color",
+      "label": "Compare price color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "discount_badge_background",
+      "label": "Discount badge background",
+      "default": "#e74c3c"
+    },
+    {
+      "type": "color",
+      "id": "discount_badge_text",
+      "label": "Discount badge text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Bullet points"
+    },
+    {
+      "type": "text",
+      "id": "bullet_point_1",
+      "label": "Bullet point 1",
+      "default": "30-day supply delivered monthly"
+    },
+    {
+      "type": "text",
+      "id": "bullet_point_2",
+      "label": "Bullet point 2",
+      "default": "Free shipping on orders over $50"
+    },
+    {
+      "type": "text",
+      "id": "bullet_point_3",
+      "label": "Bullet point 3",
+      "default": "Cancel anytime"
+    },
+    {
+      "type": "text",
+      "id": "bullet_icon",
+      "label": "Bullet icon",
+      "default": "✓"
+    },
+    {
+      "type": "color",
+      "id": "bullet_icon_color",
+      "label": "Bullet icon color",
+      "default": "#27ae60"
+    },
+    {
+      "type": "range",
+      "id": "bullet_text_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Bullet text size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "bullet_text_color",
+      "label": "Bullet text color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Countdown timer"
+    },
+    {
+      "type": "checkbox",
+      "id": "countdown_enabled",
+      "label": "Enable countdown",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "countdown_date",
+      "label": "Countdown end date",
+      "info": "Format: YYYY-MM-DD HH:MM:SS"
+    },
+    {
+      "type": "color",
+      "id": "countdown_background",
+      "label": "Countdown background",
+      "default": "#f39c12"
+    },
+    {
+      "type": "color",
+      "id": "countdown_text_color",
+      "label": "Countdown text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "countdown_text_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Countdown text size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Quantity selector"
+    },
+    {
+      "type": "color",
+      "id": "quantity_button_background",
+      "label": "Button background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "quantity_button_text",
+      "label": "Button text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "quantity_button_hover",
+      "label": "Button hover background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "quantity_border_color",
+      "label": "Border color",
+      "default": "#dddddd"
+    },
+    {
+      "type": "color",
+      "id": "quantity_input_background",
+      "label": "Input background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "quantity_input_text",
+      "label": "Input text",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Add to cart button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Add to Cart"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Background color",
+      "default": "#28a745"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Hover background",
+      "default": "#218838"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "min": 0,
+      "max": 3,
+      "step": 1,
+      "unit": "px",
+      "label": "Border width",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "button_border_style",
+      "label": "Border style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "Solid"
+        },
+        {
+          "value": "dashed",
+          "label": "Dashed"
+        },
+        {
+          "value": "dotted",
+          "label": "Dotted"
+        }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Border color",
+      "default": "#28a745"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_border_color",
+      "label": "Hover border color",
+      "default": "#218838"
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Feature list"
+    },
+    {
+      "type": "text",
+      "id": "feature_1",
+      "label": "Feature 1",
+      "default": "Delivery monthly"
+    },
+    {
+      "type": "text",
+      "id": "feature_2",
+      "label": "Feature 2",
+      "default": "365 Day Guarantee"
+    },
+    {
+      "type": "text",
+      "id": "feature_3",
+      "label": "Feature 3",
+      "default": "Online portal for easy cancel, skip, or pause"
+    },
+    {
+      "type": "text",
+      "id": "feature_4",
+      "label": "Feature 4"
+    },
+    {
+      "type": "color",
+      "id": "features_arrow_color",
+      "label": "Arrow color",
+      "default": "#28a745"
+    },
+    {
+      "type": "range",
+      "id": "features_text_size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Feature text size",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "features_text_color",
+      "label": "Feature text color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Footer text"
+    },
+    {
+      "type": "text",
+      "id": "guarantee_text",
+      "label": "Guarantee text"
+    },
+    {
+      "type": "color",
+      "id": "guarantee_text_color",
+      "label": "Guarantee text color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "guarantee_text_size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Guarantee text size",
+      "default": 12
+    },
+    {
+      "type": "text",
+      "id": "delivery_note",
+      "label": "Delivery note"
+    },
+    {
+      "type": "color",
+      "id": "delivery_text_color",
+      "label": "Delivery text color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "delivery_text_size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Delivery text size",
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog + Sticky Offer"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}

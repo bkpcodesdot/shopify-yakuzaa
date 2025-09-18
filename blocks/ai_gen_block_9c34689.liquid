@@ -1,0 +1,719 @@
+{% doc %}
+  @prompt
+    Create a Shopify section called “Blog + Sticky Product Offer” with a 2-column layout.
+    
+    Left column (Blog Content):
+    
+    Supports multiple rich text blocks (headings, subheadings, paragraphs).
+    
+    Allow formatting (bold, italic, underline, highlight).
+    
+    Custom text colors (black, pink, grey).
+    
+    Ability to insert images between text blocks.
+    
+    Rich text editor should allow different colors per sentence.
+    
+    Right column (Sticky Product Offer):
+    
+    A product offer box that stays sticky/fixed while scrolling (desktop only, toggle ON/OFF).
+    
+    Includes:
+    
+    Custom heading (e.g., “Special Offer”)
+    
+    Product image (image picker)
+    
+    Product title (text)
+    
+    Bullet list of benefits (editable list)
+    
+    Pricing (original price, crossed price, sale price)
+    
+    Quantity selector (+ / –)
+    
+    Add to Cart button (links to product)
+    
+    Guarantee text or badges
+    
+    Shipping notice with countdown timer (editable).
+    
+    Customizer Options:
+    
+    Background color (default light pink).
+    
+    Border radius, padding, and margin controls.
+    
+    Text color controls (primary, secondary, highlight).
+    
+    Responsive behavior:
+    
+    Desktop → 2-column layout, right side sticky.
+    
+    Mobile → product box stacks below content, non-sticky.
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-blog-product-container-{{ ai_gen_id }} {
+    display: flex;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .ai-blog-text-block-{{ ai_gen_id }} {
+    margin-bottom: 24px;
+  }
+
+  .ai-blog-text-block-{{ ai_gen_id }}:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-blog-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    border-radius: {{ block.settings.content_border_radius }}px;
+    margin: 24px 0;
+  }
+
+  .ai-blog-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 300px;
+    background-color: #f4f4f4;
+    border-radius: {{ block.settings.content_border_radius }}px;
+    margin: 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-blog-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100px;
+    height: 100px;
+    opacity: 0.5;
+  }
+
+  .ai-product-offer-{{ ai_gen_id }} {
+    width: 350px;
+    flex-shrink: 0;
+  }
+
+  .ai-product-offer-inner-{{ ai_gen_id }} {
+    background-color: {{ block.settings.offer_background_color }};
+    border-radius: {{ block.settings.offer_border_radius }}px;
+    padding: {{ block.settings.offer_padding }}px;
+    margin: {{ block.settings.offer_margin }}px;
+    {% if block.settings.sticky_enabled %}
+      position: sticky;
+      top: 20px;
+    {% endif %}
+  }
+
+  .ai-offer-heading-{{ ai_gen_id }} {
+    color: {{ block.settings.primary_text_color }};
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    text-align: center;
+  }
+
+  .ai-offer-product-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: {{ block.settings.content_border_radius }}px;
+    margin-bottom: 16px;
+  }
+
+  .ai-offer-product-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 200px;
+    background-color: #f4f4f4;
+    border-radius: {{ block.settings.content_border_radius }}px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-offer-product-image-placeholder-{{ ai_gen_id }} svg {
+    width: 60px;
+    height: 60px;
+    opacity: 0.5;
+  }
+
+  .ai-offer-product-title-{{ ai_gen_id }} {
+    color: {{ block.settings.primary_text_color }};
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 0 16px 0;
+    text-align: center;
+  }
+
+  .ai-offer-benefits-{{ ai_gen_id }} {
+    margin-bottom: 20px;
+  }
+
+  .ai-offer-benefits-{{ ai_gen_id }} ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .ai-offer-benefits-{{ ai_gen_id }} li {
+    color: {{ block.settings.secondary_text_color }};
+    font-size: 14px;
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .ai-offer-benefits-{{ ai_gen_id }} li:before {
+    content: "✓";
+    color: {{ block.settings.highlight_color }};
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+  }
+
+  .ai-offer-pricing-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .ai-offer-original-price-{{ ai_gen_id }} {
+    color: {{ block.settings.secondary_text_color }};
+    text-decoration: line-through;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+
+  .ai-offer-sale-price-{{ ai_gen_id }} {
+    color: {{ block.settings.highlight_color }};
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .ai-offer-quantity-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .ai-offer-quantity-btn-{{ ai_gen_id }} {
+    width: 36px;
+    height: 36px;
+    border: 1px solid {{ block.settings.secondary_text_color }};
+    background: white;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    color: {{ block.settings.secondary_text_color }};
+  }
+
+  .ai-offer-quantity-input-{{ ai_gen_id }} {
+    width: 60px;
+    height: 36px;
+    text-align: center;
+    border: 1px solid {{ block.settings.secondary_text_color }};
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  .ai-offer-add-to-cart-{{ ai_gen_id }} {
+    width: 100%;
+    background-color: {{ block.settings.highlight_color }};
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: {{ block.settings.content_border_radius }}px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+  }
+
+  .ai-offer-add-to-cart-{{ ai_gen_id }}:hover {
+    opacity: 0.9;
+  }
+
+  .ai-offer-guarantee-{{ ai_gen_id }} {
+    color: {{ block.settings.secondary_text_color }};
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .ai-offer-shipping-{{ ai_gen_id }} {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 12px;
+    border-radius: {{ block.settings.content_border_radius }}px;
+    text-align: center;
+  }
+
+  .ai-offer-shipping-text-{{ ai_gen_id }} {
+    color: {{ block.settings.secondary_text_color }};
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+
+  .ai-offer-countdown-{{ ai_gen_id }} {
+    color: {{ block.settings.highlight_color }};
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-blog-product-container-{{ ai_gen_id }} {
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .ai-product-offer-{{ ai_gen_id }} {
+      width: 100%;
+      order: 2;
+    }
+
+    .ai-product-offer-inner-{{ ai_gen_id }} {
+      position: static !important;
+      margin: 0;
+    }
+
+    .ai-blog-content-{{ ai_gen_id }} {
+      order: 1;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-blog-product-container-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-blog-content-{{ ai_gen_id }}">
+    {% if block.settings.text_block_1 != blank %}
+      <div class="ai-blog-text-block-{{ ai_gen_id }}">
+        {{ block.settings.text_block_1 }}
+      </div>
+    {% endif %}
+
+    {% if block.settings.image_1 %}
+      <img
+        src="{{ block.settings.image_1 | image_url: width: 800 }}"
+        alt="{{ block.settings.image_1.alt | escape }}"
+        class="ai-blog-image-{{ ai_gen_id }}"
+        loading="lazy"
+        width="{{ block.settings.image_1.width }}"
+        height="{{ block.settings.image_1.height }}"
+      >
+    {% endif %}
+
+    {% if block.settings.text_block_2 != blank %}
+      <div class="ai-blog-text-block-{{ ai_gen_id }}">
+        {{ block.settings.text_block_2 }}
+      </div>
+    {% endif %}
+
+    {% if block.settings.image_2 %}
+      <img
+        src="{{ block.settings.image_2 | image_url: width: 800 }}"
+        alt="{{ block.settings.image_2.alt | escape }}"
+        class="ai-blog-image-{{ ai_gen_id }}"
+        loading="lazy"
+        width="{{ block.settings.image_2.width }}"
+        height="{{ block.settings.image_2.height }}"
+      >
+    {% endif %}
+
+    {% if block.settings.text_block_3 != blank %}
+      <div class="ai-blog-text-block-{{ ai_gen_id }}">
+        {{ block.settings.text_block_3 }}
+      </div>
+    {% endif %}
+
+    {% if block.settings.image_3 %}
+      <img
+        src="{{ block.settings.image_3 | image_url: width: 800 }}"
+        alt="{{ block.settings.image_3.alt | escape }}"
+        class="ai-blog-image-{{ ai_gen_id }}"
+        loading="lazy"
+        width="{{ block.settings.image_3.width }}"
+        height="{{ block.settings.image_3.height }}"
+      >
+    {% endif %}
+
+    {% if block.settings.text_block_4 != blank %}
+      <div class="ai-blog-text-block-{{ ai_gen_id }}">
+        {{ block.settings.text_block_4 }}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="ai-product-offer-{{ ai_gen_id }}">
+    <div class="ai-product-offer-inner-{{ ai_gen_id }}">
+      {% if block.settings.offer_heading != blank %}
+        <h3 class="ai-offer-heading-{{ ai_gen_id }}">{{ block.settings.offer_heading }}</h3>
+      {% endif %}
+
+      {% if block.settings.product_image %}
+        <img
+          src="{{ block.settings.product_image | image_url: width: 400 }}"
+          alt="{{ block.settings.product_image.alt | escape }}"
+          class="ai-offer-product-image-{{ ai_gen_id }}"
+          loading="lazy"
+          width="{{ block.settings.product_image.width }}"
+          height="{{ block.settings.product_image.height }}"
+        >
+      {% else %}
+        <div class="ai-offer-product-image-placeholder-{{ ai_gen_id }}">
+          {{ 'product-1' | placeholder_svg_tag }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.product_title != blank %}
+        <h4 class="ai-offer-product-title-{{ ai_gen_id }}">{{ block.settings.product_title }}</h4>
+      {% endif %}
+
+      {% if block.settings.benefits_list != blank %}
+        <div class="ai-offer-benefits-{{ ai_gen_id }}">
+          {{ block.settings.benefits_list }}
+        </div>
+      {% endif %}
+
+      <div class="ai-offer-pricing-{{ ai_gen_id }}">
+        {% if block.settings.original_price != blank %}
+          <span class="ai-offer-original-price-{{ ai_gen_id }}">{{ block.settings.original_price }}</span>
+        {% endif %}
+        {% if block.settings.sale_price != blank %}
+          <span class="ai-offer-sale-price-{{ ai_gen_id }}">{{ block.settings.sale_price }}</span>
+        {% endif %}
+      </div>
+
+      <product-quantity-{{ ai_gen_id }} class="ai-offer-quantity-{{ ai_gen_id }}">
+        <button type="button" class="ai-offer-quantity-btn-{{ ai_gen_id }}" data-action="decrease">−</button>
+        <input
+          type="number"
+          class="ai-offer-quantity-input-{{ ai_gen_id }}"
+          value="1"
+          min="1"
+          max="10"
+          readonly
+        >
+        <button type="button" class="ai-offer-quantity-btn-{{ ai_gen_id }}" data-action="increase">+</button>
+      </product-quantity-{{ ai_gen_id }}>
+
+      {% if block.settings.product_url != blank %}
+        <a href="{{ block.settings.product_url }}" class="ai-offer-add-to-cart-{{ ai_gen_id }}">
+          {{ block.settings.button_text }}
+        </a>
+      {% endif %}
+
+      {% if block.settings.guarantee_text != blank %}
+        <div class="ai-offer-guarantee-{{ ai_gen_id }}">
+          {{ block.settings.guarantee_text }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.shipping_text != blank %}
+        <div class="ai-offer-shipping-{{ ai_gen_id }}">
+          <div class="ai-offer-shipping-text-{{ ai_gen_id }}">{{ block.settings.shipping_text }}</div>
+          {% if block.settings.countdown_enabled %}
+            <countdown-timer-{{ ai_gen_id }} class="ai-offer-countdown-{{ ai_gen_id }}" data-hours="{{ block.settings.countdown_hours }}">
+              <span class="countdown-display">{{ block.settings.countdown_hours }}:00:00</span>
+            </countdown-timer-{{ ai_gen_id }}>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    class ProductQuantity{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.input = this.querySelector('.ai-offer-quantity-input-{{ ai_gen_id }}');
+        this.decreaseBtn = this.querySelector('[data-action="decrease"]');
+        this.increaseBtn = this.querySelector('[data-action="increase"]');
+      }
+
+      connectedCallback() {
+        this.decreaseBtn.addEventListener('click', () => this.changeQuantity(-1));
+        this.increaseBtn.addEventListener('click', () => this.changeQuantity(1));
+      }
+
+      changeQuantity(change) {
+        const currentValue = parseInt(this.input.value);
+        const newValue = Math.max(1, Math.min(10, currentValue + change));
+        this.input.value = newValue;
+      }
+    }
+
+    class CountdownTimer{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.hours = parseInt(this.dataset.hours) || 24;
+        this.display = this.querySelector('.countdown-display');
+        this.endTime = new Date().getTime() + (this.hours * 60 * 60 * 1000);
+      }
+
+      connectedCallback() {
+        this.updateCountdown();
+        this.interval = setInterval(() => this.updateCountdown(), 1000);
+      }
+
+      disconnectedCallback() {
+        if (this.interval) {
+          clearInterval(this.interval);
+        }
+      }
+
+      updateCountdown() {
+        const now = new Date().getTime();
+        const distance = this.endTime - now;
+
+        if (distance < 0) {
+          this.display.textContent = '00:00:00';
+          clearInterval(this.interval);
+          return;
+        }
+
+        const hours = Math.floor(distance / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        this.display.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      }
+    }
+
+    customElements.define('product-quantity-{{ ai_gen_id }}', ProductQuantity{{ ai_gen_id }});
+    customElements.define('countdown-timer-{{ ai_gen_id }}', CountdownTimer{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Blog + Product Offer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Blog content"
+    },
+    {
+      "type": "richtext",
+      "id": "text_block_1",
+      "label": "Text block 1",
+      "default": "<h2>Welcome to our blog</h2><p>This is the first paragraph of content.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "richtext",
+      "id": "text_block_2",
+      "label": "Text block 2",
+      "default": "<h3>Second section</h3><p>Continue your story here with more detailed content.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "richtext",
+      "id": "text_block_3",
+      "label": "Text block 3",
+      "default": "<h3>Third section</h3><p>Add more content to engage your readers.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "richtext",
+      "id": "text_block_4",
+      "label": "Text block 4",
+      "default": "<p>Conclude your blog post with a compelling call to action.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Product offer"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_enabled",
+      "label": "Enable sticky position",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "offer_heading",
+      "label": "Offer heading",
+      "default": "Special Offer"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image"
+    },
+    {
+      "type": "text",
+      "id": "product_title",
+      "label": "Product title",
+      "default": "Amazing Product"
+    },
+    {
+      "type": "richtext",
+      "id": "benefits_list",
+      "label": "Benefits list",
+      "default": "<ul><li>High quality materials</li><li>Fast shipping</li><li>30-day guarantee</li></ul>"
+    },
+    {
+      "type": "text",
+      "id": "original_price",
+      "label": "Original price",
+      "default": "$99.00"
+    },
+    {
+      "type": "text",
+      "id": "sale_price",
+      "label": "Sale price",
+      "default": "$79.00"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Add to Cart"
+    },
+    {
+      "type": "url",
+      "id": "product_url",
+      "label": "Product URL"
+    },
+    {
+      "type": "text",
+      "id": "guarantee_text",
+      "label": "Guarantee text",
+      "default": "30-day money back guarantee"
+    },
+    {
+      "type": "text",
+      "id": "shipping_text",
+      "label": "Shipping text",
+      "default": "Free shipping on orders over $50"
+    },
+    {
+      "type": "checkbox",
+      "id": "countdown_enabled",
+      "label": "Enable countdown timer",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "countdown_hours",
+      "min": 1,
+      "max": 48,
+      "step": 1,
+      "unit": "h",
+      "label": "Countdown hours",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "offer_background_color",
+      "label": "Offer background",
+      "default": "#fdf2f8"
+    },
+    {
+      "type": "color",
+      "id": "primary_text_color",
+      "label": "Primary text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "secondary_text_color",
+      "label": "Secondary text",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight color",
+      "default": "#ec4899"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "offer_border_radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Offer border radius",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "content_border_radius",
+      "min": 0,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Content border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "offer_padding",
+      "min": 16,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "label": "Offer padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "offer_margin",
+      "min": 0,
+      "max": 32,
+      "step": 4,
+      "unit": "px",
+      "label": "Offer margin",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog + Product Offer"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}

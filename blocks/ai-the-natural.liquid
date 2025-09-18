@@ -1,0 +1,1017 @@
+{% doc %}
+  @prompt
+    Create a Shopify section with the same layout and structure as the reference image.
+    
+    Section Layout & Structure:
+    
+    Title Section:
+    
+    Heading format:
+    
+    <h2>The Natural, Science-Backed <span>Solution</span></h2>
+    
+    
+    Word inside <span> is highlighted in orange (fully customizable).
+    
+    Fully editable heading text.
+    
+    Intro Content:
+    
+    Editable paragraph with 6–7 lines of text.
+    
+    Supports bold and italic text.
+    
+    Main Image Section:
+    
+    Large product image area.
+    
+    Image has rounded corners (customizable).
+    
+    Fully replaceable/uploadable via Shopify editor.
+    
+    Feature Points Section (5 Points):
+    
+    Each point has:
+    
+    Small logo/icon upload on the left (editable size).
+    
+    Editable title + one-line description.
+    
+    Displayed as a vertical list with green check icons by default (editable).
+    
+    Secondary Image Section:
+    
+    Large image upload area with rounded corners.
+    
+    Fully editable.
+    
+    Supporting Content:
+    
+    Editable text block of 3 lines below the image.
+    
+    Subheading Title:
+    
+    Editable heading (example: How it works:).
+    
+    Bold font, left-aligned.
+    
+    Two-Column Layout Section:
+    
+    Two equal columns side by side (responsive, collapses into one column on mobile).
+    
+    Each column contains:
+    
+    Rounded border container with light background color (editable).
+    
+    Top: Image with rounded corners.
+    
+    Title (editable).
+    
+    2–3 lines of content (editable).
+    
+    CTA Button:
+    
+    Full-width orange button with white bold text.
+    
+    Text: TRY RESILIA RISK-FREE (editable).
+    
+    Rounded corners, hover effect with darker orange.
+    
+    Design & Styling:
+    
+    Title font bold, span word orange highlight.
+    
+    Body text: black, medium size, good line spacing.
+    
+    Icons/logos: small, left-aligned to text.
+    
+    Containers: rounded corners with subtle shadow.
+    
+    Colors (orange, green, black, gray) fully customizable.
+    
+    Mobile responsive:
+    
+    Columns collapse into single column.
+    
+    Images full width.
+    
+    Button remains full width.
+    
+    Customization Options:
+    
+    All text editable in Shopify editor.
+    
+    Images and logos replaceable.
+    
+    Number of feature points adjustable.
+    
+    Colors, fonts, border radius, all customizeble, <h2>The Natural, Science-Backed <span>Solution</span></h2>
+    
+    set solution word with orange color, add title like this format 
+    <h2 class="adv-content__heading weight-bold" style="margin-bottom: var(--heading-margin-heading_cVnJdx)">
+                  What Happens If You <span>Don’t Treat It?</span>
+                </h2>, i cant see main heading please set it
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+ div#shopify-block-AdDJPb0VpYzI2N2JmW__ai_the_natural_yDJR6L {
+    margin: 0 auto;
+}
+  .ai-product-showcase-{{ ai_gen_id }} {
+    max-width:726px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    color: {{ block.settings.text_color }};
+    font-family: {{ block.settings.body_font.family }}, {{ block.settings.body_font.fallback_families }};
+    font-weight: {{ block.settings.body_font.weight }};
+  }
+
+  .ai-product-showcase__title-{{ ai_gen_id }} {
+    
+    margin-bottom: {{ block.settings.heading_margin_bottom }}px;
+    font-size: {{ block.settings.heading_size }}px;
+    font-weight: bold;
+    color: {{ block.settings.heading_color }};
+    font-family: {{ block.settings.heading_font.family }}, {{ block.settings.heading_font.fallback_families }};
+  }
+
+  .ai-product-showcase__title-{{ ai_gen_id }} .highlight {
+    color: {{ block.settings.highlight_color }};
+  }
+
+  .ai-product-showcase__intro-{{ ai_gen_id }} {
+ 
+    margin-bottom: 40px;
+    font-size: {{ block.settings.text_size }}px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ai-product-showcase__main-image-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .ai-product-showcase__main-image-{{ ai_gen_id }} img {
+    max-width: 100%;
+    height: auto;
+    border-radius: {{ block.settings.image_border_radius }}px;
+  }
+
+  .ai-product-showcase__main-image-placeholder-{{ ai_gen_id }} {
+    position: relative;
+    background-color: #f4f4f4;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-product-showcase__main-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    max-height: 400px;
+  }
+
+  .ai-product-showcase__empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #666;
+
+  }
+
+  .ai-product-showcase__features-{{ ai_gen_id }} {
+    margin-bottom: 40px;
+  }
+
+  .ai-product-showcase__feature-{{ ai_gen_id }} {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    gap: 15px;
+  }
+
+  .ai-product-showcase__feature-icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-product-showcase__feature-icon-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .ai-product-showcase__feature-icon-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.check_icon_color }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-product-showcase__feature-icon-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    color: white;
+  }
+
+  .ai-product-showcase__feature-content-{{ ai_gen_id }} {
+    flex: 1;
+  }
+
+  .ai-product-showcase__feature-title-{{ ai_gen_id }} {
+    margin-bottom: 5px;
+    font-size: {{ block.settings.feature_title_size }}px;
+    color: {{ block.settings.feature_title_color }};
+  }
+
+  .ai-product-showcase__feature-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.feature_text_size }}px;
+    color: {{ block.settings.feature_text_color }};
+    line-height: 1.4;
+  }
+
+  .ai-product-showcase__secondary-image-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .ai-product-showcase__secondary-image-{{ ai_gen_id }} img {
+    max-width: 100%;
+    height: auto;
+    border-radius: {{ block.settings.image_border_radius }}px;
+  }
+
+  .ai-product-showcase__secondary-image-placeholder-{{ ai_gen_id }} {
+    position: relative;
+    background-color: #f4f4f4;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-product-showcase__secondary-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    max-height: 300px;
+  }
+
+  .ai-product-showcase__supporting-text-{{ ai_gen_id }} {
+    margin-bottom: 40px;
+    font-size: {{ block.settings.text_size }}px;
+    line-height: 1.6;
+    max-width: 600px;
+  }
+
+  .ai-product-showcase__subheading-{{ ai_gen_id }} {
+    font-weight: bold;
+    margin-bottom: 30px;
+    font-size: {{ block.settings.subheading_size }}px;
+    color: {{ block.settings.subheading_color }};
+    text-align: left;
+  }
+
+  .ai-product-showcase__columns-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 40px;
+  }
+
+  .ai-product-showcase__column-{{ ai_gen_id }} {
+    background-color: {{ block.settings.column_bg_color }};
+    border-radius: {{ block.settings.column_border_radius }}px;
+    padding: 15px;
+   border:1px solid #016401;
+  }
+
+  .ai-product-showcase__column-image-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .ai-product-showcase__column-image-{{ ai_gen_id }} img {
+    max-width: 100%;
+    height: auto;
+    border-radius: {{ block.settings.column_image_border_radius }}px;
+  }
+
+  .ai-product-showcase__column-image-placeholder-{{ ai_gen_id }} {
+    background-color: #f4f4f4;
+    border-radius: {{ block.settings.column_image_border_radius }}px;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-product-showcase__column-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 300px;
+    max-height: 200px;
+  }
+
+  .ai-product-showcase__column-title-{{ ai_gen_id }} {
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: {{ block.settings.column_title_size }}px;
+    color: {{ block.settings.column_title_color }};
+
+  }
+
+  .ai-product-showcase__column-content-{{ ai_gen_id }} {
+    font-size: {{ block.settings.column_text_size }}px;
+    color: {{ block.settings.column_text_color }};
+    line-height: 1.5;
+    
+  }
+
+  .ai-product-showcase__cta-{{ ai_gen_id }} {
+    text-align: center;
+  }
+
+  .ai-product-showcase__cta-button-{{ ai_gen_id }} {
+    display:block;
+    background-color: {{ block.settings.button_bg_color }};
+    color: {{ block.settings.button_text_color }};
+    padding: 15px 40px;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: {{ block.settings.button_text_size }}px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    text-align: center;
+  }
+
+  .ai-product-showcase__cta-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_bg_color }};
+    color:white;
+    border:2px solid #EE882F;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-product-showcase-{{ ai_gen_id }} {
+      padding: 20px 15px;
+    }
+
+    .ai-product-showcase__columns-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .ai-product-showcase__column-{{ ai_gen_id }} {
+      padding: 20px;
+    }
+
+    .ai-product-showcase__title-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.heading_size }}px * 0.8);
+    }
+
+    .ai-product-showcase__subheading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.subheading_size }}px * 0.9);
+    }
+  }
+{% endstyle %}<div class="ai-product-showcase-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <h2 class="ai-product-showcase__title-{{ ai_gen_id }}">
+    The Natural, Science-Backed <span class="highlight">Solution</span>
+  </h2>
+
+  {% if block.settings.intro_text != blank %}
+    <div class="ai-product-showcase__intro-{{ ai_gen_id }}">
+      {{ block.settings.intro_text }}
+    </div>
+  {% endif %}
+
+  <div class="ai-product-showcase__main-image-{{ ai_gen_id }}">
+    {% if block.settings.main_image %}
+      <img
+        src="{{ block.settings.main_image | image_url: width: 800 }}"
+        alt="{{ block.settings.main_image.alt | escape }}"
+        loading="lazy"
+        width="{{ block.settings.main_image.width }}"
+        height="{{ block.settings.main_image.height }}"
+      >
+    {% else %}
+      <div class="ai-product-showcase__main-image-placeholder-{{ ai_gen_id }}">
+        {{ 'product-apparel-1' | placeholder_svg_tag }}
+        <div class="ai-product-showcase__empty-state-{{ ai_gen_id }}">
+          Add your main product image
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  {% if block.settings.show_features %}
+    <div class="ai-product-showcase__features-{{ ai_gen_id }}">
+      {% for i in (1..5) %}
+        {% assign feature_enabled_key = 'feature_' | append: i | append: '_enabled' %}
+        {% assign feature_icon_key = 'feature_' | append: i | append: '_icon' %}
+        {% assign feature_title_key = 'feature_' | append: i | append: '_title' %}
+        {% assign feature_description_key = 'feature_' | append: i | append: '_description' %}
+
+        {% if block.settings[feature_enabled_key] %}
+          <div class="ai-product-showcase__feature-{{ ai_gen_id }}">
+            <div class="ai-product-showcase__feature-icon-{{ ai_gen_id }}">
+              {% if block.settings[feature_icon_key] %}
+                <img
+                  src="{{ block.settings[feature_icon_key] | image_url: width: 100 }}"
+                  alt="{{ block.settings[feature_title_key] | escape }}"
+                  loading="lazy"
+                >
+              {% else %}
+                <div class="ai-product-showcase__feature-icon-placeholder-{{ ai_gen_id }}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20,6 9,17 4,12"></polyline>
+                  </svg>
+                </div>
+              {% endif %}
+            </div>
+            <div class="ai-product-showcase__feature-content-{{ ai_gen_id }}">
+              {% if block.settings[feature_title_key] != blank %}
+                <div class="ai-product-showcase__feature-title-{{ ai_gen_id }}">
+                  {{ block.settings[feature_title_key] }}
+                </div>
+              {% endif %}
+              {% if block.settings[feature_description_key] != blank %}
+                <div class="ai-product-showcase__feature-description-{{ ai_gen_id }}">
+                  {{ block.settings[feature_description_key] }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <div class="ai-product-showcase__secondary-image-{{ ai_gen_id }}">
+    {% if block.settings.secondary_image %}
+      <img
+        src="{{ block.settings.secondary_image | image_url: width: 600 }}"
+        alt="{{ block.settings.secondary_image.alt | escape }}"
+        loading="lazy"
+        width="{{ block.settings.secondary_image.width }}"
+        height="{{ block.settings.secondary_image.height }}"
+      >
+    {% else %}
+      <div class="ai-product-showcase__secondary-image-placeholder-{{ ai_gen_id }}">
+        {{ 'image' | placeholder_svg_tag }}
+        <div class="ai-product-showcase__empty-state-{{ ai_gen_id }}">
+          Add your secondary image
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  {% if block.settings.supporting_text != blank %}
+    <div class="ai-product-showcase__supporting-text-{{ ai_gen_id }}">
+      {{ block.settings.supporting_text }}
+    </div>
+  {% endif %}
+
+  {% if block.settings.subheading != blank %}
+    <h3 class="ai-product-showcase__subheading-{{ ai_gen_id }}">
+      {{ block.settings.subheading }}
+    </h3>
+  {% endif %}
+
+  <div class="ai-product-showcase__columns-{{ ai_gen_id }}">
+    {% for i in (1..2) %}
+      {% assign column_image_key = 'column_' | append: i | append: '_image' %}
+      {% assign column_title_key = 'column_' | append: i | append: '_title' %}
+      {% assign column_content_key = 'column_' | append: i | append: '_content' %}<div class="ai-product-showcase__column-{{ ai_gen_id }}">
+        <div class="ai-product-showcase__column-image-{{ ai_gen_id }}">
+          {% if block.settings[column_image_key] %}
+            <img
+              src="{{ block.settings[column_image_key] | image_url: width: 400 }}"
+              alt="{{ block.settings[column_title_key] | escape }}"
+              loading="lazy"
+              width="{{ block.settings[column_image_key].width }}"
+              height="{{ block.settings[column_image_key].height }}"
+            >
+          {% else %}
+            <div class="ai-product-showcase__column-image-placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+        </div>
+        {% if block.settings[column_title_key] != blank %}
+          <h4 class="ai-product-showcase__column-title-{{ ai_gen_id }}">
+            {{ block.settings[column_title_key] }}
+          </h4>
+        {% endif %}
+        {% if block.settings[column_content_key] != blank %}
+          <div class="ai-product-showcase__column-content-{{ ai_gen_id }}">
+            {{ block.settings[column_content_key] }}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if block.settings.cta_text != blank %}
+    <div class="ai-product-showcase__cta-{{ ai_gen_id }}">
+      <a
+        href="{{ block.settings.cta_link | default: '#' }}"
+        class="ai-product-showcase__cta-button-{{ ai_gen_id }}"
+      >
+        {{ block.settings.cta_text }}
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Product showcase",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Introduction content"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_text",
+      "label": "Introduction text",
+      "default": "<p>Discover our revolutionary approach to wellness that combines the power of nature with cutting-edge scientific research. Our carefully formulated products are designed to support your health journey with proven ingredients and innovative delivery methods.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Main image"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main product image"
+    },
+    {
+      "type": "header",
+      "content": "Feature points"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_features",
+      "label": "Show feature points",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 30
+    },
+    {
+      "type": "color",
+      "id": "check_icon_color",
+      "label": "Default check icon color",
+      "default": "#28A745"
+    },
+    {
+      "type": "checkbox",
+      "id": "feature_1_enabled",
+      "label": "Enable feature 1",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_1_icon",
+      "label": "Feature 1 icon"
+    },
+    {
+      "type": "text",
+      "id": "feature_1_title",
+      "label": "Feature 1 title",
+      "default": "Clinically Proven"
+    },
+    {
+      "type": "text",
+      "id": "feature_1_description",
+      "label": "Feature 1 description",
+      "default": "Backed by extensive clinical research and testing"
+    },
+    {
+      "type": "checkbox",
+      "id": "feature_2_enabled",
+      "label": "Enable feature 2",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_2_icon",
+      "label": "Feature 2 icon"
+    },
+    {
+      "type": "text",
+      "id": "feature_2_title",
+      "label": "Feature 2 title",
+      "default": "Natural Ingredients"
+    },
+    {
+      "type": "text",
+      "id": "feature_2_description",
+      "label": "Feature 2 description",
+      "default": "Made with premium, sustainably sourced natural ingredients"
+    },
+    {
+      "type": "checkbox",
+      "id": "feature_3_enabled",
+      "label": "Enable feature 3",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_3_icon",
+      "label": "Feature 3 icon"
+    },
+    {
+      "type": "text",
+      "id": "feature_3_title",
+      "label": "Feature 3 title",
+      "default": "Fast Acting"
+    },
+    {
+      "type": "text",
+      "id": "feature_3_description",
+      "label": "Feature 3 description",
+      "default": "Advanced formula designed for rapid absorption and results"
+    },
+    {
+      "type": "checkbox",
+      "id": "feature_4_enabled",
+      "label": "Enable feature 4",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_4_icon",
+      "label": "Feature 4 icon"
+    },
+    {
+      "type": "text",
+      "id": "feature_4_title",
+      "label": "Feature 4 title",
+      "default": "Third-Party Tested"
+    },
+    {
+      "type": "text",
+      "id": "feature_4_description",
+      "label": "Feature 4 description",
+      "default": "Independently verified for purity and potency"
+    },
+    {
+      "type": "checkbox",
+      "id": "feature_5_enabled",
+      "label": "Enable feature 5",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_5_icon",
+      "label": "Feature 5 icon"
+    },
+    {
+      "type": "text",
+      "id": "feature_5_title",
+      "label": "Feature 5 title",
+      "default": "Money-Back Guarantee"
+    },
+    {
+      "type": "text",
+      "id": "feature_5_description",
+      "label": "Feature 5 description",
+      "default": "100% satisfaction guaranteed or your money back"
+    },
+    {
+      "type": "header",
+      "content": "Secondary content"
+    },
+    {
+      "type": "image_picker",
+      "id": "secondary_image",
+      "label": "Secondary image"
+    },
+    {
+      "type": "richtext",
+      "id": "supporting_text",
+      "label": "Supporting text",
+      "default": "<p>Experience the difference that quality makes. Our commitment to excellence ensures every product meets the highest standards of safety and effectiveness.</p>"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "How it works:"
+    },
+    {
+      "type": "header",
+      "content": "Two column section"
+    },
+    {
+      "type": "image_picker",
+      "id": "column_1_image",
+      "label": "Column 1 image"
+    },
+    {
+      "type": "text",
+      "id": "column_1_title",
+      "label": "Column 1 title",
+      "default": "Step 1: Take Daily"
+    },
+    {
+      "type": "richtext",
+      "id": "column_1_content",
+      "label": "Column 1 content",
+      "default": "<p>Take one capsule daily with water, preferably with a meal for optimal absorption and effectiveness.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "column_2_image",
+      "label": "Column 2 image"
+    },
+    {
+      "type": "text",
+      "id": "column_2_title",
+      "label": "Column 2 title",
+      "default": "Step 2: See Results"
+    },
+    {
+      "type": "richtext",
+      "id": "column_2_content",
+      "label": "Column 2 content",
+      "default": "<p>Notice improvements in your wellness within 2-4 weeks of consistent use as your body adapts to the natural ingredients.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button text",
+      "default": "TRY RESILIA RISK-FREE"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading font",
+      "default": "inter_n7"
+    },
+    {
+      "type": "font_picker",
+      "id": "body_font",
+      "label": "Body font",
+      "default": "inter_n4"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Main heading size",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "heading_margin_bottom",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Heading bottom margin",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "min": 16,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Subheading size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Body text size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "feature_title_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Feature title size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "feature_text_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Feature text size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "column_title_size",
+      "min": 16,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Column title size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "column_text_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Column text size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "min": 14,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Button text size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight color",
+      "default": "#FF6B35"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Body text color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "feature_title_color",
+      "label": "Feature title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "feature_text_color",
+      "label": "Feature text color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "column_bg_color",
+      "label": "Column background color",
+      "default": "#F8F9FA"
+    },
+    {
+      "type": "color",
+      "id": "column_title_color",
+      "label": "Column title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "column_text_color",
+      "label": "Column text color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background color",
+      "default": "#FF6B35"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Button hover background color",
+      "default": "#E55A2B"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Border radius"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Image border radius",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "column_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Column border radius",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "column_image_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Column image border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product showcase"
+    }
+  ]
+}
+{% endschema %}

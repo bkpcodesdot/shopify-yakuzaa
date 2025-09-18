@@ -1,0 +1,557 @@
+{% doc %}
+  @prompt
+    Create a Shopify section called "Facility Video Section".
+    
+    🔹 Layout
+    
+    Centered video player (with image/video picker in customizer).
+    
+    Rounded video frame with border (pink border).
+    
+    Background splash effect behind the video (customizable color).
+    
+    Section heading above the video (rich text, editable).
+    
+    Icons with text below the video (3 items):
+    
+    Icon picker (checkmark style default).
+    
+    Custom text (e.g., GMP Certified, Lab Tested, USA Facility).
+    
+    Text color editable (default black).
+    
+    🔹 Customization Options
+    
+    Background color for section.
+    
+    Border radius for video frame.
+    
+    Heading text size & color.
+    
+    Icon color & text color.
+    
+    Padding & margin controls.
+    
+    🔹 Responsiveness
+    
+    On desktop: heading → video → icon row.
+    
+    On mobile: heading → video → stacked icons (center aligned).
+    
+    ⚡This will replicate exactly like your screenshot:
+    
+    Title: Primal Queen's State-Of-The-Art Facility in NY
+    
+    Oval rounded video with pink border + splash background.
+    
+    3 icons with text underneath., video height set max-height: 577px; & video backgroud sectiion wit hbackground-color: #ffffff;
+        border-color: #ff69b4;
+        border-width: 5px;
+        width: 400px;
+        border-radius: 200px;, GMP Certified
+    
+    Lab Tested
+    
+    USA Facility 
+    this set with ong image not arrow remove arrow add png or image, GMP Certified
+    
+    Lab Tested
+    
+    USA Facility with icon are set in side by side flex position
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-facility-video-section-{{ ai_gen_id }} {
+    padding: {{ block.settings.section_padding_top }}px 20px {{ block.settings.section_padding_bottom }}px;
+    background-color: {{ block.settings.section_background_color }};
+    text-align: center;
+  }
+
+  .ai-facility-video-section__container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-facility-video-section__heading-{{ ai_gen_id }} {
+    margin: 0 0 {{ block.settings.heading_margin_bottom }}px;
+    font-size: {{ block.settings.heading_font_size }}px;
+    color: {{ block.settings.heading_color }};
+    line-height: 1.3;
+  }
+
+  .ai-facility-video-section__video-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    display: inline-block;
+    margin: 0 0 {{ block.settings.video_margin_bottom }}px;
+  }
+#shopify-block-AcEs3VlhUWmZweE5Ce__ai_gen_block_4408b0c_HUYDmP {
+  width: 100%;
+}
+.ai-blog-text-atgkxakdiyu1jvwnkwaigenblock60577e4gnd73a p strong {
+  color:#E32875;
+}
+  .ai-facility-video-section__splash-bg-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% + 40px);
+    height: calc(100% + 40px);
+    background-color: {{ block.settings.splash_background_color }};
+    border-radius: {{ block.settings.video_border_radius | plus: 20 }}px;
+    z-index: 1;
+    opacity: 0.3;
+  }
+
+  .ai-facility-video-section__video-container-{{ ai_gen_id }} {
+    position: relative;
+    z-index: 2;
+    background-color: #ffffff;
+    border-color: #ff69b4;
+    border-width: 5px;
+    border-style: solid;
+    width: 400px;
+    border-radius: 200px;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+
+  .ai-facility-video-section__video-{{ ai_gen_id }} {
+    width: 100%;
+    max-height: 577px;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .ai-facility-video-section__video-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 300px;
+    max-height: 577px;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-facility-video-section__video-placeholder-{{ ai_gen_id }} svg {
+    width: 80px;
+    height: 80px;
+    color: #ccc;
+  }
+
+  .ai-facility-video-section__empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #666;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 16px;
+    border-radius: 4px;
+  }
+
+  .ai-facility-video-section__icons-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: {{ block.settings.icons_gap }}px;
+    flex-wrap: wrap;
+  }
+
+  .ai-facility-video-section__icon-item-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 300px;
+  }
+
+  .ai-facility-video-section__icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .ai-facility-video-section__icon-placeholder-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .ai-facility-video-section__icon-placeholder-{{ ai_gen_id }} svg {
+    width: 24px;
+    height: 24px;
+    color: #ccc;
+  }
+
+  .ai-facility-video-section__icon-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: #999;
+    white-space: nowrap;
+  }
+
+  .ai-facility-video-section__icon-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.icon_text_size }}px;
+    color: {{ block.settings.icon_text_color }};
+    line-height: 1.4;
+    margin: 0;
+    text-align: left;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-facility-video-section-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_top | times: 0.7 }}px 15px {{ block.settings.section_padding_bottom | times: 0.7 }}px;
+    }
+
+    .ai-facility-video-section__heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_font_size | times: 0.8 }}px;
+    }
+
+    .ai-facility-video-section__video-container-{{ ai_gen_id }} {
+      width: 300px;
+      border-radius: 150px;
+    }
+
+    .ai-facility-video-section__icons-{{ ai_gen_id }} {
+      flex-direction: column;
+      gap: {{ block.settings.icons_gap | times: 0.8 }}px;
+    }
+
+    .ai-facility-video-section__icon-item-{{ ai_gen_id }} {
+      max-width: 100%;
+      justify-content: center;
+    }
+
+    .ai-facility-video-section__icon-text-{{ ai_gen_id }} {
+      text-align: center;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .ai-facility-video-section__video-container-{{ ai_gen_id }} {
+      width: 250px;
+      border-radius: 125px;
+    }
+
+    .ai-facility-video-section__icons-{{ ai_gen_id }} {
+      gap: {{ block.settings.icons_gap | times: 0.6 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-facility-video-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-facility-video-section__container-{{ ai_gen_id }}">
+    {% if block.settings.heading != blank %}
+      <div class="ai-facility-video-section__heading-{{ ai_gen_id }}">
+        {{ block.settings.heading }}
+      </div>
+    {% endif %}
+
+    <div class="ai-facility-video-section__video-wrapper-{{ ai_gen_id }}">
+      <div class="ai-facility-video-section__splash-bg-{{ ai_gen_id }}"></div>
+      
+      <div class="ai-facility-video-section__video-container-{{ ai_gen_id }}">
+        {% if block.settings.video_url != blank %}
+          <video 
+            class="ai-facility-video-section__video-{{ ai_gen_id }}"
+            controls
+            {% if block.settings.video_autoplay %}autoplay{% endif %}
+            {% if block.settings.video_muted %}muted{% endif %}
+            {% if block.settings.video_loop %}loop{% endif %}>
+            <source src="{{ block.settings.video_url }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        {% elsif block.settings.featured_image %}
+          <img
+            src="{{ block.settings.featured_image | image_url: width: 800 }}"
+            alt="{{ block.settings.featured_image.alt | escape }}"
+            class="ai-facility-video-section__video-{{ ai_gen_id }}"
+            loading="lazy"
+            width="{{ block.settings.featured_image.width }}"
+            height="{{ block.settings.featured_image.height }}"
+          >
+        {% else %}
+          <div class="ai-facility-video-section__video-placeholder-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            <div class="ai-facility-video-section__empty-state-{{ ai_gen_id }}">
+              Add a video URL or image
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="ai-facility-video-section__icons-{{ ai_gen_id }}">
+      {% for i in (1..3) %}
+        {% assign icon_text_key = 'icon_' | append: i | append: '_text' %}
+        {% assign icon_image_key = 'icon_' | append: i | append: '_image' %}
+        {% assign icon_text = block.settings[icon_text_key] %}
+        {% assign icon_image = block.settings[icon_image_key] %}
+        
+        {% if icon_text != blank %}
+          <div class="ai-facility-video-section__icon-item-{{ ai_gen_id }}">
+            {% if icon_image %}
+              <img
+                src="{{ icon_image | image_url: width: 100 }}"
+                alt="{{ icon_image.alt | escape }}"
+                class="ai-facility-video-section__icon-{{ ai_gen_id }}"
+                loading="lazy"
+                width="{{ icon_image.width }}"
+                height="{{ icon_image.height }}"
+              >
+            {% else %}
+              <div class="ai-facility-video-section__icon-placeholder-{{ ai_gen_id }}">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <div class="ai-facility-video-section__icon-empty-state-{{ ai_gen_id }}">
+                  Add icon
+                </div>
+              </div>
+            {% endif %}
+            <p class="ai-facility-video-section__icon-text-{{ ai_gen_id }}">{{ icon_text }}</p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Facility video section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Primal Queen's State-Of-The-Art Facility in NY</p>"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Video URL",
+      "info": "Enter a direct link to your video file (MP4 format recommended)"
+    },
+    {
+      "type": "image_picker",
+      "id": "featured_image",
+      "label": "Fallback image",
+      "info": "This image will be shown if no video URL is provided"
+    },
+    {
+      "type": "header",
+      "content": "Video settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "video_autoplay",
+      "label": "Autoplay video",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "video_muted",
+      "label": "Mute video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "video_loop",
+      "label": "Loop video",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Icon 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_1_image",
+      "label": "Icon 1 image"
+    },
+    {
+      "type": "text",
+      "id": "icon_1_text",
+      "label": "Icon 1 text",
+      "default": "GMP Certified"
+    },
+    {
+      "type": "header",
+      "content": "Icon 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_2_image",
+      "label": "Icon 2 image"
+    },
+    {
+      "type": "text",
+      "id": "icon_2_text",
+      "label": "Icon 2 text",
+      "default": "Lab Tested"
+    },
+    {
+      "type": "header",
+      "content": "Icon 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_3_image",
+      "label": "Icon 3 image"
+    },
+    {
+      "type": "text",
+      "id": "icon_3_text",
+      "label": "Icon 3 text",
+      "default": "USA Facility"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "splash_background_color",
+      "label": "Splash background color",
+      "default": "#ff69b4"
+    },
+    {
+      "type": "color",
+      "id": "icon_text_color",
+      "label": "Icon text color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading font size",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "icon_text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Icon text size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "icons_gap",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Icons spacing",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section bottom padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "heading_margin_bottom",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Heading bottom margin",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "video_margin_bottom",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Video bottom margin",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Facility video section"
+    }
+  ]
+}
+{% endschema %}

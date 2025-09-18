@@ -1,0 +1,664 @@
+<section id="timeline-progress-{{ section.id }}" class="timeline-section">
+  {% if section.settings.heading != blank %}
+    <h2 class="timeline-heading">{{ section.settings.heading }}</h2>
+  {% endif %}
+
+  <div class="timeline-wrapper">
+    <!-- optional left and right decorative images -->
+    {% if section.settings.left_image != blank %}
+      <div class="timeline-side timeline-side-left">
+        {{ section.settings.left_image | image_url: width: 800 | img_tag }}
+      </div>
+    {% endif %}
+
+    <div class="timeline">
+      {% for block in section.blocks %}
+        {% assign parity = forloop.index0 | modulo: 2 %}
+        {% if parity == 0 %}
+          {% assign side = 'left' %}
+        {% else %}
+          {% assign side = 'right' %}
+        {% endif %}
+
+        <article class="timeline-item timeline-item-{{ side }}" data-block-id="{{ block.id }}">
+          <span class="timeline-checkpoint" aria-hidden="true"></span>
+
+          {% if side == 'left' %}
+            <div class="timeline-col timeline-col-left" data-aos="fade-right">
+              {% if block.settings.card %}
+                <div class="timeline-card" >
+                  {% if block.settings.icon != blank %}<div class="timeline-icon">{{ block.settings.icon }}</div>{% endif %}
+                  <h3 class="timeline-title">{{ block.settings.title }}</h3>
+                  <p class="timeline-text">{{ block.settings.text }}</p>
+                </div>
+              {% else %}
+                <div class="timeline-content">
+                  {% if block.settings.icon != blank %}<div class="timeline-icon">{{ block.settings.icon }}</div>{% endif %}
+                  <h3 class="timeline-title">{{ block.settings.title }}</h3>
+                  <p class="timeline-text">{{ block.settings.text }}</p>
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="timeline-col timeline-col-right empty-col" data-aos="fade-left" >
+                <div classs="icon-image"><img src="{{ block.settings.image | img_url: 'master' }}" alt="Timeline Image"></div>
+            <span>{{block.settings.letf_title  }}</span>
+
+          {% else %}
+            <div class="timeline-col timeline-col-left empty-col" data-aos="fade-right">
+                 <div classs="icon-image"><img src="{{ block.settings.image | img_url: 'master' }}" alt="Timeline Image"></div>
+            <span>{{block.settings.letf_title  }}</span>
+            </div>
+
+            <div class="timeline-col timeline-col-right" data-aos="fade-left">
+              {% if block.settings.card %}
+                <div class="timeline-card">
+                  {% if block.settings.icon != blank %}<div class="timeline-icon">{{ block.settings.icon }}</div>{% endif %}
+                  <h3 class="timeline-title">{{ block.settings.title }}</h3>
+                  <p class="timeline-text">{{ block.settings.text }}</p>
+                </div>
+              {% else %}
+                <div class="timeline-content">
+                  {% if block.settings.icon != blank %}<div class="timeline-icon">{{ block.settings.icon }}</div>{% endif %}
+                  <h3 class="timeline-title">{{ block.settings.title }}</h3>
+                  <p class="timeline-text">{{ block.settings.text }}</p>
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.right_image != blank %}
+      <div class="timeline-side timeline-side-right">
+        {{ section.settings.right_image | image_url: width: 800 | img_tag }}
+      </div>
+    {% endif %}
+  </div>
+
+  {% if section.settings.cta_label != blank %}
+    <div class="timeline-cta">
+      <a href="{{ section.settings.cta_link }}" class="btn-cta">{{ section.settings.cta_label }}</a>
+    </div>
+  {% endif %}
+</section>
+
+<style>
+/* Basic layout + colours matching your screenshot */
+.timeline-section { padding: 48px 20px; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+.timeline-heading {
+    width: 100%;
+    text-align: center;
+    color: #2f0147;
+    font-weight: 700;
+    font-size: 52px;
+    margin-bottom: 30px;
+    max-width: 928px;
+    margin: 0 auto;
+}
+.timeline-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+.timeline-side {
+    /* width: 100%; */
+    max-width: 500px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    /* border: 2px solid #e5e5e5; */
+    /* border-radius: 12px; */
+    overflow: hidden;
+}
+
+.timeline-side img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;  /* keeps full image inside square */
+}
+
+
+/* central timeline */
+.timeline { position:relative; flex:1 1 auto; padding: 10px 20px; }
+.timeline::before {
+  content:''; position:absolute; left:50%; top:0; bottom:0; width:6px; transform:translateX(-50%);
+  background: linear-gradient(180deg,#f22c9c,#f65db1); border-radius:4px;
+}
+/* Central line */
+.timeline::before {
+   content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to bottom,
+    #ff69b4 0%,
+    #ff69b4 var(--progress, 0%),
+    #3d0052 var(--progress, 0%),
+    #3d0052 100%
+  );
+  border-radius: 4px;
+}
+/* Checkpoints */
+.timeline-checkpoint {
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  top:0;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:16px;
+  color:#fff;
+}
+
+.timeline-checkpoint::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  border:4px solid #f22c9c;
+  background:#3d0052; /* default upcoming */
+}
+
+.timeline-item.active .timeline-checkpoint::before {
+  background:#ff699f; /* active checkpoint */
+  border-color:#ff699f;
+}
+
+.timeline-checkpoint::after {
+  content:"✓"; /* tick */
+  position:relative;
+  z-index:3;
+  font-size:16px;
+}
+.timeline-item {
+  opacity: 0;
+  transform: translateY(40px); /* slight bottom slide */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Left items slide from left */
+/* initial hidden state */
+.timeline-item-left, 
+.timeline-item-right {
+  opacity: 0;
+  transform: translateX(50px); /* right by default, will override for left */
+  transition: all 0.6s ease-out;
+}
+
+/* left items slide from left */
+.timeline-item-left {
+  transform: translateX(-50px);
+}
+
+/* right items slide from right */
+.timeline-item-right {
+  transform: translateX(50px);
+}
+
+/* active state when in view */
+.timeline-item-left.active,
+.timeline-item-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* items */
+.timeline-item { display:flex; align-items:flex-start; gap:60px; margin: 36px 0; opacity:0; transform:translateY(30px); transition:opacity .6s ease, transform .6s ease; position:relative; }
+.timeline-item.active { opacity:1; transform:translateY(0); }
+
+/* columns */
+.timeline-col { width:48%; padding:18px;}
+.timeline-col.empty-col { width:48%; }
+
+/* content vs card styles */
+.timeline-content.timeline-content {
+
+    padding: 18px;
+    border-radius: 12px;
+    background: #ffe0eb;
+    color: rgb(26 26 26 / 1.0);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+          border:3px solid  #2f0147;
+}
+.timeline-card {
+    padding: 18px;
+    border-radius: 12px;
+    background: #ffe0eb;
+    color: rgb(26 26 26 / 1.0);
+    font-size:18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border:3px solid  #2f0147;
+}
+.timeline-icon { font-size:20px; margin-bottom:8px; display:inline-block; }
+.timeline-title { margin:0 0 8px; font-size:18px; color:inherit; }
+.timeline-text { margin:0; font-size:18px; line-height:1.45; color:inherit; }
+
+/* place left/right */
+.timeline-item-left .timeline-col-left { order:1; text-align:right; }
+.timeline-item-left .timeline-col-right { order:2; text-align:left; }
+.timeline-item-right .timeline-col-left { order:1; text-align:right; }
+.timeline-item-right .timeline-col-right { order:2; text-align:left; }
+
+.timeline-item-left .timeline-col-right {
+    order: 2;
+    text-align: left;
+    color: #2f0147;
+    font-weight: 500;
+    font-size: 45px;
+    gap:10px;
+    align-items: center;
+    display: flex;
+    padding: 18px;
+}
+.timeline-item-right .timeline-col-left {
+    order: 1;
+    padding: 18px;
+    text-align: right;
+   color: #2f0147;
+    font-weight: 500;
+    font-size: 45px;
+    align-items: center;
+    gap:10px;
+    display: flex;
+    padding: 18px;
+}
+/* CTA */
+.timeline-cta { text-align:center; margin-top:30px; }
+.btn-cta { background:#00c853; color:#fff; padding:10px 20px; border-radius:28px; text-decoration:none; font-weight:600; }
+
+/* responsive */
+@media (min-width: 1000px) {
+  .timeline-side { display:block; }
+}
+@media (max-width: 899px) {
+  .timeline-wrapper { display:block; }
+  .timeline-side { display:none; }
+  .timeline { padding:0; }
+  .timeline-item { flex-direction:column; text-align:center; }
+  .timeline-col, .timeline-col.empty-col { width:100%; }
+  .timeline::before { left:12px; }
+  .timeline-checkpoint { left:12px; transform:translateX(0); }
+  .timeline-item-left .timeline-col-left, .timeline-item-right .timeline-col-right { text-align:left; }
+}
+
+@media (max-width: 768px) {
+    .timeline-item {
+    flex-direction: row-reverse;
+    text-align: center;
+}
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    transform: translateX(-50%);
+    background: linear-gradient(to bottom, #ff69b4 0% var(--progress, 0%), #3d0052 var(--progress, 0%) 100%);
+    border-radius: 4px;
+}
+.timeline-checkpoint {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    top: 0;
+    z-index: 2;
+    color: #fff;
+}
+.timeline-heading {
+    font-size: 39px;
+   
+}
+}
+@media (max-width: 576px) {
+.timeline-item-left .timeline-col-right {
+    order: 2;
+    text-align: left;
+    color: #2f0147;
+    font-weight: 500;
+    font-size: 22px;
+}
+.timeline-card {
+    padding: 9px;
+    font-size: 11px;
+
+}
+.timeline-item-right .timeline-col-left {
+    font-size: 22px;
+}
+.timeline-item {
+    gap: 17px;
+}
+.timeline-heading {
+    font-size: 19px;
+}
+}
+</style>
+
+<script>
+(function () {
+  // Intersection Observer setup
+  var observer = new IntersectionObserver(function (entries, observer) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active"); // trigger slide animation
+
+        // Add background color for right-side cards only
+        if (entry.target.classList.contains("timeline-card")) {
+          entry.target.style.backgroundColor = "#ffe0eb";
+        }
+
+        observer.unobserve(entry.target); // animate only once
+      }
+    });
+  }, { threshold: 0.15 });
+
+  // Select all timeline items inside the section
+  var timelineItems = document.querySelectorAll("#timeline-progress-{{ section.id }} .timeline-item");
+
+  timelineItems.forEach(function (item, index) {
+    // Alternate left/right classes
+    if (index % 2 === 0) {
+      item.classList.add("timeline-item-left");
+    } else {
+      item.classList.add("timeline-item-right");
+    }
+
+    observer.observe(item);
+  });
+})();
+
+document.addEventListener("scroll", () => {
+  const timeline = document.querySelector(".timeline");
+  if (!timeline) return;
+
+  const rect = timeline.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+
+  // how much of timeline is visible
+  const scrollProgress = Math.min(
+    Math.max(((windowHeight - rect.top) / (rect.height + windowHeight)) * 100, 0),
+    100
+  );
+
+  timeline.style.setProperty("--progress", scrollProgress + "%");
+});
+
+</script>
+
+
+
+
+{% schema %}
+{
+  "name": "Timeline Progress Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "What Should I Expect From Consistent Use?"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading HTML Tag",
+      "default": "h2",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left Side Decorative Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image",
+      "label": "Right Side Decorative Image"
+    },
+    {
+      "type": "color",
+      "id": "timeline_bg_color",
+      "label": "Timeline Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "timeline_item_bg_color",
+      "label": "Timeline Card Background Color",
+      "default": "#ffeef2"
+    },
+    {
+      "type": "color",
+      "id": "timeline_text_color",
+      "label": "Timeline Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "timeline_padding_top",
+      "label": "Timeline Section Padding Top (px)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "timeline_padding_bottom",
+      "label": "Timeline Section Padding Bottom (px)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "timeline_margin_top",
+      "label": "Timeline Section Margin Top (px)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "timeline_margin_bottom",
+      "label": "Timeline Section Margin Bottom (px)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA Button Label",
+      "default": "Unlock Your True Power"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Button Link"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "CTA Button Background Color",
+      "default": "#ff3366"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "CTA Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "cta_padding_top",
+      "label": "CTA Padding Top (px)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "cta_padding_bottom",
+      "label": "CTA Padding Bottom (px)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "cta_padding_left",
+      "label": "CTA Padding Left (px)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "cta_padding_right",
+      "label": "CTA Padding Right (px)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 25
+    }
+  ],
+  "blocks": [
+    {
+      "type": "checkpoint",
+      "name": "Timeline Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Title",
+          "default": "1 Week"
+        },
+         {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        
+        },
+        {
+          "type": "text",
+          "id": "letf_title",
+          "label": "Left Title"
+        },
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji or text)",
+          "default": "⚡"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Likely lift in energy, mood, and cognition from consistent use."
+        },
+        {
+          "type": "checkbox",
+          "id": "card",
+          "label": "Display as pink card (if unchecked, plain text box used)",
+          "default": true
+        },
+        {
+          "type": "color",
+          "id": "card_bg_color",
+          "label": "Card Background Color",
+          "default": "#ffeef2"
+        },
+        {
+          "type": "color",
+          "id": "card_text_color",
+          "label": "Card Text Color",
+          "default": "#333333"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Timeline Progress IDE demo test",
+      "category": "Custom",
+      "settings": {
+        "heading": "What Should I Expect From Consistent Use? nothing",
+        "cta_label": "Unlock Your True Power"
+      },
+      "blocks": [
+        {
+          "type": "checkpoint",
+          "settings": {
+            "title": "1 Week",
+            "icon": "⚡",
+            "text": "Likely lift in energy, mood, and cognition.",
+            "card": true
+          }
+        },
+        {
+          "type": "checkpoint",
+          "settings": {
+            "title": "1 Month",
+            "icon": "🙂",
+            "text": "Abundance of B vitamins leads to better mood and energy.",
+            "card": true
+          }
+        },
+        {
+          "type": "checkpoint",
+          "settings": {
+            "title": "2 Months",
+            "icon": "💪",
+            "text": "Consistent Vitamin A can help skin and vision.",
+            "card": false
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>

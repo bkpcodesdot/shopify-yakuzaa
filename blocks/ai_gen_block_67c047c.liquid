@@ -1,0 +1,557 @@
+{% doc %}
+  @prompt
+    Create a marketing section for a health awareness campaign.
+    
+    - Add a small top banner with the text: "Take Care Of Yourself" on the left and a green button "SHOP NOW" on the right. The banner background should be dark green (#006400) with white text.
+    
+    - Below the banner, add a main heading: "The Hidden Epidemic No One Talks About" (bold, large font).
+    
+    - Add a subtitle paragraph with this text: 
+    "Millions of people walk around every day feeling 'off'. *Tired, bloated, foggy, and craving sugar.* Without ever getting a clear diagnosis."
+    Make the symptoms in italic.
+    
+    - Add another paragraph: 
+    "They chalk it up to stress, age, or diet. But according to researchers, many of these symptoms may have a far more unexpected root cause: **Parasitic infections and fungal overgrowth in the gut.**"
+    Make "Parasitic infections and fungal overgrowth in the gut" bold.
+    
+    - Insert a large image block (uploadable in the customizer) below the text.
+    
+    - Add a paragraph: 
+    "According to the World Health Organization (WHO), **up to 25%** of the world’s population is infected with intestinal parasites. In areas with poor water sanitation or even frequent travel, that number can spike to **50%**."
+    
+    - Add another paragraph: 
+    "But parasites don’t always cause dramatic symptoms at first. In fact, many people walk around for years feeling tired, bloated, and mentally foggy never realizing the root of their issues may be parasitic or fungal overgrowth like *Candida Albicans*."
+    
+    - Add a graph image placeholder (uploadable).
+    
+    - Add a paragraph below the graph: 
+    "These organisms thrive in your gut, feed off your nutrients, mess with your digestion, and release toxins into your bloodstream. Over time, they can wreak havoc on your immune system, your mood, your skin, and your energy levels."
+    
+    - Add a large orange button (#f58220) centered with white text: "TRY RESILIA RISK-FREE".
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-health-campaign-{{ ai_gen_id }} {
+    max-width: 728px;
+    margin: 0 auto;
+    font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+    line-height: 1.6;
+  }
+  .ai-health-campaign__heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.heading_color }};
+    margin: 0 0 24px 0;
+    line-height: 1.2;
+  }
+
+  .ai-health-campaign__subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 20px 0;
+  }
+
+  .ai-health-campaign__subtitle-{{ ai_gen_id }} em {
+    font-style: italic;
+    color: {{ block.settings.emphasis_color }};
+  }
+
+  .ai-health-campaign__paragraph-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 20px 0;
+  }
+
+  .ai-health-campaign__paragraph-{{ ai_gen_id }} strong {
+    font-weight: 700;
+    color: {{ block.settings.bold_text_color }};
+  }
+
+  .ai-health-campaign__paragraph-{{ ai_gen_id }} em {
+    font-style: italic;
+    color: {{ block.settings.emphasis_color }};
+  }
+
+  .ai-health-campaign__image-container-{{ ai_gen_id }} {
+    margin: 30px 0;
+    text-align: center;
+    position: relative;
+  }
+
+  .ai-health-campaign__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    border-radius: {{ block.settings.image_border_radius }}px;
+  }
+
+  .ai-health-campaign__image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 300px;
+    background-color: #f4f4f4;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-health-campaign__image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 200px;
+    max-height: 200px;
+    opacity: 0.3;
+  }
+
+  .ai-health-campaign__empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+  }
+
+  .ai-health-campaign__graph-container-{{ ai_gen_id }} {
+    margin: 30px 0;
+    text-align: center;
+    position: relative;
+  }
+
+  .ai-health-campaign__graph-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    border-radius: {{ block.settings.image_border_radius }}px;
+        max-width: 522px;
+  }
+
+  .ai-health-campaign__graph-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 250px;
+    background-color: #f4f4f4;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-health-campaign__graph-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 150px;
+    max-height: 150px;
+    opacity: 0.3;
+  }
+.ai-health-campaign__heading-ar1vkannwc0s2cxbraaigenblock67c047cbtj49l span {
+    color: {{ block.settings.highlight_color }};
+}
+  .ai-health-campaign__cta-container-{{ ai_gen_id }} {
+    text-align: center;
+    margin: 40px 0;
+  }
+
+  .ai-health-campaign__cta-button-{{ ai_gen_id }} {
+    background-color: {{ block.settings.cta_button_color }};
+    color: {{ block.settings.cta_button_text_color }};
+    padding: 18px;
+    border: none;
+    border-radius: {{ block.settings.cta_button_radius }}px;
+    font-size: {{ block.settings.cta_button_text_size }}px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    width:100%;
+  }
+
+  .ai-health-campaign__cta-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.cta_button_hover_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-health-campaign__banner-{{ ai_gen_id }} {
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+
+    .ai-health-campaign__heading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.heading_size }}px * 0.8);
+    }
+
+    .ai-health-campaign__banner-text-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.banner_text_size }}px * 0.9);
+    }
+  }
+{% endstyle %}
+
+<div class="ai-health-campaign-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+
+ <h2 class="ai-health-campaign__heading-{{ ai_gen_id }}">
+  {{ block.settings.heading_part1 }} <span>{{ block.settings.highlight_word }}</span> {{ block.settings.heading_part2 }}
+</h2>
+
+
+  <div class="ai-health-campaign__subtitle-{{ ai_gen_id }}">
+    {{ block.settings.subtitle_text }}
+  </div>
+
+  <div class="ai-health-campaign__paragraph-{{ ai_gen_id }}">
+    {{ block.settings.first_paragraph }}
+  </div>
+
+  <div class="ai-health-campaign__image-container-{{ ai_gen_id }}">
+    {% if block.settings.main_image %}
+      <img
+        src="{{ block.settings.main_image | image_url: width: 800 }}"
+        alt="{{ block.settings.main_image.alt | escape }}"
+        class="ai-health-campaign__image-{{ ai_gen_id }}"
+        loading="lazy"
+        width="{{ block.settings.main_image.width }}"
+        height="{{ block.settings.main_image.height }}"
+      >
+    {% else %}
+      <div class="ai-health-campaign__image-placeholder-{{ ai_gen_id }}">
+        {{ 'image' | placeholder_svg_tag }}
+        <div class="ai-health-campaign__empty-state-{{ ai_gen_id }}">
+          Add your main campaign image
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="ai-health-campaign__paragraph-{{ ai_gen_id }}">
+    {{ block.settings.who_paragraph }}
+  </div>
+
+  <div class="ai-health-campaign__paragraph-{{ ai_gen_id }}">
+    {{ block.settings.symptoms_paragraph }}
+  </div>
+
+  <div class="ai-health-campaign__graph-container-{{ ai_gen_id }}">
+    {% if block.settings.graph_image %}
+      <img
+        src="{{ block.settings.graph_image | image_url: width: 600 }}"
+        alt="{{ block.settings.graph_image.alt | escape }}"
+        class="ai-health-campaign__graph-{{ ai_gen_id }}"
+        loading="lazy"
+        width="{{ block.settings.graph_image.width }}"
+        height="{{ block.settings.graph_image.height }}"
+      >
+    {% else %}
+      <div class="ai-health-campaign__graph-placeholder-{{ ai_gen_id }}">
+        {{ 'image' | placeholder_svg_tag }}
+        <div class="ai-health-campaign__empty-state-{{ ai_gen_id }}">
+          Add your statistics graph
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="ai-health-campaign__paragraph-{{ ai_gen_id }}">
+    {{ block.settings.final_paragraph }}
+  </div>
+
+  <div class="ai-health-campaign__cta-container-{{ ai_gen_id }}">
+    {% if block.settings.cta_button_link != blank %}
+      <a href="{{ block.settings.cta_button_link }}" class="ai-health-campaign__cta-button-{{ ai_gen_id }}">
+        {{ block.settings.cta_button_text }}
+      </a>
+    {% else %}
+      <span class="ai-health-campaign__cta-button-{{ ai_gen_id }}">
+        {{ block.settings.cta_button_text }}
+      </span>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Health awareness campaign",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Top banner"
+    },
+    {
+      "type": "color",
+      "id": "banner_bg_color",
+      "label": "Banner background",
+      "default": "#006400"
+    },
+    {
+      "type": "color",
+      "id": "banner_text_color",
+      "label": "Banner text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "banner_button_color",
+      "label": "Banner button color",
+      "default": "#228B22"
+    },
+    {
+      "type": "color",
+      "id": "banner_button_text_color",
+      "label": "Banner button text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "banner_button_hover_color",
+      "label": "Banner button hover",
+      "default": "#32CD32"
+    },
+    {
+      "type": "header",
+      "content": "Main content"
+    },
+    {
+      "type": "text",
+      "id": "heading_part1",
+      "label": "Main heading"
+    },
+     {
+      "type": "text",
+      "id": "highlight_word",
+      "label": "Highlight heading"
+    },
+     {
+      "type": "text",
+      "id": "heading_part2",
+      "label": " Heading Part2"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle_text",
+      "label": "Subtitle text",
+      "default": "<p>Millions of people walk around every day feeling 'off'. <em>Tired, bloated, foggy, and craving sugar.</em> Without ever getting a clear diagnosis.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "first_paragraph",
+      "label": "First paragraph",
+      "default": "<p>They chalk it up to stress, age, or diet. But according to researchers, many of these symptoms may have a far more unexpected root cause: <strong>Parasitic infections and fungal overgrowth in the gut.</strong></p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main image"
+    },
+    {
+      "type": "richtext",
+      "id": "who_paragraph",
+      "label": "WHO statistics paragraph",
+      "default": "<p>According to the World Health Organization (WHO), <strong>up to 25%</strong> of the world's population is infected with intestinal parasites. In areas with poor water sanitation or even frequent travel, that number can spike to <strong>50%</strong>.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "symptoms_paragraph",
+      "label": "Symptoms paragraph",
+      "default": "<p>But parasites don't always cause dramatic symptoms at first. In fact, many people walk around for years feeling tired, bloated, and mentally foggy never realizing the root of their issues may be parasitic or fungal overgrowth like <em>Candida Albicans</em>.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "graph_image",
+      "label": "Statistics graph"
+    },
+    {
+      "type": "richtext",
+      "id": "final_paragraph",
+      "label": "Final paragraph",
+      "default": "<p>These organisms thrive in your gut, feed off your nutrients, mess with your digestion, and release toxins into your bloodstream. Over time, they can wreak havoc on your immune system, your mood, your skin, and your energy levels.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "text",
+      "id": "cta_button_text",
+      "label": "CTA button text",
+      "default": "TRY RESILIA RISK-FREE"
+    },
+    {
+      "type": "url",
+      "id": "cta_button_link",
+      "label": "CTA button link"
+    },
+    {
+      "type": "color",
+      "id": "cta_button_color",
+      "label": "CTA button color",
+      "default": "#f58220"
+    },
+    {
+      "type": "color",
+      "id": "cta_button_text_color",
+      "label": "CTA button text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "cta_button_hover_color",
+      "label": "CTA button hover",
+      "default": "#e6730e"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 24,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "banner_text_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Banner text size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "banner_button_text_size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Banner button text size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "cta_button_text_size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "CTA button text size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight color",
+      "default": "#e26900"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "bold_text_color",
+      "label": "Bold text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "emphasis_color",
+      "label": "Emphasis text color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "banner_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Banner border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "banner_button_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Banner button radius",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Image border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "cta_button_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "CTA button radius",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Health awareness campaign"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}
+
+ <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const button = document.querySelector(".ai-before-after-article__reading-time-acdr0m0uxa0xyunptdaigenblocke5a206b3dzqhj");
+    const target = document.getElementById("ai-health-campaign");
+
+    if (button && target) {
+      button.addEventListener("click", function (e) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth" });
+      });
+    }
+  });
+</script>

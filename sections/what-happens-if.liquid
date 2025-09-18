@@ -1,0 +1,636 @@
+{% doc %}
+  @prompt
+    Create a Shopify section called ‘What Happens If You Don’t Treat It?’ with the same structure and layout as the provided design.
+    
+    Section Layout & Structure:
+    
+    Title Section:
+    
+    Heading text: ‘What Happens If You Don’t Treat It?’
+    
+    Some words highlighted in orange (editable color).
+    
+    Fully editable heading text.
+    
+    Intro Description:
+    
+    5–6 lines of editable paragraph text.
+    
+    Left-aligned, clear spacing, and bold emphasis supported.
+    
+    Video/Image Section:
+    
+    Large placeholder (supports embedded video or uploaded image).
+    
+    Editable and replaceable.
+    
+    Full width on mobile, aligned center on desktop.
+    
+    Key Points Section (List of Symptoms):
+    
+    Each point appears in one row, stacked vertically.
+    
+    Left side: Red circle icon with white exclamation mark (!) (editable).
+    
+    Right side: Bold title + single line description (both editable).
+    
+    Example points (all editable, can add/remove):
+    
+    They Reproduce Fast – Multiply quickly, especially with sugar or stress.
+    
+    They Steal Nutrients – Feed on your vitamins and minerals.
+    
+    They Disrupt Digestion – Waste slows digestion and causes cravings.
+    
+    They Drain Your Energy – Overwork your immune system, leaving you exhausted.
+    
+    They Trigger Inflammation – Release toxins that spread inflammation.
+    
+    They Mess With Hormones – Throw off mood, immunity, and hormone balance.
+    
+    Closing Description:
+    
+    Another 5–6 lines of editable text below the points.
+    
+    Supports bold and italic styling.
+    
+    CTA Button:
+    
+    Full-width orange button with white text.
+    
+    Text: ‘TRY RESILIA RISK-FREE’ (fully editable).
+    
+    Rounded corners, bold font.
+    
+    Hover state: darker orange shade.
+    
+    Design & Styling:
+    
+    Colors: Black body text, orange highlight, red icons, orange button.
+    
+    Fonts: Bold headings, medium-weight body text.
+    
+    Spacing: Adequate padding between sections.
+    
+    Background: White by default (editable).
+    
+    Responsiveness:
+    
+    Desktop: Image/video centered, points aligned in vertical list.
+    
+    Mobile: Collapses into single column, video/image full width, points stacked neatly.
+    
+    CTA button: Full width on mobile., chnage media format i want to upload video, video file autoplay and repeat playing also hide all control,  What Happens If You <span>Don’t Treat It?</span>
+                </h2> 
+    
+    heading will be this format, Key points and Point 1 description set in single line
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-treatment-warning-{{ ai_gen_id }} {
+    background-color: {{ block.settings.background_color }};
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-treatment-warning__title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+    color: {{ block.settings.text_color }};
+    line-height: 1.2;
+  }
+
+  .ai-treatment-warning__title-{{ ai_gen_id }} span {
+    color: {{ block.settings.highlight_color }};
+  }
+
+  .ai-treatment-warning__intro-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    text-align: left;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ai-treatment-warning__media-{{ ai_gen_id }} {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .ai-treatment-warning__media-placeholder-{{ ai_gen_id }} {
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-treatment-warning__media-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    max-height: 300px;
+  }
+
+  .ai-treatment-warning__media img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .ai-treatment-warning__media video {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 8px;
+    background: #000;
+  }
+
+  .ai-treatment-warning__points-{{ ai_gen_id }} {
+    margin-bottom: 40px;
+  }
+
+  .ai-treatment-warning__point-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 15px;
+  }
+
+  .ai-treatment-warning__icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    background-color: {{ block.settings.icon_color }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .ai-treatment-warning__icon-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    fill: white;
+  }
+
+  .ai-treatment-warning__point-content-{{ ai_gen_id }} {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ai-treatment-warning__point-title-{{ ai_gen_id }} {
+    font-weight: bold;
+    font-size: {{ block.settings.point_title_size }}px;
+    color: {{ block.settings.text_color }};
+    white-space: nowrap;
+  }
+
+  .ai-treatment-warning__point-separator-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-weight: bold;
+  }
+
+  .ai-treatment-warning__point-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.point_text_size }}px;
+    color: {{ block.settings.text_color }};
+    line-height: 1.4;
+  }
+
+  .ai-treatment-warning__closing-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    text-align: left;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ai-treatment-warning__cta-{{ ai_gen_id }} {
+    text-align: center;
+  }
+
+  .ai-treatment-warning__button-{{ ai_gen_id }} {
+    display: inline-block;
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    padding: 16px 32px;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: {{ block.settings.button_text_size }}px;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .ai-treatment-warning__button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-treatment-warning-{{ ai_gen_id }} {
+      padding: 30px 15px;
+    }
+
+    .ai-treatment-warning__title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.8 }}px;
+    }
+
+    .ai-treatment-warning__point-{{ ai_gen_id }} {
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .ai-treatment-warning__point-content-{{ ai_gen_id }} {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+    }
+
+    .ai-treatment-warning__point-title-{{ ai_gen_id }} {
+      white-space: normal;
+    }
+
+    .ai-treatment-warning__point-separator-{{ ai_gen_id }} {
+      display: none;
+    }
+
+    .ai-treatment-warning__button-{{ ai_gen_id }} {
+      width: 100%;
+      max-width: none;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-treatment-warning-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.heading != blank %}
+    <h2 class="ai-treatment-warning__title-{{ ai_gen_id }}">
+      {{ block.settings.heading }}
+    </h2>
+  {% endif %}
+
+  {% if block.settings.intro_text != blank %}
+    <div class="ai-treatment-warning__intro-{{ ai_gen_id }}">
+      {{ block.settings.intro_text }}
+    </div>
+  {% endif %}<div class="ai-treatment-warning__media-{{ ai_gen_id }}">
+    {% if block.settings.video_file %}
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        width="100%"
+        height="auto"
+      >
+        <source src="{{ block.settings.video_file.sources[1].url }}" type="{{ block.settings.video_file.sources[1].mime_type }}"><source src="{{ block.settings.video_file.sources[0].url }}" type="{{ block.settings.video_file.sources[0].mime_type }}">
+        Your browser does not support the video tag.
+      </video>
+    {% elsif block.settings.media_image %}
+      <img
+        src="{{ block.settings.media_image | image_url: width: 1200 }}"
+        alt="{{ block.settings.media_image.alt | escape }}"
+        loading="lazy"
+        width="{{ block.settings.media_image.width }}"
+        height="{{ block.settings.media_image.height }}"
+      >
+    {% else %}
+      <div class="ai-treatment-warning__media-placeholder-{{ ai_gen_id }}">
+        {{ 'image' | placeholder_svg_tag }}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="ai-treatment-warning__points-{{ ai_gen_id }}">
+    {% for i in (1..6) %}
+      {% assign point_title_key = 'point_' | append: i | append: '_title' %}
+      {% assign point_description_key = 'point_' | append: i | append: '_description' %}
+      {% assign point_title = block.settings[point_title_key] %}
+      {% assign point_description = block.settings[point_description_key] %}
+      
+      {% if point_title != blank %}
+        <div class="ai-treatment-warning__point-{{ ai_gen_id }}">
+          <div class="ai-treatment-warning__icon-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+            </svg>
+          </div>
+          <div class="ai-treatment-warning__point-content-{{ ai_gen_id }}">
+            <div class="ai-treatment-warning__point-title-{{ ai_gen_id }}">{{ point_title }}</div>
+            {% if point_description != blank %}
+              <span class="ai-treatment-warning__point-separator-{{ ai_gen_id }}">–</span>
+              <div class="ai-treatment-warning__point-description-{{ ai_gen_id }}">{{ point_description }}</div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {% if block.settings.closing_text != blank %}
+    <div class="ai-treatment-warning__closing-{{ ai_gen_id }}">
+      {{ block.settings.closing_text }}
+    </div>
+  {% endif %}
+
+  {% if block.settings.button_text != blank %}
+    <div class="ai-treatment-warning__cta-{{ ai_gen_id }}">
+      <a href="{{ block.settings.button_link }}" class="ai-treatment-warning__button-{{ ai_gen_id }}">
+        {{ block.settings.button_text }}
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Treatment warning",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading text",
+      "default": "<p>What Happens If You <span>Don't Treat It?</span></p>"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight color",
+      "default": "#FF6B35"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Introduction"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_text",
+      "label": "Introduction text",
+      "default": "<p>Understanding the consequences of leaving conditions untreated is crucial for making informed health decisions. Here's what you need to know about the potential risks and complications.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "video",
+      "id": "video_file",
+      "label": "Video file"
+    },
+    {
+      "type": "image_picker",
+      "id": "media_image",
+      "label": "Fallback image"
+    },
+    {
+      "type": "header",
+      "content": "Key points"
+    },
+    {
+      "type": "text",
+      "id": "point_1_title",
+      "label": "Point 1 title",
+      "default": "They Reproduce Fast"
+    },
+    {
+      "type": "text",
+      "id": "point_1_description",
+      "label": "Point 1 description",
+      "default": "Multiply quickly, especially with sugar or stress."
+    },
+    {
+      "type": "text",
+      "id": "point_2_title",
+      "label": "Point 2 title",
+      "default": "They Steal Nutrients"
+    },
+    {
+      "type": "text",
+      "id": "point_2_description",
+      "label": "Point 2 description",
+      "default": "Feed on your vitamins and minerals."
+    },
+    {
+      "type": "text",
+      "id": "point_3_title",
+      "label": "Point 3 title",
+      "default": "They Disrupt Digestion"
+    },
+    {
+      "type": "text",
+      "id": "point_3_description",
+      "label": "Point 3 description",
+      "default": "Waste slows digestion and causes cravings."
+    },
+    {
+      "type": "text",
+      "id": "point_4_title",
+      "label": "Point 4 title",
+      "default": "They Drain Your Energy"
+    },
+    {
+      "type": "text",
+      "id": "point_4_description",
+      "label": "Point 4 description",
+      "default": "Overwork your immune system, leaving you exhausted."
+    },
+    {
+      "type": "text",
+      "id": "point_5_title",
+      "label": "Point 5 title",
+      "default": "They Trigger Inflammation"
+    },
+    {
+      "type": "text",
+      "id": "point_5_description",
+      "label": "Point 5 description",
+      "default": "Release toxins that spread inflammation."
+    },
+    {
+      "type": "text",
+      "id": "point_6_title",
+      "label": "Point 6 title",
+      "default": "They Mess With Hormones"
+    },
+    {
+      "type": "text",
+      "id": "point_6_description",
+      "label": "Point 6 description",
+      "default": "Throw off mood, immunity, and hormone balance."
+    },
+    {
+      "type": "header",
+      "content": "Closing"
+    },
+    {
+      "type": "richtext",
+      "id": "closing_text",
+      "label": "Closing text",
+      "default": "<p>Don't let these issues compound over time. Taking action now can prevent more serious complications and help you maintain optimal health and well-being.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "TRY RESILIA RISK-FREE"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon",
+      "default": "#DC2626"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button",
+      "default": "#FF6B35"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button hover",
+      "default": "#E55A2B"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "point_title_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Point title size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "point_text_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Point text size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button text size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 20,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Treatment warning"
+    }
+  ]
+}
+{% endschema %}

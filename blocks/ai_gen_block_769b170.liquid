@@ -1,0 +1,413 @@
+{% doc %}
+  @prompt
+    Full-width rectangular hero block with rounded corners.
+    
+    Left side: background image or gradient overlay with optional category/tag labels.
+    
+    Right side: secondary image (or graphic element, like a person/cloud).
+    
+    Bottom overlay: dark gradient background for text readability.
+    
+    Customizable Options in Theme Editor (Schema Settings):
+    
+    Section Title (text) → Default: blog article headline.
+    
+    Subtitle / Excerpt (richtext) → short supporting text.
+    
+    Category (text) → e.g., “Women” with breadcrumb-style link.
+    
+    Subcategory (text/link) → e.g., “Hormonal Health”.
+    
+    Reading Time (text) → e.g., “5 min read”.
+    
+    Tag Labels (multi-text) → e.g., “Wellness”, “Health”.
+    
+    Primary Image (image_picker) → background/left image.
+    
+    Secondary Image (image_picker) → right-side visual (like a person/cloud).
+    
+    Overlay Color (color_picker) → gradient overlay on background.
+    
+    Headline Text Color (color_picker).
+    
+    Tag Background & Text Color (color_picker).
+    
+    Article Link (url) → click-through to full blog article.
+    
+    Design & Styling:
+    
+    Rounded corners (border-radius: 16px).
+    
+    Responsive grid: left image/content, right image.
+    
+    On mobile: stack vertically (image on top, text below).
+    
+    Smooth hover effect (slight zoom on image).
+    
+    Tag labels styled as pill-shaped buttons.
+    
+    Default Content Example:
+    
+    Category: Women > Hormonal Health
+    
+    Tags: Wellness, Health
+    
+    Reading Time: 5 min read
+    
+    Headline: "Every Doctor Dismissed Me as 'Just Stressed'. Then I Discovered What 8,000 Years of Female Wisdom Already Knew", there are no secondary image here should be only one image,  "Then I Discovered What 8,000 Years of Female Wisdom Already Knew"  text sholud be in #e32875 color & remove subtitle & Wellness & Health text sholud be with transpernt background with border-radius:- 5px, there are sholud be beside to the Health option Reading Time: 5 min read add, bredcrubs sholud be add out of the this banner it sholud be add top of the page, remove breadcrubs back to my design
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-hero-blog-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-hero-blog-{{ ai_gen_id }}:hover {
+    transform: scale(1.02);
+  }
+
+  .ai-hero-blog-{{ ai_gen_id }}:hover .ai-hero-blog-image-{{ ai_gen_id }} img {
+    transform: scale(1.05);
+  }
+
+  .ai-hero-blog-image-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .ai-hero-blog-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-hero-blog-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-hero-blog-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 200px;
+    max-height: 200px;
+    opacity: 0.3;
+  }
+
+  .ai-hero-blog-gradient-overlay-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      {{ block.settings.overlay_color | color_modify: 'alpha', 0.7 }} 0%,
+      {{ block.settings.overlay_color | color_modify: 'alpha', 0.3 }} 50%,
+      transparent 100%
+    );
+  }
+
+  .ai-hero-blog-content-overlay-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      transparent 100%
+    );
+    padding: 40px;
+    color: white;
+  }
+
+  .ai-hero-blog-tags-reading-wrapper-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .ai-hero-blog-tags-{{ ai_gen_id }} {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .ai-hero-blog-tag-{{ ai_gen_id }} {
+    background-color: transparent;
+    color: {{ block.settings.tag_text_color }};
+    border: 1px solid {{ block.settings.tag_text_color }};
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .ai-hero-blog-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_font_size }}px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    color: {{ block.settings.headline_text_color }};
+    width: 100%;
+    max-width: 700px;
+  }
+
+  .ai-hero-blog-title-highlight-{{ ai_gen_id }} {
+    color: #e32875;
+  }
+
+  .ai-hero-blog-reading-time-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    opacity: 0.8;
+    color: {{ block.settings.headline_text_color }};
+  }
+
+  .ai-hero-blog-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 14px;
+    border-radius: 8px;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-hero-blog-{{ ai_gen_id }} {
+      height: 400px;
+    }
+
+    .ai-hero-blog-content-overlay-{{ ai_gen_id }} {
+      padding: 30px 20px;
+    }
+
+    .ai-hero-blog-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_font_size | times: 0.8 }}px;
+    }
+
+    .ai-hero-blog-tags-reading-wrapper-{{ ai_gen_id }} {
+      margin-bottom: 12px;
+    }
+
+    .ai-hero-blog-tags-reading-wrapper-{{ ai_gen_id }} {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .ai-hero-blog-{{ ai_gen_id }} {
+      height: 350px;
+      border-radius: 12px;
+    }
+
+    .ai-hero-blog-content-overlay-{{ ai_gen_id }} {
+      padding: 20px 16px;
+    }
+
+    .ai-hero-blog-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_font_size | times: 0.7 }}px;
+    }
+  }
+{% endstyle %}
+
+<a
+  href="{{ block.settings.article_link }}"
+  class="ai-hero-blog-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-hero-blog-image-{{ ai_gen_id }}">
+    {% if block.settings.primary_image %}
+      <img
+        src="{{ block.settings.primary_image | image_url: width: 1200 }}"
+        alt="{{ block.settings.primary_image.alt | escape }}"
+        loading="lazy"
+        width="{{ block.settings.primary_image.width }}"
+        height="{{ block.settings.primary_image.height }}"
+      >
+    {% else %}
+      <div class="ai-hero-blog-placeholder-{{ ai_gen_id }}">
+        {{ 'hero-apparel-1' | placeholder_svg_tag }}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="ai-hero-blog-gradient-overlay-{{ ai_gen_id }}"></div>
+
+  <div class="ai-hero-blog-content-overlay-{{ ai_gen_id }}">
+    {% if block.settings.tag_1 != blank or block.settings.tag_2 != blank or block.settings.tag_3 != blank or block.settings.reading_time != blank %}
+      <div class="ai-hero-blog-tags-reading-wrapper-{{ ai_gen_id }}">
+        {% if block.settings.tag_1 != blank or block.settings.tag_2 != blank or block.settings.tag_3 != blank %}
+          <div class="ai-hero-blog-tags-{{ ai_gen_id }}">
+            {% if block.settings.tag_1 != blank %}
+              <span class="ai-hero-blog-tag-{{ ai_gen_id }}">{{ block.settings.tag_1 }}</span>
+            {% endif %}
+            {% if block.settings.tag_2 != blank %}
+              <span class="ai-hero-blog-tag-{{ ai_gen_id }}">{{ block.settings.tag_2 }}</span>
+            {% endif %}
+            {% if block.settings.tag_3 != blank %}
+              <span class="ai-hero-blog-tag-{{ ai_gen_id }}">{{ block.settings.tag_3 }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if block.settings.reading_time != blank %}
+          <div class="ai-hero-blog-reading-time-{{ ai_gen_id }}">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12,6 12,12 16,14"></polyline>
+            </svg>
+            {{ block.settings.reading_time }}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.title != blank %}
+      <h1 class="ai-hero-blog-title-{{ ai_gen_id }}">
+        "Every Doctor Dismissed Me as 'Just Stressed'. <span class="ai-hero-blog-title-highlight-{{ ai_gen_id }}">Then I Discovered What 8,000 Years of Female Wisdom Already Knew"</span>
+      </h1>
+    {% endif %}
+  </div>
+
+  {% unless block.settings.primary_image or block.settings.title %}
+    <div class="ai-hero-blog-empty-state-{{ ai_gen_id }}">
+      Add an image and title to get started
+    </div>
+  {% endunless %}
+</a>
+
+{% schema %}
+{
+  "name": "Blog hero block",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Every Doctor Dismissed Me as 'Just Stressed'. Then I Discovered What 8,000 Years of Female Wisdom Already Knew"
+    },
+    {
+      "type": "text",
+      "id": "reading_time",
+      "label": "Reading time",
+      "default": "5 min read"
+    },
+    {
+      "type": "url",
+      "id": "article_link",
+      "label": "Article link"
+    },
+    {
+      "type": "header",
+      "content": "Tags"
+    },
+    {
+      "type": "text",
+      "id": "tag_1",
+      "label": "Tag 1",
+      "default": "Wellness"
+    },
+    {
+      "type": "text",
+      "id": "tag_2",
+      "label": "Tag 2",
+      "default": "Health"
+    },
+    {
+      "type": "text",
+      "id": "tag_3",
+      "label": "Tag 3"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "primary_image",
+      "label": "Background image"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "headline_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "tag_text_color",
+      "label": "Tag text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Title font size",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog hero block"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}

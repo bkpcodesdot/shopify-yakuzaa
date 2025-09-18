@@ -1,0 +1,975 @@
+{% doc %}
+  @prompt
+    Create a Shopify section called "Product Benefits Highlight" that matches this layout:
+    
+    Layout Requirements
+    
+    Heading & Subheading (Top)
+    
+    Main heading with editable text.
+    
+    Option for dual-color styling (example: “Start Reclaiming Your Gut Health Today”).
+    
+    Full customization: font family, font size, font weight, text color (for each word/phrase), alignment, margin, padding.
+    
+    Intro Paragraph (below heading)
+    
+    Rich text field for body copy.
+    
+    Full customization: font family, font size, line height, color, spacing, and alignment.
+    
+    Product Image with Optional Background (center section)
+    
+    Editable image upload.
+    
+    Option to enable/disable secondary background image.
+    
+    Controls: image size, alignment (left/center/right), padding, and border radius.
+    
+    Feature List (with icons)
+    
+    Multiple blocks (each block = one feature).
+    
+    Fields per block:
+    
+    Icon (SVG upload or choose from a list).
+    
+    Feature text.
+    
+    Full customization: icon size, icon color, font family, font size, font color, spacing between items, alignment (vertical/horizontal).
+    
+    Supporting Paragraph (below features)
+    
+    Editable text field with customization for font, size, line height, and color.
+    
+    Call-to-Action Button (bottom)
+    
+    Editable text and link.
+    
+    Full styling options: background color, hover background color, text color, font family, font size, border radius, padding, and alignment.
+    
+    Global Section Controls
+    
+    Section background color.
+    
+    Section padding (top/bottom/left/right).
+    
+    Max-width control (boxed or full-width).
+    
+    Responsiveness
+    
+    Desktop: Image and text/features display side by side (two-column layout).
+    
+    Tablet: Stack with image on top, text/features below.
+    
+    Mobile: Fully stacked, centered content.
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-benefits-highlight-{{ ai_gen_id }} {
+    background-color: {{ block.settings.section_bg_color }};
+    padding: {{ block.settings.section_padding_top }}px {{ block.settings.section_padding_horizontal }}px {{ block.settings.section_padding_bottom }}px {{ block.settings.section_padding_horizontal }}px;
+  }
+
+  .ai-benefits-container-{{ ai_gen_id }} {
+    max-width: {% if block.settings.section_width == 'boxed' %}1200px{% else %}100%{% endif %};
+    margin: 0 auto;
+  }
+
+  .ai-benefits-header-{{ ai_gen_id }} {
+    text-align: {{ block.settings.heading_alignment }};
+    margin-bottom: {{ block.settings.header_margin_bottom }}px;
+  }
+
+  .ai-benefits-heading-{{ ai_gen_id }} {
+    font-family: {{ block.settings.heading_font.family }};
+    font-size: {{ block.settings.heading_size }}px;
+    font-weight: {{ block.settings.heading_weight }};
+    color: {{ block.settings.heading_color }};
+    margin: 0 0 {{ block.settings.heading_margin_bottom }}px 0;
+    line-height: 1.2;
+  }
+
+  .ai-benefits-heading-accent-{{ ai_gen_id }} {
+    color: {{ block.settings.heading_accent_color }};
+  }
+
+  .ai-benefits-intro-{{ ai_gen_id }} {
+    font-family: {{ block.settings.intro_font.family }};
+    font-size: {{ block.settings.intro_size }}px;
+    line-height: {{ block.settings.intro_line_height }};
+    color: {{ block.settings.intro_color }};
+    text-align: {{ block.settings.intro_alignment }};
+    margin: 0 0 {{ block.settings.intro_margin_bottom }}px 0;
+  }
+
+  .ai-benefits-content-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: {{ block.settings.desktop_content_gap }}px;
+    align-items: center;
+  }
+
+  .ai-benefits-image-section-{{ ai_gen_id }} {
+    position: relative;
+    text-align: {{ block.settings.image_alignment }};
+    padding: {{ block.settings.image_padding }}px;
+  }
+
+  .ai-benefits-bg-image-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: {{ block.settings.bg_image_radius }}px;
+    z-index: 1;
+  }
+
+  .ai-benefits-product-image-{{ ai_gen_id }} {
+    position: relative;
+    z-index: 2;
+    max-width: {{ block.settings.image_max_width }}px;
+    width: 100%;
+    height: auto;
+    border-radius: {{ block.settings.image_radius }}px;
+  }
+
+  .ai-benefits-image-placeholder-{{ ai_gen_id }} {
+    position: relative;
+    z-index: 2;
+    max-width: {{ block.settings.image_max_width }}px;
+    width: 100%;
+    height: 300px;
+    background-color: #f4f4f4;
+    border-radius: {{ block.settings.image_radius }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-benefits-image-placeholder-{{ ai_gen_id }} svg {
+    width: 80px;
+    height: 80px;
+    opacity: 0.5;
+  }
+
+  .ai-benefits-features-section-{{ ai_gen_id }} {
+    padding: {{ block.settings.features_padding }}px;
+  }
+
+  .ai-benefits-features-list-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.features_gap }}px;
+    margin-bottom: {{ block.settings.features_margin_bottom }}px;
+  }
+
+  .ai-benefits-feature-item-{{ ai_gen_id }} {
+    display: flex;
+    align-items: flex-start;
+    gap: {{ block.settings.icon_text_gap }}px;
+    text-align: {{ block.settings.features_alignment }};
+  }
+
+  .ai-benefits-feature-icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    color: {{ block.settings.icon_color }};
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .ai-benefits-feature-text-{{ ai_gen_id }} {
+    font-family: {{ block.settings.feature_font.family }};
+    font-size: {{ block.settings.feature_size }}px;
+    color: {{ block.settings.feature_color }};
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .ai-benefits-support-text-{{ ai_gen_id }} {
+    font-family: {{ block.settings.support_font.family }};
+    font-size: {{ block.settings.support_size }}px;
+    line-height: {{ block.settings.support_line_height }};
+    color: {{ block.settings.support_color }};
+    margin: 0 0 {{ block.settings.support_margin_bottom }}px 0;
+    text-align: {{ block.settings.support_alignment }};
+  }
+
+  .ai-benefits-cta-section-{{ ai_gen_id }} {
+    text-align: {{ block.settings.button_alignment }};
+  }
+
+  .ai-benefits-cta-button-{{ ai_gen_id }} {
+    display: inline-block;
+    font-family: {{ block.settings.button_font.family }};
+    font-size: {{ block.settings.button_size }}px;
+    background-color: {{ block.settings.button_bg_color }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+    border-radius: {{ block.settings.button_radius }}px;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-benefits-cta-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_bg_color }};
+  }
+
+  @media (min-width: 768px) {
+    .ai-benefits-content-{{ ai_gen_id }} {
+      grid-template-columns: 1fr 1fr;gap: {{ block.settings.desktop_content_gap }}px;
+    }
+
+    .ai-benefits-features-section-{{ ai_gen_id }} {
+      order: {% if block.settings.desktop_layout == 'image_left' %}2{% else %}1{% endif %};
+    }
+
+    .ai-benefits-image-section-{{ ai_gen_id }} {
+      order: {% if block.settings.desktop_layout == 'image_left' %}1{% else %}2{% endif %};
+    }
+  }
+
+  @media (max-width: 767px) {
+    .ai-benefits-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.8 }}px;
+    }
+
+    .ai-benefits-intro-{{ ai_gen_id }} {
+      font-size: {{ block.settings.intro_size | times: 0.9 }}px;
+    }
+
+    .ai-benefits-feature-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.feature_size | times: 0.9 }}px;
+    }
+
+    .ai-benefits-support-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.support_size | times: 0.9 }}px;
+    }
+
+    .ai-benefits-cta-button-{{ ai_gen_id }} {
+      font-size: {{ block.settings.button_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-benefits-highlight-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-benefits-container-{{ ai_gen_id }}">
+    <div class="ai-benefits-header-{{ ai_gen_id }}">
+      {% if block.settings.heading != blank %}
+        <h2 class="ai-benefits-heading-{{ ai_gen_id }}">
+          {% if block.settings.heading_accent_text != blank %}
+            {{ block.settings.heading | replace: block.settings.heading_accent_text, '<span class="ai-benefits-heading-accent-' | append: ai_gen_id | append: '">' | append: block.settings.heading_accent_text | append: '</span>' }}
+          {% else %}
+            {{ block.settings.heading }}
+          {% endif %}
+        </h2>
+      {% endif %}
+
+      {% if block.settings.intro_text != blank %}
+        <div class="ai-benefits-intro-{{ ai_gen_id }}">
+          {{ block.settings.intro_text }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="ai-benefits-content-{{ ai_gen_id }}">
+      <div class="ai-benefits-image-section-{{ ai_gen_id }}">
+        {% if block.settings.enable_bg_image and block.settings.bg_image %}
+          <img
+            src="{{ block.settings.bg_image | image_url: width: 800 }}"
+            alt="{{ block.settings.bg_image.alt | escape }}"
+            class="ai-benefits-bg-image-{{ ai_gen_id }}"
+            loading="lazy"
+          >
+        {% endif %}
+
+        {% if block.settings.product_image %}
+          <img
+            src="{{ block.settings.product_image | image_url: width: 600 }}"
+            alt="{{ block.settings.product_image.alt | escape }}"
+            class="ai-benefits-product-image-{{ ai_gen_id }}"
+            loading="lazy"
+            width="{{ block.settings.product_image.width }}"
+            height="{{ block.settings.product_image.height }}"
+          >
+        {% else %}
+          <div class="ai-benefits-image-placeholder-{{ ai_gen_id }}">
+            {{ 'product-1' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="ai-benefits-features-section-{{ ai_gen_id }}">
+        {% if block.settings.features_list != blank %}
+          <div class="ai-benefits-features-list-{{ ai_gen_id }}">
+            {% assign features = block.settings.features_list | split: '|' %}
+            {% for feature in features %}
+              {% if feature != blank %}
+                <div class="ai-benefits-feature-item-{{ ai_gen_id }}">
+                  <svg class="ai-benefits-feature-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20,6 9,17 4,12"></polyline>
+                  </svg>
+                  <p class="ai-benefits-feature-text-{{ ai_gen_id }}">{{ feature | strip }}</p>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% if block.settings.support_text != blank %}
+          <div class="ai-benefits-support-text-{{ ai_gen_id }}">
+            {{ block.settings.support_text }}
+          </div>
+        {% endif %}
+
+        {% if block.settings.button_text != blank %}
+          <div class="ai-benefits-cta-section-{{ ai_gen_id }}">
+            <a
+              href="{{ block.settings.button_link | default: '#' }}"
+              class="ai-benefits-cta-button-{{ ai_gen_id }}"
+            >
+              {{ block.settings.button_text }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Benefits highlight",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Section width",
+      "options": [
+        {
+          "value": "boxed",
+          "label": "Boxed"
+        },
+        {
+          "value": "full",
+          "label": "Full width"
+        }
+      ],
+      "default": "boxed"
+    },
+    {
+      "type": "select",
+      "id": "desktop_layout",
+      "label": "Desktop layout",
+      "options": [
+        {
+          "value": "image_left",
+          "label": "Image left"
+        },
+        {
+          "value": "image_right",
+          "label": "Image right"
+        }
+      ],
+      "default": "image_right"
+    },
+    {
+      "type": "range",
+      "id": "desktop_content_gap",
+      "min": 20,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Content gap",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "section_padding_horizontal",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Horizontal padding",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading text",
+      "default": "Start Reclaiming Your Gut Health Today"
+    },
+    {
+      "type": "text",
+      "id": "heading_accent_text",
+      "label": "Accent text"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Font",
+      "default": "inter_n7"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Font size",
+      "default": 36
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "heading_accent_color",
+      "label": "Accent color",
+      "default": "#007acc"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "heading_margin_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom margin",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "header_margin_bottom",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Header section margin",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Intro text"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_text",
+      "label": "Intro paragraph",
+      "default": "<p>Discover the power of natural ingredients designed to support your digestive wellness and overall health.</p>"
+    },
+    {
+      "type": "font_picker",
+      "id": "intro_font",
+      "label": "Font",
+      "default": "inter_n4"
+    },
+    {
+      "type": "range",
+      "id": "intro_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "intro_line_height",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "label": "Line height",
+      "default": 1.5
+    },
+    {
+      "type": "color",
+      "id": "intro_color",
+      "label": "Text color",
+      "default": "#666666"
+    },
+    {
+      "type": "select",
+      "id": "intro_alignment",
+      "label": "Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "intro_margin_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom margin",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Product image"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_bg_image",
+      "label": "Enable background image",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background image"
+    },
+    {
+      "type": "range",
+      "id": "image_max_width",
+      "min": 200,
+      "max": 600,
+      "step": 20,
+      "unit": "px",
+      "label": "Max width",
+      "default": 400
+    },
+    {
+      "type": "select",
+      "id": "image_alignment",
+      "label": "Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "image_padding",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "bg_image_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Background radius",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Features"
+    },
+    {
+      "type": "textarea",
+      "id": "features_list",
+      "label": "Features list",
+      "info": "Separate each feature with | (pipe symbol)",
+      "default": "Supports digestive health|Boosts immune system|Natural ingredients|Clinically tested"
+    },
+    {
+      "type": "font_picker",
+      "id": "feature_font",
+      "label": "Font",
+      "default": "inter_n4"
+    },
+    {
+      "type": "range",
+      "id": "feature_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "feature_color",
+      "label": "Text color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 16,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#22c55e"
+    },
+    {
+      "type": "range",
+      "id": "icon_text_gap",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon to text gap",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "features_gap",
+      "min": 10,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Features gap",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "features_alignment",
+      "label": "Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "features_padding",
+      "min": 0,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Section padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "features_margin_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom margin",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Support text"
+    },
+    {
+      "type": "richtext",
+      "id": "support_text",
+      "label": "Supporting paragraph",
+      "default": "<p>Join thousands of satisfied customers who have transformed their health with our premium supplement.</p>"
+    },
+    {
+      "type": "font_picker",
+      "id": "support_font",
+      "label": "Font",
+      "default": "inter_n4"
+    },
+    {
+      "type": "range",
+      "id": "support_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "support_line_height",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "label": "Line height",
+      "default": 1.4
+    },
+    {
+      "type": "color",
+      "id": "support_color",
+      "label": "Text color",
+      "default": "#666666"
+    },
+    {
+      "type": "select",
+      "id": "support_alignment",
+      "label": "Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "support_margin_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom margin",
+      "default": 25
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "font_picker",
+      "id": "button_font",
+      "label": "Font",
+      "default": "inter_n5"
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Hover background",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "min": 16,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "label": "Horizontal padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 6
+    },
+    {
+      "type": "select",
+      "id": "button_alignment",
+      "label": "Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefits highlight"
+    }
+  ]
+}
+{% endschema %}

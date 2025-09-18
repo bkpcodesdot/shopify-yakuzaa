@@ -1,0 +1,825 @@
+{% doc %}
+  @prompt
+     Create a Parasite & Candida Info Section for a Shopify product page with the same layout, design, and functionality as the provided screenshot.
+        
+        Section Layout & Structure:
+        
+        Heading: 'How Do Parasites and Candida Get Inside Us?'
+        
+        Editable title with dual-color style (black + orange highlight on specific words).
+        
+        Intro paragraph (editable): Explains in simple text with bold key phrases.
+        
+        Main image: Large featured image with overlay microbes illustration (image fully replaceable).
+        
+        Subsection: 'How parasites and candida sneak in:'
+        
+        List format with icons + text blocks (stacked vertically).
+        
+        Each item includes:
+        
+        Image thumbnail (editable/uploadable).
+        
+        Title (bold, e.g., "Contaminated Food").
+        
+        Description text (editable, multiline).
+        
+        Items in list (editable, can add/remove/reorder):
+        
+        Contaminated Food
+        
+        Pets and Animals
+        
+        Antibiotic Use
+        
+        Travel (Even Once)
+        
+        Public Spaces
+        
+        High-Sugar or Processed Diets
+        
+        Bottom Line Section:
+        
+        Bold subheading "Bottom line?" (editable).
+        
+        Supporting paragraph (editable text).
+        
+        CTA Button:
+        
+        Large button with text TRY RESILIA RISK-FREE (editable).
+        
+        Orange background, white text, rounded corners.
+        
+        Hover state: darker orange shade.
+        
+        Design & Styling:
+        
+        Title font: bold, large (customizable size & color).
+        
+        Text alignment: left-aligned.
+        
+        Icons/images aligned left of text.
+        
+        Section background: white by default (customizable).
+        
+        Orange highlights consistent across headings, borders, and button.
+        
+        Customization Options:
+        
+        All text editable via Shopify editor.
+        
+        Swap images/icons easily.
+        
+        Ability to reorder or add more "sneak in" items.
+        
+        Colors (orange, black, white, backgrounds) fully adjustable.
+        
+        Fonts and font sizes customizable., Responsive Design:
+        
+        On desktop: image + text blocks aligned neatly with vertical list.
+        
+        On mobile: collapses into single column, image full width, text blocks stacked.
+        
+        Button full width and centered on mobile.
+        
+        Deliver this as a responsive, fully editable Shopify section with the exact layout and structure of the provided scre, set order like this 
+        - title with some orange text
+        - show some line with some bold text
+        - set image in full width
+        - than How parasites and candida sneak 
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+ div#shopify-block-AQXY4TXdYZmpSQit2W__ai_gen_block_3c386ce_Lcqp4R {
+    align-items: center;
+    max-width: 728px;
+    margin: 0 auto;
+}
+  .ai-parasite-info-{{ ai_gen_id }} {
+    background-color: {{ block.settings.section_background }};
+    padding: {{ block.settings.section_padding }}px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-parasite-info-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: bold;
+    color: {{ block.settings.title_color }};
+    margin-bottom: 20px;
+    line-height: 1.2;text-align: left;
+  }
+.ai-parasite-info-intro-aqxy4txdyzmpsqit2waigenblock3c386celcqp4r em strong{
+font-size:22px;
+}
+  .ai-parasite-info-highlight-{{ ai_gen_id }} {
+    color: {{ block.settings.highlight_color }};}
+
+  .ai-parasite-info-intro-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    margin-bottom: 30px;
+    line-height: 1.6;
+    text-align: left;
+  }
+
+  .ai-parasite-info-main-image-{{ ai_gen_id }} {
+    width: 100%;
+    margin-bottom: 40px;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    overflow: hidden;
+  }
+
+  .ai-parasite-info-main-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: auto;
+    display: block;
+  aspect-ratio: 182 / 85; 
+    object-fit: cover;}
+
+
+  .ai-parasite-info-placeholder-{{ ai_gen_id }} {
+    background-color: #f4f4f4;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-parasite-info-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    max-height: 300px;
+  }
+
+  .ai-parasite-info-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .ai-parasite-info-subsection-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subsection_title_size }}px;
+    font-weight: bold;
+    color: {{ block.settings.title_color }};
+    margin-bottom: 25px;
+    text-align: left;
+  }
+
+  .ai-parasite-info-list-{{ ai_gen_id }} {
+    margin-bottom: 40px;
+  }
+
+  .ai-parasite-info-item-{{ ai_gen_id }} {
+  display: grid;
+    grid-template-columns: 128px auto;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 15px;
+    border-radius: {{ block.settings.item_border_radius }}px;
+    background-color: {{ block.settings.item_background }};
+  }
+
+  .ai-parasite-info-item-image-{{ ai_gen_id }} {
+    flex-shrink: 0;border-radius: 8px;
+    overflow: hidden;
+    background-color: #f4f4f4;
+  }
+
+  .ai-parasite-info-item-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+  }
+
+  .ai-parasite-info-item-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4f4;
+  }
+
+  .ai-parasite-info-item-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;}
+
+  .ai-parasite-info-item-content-{{ ai_gen_id }} {
+    flex-grow: 1;
+    text-align: left;
+  }
+
+  .ai-parasite-info-item-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.item_title_size }}px;
+    font-weight: bold;
+    color: {{ block.settings.title_color }};
+    margin-bottom: 8px;
+  }
+
+  .ai-parasite-info-item-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    color: #000000CF;
+    line-height: 1.5;
+    font-family :'Roboto', sans-serif !important;
+    font-weight:200;
+  }
+
+  .ai-parasite-info-bottom-line-{{ ai_gen_id }} {
+    margin-bottom: 30px;
+    text-align: left;
+  }
+
+  .ai-parasite-info-bottom-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.bottom_title_size }}px;
+    font-weight: bold;
+    color: {{ block.settings.title_color }};
+    margin-bottom: 15px;
+    font-style:Italic;
+  }
+
+  .ai-parasite-info-bottom-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    line-height: 26px;margin-bottom: 25px;
+    font-weight:300 !important;
+  }
+
+  .ai-parasite-info-cta-wrapper-{{ ai_gen_id }} {
+    text-align: left;
+  }
+
+  .ai-parasite-info-cta-{{ ai_gen_id }} {
+    display: block;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    padding: {{ block.settings.button_padding }}px {{ block.settings.button_padding | times: 1.5 }}px;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    text-decoration: none;
+    font-size: {{ block.settings.button_text_size }}px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    min-width: 200px;
+  }
+
+  .ai-parasite-info-cta-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+    color:#ee882f;
+    border:2px solid #ee882f;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-parasite-info-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding | times: 0.7 }}px 15px;
+    }
+
+    .ai-parasite-info-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.8 }}px;
+     
+    }
+    .ai-parasite-info-item-{{ ai_gen_id }} {
+      flex-direction: column;
+      align-items: center;
+    }
+
+
+    .ai-parasite-info-cta-wrapper-{{ ai_gen_id }} {
+      text-align: center;
+    }
+
+    .ai-parasite-info-cta-{{ ai_gen_id }} {
+      width: 100%;
+      display: block;
+    }
+  }
+{% endstyle %}<div class="ai-parasite-info-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.main_title != blank %}
+    <h2 class="ai-parasite-info-title-{{ ai_gen_id }}">
+      {% assign title_parts = block.settings.main_title | split: block.settings.highlight_text %}
+      {% if title_parts.size > 1 %}
+        {{ title_parts[0] }}<span class="ai-parasite-info-highlight-{{ ai_gen_id }}">{{ block.settings.highlight_text }}</span>{{ title_parts[1] }}
+      {% else %}
+        {{ block.settings.main_title }}
+      {% endif %}
+    </h2>
+  {% endif %}
+
+  {% if block.settings.intro_text != blank %}
+    <div class="ai-parasite-info-intro-{{ ai_gen_id }}">
+      {{ block.settings.intro_text }}
+    </div>
+  {% endif %}<div class="ai-parasite-info-main-image-{{ ai_gen_id }}">
+    {% if block.settings.main_image %}
+      <img
+        src="{{ block.settings.main_image | image_url: width: 1200 }}"
+        alt="{{ block.settings.main_image.alt | escape }}"
+        loading="lazy"
+        width="{{ block.settings.main_image.width }}"
+        height="{{ block.settings.main_image.height }}"
+      >
+    {% else %}
+      <div class="ai-parasite-info-placeholder-{{ ai_gen_id }}">
+        {{'image' | placeholder_svg_tag }}<div class="ai-parasite-info-empty-state-{{ ai_gen_id }}">
+          Add a main image
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  {% if block.settings.subsection_title != blank %}
+    <h3 class="ai-parasite-info-subsection-title-{{ ai_gen_id }}">
+      {{ block.settings.subsection_title }}
+    </h3>
+  {% endif %}<div class="ai-parasite-info-list-{{ ai_gen_id }}">
+    {% for i in (1..6) %}
+      {% assign item_enabled_key = 'item_' | append: i | append: '_enabled' %}
+      {% assign item_image_key = 'item_' | append: i | append: '_image' %}
+      {% assign item_title_key = 'item_' | append: i | append: '_title' %}
+      {% assign item_description_key = 'item_' | append: i | append: '_description' %}
+
+      {% if block.settings[item_enabled_key] %}<div class="ai-parasite-info-item-{{ ai_gen_id }}">
+          <div class="ai-parasite-info-item-image-{{ ai_gen_id }}">
+            {% if block.settings[item_image_key] %}
+              <img
+                src="{{ block.settings[item_image_key] | image_url: width: 200 }}"
+                alt="{{ block.settings[item_image_key].alt | escape }}"
+                loading="lazy"
+                width="200"
+                height="200"
+              >
+            {% else %}
+              <div class="ai-parasite-info-item-placeholder-{{ ai_gen_id }}">
+                {{ 'image' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+          </div>
+          <div class="ai-parasite-info-item-content-{{ ai_gen_id }}">
+            {% if block.settings[item_title_key] != blank %}
+              <h4 class="ai-parasite-info-item-title-{{ ai_gen_id }}">
+                {{ block.settings[item_title_key] }}
+              </h4>
+            {% endif %}
+            {% if block.settings[item_description_key] != blank %}
+              <div class="ai-parasite-info-item-description-{{ ai_gen_id }}">
+                {{ block.settings[item_description_key] }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="ai-parasite-info-bottom-line-{{ ai_gen_id }}">
+    {% if block.settings.bottom_line_title != blank %}
+      <h3 class="ai-parasite-info-bottom-title-{{ ai_gen_id }}">
+        {{ block.settings.bottom_line_title }}
+      </h3>
+    {% endif %}
+    {% if block.settings.bottom_line_text != blank %}
+      <div class="ai-parasite-info-bottom-text-{{ ai_gen_id }}">
+        {{ block.settings.bottom_line_text }}
+      </div>
+    {% endif %}
+  </div>
+
+  {% if block.settings.cta_text != blank %}
+    <div class="ai-parasite-info-cta-wrapper-{{ ai_gen_id }}">
+      <a
+        href="{{ block.settings.cta_link }}"
+        class="ai-parasite-info-cta-{{ ai_gen_id }}">
+        {{ block.settings.cta_text }}
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Parasite info section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Main content"
+    },
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Main title",
+      "default": "How Do Parasites and Candida Get Inside Us?"
+    },
+    {
+      "type": "text",
+      "id": "highlight_text",
+      "label": "Text to highlight in orange",
+      "default": "Parasites and Candida"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_text",
+      "label": "Introduction text",
+      "default": "<p>Understanding how these harmful organisms enter our bodies is the<strong>first step</strong> in protecting ourselves and our families from potential health issues.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main image"
+    },
+    {
+      "type": "text",
+      "id": "subsection_title",
+      "label": "Subsection title",
+      "default": "How parasites and candida sneak in:"
+    },
+    {
+      "type": "header",
+      "content": "Item1"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_1_enabled",
+      "label": "Enable item 1",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "item_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "item_1_title",
+      "label": "Title",
+      "default": "Contaminated Food"
+    },
+    {
+      "type": "textarea",
+      "id": "item_1_description",
+      "label": "Description",
+      "default": "Unwashed fruits and vegetables, undercooked meat, and contaminated water sources can harbor parasites and candida that easily enter your system."
+    },
+    {
+      "type": "header",
+      "content": "Item 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_2_enabled",
+      "label": "Enable item 2",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "item_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "item_2_title",
+      "label": "Title",
+      "default": "Pets and Animals"
+    },
+    {
+      "type": "textarea",
+      "id": "item_2_description",
+      "label": "Description",
+      "default": "Our beloved pets can carry parasites that easily transfer to humans through contact, shared living spaces, and contaminated surfaces."
+    },
+    {
+      "type": "header",
+      "content": "Item 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_3_enabled",
+      "label": "Enable item 3",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "item_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "item_3_title",
+      "label": "Title",
+      "default": "Antibiotic Use"
+    },
+    {
+      "type": "textarea",
+      "id": "item_3_description",
+      "label": "Description",
+      "default": "Antibiotics can disrupt healthy gut bacteria, creating an environment where candida and parasites can thrive and multiply rapidly."
+    },
+    {
+      "type": "header",
+      "content": "Item 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_4_enabled",
+      "label": "Enable item 4",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "item_4_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "item_4_title",
+      "label": "Title",
+      "default": "Travel (Even Once)"
+    },
+    {
+      "type": "textarea",
+      "id": "item_4_description",
+      "label": "Description",
+      "default": "Exposure to different environments, foods, and water sources during travel can introduce new parasites and pathogens to your system."
+    },
+    {
+      "type": "header",
+      "content": "Item 5"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_5_enabled",
+      "label": "Enable item 5",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "item_5_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "item_5_title",
+      "label": "Title",
+      "default": "Public Spaces"
+    },
+    {
+      "type": "textarea",
+      "id": "item_5_description",
+      "label": "Description",
+      "default": "Swimming pools, gyms, restaurants, and other public areas can be breeding grounds for parasites and candida transmission."
+    },
+    {
+      "type": "header",
+      "content": "Item 6"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_6_enabled",
+      "label": "Enable item 6",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "item_6_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "item_6_title",
+      "label": "Title",
+      "default": "High-Sugar or Processed Diets"
+    },
+    {
+      "type": "textarea",
+      "id": "item_6_description",
+      "label": "Description",
+      "default": "Sugar feeds candida growth, while processed foods can weaken your immune system and compromise gut health defenses."
+    },
+    {
+      "type": "header",
+      "content": "Bottom line section"
+    },
+    {
+      "type": "text",
+      "id": "bottom_line_title",
+      "label": "Bottom line title",
+      "default": "Bottom line?"
+    },
+    {
+      "type": "richtext",
+      "id": "bottom_line_text",
+      "label": "Bottom line text",
+      "default": "<p>These organisms are everywhere, and avoiding them completely is nearly impossible. The key is <strong>supporting your body's natural defenses</strong> and maintaining optimal gut health.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button text",
+      "default": "TRY RESILIA RISK-FREE"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight color",
+      "default": "#ff6b35"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "item_background",
+      "label": "Item background",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#ff6b35"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button hover background",
+      "default": "#e55a2b"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Main title size",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "subsection_title_size",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Subsection title size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "item_title_size",
+      "min": 14,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "label": "Item title size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "bottom_title_size",
+      "min": 16,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom title size",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button text size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section padding",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "item_image_size",
+      "min": 40,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "label": "Item image size",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Main image border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "item_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Item border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "button_padding",
+      "min": 10,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Button padding",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Parasite info section"
+    }
+  ]
+}
+{% endschema %}

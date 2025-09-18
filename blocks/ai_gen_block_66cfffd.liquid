@@ -1,0 +1,721 @@
+{% doc %}
+  @prompt
+    Command: Generate a "Problem & Solution" text section for a Shopify store.
+    
+    Objective: To build a connection with the customer by stating a relatable problem and introducing the product as the elegant solution.
+    
+    Copywriting & Content (Use this exact text and structure):
+    
+    Pre-Headline: Here’s The Problem…
+    
+    Main Headline: Eating beef organs is not fun (and yes, I tried it myself)
+    
+    Paragraph 1: I wanted to get all the benefits, but in an easy way that I didn’t have to force myself to do.
+    
+    Paragraph 2: That’s when Primal Queen movement was born (which is now an army of thousands of Queens that have taken back their health).
+    
+    Divider: --- (This should render as a horizontal line)
+    
+    Solution Statement (Large Text): One Single Capsule with Every Meal That Provides The Exact Beef Organ Superfoods You Need.
+    
+    USP (Italicized Text): 100% formulated by women, for women (sorry guys!)
+    
+    Next Section Headline: What are the beef organ superfoods in Primal Queen?
+    
+    Engaging Response (Sub-headline): Glad you asked!
+    
+    Design & Styling Instructions:
+    
+    Layout: Single column. All text must be centered.
+    
+    Color Palette:
+    
+    Background Color: Warm off-white. Use hex code #F7F3ED.
+    
+    Text Color: Dark charcoal gray for readability. Use hex code #333332.
+    
+    Accent Color (for the divider line): A light terracotta or dusty rose. Use hex code #D4B8B8 or #D7A5A4.
+    
+    Typography:
+    
+    Pre-Headline ("Here's The Problem..."):
+    
+    Font: Sans-serif (e.g., 'Inter', 'Helvetica Neue').
+    
+    Style: All caps. Medium weight (500). Letter-spacing: 1px. Size: 14px.
+    
+    Main Headline:
+    
+    Font: Serif (e.g., 'Butler', 'Abril Text', 'Tiempos Headline').
+    
+    Style: Semi-bold (600). Size: 38px (Desktop) / 28px (Mobile). Line-height: 1.2.
+    
+    Body Text (Paragraphs 1 & 2):
+    
+    Font: Sans-serif (e.g., 'Futura PT', 'Proxima Nova').
+    
+    Style: Regular weight (400). Size: 18px. Line-height: 1.6.
+    
+    Divider Line:
+    
+    Style: A thin horizontal rule. Width: 80px. Height: 1px. Use the accent color (#D4B8B8). Centered with margin above and below.
+    
+    Solution Statement:
+    
+    Font:, Add image with right side both section have image
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-problem-solution-{{ ai_gen_id }} {
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.section_padding }}px 20px;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-problem-solution__container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-problem-solution__section-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: {{ block.settings.content_gap }}px;
+    margin-bottom: {{ block.settings.section_spacing }}px;
+  }
+
+  .ai-problem-solution__section-{{ ai_gen_id }}:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-problem-solution__content-{{ ai_gen_id }} {
+    flex: 1;
+    text-align: center;
+  }
+
+  .ai-problem-solution__image-wrapper-{{ ai_gen_id }} {
+    flex: 0 0 {{ block.settings.image_width }}%;
+    max-width: {{ block.settings.image_width }}%;
+  }
+
+  .ai-problem-solution__image-{{ ai_gen_id }} {
+    width:100%;
+    height: auto;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    object-fit: cover;
+  }
+
+  .ai-problem-solution__image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: {{ block.settings.image_aspect_ratio }};
+    background-color: #f4f4f4;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-problem-solution__image-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-problem-solution__empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .ai-problem-solution__pre-headline-{{ ai_gen_id }} {
+    font-family: {{ block.settings.sans_serif_font.family }}, {{ block.settings.sans_serif_font.fallback_families }};
+    font-weight: {{ block.settings.sans_serif_font.weight }};
+    font-size: {{ block.settings.pre_headline_size }}px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 {{ block.settings.pre_headline_margin }}px 0;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-problem-solution__main-headline-{{ ai_gen_id }} {
+    font-family: {{ block.settings.serif_font.family }}, {{ block.settings.serif_font.fallback_families }};
+    font-weight: {{ block.settings.serif_font.weight }};
+    font-size: {{ block.settings.main_headline_size }}px;
+    line-height: 1.2;
+    margin: 0 0 {{ block.settings.main_headline_margin }}px 0;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-problem-solution__body-text-{{ ai_gen_id }} {
+    font-family: {{ block.settings.sans_serif_font.family }}, {{ block.settings.sans_serif_font.fallback_families }};
+    font-weight: {{ block.settings.sans_serif_font.weight }};
+    font-size: {{ block.settings.body_text_size }}px;
+    line-height: 1.6;
+    margin: 0 0 {{ block.settings.body_text_margin }}px 0;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-problem-solution__divider-{{ ai_gen_id }} {
+    width: {{ block.settings.divider_width }}px;
+    height: 1px;
+    background-color: {{ block.settings.accent_color }};
+    border: none;
+    margin: {{ block.settings.divider_margin }}px auto;
+  }
+
+  .ai-problem-solution__solution-statement-{{ ai_gen_id }} {
+    font-family: {{ block.settings.serif_font.family }}, {{ block.settings.serif_font.fallback_families }};
+    font-weight: {{ block.settings.serif_font.weight }};
+    font-size: {{ block.settings.solution_statement_size }}px;
+    line-height: 1.3;
+    margin: 0 0 {{ block.settings.solution_statement_margin }}px 0;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-problem-solution__usp-{{ ai_gen_id }} {
+    font-family: {{ block.settings.sans_serif_font.family }}, {{ block.settings.sans_serif_font.fallback_families }};
+    font-weight: {{ block.settings.sans_serif_font.weight }};
+    font-size: {{ block.settings.usp_size }}px;
+    font-style: italic;
+    line-height: 1.5;
+    margin: 0 0 {{ block.settings.usp_margin }}px 0;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-problem-solution__next-headline-{{ ai_gen_id }} {
+    font-family: {{ block.settings.serif_font.family }}, {{ block.settings.serif_font.fallback_families }};
+    font-weight: {{ block.settings.serif_font.weight }};
+    font-size: {{ block.settings.next_headline_size }}px;
+    line-height: 1.3;
+    margin: 0 0 {{ block.settings.next_headline_margin }}px 0;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-problem-solution__engaging-response-{{ ai_gen_id }} {
+    font-family: {{ block.settings.sans_serif_font.family }}, {{ block.settings.sans_serif_font.fallback_families }};
+    font-weight: {{ block.settings.sans_serif_font.weight }};
+    font-size: {{ block.settings.engaging_response_size }}px;
+    line-height: 1.4;
+    margin: 0;
+    color: {{ block.settings.text_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-problem-solution__section-{{ ai_gen_id }} {
+      flex-direction: column;
+      gap: {{ block.settings.mobile_gap }}px;
+    }
+
+    .ai-problem-solution__image-wrapper-{{ ai_gen_id }} {
+      flex: none;
+      max-width: 100%;
+      width: 100%;
+      order: {{ block.settings.mobile_image_position }};
+    }
+
+    .ai-problem-solution__main-headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.main_headline_size | times: 0.74 }}px;
+    }
+    
+    .ai-problem-solution__solution-statement-{{ ai_gen_id }} {
+      font-size: {{ block.settings.solution_statement_size | times: 0.8 }}px;
+    }
+    
+    .ai-problem-solution__next-headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.next_headline_size | times: 0.85 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-problem-solution-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-problem-solution__container-{{ ai_gen_id }}">
+    <div class="ai-problem-solution__section-{{ ai_gen_id }}">
+      <div class="ai-problem-solution__content-{{ ai_gen_id }}">
+        {% if block.settings.pre_headline != blank %}
+          <div class="ai-problem-solution__pre-headline-{{ ai_gen_id }}">
+            {{ block.settings.pre_headline }}
+          </div>
+        {% endif %}
+
+        {% if block.settings.main_headline != blank %}
+          <h2 class="ai-problem-solution__main-headline-{{ ai_gen_id }}">
+            {{ block.settings.main_headline }}
+          </h2>
+        {% endif %}
+
+        {% if block.settings.paragraph_1 != blank %}
+          <p class="ai-problem-solution__body-text-{{ ai_gen_id }}">
+            {{ block.settings.paragraph_1 }}
+          </p>
+        {% endif %}
+
+        {% if block.settings.paragraph_2 != blank %}
+          <p class="ai-problem-solution__body-text-{{ ai_gen_id }}">
+            {{ block.settings.paragraph_2 }}
+          </p>
+        {% endif %}
+
+        {% if block.settings.show_divider %}
+          <hr class="ai-problem-solution__divider-{{ ai_gen_id }}">
+        {% endif %}
+      </div>
+
+      <div class="ai-problem-solution__image-wrapper-{{ ai_gen_id }}">
+        {% if block.settings.problem_image %}
+          <img
+            src="{{ block.settings.problem_image | image_url: width: 600 }}"
+            alt="{{ block.settings.problem_image.alt | escape }}"
+            class="ai-problem-solution__image-{{ ai_gen_id }}"
+            loading="lazy"
+            width="{{ block.settings.problem_image.width }}"
+            height="{{ block.settings.problem_image.height }}"
+          >
+        {% else %}
+          <div class="ai-problem-solution__image-placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}<div class="ai-problem-solution__empty-state-{{ ai_gen_id }}">
+              Add problem section image
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="ai-problem-solution__section-{{ ai_gen_id }}">
+      <div class="ai-problem-solution__content-{{ ai_gen_id }}">
+        {% if block.settings.solution_statement != blank %}
+          <div class="ai-problem-solution__solution-statement-{{ ai_gen_id }}">
+            {{ block.settings.solution_statement }}
+          </div>
+        {% endif %}
+
+        {% if block.settings.usp_text != blank %}
+          <div class="ai-problem-solution__usp-{{ ai_gen_id }}">
+            {{ block.settings.usp_text }}
+          </div>
+        {% endif %}
+
+        {% if block.settings.next_headline != blank %}
+          <h3 class="ai-problem-solution__next-headline-{{ ai_gen_id }}">
+            {{ block.settings.next_headline }}
+          </h3>
+        {% endif %}
+
+        {% if block.settings.engaging_response != blank %}
+          <div class="ai-problem-solution__engaging-response-{{ ai_gen_id }}">
+            {{ block.settings.engaging_response }}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="ai-problem-solution__image-wrapper-{{ ai_gen_id }}">
+        {% if block.settings.solution_image %}
+          <img
+            src="{{ block.settings.solution_image | image_url: width: 600 }}"
+            alt="{{ block.settings.solution_image.alt | escape }}"
+            class="ai-problem-solution__image-{{ ai_gen_id }}"
+            loading="lazy"
+            width="{{ block.settings.solution_image.width }}"
+            height="{{ block.settings.solution_image.height }}"
+          >
+        {% else %}
+          <div class="ai-problem-solution__image-placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+            <div class="ai-problem-solution__empty-state-{{ ai_gen_id }}">
+              Add solution section image
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Problem & Solution",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "pre_headline",
+      "label": "Pre-headline",
+      "default": "Here's The Problem..."
+    },
+    {
+      "type": "text",
+      "id": "main_headline",
+      "label": "Main headline",
+      "default": "Eating beef organs is not fun (and yes, I tried it myself)"
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_1",
+      "label": "Paragraph 1",
+      "default": "I wanted to get all the benefits, but in an easy way that I didn't have to force myself to do."
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_2",
+      "label": "Paragraph 2",
+      "default": "That's when Primal Queen movement was born (which is now an army of thousands of Queens that have taken back their health)."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show divider line",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "solution_statement",
+      "label": "Solution statement",
+      "default": "One Single Capsule with Every Meal That Provides The Exact Beef Organ Superfoods You Need."
+    },
+    {
+      "type": "text",
+      "id": "usp_text",
+      "label": "USP text",
+      "default": "100% formulated by women, for women (sorry guys!)"
+    },
+    {
+      "type": "text",
+      "id": "next_headline",
+      "label": "Next section headline",
+      "default": "What are the beef organ superfoods in Primal Queen?"
+    },
+    {
+      "type": "text",
+      "id": "engaging_response",
+      "label": "Engaging response",
+      "default": "Glad you asked!"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "problem_image",
+      "label": "Problem section image"
+    },
+    {
+      "type": "image_picker",
+      "id": "solution_image",
+      "label": "Solution section image"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "label": "Image width",
+      "min": 30,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "default": 40
+    },
+    {
+      "type": "select",
+      "id": "image_aspect_ratio",
+      "label": "Image aspect ratio",
+      "options": [
+        {
+          "value": "1/1",
+          "label": "Square (1:1)"
+        },
+        {
+          "value": "4/3",
+          "label": "Landscape (4:3)"
+        },
+        {
+          "value": "3/4",
+          "label": "Portrait (3:4)"
+        },
+        {
+          "value": "16/9",
+          "label": "Wide (16:9)"
+        }
+      ],
+      "default": "4/3"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#F7F3ED"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#333332"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#D4B8B8"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "sans_serif_font",
+      "label": "Sans serif font",
+      "default": "inter_n4"
+    },
+    {
+      "type": "font_picker",
+      "id": "serif_font",
+      "label": "Serif font",
+      "default": "times_new_roman_n4"
+    },
+    {
+      "type": "range",
+      "id": "pre_headline_size",
+      "label": "Pre-headline size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "main_headline_size",
+      "label": "Main headline size",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 38
+    },
+    {
+      "type": "range",
+      "id": "body_text_size",
+      "label": "Body text size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "solution_statement_size",
+      "label": "Solution statement size",
+      "min": 20,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "usp_size",
+      "label": "USP text size",
+      "min": 14,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "next_headline_size",
+      "label": "Next headline size",
+      "min": 20,
+      "max": 36,
+      "step": 2,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "engaging_response_size",
+      "label": "Engaging response size",
+      "min": 16,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "content_gap",
+      "label": "Content gap",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "section_spacing",
+      "label": "Section spacing",
+      "min": 40,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "mobile_gap",
+      "label": "Mobile gap",
+      "min": 20,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_position",
+      "label": "Mobile image position",
+      "options": [
+        {
+          "value": "-1",
+          "label": "Above text"
+        },
+        {
+          "value": "1",
+          "label": "Below text"
+        }
+      ],
+      "default": "-1"
+    },
+    {
+      "type": "header",
+      "content": "Text spacing"
+    },
+    {
+      "type": "range",
+      "id": "pre_headline_margin",
+      "label": "Pre-headline bottom margin",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "main_headline_margin",
+      "label": "Main headline bottom margin",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "body_text_margin",
+      "label": "Body text bottom margin",
+      "min": 15,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "divider_margin",
+      "label": "Divider margin",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "divider_width",
+      "label": "Divider width",
+      "min": 50,
+      "max": 150,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "solution_statement_margin",
+      "label": "Solution statement bottom margin",
+      "min": 15,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "usp_margin",
+      "label": "USP bottom margin",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "next_headline_margin",
+      "label": "Next headline bottom margin",
+      "min": 10,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    }
+  ],
+  "presets": [
+    {
+      "name": "Problem & Solution"
+    }
+  ]
+}
+{% endschema %}
