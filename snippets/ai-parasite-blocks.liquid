@@ -1,0 +1,62 @@
+{% assign ai_gen_id = section.id | replace: '_', '' | downcase %}
+
+{% case block.type %}
+
+  {% when 'heading' %}
+    {% if block.settings.main_title != blank %}
+      <h2 class="ai-parasite-info-title">
+        {% assign parts = block.settings.main_title | split: block.settings.highlight_text %}
+        {% if parts.size > 1 %}
+          {{ parts[0] }}<span class="ai-parasite-info-highlight">{{ block.settings.highlight_text }}</span>{{ parts[1] }}
+        {% else %}
+          {{ block.settings.main_title }}
+        {% endif %}
+      </h2>
+    {% endif %}
+
+  {% when 'intro' %}
+    {% if block.settings.intro_text != blank %}
+      <div class="ai-parasite-info-intro">{{ block.settings.intro_text }}</div>
+    {% endif %}
+
+  {% when 'main_image' %}
+    {% if block.settings.main_image %}
+      <div class="ai-parasite-info-main-image">
+        <img src="{{ block.settings.main_image | image_url: width: 1200 }}" alt="Main Image" loading="lazy">
+      </div>
+    {% endif %}
+
+  {% when 'subsection_title' %}
+    {% if block.settings.subsection_title != blank %}
+      <h3 class="ai-parasite-info-subsection-title">{{ block.settings.subsection_title }}</h3>
+    {% endif %}
+
+  {% when 'sneak_in_item' %}
+    <div class="ai-parasite-info-item">
+      {% if block.settings.image %}
+        <img src="{{ block.settings.image | image_url: width: 200 }}" alt="{{ block.settings.title }}">
+      {% endif %}
+      <div>
+        {% if block.settings.title != blank %}
+          <h4 class="ai-parasite-info-item-title">{{ block.settings.title }}</h4>
+        {% endif %}
+        {% if block.settings.description != blank %}
+          <div class="ai-parasite-info-item-description">{{ block.settings.description }}</div>
+        {% endif %}
+      </div>
+    </div>
+
+  {% when 'bottom_line' %}
+    {% if block.settings.bottom_line_title != blank %}
+      <h3 class="ai-parasite-info-bottom-title">{{ block.settings.bottom_line_title }}</h3>
+    {% endif %}
+    {% if block.settings.bottom_line_text != blank %}
+      <div class="ai-parasite-info-bottom-text">{{ block.settings.bottom_line_text }}</div>
+    {% endif %}
+
+  {% when 'cta' %}
+    {% if block.settings.cta_text != blank %}
+      <a href="{{ block.settings.cta_link }}" class="ai-parasite-info-cta">{{ block.settings.cta_text }}</a>
+    {% endif %}
+
+{% endcase %}
