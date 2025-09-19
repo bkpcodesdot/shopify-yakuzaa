@@ -224,6 +224,17 @@
             "body_text_size": 18,
             "body_text_color": "#000000"
           }
+        },
+        "cta_gwnid6": {
+          "type": "cta",
+          "settings": {
+            "cta_text": "TRY RESILIA RISK-FREE",
+            "cta_link": "",
+            "cta_font_size": 18,
+            "cta_border_radius": 8,
+            "cta_bg_color": "#ee882f",
+            "cta_text_color": "#ffffff"
+          }
         }
       },
       "block_order": [
@@ -232,7 +243,8 @@
         "hero_image_igViym",
         "text_DQCgf3",
         "second_image_nC9ynK",
-        "text_ye8dVf"
+        "text_ye8dVf",
+        "cta_gwnid6"
       ],
       "name": "Advertorial section blocks",
       "settings": {
