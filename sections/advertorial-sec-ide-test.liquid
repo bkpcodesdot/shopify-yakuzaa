@@ -1,0 +1,80 @@
+
+
+
+{% render 'advertorial-blocks' %}
+
+{% schema %}
+{
+  "name": "Advertorial Section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "content_bg_color",
+      "label": "Content background color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading text", "default": "Why Most People Don't Know They're Infected" },
+        { "type": "text", "id": "highlight_text", "label": "Text to highlight", "default": "Don't Know" },
+        { "type": "range", "id": "heading_size", "min": 24, "max": 60, "step": 2, "unit": "px", "label": "Heading size", "default": 36 },
+        { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#333333" },
+        { "type": "color", "id": "heading_highlight_color", "label": "Highlight color", "default": "#FF6B35" }
+      ]
+    },
+    {
+      "type": "subtitle",
+      "name": "Subtitle",
+      "settings": [
+        { "type": "text", "id": "subtitle", "label": "Subtitle text", "default": "How gut invaders hide, survive, and manipulate your body, backed by science" },
+        { "type": "range", "id": "subtitle_size", "min": 14, "max": 24, "step": 1, "unit": "px", "label": "Subtitle size", "default": 18 },
+        { "type": "color", "id": "subtitle_color", "label": "Subtitle color", "default": "#666666" }
+      ]
+    },
+    {
+      "type": "hero_image",
+      "name": "Hero image",
+      "settings": [
+        { "type": "image_picker", "id": "hero_image", "label": "Hero image" }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text Block",
+      "settings": [
+        { "type": "richtext", "id": "text_content", "label": "Text content", "default": "<p>Default paragraph text.</p>" },
+        { "type": "range", "id": "body_text_size", "min": 14, "max": 20, "step": 1, "unit": "px", "label": "Body text size", "default": 16 },
+        { "type": "color", "id": "body_text_color", "label": "Body text color", "default": "#444444" }
+      ]
+    },
+    {
+      "type": "second_image",
+      "name": "Second image",
+      "settings": [
+        { "type": "image_picker", "id": "second_image", "label": "Second image" }
+      ]
+    },
+    {
+      "type": "cta",
+      "name": "CTA Button",
+      "settings": [
+        { "type": "text", "id": "cta_text", "label": "CTA button text", "default": "TRY RESILIA RISK-FREE" },
+        { "type": "url", "id": "cta_link", "label": "CTA button link" },
+        { "type": "range", "id": "cta_font_size", "min": 14, "max": 24, "step": 1, "unit": "px", "label": "CTA font size", "default": 18 },
+        { "type": "range", "id": "cta_border_radius", "min": 0, "max": 25, "step": 1, "unit": "px", "label": "CTA border radius", "default": 8 },
+        { "type": "color", "id": "cta_bg_color", "label": "CTA background color", "default": "#FF6B35" },
+        { "type": "color", "id": "cta_text_color", "label": "CTA text color", "default": "#FFFFFF" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Advertorial sec blocks IDE"
+    }
+  ]
+}
+{% endschema %}
