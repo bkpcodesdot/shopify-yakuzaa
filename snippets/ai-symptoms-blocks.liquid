@@ -1,0 +1,46 @@
+{% case block.type %}
+
+  {% when 'header' %}
+    <div class="ai-symptoms-header-{{ section.id }}">
+      <h2 class="ai-symptoms-title-{{ section.id }}">
+        {{ block.settings.title_before }}
+        {% if block.settings.title_highlight != blank %}
+          <span>{{ block.settings.title_highlight }}</span>
+        {% endif %}
+      </h2>
+      {% if block.settings.section_subtitle != blank %}
+        <p class="ai-symptoms-subtitle-{{ section.id }}">{{ block.settings.section_subtitle }}</p>
+      {% endif %}
+    </div>
+
+  {% when 'symptom' %}
+    <article class="ai-symptom-box-{{ section.id }}">
+      <div class="ai-symptom-top-{{ section.id }}">
+        <div class="ai-symptom-number-{{ section.id }}">{{ forloop.index }}.</div>
+        <h3 class="ai-symptom-title-{{ section.id }}">{{ block.settings.symptom_title }}</h3>
+      </div>
+      <div class="ai-symptom-divider-{{ section.id }}"></div>
+      <p class="ai-symptom-description-{{ section.id }}">{{ block.settings.symptom_description }}</p>
+      <div class="ai-symptom-science-{{ section.id }}">
+        <div class="ai-symptom-science-icon-{{ section.id }}">
+          {% if block.settings.symptom_icon %}
+            <img src="{{ block.settings.symptom_icon | image_url: width: 100 }}" alt="icon">
+          {% else %}
+            {{ 'image' | placeholder_svg_tag }}
+          {% endif %}
+        </div>
+        <div>
+          <strong>Science Says:</strong>
+          <span style="font-style:italic; padding-left:6px;">{{ block.settings.symptom_science_text }}</span>
+        </div>
+      </div>
+    </article>
+
+  {% when 'cta' %}
+    <div class="ai-symptoms-cta-{{ section.id }}">
+      <a href="{{ block.settings.cta_link }}" class="ai-symptoms-button-{{ section.id }}">
+        {{ block.settings.cta_text }}
+      </a>
+    </div>
+
+{% endcase %}
