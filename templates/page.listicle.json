@@ -186,7 +186,7 @@
             "highlight_text": "Don't Know",
             "heading_size": 36,
             "heading_color": "#333333",
-            "heading_highlight_color": "#FF6B35"
+            "heading_highlight_color": "#ff6b35"
           }
         },
         "subtitle_mqTeq8": {
@@ -202,16 +202,41 @@
           "settings": {
             "hero_image": "shopify://shop_images/gut_infected_desktop_1.webp"
           }
+        },
+        "text_DQCgf3": {
+          "type": "text",
+          "settings": {
+            "text_content": "<p>One of the biggest reasons <strong>parasites, fungi, and harmful microbes</strong> go untreated is because they're <em>incredibly good at hiding</em>.</p><p>These microscopic invaders have evolved sophisticated survival mechanisms that allow them to <strong>evade detection</strong> by both your immune system and conventional testing methods.</p>",
+            "body_text_size": 18,
+            "body_text_color": "#000000"
+          }
+        },
+        "second_image_nC9ynK": {
+          "type": "second_image",
+          "settings": {
+            "second_image": "shopify://shop_images/guts_internal_fdb7827a-3144-4f65-83cb-aad760402a40.webp"
+          }
+        },
+        "text_ye8dVf": {
+          "type": "text",
+          "settings": {
+            "text_content": "<p>They create a <strong>slimy protective shield </strong>around themselves called a biofilm, making them nearly impossible to eliminate with standard treatments.</p>",
+            "body_text_size": 18,
+            "body_text_color": "#000000"
+          }
         }
       },
       "block_order": [
         "heading_KcMB4f",
         "subtitle_mqTeq8",
-        "hero_image_igViym"
+        "hero_image_igViym",
+        "text_DQCgf3",
+        "second_image_nC9ynK",
+        "text_ye8dVf"
       ],
       "name": "Advertorial section blocks",
       "settings": {
-        "content_bg_color": "#FFFFFF"
+        "content_bg_color": "#ffffff"
       }
     }
   },
