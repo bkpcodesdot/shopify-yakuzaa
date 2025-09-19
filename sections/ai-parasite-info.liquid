@@ -1,0 +1,97 @@
+{% style %}
+/* --- same CSS you wrote --- */
+.ai-parasite-info {
+  background-color: {{ section.settings.section_background }};
+  padding: {{ section.settings.section_padding }}px 20px;
+  max-width: 726px;
+  margin: 0 auto;
+}
+... (keep all your existing CSS unchanged) ...
+{% endstyle %}
+
+<div class="ai-parasite-info" {{ section.shopify_attributes }}>
+  {% for block in section.blocks %}
+    {% render 'ai-parasite-blocks', block: block, section: section %}
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Parasite info (blocks)",
+  "settings": [
+    { "type": "color", "id": "section_background", "label": "Section background", "default": "#ffffff" },
+    { "type": "range", "id": "section_padding", "label": "Section padding", "min": 20, "max": 100, "step": 5, "default": 50 }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        { "type": "text", "id": "main_title", "label": "Main title", "default": "How Do Parasites and Candida Get Inside Us?" },
+        { "type": "text", "id": "highlight_text", "label": "Highlight text", "default": "Parasites and Candida" }
+      ]
+    },
+    {
+      "type": "intro",
+      "name": "Intro",
+      "settings": [
+        { "type": "richtext", "id": "intro_text", "label": "Intro text", "default": "<p>Understanding how these harmful organisms enter our bodies...</p>" }
+      ]
+    },
+    {
+      "type": "main_image",
+      "name": "Main image",
+      "settings": [
+        { "type": "image_picker", "id": "main_image", "label": "Main image" }
+      ]
+    },
+    {
+      "type": "subsection_title",
+      "name": "Subsection title",
+      "settings": [
+        { "type": "text", "id": "subsection_title", "label": "Subsection title", "default": "How parasites and candida sneak in:" }
+      ]
+    },
+    {
+      "type": "sneak_in_item",
+      "name": "Sneak in item",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Contaminated Food" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Unwashed fruits and vegetables, undercooked meat..." }
+      ]
+    },
+    {
+      "type": "bottom_line",
+      "name": "Bottom line",
+      "settings": [
+        { "type": "text", "id": "bottom_line_title", "label": "Bottom line title", "default": "Bottom line?" },
+        { "type": "richtext", "id": "bottom_line_text", "label": "Bottom line text", "default": "<p>These organisms are everywhere...</p>" }
+      ]
+    },
+    {
+      "type": "cta",
+      "name": "CTA Button",
+      "settings": [
+        { "type": "text", "id": "cta_text", "label": "CTA button text", "default": "TRY RESILIA RISK-FREE" },
+        { "type": "url", "id": "cta_link", "label": "CTA button link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Parasite info (blocks)",
+      "blocks": [
+        { "type": "heading" },
+        { "type": "intro" },
+        { "type": "main_image" },
+        { "type": "subsection_title" },
+        { "type": "sneak_in_item" },
+        { "type": "sneak_in_item" },
+        { "type": "bottom_line" },
+        { "type": "cta" }
+      ]
+    }
+  ]
+}
+{% endschema %}
