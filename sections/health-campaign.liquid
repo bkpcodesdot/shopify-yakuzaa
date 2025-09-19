@@ -1,0 +1,52 @@
+{% render 'health-campaign-snippet', section: section %}
+
+{% schema %}
+{
+  "name": "Health awareness campaign",
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        { "type": "richtext", "id": "heading_text", "label": "Heading Text" },
+        { "type": "range", "id": "heading_size", "min": 24, "max": 48, "step": 2, "unit": "px", "label": "Font size", "default": 34 },
+        { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#000000" },
+        { "type": "color", "id": "highlight_color", "label": "Highlight color", "default": "#e26900" }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "settings": [
+        { "type": "richtext", "id": "paragraph_text", "label": "Paragraph text" },
+        { "type": "range", "id": "text_size", "min": 14, "max": 20, "step": 1, "unit": "px", "label": "Text size", "default": 16 },
+        { "type": "color", "id": "text_color", "label": "Text color", "default": "#333333" }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "range", "id": "image_border_radius", "min": 0, "max": 20, "step": 2, "unit": "px", "label": "Border radius", "default": 8 }
+      ]
+    },
+    {
+      "type": "cta",
+      "name": "CTA Button",
+      "settings": [
+        { "type": "text", "id": "cta_button_text", "label": "CTA text", "default": "Try Risk Free" },
+        { "type": "url", "id": "cta_button_link", "label": "CTA link" },
+        { "type": "color", "id": "cta_button_color", "label": "Button color", "default": "#f58220" },
+        { "type": "color", "id": "cta_button_text_color", "label": "Text color", "default": "#ffffff" },
+        { "type": "color", "id": "cta_button_hover_color", "label": "Hover color", "default": "#e6730e" },
+        { "type": "range", "id": "cta_button_text_size", "min": 14, "max": 20, "step": 1, "unit": "px", "label": "Text size", "default": 16 },
+        { "type": "range", "id": "cta_button_radius", "min": 0, "max": 20, "step": 2, "unit": "px", "label": "Border radius", "default": 8 }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Health campaign (blocks)" }
+  ]
+}
+{% endschema %}
