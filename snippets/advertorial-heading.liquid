@@ -1,0 +1,9 @@
+<h1 class="ai-advertorial-heading"
+    style="font-size: {{ block.settings.heading_size }}px; color: {{ block.settings.heading_color }};">
+  {% assign parts = block.settings.heading | split: block.settings.highlight_text %}
+  {% if parts.size > 1 %}
+    {{ parts[0] | raw }}<span class="ai-advertorial-heading-highlight" style="color: {{ block.settings.heading_highlight_color }};">{{ block.settings.highlight_text }}</span>{{ parts[1] | raw }}
+  {% else %}
+    {{ block.settings.heading }}
+  {% endif %}
+</h1>
