@@ -1,0 +1,76 @@
+{% assign section_id = section.id | replace: '_', '' | downcase %}
+
+{% style %}
+.ai-health-campaign-{{ section_id }} {
+  max-width: 726px;
+  margin: 0 auto;
+  font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+  line-height: 1.6;
+}
+.ai-health-campaign__heading-{{ section_id }} {
+  font-size: {{ block.settings.heading_size | default: 34 }}px;
+  font-weight: 700;
+  color: {{ block.settings.heading_color | default: '#000' }};
+  margin: 30px 0 20px;
+}
+.ai-health-campaign__heading-{{ section_id }} strong {
+  color: {{ block.settings.highlight_color | default: '#e26900' }};
+}
+.ai-health-campaign__paragraph-{{ section_id }} {
+  font-size: {{ block.settings.text_size | default: 16 }}px;
+  color: {{ block.settings.text_color | default: '#333' }};
+  margin: 0 0 20px;
+}
+.ai-health-campaign__image-{{ section_id }},
+.ai-health-campaign__graph-{{ section_id }} {
+  width: 100%;
+  height: auto;
+  border-radius: {{ block.settings.image_border_radius | default: 8 }}px;
+  margin: 30px 0;
+}
+.ai-health-campaign__cta-button-{{ section_id }} {
+  background-color: {{ block.settings.cta_button_color | default: '#f58220' }};
+  color: {{ block.settings.cta_button_text_color | default: '#fff' }};
+  padding: 18px;
+  border-radius: {{ block.settings.cta_button_radius | default: 8 }}px;
+  font-size: {{ block.settings.cta_button_text_size | default: 16 }}px;
+  font-weight: 700;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+.ai-health-campaign__cta-button-{{ section_id }}:hover {
+  background-color: {{ block.settings.cta_button_hover_color | default: '#e6730e' }};
+  color: #F58220;
+  border:1px solid #F58220;
+}
+{% endstyle %}
+
+<section id="ai-health-campaign" class="ai-health-campaign-{{ section_id }}">
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'heading' %}
+        <h2 class="ai-health-campaign__heading-{{ section_id }}">
+          {{ block.settings.heading_text }}
+        </h2>
+
+      {% when 'paragraph' %}
+        <div class="ai-health-campaign__paragraph-{{ section_id }}">
+          {{ block.settings.paragraph_text }}
+        </div>
+
+      {% when 'image' %}
+        {% if block.settings.image %}
+          <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.image.alt }}" class="ai-health-campaign__image-{{ section_id }}">
+        {% endif %}
+
+      {% when 'cta' %}
+        <div class="ai-health-campaign__cta-container-{{ section_id }}">
+          <a href="{{ block.settings.cta_button_link }}" class="ai-health-campaign__cta-button-{{ section_id }}">
+            {{ block.settings.cta_button_text }}
+          </a>
+        </div>
+    {% endcase %}
+  {% endfor %}
+</section>
