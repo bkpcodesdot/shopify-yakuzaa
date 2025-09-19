@@ -650,6 +650,15 @@
     },
     "blog_artical_section_E8pjA6": {
       "type": "ai-before-after-article",
+      "blocks": {
+        "article_image_WRyCVP": {
+          "type": "article_image",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "article_image_WRyCVP"
+      ],
       "name": "Before Article Section",
       "settings": {
         "background_color": "#ffffff",
@@ -1158,6 +1167,33 @@
         "button_border_radius": 8,
         "section_background_color": "#ffffff"
       }
+    },
+    "advertorial_section_fQWMUp": {
+      "type": "advertorial-section",
+      "blocks": {
+        "subtitle_cDWRwV": {
+          "type": "subtitle",
+          "settings": {
+            "subtitle": "How gut invaders hide, survive, and manipulate your body, backed by science",
+            "subtitle_size": 18,
+            "subtitle_color": "#666666"
+          }
+        },
+        "hero_image_tARine": {
+          "type": "hero_image",
+          "settings": {
+            "hero_image": "shopify://shop_images/gut_infected_desktop_1.webp"
+          }
+        }
+      },
+      "block_order": [
+        "subtitle_cDWRwV",
+        "hero_image_tARine"
+      ],
+      "name": "Advertorial section blocks",
+      "settings": {
+        "content_bg_color": "#FFFFFF"
+      }
     }
   },
   "order": [
@@ -1172,6 +1208,7 @@
     "treat_section_UPyHXq",
     "product_showcase_caDFrM",
     "timeline_section_hy7Kqq",
-    "ai_testimonial_section_gimyNb"
+    "ai_testimonial_section_gimyNb",
+    "advertorial_section_fQWMUp"
   ]
 }
