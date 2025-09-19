@@ -1,4 +1,4 @@
-
+{% assign ai_gen_id = section.id | replace: '_', '' | downcase %}
 
 {% style %}
 /* Container */
@@ -13,43 +13,15 @@
 }
 
 /* Header */
-.ai-symptoms-header-{{ ai_gen_id }} {
-  margin-bottom: 32px;
-}
-.ai-symptoms-title-{{ ai_gen_id }} {
-  font-size: {{ section.settings.title_size }}px;
-  color: {{ section.settings.title_color }};
-  margin: 0 0 8px 0;
-  font-weight: 700;
-  line-height: 1.2;
-  text-align: left;
-}
-.ai-symptoms-title-{{ ai_gen_id }} span {
-  color: {{ section.settings.title_highlight_color | default: '#e26900' }};
-}
-
-/* Subtitle */
-.ai-symptoms-subtitle-{{ ai_gen_id }} {
-  font-size: {{ section.settings.subtitle_size }}px;
-  color: {{ section.settings.subtitle_color }};
-  margin: 0;
-  text-align: left;
-  font-weight: 400;
-}
+.ai-symptoms-header-{{ ai_gen_id }} { margin-bottom: 32px; }
+.ai-symptoms-title-{{ ai_gen_id }} { margin: 0 0 8px 0; font-weight:700; line-height:1.2; text-align:left; }
+.ai-symptoms-subtitle-{{ ai_gen_id }} { margin: 0; font-weight:400; text-align:left; }
 
 /* List */
-.ai-symptoms-list-{{ ai_gen_id }} {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  margin: 30px 0 24px;
-}
+.ai-symptoms-list-{{ ai_gen_id }} { display: flex; flex-direction: column; gap: 18px; margin: 30px 0 24px; }
 
 /* Box */
 .ai-symptom-box-{{ ai_gen_id }} {
-  border: 2px solid {{ section.settings.box_border_color }};
-  border-radius: {{ section.settings.box_border_radius }}px;
-  background: {{ section.settings.box_background }};
   padding: 20px;
   transition: transform 0.22s ease, box-shadow 0.22s ease;
   box-sizing: border-box;
@@ -59,157 +31,169 @@
   box-shadow: 0 12px 30px rgba(0,0,0,0.08);
 }
 
-/* Top row: number + title */
-.ai-symptom-top-{{ ai_gen_id }} {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-}
-.ai-symptom-number-{{ ai_gen_id }} {
-  font-size: {{ section.settings.number_size }}px;
-  font-weight: 800;
-  color: {{ section.settings.box_border_color }};
-  flex-shrink: 0;
-  line-height: 1;
-}
-.ai-symptom-title-{{ ai_gen_id }} {
-  font-size: {{ section.settings.symptom_title_size }}px;
-  font-weight: 700;
-  color: {{ section.settings.symptom_title_color }};
-  margin: 0;
-  line-height: 1.25;
-}
+/* Top row */
+.ai-symptom-top-{{ ai_gen_id }} { display:flex; gap:12px; align-items:flex-start; }
+.ai-symptom-number-{{ ai_gen_id }} { font-weight:800; flex-shrink:0; line-height:1; }
+.ai-symptom-title-{{ ai_gen_id }} { margin: 0; font-weight:700; }
 
 /* Divider */
-.ai-symptom-divider-{{ ai_gen_id }} {
-  height: 2px;
-  background: {{ section.settings.box_border_color }};
-  margin: 12px 0;
-  width: 100%;
-}
+.ai-symptom-divider-{{ ai_gen_id }} { height: 2px; margin: 12px 0; width: 100%; }
 
-/* Description - two line clamp */
-.ai-symptom-description-{{ ai_gen_id }} {
-  font-size: {{ section.settings.description_size }}px;
-  color: {{ section.settings.description_color }};
-  margin: 0 0 12px 0;
-  line-height: 1.5;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
+/* Description */
+.ai-symptom-description-{{ ai_gen_id }} { margin: 0 0 12px 0; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-/* Science row */
-.ai-symptom-science-{{ ai_gen_id }} {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  font-size: {{ section.settings.science_text_size }}px;
-  color: {{ section.settings.science_text_color }};
-  font-style: normal;
-}
-.ai-symptom-science-icon-{{ ai_gen_id }} {
-  width: {{ section.settings.science_icon_size }}px;
-  height: {{ section.settings.science_icon_size }}px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.ai-symptom-science-icon-{{ ai_gen_id }} img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
+/* Science */
+.ai-symptom-science-{{ ai_gen_id }} { display:flex; gap:10px; align-items:center; }
+.ai-symptom-science-icon-{{ ai_gen_id }} { display:flex; align-items:center; justify-content:center; }
 
 /* CTA */
-.ai-symptoms-cta-{{ ai_gen_id }} {
-  text-align: center;
-  margin-top: 18px;
-}
-.ai-symptoms-button-{{ ai_gen_id }} {
-  display: block;
-  background: {{ section.settings.button_background }};
-  color: {{ section.settings.button_text_color }};
-  padding: {{ section.settings.button_padding }}px 28px;
-  border-radius: {{ section.settings.button_border_radius }}px;
-  text-decoration: none;
-  font-size: {{ section.settings.button_text_size }}px;
-  font-weight: 700;
-  transition: background 0.18s ease, transform 0.18s ease;
-  border: none;
-}
-.ai-symptoms-button-{{ ai_gen_id }}:hover {
-  background: {{ section.settings.button_hover_background }};
- color:#ee882f;
-    border:2px solid #ff6b35;
-}
+.ai-symptoms-cta-{{ ai_gen_id }} { text-align:center; margin-top:18px; }
+.ai-symptoms-button-{{ ai_gen_id }} { display:inline-block; width:100%; text-decoration:none; font-weight:700; transition: background 0.18s ease, transform 0.18s ease; }
 
 /* Mobile */
 @media (max-width: 749px) {
-  .ai-symptoms-section-{{ ai_gen_id }} {
-    padding: {{ section.settings.section_padding | times: 0.7 }}px 16px;
-  }
-  .ai-symptom-box-{{ ai_gen_id }} {
-    padding: 16px;
-  }
-  .ai-symptoms-button-{{ ai_gen_id }} {
-    width: 100%;
-    display: block;
-    padding: 14px;
-  }
-  .ai-symptom-top-{{ ai_gen_id }} {
-    gap: 10px;
-  }
+  .ai-symptoms-section-{{ ai_gen_id }} { padding: {{ section.settings.section_padding | times: 0.7 }}px 16px; }
+  .ai-symptom-box-{{ ai_gen_id }} { padding: 16px; }
+  .ai-symptoms-button-{{ ai_gen_id }} { width: 100%; padding: 14px; }
 }
 {% endstyle %}
 
-
-<section class="ai-symptoms-section-{{ section.id }}" {{ section.shopify_attributes }}>
-  {% for block in section.blocks %}
-    {% render 'ai-symptoms-blocks', block: block, section: section, forloop: forloop %}
-  {% endfor %}
+<section class="ai-symptoms-section-{{ ai_gen_id }}" {{ section.shopify_attributes }}>
+  <div class="ai-symptoms-list-{{ ai_gen_id }}">
+    {% for block in section.blocks %}
+      {% render 'ai-symptoms-blocks', block: block, section: section, index: forloop.index %}
+    {% endfor %}
+  </div>
 </section>
 
 {% schema %}
 {
   "name": "Symptoms list (blocks)",
   "settings": [
+    { "type": "header", "content": "General styling" },
     { "type": "color", "id": "section_background", "label": "Section background", "default": "#ffffff" },
-    { "type": "range", "id": "section_padding", "label": "Section padding (px)", "min": 10, "max": 120, "step": 2, "default": 40 }
+    { "type": "range", "id": "section_padding", "label": "Section padding (px)", "min": 10, "max": 120, "step": 2, "default": 40 },
+
+    { "type": "header", "content": "Box styling" },
+    { "type": "color", "id": "box_background", "label": "Box background", "default": "#ffffff" },
+    { "type": "color", "id": "box_border_color", "label": "Box border color", "default": "#ff6b35" },
+    { "type": "range", "id": "box_border_radius", "label": "Box border radius (px)", "min": 0, "max": 30, "step": 1, "default": 10 },
+    { "type": "range", "id": "number_size", "label": "Symptom number size (px)", "min": 14, "max": 36, "step": 1, "default": 20 },
+
+    { "type": "header", "content": "Text sizes & colors" },
+    { "type": "range", "id": "title_size", "label": "Title font size (px)", "min": 18, "max": 48, "step": 1, "default": 28 },
+    { "type": "color", "id": "title_color", "label": "Title color", "default": "#111111" },
+    { "type": "range", "id": "subtitle_size", "label": "Subtitle font size (px)", "min": 12, "max": 22, "step": 1, "default": 16 },
+    { "type": "color", "id": "subtitle_color", "label": "Subtitle color", "default": "#666666" },
+
+    { "type": "range", "id": "symptom_title_size", "label": "Symptom title size (px)", "min": 14, "max": 28, "step": 1, "default": 18 },
+    { "type": "color", "id": "symptom_title_color", "label": "Symptom title color", "default": "#111111" },
+
+    { "type": "range", "id": "description_size", "label": "Description font size (px)", "min": 12, "max": 20, "step": 1, "default": 14 },
+    { "type": "color", "id": "description_color", "label": "Description color", "default": "#333333" },
+
+    { "type": "range", "id": "science_text_size", "label": "Science text size (px)", "min": 10, "max": 18, "step": 1, "default": 13 },
+    { "type": "color", "id": "science_text_color", "label": "Science text color", "default": "#666666" },
+    { "type": "range", "id": "science_icon_size", "label": "Science icon size (px)", "min": 12, "max": 40, "step": 1, "default": 20 },
+
+    { "type": "header", "content": "Button styling" },
+    { "type": "color", "id": "button_background", "label": "Button background", "default": "#ff6b35" },
+    { "type": "color", "id": "button_text_color", "label": "Button text color", "default": "#ffffff" },
+    { "type": "range", "id": "button_text_size", "label": "Button text size (px)", "min": 12, "max": 20, "step": 1, "default": 16 },
+    { "type": "range", "id": "button_padding", "label": "Button vertical padding (px)", "min": 8, "max": 30, "step": 1, "default": 12 },
+    { "type": "range", "id": "button_border_radius", "label": "Button border radius (px)", "min": 0, "max": 30, "step": 1, "default": 8 }
   ],
+
   "blocks": [
     {
       "type": "header",
       "name": "Header",
       "settings": [
-        { "type": "text", "id": "title_before", "label": "Title before highlight", "default": "Symptoms That Could Be a Sign of Internal" },
+        { "type": "text", "id": "title_before", "label": "Title (before highlight)", "default": "Symptoms That Could Be a Sign of" },
         { "type": "text", "id": "title_highlight", "label": "Highlighted word", "default": "Imbalance" },
-        { "type": "text", "id": "section_subtitle", "label": "Subtitle", "default": "And why you shouldn't ignore them." }
+        { "type": "range", "id": "title_size", "label": "Title size (px)", "min": 18, "max": 48, "step": 1, "default": 28 },
+        { "type": "color", "id": "title_color", "label": "Title color", "default": "#111111" },
+        { "type": "text", "id": "section_subtitle", "label": "Subtitle", "default": "And why you shouldn't ignore them." },
+        { "type": "range", "id": "subtitle_size", "label": "Subtitle size (px)", "min": 12, "max": 22, "step": 1, "default": 16 },
+        { "type": "color", "id": "subtitle_color", "label": "Subtitle color", "default": "#666666" },
+        { "type": "color", "id": "title_highlight_color", "label": "Title highlight color", "default": "#e26900" }
       ]
     },
+
     {
       "type": "symptom",
       "name": "Symptom",
       "settings": [
         { "type": "text", "id": "symptom_title", "label": "Symptom Title", "default": "Chronic Fatigue" },
-        { "type": "textarea", "id": "symptom_description", "label": "Description", "default": "Feeling tired all the time..." },
-        { "type": "textarea", "id": "symptom_science_text", "label": "Science text", "default": "Low B12 and iron levels..." },
-        { "type": "image_picker", "id": "symptom_icon", "label": "Science icon" }
+        { "type": "richtext", "id": "symptom_description", "label": "Description", "default": "<p>Feeling tired all the time...</p>" },
+        { "type": "text", "id": "symptom_science_text", "label": "Science text", "default": "Low B12 and iron levels are common culprits" },
+        { "type": "image_picker", "id": "symptom_icon", "label": "Science icon" },
+        { "type": "range", "id": "symptom_title_size", "label": "Title size (px)", "min": 14, "max": 28, "default": 18 },
+        { "type": "range", "id": "description_size", "label": "Description size (px)", "min": 12, "max": 20, "default": 14 },
+        { "type": "range", "id": "science_text_size", "label": "Science text size (px)", "min": 10, "max": 18, "default": 13 },
+        { "type": "range", "id": "science_icon_size", "label": "Science icon size (px)", "min": 12, "max": 40, "default": 20 }
       ]
     },
+
     {
       "type": "cta",
       "name": "CTA Button",
       "settings": [
-        { "type": "text", "id": "cta_text", "label": "Button Text", "default": "TRY RESILIA RISK-FREE" },
-        { "type": "url", "id": "cta_link", "label": "Button Link" }
+        { "type": "text", "id": "cta_text", "label": "CTA Button Text", "default": "TRY RESILIA RISK-FREE" },
+        { "type": "url", "id": "cta_link", "label": "CTA Button Link" },
+        { "type": "color", "id": "cta_background", "label": "CTA Background", "default": "#ff6b35" },
+        { "type": "color", "id": "cta_text_color", "label": "CTA Text Color", "default": "#ffffff" },
+        { "type": "range", "id": "cta_font_size", "label": "CTA Font Size", "min": 12, "max": 20, "default": 16 },
+        { "type": "range", "id": "cta_border_radius", "label": "CTA Border Radius", "min": 0, "max": 30, "default": 8 }
       ]
     }
   ],
+
   "presets": [
-    { "name": "Symptoms List (Blocks)" }
+    {
+      "name": "Symptoms list (blocks)",
+      "blocks": [
+        {
+          "type": "header",
+          "settings": {
+            "title_before": "Symptoms That Could Be a Sign of",
+            "title_highlight": "Imbalance",
+            "section_subtitle": "And why you shouldn't ignore them."
+          }
+        },
+        {
+          "type": "symptom",
+          "settings": {
+            "symptom_title": "Chronic Fatigue",
+            "symptom_description": "<p>Feeling tired all the time, even after a full night's sleep.</p>",
+            "symptom_science_text": "Low B12 and iron levels are common culprits"
+          }
+        },
+        {
+          "type": "symptom",
+          "settings": {
+            "symptom_title": "Digestive Issues",
+            "symptom_description": "<p>Bloating, irregular bowel movements, or stomach discomfort may signal an imbalanced gut microbiome.</p>",
+            "symptom_science_text": "70% of immune function starts in the gut"
+          }
+        },
+        {
+          "type": "symptom",
+          "settings": {
+            "symptom_title": "Brain Fog",
+            "symptom_description": "<p>Mental cloudiness, poor concentration, and memory issues.</p>",
+            "symptom_science_text": "Omega-3s are crucial for brain function"
+          }
+        },
+        {
+          "type": "cta",
+          "settings": {
+            "cta_text": "TRY RESILIA RISK-FREE",
+            "cta_link": "#"
+          }
+        }
+      ]
+    }
   ]
 }
 {% endschema %}
