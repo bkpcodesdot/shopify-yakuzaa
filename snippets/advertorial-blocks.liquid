@@ -1,0 +1,51 @@
+<div class="ai-advertorial-section">
+  <div class="ai-advertorial-content" style="background-color: {{ section.settings.content_bg_color }};">
+    {% for block in section.blocks %}
+      {% case block.type %}
+
+        {% when 'heading' %}
+          <h1 class="ai-advertorial-heading" style="font-size:{{ block.settings.heading_size }}px; color:{{ block.settings.heading_color }};">
+            {% assign heading_parts = block.settings.heading | split: block.settings.highlight_text %}
+            {% if heading_parts.size > 1 %}
+              {{ heading_parts[0] }}<span class="ai-advertorial-heading-highlight" style="color:{{ block.settings.heading_highlight_color }};">{{ block.settings.highlight_text }}</span>{{ heading_parts[1] }}
+            {% else %}
+              {{ block.settings.heading }}
+            {% endif %}
+          </h1>
+
+        {% when 'subtitle' %}
+          <div class="ai-advertorial-subtitle" style="font-size:{{ block.settings.subtitle_size }}px; color:{{ block.settings.subtitle_color }};">
+            {{ block.settings.subtitle }}
+          </div>
+
+        {% when 'hero_image' %}
+          {% if block.settings.hero_image %}
+            <div class="ai-advertorial-hero-image">
+              <img src="{{ block.settings.hero_image | image_url: width: 800 }}" alt="{{ block.settings.hero_image.alt | escape }}" loading="lazy">
+            </div>
+          {% endif %}
+
+        {% when 'text' %}
+          <div class="ai-advertorial-text-block" style="font-size:{{ block.settings.body_text_size }}px; color:{{ block.settings.body_text_color }};">
+            {{ block.settings.text_content }}
+          </div>
+
+        {% when 'second_image' %}
+          {% if block.settings.second_image %}
+            <div class="ai-advertorial-second-image">
+              <img src="{{ block.settings.second_image | image_url: width: 800 }}" alt="{{ block.settings.second_image.alt | escape }}" loading="lazy">
+            </div>
+          {% endif %}
+
+        {% when 'cta' %}
+          <div class="ai-advertorial-cta-section">
+            <a href="{{ block.settings.cta_link }}" class="ai-advertorial-cta-btn"
+               style="background-color:{{ block.settings.cta_bg_color }}; color:{{ block.settings.cta_text_color }}; font-size:{{ block.settings.cta_font_size }}px; border-radius:{{ block.settings.cta_border_radius }}px;">
+              {{ block.settings.cta_text }}
+            </a>
+          </div>
+
+      {% endcase %}
+    {% endfor %}
+  </div>
+</div>
