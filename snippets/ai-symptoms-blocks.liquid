@@ -1,44 +1,94 @@
+{% assign ai_gen_id = section.id | replace: '_', '' | downcase %}
+
+{% comment %}
+  Single snippet that renders each block type.
+  Expected variables passed from the section:
+    - block
+    - section
+    - index  (1-based index passed from forloop.index)
+{% endcomment %}
+
 {% case block.type %}
 
   {% when 'header' %}
-    <div class="ai-symptoms-header-{{ section.id }}">
-      <h2 class="ai-symptoms-title-{{ section.id }}">
+    <div class="ai-symptoms-header-{{ ai_gen_id }}">
+      <h2 class="ai-symptoms-title-{{ ai_gen_id }}"
+          style="font-size: {{ block.settings.title_size | default: section.settings.title_size }}px;
+                 color: {{ block.settings.title_color | default: section.settings.title_color }};">
         {{ block.settings.title_before }}
         {% if block.settings.title_highlight != blank %}
-          <span>{{ block.settings.title_highlight }}</span>
+          <span style="color: {{ block.settings.title_highlight_color | default: section.settings.title_highlight_color }};">
+            {{ block.settings.title_highlight }}
+          </span>
         {% endif %}
       </h2>
+
       {% if block.settings.section_subtitle != blank %}
-        <p class="ai-symptoms-subtitle-{{ section.id }}">{{ block.settings.section_subtitle }}</p>
+        <p class="ai-symptoms-subtitle-{{ ai_gen_id }}"
+           style="font-size: {{ block.settings.subtitle_size | default: section.settings.subtitle_size }}px;
+                  color: {{ block.settings.subtitle_color | default: section.settings.subtitle_color }};">
+          {{ block.settings.section_subtitle }}
+        </p>
       {% endif %}
     </div>
 
   {% when 'symptom' %}
-    <article class="ai-symptom-box-{{ section.id }}">
-      <div class="ai-symptom-top-{{ section.id }}">
-        <div class="ai-symptom-number-{{ section.id }}">{{ forloop.index }}.</div>
-        <h3 class="ai-symptom-title-{{ section.id }}">{{ block.settings.symptom_title }}</h3>
-      </div>
-      <div class="ai-symptom-divider-{{ section.id }}"></div>
-      <p class="ai-symptom-description-{{ section.id }}">{{ block.settings.symptom_description }}</p>
-      <div class="ai-symptom-science-{{ section.id }}">
-        <div class="ai-symptom-science-icon-{{ section.id }}">
-          {% if block.settings.symptom_icon %}
-            <img src="{{ block.settings.symptom_icon | image_url: width: 100 }}" alt="icon">
-          {% else %}
-            {{ 'image' | placeholder_svg_tag }}
-          {% endif %}
+    <article class="ai-symptom-box-{{ ai_gen_id }}"
+             style="background: {{ block.settings.box_background | default: section.settings.box_background }};
+                    border-radius: {{ section.settings.box_border_radius }}px;
+                    border: 2px solid {{ section.settings.box_border_color }};">
+      <div class="ai-symptom-top-{{ ai_gen_id }}">
+        <div class="ai-symptom-number-{{ ai_gen_id }}"
+             style="font-size: {{ section.settings.number_size }}px; color: {{ section.settings.box_border_color }};">
+          {{ index }}.
         </div>
-        <div>
-          <strong>Science Says:</strong>
-          <span style="font-style:italic; padding-left:6px;">{{ block.settings.symptom_science_text }}</span>
-        </div>
+
+        <h3 id="symptom-{{ ai_gen_id }}-{{ index }}" class="ai-symptom-title-{{ ai_gen_id }}"
+            style="font-size: {{ block.settings.symptom_title_size | default: section.settings.symptom_title_size }}px;
+                   color: {{ block.settings.symptom_title_color | default: section.settings.symptom_title_color }};">
+          {{ block.settings.symptom_title }}
+        </h3>
       </div>
+
+      <div class="ai-symptom-divider-{{ ai_gen_id }}" style="background: {{ section.settings.box_border_color }};"></div>
+
+      {% if block.settings.symptom_description != blank %}
+        <p class="ai-symptom-description-{{ ai_gen_id }}"
+           style="font-size: {{ block.settings.description_size | default: section.settings.description_size }}px;
+                  color: {{ block.settings.description_color | default: section.settings.description_color }};">
+          {{ block.settings.symptom_description }}
+        </p>
+      {% endif %}
+
+      {% if block.settings.symptom_science_text != blank or block.settings.symptom_icon %}
+        <div class="ai-symptom-science-{{ ai_gen_id }}"
+             style="font-size: {{ block.settings.science_text_size | default: section.settings.science_text_size }}px;
+                    color: {{ block.settings.science_text_color | default: section.settings.science_text_color }};">
+          <div class="ai-symptom-science-icon-{{ ai_gen_id }}"
+               style="width: {{ block.settings.science_icon_size | default: section.settings.science_icon_size }}px;
+                      height: {{ block.settings.science_icon_size | default: section.settings.science_icon_size }}px;">
+            {% if block.settings.symptom_icon %}
+              <img src="{{ block.settings.symptom_icon | image_url: width: 200 }}" alt="icon for {{ block.settings.symptom_title }}">
+            {% else %}
+              {{ 'image' | placeholder_svg_tag }}
+            {% endif %}
+          </div>
+          <div>
+            <strong>Science Says:</strong>
+            <span style="font-style:italic; padding-left:6px;">{{ block.settings.symptom_science_text }}</span>
+          </div>
+        </div>
+      {% endif %}
     </article>
 
   {% when 'cta' %}
-    <div class="ai-symptoms-cta-{{ section.id }}">
-      <a href="{{ block.settings.cta_link }}" class="ai-symptoms-button-{{ section.id }}">
+    <div class="ai-symptoms-cta-{{ ai_gen_id }}">
+      <a href="{{ block.settings.cta_link }}" class="ai-symptoms-button-{{ ai_gen_id }}"
+         style="background: {{ block.settings.cta_background | default: section.settings.button_background }};
+                color: {{ block.settings.cta_text_color | default: section.settings.button_text_color }};
+                padding: {{ section.settings.button_padding }}px 28px;
+                border-radius: {{ block.settings.cta_border_radius | default: section.settings.button_border_radius }}px;
+                font-size: {{ block.settings.cta_font_size | default: section.settings.button_text_size }}px;">
         {{ block.settings.cta_text }}
       </a>
     </div>
