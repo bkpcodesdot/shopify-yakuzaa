@@ -649,26 +649,14 @@
       }
     },
     "blog_artical_section_E8pjA6": {
-      "type": "Blog-artical-section",
+      "type": "ai-before-after-article",
       "name": "Before Article Section",
       "settings": {
-        "heading": "<p>I Thought I Was Just Tired and Bloated… Then I Learned What Was <strong>Really Happening</strong> Inside My Gut</p>",
-        "description": "Discover the shocking truth about gut health and how it affects your daily energy levels.",
-        "author_image": "shopify://shop_images/author_image.webp",
-        "author_name": "Dr. John K.",
-        "publish_date": "March 15, 2024",
-        "article_image": "shopify://shop_images/comparison_desktop.webp",
-        "show_reading_time": true,
-        "reading_time": "Estimated 5-7 Minute Read",
-        "reading_time_bg_color": "#f0f0f0",
-        "reading_time_text_color": "#085e03",
-        "reading_time_border_color": "#085e03",
-        "reading_time_border_width": 1,
-        "text_alignment": "left",
         "background_color": "#ffffff",
         "text_color": "#000000",
         "padding_top": 40,
-        "padding_bottom": 40
+        "padding_bottom": 40,
+        "text_alignment": "left"
       }
     },
     "health_awareness_section_iPAWDy": {
