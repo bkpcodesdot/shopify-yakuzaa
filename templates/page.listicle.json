@@ -935,6 +935,88 @@
         "button_padding": 12,
         "button_border_radius": 8
       }
+    },
+    "ai_parasite_info_JjQbD7": {
+      "type": "ai-parasite-info",
+      "blocks": {
+        "heading_ENKMPJ": {
+          "type": "heading",
+          "settings": {
+            "main_title": "How Do Parasites and Candida Get Inside Us?",
+            "highlight_text": "Parasites and Candida"
+          }
+        },
+        "intro_tkDbhH": {
+          "type": "intro",
+          "settings": {
+            "intro_text": "<p>Understanding how these harmful organisms enter our bodies...</p>"
+          }
+        },
+        "main_image_4zCcjB": {
+          "type": "main_image",
+          "settings": {}
+        },
+        "subsection_title_FLVgje": {
+          "type": "subsection_title",
+          "settings": {
+            "subsection_title": "How parasites and candida sneak in:"
+          }
+        },
+        "sneak_in_item_q73KrM": {
+          "type": "sneak_in_item",
+          "settings": {
+            "image": "shopify://shop_images/antibiotic_use.avif",
+            "title": "Contaminated Food",
+            "description": "Unwashed fruits and vegetables, undercooked meat..."
+          }
+        },
+        "sneak_in_item_q6wMRM": {
+          "type": "sneak_in_item",
+          "settings": {
+            "image": "shopify://shop_images/pets.avif",
+            "title": "Contaminated Food",
+            "description": "Unwashed fruits and vegetables, undercooked meat..."
+          }
+        },
+        "sneak_in_item_4YT7hM": {
+          "type": "sneak_in_item",
+          "settings": {
+            "image": "shopify://shop_images/contaminated_food.webp",
+            "title": "Contaminated Food",
+            "description": "Unwashed fruits and vegetables, undercooked meat..."
+          }
+        },
+        "bottom_line_CrdAcU": {
+          "type": "bottom_line",
+          "settings": {
+            "bottom_line_title": "Bottom line?",
+            "bottom_line_text": "<p>These organisms are everywhere...</p>"
+          }
+        },
+        "cta_g83DPy": {
+          "type": "cta",
+          "settings": {
+            "cta_text": "TRY RESILIA RISK-FREE",
+            "cta_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_ENKMPJ",
+        "intro_tkDbhH",
+        "main_image_4zCcjB",
+        "subsection_title_FLVgje",
+        "sneak_in_item_q73KrM",
+        "sneak_in_item_q6wMRM",
+        "sneak_in_item_4YT7hM",
+        "bottom_line_CrdAcU",
+        "cta_g83DPy"
+      ],
+      "name": "Parasite info (blocks)",
+      "settings": {
+        "section_background": "#ffffff",
+        "section_padding": 50
+      }
     }
   },
   "order": [
@@ -944,6 +1026,7 @@
     "advertorial_section_8N3Jyg",
     "health_campaign_EigqCV",
     "test_section_HTfy9t",
-    "ai_symptoms_yaEYMq"
+    "ai_symptoms_yaEYMq",
+    "ai_parasite_info_JjQbD7"
   ]
 }
