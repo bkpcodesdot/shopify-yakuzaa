@@ -1,0 +1,51 @@
+{% style %}
+/* === Your CSS here (same as before) === */
+{% endstyle %}
+
+<section class="ai-symptoms-section-{{ section.id }}" {{ section.shopify_attributes }}>
+  {% for block in section.blocks %}
+    {% render 'ai-symptoms-blocks', block: block, section: section, forloop: forloop %}
+  {% endfor %}
+</section>
+
+{% schema %}
+{
+  "name": "Symptoms list (blocks)",
+  "settings": [
+    { "type": "color", "id": "section_background", "label": "Section background", "default": "#ffffff" },
+    { "type": "range", "id": "section_padding", "label": "Section padding (px)", "min": 10, "max": 120, "step": 2, "default": 40 }
+  ],
+  "blocks": [
+    {
+      "type": "header",
+      "name": "Header",
+      "settings": [
+        { "type": "text", "id": "title_before", "label": "Title before highlight", "default": "Symptoms That Could Be a Sign of Internal" },
+        { "type": "text", "id": "title_highlight", "label": "Highlighted word", "default": "Imbalance" },
+        { "type": "text", "id": "section_subtitle", "label": "Subtitle", "default": "And why you shouldn't ignore them." }
+      ]
+    },
+    {
+      "type": "symptom",
+      "name": "Symptom",
+      "settings": [
+        { "type": "text", "id": "symptom_title", "label": "Symptom Title", "default": "Chronic Fatigue" },
+        { "type": "textarea", "id": "symptom_description", "label": "Description", "default": "Feeling tired all the time..." },
+        { "type": "textarea", "id": "symptom_science_text", "label": "Science text", "default": "Low B12 and iron levels..." },
+        { "type": "image_picker", "id": "symptom_icon", "label": "Science icon" }
+      ]
+    },
+    {
+      "type": "cta",
+      "name": "CTA Button",
+      "settings": [
+        { "type": "text", "id": "cta_text", "label": "Button Text", "default": "TRY RESILIA RISK-FREE" },
+        { "type": "url", "id": "cta_link", "label": "Button Link" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Symptoms List (Blocks)" }
+  ]
+}
+{% endschema %}
