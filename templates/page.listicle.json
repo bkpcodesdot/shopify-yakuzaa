@@ -838,7 +838,8 @@
           "settings": {
             "symptom_title": "Chronic Fatigue",
             "symptom_description": "Feeling tired all the time...",
-            "symptom_science_text": "Low B12 and iron levels..."
+            "symptom_science_text": "Low B12 and iron levels...",
+            "symptom_icon": "shopify://shop_images/head_green.svg"
           }
         },
         "cta_n9bj9f": {
