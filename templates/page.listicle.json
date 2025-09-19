@@ -250,12 +250,79 @@
       "settings": {
         "content_bg_color": "#ffffff"
       }
+    },
+    "health_campaign_EigqCV": {
+      "type": "health-campaign",
+      "blocks": {
+        "heading_NtkHRP": {
+          "type": "heading",
+          "settings": {
+            "heading_text": "<p>The Hidden <strong>Epidemic </strong>No One Talks About</p>",
+            "heading_size": 34,
+            "heading_color": "#000000",
+            "highlight_color": "#e26900"
+          }
+        },
+        "paragraph_FFyB9Y": {
+          "type": "paragraph",
+          "settings": {
+            "paragraph_text": "<p>Millions of people walk around every day feeling \"off\". <strong>Tired, bloated, foggy, and craving sugar.</strong><br/>Without ever getting a clear diagnosis.</p><p>They chalk it up to stress, age, or diet. </p><p>But according to researchers, many of these symptoms may have a far more unexpected root cause: </p><p><strong>Parasitic infections and fungal overgrowth in the gut.</strong></p>",
+            "text_size": 16,
+            "text_color": "#333333"
+          }
+        },
+        "image_GWKJHN": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/parasitic_growth_compressed.webp",
+            "image_border_radius": 8
+          }
+        },
+        "paragraph_ayqKT6": {
+          "type": "paragraph",
+          "settings": {
+            "paragraph_text": "<p>According to the World Health Organization (WHO), <strong>up to 25%</strong> of the world's population is infected with intestinal parasites. In areas with poor water sanitation or even frequent travel, that number can spike to <strong>50%</strong>.</p><p>But parasites don't always cause dramatic symptoms at first. In fact, many people walk around for years feeling tired, bloated, and mentally foggy never realizing the root of their issues may be parasitic or fungal overgrowth like <em>Candida Albicans</em>.</p>",
+            "text_size": 16,
+            "text_color": "#333333"
+          }
+        },
+        "image_yaRkVr": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/estimated_global_infection_rates.svg",
+            "image_border_radius": 8
+          }
+        },
+        "cta_XPCW9X": {
+          "type": "cta",
+          "settings": {
+            "cta_button_text": "TRY RESILIA RISK-FREE",
+            "cta_button_link": "",
+            "cta_button_color": "#f58220",
+            "cta_button_text_color": "#ffffff",
+            "cta_button_hover_color": "#ffffff",
+            "cta_button_text_size": 16,
+            "cta_button_radius": 8
+          }
+        }
+      },
+      "block_order": [
+        "heading_NtkHRP",
+        "paragraph_FFyB9Y",
+        "image_GWKJHN",
+        "paragraph_ayqKT6",
+        "image_yaRkVr",
+        "cta_XPCW9X"
+      ],
+      "name": "Health campaign (blocks)",
+      "settings": {}
     }
   },
   "order": [
     "main",
     "affected_section_new_cRQKCr",
     "ai_before_after_article_pApV4J",
-    "advertorial_section_8N3Jyg"
+    "advertorial_section_8N3Jyg",
+    "health_campaign_EigqCV"
   ]
 }
