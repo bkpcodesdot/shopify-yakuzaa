@@ -943,25 +943,32 @@
           "type": "heading",
           "settings": {
             "main_title": "How Do Parasites and Candida Get Inside Us?",
-            "highlight_text": "Parasites and Candida"
+            "highlight_text": "Parasites and Candida",
+            "title_size": 34,
+            "title_color": "#000000",
+            "highlight_color": "#ff6b35"
           }
         },
         "intro_tkDbhH": {
           "type": "intro",
           "settings": {
-            "intro_text": "<p>You don’t have to eat raw meat or visit a third-world country to get infected. It’s easier than you think.<br/><br/>When most people hear the word <strong>“parasite,”</strong> they think of contaminated food in far-off places.</p><p><em><strong>Parasites, yeast (like Candida), and harmful microbes are all around us, </strong></em>even in the cleanest environments. And many of us are unknowingly exposed to them every single day.</p>"
+            "intro_text": "<p>You don’t have to eat raw meat or visit a third-world country to get infected. It’s easier than you think.<br/><br/>When most people hear the word <strong>“parasite,”</strong> they think of contaminated food in far-off places.</p><p><em><strong>Parasites, yeast (like Candida), and harmful microbes are all around us, </strong></em>even in the cleanest environments. And many of us are unknowingly exposed to them every single day.</p>",
+            "text_size": 16,
+            "text_color": "#333333"
           }
         },
         "main_image_4zCcjB": {
           "type": "main_image",
           "settings": {
-            "main_image": "shopify://shop_images/parasites_microbes.webp"
+            "main_image": "shopify://shop_images/parasites_microbes.webp",
+            "image_border_radius": 8
           }
         },
         "subsection_title_FLVgje": {
           "type": "subsection_title",
           "settings": {
-            "subsection_title": "How parasites and candida sneak in:"
+            "subsection_title": "How parasites and candida sneak in:",
+            "subsection_title_size": 24
           }
         },
         "sneak_in_item_q73KrM": {
@@ -969,7 +976,12 @@
           "settings": {
             "image": "shopify://shop_images/antibiotic_use.avif",
             "title": "Contaminated Food",
-            "description": "Unwashed fruits and vegetables, undercooked meat..."
+            "description": "<p>Unwashed fruits and vegetables, undercooked meat...</p>",
+            "item_title_size": 18,
+            "item_title_color": "#111111",
+            "description_size": 16,
+            "item_border_radius": 8,
+            "item_background": "#ffffff"
           }
         },
         "sneak_in_item_q6wMRM": {
@@ -977,7 +989,12 @@
           "settings": {
             "image": "shopify://shop_images/pets.avif",
             "title": "Contaminated Food",
-            "description": "Unwashed fruits and vegetables, undercooked meat..."
+            "description": "<p>Unwashed fruits and vegetables, undercooked meat...</p>",
+            "item_title_size": 18,
+            "item_title_color": "#111111",
+            "description_size": 16,
+            "item_border_radius": 8,
+            "item_background": "#ffffff"
           }
         },
         "sneak_in_item_4YT7hM": {
@@ -985,7 +1002,12 @@
           "settings": {
             "image": "shopify://shop_images/contaminated_food.webp",
             "title": "Contaminated Food",
-            "description": "Unwashed fruits and vegetables, undercooked meat..."
+            "description": "<p>Unwashed fruits and vegetables, undercooked meat...</p>",
+            "item_title_size": 18,
+            "item_title_color": "#111111",
+            "description_size": 16,
+            "item_border_radius": 8,
+            "item_background": "#ffffff"
           }
         },
         "sneak_in_item_mfRLFN": {
@@ -993,7 +1015,12 @@
           "settings": {
             "image": "shopify://shop_images/travels.jpg",
             "title": "Contaminated Food",
-            "description": "Unwashed fruits and vegetables, undercooked meat..."
+            "description": "<p>Unwashed fruits and vegetables, undercooked meat...</p>",
+            "item_title_size": 18,
+            "item_title_color": "#111111",
+            "description_size": 16,
+            "item_border_radius": 8,
+            "item_background": "#ffffff"
           }
         },
         "sneak_in_item_TL7yXf": {
@@ -1001,7 +1028,12 @@
           "settings": {
             "image": "shopify://shop_images/public.webp",
             "title": "Contaminated Food",
-            "description": "Unwashed fruits and vegetables, undercooked meat..."
+            "description": "<p>Unwashed fruits and vegetables, undercooked meat...</p>",
+            "item_title_size": 18,
+            "item_title_color": "#111111",
+            "description_size": 16,
+            "item_border_radius": 8,
+            "item_background": "#ffffff"
           }
         },
         "sneak_in_item_iCUeGh": {
@@ -1009,21 +1041,32 @@
           "settings": {
             "image": "shopify://shop_images/high-sugar.jpg",
             "title": "Contaminated Food",
-            "description": "Unwashed fruits and vegetables, undercooked meat..."
+            "description": "<p>Unwashed fruits and vegetables, undercooked meat...</p>",
+            "item_title_size": 18,
+            "item_title_color": "#111111",
+            "description_size": 16,
+            "item_border_radius": 8,
+            "item_background": "#ffffff"
           }
         },
         "bottom_line_CrdAcU": {
           "type": "bottom_line",
           "settings": {
             "bottom_line_title": "Bottom line?",
-            "bottom_line_text": "<p>These organisms are everywhere. The key is <strong>supporting your body's defenses</strong>.</p>"
+            "bottom_line_text": "<p>These organisms are everywhere. The key is <strong>supporting your body's defenses</strong>.</p>",
+            "bottom_title_size": 22
           }
         },
         "cta_g83DPy": {
           "type": "cta",
           "settings": {
             "cta_text": "TRY RESILIA RISK-FREE",
-            "cta_link": ""
+            "cta_link": "",
+            "button_background": "#ff6b35",
+            "button_text_color": "#ffffff",
+            "button_text_size": 16,
+            "button_padding": 16,
+            "button_border_radius": 8
           }
         }
       },
@@ -1043,7 +1086,33 @@
       ],
       "name": "Parasite info (blocks)",
       "settings": {
+        "main_title": "How Do Parasites and Candida Get Inside Us?",
+        "highlight_text": "Parasites and Candida",
+        "intro_text": "<p>Understanding how these harmful organisms enter our bodies is the <strong>first step</strong> in protecting ourselves.</p>",
+        "subsection_title": "How parasites and candida sneak in:",
+        "subsection_title_size": 24,
+        "bottom_line_title": "Bottom line?",
+        "bottom_line_text": "<p>These organisms are everywhere. The key is <strong>supporting your body's defenses</strong>.</p>",
+        "cta_text": "TRY RESILIA RISK-FREE",
+        "cta_link": "",
         "section_background": "#ffffff",
+        "title_color": "#000000",
+        "highlight_color": "#ff6b35",
+        "text_color": "#333333",
+        "item_background": "#f9f9f9",
+        "title_size": 36,
+        "text_size": 16,
+        "image_border_radius": 8,
+        "item_border_radius": 8,
+        "item_title_size": 18,
+        "item_title_color": "#111111",
+        "bottom_title_size": 22,
+        "button_background": "#f58220",
+        "button_hover_background": "#ffffff",
+        "button_text_color": "#ffffff",
+        "button_text_size": 16,
+        "button_padding": 16,
+        "button_border_radius": 8,
         "section_padding": 50
       }
     }
