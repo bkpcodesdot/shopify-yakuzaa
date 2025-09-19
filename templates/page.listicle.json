@@ -175,11 +175,50 @@
         "padding_bottom": 40,
         "text_alignment": "left"
       }
+    },
+    "advertorial_section_8N3Jyg": {
+      "type": "advertorial-section",
+      "blocks": {
+        "heading_KcMB4f": {
+          "type": "heading",
+          "settings": {
+            "heading": "Why Most People Don't Know They're Infected",
+            "highlight_text": "Don't Know",
+            "heading_size": 36,
+            "heading_color": "#333333",
+            "heading_highlight_color": "#FF6B35"
+          }
+        },
+        "subtitle_mqTeq8": {
+          "type": "subtitle",
+          "settings": {
+            "subtitle": "How gut invaders hide, survive, and manipulate your body, backed by science",
+            "subtitle_size": 18,
+            "subtitle_color": "#666666"
+          }
+        },
+        "hero_image_igViym": {
+          "type": "hero_image",
+          "settings": {
+            "hero_image": "shopify://shop_images/gut_infected_desktop_1.webp"
+          }
+        }
+      },
+      "block_order": [
+        "heading_KcMB4f",
+        "subtitle_mqTeq8",
+        "hero_image_igViym"
+      ],
+      "name": "Advertorial section blocks",
+      "settings": {
+        "content_bg_color": "#FFFFFF"
+      }
     }
   },
   "order": [
     "main",
     "affected_section_new_cRQKCr",
-    "ai_before_after_article_pApV4J"
+    "ai_before_after_article_pApV4J",
+    "advertorial_section_8N3Jyg"
   ]
 }
