@@ -173,7 +173,27 @@
     { "type": "select", "id": "text_alignment", "label": "Text alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "center" }
   ],
   "blocks": [
-    { "type": "heading", "name": "Heading", "settings": [ { "type": "richtext", "id": "heading_text", "label": "Heading Text" } ] },
+  {
+  "type": "heading",
+  "name": "Heading",
+  "settings": [
+    { 
+      "type": "richtext", 
+      "id": "heading_text", 
+      "label": "Heading Text" 
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Font Size (px)",
+      "min": 12,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "default": 34
+    }
+  ]
+},
     { "type": "description", "name": "Description", "settings": [ { "type": "textarea", "id": "description_text", "label": "Description Text" } ] },
     { "type": "author", "name": "Author", "settings": [ 
         { "type": "image_picker", "id": "author_image", "label": "Author Image" },

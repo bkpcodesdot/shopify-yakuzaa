@@ -111,14 +111,73 @@
         "text_bUBWaL",
         "cta_Dkhadb"
       ],
+      "disabled": true,
       "name": "Advertorial new",
       "settings": {
-        "content_bg_color": "#FFFFFF"
+        "content_bg_color": "#ffffff"
+      }
+    },
+    "ai_before_after_article_pApV4J": {
+      "type": "ai-before-after-article",
+      "blocks": {
+        "heading_BcjLEL": {
+          "type": "heading",
+          "settings": {
+            "heading_text": "<p>\"I Thought I Was Just Tired and Bloated… Then I Learned What Was<strong> Really Happening</strong> Inside My Gut\"</p>"
+          }
+        },
+        "description_jHUAwA": {
+          "type": "description",
+          "settings": {
+            "description_text": ""
+          }
+        },
+        "author_RHdDc3": {
+          "type": "author",
+          "settings": {
+            "author_image": "shopify://shop_images/author_image.webp",
+            "author_name": "By Dr. John K.",
+            "publish_date": "March 15, 2024"
+          }
+        },
+        "article_image_r9azhe": {
+          "type": "article_image",
+          "settings": {
+            "image": "shopify://shop_images/comparison_desktop.webp"
+          }
+        },
+        "reading_time_JttYmx": {
+          "type": "reading_time",
+          "settings": {
+            "show_reading_time": true,
+            "reading_time_text": "Estimated 5-7 Minute Read",
+            "reading_time_bg_color": "#f0f0f0",
+            "reading_time_text_color": "#085e03",
+            "reading_time_border_color": "#085e03",
+            "reading_time_border_width": 1
+          }
+        }
+      },
+      "block_order": [
+        "heading_BcjLEL",
+        "description_jHUAwA",
+        "author_RHdDc3",
+        "article_image_r9azhe",
+        "reading_time_JttYmx"
+      ],
+      "name": "Before Article Section",
+      "settings": {
+        "background_color": "#ffffff",
+        "text_color": "#000000",
+        "padding_top": 36,
+        "padding_bottom": 40,
+        "text_alignment": "left"
       }
     }
   },
   "order": [
     "main",
-    "affected_section_new_cRQKCr"
+    "affected_section_new_cRQKCr",
+    "ai_before_after_article_pApV4J"
   ]
 }
