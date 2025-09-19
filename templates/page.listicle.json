@@ -64,7 +64,7 @@
           "settings": {
             "heading": "Top Orthopedic Surgeon: This Is The Secret",
             "highlight_text": "Secret",
-            "heading_size": 42,
+            "heading_size": 34,
             "heading_color": "#222222",
             "heading_highlight_color": "#ff6b35"
           }
@@ -123,7 +123,8 @@
         "heading_BcjLEL": {
           "type": "heading",
           "settings": {
-            "heading_text": "<p>\"I Thought I Was Just Tired and Bloated… Then I Learned What Was<strong> Really Happening</strong> Inside My Gut\"</p>"
+            "heading_text": "<p>\"I Thought I Was Just Tired and Bloated… Then I Learned What Was<strong> Really Happening</strong> Inside My Gut\"</p>",
+            "heading_font_size": 34
           }
         },
         "description_jHUAwA": {
