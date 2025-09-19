@@ -45,7 +45,14 @@
   border-radius: var(--item-border-radius);
   background: var(--item-background);
 }
-.ai-parasite-info-item img { width:100%; border-radius:8px; object-fit:cover; }
+.ai-parasite-info-item img {
+    width: 100%;
+    display: block;
+    height: auto;
+    object-fit: cover;
+    object-position: bottom;
+    aspect-ratio: 119 / 66;
+}
 .ai-parasite-info-item-title { font-size: var(--item-title-size); font-weight:bold; margin-bottom:8px; color:var(--item-title-color); }
 .ai-parasite-info-item-description { font-size: var(--description-size); color: #000000CF; line-height:1.5; font-weight:300; }
 
