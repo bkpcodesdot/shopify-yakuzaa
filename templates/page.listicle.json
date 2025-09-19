@@ -949,12 +949,14 @@
         "intro_tkDbhH": {
           "type": "intro",
           "settings": {
-            "intro_text": "<p>Understanding how these harmful organisms enter our bodies...</p>"
+            "intro_text": "<p>You don’t have to eat raw meat or visit a third-world country to get infected. It’s easier than you think.<br/><br/>When most people hear the word <strong>“parasite,”</strong> they think of contaminated food in far-off places.</p><p><em><strong>Parasites, yeast (like Candida), and harmful microbes are all around us, </strong></em>even in the cleanest environments. And many of us are unknowingly exposed to them every single day.</p>"
           }
         },
         "main_image_4zCcjB": {
           "type": "main_image",
-          "settings": {}
+          "settings": {
+            "main_image": "shopify://shop_images/parasites_microbes.webp"
+          }
         },
         "subsection_title_FLVgje": {
           "type": "subsection_title",
@@ -986,11 +988,35 @@
             "description": "Unwashed fruits and vegetables, undercooked meat..."
           }
         },
+        "sneak_in_item_mfRLFN": {
+          "type": "sneak_in_item",
+          "settings": {
+            "image": "shopify://shop_images/travels.jpg",
+            "title": "Contaminated Food",
+            "description": "Unwashed fruits and vegetables, undercooked meat..."
+          }
+        },
+        "sneak_in_item_TL7yXf": {
+          "type": "sneak_in_item",
+          "settings": {
+            "image": "shopify://shop_images/public.webp",
+            "title": "Contaminated Food",
+            "description": "Unwashed fruits and vegetables, undercooked meat..."
+          }
+        },
+        "sneak_in_item_iCUeGh": {
+          "type": "sneak_in_item",
+          "settings": {
+            "image": "shopify://shop_images/high-sugar.jpg",
+            "title": "Contaminated Food",
+            "description": "Unwashed fruits and vegetables, undercooked meat..."
+          }
+        },
         "bottom_line_CrdAcU": {
           "type": "bottom_line",
           "settings": {
             "bottom_line_title": "Bottom line?",
-            "bottom_line_text": "<p>These organisms are everywhere...</p>"
+            "bottom_line_text": "<p>These organisms are everywhere. The key is <strong>supporting your body's defenses</strong>.</p>"
           }
         },
         "cta_g83DPy": {
@@ -1009,6 +1035,9 @@
         "sneak_in_item_q73KrM",
         "sneak_in_item_q6wMRM",
         "sneak_in_item_4YT7hM",
+        "sneak_in_item_mfRLFN",
+        "sneak_in_item_TL7yXf",
+        "sneak_in_item_iCUeGh",
         "bottom_line_CrdAcU",
         "cta_g83DPy"
       ],
