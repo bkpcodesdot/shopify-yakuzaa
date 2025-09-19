@@ -111,7 +111,9 @@
     {% for block in section.blocks %}
 
       {% if block.type == 'heading' %}
-        <h1 class="ai-before-after-article__heading-{{ ai_gen_id }}">{{ block.settings.heading_text }}{{ block.settings.heading_font_size }}</h1>
+       <h1 class="ai-before-after-article__heading-{{ ai_gen_id }}" style="font-size: {{ block.settings.heading_font_size }};">
+  {{ block.settings.heading_text }}
+</h1>
       {% endif %}
 
       {% if block.type == 'description' %}
