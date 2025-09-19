@@ -55,9 +55,70 @@
         "padding-block-start": 40,
         "padding-block-end": 80
       }
+    },
+    "affected_section_new_cRQKCr": {
+      "type": "affected-section-new",
+      "blocks": {
+        "heading_hNYLM6": {
+          "type": "heading",
+          "settings": {
+            "heading": "Top Orthopedic Surgeon: This Is The Secret",
+            "highlight_text": "Secret",
+            "heading_size": 42,
+            "heading_color": "#222222",
+            "heading_highlight_color": "#ff6b35"
+          }
+        },
+        "subtitle_kqayAJ": {
+          "type": "subtitle",
+          "settings": {
+            "subtitle": "If you struggle with knee pain...",
+            "subtitle_size": 18,
+            "subtitle_color": "#000000"
+          }
+        },
+        "image_AB7MMn": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/comparison_desktop.webp",
+            "image_alt": "Image description"
+          }
+        },
+        "text_bUBWaL": {
+          "type": "text",
+          "settings": {
+            "content": "<p>Add your text content here. This block spans the full width of the content area.</p>",
+            "body_text_size": 16,
+            "body_text_color": "#000000"
+          }
+        },
+        "cta_Dkhadb": {
+          "type": "cta",
+          "settings": {
+            "cta_text": "Click Here",
+            "cta_link": "/",
+            "cta_font_size": 18,
+            "cta_border_radius": 8,
+            "cta_bg_color": "#000000",
+            "cta_text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "heading_hNYLM6",
+        "subtitle_kqayAJ",
+        "image_AB7MMn",
+        "text_bUBWaL",
+        "cta_Dkhadb"
+      ],
+      "name": "Advertorial new",
+      "settings": {
+        "content_bg_color": "#FFFFFF"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "affected_section_new_cRQKCr"
   ]
 }
