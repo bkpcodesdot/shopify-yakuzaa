@@ -1,0 +1,5 @@
+<div class="ai-advertorial-hero-image">
+  {% if block.settings.image %}
+    <img src="{{ block.settings.image | image_url: width: 1200 }}" alt="{{ block.settings.image_alt | escape }}" loading="lazy">
+  {% endif %}
+</div>
