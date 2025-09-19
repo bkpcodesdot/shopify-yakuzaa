@@ -821,45 +821,6 @@
         "mobile_item_content_size": 16,
         "mobile_highlight_font_size": 14
       }
-    },
-    "ai_symptoms_pfN6BH": {
-      "type": "ai-symptoms",
-      "blocks": {
-        "header_GWPXwz": {
-          "type": "header",
-          "settings": {
-            "title_before": "Symptoms That Could Be a Sign of Internal",
-            "title_highlight": "Imbalance",
-            "section_subtitle": "And why you shouldn't ignore them."
-          }
-        },
-        "symptom_KzXgx6": {
-          "type": "symptom",
-          "settings": {
-            "symptom_title": "Chronic Fatigue",
-            "symptom_description": "Feeling tired all the time...",
-            "symptom_science_text": "Low B12 and iron levels...",
-            "symptom_icon": "shopify://shop_images/head_green.svg"
-          }
-        },
-        "cta_n9bj9f": {
-          "type": "cta",
-          "settings": {
-            "cta_text": "TRY RESILIA RISK-FREE",
-            "cta_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "header_GWPXwz",
-        "symptom_KzXgx6",
-        "cta_n9bj9f"
-      ],
-      "name": "Symptoms List (Blocks)",
-      "settings": {
-        "section_background": "#ffffff",
-        "section_padding": 40
-      }
     }
   },
   "order": [
@@ -868,7 +829,6 @@
     "ai_before_after_article_pApV4J",
     "advertorial_section_8N3Jyg",
     "health_campaign_EigqCV",
-    "test_section_HTfy9t",
-    "ai_symptoms_pfN6BH"
+    "test_section_HTfy9t"
   ]
 }
