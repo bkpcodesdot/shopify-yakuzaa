@@ -872,8 +872,18 @@
           "type": "symptom",
           "settings": {
             "symptom_title": "",
+            "symptom_description": "<p>Eliminate parasites and candida naturally</p>",
+            "symptom_science_text": "",
+            "symptom_icon": "shopify://shop_images/green_plant.svg"
+          }
+        },
+        "symptom_kBHVAL": {
+          "type": "symptom",
+          "settings": {
+            "symptom_title": "",
             "symptom_description": "",
-            "symptom_science_text": ""
+            "symptom_science_text": "",
+            "symptom_icon": "shopify://shop_images/green_plant.svg"
           }
         }
       },
@@ -881,7 +891,8 @@
         "heading_P6zAr7",
         "subtitle_qqhkDc",
         "image_qWhiV8",
-        "symptom_FRnrdV"
+        "symptom_FRnrdV",
+        "symptom_kBHVAL"
       ],
       "name": "Advertorial Multi-block",
       "settings": {}
