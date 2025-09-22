@@ -919,63 +919,6 @@
         "legacy_button_padding": 12,
         "legacy_button_border_radius": 8
       }
-    },
-    "advertorial_multiblock_wYrXmq": {
-      "type": "advertorial-multiblock",
-      "blocks": {
-        "heading_P6zAr7": {
-          "type": "heading",
-          "settings": {
-            "text": "<h2>The Natural, Science-Backed Solution</h2>",
-            "highlight_text": " Solution",
-            "highlight_color": "#e26900",
-            "heading_text_color": "#000000",
-            "font_size": 36
-          }
-        },
-        "subtitle_qqhkDc": {
-          "type": "subtitle",
-          "settings": {
-            "text": "Thousands are turning to Resilia™ Oil of Oregano Softgels as it’s a premium, science-backed formula designed to do what most products can’t: penetrate parasite and candida biofilms, eliminate them at the source, and restore balance across your entire gut ecosystem.\n\nUnlike other supplements that focus on just one benefit (like probiotics or digestive enzymes), Resilia™ offers broad-spectrum support for your gut, brain, metabolism, skin, and immune system All in a simple 2-capsule daily routine.",
-            "color": "#333333",
-            "font_size": 18
-          }
-        },
-        "image_qWhiV8": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/oil_of_oregano_main.webp",
-            "border_radius": 8
-          }
-        },
-        "symptom_FRnrdV": {
-          "type": "symptom",
-          "settings": {
-            "symptom_title": "",
-            "symptom_description": "<p>Eliminate parasites and candida naturally</p>",
-            "symptom_science_text": "",
-            "symptom_icon": "shopify://shop_images/green_plant.svg"
-          }
-        },
-        "symptom_kBHVAL": {
-          "type": "symptom",
-          "settings": {
-            "symptom_title": "",
-            "symptom_description": "",
-            "symptom_science_text": "",
-            "symptom_icon": "shopify://shop_images/green_plant.svg"
-          }
-        }
-      },
-      "block_order": [
-        "heading_P6zAr7",
-        "subtitle_qqhkDc",
-        "image_qWhiV8",
-        "symptom_FRnrdV",
-        "symptom_kBHVAL"
-      ],
-      "name": "Advertorial Multi-block",
-      "settings": {}
     }
   },
   "order": [
@@ -987,7 +930,6 @@
     "before_after_article_7qDrek",
     "ai_parasite_info_JjQbD7",
     "symptoms_list_section_hmNRWJ",
-    "ai_symptoms_ihE6tW",
-    "advertorial_multiblock_wYrXmq"
+    "ai_symptoms_ihE6tW"
   ]
 }
