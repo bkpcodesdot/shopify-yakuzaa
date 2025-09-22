@@ -1028,32 +1028,26 @@
             "text": ""
           }
         },
+        "author_VnNcP4": {
+          "type": "author",
+          "settings": {
+            "image": "shopify://shop_images/author_image.webp",
+            "name": "By Dr. John K. |",
+            "publish_date": "March 15, 2024"
+          }
+        },
         "image_HgfGLP": {
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/comparison_desktop.webp"
-          }
-        },
-        "sneak_in_DKbGre": {
-          "type": "sneak_in",
-          "settings": {
-            "text": ""
-          }
-        },
-        "author_VnNcP4": {
-          "type": "author",
-          "settings": {
-            "name": "",
-            "publish_date": ""
           }
         }
       },
       "block_order": [
         "heading_cPNayz",
         "subtitle_UgYGV4",
-        "image_HgfGLP",
-        "sneak_in_DKbGre",
-        "author_VnNcP4"
+        "author_VnNcP4",
+        "image_HgfGLP"
       ],
       "name": "After-before-blog",
       "settings": {
