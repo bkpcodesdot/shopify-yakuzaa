@@ -114,7 +114,7 @@
 <section class="ai-symptoms-section-{{ ai_gen_id }}" {{ section.shopify_attributes }}>
   <div class="ai-symptoms-list-{{ ai_gen_id }}">
     {% for block in section.blocks %}
-      {% render 'ai-symptoms-block', block: block, section: section, index: forloop.index %}
+      {% render 'ai-symptoms-blocks', block: block, section: section, index: forloop.index %}
     {% endfor %}
   </div>
 </section>
