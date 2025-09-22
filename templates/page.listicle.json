@@ -1105,6 +1105,30 @@
             "margin_bottom": 0
           }
         },
+        "symptom_QPRgYM": {
+          "type": "symptom",
+          "settings": {
+            "symptom_title": "Amazing Feature",
+            "symptom_description": "<p>Feature description goes here...</p>",
+            "symptom_science_text": "Additional supporting information",
+            "symptom_icon": "shopify://shop_images/science_icons.svg",
+            "use_section_colors": true,
+            "custom_background_color": "#ffffff",
+            "custom_border_color": "#ff6b35",
+            "custom_title_color": "#111111",
+            "custom_description_color": "#666666",
+            "custom_science_color": "#999999",
+            "symptom_title_size": 18,
+            "description_size": 14,
+            "science_text_size": 13,
+            "science_icon_size": 16,
+            "custom_border_width": 2,
+            "show_supporting_divider": true,
+            "custom_divider_color": "#ff6b35",
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
         "symptom_GUeDXN": {
           "type": "symptom",
           "settings": {
@@ -1159,30 +1183,6 @@
             "symptom_title": "Digestive Issues",
             "symptom_description": "<p>Bloating, irregular bowel movements, or stomach discomfort may signal an imbalanced gut microbiome.</p>",
             "symptom_science_text": "70% of immune function starts in the gut",
-            "symptom_icon": "shopify://shop_images/science_icons.svg",
-            "use_section_colors": true,
-            "custom_background_color": "#ffffff",
-            "custom_border_color": "#ff6b35",
-            "custom_title_color": "#111111",
-            "custom_description_color": "#666666",
-            "custom_science_color": "#999999",
-            "symptom_title_size": 18,
-            "description_size": 14,
-            "science_text_size": 13,
-            "science_icon_size": 16,
-            "custom_border_width": 2,
-            "show_supporting_divider": true,
-            "custom_divider_color": "#ff6b35",
-            "margin_top": 0,
-            "margin_bottom": 0
-          }
-        },
-        "symptom_iNKPnp": {
-          "type": "symptom",
-          "settings": {
-            "symptom_title": "Brain Fog",
-            "symptom_description": "<p>Mental cloudiness, poor concentration, and memory issues.</p>",
-            "symptom_science_text": "Omega-3s are crucial for brain function",
             "symptom_icon": "shopify://shop_images/science_icons.svg",
             "use_section_colors": true,
             "custom_background_color": "#ffffff",
@@ -1298,10 +1298,10 @@
       },
       "block_order": [
         "header_tVQaty",
+        "symptom_QPRgYM",
         "symptom_GUeDXN",
         "symptom_WGaa7m",
         "symptom_CbKDat",
-        "symptom_iNKPnp",
         "icon_bullet_list_6qT4CP",
         "timeline_7nanPa",
         "comparison_table_RDiF6b",
