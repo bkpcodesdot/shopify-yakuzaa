@@ -1,19 +1,15 @@
 {% case block.type %}
 {% when 'heading' %}
-          <h1 class="ai-advertorial-heading" style="font-size:{{ block.settings.font_size }}px; color:{{ block.settings.heading_text_color }};">
+          <h2 class="ai-advertorial-heading" style="font-size:{{ block.settings.font_size }}px; color:{{ block.settings.heading_text_color }};">
             {% assign heading_parts = block.settings.heading | split: block.settings.highlight_text %}
             {% if heading_parts.size > 1 %}
               {{ heading_parts[0] }}<span class="ai-advertorial-heading-highlight" style="color:{{ block.settings.highlight_color }};">{{ block.settings.highlight_text }}</span>{{ heading_parts[1] }}
             {% else %}
               {{ block.settings.heading }}
             {% endif %}
-          </h1>
+          </h2>
 
-  <h2 class="ai-before-after-article__heading-{{ ai_gen_id }}"
-      style="color: {{ block.settings.heading_text_color }}; font-size: {{ block.settings.font_size }}px;">
-    {{ new_heading_text }}
-  </h2>
-
+ 
 
   {% when 'subtitle' %}
     {% if block.settings.text != blank %}
