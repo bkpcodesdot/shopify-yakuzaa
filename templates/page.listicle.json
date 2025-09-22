@@ -1041,13 +1041,20 @@
           "settings": {
             "image": "shopify://shop_images/comparison_desktop.webp"
           }
+        },
+        "reading_time_RUjx9e": {
+          "type": "reading_time",
+          "settings": {
+            "text": "Estimated 5-7 Minute Read"
+          }
         }
       },
       "block_order": [
         "heading_cPNayz",
         "subtitle_UgYGV4",
         "author_VnNcP4",
-        "image_HgfGLP"
+        "image_HgfGLP",
+        "reading_time_RUjx9e"
       ],
       "name": "After-before-blog",
       "settings": {
