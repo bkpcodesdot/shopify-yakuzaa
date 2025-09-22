@@ -1,17 +1,17 @@
+
 {% case block.type %}
-  {% assign highlight_words = block.settings.highlight_words | split: ',' | map: 'strip' %}
-  {% assign heading_text = block.settings.text %}
-
-  {% for word in highlight_words %}
-    {% if word != '' %}
-      {% assign highlight_span = '<span style="color:' | append: block.settings.highlight_color | append: ';">' | append: word | append: '</span>' %}
-      {% assign heading_text = heading_text | replace: word, highlight_span %}
-    {% endif %}
-  {% endfor %}
-
-  <h2 style="font-size: {{ block.settings.font_size }}px;">
-    {{ heading_text | raw }}
-  </h2>
+  {% when 'heading' %}
+    {% assign highlight_words = block.settings.highlight_words | split: ',' | map: 'strip' %}
+    {% assign heading_text = block.settings.text %}
+    {% for word in highlight_words %}
+      {% if word != '' %}
+        {% assign highlight_span = '<span style="color:' | append: block.settings.highlight_color | append: ';">' | append: word | append: '</span>' %}
+        {% assign heading_text = heading_text | replace: word, highlight_span %}
+      {% endif %}
+    {% endfor %}
+    <h2 style="color: {{ block.settings.heading_text_color }}; font-size: {{ block.settings.font_size }}px;">
+      {{ heading_text | raw }}
+    </h2>
 
   {% when 'subtitle' %}
     {% if block.settings.text != blank %}
