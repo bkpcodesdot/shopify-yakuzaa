@@ -1068,7 +1068,7 @@
         "reading_time_text": "Estimated 5-7 Minute Read",
         "reading_time_bg_color": "#f0f0f0",
         "reading_time_text_color": "#085e03",
-        "reading_time_border_color": "#085e03",
+        "reading_time_border_color": "#000000cf",
         "reading_time_border_width": 1,
         "button_color": "#e26900",
         "button_padding_top": 12,
