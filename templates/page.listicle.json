@@ -1028,11 +1028,27 @@
           "settings": {
             "text": "What science says about hidden gut imbalances and how one natural formula is helping thousands reclaim their energy and digestion."
           }
+        },
+        "image_Cg4QEi": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/comparison_desktop.webp"
+          }
+        },
+        "author_98h9RQ": {
+          "type": "author",
+          "settings": {
+            "image": "shopify://shop_images/author_image.webp",
+            "name": "",
+            "publish_date": ""
+          }
         }
       },
       "block_order": [
         "heading_PniiDh",
-        "subtitle_9QbEy7"
+        "subtitle_9QbEy7",
+        "image_Cg4QEi",
+        "author_98h9RQ"
       ],
       "name": "After-before-blog",
       "settings": {
@@ -1040,7 +1056,7 @@
         "text_color": "#000000",
         "padding_top": 40,
         "padding_bottom": 40,
-        "text_alignment": "center",
+        "text_alignment": "left",
         "show_reading_time": true,
         "reading_time_text": "Estimated 5-7 Minute Read",
         "reading_time_bg_color": "#f0f0f0",
