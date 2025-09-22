@@ -1,0 +1,85 @@
+{% assign adv_id = section.id | replace: '_', '' | downcase %}
+
+<div class="advertorial-{{ adv_id }}">
+  {% for block in section.blocks %}
+    {% render 'advertorial-block', block: block, adv_id: adv_id %}
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Advertorial Multi-block",
+  "max_blocks": 20,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "author",
+      "name": "Author Section",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Author Image" },
+        { "type": "text", "id": "name", "label": "Author Name" },
+        { "type": "text", "id": "publish_date", "label": "Publish Date" }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "Heading Block",
+      "settings": [
+        { "type": "richtext", "id": "text", "label": "Heading Text" },
+        { "type": "text", "id": "highlight_text", "label": "Text to Highlight" },
+        { "type": "color", "id": "highlight_color", "label": "Highlight Color", "default": "#e26900" },
+        { "type": "color", "id": "heading_text_color", "label": "Heading Text Color", "default": "#000000" },
+        { "type": "range", "id": "font_size", "label": "Font Size", "min": 16, "max": 72, "step": 1, "default": 36 }
+      ]
+    },
+    {
+      "type": "subtitle",
+      "name": "Subtitle Block",
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "Subtitle Text" },
+        { "type": "color", "id": "color", "label": "Text Color", "default": "#333333" },
+        { "type": "range", "id": "font_size", "label": "Font Size", "min": 12, "max": 30, "default": 18 }
+      ]
+    },
+    {
+      "type": "symptom",
+      "name": "Symptom Block",
+      "settings": [
+        { "type": "text", "id": "symptom_title", "label": "Feature Title" },
+        { "type": "richtext", "id": "symptom_description", "label": "Description" },
+        { "type": "text", "id": "symptom_science_text", "label": "Supporting Text" },
+        { "type": "image_picker", "id": "symptom_icon", "label": "Icon" }
+      ]
+    },
+    {
+      "type": "cta",
+      "name": "CTA Button",
+      "settings": [
+        { "type": "text", "id": "cta_text", "label": "Button Text", "default": "Shop Now" },
+        { "type": "url", "id": "cta_link", "label": "Link URL" },
+        { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#000000" },
+        { "type": "color", "id": "text_color", "label": "Text Color", "default": "#ffffff" }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "range", "id": "border_radius", "label": "Border Radius", "min": 0, "max": 30, "default": 8 }
+      ]
+    },
+    {
+      "type": "sneak",
+      "name": "Sneak In Item",
+      "settings": [
+        { "type": "text", "id": "sneak_text", "label": "Sneak Text" },
+        { "type": "color", "id": "sneak_color", "label": "Text Color", "default": "#999" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Advertorial Multi-block" }
+  ]
+}
+{% endschema %}
