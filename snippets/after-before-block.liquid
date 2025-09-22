@@ -5,7 +5,7 @@
   {% assign heading_parts = full_heading | split: highlight %}
 
   <h2 class="ai-advertorial-heading"
-      style="font-size: {{ block.settings.font_size }}px; color: {{ block.settings.heading_text_color }};">
+      style="font-size: {{ block.settings.font_size }}px; color: {{ block.settings.heading_color }};">
     {% if heading_parts.size > 1 %}
       {{ heading_parts[0] }}
       <span class="ai-advertorial-heading-highlight"
