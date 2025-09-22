@@ -1,5 +1,4 @@
 {% case block.type %}
-  {% when 'heading' %}
  {% assign highlight_words = block.settings.highlight_words | split: ',' | map: 'strip' %}
 {% assign heading_text = block.settings.text | escape %}
 
@@ -13,6 +12,7 @@
 <h2 style="font-size: {{ block.settings.font_size }}px;">
   {{ heading_text | raw }}
 </h2>
+
 
 
 
