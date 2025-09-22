@@ -107,7 +107,7 @@
        --button-text-size: {{ section.settings.button_text_size }}px;
      ">
   {% for block in section.blocks %}
-    {% render 'ai-parasite-blocks', block: block, section: section, index: forloop.index %}
+    {% render 'parasite-blocks', block: block, section: section, index: forloop.index %}
   {% endfor %}
 </div>
 
