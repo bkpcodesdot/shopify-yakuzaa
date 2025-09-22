@@ -106,3 +106,82 @@
     {% endif %}
   </div>
 </div>
+{% schema %}
+{
+  "name": "After-before-blog",
+  "settings": [
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#000000" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 40 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 40 },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "center"
+    },
+    { "type": "checkbox", "id": "show_reading_time", "label": "Show Reading Time", "default": true },
+    { "type": "text", "id": "reading_time_text", "label": "Reading Time Text", "default": "Estimated 5-7 Minute Read" },
+    { "type": "color", "id": "reading_time_bg_color", "label": "Reading Time Background Color", "default": "#f0f0f0" },
+    { "type": "color", "id": "reading_time_text_color", "label": "Reading Time Text Color", "default": "#085e03" },
+    { "type": "color", "id": "reading_time_border_color", "label": "Reading Time Border Color", "default": "#085e03" },
+    { "type": "range", "id": "reading_time_border_width", "label": "Reading Time Border Width", "min": 0, "max": 4, "step": 1, "unit": "px", "default": 1 },
+    { "type": "color", "id": "button_color", "label": "Button Color", "default": "#e26900" },
+    { "type": "range", "id": "button_padding_top", "label": "Button Padding Top (px)", "min": 0, "max": 50, "step": 1, "default": 12 },
+    { "type": "range", "id": "button_padding_bottom", "label": "Button Padding Bottom (px)", "min": 0, "max": 50, "step": 1, "default": 12 },
+    { "type": "range", "id": "button_font_size", "label": "Button Font Size (px)", "min": 10, "max": 30, "step": 1, "default": 16 },
+    { "type": "color", "id": "highlight_color", "label": "Highlight Color in Heading", "default": "#e26900" }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Heading Text" },
+        { "type": "text", "id": "highlight_words", "label": "Words to Highlight (comma separated)", "default": "Really Happening" },
+        { "type": "color", "id": "highlight_color", "label": "Highlight Color", "default": "#e26900" },
+        { "type": "color", "id": "heading_text_color", "label": "Heading Text Color", "default": "#000000" },
+        { "type": "range", "id": "font_size", "label": "Font Size (px)", "min": 12, "max": 72, "step": 1, "unit": "px", "default": 38 }
+      ]
+    },
+    {
+      "type": "subtitle",
+      "name": "Subtitle",
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "Subtitle Text" }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Article Image",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" }
+      ]
+    },
+    {
+      "type": "author",
+      "name": "Author",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Author Image" },
+        { "type": "text", "id": "name", "label": "Author Name" },
+        { "type": "text", "id": "publish_date", "label": "Publish Date" }
+      ]
+    },
+    {
+      "type": "reading_time",
+      "name": "Reading Time",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Reading Time Text", "default": "Estimated 5-7 Minute Read" }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    { "name": "After-before-blog" }
+  ]
+}
+{% endschema %}
