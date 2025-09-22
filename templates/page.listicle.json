@@ -825,187 +825,6 @@
         "mobile_highlight_font_size": 14
       }
     },
-    "ai_symptoms_yaEYMq": {
-      "type": "ai-symptoms",
-      "blocks": {
-        "header_3yy3fp": {
-          "type": "header",
-          "settings": {
-            "title_text": "<p>Symptoms That Could Be a Sign of Imbalance</p>",
-            "title_highlight_text": "",
-            "use_section_colors": true,
-            "title_size": 32,
-            "title_color": "#111111",
-            "title_highlight_color": "#e26900",
-            "section_subtitle": "And why you shouldn't ignore them.",
-            "subtitle_size": 18,
-            "subtitle_color": "#666666",
-            "subtitle_margin_top": 5,
-            "margin_top": 0,
-            "margin_bottom": 0
-          }
-        },
-        "symptom_PLAjAi": {
-          "type": "symptom",
-          "settings": {
-            "symptom_title": "Chronic Fatigue",
-            "symptom_description": "<p>Feeling tired all the time, even after a full night's sleep.</p>",
-            "symptom_science_text": "Low B12 and iron levels are common culprits",
-            "symptom_icon": "shopify://shop_images/green_sugar.svg",
-            "use_section_colors": true,
-            "custom_background_color": "#ffffff",
-            "custom_border_color": "#ff6b35",
-            "custom_title_color": "#111111",
-            "custom_description_color": "#666666",
-            "custom_science_color": "#999999",
-            "symptom_title_size": 20,
-            "description_size": 20,
-            "science_text_size": 18,
-            "science_icon_size": 20,
-            "custom_border_width": 2,
-            "show_supporting_divider": true,
-            "custom_divider_color": "#ff6b35",
-            "margin_top": 0,
-            "margin_bottom": 0
-          }
-        },
-        "symptom_TLprrt": {
-          "type": "symptom",
-          "settings": {
-            "symptom_title": "Digestive Issues",
-            "symptom_description": "<p>Bloating, irregular bowel movements, or stomach discomfort may signal an imbalanced gut microbiome.</p>",
-            "symptom_science_text": "70% of immune function starts in the gut",
-            "symptom_icon": "shopify://shop_images/green_gut.svg",
-            "use_section_colors": true,
-            "custom_background_color": "#ffffff",
-            "custom_border_color": "#ff6b35",
-            "custom_title_color": "#111111",
-            "custom_description_color": "#666666",
-            "custom_science_color": "#999999",
-            "symptom_title_size": 20,
-            "description_size": 20,
-            "science_text_size": 18,
-            "science_icon_size": 20,
-            "custom_border_width": 2,
-            "show_supporting_divider": true,
-            "custom_divider_color": "#ff6b35",
-            "margin_top": 0,
-            "margin_bottom": 0
-          }
-        },
-        "symptom_TRgMCe": {
-          "type": "symptom",
-          "settings": {
-            "symptom_title": "Brain Fog",
-            "symptom_description": "<p>Mental cloudiness, poor concentration, and memory issues.</p>",
-            "symptom_science_text": "Omega-3s are crucial for brain function",
-            "symptom_icon": "shopify://shop_images/green_plant.svg",
-            "use_section_colors": true,
-            "custom_background_color": "#ffffff",
-            "custom_border_color": "#ff6b35",
-            "custom_title_color": "#111111",
-            "custom_description_color": "#666666",
-            "custom_science_color": "#999999",
-            "symptom_title_size": 20,
-            "description_size": 20,
-            "science_text_size": 18,
-            "science_icon_size": 20,
-            "custom_border_width": 2,
-            "show_supporting_divider": true,
-            "custom_divider_color": "#ff6b35",
-            "margin_top": 0,
-            "margin_bottom": 0
-          }
-        },
-        "symptom_LrAxBg": {
-          "type": "symptom",
-          "settings": {
-            "symptom_title": "Chronic Fatigue",
-            "symptom_description": "<p>Feeling tired all the time...</p>",
-            "symptom_science_text": "Low B12 and iron levels are common culprits",
-            "symptom_icon": "shopify://shop_images/green_enegergy.svg",
-            "use_section_colors": true,
-            "custom_background_color": "#ffffff",
-            "custom_border_color": "#ff6b35",
-            "custom_title_color": "#111111",
-            "custom_description_color": "#666666",
-            "custom_science_color": "#999999",
-            "symptom_title_size": 20,
-            "description_size": 20,
-            "science_text_size": 18,
-            "science_icon_size": 20,
-            "custom_border_width": 2,
-            "show_supporting_divider": true,
-            "custom_divider_color": "#ff6b35",
-            "margin_top": 0,
-            "margin_bottom": 0
-          }
-        },
-        "cta_iD6XrW": {
-          "type": "cta",
-          "settings": {
-            "cta_text": "TRY RESILIA RISK-FREE",
-            "cta_link": "#",
-            "use_section_button_style": true,
-            "cta_background": "#ff6b35",
-            "cta_text_color": "#ffffff",
-            "cta_border_color": "#ff6b35",
-            "cta_font_size": 16,
-            "cta_border_radius": 8,
-            "cta_border_width": 2,
-            "margin_top": -32,
-            "margin_bottom": -1
-          }
-        }
-      },
-      "block_order": [
-        "header_3yy3fp",
-        "symptom_PLAjAi",
-        "symptom_TLprrt",
-        "symptom_TRgMCe",
-        "symptom_LrAxBg",
-        "cta_iD6XrW"
-      ],
-      "disabled": true,
-      "name": "Symptoms list (blocks)",
-      "settings": {
-        "override_global_colors": false,
-        "override_global_typography": false,
-        "custom_font": "system_ui_n4",
-        "button_font_size": 16,
-        "button_vertical_padding": 12,
-        "button_horizontal_padding": 24,
-        "button_background_color": "#ff6b35",
-        "button_text_color": "#ffffff",
-        "button_border_color": "#ff6b35",
-        "button_border_radius": 8,
-        "button_border_width": 2,
-        "button_show_arrow": false,
-        "button_arrow_size": 16,
-        "section_background": "#ffffff",
-        "section_padding": 40,
-        "box_background": "#ffffff",
-        "box_border_color": "#ff6b35",
-        "box_border_radius": 10,
-        "number_size": 20,
-        "title_size": 28,
-        "title_color": "#111111",
-        "subtitle_size": 16,
-        "subtitle_color": "#666666",
-        "symptom_title_size": 18,
-        "symptom_title_color": "#111111",
-        "description_size": 14,
-        "description_color": "#333333",
-        "science_text_size": 13,
-        "science_text_color": "#666666",
-        "science_icon_size": 20,
-        "legacy_button_background": "#ff6b35",
-        "legacy_button_text_color": "#ffffff",
-        "legacy_button_text_size": 16,
-        "legacy_button_padding": 12,
-        "legacy_button_border_radius": 8
-      }
-    },
     "ai_parasite_info_JjQbD7": {
       "type": "ai-parasite-info",
       "disabled": true,
@@ -1082,7 +901,7 @@
         "heading_aYBFrd": {
           "type": "heading",
           "settings": {
-            "text": "<p>\"I Thought I Was Just Tired and Bloated… Then I Learned What WasReally HappeningInside My Gut\"</p>",
+            "text": "<p>\"I Thought I Was Just Tired and Bloated… Then I Learned What Was <strong>Really Happening</strong> Inside My Gut\"</p>",
             "highlight_words": "",
             "highlight_color": "#e26900",
             "heading_text_color": "#000000",
@@ -1151,7 +970,6 @@
     "advertorial_section_8N3Jyg",
     "health_campaign_EigqCV",
     "test_section_HTfy9t",
-    "ai_symptoms_yaEYMq",
     "ai_parasite_info_JjQbD7",
     "ai_parasite_info_mX3tkg",
     "before_after_article_7qDrek"
