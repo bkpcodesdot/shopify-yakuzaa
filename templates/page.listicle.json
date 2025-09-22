@@ -167,6 +167,7 @@
         "article_image_r9azhe",
         "reading_time_JttYmx"
       ],
+      "disabled": true,
       "name": "Before Article Section",
       "settings": {
         "background_color": "#ffffff",
@@ -246,6 +247,7 @@
         "text_ye8dVf",
         "cta_gwnid6"
       ],
+      "disabled": true,
       "name": "Advertorial section blocks",
       "settings": {
         "content_bg_color": "#ffffff"
@@ -314,6 +316,7 @@
         "image_yaRkVr",
         "cta_XPCW9X"
       ],
+      "disabled": true,
       "name": "Health campaign (blocks)",
       "settings": {}
     },
@@ -910,6 +913,7 @@
         "symptom_LrAxBg",
         "cta_iD6XrW"
       ],
+      "disabled": true,
       "name": "Symptoms list (blocks)",
       "settings": {
         "section_background": "#ffffff",
@@ -941,31 +945,68 @@
       "disabled": true,
       "name": "Parasite info (blocks)",
       "settings": {
+        "main_title": "How Do Parasites and Candida Get Inside Us?",
+        "highlight_text": "Parasites and Candida",
+        "intro_text": "<p>Understanding how these harmful organisms enter our bodies is the <strong>first step</strong> in protecting ourselves.</p>",
+        "subsection_title": "How parasites and candida sneak in:",
+        "subsection_title_size": 24,
+        "bottom_line_title": "Bottom line?",
+        "bottom_line_text": "<p>These organisms are everywhere. The key is <strong>supporting your body's defenses</strong>.</p>",
+        "cta_text": "TRY RESILIA RISK-FREE",
+        "cta_link": "",
         "section_background": "#ffffff",
-        "section_padding": 30,
-        "title": "AI Parasite Info"
+        "title_color": "#000000",
+        "highlight_color": "#ff6b35",
+        "text_color": "#333333",
+        "item_background": "#f9f9f9",
+        "title_size": 36,
+        "text_size": 16,
+        "image_border_radius": 8,
+        "item_border_radius": 8,
+        "item_title_size": 18,
+        "item_title_color": "#111111",
+        "bottom_title_size": 22,
+        "button_background": "#ff6b35",
+        "button_hover_background": "#e55a2b",
+        "button_text_color": "#ffffff",
+        "button_text_size": 16,
+        "button_padding": 16,
+        "button_border_radius": 8,
+        "section_padding": 30
       }
     },
     "ai_parasite_info_mX3tkg": {
       "type": "ai-parasite-info",
-      "blocks": {
-        "parasite_block_VJUmyx": {
-          "type": "parasite_block",
-          "settings": {
-            "icon": "shopify://shop_images/antibiotic_use.avif",
-            "heading": "",
-            "description": ""
-          }
-        }
-      },
-      "block_order": [
-        "parasite_block_VJUmyx"
-      ],
       "name": "AI Parasite Info",
       "settings": {
+        "main_title": "How Do Parasites and Candida Get Inside Us?",
+        "highlight_text": "Parasites and Candida",
+        "intro_text": "<p>Understanding how these harmful organisms enter our bodies is the <strong>first step</strong> in protecting ourselves.</p>",
+        "subsection_title": "How parasites and candida sneak in:",
+        "subsection_title_size": 24,
+        "bottom_line_title": "Bottom line?",
+        "bottom_line_text": "<p>These organisms are everywhere. The key is <strong>supporting your body's defenses</strong>.</p>",
+        "cta_text": "TRY RESILIA RISK-FREE",
+        "cta_link": "",
         "section_background": "#f5f5f5",
-        "section_padding": 40,
-        "title": "AI Parasite Info"
+        "title_color": "#000000",
+        "highlight_color": "#ff6b35",
+        "text_color": "#333333",
+        "item_background": "#f9f9f9",
+        "title_size": 36,
+        "text_size": 16,
+        "image_border_radius": 8,
+        "item_border_radius": 8,
+        "item_title_size": 18,
+        "item_title_color": "#111111",
+        "bottom_title_size": 22,
+        "button_background": "#ff6b35",
+        "button_hover_background": "#e55a2b",
+        "button_text_color": "#ffffff",
+        "button_text_size": 16,
+        "button_padding": 16,
+        "button_border_radius": 8,
+        "section_padding": 40
       }
     }
   },
