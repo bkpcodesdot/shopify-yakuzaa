@@ -1080,11 +1080,18 @@
           "settings": {
             "text": "after-before-block"
           }
+        },
+        "image_8R4UpN": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/comparison_desktop.webp"
+          }
         }
       },
       "block_order": [
         "heading_zyYWaU",
-        "subtitle_KJYW9g"
+        "subtitle_KJYW9g",
+        "image_8R4UpN"
       ],
       "name": "After-before-blog",
       "settings": {
