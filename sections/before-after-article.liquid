@@ -101,7 +101,7 @@
   <div class="ai-before-after-article__container-{{ ai_gen_id }}">
     {% if section.blocks.size > 0 %}
       {% for block in section.blocks %}
-        {% render 'after-before-block', block: block, ai_gen_id: ai_gen_id, section: section %}
+        {% render 'After-before-block', block: block, ai_gen_id: ai_gen_id, section: section %}
       {% endfor %}
     {% endif %}
   </div>
