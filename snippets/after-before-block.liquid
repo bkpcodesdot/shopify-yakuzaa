@@ -1,27 +1,27 @@
 {% case block.type %}
 {% when 'heading' %}
-  {% assign highlight_words_raw = block.settings.highlight_words | strip_html %}
-  {% assign highlight_words = highlight_words_raw | split: ',' | map: 'strip' %}
-  {% assign color = block.settings.highlight_color | default: section.settings.highlight_color %}
-  {% assign heading_text = block.settings.text | strip_html %}
+  {% assign highlight_words = block.settings.highlight_words | split: ',' | map: 'strip' %}
+  {% assign heading_text = block.settings.text %}
 
-  {% capture final_heading %}
+  {% assign color = block.settings.highlight_color | default: section.settings.highlight_color %}
+
+  {% capture new_heading_text %}
     {{ heading_text }}
   {% endcapture %}
 
   {% for word in highlight_words %}
     {% if word != '' %}
-      {% capture highlight %}
+      {% capture highlight_span %}
         <span style="color:{{ color }};">{{ word }}</span>
       {% endcapture %}
-      {% assign final_heading = final_heading | replace: word, highlight %}
+      {% assign new_heading_text = new_heading_text | replace: word, highlight_span %}
     {% endif %}
   {% endfor %}
 
-  <h2 class="adv-content__heading weight-normal" style="margin-bottom: var(--heading-margin-heading_QWeRyY)">
-    {{ final_heading }}
+  <h2 class="ai-before-after-article__heading-{{ ai_gen_id }}"
+      style="color: {{ block.settings.heading_text_color }}; font-size: {{ block.settings.font_size }}px;">
+    {{ new_heading_text }}
   </h2>
-
 
 
   {% when 'subtitle' %}
