@@ -1,0 +1,63 @@
+{% case block.type %}
+  {% when 'heading' %}
+    <h1 class="ai-before-after-article__heading-{{ ai_gen_id }}" style="font-size: {{ block.settings.font_size }}px;">
+      {{ block.settings.text }}
+    </h1>
+
+  {% when 'subtitle' %}
+    {% if block.settings.text != blank %}
+      <div class="ai-before-after-article__description-{{ ai_gen_id }}">
+        {{ block.settings.text }}
+      </div>
+    {% endif %}
+
+  {% when 'symptom' %}
+    {% if block.settings.text != blank %}
+      <div class="ai-before-after-article__description-{{ ai_gen_id }}">
+        {{ block.settings.text }}
+      </div>
+    {% endif %}
+
+  {% when 'cta_button' %}
+    {% if block.settings.text != blank and block.settings.url != blank %}
+      <a href="{{ block.settings.url }}" class="cta-button" style="padding: 12px 20px; background: #e26900; color: #fff; border-radius: 5px; text-decoration: none;">
+        {{ block.settings.text }}
+      </a>
+    {% endif %}
+
+  {% when 'image' %}
+    {% if block.settings.image %}
+      <div class="ai-before-after-article__image-container-{{ ai_gen_id }}">
+        <img src="{{ block.settings.image | image_url: width: 800 }}" alt="Article Image" loading="lazy" />
+      </div>
+    {% endif %}
+
+  {% when 'sneak_in' %}
+    {% if block.settings.text != blank %}
+      <div class="sneak-in-item" style="margin-top: 16px; font-style: italic; color: {{ section.settings.text_color }};">
+        {{ block.settings.text }}
+      </div>
+    {% endif %}
+
+  {% when 'author' %}
+    <div class="ai-before-after-article__author-{{ ai_gen_id }}">
+      <div class="ai-before-after-article__author-image-{{ ai_gen_id }}">
+        {% if block.settings.image %}
+          <img src="{{ block.settings.image | image_url: width: 100 }}" alt="{{ block.settings.name | escape }}" loading="lazy" />
+        {% endif %}
+      </div>
+      <div class="author-name">
+        <div class="ai-before-after-article__author-name-{{ ai_gen_id }}">{{ block.settings.name }}</div>
+        <div class="ai-before-after-article__publish-date-{{ ai_gen_id }}" style="margin-left: 10px;">{{ block.settings.publish_date }}</div>
+      </div>
+    </div>
+
+  {% when 'reading_time' %}
+    <div class="ai-before-after-article__reading-time-{{ ai_gen_id }}" style="
+      background-color: {{ section.settings.reading_time_bg_color }};
+      color: {{ section.settings.reading_time_text_color }};
+      border: {{ section.settings.reading_time_border_width }}px solid {{ section.settings.reading_time_border_color }};
+      ">
+      {{ block.settings.text | default: section.settings.reading_time_text }}
+    </div>
+{% endcase %}
