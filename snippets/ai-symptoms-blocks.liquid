@@ -11,32 +11,44 @@
 {% case block.type %}
 
   {% when 'header' %}
-    <div class="ai-symptoms-header-{{ ai_gen_id }}">
+    <div class="ai-symptoms-header-{{ ai_gen_id }}" style="margin-top: {{ block.settings.margin_top | default: 0 }}px; margin-bottom: {{ block.settings.margin_bottom | default: 0 }}px;" {{ block.shopify_attributes }}>
       <h2 class="ai-symptoms-title-{{ ai_gen_id }}"
           style="font-size: {{ block.settings.title_size | default: section.settings.title_size }}px;
-                 color: {{ block.settings.title_color | default: section.settings.title_color }};">
-        {{ block.settings.title_before }}
-        {% if block.settings.title_highlight != blank %}
-          <span style="color: {{ block.settings.title_highlight_color | default: section.settings.title_highlight_color }};">
-            {{ block.settings.title_highlight }}
-          </span>
-        {% endif %}
+                 color: {% if block.settings.use_section_colors %}{{ section.settings.title_color }}{% else %}{{ block.settings.title_color }}{% endif %};
+                 font-weight: 700 !important;">
+        {% liquid
+          assign title_content = block.settings.title_text | default: '<p>Symptoms That Could Be a Sign of Imbalance</p>'
+          if block.settings.title_highlight_text != blank
+            assign highlight_text = block.settings.title_highlight_text | strip
+            assign highlight_color = block.settings.title_highlight_color | default: '#e26900'
+            assign span_open = '<span style="color: ' | append: highlight_color | append: ' !important;">'
+            assign span_close = '</span>'
+            assign replacement = span_open | append: highlight_text | append: span_close
+            assign highlighted_content = title_content | replace: highlight_text, replacement
+            echo highlighted_content
+          else
+            echo title_content
+          endif
+        %}
       </h2>
 
       {% if block.settings.section_subtitle != blank %}
         <p class="ai-symptoms-subtitle-{{ ai_gen_id }}"
            style="font-size: {{ block.settings.subtitle_size | default: section.settings.subtitle_size }}px;
-                  color: {{ block.settings.subtitle_color | default: section.settings.subtitle_color }};">
+                  color: {% if block.settings.use_section_colors %}{{ section.settings.subtitle_color }}{% else %}{{ block.settings.subtitle_color }}{% endif %};
+                  margin-top: {{ block.settings.subtitle_margin_top | default: 5 }}px;">
           {{ block.settings.section_subtitle }}
         </p>
       {% endif %}
     </div>
 
   {% when 'symptom' %}
-    <article class="ai-symptom-box-{{ ai_gen_id }}"
-             style="background: {{ block.settings.box_background | default: section.settings.box_background }};
+    <article class="ai-symptom-box-{{ ai_gen_id }}" {{ block.shopify_attributes }}
+             style="background: {% if block.settings.use_section_colors %}{{ section.settings.box_background }}{% else %}{{ block.settings.custom_background_color }}{% endif %};
                     border-radius: {{ section.settings.box_border_radius }}px;
-                    border: 2px solid {{ section.settings.box_border_color }};">
+                    border: {{ block.settings.custom_border_width | default: 2 }}px solid {% if block.settings.use_section_colors %}{{ section.settings.box_border_color }}{% else %}{{ block.settings.custom_border_color }}{% endif %} !important;
+                    margin-top: {{ block.settings.margin_top | default: 0 }}px;
+                    margin-bottom: {{ block.settings.margin_bottom | default: 0 }}px;">
       <div class="ai-symptom-top-{{ ai_gen_id }}">
         <div class="ai-symptom-number-{{ ai_gen_id }}"
              style="font-size: {{ section.settings.number_size }}px; color: {{ section.settings.box_border_color }};">
@@ -45,7 +57,8 @@
 
         <h3 id="symptom-{{ ai_gen_id }}-{{ index }}" class="ai-symptom-title-{{ ai_gen_id }}"
             style="font-size: {{ block.settings.symptom_title_size | default: section.settings.symptom_title_size }}px;
-                   color: {{ block.settings.symptom_title_color | default: section.settings.symptom_title_color }};">
+                   color: {% if block.settings.use_section_colors %}{{ section.settings.symptom_title_color }}{% else %}{{ block.settings.custom_title_color }}{% endif %};
+                   font-weight: 700 !important;">
           {{ block.settings.symptom_title }}
         </h3>
       </div>
@@ -55,20 +68,39 @@
       {% if block.settings.symptom_description != blank %}
         <p class="ai-symptom-description-{{ ai_gen_id }}"
            style="font-size: {{ block.settings.description_size | default: section.settings.description_size }}px;
-                  color: {{ block.settings.description_color | default: section.settings.description_color }};">
+                  color: {% if block.settings.use_section_colors %}{{ section.settings.description_color }}{% else %}{{ block.settings.custom_description_color }}{% endif %};">
           {{ block.settings.symptom_description }}
         </p>
+      {% endif %}
+
+      {% comment %} Supporting text divider - show above supporting text {% endcomment %}
+      {% assign show_divider = block.settings.show_supporting_divider %}
+      {% if show_divider == true or show_divider == blank %}
+        <div class="ai-symptom-supporting-divider-{{ ai_gen_id }}"
+             style="width: 100% !important;
+                    height: 1px !important;
+                    background-color: {% if block.settings.use_section_colors %}{{ section.settings.box_border_color | default: '#ff6b35' }}{% else %}{{ block.settings.custom_divider_color | default: '#ff6b35' }}{% endif %} !important;
+                    margin: 12px 0 12px 0 !important;
+                    display: block !important;
+                    border: none !important;
+                    padding: 0 !important;
+                    clear: both !important;
+                    position: relative !important;"></div>
       {% endif %}
 
       {% if block.settings.symptom_science_text != blank or block.settings.symptom_icon %}
         <div class="ai-symptom-science-{{ ai_gen_id }}"
              style="font-size: {{ block.settings.science_text_size | default: section.settings.science_text_size }}px;
-                    color: {{ block.settings.science_text_color | default: section.settings.science_text_color }};">
+                    color: {% if block.settings.use_section_colors %}{{ section.settings.science_text_color }}{% else %}{{ block.settings.custom_science_color }}{% endif %};">
           <div class="ai-symptom-science-icon-{{ ai_gen_id }}"
-               style="width: {{ block.settings.science_icon_size | default: section.settings.science_icon_size }}px;
-                      height: {{ block.settings.science_icon_size | default: section.settings.science_icon_size }}px;">
+               style="width: {{ block.settings.science_icon_size | default: section.settings.science_icon_size | default: 16 }}px;
+                      height: {{ block.settings.science_icon_size | default: section.settings.science_icon_size | default: 16 }}px;
+                      flex-shrink: 0;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;">
             {% if block.settings.symptom_icon %}
-              <img src="{{ block.settings.symptom_icon | image_url: width: 200 }}" alt="icon for {{ block.settings.symptom_title }}">
+              <img src="{{ block.settings.symptom_icon | image_url: width: 48 }}" alt="icon for {{ block.settings.symptom_title }}" width="48" height="48" style="width: 100%; height: 100%; object-fit: contain;">
             {% else %}
               {{ 'image' | placeholder_svg_tag }}
             {% endif %}
@@ -82,15 +114,429 @@
     </article>
 
   {% when 'cta' %}
-    <div class="ai-symptoms-cta-{{ ai_gen_id }}">
+    <div class="ai-symptoms-cta-{{ ai_gen_id }}" style="margin-top: {{ block.settings.margin_top | default: 0 }}px; margin-bottom: {{ block.settings.margin_bottom | default: 0 }}px;" {{ block.shopify_attributes }}>
       <a href="{{ block.settings.cta_link }}" class="ai-symptoms-button-{{ ai_gen_id }}"
-         style="background: {{ block.settings.cta_background | default: section.settings.button_background }};
-                color: {{ block.settings.cta_text_color | default: section.settings.button_text_color }};
-                padding: {{ section.settings.button_padding }}px 28px;
-                border-radius: {{ block.settings.cta_border_radius | default: section.settings.button_border_radius }}px;
-                font-size: {{ block.settings.cta_font_size | default: section.settings.button_text_size }}px;">
+         style="{% if block.settings.use_section_button_style %}
+                  background: {{ section.settings.button_background_color }};
+                  color: {{ section.settings.button_text_color }};
+                  font-size: {{ section.settings.button_font_size }}px;
+                  border-radius: {{ section.settings.button_border_radius }}px;
+                  padding: {{ section.settings.button_vertical_padding }}px {{ section.settings.button_horizontal_padding }}px;
+                  border: {{ section.settings.button_border_width }}px solid {{ section.settings.button_border_color }};
+                {% else %}
+                  background: {{ block.settings.cta_background }};
+                  color: {{ block.settings.cta_text_color }};
+                  font-size: {{ block.settings.cta_font_size }}px;
+                  border-radius: {{ block.settings.cta_border_radius }}px;
+                  padding: 12px 24px;
+                  border: {{ block.settings.cta_border_width }}px solid {{ block.settings.cta_border_color }};
+                {% endif %}
+                text-decoration: none !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 8px !important;
+                font-weight: bold !important;
+                text-align: center !important;
+                transition: all 0.3s ease !important;
+                white-space: nowrap !important;">
         {{ block.settings.cta_text }}
+        {% if section.settings.button_show_arrow %}
+          <svg width="{{ section.settings.button_arrow_size }}px" height="{{ section.settings.button_arrow_size }}px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 6L8 2L10 2L16 8L10 14L8 14L8 10L-1.74845e-07 10L-3.01991e-07 6L8 6Z" fill="currentColor"/>
+          </svg>
+        {% endif %}
       </a>
     </div>
+
+  {% when 'article_heading' %}
+    <div class="ai-article-heading-{{ ai_gen_id }}"
+         style="margin: {{ block.settings.margin_top | default: 0 }}px auto {{ block.settings.margin_bottom | default: 0 }}px;
+                width: 100%;
+                text-align: {{ block.settings.text_alignment | default: 'left' }};" {{ block.shopify_attributes }}>
+      <div class="ai-article-heading__container-{{ ai_gen_id }}"
+           style="max-width: 728px;
+                  margin: 0 auto;">
+        <div class="ai-article-heading__text-{{ ai_gen_id }}"
+             style="font-size: {{ block.settings.heading_font_size | default: 38 }}px;
+                    line-height: 1.2;
+                    margin: 0;
+                    font-weight: 700 !important;
+                    color: {{ block.settings.text_color | default: '#000000' }};
+                    font-family: inherit !important;">
+          {% liquid
+            assign heading_content = block.settings.heading_text | default: '<p>Article Heading</p>'
+            if block.settings.highlight_text != blank
+              assign highlight_text = block.settings.highlight_text | strip
+              assign highlight_color = block.settings.highlight_color | default: '#e26900'
+              assign span_open = '<span style="color: ' | append: highlight_color | append: ' !important;">'
+              assign span_close = '</span>'
+              assign replacement = span_open | append: highlight_text | append: span_close
+              assign highlighted_content = heading_content | replace: highlight_text, replacement
+              echo highlighted_content
+            else
+              echo heading_content
+            endif
+          %}
+        </div>
+      </div>
+    </div>
+
+  {% when 'article_description' %}
+    <div class="ai-article-description-{{ ai_gen_id }}"
+         style="margin: {{ block.settings.margin_top | default: 0 }}px auto {{ block.settings.margin_bottom | default: 0 }}px;
+                width: 100%;
+                text-align: {{ block.settings.text_alignment | default: 'left' }};" {{ block.shopify_attributes }}>
+      <div class="ai-article-description__container-{{ ai_gen_id }}"
+           style="max-width: 728px;
+                  margin: 0 auto;">
+        <div class="ai-article-description__text-{{ ai_gen_id }}"
+             style="font-size: {{ block.settings.description_font_size | default: 20 }}px;
+                    line-height: 1.5;
+                    margin: 0;
+                    color: {{ block.settings.text_color | default: '#000000' }};
+                    opacity: 0.8;">
+          {{ block.settings.description_text | default: 'Article description goes here.' }}
+        </div>
+      </div>
+    </div>
+
+  {% when 'article_author' %}
+    <div class="ai-article-author-{{ ai_gen_id }}"
+         style="margin: {{ block.settings.margin_top | default: 0 }}px auto {{ block.settings.margin_bottom | default: 0 }}px;
+                width: 100%;" {{ block.shopify_attributes }}>
+      <div class="ai-article-author__container-{{ ai_gen_id }}"
+           style="max-width: 728px;
+                  margin: 0 auto;
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  justify-content: {{ block.settings.text_alignment | default: 'left' | replace: 'left', 'flex-start' | replace: 'center', 'center' }};">
+        <div class="ai-article-author__image-{{ ai_gen_id }}"
+             style="width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    flex-shrink: 0;">
+          {% if block.settings.author_image %}
+            <img src="{{ block.settings.author_image | image_url: width: 100 }}" 
+                 alt="{{ block.settings.author_name | default: 'Author' | escape }}" 
+                 width="50" height="50"
+                 style="width: 100%; height: 100%; object-fit: cover;">
+          {% else %}
+            {{ 'image' | placeholder_svg_tag }}
+          {% endif %}
+        </div>
+        <div class="author-name" style="display: flex; align-items: center; gap: 8px;">
+          <div class="ai-article-author__name-{{ ai_gen_id }}"
+               style="font-size: 16px; font-weight: 500; color: {{ block.settings.text_color | default: '#000000' }};">
+            {{ block.settings.author_name | default: '<p>Author Name</p>' }}
+          </div>
+          <div style="font-size: 16px; color: {{ block.settings.text_color | default: '#000000' }}; opacity: 0.7;">
+            |
+          </div>
+          <div class="ai-article-author__date-{{ ai_gen_id }}"
+               style="font-size: 16px; color: {{ block.settings.text_color | default: '#000000' }}; opacity: 0.7;">
+            {{ block.settings.publish_date | default: 'Publication Date' }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  {% when 'article_image' %}
+    <div class="ai-article-image-{{ ai_gen_id }}"
+         style="margin: {{ block.settings.margin_top | default: 0 }}px auto {{ block.settings.margin_bottom | default: 0 }}px;
+                width: 100%;" {{ block.shopify_attributes }}>
+      <div class="ai-article-image__container-{{ ai_gen_id }}"
+           style="max-width: 728px;
+                  margin: 0 auto;
+                  border-radius: {{ block.settings.border_radius | default: 8 }}px;
+                  overflow: hidden;">
+        {% if block.settings.article_image %}
+          <img src="{{ block.settings.article_image | image_url }}" 
+               alt="Image" 
+               width="{{ block.settings.article_image.width | default: 800 }}"
+               height="{{ block.settings.article_image.height | default: 600 }}"
+               style="width: 100%; height: auto; display: block;">
+        {% else %}
+          {{ 'image' | placeholder_svg_tag }}
+        {% endif %}
+      </div>
+    </div>
+
+  {% when 'article_reading_time' %}
+    <div class="ai-article-reading-time-{{ ai_gen_id }}"
+         style="margin: {{ block.settings.margin_top | default: 0 }}px auto {{ block.settings.margin_bottom | default: 0 }}px;
+                width: 100%;" {{ block.shopify_attributes }}>
+      <div class="ai-article-reading-time__container-{{ ai_gen_id }}"
+           style="max-width: 728px;
+                  margin: 0 auto;
+                  display: flex;
+                  justify-content: center;">
+        <div class="ai-article-reading-time__badge-{{ ai_gen_id }}"
+             style="background-color: {{ block.settings.reading_time_bg_color | default: '#f0f0f0' }};
+                    color: {{ block.settings.reading_time_text_color | default: '#085e03' }};
+                    align-items: center;
+                    padding: 8px 20px;
+                    display: flex;
+                    border-radius: 50px;
+                    font-size: 18px;
+                    gap: 8px;
+                    border: {{ block.settings.reading_time_border_width | default: 1 }}px solid {{ block.settings.reading_time_border_color | default: '#085e03' }};
+                    justify-content: center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" style="flex-shrink: 0;">
+            <path fill="{{ block.settings.reading_time_text_color | default: '#085e03' }}" d="M29,4H3C1.343,4,0,5.343,0,7v18c0,1.657,1.343,3,3,3h10c0,0.552,0.448,1,1,1h4c0.552,0,1-0.448,1-1h10
+            	c1.657,0,3-1.343,3-3V7C32,5.343,30.657,4,29,4z M29,5v20H18.708c-0.618,0-1.236,0.146-1.789,0.422l-0.419,0.21V5H29z M15.5,5
+            	v20.632l-0.419-0.21C14.528,25.146,13.91,25,13.292,25H3V5H15.5z M31,25c0,1.103-0.897,2-2,2H18v1h-4v-1H3c-1.103,0-2-0.897-2-2V7
+            	c0-0.737,0.405-1.375,1-1.722V25c0,0.552,0.448,1,1,1h10.292c0.466,0,0.925,0.108,1.342,0.317l0.919,0.46
+            	c0.141,0.07,0.294,0.106,0.447,0.106c0.153,0,0.306-0.035,0.447-0.106l0.919-0.46C17.783,26.108,18.242,26,18.708,26H29
+            	c0.552,0,1-0.448,1-1V5.278C30.595,5.625,31,6.263,31,7V25z M6,12.5C6,12.224,6.224,12,6.5,12h5c0.276,0,0.5,0.224,0.5,0.5
+            	S11.776,13,11.5,13h-5C6.224,13,6,12.776,6,12.5z M6,14.5C6,14.224,6.224,14,6.5,14h5c0.276,0,0.5,0.224,0.5,0.5S11.776,15,11.5,15
+            	h-5C6.224,15,6,14.776,6,14.5z M6,16.5C6,16.224,6.224,16,6.5,16h5c0.276,0,0.5,0.224,0.5,0.5S11.776,17,11.5,17h-5
+            	C6.224,17,6,16.776,6,16.5z M20,12.5c0-0.276,0.224-0.5,0.5-0.5h5c0.276,0,0.5,0.224,0.5,0.5S25.776,13,25.5,13h-5
+            	C20.224,13,20,12.776,20,12.5z M20,14.5c0-0.276,0.224-0.5,0.5-0.5h5c0.276,0,0.5,0.224,0.5,0.5S25.776,15,25.5,15h-5
+            	C20.224,15,20,14.776,20,14.5z M20,16.5c0-0.276,0.224-0.5,0.5-0.5h5c0.276,0,0.5,0.224,0.5,0.5S25.776,17,25.5,17h-5
+            	C20.224,17,20,16.776,20,16.5z"/>
+          </svg>
+          <span>{{ block.settings.reading_time_text | default: 'Estimated 5-7 Minute Read' }}</span>
+        </div>
+      </div>
+    </div>
+
+  {% when 'divider_line' %}
+    <div class="ai-divider-line-{{ ai_gen_id }}"
+         style="margin: {{ block.settings.margin_top | default: 20 }}px auto {{ block.settings.margin_bottom | default: 20 }}px;
+                width: 100%;" {{ block.shopify_attributes }}>
+      <div class="ai-divider-line__container-{{ ai_gen_id }}"
+           style="max-width: 728px;
+                  margin: 0 auto;
+                  display: flex;
+                  justify-content: {{ block.settings.divider_alignment | default: 'center' }};">
+        <div class="ai-divider-line__line-{{ ai_gen_id }}"
+             style="width: {{ block.settings.divider_width | default: 100 }}%;
+                    height: {{ block.settings.divider_height | default: 1 }}px;
+                    background-color: {{ block.settings.divider_color | default: '#e0e0e0' }};
+                    border: none;
+                    margin: 0;">
+        </div>
+      </div>
+    </div>
+
+  {% when 'text_block' %}
+    <div class="ai-text-block-{{ ai_gen_id }}"
+         style="margin: {{ block.settings.margin_top | default: 0 }}px auto {{ block.settings.margin_bottom | default: 0 }}px;
+                width: 100%;" {{ block.shopify_attributes }}>
+      <div class="ai-text-block__container-{{ ai_gen_id }}"
+           style="max-width: 728px;
+                  margin: 0 auto;">
+        <div class="ai-text-block__content-{{ ai_gen_id }}"
+             style="font-size: {{ block.settings.text_font_size | default: 16 }}px;
+                    line-height: {{ block.settings.line_height | default: 1.5 }};
+                    color: {{ block.settings.text_color | default: '#000000' }};
+                    text-align: {{ block.settings.text_alignment | default: 'left' }};">
+          {{ block.settings.text_content | default: '<p>Add your text content here.</p>' }}
+        </div>
+      </div>
+    </div>
+
+  {% when 'icon_bullet_list' %}
+    <div class="ai-icon-bullet-list-{{ ai_gen_id }}"
+         style="margin: {{ block.settings.margin_top | default: 0 }}px auto {{ block.settings.margin_bottom | default: 0 }}px;
+                width: 100%;" {{ block.shopify_attributes }}>
+      <div class="ai-icon-bullet-list__container-{{ ai_gen_id }}"
+           style="max-width: 728px;
+                  margin: 0 auto;">
+        
+        <style>
+          .ai-icon-bullet-list__content-{{ ai_gen_id }} ul {
+            list-style: none !important;
+            padding-left: 0 !important;
+            margin: 0 !important;
+          }
+          
+          .ai-icon-bullet-list__content-{{ ai_gen_id }} li {
+            display: flex !important;
+            align-items: flex-start !important;
+            margin-bottom: {{ block.settings.item_spacing | default: 12 }}px !important;
+            padding: 0 !important;
+            font-size: {{ block.settings.list_font_size | default: 16 }}px !important;
+            color: {{ block.settings.list_text_color | default: '#333333' }} !important;
+            line-height: {{ block.settings.line_height | default: 1.4 }} !important;
+          }
+          
+          .ai-icon-bullet-list__content-{{ ai_gen_id }} li:last-child {
+            margin-bottom: 0 !important;
+          }
+          
+          .ai-icon-bullet-list__content-{{ ai_gen_id }} .bullet-icon {
+            width: {{ block.settings.icon_size | default: 20 }}px !important;
+            height: {{ block.settings.icon_size | default: 20 }}px !important;
+            margin-right: 12px !important;
+            flex-shrink: 0 !important;
+            margin-top: 2px !important;
+            object-fit: contain !important;
+          }
+          
+          .ai-icon-bullet-list__content-{{ ai_gen_id }} .bullet-text {
+            flex: 1 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+          }
+        </style>
+        
+        <div class="ai-icon-bullet-list__content-{{ ai_gen_id }}">
+          {% assign list_items = block.settings.list_content | split: '<li>' %}
+          {% if list_items.size > 1 %}
+            <ul>
+              {% for item in list_items %}
+                {% unless forloop.first %}
+                  {% assign clean_item = item | split: '</li>' | first | strip %}
+                  {% if clean_item != blank %}
+                    <li>
+                      {% if block.settings.bullet_icon %}
+                        <img src="{{ block.settings.bullet_icon | image_url }}" alt="Bullet Icon" class="bullet-icon" width="{{ block.settings.icon_size | default: 20 }}" height="{{ block.settings.icon_size | default: 20 }}">
+                      {% else %}
+                        <span class="bullet-icon" style="font-size: {{ block.settings.icon_size | default: 20 }}px; color: {{ block.settings.list_text_color | default: '#333333' }};">•</span>
+                      {% endif %}
+                      <span class="bullet-text">{{ clean_item }}</span>
+                    </li>
+                  {% endif %}
+                {% endunless %}
+              {% endfor %}
+            </ul>
+          {% else %}
+            {{ block.settings.list_content | default: '<ul><li>Add your list items here</li></ul>' }}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+  {% when 'timeline' %}
+    <div class="ai-timeline-{{ ai_gen_id }}"
+         style="margin: {{ block.settings.margin_top | default: 0 }}px auto {{ block.settings.margin_bottom | default: 0 }}px;
+                width: 100%;" {{ block.shopify_attributes }}>
+      <div class="ai-timeline__container-{{ ai_gen_id }}"
+           style="max-width: 728px;
+                  margin: 0 auto;
+                  position: relative;">
+        
+        <style>
+          .ai-timeline__content-{{ ai_gen_id }} {
+            position: relative;
+            padding-left: 60px;
+          }
+          
+          .ai-timeline__content-{{ ai_gen_id }}::before {
+            content: '';
+            position: absolute;
+            left: {{ block.settings.timeline_line_width | default: 2 | divided_by: 2 | minus: 1 }}px;
+            top: {{ block.settings.timeline_dot_size | default: 30 | plus: 10 }}px;
+            bottom: -{{ block.settings.timeline_spacing | default: 40 | divided_by: 2 }}px;
+            width: {{ block.settings.timeline_line_width | default: 2 }}px;
+            background: {{ block.settings.timeline_line_color | default: '#22c55e' }};
+          }
+          
+          .ai-timeline__item-{{ ai_gen_id }} {
+            position: relative;
+            margin-bottom: {{ block.settings.timeline_spacing | default: 40 }}px;
+            background: {{ block.settings.timeline_background_color | default: '#f9fafb' }};
+            border-radius: {{ block.settings.timeline_border_radius | default: 8 }}px;
+            padding: 20px;
+            border: 1px solid #e5e7eb;
+          }
+          
+          .ai-timeline__item-{{ ai_gen_id }}:last-child {
+            margin-bottom: 0;
+          }
+          
+          .ai-timeline__item-{{ ai_gen_id }}:last-child::after {
+            display: none;
+          }
+          
+          .ai-timeline__circle-{{ ai_gen_id }} {
+            position: absolute;
+            left: -{{ block.settings.timeline_dot_size | default: 30 | divided_by: 2 | plus: 15 }}px;
+            top: 10px;
+            width: {{ block.settings.timeline_dot_size | default: 30 }}px;
+            height: {{ block.settings.timeline_dot_size | default: 30 }}px;
+            border-radius: 50%;
+            background: {{ block.settings.timeline_dot_color | default: '#22c55e' }};
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+          }
+          
+          .ai-timeline__circle-{{ ai_gen_id }} svg {
+            width: 16px;
+            height: 16px;
+            fill: white !important;
+          }
+          
+          .ai-timeline__circle-{{ ai_gen_id }} img {
+            width: 70%;
+            height: 70%;
+            object-fit: contain;
+          }
+          
+          .ai-timeline__title-{{ ai_gen_id }} {
+            font-size: {{ block.settings.timeline_title_size | default: 20 }}px !important;
+            color: {{ block.settings.timeline_title_color | default: '#1f2937' }} !important;
+            font-weight: 700 !important;
+            margin: 0 0 8px 0 !important;
+            padding: 0 !important;
+          }
+          
+          .ai-timeline__text-{{ ai_gen_id }} {
+            font-size: {{ block.settings.timeline_text_size | default: 16 }}px !important;
+            color: {{ block.settings.timeline_text_color | default: '#6b7280' }} !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            line-height: 1.5 !important;
+          }
+        </style>
+        
+        <div class="ai-timeline__content-{{ ai_gen_id }}">
+          {% assign timeline_items = 'timeline_item_1,timeline_item_2,timeline_item_3,timeline_item_4' | split: ',' %}
+          {% assign icon_array = 'timeline_icon_1,timeline_icon_2,timeline_icon_3,timeline_icon_4' | split: ',' %}
+          
+          {% for item_prefix in timeline_items %}
+            {% assign title_setting = item_prefix | append: '_title' %}
+            {% assign text_setting = item_prefix | append: '_text' %}
+            {% assign title_content = block.settings[title_setting] %}
+            {% assign text_content = block.settings[text_setting] %}
+            {% assign icon_setting = icon_array[forloop.index0] %}
+            
+            {% if title_content != blank or text_content != blank %}
+              <div class="ai-timeline__item-{{ ai_gen_id }}">
+                <div class="ai-timeline__circle-{{ ai_gen_id }}">
+                  {% if block.settings[icon_setting] %}
+                    <img src="{{ block.settings[icon_setting] | image_url }}" 
+                         alt="Timeline Icon" 
+                         width="{{ block.settings.timeline_icon_size | default: 30 }}"
+                         height="{{ block.settings.timeline_icon_size | default: 30 }}">
+                  {% else %}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z"/>
+                    </svg>
+                  {% endif %}
+                </div>
+                
+                {% if title_content != blank %}
+                  <h3 class="ai-timeline__title-{{ ai_gen_id }}">{{ title_content }}</h3>
+                {% endif %}
+                
+                {% if text_content != blank %}
+                  <p class="ai-timeline__text-{{ ai_gen_id }}">{{ text_content }}</p>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+  {% when 'comparison_table' %}
+    {% render 'comparison-table', block: block, section: section %}
 
 {% endcase %}
