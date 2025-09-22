@@ -1156,7 +1156,7 @@
             "title_highlight_color": "#e26900",
             "section_subtitle": "And why you shouldn't ignore them.",
             "subtitle_size": 16,
-            "subtitle_color": "#666666",
+            "subtitle_color": "#000000",
             "subtitle_margin_top": 5,
             "margin_top": 0,
             "margin_bottom": 0
@@ -1235,6 +1235,7 @@
           "type": "icon_bullet_list",
           "settings": {
             "list_content": "<ul><li>Eliminate parasites and candida naturally</li><li>Reduce inflammation and bloating</li><li>Restore gut balance and immune strength</li><li>Improve energy, focus, and mental clarity</li><li>Stop sugar cravings at the root</li></ul>",
+            "bullet_icon": "shopify://shop_images/oil_of_oregano_main.webp",
             "icon_size": 20,
             "list_font_size": 16,
             "list_text_color": "#333333",
