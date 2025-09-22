@@ -718,7 +718,6 @@
     },
     "symptoms_list_section_FTtLjq": {
       "type": "symptoms-list-section",
-      "disabled": true,
       "name": "Symptoms list",
       "settings": {
         "title_before": "Symptoms That Could Be a Sign of",
