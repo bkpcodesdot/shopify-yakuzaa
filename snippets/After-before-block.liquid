@@ -20,20 +20,6 @@
       </div>
     {% endif %}
 
-  {% when 'symptom' %}
-    {% if block.settings.text != blank %}
-      <div class="ai-before-after-article__description-{{ ai_gen_id }}">
-        {{ block.settings.text }}
-      </div>
-    {% endif %}
-
-  {% when 'cta_button' %}
-    {% if block.settings.text != blank and block.settings.url != blank %}
-      <a href="{{ block.settings.url }}" class="cta-button" style="padding: 12px 20px; background: #e26900; color: #fff; border-radius: 5px; text-decoration: none;">
-        {{ block.settings.text }}
-      </a>
-    {% endif %}
-
   {% when 'image' %}
     {% if block.settings.image %}
       <div class="ai-before-after-article__image-container-{{ ai_gen_id }}">
@@ -41,12 +27,6 @@
       </div>
     {% endif %}
 
-  {% when 'sneak_in' %}
-    {% if block.settings.text != blank %}
-      <div class="sneak-in-item" style="margin-top: 16px; font-style: italic; color: {{ section.settings.text_color }};">
-        {{ block.settings.text }}
-      </div>
-    {% endif %}
 
   {% when 'author' %}
     <div class="ai-before-after-article__author-{{ ai_gen_id }}">
