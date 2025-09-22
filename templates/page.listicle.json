@@ -526,6 +526,7 @@
     },
     "symptoms_list_section_hmNRWJ": {
       "type": "symptoms-list-section",
+      "disabled": true,
       "name": "Symptoms list",
       "settings": {
         "title_before": "Symptoms That Could Be a Sign of Internal Imbalance",
@@ -589,11 +590,11 @@
             "title_highlight_text": "Imbalance",
             "use_section_colors": true,
             "title_size": 38,
-            "title_color": "#111111",
+            "title_color": "#000000",
             "title_highlight_color": "#e26900",
             "section_subtitle": "And why you shouldn't ignore them.",
-            "subtitle_size": 16,
-            "subtitle_color": "#666666",
+            "subtitle_size": 18,
+            "subtitle_color": "#000000",
             "subtitle_margin_top": 5,
             "margin_top": 0,
             "margin_bottom": 0
