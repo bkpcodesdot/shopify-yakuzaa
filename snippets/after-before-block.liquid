@@ -1,8 +1,6 @@
 {% case block.type %}
 {% when 'heading' %}
-  {% assign full_heading = block.settings.text | strip_html %}
-  {% assign highlight = block.settings.highlight_text %}
-  {% assign heading_parts = full_heading | split: highlight %}
+ 
 
   <h2 class="ai-advertorial-heading"
       style="font-size: {{ block.settings.heading_size }}px; color: {{ block.settings.heading_color }};">
