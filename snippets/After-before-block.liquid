@@ -1,8 +1,22 @@
 {% case block.type %}
   {% when 'heading' %}
-    <h1 class="ai-before-after-article__heading-{{ ai_gen_id }}" style="font-size: {{ block.settings.font_size }}px;">
-      {{ block.settings.text }}
-    </h1>
+  {% assign heading = block.settings.heading_text %}
+  {% assign highlight_words = block.settings.highlight_words | split: ',' | map: 'strip' %}
+
+  {% if highlight_words.size > 0 and heading %}
+    {% for word in highlight_words %}
+      {% assign regex = '\b' | append: word | append: '\b' %}
+      {% capture highlighted_word %}
+        <span style="color: {{ section.settings.highlight_color }};">{{ word }}</span>
+      {% endcapture %}
+      {% assign heading = heading | replace: word, highlighted_word %}
+    {% endfor %}
+  {% endif %}
+
+  <h1 class="ai-before-after-article__heading-{{ ai_gen_id }}" style="font-size: {{ block.settings.heading_font_size }}px;">
+    {{ heading | raw }}
+  </h1>
+
 
   {% when 'subtitle' %}
     {% if block.settings.text != blank %}
