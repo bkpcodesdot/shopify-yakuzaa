@@ -1016,16 +1016,30 @@
         "heading_mhcjkw": {
           "type": "heading",
           "settings": {
-            "text": "<p><em>A<br/>fter-</em><em><strong>before-blog</strong></em><em><br/></em></p>",
+            "text": "\"I Thought I Was Just Tired and Bloated… Then I Learned What Was Really Happening Inside My Gut\"",
             "highlight_words": "Really Happening",
             "highlight_color": "#e26900",
             "heading_text_color": "#000000",
             "font_size": 38
           }
+        },
+        "subtitle_NetqNF": {
+          "type": "subtitle",
+          "settings": {
+            "text": "What science says about hidden gut imbalances and how one natural formula is helping thousands reclaim their energy and digestion."
+          }
+        },
+        "image_kkfpc3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/comparison_desktop.webp"
+          }
         }
       },
       "block_order": [
-        "heading_mhcjkw"
+        "heading_mhcjkw",
+        "subtitle_NetqNF",
+        "image_kkfpc3"
       ],
       "name": "After-before-blog",
       "settings": {
@@ -1033,7 +1047,7 @@
         "text_color": "#000000",
         "padding_top": 40,
         "padding_bottom": 40,
-        "text_alignment": "center",
+        "text_alignment": "left",
         "show_reading_time": true,
         "reading_time_text": "Estimated 5-7 Minute Read",
         "reading_time_bg_color": "#f0f0f0",
