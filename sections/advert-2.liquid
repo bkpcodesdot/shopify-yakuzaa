@@ -1,0 +1,244 @@
+{% assign ai_gen_id = section.id | replace: '_', '' | downcase %}
+
+{% style %}
+/* Container uses CSS variables set inline from the section settings */
+.ai-parasite-info-{{ ai_gen_id }} {
+  background-color: var(--section-bg);
+  padding: var(--section-padding) 20px;
+  max-width: 726px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* Title */
+.ai-parasite-info-title {
+  font-size: var(--title-size);
+  font-weight: bold;
+  color: var(--title-color);
+  margin-bottom: 20px;
+  line-height: 1.2;
+  text-align: left;
+}
+.ai-parasite-info-highlight { color: var(--highlight-color); }
+
+/* Intro / subtitle */
+.ai-parasite-info-intro { font-size: var(--text-size); color: var(--text-color); margin-bottom: 30px; line-height:1.6; text-align:left; }
+
+/* Main image */
+.ai-parasite-info-main-image { width:100%; margin-bottom:40px; border-radius: var(--image-border-radius); overflow:hidden; }
+.ai-parasite-info-main-image img  {
+    width: 100%;
+    display: block;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    aspect-ratio: 119 / 66;
+}
+
+/* Subsection / Symptom title */
+.ai-parasite-info-subsection-title { font-size: var(--subsection-title-size); font-weight:bold; color:var(--title-color); text-align:left; margin-bottom:12px; }
+
+/* Items list */
+.ai-parasite-info-list { display:flex; flex-direction:column; gap:16px; margin-bottom: 24px; }
+
+/* Item (grid) */
+.ai-parasite-info-item {
+  display: grid;
+  grid-template-columns: 128px auto;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 15px;
+  border-radius: var(--item-border-radius);
+  background: var(--item-background);
+}
+.ai-parasite-info-item img { width:100%; border-radius:8px; object-fit:cover; }
+.ai-parasite-info-item-title { font-size: var(--item-title-size); font-weight:bold; margin-bottom:8px; color:var(--item-title-color); }
+.ai-parasite-info-item-description { font-size: var(--description-size); color: #000000CF; line-height:1.5; font-weight:300; }
+
+/* Author */
+.ai-parasite-author { display:flex; gap:12px; align-items:center; margin-bottom:18px; }
+.ai-parasite-author img { width:64px; height:64px; border-radius:50%; object-fit:cover; }
+.ai-parasite-author-name { font-weight:700; }
+.ai-parasite-author-role { font-size:13px; color:#666; }
+
+/* Bottom line */
+.ai-parasite-info-bottom-title { font-size: var(--bottom-title-size); font-weight:bold; margin-bottom:15px; font-style:italic; color:var(--title-color); }
+.ai-parasite-info-bottom-text { font-size: var(--text-size); color:var(--text-color); margin-bottom:25px; line-height:26px; }
+
+/* CTA */
+.ai-parasite-info-cta { display:block; background-color: var(--button-bg); color: var(--button-text-color); padding: var(--button-padding) var(--button-padding-hr); border-radius: var(--button-radius); font-size: var(--button-text-size); font-weight:600; text-decoration:none; text-align:center; transition: background-color .3s; }
+.ai-parasite-info-cta:hover { opacity: .95; }
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .ai-parasite-info-{{ ai_gen_id }} { padding: calc(var(--section-padding) * 0.7) 15px; }
+  .ai-parasite-info-item { grid-template-columns: 96px auto; }
+  .ai-parasite-info-cta { width:100%; }
+}
+@media screen and (max-width: 576px) {
+  .ai-parasite-info-subsection-title { font-size: 20px; }
+  .ai-parasite-info-intro { font-size: 15px; }
+}
+{% endstyle %}
+
+{%- comment -%}
+  Container: set top-level CSS vars from section.settings.
+  Each block may also set inline vars to override defaults.
+{%- endcomment -%}
+
+<div class="ai-parasite-info-{{ ai_gen_id }}"
+     style="
+       --section-bg: {{ section.settings.section_background }};
+       --section-padding: {{ section.settings.section_padding }}px;
+       --title-size: {{ section.settings.title_size }}px;
+       --title-color: {{ section.settings.title_color }};
+       --highlight-color: {{ section.settings.highlight_color }};
+       --text-size: {{ section.settings.text_size }}px;
+       --text-color: {{ section.settings.text_color }};
+       --image-border-radius: {{ section.settings.image_border_radius }}px;
+       --subsection-title-size: {{ section.settings.subsection_title_size }}px;
+       --item-border-radius: {{ section.settings.item_border_radius }}px;
+       --item-background: {{ section.settings.item_background }};
+       --item-title-size: {{ section.settings.item_title_size }}px;
+       --item-title-color: {{ section.settings.item_title_color }};
+       --description-size: {{ section.settings.text_size }}px;
+       --bottom-title-size: {{ section.settings.bottom_title_size }}px;
+       --button-bg: {{ section.settings.button_background }};
+       --button-hover-bg: {{ section.settings.button_hover_background }};
+       --button-text-color: {{ section.settings.button_text_color }};
+       --button-padding: {{ section.settings.button_padding }}px;
+       --button-padding-hr: {{ section.settings.button_padding | times: 1.5 }}px;
+       --button-radius: {{ section.settings.button_border_radius }}px;
+       --button-text-size: {{ section.settings.button_text_size }}px;
+     ">
+  {% for block in section.blocks %}
+    {% render 'ai-parasite-blocks', block: block, section: section, index: forloop.index %}
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Advert 2 (blocks)",
+  "settings": [
+    { "type": "color", "id": "section_background", "label": "Section background", "default": "#ffffff" },
+    { "type": "range", "id": "section_padding", "label": "Section padding", "min": 10, "max": 120, "step": 5, "unit": "px", "default": 50 },
+
+    { "type": "color", "id": "title_color", "label": "Title color", "default": "#000000" },
+    { "type": "color", "id": "highlight_color", "label": "Highlight color", "default": "#ff6b35" },
+    { "type": "range", "id": "title_size", "label": "Main title size", "min": 18, "max": 60, "step": 2, "unit": "px", "default": 36 },
+
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#333333" },
+    { "type": "range", "id": "text_size", "label": "Body text size", "min": 12, "max": 20, "step": 1, "unit": "px", "default": 16 },
+
+    { "type": "range", "id": "image_border_radius", "label": "Main image border radius", "min": 0, "max": 30, "step": 1, "unit": "px", "default": 8 },
+
+    { "type": "range", "id": "subsection_title_size", "label": "Subsection title size", "min": 14, "max": 40, "step": 1, "unit": "px", "default": 24 },
+
+    { "type": "range", "id": "item_border_radius", "label": "Item border radius", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 8 },
+    { "type": "color", "id": "item_background", "label": "Item background", "default": "#f9f9f9" },
+    { "type": "range", "id": "item_title_size", "label": "Item title size", "min": 12, "max": 32, "step": 1, "unit": "px", "default": 18 },
+    { "type": "color", "id": "item_title_color", "label": "Item title color", "default": "#111111" },
+
+    { "type": "range", "id": "bottom_title_size", "label": "Bottom title size", "min": 16, "max": 36, "step": 1, "unit": "px", "default": 22 },
+
+    { "type": "color", "id": "button_background", "label": "Button background", "default": "#ff6b35" },
+    { "type": "color", "id": "button_hover_background", "label": "Button hover background", "default": "#e55a2b" },
+    { "type": "color", "id": "button_text_color", "label": "Button text color", "default": "#ffffff" },
+    { "type": "range", "id": "button_text_size", "label": "Button text size", "min": 12, "max": 24, "step": 1, "unit": "px", "default": 16 },
+    { "type": "range", "id": "button_padding", "label": "Button padding", "min": 8, "max": 30, "step": 1, "unit": "px", "default": 12 },
+    { "type": "range", "id": "button_border_radius", "label": "Button border radius", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 8 }
+  ],
+  "blocks": [
+    {
+      "type": "author_section",
+      "name": "Author Section",
+      "settings": [
+        { "type": "image_picker", "id": "author_image", "label": "Author image" },
+        { "type": "text", "id": "author_name", "label": "Author name", "default": "Dr. Jane Doe" },
+        { "type": "text", "id": "author_role", "label": "Author role", "default": "Clinical Researcher" },
+        { "type": "richtext", "id": "author_bio", "label": "Short bio", "default": "<p>Short author bio...</p>" }
+      ]
+    },
+    {
+      "type": "heading_block",
+      "name": "Heading Block",
+      "settings": [
+        { "type": "text", "id": "main_title", "label": "Title", "default": "How Do Parasites and Candida Get Inside Us?" },
+        { "type": "text", "id": "highlight_text", "label": "Highlight text", "default": "Parasites and Candida" },
+        { "type": "range", "id": "title_size", "label": "Title size (override)", "min": 18, "max": 60, "default": 36 },
+        { "type": "color", "id": "title_color", "label": "Title color (override)", "default": "#000000" },
+        { "type": "color", "id": "highlight_color", "label": "Highlight color (override)", "default": "#ff6b35" }
+      ]
+    },
+    {
+      "type": "subtitle_block",
+      "name": "Subtitle Block",
+      "settings": [
+        { "type": "richtext", "id": "intro_text", "label": "Subtitle / intro text", "default": "<p>Understanding how these harmful organisms enter our bodies is the <strong>first step</strong>.</p>" },
+        { "type": "range", "id": "text_size", "label": "Subtitle size (override)", "min": 12, "max": 24, "default": 16 },
+        { "type": "color", "id": "text_color", "label": "Subtitle color (override)", "default": "#333333" }
+      ]
+    },
+    {
+      "type": "symptom_block",
+      "name": "Symptom Block",
+      "settings": [
+        { "type": "text", "id": "subsection_title", "label": "Symptom title", "default": "How parasites and candida sneak in:" },
+        { "type": "richtext", "id": "symptom_text", "label": "Symptom description", "default": "<ul><li>Contaminated food</li><li>Poor hygiene</li></ul>" },
+        { "type": "range", "id": "subsection_title_size", "label": "Symptom title size (override)", "min": 14, "max": 40, "default": 24 }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        { "type": "image_picker", "id": "main_image", "label": "Main image" },
+        { "type": "range", "id": "image_border_radius", "label": "Image border radius (override)", "min": 0, "max": 30, "default": 8 }
+      ]
+    },
+    {
+      "type": "sneak_item",
+      "name": "Sneak In Item",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Contaminated Food" },
+        { "type": "richtext", "id": "description", "label": "Description", "default": "<p>Unwashed fruits, undercooked meat...</p>" },
+        { "type": "range", "id": "item_title_size", "label": "Item title size (override)", "min": 12, "max": 32, "default": 18 },
+        { "type": "color", "id": "item_title_color", "label": "Item title color (override)", "default": "#111111" },
+        { "type": "range", "id": "description_size", "label": "Description size (override)", "min": 12, "max": 20, "default": 16 },
+        { "type": "range", "id": "item_border_radius", "label": "Item border radius (override)", "min": 0, "max": 30, "default": 8 },
+        { "type": "color", "id": "item_background", "label": "Item background (override)", "default": "#f9f9f9" }
+      ]
+    },
+    {
+      "type": "cta_button",
+      "name": "CTA Button",
+      "settings": [
+        { "type": "text", "id": "cta_text", "label": "CTA text", "default": "TRY RESILIA RISK-FREE" },
+        { "type": "url", "id": "cta_link", "label": "CTA link" },
+        { "type": "color", "id": "button_background", "label": "Button background (override)", "default": "#ff6b35" },
+        { "type": "color", "id": "button_text_color", "label": "Button text color (override)", "default": "#ffffff" },
+        { "type": "range", "id": "button_text_size", "label": "Button text size (override)", "min": 12, "max": 24, "default": 16 },
+        { "type": "range", "id": "button_padding", "label": "Button padding (override)", "min": 8, "max": 30, "default": 12 },
+        { "type": "range", "id": "button_border_radius", "label": "Button border radius (override)", "min": 0, "max": 30, "default": 8 }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Advert 2",
+      "category": "Custom",
+      "blocks": [
+        { "type": "author_section" },
+        { "type": "heading_block" },
+        { "type": "subtitle_block" },
+        { "type": "symptom_block" },
+        { "type": "image" },
+        { "type": "sneak_item" },
+        { "type": "cta_button" }
+      ]
+    }
+  ]
+}
+{% endschema %}
