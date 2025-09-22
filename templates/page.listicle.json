@@ -316,6 +316,7 @@
         "image_yaRkVr",
         "cta_XPCW9X"
       ],
+      "disabled": true,
       "name": "Health campaign (blocks)",
       "settings": {}
     },
@@ -826,12 +827,66 @@
     },
     "ai_parasite_info_JjQbD7": {
       "type": "ai-parasite-info",
-      "disabled": true,
+      "blocks": {
+        "heading_enTN7r": {
+          "type": "heading",
+          "settings": {
+            "main_title": "How Do Parasites and Candida Get Inside Us?",
+            "highlight_text": "Parasites and Candida",
+            "title_size": 36,
+            "title_color": "#000000",
+            "highlight_color": "#ff6b35"
+          }
+        },
+        "intro_KyFDz6": {
+          "type": "intro",
+          "settings": {
+            "intro_text": "<p>You don’t have to eat raw meat or visit a third-world country to get infected. It’s easier than you think</p><p><br/>When most people hear the word <strong>“parasite,”</strong> they think of contaminated food in far-off places.</p><p>But here’s the truth:</p><p><em><strong>Parasites, yeast (like Candida), and harmful microbes are all around us, </strong></em>even in the cleanest environments. And many of us are unknowingly exposed to them every single day.</p>",
+            "text_size": 16,
+            "text_color": "#333333"
+          }
+        },
+        "main_image_69Dn4Q": {
+          "type": "main_image",
+          "settings": {
+            "main_image": "shopify://shop_images/parasites_microbes.webp",
+            "image_border_radius": 2
+          }
+        },
+        "subsection_title_4frJGj": {
+          "type": "subsection_title",
+          "settings": {
+            "subsection_title": "How parasites and candida sneak in:",
+            "subsection_title_size": 24
+          }
+        },
+        "sneak_in_item_xijmrP": {
+          "type": "sneak_in_item",
+          "settings": {
+            "image": "shopify://shop_images/antibiotic_use.avif",
+            "title": "Contaminated Food",
+            "description": "<p>Even in the U.S., tap water, unwashed produce, and undercooked meat can carry parasite eggs or fungi that settle in your digestive tract.</p>",
+            "item_title_size": 18,
+            "item_title_color": "#111111",
+            "description_size": 16,
+            "item_border_radius": 8,
+            "item_background": "#f9f9f9"
+          }
+        }
+      },
+      "block_order": [
+        "heading_enTN7r",
+        "intro_KyFDz6",
+        "main_image_69Dn4Q",
+        "subsection_title_4frJGj",
+        "sneak_in_item_xijmrP"
+      ],
       "name": "Parasite info (blocks)",
       "settings": {
         "main_title": "How Do Parasites and Candida Get Inside Us?",
         "highlight_text": "Parasites and Candida",
         "intro_text": "<p>Understanding how these harmful organisms enter our bodies is the <strong>first step</strong> in protecting ourselves.</p>",
+        "main_image": "shopify://shop_images/parasites_microbes.webp",
         "subsection_title": "How parasites and candida sneak in:",
         "subsection_title_size": 24,
         "bottom_line_title": "Bottom line?",
