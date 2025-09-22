@@ -1,0 +1,43 @@
+{% case block.type %}
+  {% when 'author' %}
+    <div class="adv-author" {{ block.shopify_attributes }}>
+      {% if block.settings.image %}
+        <img src="{{ block.settings.image | image_url: width: 100 }}" alt="{{ block.settings.name | escape }}">
+      {% endif %}
+      <p><strong>{{ block.settings.name }}</strong> - {{ block.settings.publish_date }}</p>
+    </div>
+
+  {% when 'heading' %}
+    {% assign heading_parts = block.settings.text | strip_html | split: block.settings.highlight_text %}
+    <h2 style="font-size:{{ block.settings.font_size }}px; color:{{ block.settings.heading_text_color }};">
+      {{ heading_parts[0] }}<span style="color:{{ block.settings.highlight_color }};">{{ block.settings.highlight_text }}</span>{{ heading_parts[1] }}
+    </h2>
+
+  {% when 'subtitle' %}
+    <p style="font-size:{{ block.settings.font_size }}px; color:{{ block.settings.color }};">
+      {{ block.settings.text }}
+    </p>
+
+  {% when 'symptom' %}
+    <div class="symptom-block">
+      {% if block.settings.symptom_icon %}
+        <img src="{{ block.settings.symptom_icon | image_url: width: 40 }}">
+      {% endif %}
+      <h4>{{ block.settings.symptom_title }}</h4>
+      <div>{{ block.settings.symptom_description }}</div>
+      <small>{{ block.settings.symptom_science_text }}</small>
+    </div>
+
+  {% when 'cta' %}
+    <a href="{{ block.settings.cta_link }}" style="display:inline-block; background:{{ block.settings.bg_color }}; color:{{ block.settings.text_color }}; padding:12px 24px; border-radius:6px;">
+      {{ block.settings.cta_text }}
+    </a>
+
+  {% when 'image' %}
+    {% if block.settings.image %}
+      <img src="{{ block.settings.image | image_url: width: 600 }}" style="border-radius:{{ block.settings.border_radius }}px;" />
+    {% endif %}
+
+  {% when 'sneak' %}
+    <p style="color:{{ block.settings.sneak_color }};">{{ block.settings.sneak_text }}</p>
+{% endcase %}
