@@ -977,6 +977,7 @@
     },
     "ai_parasite_info_mX3tkg": {
       "type": "ai-parasite-info",
+      "disabled": true,
       "name": "AI Parasite Info",
       "settings": {
         "main_title": "How Do Parasites and Candida Get Inside Us?",
