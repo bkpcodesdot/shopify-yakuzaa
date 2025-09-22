@@ -945,6 +945,28 @@
         "section_padding": 30,
         "title": "AI Parasite Info"
       }
+    },
+    "ai_parasite_info_mX3tkg": {
+      "type": "ai-parasite-info",
+      "blocks": {
+        "parasite_block_VJUmyx": {
+          "type": "parasite_block",
+          "settings": {
+            "icon": "shopify://shop_images/antibiotic_use.avif",
+            "heading": "",
+            "description": ""
+          }
+        }
+      },
+      "block_order": [
+        "parasite_block_VJUmyx"
+      ],
+      "name": "AI Parasite Info",
+      "settings": {
+        "section_background": "#f5f5f5",
+        "section_padding": 40,
+        "title": "AI Parasite Info"
+      }
     }
   },
   "order": [
@@ -955,6 +977,7 @@
     "health_campaign_EigqCV",
     "test_section_HTfy9t",
     "ai_symptoms_yaEYMq",
-    "ai_parasite_info_JjQbD7"
+    "ai_parasite_info_JjQbD7",
+    "ai_parasite_info_mX3tkg"
   ]
 }
