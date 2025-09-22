@@ -898,6 +898,14 @@
             "item_border_radius": 8,
             "item_background": "#f9f9f9"
           }
+        },
+        "bottom_line_ptYxjq": {
+          "type": "bottom_line",
+          "settings": {
+            "bottom_line_title": "Bottom line?",
+            "bottom_line_text": "<p>Even if you eat clean, exercise, and take care of yourself, you may still be hosting hidden invaders that are draining your energy, disrupting your digestion, and triggering long-term inflammation.</p>",
+            "bottom_title_size": 22
+          }
         }
       },
       "block_order": [
@@ -907,7 +915,8 @@
         "subsection_title_4frJGj",
         "sneak_in_item_xijmrP",
         "sneak_in_item_WaYYMG",
-        "sneak_in_item_Hxb3pd"
+        "sneak_in_item_Hxb3pd",
+        "bottom_line_ptYxjq"
       ],
       "name": "Parasite info (blocks)",
       "settings": {
