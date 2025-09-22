@@ -712,6 +712,43 @@
             "margin_bottom": 0
           }
         },
+        "header_HtBe6Y": {
+          "type": "header",
+          "settings": {
+            "title_text": "<h2>The Natural, Science-Backed Solution</h2>",
+            "title_highlight_text": "Solution",
+            "use_section_colors": true,
+            "title_size": 32,
+            "title_color": "#000000",
+            "title_highlight_color": "#e26900",
+            "section_subtitle": "",
+            "subtitle_size": 16,
+            "subtitle_color": "#000000",
+            "subtitle_margin_top": 5,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "article_description_fMxJmj": {
+          "type": "article_description",
+          "settings": {
+            "description_text": "Thousands are turning to Resilia™ Oil of Oregano Softgels as it’s a premium, science-backed formula designed to do what most products can’t: penetrate parasite and candida biofilms, eliminate them at the source, and restore balance across your entire gut ecosystem.<br><br>\n\nUnlike other supplements that focus on just one benefit (like probiotics or digestive enzymes), Resilia™ offers broad-spectrum support for your gut, brain, metabolism, skin, and immune system All in a simple 2-capsule daily routine.",
+            "description_font_size": 18,
+            "text_color": "#000000",
+            "text_alignment": "left",
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "article_image_LwyLCn": {
+          "type": "article_image",
+          "settings": {
+            "article_image": "shopify://shop_images/oil_of_oregano_main.webp",
+            "border_radius": 8,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
         "icon_bullet_list_6qT4CP": {
           "type": "icon_bullet_list",
           "settings": {
@@ -722,6 +759,26 @@
             "list_text_color": "#333333",
             "line_height": 1.4,
             "item_spacing": 12,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "article_image_nbUm4r": {
+          "type": "article_image",
+          "settings": {
+            "article_image": "shopify://shop_images/oil_of_oregano_1_desktop.webp",
+            "border_radius": 8,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "article_description_AnRKNC": {
+          "type": "article_description",
+          "settings": {
+            "description_text": "Formulated with two of the most potent natural compounds known to modern herbal science, Resilia™ gives your body the tools it needs to cleanse, reset, and thrive, without harsh chemicals or disruptive side effects.",
+            "description_font_size": 20,
+            "text_color": "#000000",
+            "text_alignment": "left",
             "margin_top": 0,
             "margin_bottom": 0
           }
@@ -814,7 +871,12 @@
         "symptom_WGaa7m",
         "symptom_CbKDat",
         "cta_hgQCUi",
+        "header_HtBe6Y",
+        "article_description_fMxJmj",
+        "article_image_LwyLCn",
         "icon_bullet_list_6qT4CP",
+        "article_image_nbUm4r",
+        "article_description_AnRKNC",
         "timeline_7nanPa",
         "comparison_table_RDiF6b",
         "cta_4atiJ7"
