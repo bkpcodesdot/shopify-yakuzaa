@@ -1,9 +1,11 @@
 {% case block.type %}
 {% when 'heading' %}
-  {% assign highlight_words = block.settings.highlight_words | split: ',' | map: 'strip' %}
-  {% assign heading_text = block.settings.text %}
-
   {% assign color = block.settings.highlight_color | default: section.settings.highlight_color %}
+
+  {% assign highlight_words_raw = block.settings.highlight_words | strip_html %}
+  {% assign highlight_words = highlight_words_raw | split: ',' | map: 'strip' %}
+
+  {% assign heading_text = block.settings.text | strip_html %}
 
   {% capture new_heading_text %}
     {{ heading_text }}
@@ -18,10 +20,11 @@
     {% endif %}
   {% endfor %}
 
-  <h2 class="ai-before-after-article__heading-{{ ai_gen_id }}"
-      style="color: {{ block.settings.heading_text_color }}; font-size: {{ block.settings.font_size }}px;">
+  <h1 class="adv-content__heading weight-normal"
+      style="margin-bottom: var(--heading-margin-heading_QWeRyY); color: {{ block.settings.heading_text_color }}; font-size: {{ block.settings.font_size }}px;">
     {{ new_heading_text }}
-  </h2>
+  </h1>
+
 
 
   {% when 'subtitle' %}
