@@ -825,6 +825,73 @@
         "mobile_highlight_font_size": 14
       }
     },
+    "before_after_article_7qDrek": {
+      "type": "before-after-article",
+      "blocks": {
+        "heading_aYBFrd": {
+          "type": "heading",
+          "settings": {
+            "text": "<p>\"I Thought I Was Just Tired and Bloated… Then I Learned What Was <strong>Really Happening</strong> Inside My Gut\"</p>",
+            "highlight_words": "",
+            "highlight_color": "#e26900",
+            "heading_text_color": "#000000",
+            "font_size": 38
+          }
+        },
+        "subtitle_7Etf7q": {
+          "type": "subtitle",
+          "settings": {
+            "text": "What science says about hidden gut imbalances and how one natural formula is helping thousands reclaim their energy and digestion."
+          }
+        },
+        "author_HRcByG": {
+          "type": "author",
+          "settings": {
+            "image": "shopify://shop_images/author_image.webp",
+            "name": "By Dr. John K. |",
+            "publish_date": "March 15, 2024"
+          }
+        },
+        "image_x9Qdh3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/comparison_desktop.webp"
+          }
+        },
+        "reading_time_mJKKDc": {
+          "type": "reading_time",
+          "settings": {
+            "text": "Estimated 5-7 Minute Read"
+          }
+        }
+      },
+      "block_order": [
+        "heading_aYBFrd",
+        "subtitle_7Etf7q",
+        "author_HRcByG",
+        "image_x9Qdh3",
+        "reading_time_mJKKDc"
+      ],
+      "name": "After-before-blog",
+      "settings": {
+        "background_color": "#ffffff",
+        "text_color": "#000000",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "text_alignment": "left",
+        "show_reading_time": true,
+        "reading_time_text": "Estimated 5-7 Minute Read",
+        "reading_time_bg_color": "#f0f0f0",
+        "reading_time_text_color": "#085e03",
+        "reading_time_border_color": "#085e03",
+        "reading_time_border_width": 1,
+        "button_color": "#e26900",
+        "button_padding_top": 12,
+        "button_padding_bottom": 12,
+        "button_font_size": 16,
+        "highlight_color": "#e26900"
+      }
+    },
     "ai_parasite_info_JjQbD7": {
       "type": "ai-parasite-info",
       "blocks": {
@@ -906,6 +973,18 @@
             "bottom_line_text": "<p>Even if you eat clean, exercise, and take care of yourself, you may still be hosting hidden invaders that are draining your energy, disrupting your digestion, and triggering long-term inflammation.</p>",
             "bottom_title_size": 22
           }
+        },
+        "cta_FakPyH": {
+          "type": "cta",
+          "settings": {
+            "cta_text": "TRY RESILIA RISK-FREE",
+            "cta_link": "",
+            "button_background": "#f58220",
+            "button_text_color": "#ffffff",
+            "button_text_size": 16,
+            "button_padding": 16,
+            "button_border_radius": 8
+          }
         }
       },
       "block_order": [
@@ -916,7 +995,8 @@
         "sneak_in_item_xijmrP",
         "sneak_in_item_WaYYMG",
         "sneak_in_item_Hxb3pd",
-        "bottom_line_ptYxjq"
+        "bottom_line_ptYxjq",
+        "cta_FakPyH"
       ],
       "name": "Parasite info (blocks)",
       "settings": {
@@ -950,73 +1030,6 @@
         "button_border_radius": 8,
         "section_padding": 30
       }
-    },
-    "before_after_article_7qDrek": {
-      "type": "before-after-article",
-      "blocks": {
-        "heading_aYBFrd": {
-          "type": "heading",
-          "settings": {
-            "text": "<p>\"I Thought I Was Just Tired and Bloated… Then I Learned What Was <strong>Really Happening</strong> Inside My Gut\"</p>",
-            "highlight_words": "",
-            "highlight_color": "#e26900",
-            "heading_text_color": "#000000",
-            "font_size": 38
-          }
-        },
-        "subtitle_7Etf7q": {
-          "type": "subtitle",
-          "settings": {
-            "text": "What science says about hidden gut imbalances and how one natural formula is helping thousands reclaim their energy and digestion."
-          }
-        },
-        "author_HRcByG": {
-          "type": "author",
-          "settings": {
-            "image": "shopify://shop_images/author_image.webp",
-            "name": "By Dr. John K. |",
-            "publish_date": "March 15, 2024"
-          }
-        },
-        "image_x9Qdh3": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/comparison_desktop.webp"
-          }
-        },
-        "reading_time_mJKKDc": {
-          "type": "reading_time",
-          "settings": {
-            "text": "Estimated 5-7 Minute Read"
-          }
-        }
-      },
-      "block_order": [
-        "heading_aYBFrd",
-        "subtitle_7Etf7q",
-        "author_HRcByG",
-        "image_x9Qdh3",
-        "reading_time_mJKKDc"
-      ],
-      "name": "After-before-blog",
-      "settings": {
-        "background_color": "#ffffff",
-        "text_color": "#000000",
-        "padding_top": 40,
-        "padding_bottom": 40,
-        "text_alignment": "left",
-        "show_reading_time": true,
-        "reading_time_text": "Estimated 5-7 Minute Read",
-        "reading_time_bg_color": "#f0f0f0",
-        "reading_time_text_color": "#085e03",
-        "reading_time_border_color": "#085e03",
-        "reading_time_border_width": 1,
-        "button_color": "#e26900",
-        "button_padding_top": 12,
-        "button_padding_bottom": 12,
-        "button_font_size": 16,
-        "highlight_color": "#e26900"
-      }
     }
   },
   "order": [
@@ -1026,7 +1039,7 @@
     "advertorial_section_8N3Jyg",
     "health_campaign_EigqCV",
     "test_section_HTfy9t",
-    "ai_parasite_info_JjQbD7",
-    "before_after_article_7qDrek"
+    "before_after_article_7qDrek",
+    "ai_parasite_info_JjQbD7"
   ]
 }
