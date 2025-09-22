@@ -138,16 +138,30 @@
   ],
   "blocks": [
     {
-      "type": "heading",
-      "name": "Heading",
-      "settings": [
-        { "type": "richtext", "id": "text", "label": "Heading Text" },
-        { "type": "inline_richtext", "id": "highlight_words", "label": "Words to Highlight" },
-        { "type": "color", "id": "highlight_color", "label": "Highlight Color"},
-        { "type": "color", "id": "heading_text_color", "label": "Heading Text Color", "default": "#000000" },
-        { "type": "range", "id": "font_size", "label": "Font Size (px)", "min": 12, "max": 72, "step": 1, "unit": "px", "default": 38 }
-      ]
+  "type": "heading",
+  "name": "Heading",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Heading Text",
+      "default": "“I Thought I Was Just Tired and Bloated… Then I Learned What Was Really Happening Inside My Gut”"
     },
+    {
+      "type": "text",
+      "id": "highlight_words",
+      "label": "Words to Highlight (comma-separated)",
+      "default": "Really Happening"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight Color",
+      "default": "#e26900"
+    }
+  ]
+},
+
     {
       "type": "subtitle",
       "name": "Subtitle",
