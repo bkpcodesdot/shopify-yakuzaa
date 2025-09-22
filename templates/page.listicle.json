@@ -860,11 +860,28 @@
             "color": "#333333",
             "font_size": 18
           }
+        },
+        "image_qWhiV8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/oil_of_oregano_main.webp",
+            "border_radius": 8
+          }
+        },
+        "symptom_FRnrdV": {
+          "type": "symptom",
+          "settings": {
+            "symptom_title": "",
+            "symptom_description": "",
+            "symptom_science_text": ""
+          }
         }
       },
       "block_order": [
         "heading_P6zAr7",
-        "subtitle_qqhkDc"
+        "subtitle_qqhkDc",
+        "image_qWhiV8",
+        "symptom_FRnrdV"
       ],
       "name": "Advertorial Multi-block",
       "settings": {}
