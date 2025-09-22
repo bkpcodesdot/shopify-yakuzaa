@@ -877,8 +877,21 @@
           "type": "sneak_in_item",
           "settings": {
             "image": "shopify://shop_images/pets.avif",
-            "title": "Contaminated Food",
-            "description": "<p>Unwashed fruits...</p>",
+            "title": "Pets and Animals",
+            "description": "<p>Dogs and cats (especially those that go outside) often carry parasite eggs in their fur. These can spread to your hands, your food, or your bed.</p>",
+            "item_title_size": 18,
+            "item_title_color": "#111111",
+            "description_size": 16,
+            "item_border_radius": 8,
+            "item_background": "#f9f9f9"
+          }
+        },
+        "sneak_in_item_Hxb3pd": {
+          "type": "sneak_in_item",
+          "settings": {
+            "image": "shopify://shop_images/antibiotic_use.avif",
+            "title": "Antibiotic Use",
+            "description": "<p>Antibiotics wipe out both bad and good bacteria, leaving your gut defenseless and giving yeast like Candida a chance to overgrow.</p>",
             "item_title_size": 18,
             "item_title_color": "#111111",
             "description_size": 16,
@@ -893,7 +906,8 @@
         "main_image_69Dn4Q",
         "subsection_title_4frJGj",
         "sneak_in_item_xijmrP",
-        "sneak_in_item_WaYYMG"
+        "sneak_in_item_WaYYMG",
+        "sneak_in_item_Hxb3pd"
       ],
       "name": "Parasite info (blocks)",
       "settings": {
