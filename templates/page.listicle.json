@@ -966,6 +966,7 @@
         "symptom_LrAxBg",
         "cta_iD6XrW"
       ],
+      "disabled": true,
       "name": "Symptoms list (blocks)",
       "settings": {
         "override_global_colors": false,
