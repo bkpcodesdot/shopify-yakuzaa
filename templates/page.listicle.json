@@ -715,7 +715,7 @@
         "header_HtBe6Y": {
           "type": "header",
           "settings": {
-            "title_text": "<h2>The Natural, Science-Backed Solution</h2>",
+            "title_text": "<h3>The Natural, Science-Backed Solution</h3>",
             "title_highlight_text": "Solution",
             "use_section_colors": true,
             "title_size": 32,
