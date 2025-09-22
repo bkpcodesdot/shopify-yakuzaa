@@ -1028,11 +1028,18 @@
           "settings": {
             "text": "hjdhjkdfhkdf"
           }
+        },
+        "image_wV4H9Y": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/comparison_desktop.webp"
+          }
         }
       },
       "block_order": [
         "heading_y993Kc",
-        "subtitle_UJwmhK"
+        "subtitle_UJwmhK",
+        "image_wV4H9Y"
       ],
       "name": "After-before-blog",
       "settings": {
