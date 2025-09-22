@@ -94,7 +94,6 @@
   border-radius: 5px;
   font-size: 18px;
   gap: 5px;
-  border:1px solid #085E03;
   border: {{ section.settings.reading_time_border_width }}px solid {{ section.settings.reading_time_border_color }};
   justify-content: center;
 }
@@ -108,58 +107,71 @@
 
 <div class="ai-before-after-article-{{ ai_gen_id }}">
   <div class="ai-before-after-article__container-{{ ai_gen_id }}">
-    
+
     {% for block in section.blocks %}
+      {% case block.type %}
 
-      {% if block.type == 'heading' %}
-       <h1 class="ai-before-after-article__heading-{{ ai_gen_id }}" style="font-size: {{ block.settings.heading_font_size }};">
-  {{ block.settings.heading_text }}
-</h1>
-      {% endif %}
+        {% when 'heading' %}
+          <h1 class="ai-before-after-article__heading-{{ ai_gen_id }}" style="font-size: {{ block.settings.font_size }}px;">
+            {{ block.settings.text }}
+          </h1>
 
-      {% if block.type == 'description' %}
-        <div class="ai-before-after-article__description-{{ ai_gen_id }}">{{ block.settings.description_text }}</div>
-      {% endif %}
-
-      {% if block.type == 'author' %}
-        <div class="ai-before-after-article__author-{{ ai_gen_id }}">
-          <div class="ai-before-after-article__author-image-{{ ai_gen_id }}">
-            {% if block.settings.author_image %}
-              <img src="{{ block.settings.author_image | image_url: width: 100 }}" alt="{{ block.settings.author_name | escape }}" loading="lazy">
-            {% else %}
-              {{ 'image' | placeholder_svg_tag }}
-            {% endif %}
-          </div>
-          <div class="author-name">
-            {% if block.settings.author_name != blank %}
-              <div class="ai-before-after-article__author-name-{{ ai_gen_id }}">{{ block.settings.author_name }}|</div>
-            {% endif %}
-            {% if block.settings.publish_date != blank %}
-              <div class="ai-before-after-article__publish-date-{{ ai_gen_id }}">{{ block.settings.publish_date }}</div>
-            {% endif %}
-          </div>
-        </div>
-      {% endif %}
-
-      {% if block.type == 'article_image' %}
-        <div class="ai-before-after-article__image-container-{{ ai_gen_id }}">
-          {% if block.settings.image %}
-            <img src="{{ block.settings.image | image_url: width: 800 }}" alt="Article Image" loading="lazy">
-          {% else %}
-            {{ 'image' | placeholder_svg_tag }}
+        {% when 'subtitle' %}
+          {% if block.settings.text != blank %}
+            <div class="ai-before-after-article__description-{{ ai_gen_id }}">
+              {{ block.settings.text }}
+            </div>
           {% endif %}
-        </div>
-      {% endif %}
 
-      {% if block.type == 'reading_time' and block.settings.show_reading_time %}
-        <div class="ai-before-after-article__reading-time-{{ ai_gen_id }}">
-          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="10" fill="none" viewBox="0 0 11 10">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.25 0.56c-.22.13-.31.38-.21.56.05.09 5.15 4.69 5.25 4.74.05.02.15.04.21.04.07 0 .16-.02.21-.04.1-.05 5.21-4.65 5.26-4.74.1-.18 0-.43-.22-.56-.12-.07-.34-.08-.45-.03L5.5 4.82 0.7 0.53c-.12-.05-.33-.04-.45.03Zm0 3.6c-.22.13-.31.38-.21.56.05.09 5.15 4.68 5.25 4.73.05.02.15.04.21.04.07 0 .16-.02.21-.04.1-.05 5.21-4.64 5.26-4.73.1-.18 0-.43-.22-.56-.12-.07-.34-.08-.45-.03L5.5 8.42 0.7 4.13c-.12-.05-.33-.04-.45.03Z" fill="{{ block.settings.reading_time_text_color }}"/>
-          </svg>
-          <span>{{ block.settings.reading_time_text }}</span>
-        </div>
-      {% endif %}
+        {% when 'symptom' %}
+          {% if block.settings.text != blank %}
+            <div class="ai-before-after-article__description-{{ ai_gen_id }}">
+              {{ block.settings.text }}
+            </div>
+          {% endif %}
 
+        {% when 'cta_button' %}
+          {% if block.settings.text != blank and block.settings.url != blank %}
+            <a href="{{ block.settings.url }}" class="cta-button" style="padding: 12px 20px; background: #e26900; color: #fff; border-radius: 5px; text-decoration: none;">
+              {{ block.settings.text }}
+            </a>
+          {% endif %}
+
+        {% when 'image' %}
+          {% if block.settings.image %}
+            <div class="ai-before-after-article__image-container-{{ ai_gen_id }}">
+              <img src="{{ block.settings.image | image_url: width: 800 }}" alt="Article Image" loading="lazy" />
+            </div>
+          {% endif %}
+
+        {% when 'sneak_in' %}
+          {% if block.settings.text != blank %}
+            <div class="sneak-in-item" style="margin-top: 16px; font-style: italic; color: {{ section.settings.text_color }};">
+              {{ block.settings.text }}
+            </div>
+          {% endif %}
+
+        {% when 'author' %}
+          <div class="ai-before-after-article__author-{{ ai_gen_id }}">
+            <div class="ai-before-after-article__author-image-{{ ai_gen_id }}">
+              {% if block.settings.image %}
+                <img src="{{ block.settings.image | image_url: width: 100 }}" alt="{{ block.settings.name | escape }}" loading="lazy" />
+              {% endif %}
+            </div>
+            <div class="author-name">
+              <div class="ai-before-after-article__author-name-{{ ai_gen_id }}">{{ block.settings.name }}</div>
+              <div class="ai-before-after-article__publish-date-{{ ai_gen_id }}" style="margin-left: 10px;">{{ block.settings.publish_date }}</div>
+            </div>
+          </div>
+
+        {% when 'reading_time' %}
+          {% if section.settings.show_reading_time %}
+            <div class="ai-before-after-article__reading-time-{{ ai_gen_id }}">
+              {{ block.settings.text }}
+            </div>
+          {% endif %}
+
+      {% endcase %}
     {% endfor %}
 
   </div>
@@ -167,57 +179,85 @@
 
 {% schema %}
 {
-  "name": "Before Article Section",
+  "name": "After-before-blog",
   "settings": [
     { "type": "color", "id": "background_color", "label": "Background color", "default": "#ffffff" },
     { "type": "color", "id": "text_color", "label": "Text color", "default": "#000000" },
     { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 40 },
     { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 40 },
-    { "type": "select", "id": "text_alignment", "label": "Text alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "center" }
+    { "type": "select", "id": "text_alignment", "label": "Text alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "center" },
+    { "type": "checkbox", "id": "show_reading_time", "label": "Show Reading Time", "default": true },
+    { "type": "text", "id": "reading_time_text", "label": "Reading Time Text", "default": "Estimated 5-7 Minute Read" },
+    { "type": "color", "id": "reading_time_bg_color", "label": "Reading Time Background Color", "default": "#f0f0f0" },
+    { "type": "color", "id": "reading_time_text_color", "label": "Reading Time Text Color", "default": "#085e03" },
+    { "type": "color", "id": "reading_time_border_color", "label": "Reading Time Border Color", "default": "#085e03" },
+    { "type": "range", "id": "reading_time_border_width", "label": "Reading Time Border Width", "min": 0, "max": 4, "step": 1, "unit": "px", "default": 1 }
   ],
   "blocks": [
-  {
-  "type": "heading",
-  "name": "Heading",
-  "settings": [
-    { 
-      "type": "richtext", 
-      "id": "heading_text", 
-      "label": "Heading Text" 
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        { "type": "richtext", "id": "text", "label": "Heading Text" },
+        { "type": "range", "id": "font_size", "label": "Font Size (px)", "min": 12, "max": 72, "step": 1, "unit": "px", "default": 38 }
+      ]
     },
     {
-      "type": "range",
-      "id": "heading_font_size",
-      "label": "Font Size (px)",
-      "min": 12,
-      "max": 72,
-      "step": 1,
-      "unit": "px",
-      "default": 34
-    }
-  ]
-},
-    { "type": "description", "name": "Description", "settings": [ { "type": "textarea", "id": "description_text", "label": "Description Text" } ] },
-    { "type": "author", "name": "Author", "settings": [ 
-        { "type": "image_picker", "id": "author_image", "label": "Author Image" },
-        { "type": "text", "id": "author_name", "label": "Author Name" },
+      "type": "subtitle",
+      "name": "Subtitle",
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "Subtitle Text" }
+      ]
+    },
+    {
+      "type": "symptom",
+      "name": "Symptom",
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "Symptom Text" }
+      ]
+    },
+    {
+      "type": "cta_button",
+      "name": "CTA Button",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Button Text" },
+        { "type": "url", "id": "url", "label": "Button URL" }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Article Image",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" }
+      ]
+    },
+    {
+      "type": "sneak_in",
+      "name": "Sneak In Text",
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "Sneak In Text" }
+      ]
+    },
+    {
+      "type": "author",
+      "name": "Author",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Author Image" },
+        { "type": "text", "id": "name", "label": "Author Name" },
         { "type": "text", "id": "publish_date", "label": "Publish Date" }
       ]
     },
-    { "type": "article_image", "name": "Article Image", "settings": [ { "type": "image_picker", "id": "image", "label": "Article Image" } ] },
-    { "type": "reading_time", "name": "Reading Time", "settings": [ 
-        { "type": "checkbox", "id": "show_reading_time", "label": "Show Reading Time", "default": true },
-        { "type": "text", "id": "reading_time_text", "label": "Reading Time Text", "default": "Estimated 5-7 Minute Read" },
-        { "type": "color", "id": "reading_time_bg_color", "label": "Background Color", "default": "#f0f0f0" },
-        { "type": "color", "id": "reading_time_text_color", "label": "Text Color", "default": "#085e03" },
-        { "type": "color", "id": "reading_time_border_color", "label": "Border Color", "default": "#085e03" },
-        { "type": "range", "id": "reading_time_border_width", "label": "Border Width", "min": 0, "max": 4, "step": 1, "unit": "px", "default": 1 }
+    {
+      "type": "reading_time",
+      "name": "Reading Time",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Reading Time Text", "default": "Estimated 5-7 Minute Read" }
       ]
     }
   ],
-  "presets": [ 
-    { "name": "Before Article Section" } 
+  "max_blocks": 10,
+  "presets": [
+    { "name": "After-before-blog" }
   ]
 }
 {% endschema %}
-
