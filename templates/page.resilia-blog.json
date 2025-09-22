@@ -619,6 +619,7 @@
         "ai_gen_block_e7b2981_nU84Kd",
         "ai_gen_block_fc3854b_qfRciB"
       ],
+      "disabled": true,
       "name": "t:names.custom_section",
       "settings": {
         "content_direction": "column",
@@ -653,12 +654,23 @@
       "blocks": {
         "article_image_WRyCVP": {
           "type": "article_image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/comparison_desktop.webp"
+          }
+        },
+        "heading_9rjaKF": {
+          "type": "heading",
+          "settings": {
+            "heading_text": "",
+            "heading_font_size": 34
+          }
         }
       },
       "block_order": [
-        "article_image_WRyCVP"
+        "article_image_WRyCVP",
+        "heading_9rjaKF"
       ],
+      "disabled": true,
       "name": "Before Article Section",
       "settings": {
         "background_color": "#ffffff",
@@ -670,6 +682,7 @@
     },
     "health_awareness_section_iPAWDy": {
       "type": "Health-awareness-section",
+      "disabled": true,
       "name": "Health awareness campaign",
       "settings": {
         "heading_part1": "<p>The Hidden <strong>Epidemic </strong>No One Talks About</p>",
@@ -705,6 +718,7 @@
     },
     "symptoms_list_section_FTtLjq": {
       "type": "symptoms-list-section",
+      "disabled": true,
       "name": "Symptoms list",
       "settings": {
         "title_before": "Symptoms That Could Be a Sign of",
@@ -823,6 +837,7 @@
         "sneak_in_item_KC74JC",
         "sneak_in_item_mfhiQx"
       ],
+      "disabled": true,
       "name": "Parasite info section",
       "settings": {
         "main_title": "How Do Parasites and Candida Get Inside Us?",
@@ -857,6 +872,7 @@
     },
     "ide_section_test_4rfFkU": {
       "type": "ide-section-test",
+      "disabled": true,
       "name": "IDE section test",
       "settings": {
         "heading": "<p>I Thought I Was Just Tired and Bloated… Then I Learned What Was<strong> Really Happening</strong> Inside My Gut</p>",
@@ -880,6 +896,7 @@
     },
     "affected_section_jNRXxq": {
       "type": "affected-section",
+      "disabled": true,
       "name": "Advertorial section",
       "settings": {
         "show_heading": true,
@@ -916,6 +933,7 @@
     },
     "treat_section_UPyHXq": {
       "type": "treat-section",
+      "disabled": true,
       "name": "Treatment warning",
       "settings": {
         "heading": "<p>What Happens If You <strong>Don't Treat It?</strong></p>",
@@ -1003,6 +1021,7 @@
         "feature_WEmehp",
         "feature_Jb4VyD"
       ],
+      "disabled": true,
       "name": "Product showcase",
       "settings": {
         "heading_text": "The Natural, Science-Backed",
@@ -1076,6 +1095,7 @@
         "step_MHRVQT",
         "step_9ya6xR"
       ],
+      "disabled": true,
       "name": "Animated Timeline",
       "settings": {
         "heading": "<p>Your Resilia <strong>Reset </strong>Timeline</p>",
@@ -1141,6 +1161,7 @@
         "testimonial_wWkgNw",
         "testimonial_9Yw4za"
       ],
+      "disabled": true,
       "name": "Customer Testimonials",
       "settings": {
         "title": "<p>What Customers Are <strong>Saying</strong> After Trying Resilia</p>",
@@ -1190,9 +1211,40 @@
         "subtitle_cDWRwV",
         "hero_image_tARine"
       ],
+      "disabled": true,
       "name": "Advertorial section blocks",
       "settings": {
-        "content_bg_color": "#FFFFFF"
+        "content_bg_color": "#ffffff"
+      }
+    },
+    "ai_before_after_article_FCDtgW": {
+      "type": "ai-before-after-article",
+      "blocks": {
+        "heading_geJhT4": {
+          "type": "heading",
+          "settings": {
+            "heading_text": "<p><strong>\"I Thought I Was Just Tired and Bloated… Then I Learned What WasReally HappeningInside My Gut\"</strong></p>",
+            "heading_font_size": 34
+          }
+        },
+        "description_EEDpKr": {
+          "type": "description",
+          "settings": {
+            "description_text": "What science says about hidden gut imbalances and how one natural formula is helping thousands reclaim their energy and digestion."
+          }
+        }
+      },
+      "block_order": [
+        "heading_geJhT4",
+        "description_EEDpKr"
+      ],
+      "name": "Before Article Section",
+      "settings": {
+        "background_color": "#ffffff",
+        "text_color": "#000000",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "text_alignment": "center"
       }
     }
   },
@@ -1209,6 +1261,7 @@
     "product_showcase_caDFrM",
     "timeline_section_hy7Kqq",
     "ai_testimonial_section_gimyNb",
-    "advertorial_section_fQWMUp"
+    "advertorial_section_fQWMUp",
+    "ai_before_after_article_FCDtgW"
   ]
 }
