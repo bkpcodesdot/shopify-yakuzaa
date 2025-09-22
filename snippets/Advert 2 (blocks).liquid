@@ -3,7 +3,25 @@
 
 {% case block.type %}
 
-  {% when 'heading' %}
+  {% when 'author_section' %}
+    <div class="ai-parasite-author" style="--author-name-size: 16px;">
+      {% if block.settings.author_image %}
+        <img src="{{ block.settings.author_image | image_url: width: 120 }}" alt="{{ block.settings.author_name }}" />
+      {% endif %}
+      <div>
+        {% if block.settings.author_name != blank %}
+          <div class="ai-parasite-author-name">{{ block.settings.author_name }}</div>
+        {% endif %}
+        {% if block.settings.author_role != blank %}
+          <div class="ai-parasite-author-role">{{ block.settings.author_role }}</div>
+        {% endif %}
+        {% if block.settings.author_bio != blank %}
+          <div class="ai-parasite-author-bio">{{ block.settings.author_bio }}</div>
+        {% endif %}
+      </div>
+    </div>
+
+  {% when 'heading_block' %}
     <div class="ai-parasite-heading-wrapper-{{ ai_gen_id }}"
          style="--title-size: {{ block.settings.title_size | default: section.settings.title_size }}px;
                 --title-color: {{ block.settings.title_color | default: section.settings.title_color }};
@@ -11,7 +29,7 @@
       {% if block.settings.main_title != blank %}
         <h2 class="ai-parasite-info-title" style="font-size:var(--title-size); color:var(--title-color);">
           {% assign parts = block.settings.main_title | split: block.settings.highlight_text %}
-          {% if parts.size > 1 %}
+          {% if parts.size > 1 and block.settings.highlight_text != blank %}
             {{ parts[0] }}<span class="ai-parasite-info-highlight" style="color:var(--highlight-color)">{{ block.settings.highlight_text }}</span>{{ parts[1] }}
           {% else %}
             {{ block.settings.main_title }}
@@ -20,7 +38,7 @@
       {% endif %}
     </div>
 
-  {% when 'intro' %}
+  {% when 'subtitle_block' %}
     <div class="ai-parasite-info-intro-wrapper-{{ ai_gen_id }}"
          style="--intro-size: {{ block.settings.text_size | default: section.settings.text_size }}px;
                 --intro-color: {{ block.settings.text_color | default: section.settings.text_color }};">
@@ -31,23 +49,28 @@
       {% endif %}
     </div>
 
-  {% when 'main_image' %}
+  {% when 'symptom_block' %}
+    {% if block.settings.subsection_title != blank %}
+      <h3 class="ai-parasite-info-subsection-title"
+          style="font-size: {{ block.settings.subsection_title_size | default: section.settings.subsection_title_size }}px;
+                 color: {{ section.settings.title_color }};">
+        {{ block.settings.subsection_title }}
+      </h3>
+    {% endif %}
+    {% if block.settings.symptom_text != blank %}
+      <div class="ai-parasite-info-symptom-text" style="margin-bottom:18px;">
+        {{ block.settings.symptom_text }}
+      </div>
+    {% endif %}
+
+  {% when 'image' %}
     {% if block.settings.main_image %}
       <div class="ai-parasite-info-main-image" style="border-radius: {{ block.settings.image_border_radius | default: section.settings.image_border_radius }}px; overflow:hidden;">
         <img src="{{ block.settings.main_image | image_url: width: 1200 }}" alt="Main Image" loading="lazy" style="width:100%; display:block; height:auto; object-fit:cover;">
       </div>
     {% endif %}
 
-  {% when 'subsection_title' %}
-    {% if block.settings.subsection_title != blank %}
-      <h3 class="ai-parasite-info-subsection-title"
-          style="font-size: {{ block.settings.subsection_title_size | default: section.settings.subsection_title_size }}px;
-                 color: {{ block.settings.subsection_title_color | default: section.settings.title_color }};">
-        {{ block.settings.subsection_title }}
-      </h3>
-    {% endif %}
-
-  {% when 'sneak_in_item' %}
+  {% when 'sneak_item' %}
     <div class="ai-parasite-info-item"
          style="--item-title-size: {{ block.settings.item_title_size | default: section.settings.item_title_size }}px;
                 --item-title-color: {{ block.settings.item_title_color | default: section.settings.item_title_color }};
@@ -71,21 +94,9 @@
       </div>
     </div>
 
-  {% when 'bottom_line' %}
-    <div class="ai-parasite-bottom-wrapper-{{ ai_gen_id }}"
-         style="--bottom-title-size: {{ block.settings.bottom_title_size | default: section.settings.bottom_title_size }}px;
-                --bottom-text-size: {{ block.settings.bottom_text_size | default: section.settings.text_size }}px;">
-      {% if block.settings.bottom_line_title != blank %}
-        <h3 class="ai-parasite-info-bottom-title" style="font-size:var(--bottom-title-size)">{{ block.settings.bottom_line_title }}</h3>
-      {% endif %}
-      {% if block.settings.bottom_line_text != blank %}
-        <div class="ai-parasite-info-bottom-text" style="font-size:var(--bottom-text-size)">{{ block.settings.bottom_line_text }}</div>
-      {% endif %}
-    </div>
-
-  {% when 'cta' %}
+  {% when 'cta_button' %}
     {% if block.settings.cta_text != blank %}
-      <div class="ai-parasite-cta-wrap-{{ ai_gen_id }}">
+      <div class="ai-parasite-cta-wrap-{{ ai_gen_id }}" style="margin-top:12px;">
         <a href="{{ block.settings.cta_link }}" class="ai-parasite-info-cta"
            style="background-color: {{ block.settings.button_background | default: section.settings.button_background }};
                   color: {{ block.settings.button_text_color | default: section.settings.button_text_color }};
