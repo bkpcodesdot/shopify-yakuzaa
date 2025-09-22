@@ -1084,6 +1084,7 @@
         "bottom_line_CrdAcU",
         "cta_g83DPy"
       ],
+      "disabled": true,
       "name": "Parasite info (blocks)",
       "settings": {
         "main_title": "How Do Parasites and Candida Get Inside Us?",
