@@ -114,7 +114,7 @@
 <section class="ai-symptoms-section-{{ ai_gen_id }}" {{ section.shopify_attributes }}>
   <div class="ai-symptoms-list-{{ ai_gen_id }}">
     {% for block in section.blocks %}
-      {% render 'ai-symptoms-blocks', block: block, section: section, index: forloop.index %}
+      {% render 'ai-symptoms-block', block: block, section: section, index: forloop.index %}
     {% endfor %}
   </div>
 </section>
@@ -179,13 +179,13 @@
       "type": "header",
       "name": "Header",
       "settings": [
-        { "type": "richtext", "id": "title_text", "label": "Title Text" },
+        { "type": "richtext", "id": "title_text", "label": "Title Text", "default": "<p>Symptoms That Could Be a Sign of Imbalance</p>" },
         { "type": "text", "id": "title_highlight_text", "label": "Highlight Text", "info": "Text to highlight within the title" },
         { "type": "checkbox", "id": "use_section_colors", "label": "Use Section Colors", "default": true, "info": "Use section-level colors instead of custom colors" },
         { "type": "range", "id": "title_size", "label": "Title size (px)", "min": 18, "max": 48, "step": 1, "default": 38 },
         { "type": "color", "id": "title_color", "label": "Title color", "default": "#111111" },
         { "type": "color", "id": "title_highlight_color", "label": "Title highlight color", "default": "#e26900" },
-        { "type": "text", "id": "section_subtitle", "label": "Subtitle"},
+        { "type": "text", "id": "section_subtitle", "label": "Subtitle", "default": "And why you shouldn't ignore them." },
         { "type": "range", "id": "subtitle_size", "label": "Subtitle size (px)", "min": 12, "max": 22, "step": 1, "default": 16 },
         { "type": "color", "id": "subtitle_color", "label": "Subtitle color", "default": "#666666" },
         { "type": "range", "id": "subtitle_margin_top", "label": "Subtitle Top Margin (px)", "min": 0, "max": 30, "step": 1, "unit": "px", "default": 5 },
@@ -433,7 +433,8 @@
           "type": "header",
           "settings": {
             "title_text": "<p>Symptoms That Could Be a Sign of Imbalance</p>",
-            "title_highlight_text": "Imbalance"
+            "title_highlight_text": "Imbalance",
+            "section_subtitle": "And why you shouldn't ignore them."
           }
         },
         {
