@@ -1179,6 +1179,7 @@
           "type": "icon_bullet_list",
           "settings": {
             "list_content": "<ul><li>Eliminate parasites and candida naturally</li><li>Reduce inflammation and bloating</li><li>Restore gut balance and immune strength</li><li>Improve energy, focus, and mental clarity</li><li>Stop sugar cravings at the root</li></ul>",
+            "bullet_icon": "shopify://shop_images/leaves_green.png",
             "icon_size": 20,
             "list_font_size": 16,
             "list_text_color": "#333333",
@@ -1218,6 +1219,7 @@
         "comparison_table_RDiF6b": {
           "type": "comparison_table",
           "settings": {
+            "product_image": "shopify://shop_images/concept_2_5.jpg",
             "table_font": "inter_n4",
             "table_font_size": 14,
             "table_text_color": "#000000",
