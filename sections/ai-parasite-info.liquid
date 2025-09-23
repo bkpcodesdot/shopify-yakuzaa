@@ -158,15 +158,15 @@
       <div class="ai-parasite-subsection-title" style="--subsection-title-size: {{ block.settings.subsection_title_size }}px;">
         {{ block.settings.subsection_title }}
       </div>
-      <div class="snek-details">
+      <div class="">
       {% when 'sneak_in_image' %}
         {% if block.settings.image != blank %}
           <div class="ai-parasite-item"><img src="{{ block.settings.image | img_url: 'master' }}" alt=""></div>
         {% endif %}
-  </div>
+
       {% when 'sneak_in_title' %}
         <div class="ai-parasite-item-title">{{ block.settings.title }}</div>
-    
+      </div>
       {% when 'sneak_in_description' %}
         <div class="ai-parasite-item-description">{{ block.settings.description }}</div>
     
