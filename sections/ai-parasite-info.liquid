@@ -158,24 +158,23 @@
         {{ block.settings.subsection_title }}
       </div>
       <div class="cstm_sneak_items_wrapper">
-        <div class="ai-parasite-wrapper">
   {% for block in section.blocks %}
     {% if block.type == 'sneak_in_item' %}
-      <div class="ai-parasite-item-wrapper">
+      <div class="cstm_sneak_item">
         {% if block.settings.image != blank %}
-          <div class="ai-parasite-item-image">
+          <div class="cstm_sneak_item_image">
             <img src="{{ block.settings.image | img_url: 'master' }}" alt="">
           </div>
         {% endif %}
 
         {% if block.settings.title != blank %}
-          <div class="ai-parasite-item-title">
+          <div class="cstm_sneak_item_title">
             {{ block.settings.title }}
           </div>
         {% endif %}
 
         {% if block.settings.description != blank %}
-          <div class="ai-parasite-item-description">
+          <div class="cstm_sneak_item_description">
             {{ block.settings.description }}
           </div>
         {% endif %}
@@ -184,8 +183,6 @@
   {% endfor %}
 </div>
 
-
-      </div>
     {% comment %} {% when 'sneak_in_image' %}
       {% if block.settings.image != blank %}
         <div class="ai-parasite-item"><img src="{{ block.settings.image | img_url: 'master' }}" alt=""></div>
