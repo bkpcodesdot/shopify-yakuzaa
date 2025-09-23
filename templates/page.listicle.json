@@ -686,7 +686,7 @@
             "timeline_title_size": 20,
             "timeline_title_color": "#1f2937",
             "timeline_text_size": 16,
-            "timeline_text_color": "#6b7280",
+            "timeline_text_color": "#000000",
             "timeline_background_color": "#f9fafb",
             "timeline_border_radius": 7,
             "margin_top": 0,
