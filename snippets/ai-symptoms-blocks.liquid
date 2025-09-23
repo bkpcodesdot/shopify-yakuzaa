@@ -511,7 +511,7 @@
               <div class="ai-timeline__item-{{ ai_gen_id }}">
                 <div class="ai-timeline__circle-{{ ai_gen_id }}">
                   {% if block.settings[icon_setting] %}
-                    <img src="{{ block.settings[icon_setting] | image_url }}" 
+                    <img src="{{ block.settings.timeline_icon_1 | image_url }}" 
                          alt="Timeline Icon" 
                          width="{{ block.settings.timeline_icon_size | default: 30 }}"
                          height="{{ block.settings.timeline_icon_size | default: 30 }}">
