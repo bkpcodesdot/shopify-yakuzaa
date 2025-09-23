@@ -158,16 +158,30 @@
         {{ block.settings.subsection_title }}
       </div>
       <div class="cstm_sneak_items_wrapper">
-        {% when 'sneak_in_image' %}
-          {% if block.settings.image != blank %}
-            <div class="ai-parasite-item"><img src="{{ block.settings.image | img_url: 'master' }}" alt=""></div>
-          {% endif %}
+        <div class="ai-parasite-wrapper">
+  {% for block in section.blocks %}
+    {% case block.type %}
+          {% when 'sneak_in_image' %}
+            {% if block.settings.image != blank %}
+              <div class="ai-parasite-item">
+                <img src="{{ block.settings.image | img_url: 'master' }}" alt="">
+              </div>
+            {% endif %}
 
-        {% when 'sneak_in_title' %}
-        <div class="ai-parasite-item-title">{{ block.settings.title }}</div>
+          {% when 'sneak_in_title' %}
+            <div class="ai-parasite-item-title">
+              {{ block.settings.title }}
+            </div>
 
-        {% when 'sneak_in_description' %}
-      <div class="ai-parasite-item-description">{{ block.settings.description }}</div>
+          {% when 'sneak_in_description' %}
+            <div class="ai-parasite-item-description">
+              {{ block.settings.description }}
+            </div>
+
+        {% endcase %}
+      {% endfor %}
+    </div>
+
 
       </div>
     {% comment %} {% when 'sneak_in_image' %}
