@@ -709,6 +709,23 @@
             "margin_bottom": 0
           }
         },
+        "header_MRimF4": {
+          "type": "header",
+          "settings": {
+            "title_text": "<p>How Resilia Stands Apart from the Rest<br/>         </p>",
+            "title_highlight_text": "Stands Apart",
+            "use_section_colors": true,
+            "title_size": 38,
+            "title_color": "#111111",
+            "title_highlight_color": "#e26900",
+            "section_subtitle": "Not all oregano oil supplements are created equal. Most gut health or parasite cleanse supplements promise results, but cut corners where it matters most. Low-quality ingredients, diluted formulas, and missing key compounds mean you may never get the full benefit.",
+            "subtitle_size": 16,
+            "subtitle_color": "#000000",
+            "subtitle_margin_top": 5,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
         "comparison_table_RDiF6b": {
           "type": "comparison_table",
           "settings": {
@@ -779,6 +796,7 @@
         "header_eHXwt4",
         "timeline_7nanPa",
         "cta_EiQiVV",
+        "header_MRimF4",
         "comparison_table_RDiF6b",
         "cta_4atiJ7"
       ],
