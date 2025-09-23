@@ -521,21 +521,10 @@
                   {% endif %}
                 </div>
                 
-                {% if title_content != blank %}
-                  <div class="timline-inner">
-                 <div class="timeline-image">
-  {% if block.settings.timeline_item_1_icon %}
-  <img src="{{ block.settings.timeline_item_1_icon | img_url: '100x' }}" alt="{{ block.settings.timeline_item_1_title }}">
-{% endif %}
-{% if block.settings.timeline_item_2_icon %}
-  <img src="{{ block.settings.timeline_item_2_icon | img_url: '100x' }}" alt="{{ block.settings.timeline_item_1_title }}">
-{% endif %}
-{% if block.settings.timeline_item_3_icon %}
-  <img src="{{ block.settings.timeline_item_3_icon | img_url: '100x' }}" alt="{{ block.settings.timeline_item_1_title }}">
-{% endif %}
-{% if block.settings.timeline_item_4_icon %}
-  <img src="{{ block.settings.timeline_item__icon | img_url: '100x' }}" alt="{{ block.settings.timeline_item_1_title }}">
-{% endif %}
+            {% if icon_content %}
+          <div class="timeline-image">
+            <img src="{{ icon_content | img_url: '100x' }}" alt="{{ title_content }}">
+          </div>
 
 
                   <div class="timline-details">
