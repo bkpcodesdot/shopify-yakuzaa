@@ -524,32 +524,10 @@
                 {% if title_content != blank %}
                   <div class="timline-inner">
                  <div class="timeline-image">
- <div class="timeline-wrapper">
-  {% for block in section.blocks %}
-    {% if block.type == 'timeline_item' %}
-      <div class="timeline-item">
-        {% if block.settings.timeline_icon != blank %}
-          <div class="timeline-item-icon">
-            <img src="{{ block.settings.timeline_icon | image_url }}" alt="Timeline Icon">
-          </div>
-        {% endif %}
-
-        {% if block.settings.title != blank %}
-          <div class="timeline-item-title">
-            {{ block.settings.title }}
-          </div>
-        {% endif %}
-
-        {% if block.settings.description != blank %}
-          <div class="timeline-item-description">
-            {{ block.settings.description }}
-          </div>
-        {% endif %}
-      </div>
-    {% endif %}
-  {% endfor %}
+  {% if block.settings.timeline_icon != blank %}
+    <img src="{{ block.settings.timeline_icon | image_url }}" alt="Timeline Icon">
+  {% endif %}
 </div>
-
                   <div class="timline-details">
                     <h3 class="ai-timeline__title-{{ ai_gen_id }}">{{ title_content }}</h3>
                  </div>
