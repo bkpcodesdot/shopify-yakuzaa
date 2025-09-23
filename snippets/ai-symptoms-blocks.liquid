@@ -496,51 +496,53 @@
           }
         </style>
         
-        <div class="ai-timeline__content-{{ ai_gen_id }}">
-          {% assign timeline_items = 'timeline_item_1,timeline_item_2,timeline_item_3,timeline_item_4' | split: ',' %}
-          
-          {% for item_prefix in timeline_items %}
-            {% assign title_setting = item_prefix | append: '_title' %}
-            {% assign text_setting = item_prefix | append: '_text' %}
-            {% assign title_content = block.settings[title_setting] %}
-            {% assign text_content = block.settings[text_setting] %}
-            {% assign icon_setting = icon_array[forloop.index0] %}
-            
-            {% if title_content != blank or text_content != blank %}
-              <div class="ai-timeline__item-{{ ai_gen_id }}">
-                <div class="ai-timeline__circle-{{ ai_gen_id }}">
-                  {% if block.settings[icon_setting] %}
-                    <img src="{{ block.settings.timeline_icon_1 | image_url }}" 
-                         alt="Timeline Icon" 
-                         width="{{ block.settings.timeline_icon_size | default: 30 }}"
-                         height="{{ block.settings.timeline_icon_size | default: 30 }}">
-                  {% else %}
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z"/>
-                    </svg>
-                  {% endif %}
-                </div>
-                
-                {% if title_content != blank %}
-                  <div class="timline-inner">
-                 <div class="timeline-image">
-  {% if block.settings.timeline_icon != blank %}
-    <img src="{{ block.settings.timeline_icon | image_url }}" alt="Timeline Icon">
-  {% endif %}
-</div>
-                  <div class="timline-details">
-                    <h3 class="ai-timeline__title-{{ ai_gen_id }}">{{ title_content }}</h3>
-                 </div>
-                </div>
-                {% endif %}
-                
-                {% if text_content != blank %}
-                  <p class="ai-timeline__text-{{ ai_gen_id }}">{{ text_content }}</p>
-                {% endif %}
-              </div>
+       <div class="ai-timeline__content-{{ ai_gen_id }}">
+  {% assign timeline_items = 'timeline_item_1,timeline_item_2,timeline_item_3,timeline_item_4' | split: ',' %}
+  {% assign icon_items = 'timeline_icon_1,timeline_icon_2,timeline_icon_3,timeline_icon_4' | split: ',' %}
+
+  {% for item_prefix in timeline_items %}
+    {% assign title_setting = item_prefix | append: '_title' %}
+    {% assign text_setting = item_prefix | append: '_text' %}
+    {% assign title_content = block.settings[title_setting] %}
+    {% assign text_content = block.settings[text_setting] %}
+
+    {% assign icon_setting = icon_items[forloop.index0] %}
+    {% assign icon_value = block.settings[icon_setting] %}
+
+    {% if title_content != blank or text_content != blank %}
+      <div class="ai-timeline__item-{{ ai_gen_id }}">
+        
+        <div class="timline-inner">
+          <div class="timeline-image">
+            {% if icon_value != blank %}
+              <img 
+                src="{{ icon_value | image_url }}" 
+                alt="Timeline Icon {{ forloop.index }}" 
+                width="{{ block.settings.timeline_icon_size | default: 30 }}"
+                height="{{ block.settings.timeline_icon_size | default: 30 }}">
+            {% else %}
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" />
+              </svg>
             {% endif %}
-          {% endfor %}
+          </div>
+
+          <div class="timline-details">
+            {% if title_content != blank %}
+              <h3 class="ai-timeline__title-{{ ai_gen_id }}">{{ title_content }}</h3>
+            {% endif %}
+
+            {% if text_content != blank %}
+              <p class="ai-timeline__text-{{ ai_gen_id }}">{{ text_content }}</p>
+            {% endif %}
+          </div>
         </div>
+        
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
       </div>
     </div>
 
