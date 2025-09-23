@@ -856,6 +856,14 @@
             "description": "<p>Even in the U.S., tap water, unwashed produce, and undercooked meat can carry parasite eggs or fungi that settle in your digestive tract.</p>"
           }
         },
+        "sneak_in_item_Fg6XBQ": {
+          "type": "sneak_in_item",
+          "settings": {
+            "image": "shopify://shop_images/travels.jpg",
+            "title": "Travel (Even Once)",
+            "description": "<p>Visiting another country, especially tropical or subtropical regions, can expose you to microbes your body isn’t used to.</p>"
+          }
+        },
         "subsection_title_4frJGj": {
           "type": "subsection_title",
           "settings": {
@@ -891,6 +899,7 @@
         "sneak_in_item_f8dEhN",
         "sneak_in_item_3E7gHn",
         "sneak_in_item_AdmAdB",
+        "sneak_in_item_Fg6XBQ",
         "subsection_title_4frJGj",
         "bottom_line_ptYxjq",
         "cta_FakPyH"
