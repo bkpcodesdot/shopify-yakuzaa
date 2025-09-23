@@ -522,51 +522,26 @@
                 </div>
                 
                 {% if title_content != blank %}
-           <div class="timeline-inner">
-  {% assign items = '1,2,3,4' | split: ',' %}
-
-  {% for i in items %}
-    {% assign title_content = block.settings['timeline_item_' | append: i | append: '_title'] %}
-    {% assign text_content  = block.settings['timeline_item_' | append: i | append: '_text'] %}
-    {% assign icon_content  = block.settings['timeline_item_' | append: i | append: '_icon'] %}
-
-    {% if title_content != blank or text_content != blank or icon_content != blank %}
-      <div class="ai-timeline__item-{{ ai_gen_id }}">
-        
-        <!-- Circle/Icon -->
-        <div class="ai-timeline__circle-{{ ai_gen_id }}">
-          {% if icon_content %}
-            <img src="{{ icon_content | img_url: '100x' }}" alt="{{ title_content }}">
-          {% else %}
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z"/>
-            </svg>
-          {% endif %}
-        </div>
-
-        <!-- Content -->
-        <div class="timeline-inner">
-          {% if icon_content %}
-            <div class="timeline-image">
-              <img src="{{ icon_content | img_url: '100x' }}" alt="{{ title_content }}">
-            </div>
-          {% endif %}
-
-          <div class="timeline-details">
-            {% if title_content %}
-              <h3 class="ai-timeline__title-{{ ai_gen_id }}">{{ title_content }}</h3>
-            {% endif %}
-            {% if text_content %}
-              <p class="ai-timeline__text-{{ ai_gen_id }}">{{ text_content }}</p>
-            {% endif %}
-          </div>
-        </div>
-
-      </div>
-    {% endif %}
-  {% endfor %}
+                  <div class="timline-inner">
+                 <div class="timeline-image">
+  {% if block.settings.timeline_item_1_icon %}
+  <img src="{{ block.settings.timeline_item_1_icon | img_url: '100x' }}" alt="{{ block.settings.timeline_item_1_title }}">
+{% endif %}
+{% if block.settings.timeline_item_2_icon %}
+  <img src="{{ block.settings.timeline_item_2_icon | img_url: '100x' }}" alt="{{ block.settings.timeline_item_1_title }}">
+{% endif %}
+{% if block.settings.timeline_item_3_icon %}
+  <img src="{{ block.settings.timeline_item_3_icon | img_url: '100x' }}" alt="{{ block.settings.timeline_item_1_title }}">
+{% endif %}
+{% if section.settings.timeline_item_4_icon %}
+  <img src="{{ section.settings.timeline_item__icon | img_url: '100x' }}" alt="{{ section.settings.timeline_item_1_title }}">
+{% endif %}
 </div>
 
+                  <div class="timline-details">
+                    <h3 class="ai-timeline__title-{{ ai_gen_id }}">{{ title_content }}</h3>
+                 </div>
+                </div>
                 {% endif %}
                 
                 {% if text_content != blank %}
