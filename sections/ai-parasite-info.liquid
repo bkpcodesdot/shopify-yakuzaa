@@ -185,7 +185,7 @@
       </div>
       <div class="">
   {% when 'sneak_in_item' %}
-  <div class="ai-parasite-item" style="display: flex; gap: 16px; align-items: flex-start; margin-bottom: 24px;">
+  <div class="ai-parasite-item" style="display: grid; gap: 16px; align-items: flex-start; grid-template-columns: 128px auto;margin-bottom: 24px;">
     {% if block.settings.image != blank %}
       <div style="flex: 0 0 100px;">
         <img src="{{ block.settings.image | img_url: '150x150' }}" alt="{{ block.settings.title }}" style="width: 100px; height: auto; max-width:128px; object-fit: cover;">
