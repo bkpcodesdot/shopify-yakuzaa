@@ -393,32 +393,16 @@
   {% assign clean_item = block.settings.bullet_text | strip %}
   {% if clean_item != blank %}
     <li>
-     <ul style="list-style: none; padding: 0; margin: 0;">
-  {% for block in section.blocks %}
-    <li style="display: flex; align-items: center; margin-bottom: {{ section.settings.item_spacing }}px; line-height: {{ section.settings.line_height }};">
-      
       {% if block.settings.bullet_icon %}
         <img 
           src="{{ block.settings.bullet_icon | image_url }}" 
           alt="Bullet Icon" 
           class="bullet-icon" 
-          width="{{ section.settings.icon_size | default: 20 }}" 
-          height="{{ section.settings.icon_size | default: 20 }}" 
-          style="margin-right: 8px;">
+          width="{{ block.settings.icon_size | default: 20 }}" 
+          height="{{ block.settings.icon_size | default: 20 }}">
       {% else %}
-        <span class="bullet-icon" 
-              style="font-size: {{ section.settings.icon_size | default: 20 }}px; color: {{ section.settings.list_text_color | default: '#333333' }}; margin-right: 8px;">
-          •
-        </span>
+        <span class="bullet-icon" style="font-size: {{ block.settings.icon_size | default: 20 }}px; color: {{ block.settings.list_text_color | default: '#333333' }};">•</span>
       {% endif %}
-
-      <span style="font-size: {{ section.settings.list_font_size }}px; color: {{ section.settings.list_text_color }};">
-        {{ block.settings.bullet_text }}
-      </span>
-    </li>
-  {% endfor %}
-</ul>
-
       <span class="bullet-text">{{ clean_item }}</span>
     </li>
   {% endif %}
