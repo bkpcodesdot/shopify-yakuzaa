@@ -30,6 +30,30 @@
   line-height:1.6;
   text-align:left;
 }
+.ai-parasite-item-wrapper {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+.ai-parasite-item-image img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.ai-parasite-item-text {
+  flex: 1;
+}
+.ai-parasite-item-title {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+.ai-parasite-item-description {
+  font-size: 16px;
+  line-height: 1.5;
+}
 
 /* Main Image */
 .ai-parasite-main-image {
@@ -159,10 +183,19 @@
         {{ block.settings.subsection_title }}
       </div>
       <div class="">
-      {% when 'sneak_in_image' %}
-        {% if block.settings.image != blank %}
-          <div class="ai-parasite-item"><img src="{{ block.settings.image | img_url: 'master' }}" alt=""></div>
-        {% endif %}
+      {% when 'sneak_in_item' %}
+  <div class="ai-parasite-item-wrapper">
+    {% if block.settings.image %}
+      <div class="ai-parasite-item-image">
+        <img src="{{ block.settings.image | img_url: '300x' }}" alt="{{ block.settings.title }}">
+      </div>
+    {% endif %}
+    <div class="ai-parasite-item-text">
+      <div class="ai-parasite-item-title">{{ block.settings.title }}</div>
+      <div class="ai-parasite-item-description">{{ block.settings.description }}</div>
+    </div>
+  </div>
+
 
       {% when 'sneak_in_title' %}
         <div class="ai-parasite-item-title">{{ block.settings.title }}</div>
