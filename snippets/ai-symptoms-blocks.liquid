@@ -498,7 +498,6 @@
         
         <div class="ai-timeline__content-{{ ai_gen_id }}">
           {% assign timeline_items = 'timeline_item_1,timeline_item_2,timeline_item_3,timeline_item_4' | split: ',' %}
-          {% assign icon_array = 'timeline_icon_1,timeline_icon_2,timeline_icon_3,timeline_icon_4' | split: ',' %}
           
           {% for item_prefix in timeline_items %}
             {% assign title_setting = item_prefix | append: '_title' %}
