@@ -411,185 +411,145 @@
       </div>
     </div>
 
-  {% when 'timeline' %}
-    <div class="ai-timeline-{{ ai_gen_id }}"
-         style="margin: {{ block.settings.margin_top | default: 0 }}px auto {{ block.settings.margin_bottom | default: 0 }}px;
-                width: 100%;" {{ block.shopify_attributes }}>
-      <div class="ai-timeline__container-{{ ai_gen_id }}"
-           style="max-width: 728px;
-                  margin: 0 auto;
-                  position: relative;">
-        
-        <style>
-          .ai-timeline__content-{{ ai_gen_id }} {
-            position: relative;
-            padding-left: 35px;
-          }
-          
-          .ai-timeline__content-{{ ai_gen_id }}::before {
-            content: '';
-            position: absolute;
-            left: {{ block.settings.timeline_line_width | default: 2 | divided_by: 2 | minus: 1 }}px;
-            top: {{ block.settings.timeline_dot_size | default: 30 | plus: 10 }}px;
-            bottom: 79px;
-            width: {{ block.settings.timeline_line_width | default: 2 }}px;
-            background: {{ block.settings.timeline_line_color | default: '#22c55e' }};
-          }
-          
-          .ai-timeline__item-{{ ai_gen_id }} {
-            position: relative;
-            margin-bottom: {{ block.settings.timeline_spacing | default: 40 }}px;
-            background: {{ block.settings.timeline_background_color | default: '#f9fafb' }};
-            border-radius: {{ block.settings.timeline_border_radius | default: 8 }}px;
-            padding: 20px;
-            border: 1px solid #e5e7eb;
-          }
-          
-          .ai-timeline__item-{{ ai_gen_id }}:last-child {
-            margin-bottom: 0;
-          }
-          
-          .ai-timeline__item-{{ ai_gen_id }}:last-child::after {
-            display: none;
-          }
-          
-          .ai-timeline__circle-{{ ai_gen_id }} {
-            position: absolute;
-            left: -46px;
-            top: 10px;
-            width: {{ block.settings.timeline_dot_size | default: 30 }}px;
-            height: {{ block.settings.timeline_dot_size | default: 30 }}px;
-            border-radius: 50%;
-            background: {{ block.settings.timeline_dot_color | default: '#22c55e' }};
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-          }
-          
-          .ai-timeline__circle-{{ ai_gen_id }} svg {
-            width: 16px;
-            height: 16px;
+ {% when 'timeline' %}
+<div class="ai-timeline-{{ ai_gen_id }}"
+     style="margin: {{ block.settings.margin_top | default: 0 }}px auto {{ block.settings.margin_bottom | default: 0 }}px;
+            width: 100%;" {{ block.shopify_attributes }}>
   
-          }
-          
-          .ai-timeline__circle-{{ ai_gen_id }} img {
-            width: 70%;
-            height: 70%;
-            object-fit: contain;
-          }
-          
-          .ai-timeline__title-{{ ai_gen_id }} {
-            font-size: {{ block.settings.timeline_title_size | default: 20 }}px !important;
-            color: {{ block.settings.timeline_title_color | default: '#1f2937' }} !important;
-            font-weight: 700 !important;
-            margin: 0 0 8px 0 !important;
-            padding: 0 !important;
-          }
-          
-          .ai-timeline__text-{{ ai_gen_id }} {
-            font-size: {{ block.settings.timeline_text_size | default: 16 }}px !important;
-            color: {{ block.settings.timeline_text_color | default: '#6b7280' }} !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            line-height: 1.5 !important;
-          }
-        </style>
+  <div class="ai-timeline__container-{{ ai_gen_id }}"
+       style="max-width: 728px;
+              margin: 0 auto;
+              position: relative;">
+    
+    <style>
+      .ai-timeline__content-{{ ai_gen_id }} {
+        position: relative;
+        padding-left: 50px;
+      }
+
+      .ai-timeline__content-{{ ai_gen_id }}::before {
+        content: '';
+        position: absolute;
+        left: {{ block.settings.timeline_line_width | default: 2 | divided_by: 2 | minus: 1 }}px;
+        top: {{ block.settings.timeline_dot_size | default: 30 | plus: 10 }}px;
+        bottom: 20px;
+        width: {{ block.settings.timeline_line_width | default: 2 }}px;
+        background: {{ block.settings.timeline_line_color | default: '#22c55e' }};
+      }
+
+      .ai-timeline__item-{{ ai_gen_id }} {
+        position: relative;
+        margin-bottom: {{ block.settings.timeline_spacing | default: 40 }}px;
+        background: {{ block.settings.timeline_background_color | default: '#f9fafb' }};
+        border-radius: {{ block.settings.timeline_border_radius | default: 8 }}px;
+        padding: 20px 20px 20px 70px;
+        border: 1px solid #e5e7eb;
+      }
+
+      .ai-timeline__item-{{ ai_gen_id }}:last-child {
+        margin-bottom: 0;
+      }
+
+      .ai-timeline__circle-{{ ai_gen_id }} {
+        position: absolute;
+        left: -46px;
+        top: 20px;
+        width: {{ block.settings.timeline_dot_size | default: 30 }}px;
+        height: {{ block.settings.timeline_dot_size | default: 30 }}px;
+        border-radius: 50%;
+        background: {{ block.settings.timeline_dot_color | default: '#22c55e' }};
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+      }
+
+      .ai-timeline__circle-{{ ai_gen_id }} svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .ai-timeline__circle-{{ ai_gen_id }} img {
+        width: 70%;
+        height: 70%;
+        object-fit: contain;
+      }
+
+      .ai-timeline__title-{{ ai_gen_id }} {
+        font-size: {{ block.settings.timeline_title_size | default: 20 }}px !important;
+        color: {{ block.settings.timeline_title_color | default: '#1f2937' }} !important;
+        font-weight: 700 !important;
+        margin: 0 0 8px 0 !important;
+        padding: 0 !important;
+      }
+
+      .ai-timeline__text-{{ ai_gen_id }} {
+        font-size: {{ block.settings.timeline_text_size | default: 16 }}px !important;
+        color: {{ block.settings.timeline_text_color | default: '#6b7280' }} !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1.5 !important;
+      }
+
+      .timeline-inner {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .timeline-image img {
+        display: block;
+      }
+    </style>
+
+    <div class="ai-timeline__content-{{ ai_gen_id }}">
+      
+      {% assign items = '1,2,3,4' | split: ',' %}
+      {% for i in items %}
+        {% assign title_content = section.settings['timeline_item_' | append: i | append: '_title'] %}
+        {% assign text_content = section.settings['timeline_item_' | append: i | append: '_text'] %}
+        {% assign icon_content = section.settings['timeline_item_' | append: i | append: '_icon'] %}
         
-        <div class="ai-timeline__content-{{ ai_gen_id }}">
+        {% if title_content != blank or text_content != blank or icon_content != blank %}
+          <div class="ai-timeline__item-{{ ai_gen_id }}">
+            
+            <!-- Circle / Icon -->
+            <div class="ai-timeline__circle-{{ ai_gen_id }}">
+              {% if icon_content %}
+                <img src="{{ icon_content | img_url: '100x' }}" alt="{{ title_content }}">
+              {% else %}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z"/>
+                </svg>
+              {% endif %}
+            </div>
 
-  <!-- Timeline Item 1 -->
-  {% if section.settings.timeline_item_1_title or section.settings.timeline_item_1_text or section.settings.timeline_item_1_icon %}
-    <div class="ai-timeline__item-{{ ai_gen_id }}">
-      <div class="timeline-inner">
-        {% if section.settings.timeline_item_1_icon %}
-          <div class="timeline-image">
-            <img src="{{ section.settings.timeline_item_1_icon | img_url: '100x' }}" 
-                 alt="{{ section.settings.timeline_item_1_title }}">
+            <!-- Content -->
+            <div class="timeline-inner">
+              {% if icon_content %}
+                <div class="timeline-image">
+                  <img src="{{ icon_content | img_url: '100x' }}" alt="{{ title_content }}">
+                </div>
+              {% endif %}
+              <div class="timeline-details">
+                {% if title_content %}
+                  <h3 class="ai-timeline__title-{{ ai_gen_id }}">{{ title_content }}</h3>
+                {% endif %}
+                {% if text_content %}
+                  <p class="ai-timeline__text-{{ ai_gen_id }}">{{ text_content }}</p>
+                {% endif %}
+              </div>
+            </div>
+
           </div>
         {% endif %}
-        <div class="timeline-details">
-          {% if section.settings.timeline_item_1_title %}
-            <h3 class="ai-timeline__title-{{ ai_gen_id }}">{{ section.settings.timeline_item_1_title }}</h3>
-          {% endif %}
-          {% if section.settings.timeline_item_1_text %}
-            <p class="ai-timeline__text-{{ ai_gen_id }}">{{ section.settings.timeline_item_1_text }}</p>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  {% endif %}
+      {% endfor %}
 
-  <!-- Timeline Item 2 -->
-  {% if section.settings.timeline_item_2_title or section.settings.timeline_item_2_text or section.settings.timeline_item_2_icon %}
-    <div class="ai-timeline__item-{{ ai_gen_id }}">
-      <div class="timeline-inner">
-        {% if section.settings.timeline_item_2_icon %}
-          <div class="timeline-image">
-            <img src="{{ section.settings.timeline_item_2_icon | img_url: '100x' }}" 
-                 alt="{{ section.settings.timeline_item_2_title }}">
-          </div>
-        {% endif %}
-        <div class="timeline-details">
-          {% if section.settings.timeline_item_2_title %}
-            <h3 class="ai-timeline__title-{{ ai_gen_id }}">{{ section.settings.timeline_item_2_title }}</h3>
-          {% endif %}
-          {% if section.settings.timeline_item_2_text %}
-            <p class="ai-timeline__text-{{ ai_gen_id }}">{{ section.settings.timeline_item_2_text }}</p>
-          {% endif %}
-        </div>
-      </div>
     </div>
-  {% endif %}
 
-  <!-- Timeline Item 3 -->
-  {% if section.settings.timeline_item_3_title or section.settings.timeline_item_3_text or section.settings.timeline_item_3_icon %}
-    <div class="ai-timeline__item-{{ ai_gen_id }}">
-      <div class="timeline-inner">
-        {% if section.settings.timeline_item_3_icon %}
-          <div class="timeline-image">
-            <img src="{{ section.settings.timeline_item_3_icon | img_url: '100x' }}" 
-                 alt="{{ section.settings.timeline_item_3_title }}">
-          </div>
-        {% endif %}
-        <div class="timeline-details">
-          {% if section.settings.timeline_item_3_title %}
-            <h3 class="ai-timeline__title-{{ ai_gen_id }}">{{ section.settings.timeline_item_3_title }}</h3>
-          {% endif %}
-          {% if section.settings.timeline_item_3_text %}
-            <p class="ai-timeline__text-{{ ai_gen_id }}">{{ section.settings.timeline_item_3_text }}</p>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  {% endif %}
-
-  <!-- Timeline Item 4 -->
-  {% if section.settings.timeline_item_4_title or section.settings.timeline_item_4_text or section.settings.timeline_item_4_icon %}
-    <div class="ai-timeline__item-{{ ai_gen_id }}">
-      <div class="timeline-inner">
-        {% if section.settings.timeline_item_4_icon %}
-          <div class="timeline-image">
-            <img src="{{ section.settings.timeline_item_4_icon | img_url: '100x' }}" 
-                 alt="{{ section.settings.timeline_item_4_title }}">
-          </div>
-        {% endif %}
-        <div class="timeline-details">
-          {% if section.settings.timeline_item_4_title %}
-            <h3 class="ai-timeline__title-{{ ai_gen_id }}">{{ section.settings.timeline_item_4_title }}</h3>
-          {% endif %}
-          {% if section.settings.timeline_item_4_text %}
-            <p class="ai-timeline__text-{{ ai_gen_id }}">{{ section.settings.timeline_item_4_text }}</p>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  {% endif %}
-
+  </div>
 </div>
 
-      </div>
-    </div>
 
   {% when 'comparison_table' %}
     {% render 'comparison-table', block: block, section: section %}
