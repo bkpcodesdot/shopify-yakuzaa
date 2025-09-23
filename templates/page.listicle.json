@@ -815,6 +815,12 @@
             "image": "shopify://shop_images/contaminated_food.webp"
           }
         },
+        "sneak_in_description_wFrqDa": {
+          "type": "sneak_in_description",
+          "settings": {
+            "description": "<p>Even in the U.S., tap water, unwashed produce, and undercooked meat can carry parasite eggs or fungi that settle in your digestive tract.</p>"
+          }
+        },
         "subsection_title_4frJGj": {
           "type": "subsection_title",
           "settings": {
@@ -848,6 +854,7 @@
         "intro_KyFDz6",
         "main_image_69Dn4Q",
         "sneak_in_image_HxmwiT",
+        "sneak_in_description_wFrqDa",
         "subsection_title_4frJGj",
         "bottom_line_ptYxjq",
         "cta_FakPyH"
