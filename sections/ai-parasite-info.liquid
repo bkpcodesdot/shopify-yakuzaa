@@ -158,6 +158,8 @@
       <div class="ai-parasite-subsection-title" style="--subsection-title-size: {{ block.settings.subsection_title_size }}px;">
         {{ block.settings.subsection_title }}
       </div>
+
+      <div class="snek-image">
       {% when 'sneak_in_image' %}
         {% if block.settings.image != blank %}
           <div class="ai-parasite-item"><img src="{{ block.settings.image | img_url: 'master' }}" alt=""></div>
@@ -168,11 +170,12 @@
 
       {% when 'sneak_in_description' %}
         <div class="ai-parasite-item-description">{{ block.settings.description }}</div>
-    
+     </div>
     {% when 'bottom_line' %}
       <div class="ai-parasite-bottom-title" style="--bottom-title-size: {{ block.settings.bottom_title_size }}px;">
         {{ block.settings.bottom_line_title }}
       </div>
+   
       <div class="ai-parasite-bottom-text">{{ block.settings.bottom_line_text }}</div>
 
     {% when 'cta' %}
