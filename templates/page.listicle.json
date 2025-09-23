@@ -832,6 +832,13 @@
             "image_border_radius": 2
           }
         },
+        "subsection_title_4frJGj": {
+          "type": "subsection_title",
+          "settings": {
+            "subsection_title": "How parasites and candida sneak in:",
+            "subsection_title_size": 24
+          }
+        },
         "sneak_in_item_f8dEhN": {
           "type": "sneak_in_item",
           "settings": {
@@ -880,13 +887,6 @@
             "description": "<p>Sugar feeds yeast and parasites, allowing them to thrive, reproduce, and disrupt your body from within.</p>"
           }
         },
-        "subsection_title_4frJGj": {
-          "type": "subsection_title",
-          "settings": {
-            "subsection_title": "How parasites and candida sneak in:",
-            "subsection_title_size": 24
-          }
-        },
         "bottom_line_ptYxjq": {
           "type": "bottom_line",
           "settings": {
@@ -912,13 +912,13 @@
         "heading_enTN7r",
         "intro_KyFDz6",
         "main_image_69Dn4Q",
+        "subsection_title_4frJGj",
         "sneak_in_item_f8dEhN",
         "sneak_in_item_3E7gHn",
         "sneak_in_item_AdmAdB",
         "sneak_in_item_Fg6XBQ",
         "sneak_in_item_9GKitV",
         "sneak_in_item_grUkJg",
-        "subsection_title_4frJGj",
         "bottom_line_ptYxjq",
         "cta_FakPyH"
       ],
