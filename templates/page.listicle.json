@@ -848,6 +848,14 @@
             "description": "<p>Dogs and cats (especially those that go outside) often carry parasite eggs in their fur. These can spread to your hands, your food, or your bed.</p>"
           }
         },
+        "sneak_in_item_AdmAdB": {
+          "type": "sneak_in_item",
+          "settings": {
+            "image": "shopify://shop_images/contaminated_food.webp",
+            "title": "Contaminated Food",
+            "description": "<p>Even in the U.S., tap water, unwashed produce, and undercooked meat can carry parasite eggs or fungi that settle in your digestive tract.</p>"
+          }
+        },
         "subsection_title_4frJGj": {
           "type": "subsection_title",
           "settings": {
@@ -882,6 +890,7 @@
         "main_image_69Dn4Q",
         "sneak_in_item_f8dEhN",
         "sneak_in_item_3E7gHn",
+        "sneak_in_item_AdmAdB",
         "subsection_title_4frJGj",
         "bottom_line_ptYxjq",
         "cta_FakPyH"
