@@ -864,6 +864,22 @@
             "description": "<p>Visiting another country, especially tropical or subtropical regions, can expose you to microbes your body isn’t used to.</p>"
           }
         },
+        "sneak_in_item_9GKitV": {
+          "type": "sneak_in_item",
+          "settings": {
+            "image": "shopify://shop_images/public.webp",
+            "title": "Public Spaces",
+            "description": "<p>Gyms, public bathrooms, restaurants, and even handshakes can transfer microscopic organisms to your body.<br/><br/></p>"
+          }
+        },
+        "sneak_in_item_grUkJg": {
+          "type": "sneak_in_item",
+          "settings": {
+            "image": "shopify://shop_images/high-sugar.jpg",
+            "title": "High-Sugar or Processed Diets",
+            "description": "<p>Sugar feeds yeast and parasites, allowing them to thrive, reproduce, and disrupt your body from within.</p>"
+          }
+        },
         "subsection_title_4frJGj": {
           "type": "subsection_title",
           "settings": {
@@ -900,6 +916,8 @@
         "sneak_in_item_3E7gHn",
         "sneak_in_item_AdmAdB",
         "sneak_in_item_Fg6XBQ",
+        "sneak_in_item_9GKitV",
+        "sneak_in_item_grUkJg",
         "subsection_title_4frJGj",
         "bottom_line_ptYxjq",
         "cta_FakPyH"
