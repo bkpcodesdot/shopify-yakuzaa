@@ -522,7 +522,12 @@
                 </div>
                 
                 {% if title_content != blank %}
-                 <img src="{{ block.settings.timeline_icon_1 | image_url }}"  <h3 class="ai-timeline__title-{{ ai_gen_id }}">{{ title_content }}</h3>
+                  <div class="timline-image">
+                 <img src="{{ block.settings.timeline_icon_1 | image_url }}">
+                  </div>
+                  <div class="timline-details">
+                    <h3 class="ai-timeline__title-{{ ai_gen_id }}">{{ title_content }}</h3>
+                 </div>
                 {% endif %}
                 
                 {% if text_content != blank %}
