@@ -157,33 +157,8 @@
       <div class="ai-parasite-subsection-title" style="--subsection-title-size: {{ block.settings.subsection_title_size }}px;">
         {{ block.settings.subsection_title }}
       </div>
-      <div class="cstm_sneak_items_wrapper">
-  {% for block in section.blocks %}
-    {% if block.type == 'sneak_in_item' %}
-      <div class="cstm_sneak_item">
-        {% if block.settings.image != blank %}
-          <div class="cstm_sneak_item_image">
-            <img src="{{ block.settings.image | img_url: 'master' }}" alt="">
-          </div>
-        {% endif %}
 
-        {% if block.settings.title != blank %}
-          <div class="cstm_sneak_item_title">
-            {{ block.settings.title }}
-          </div>
-        {% endif %}
-
-        {% if block.settings.description != blank %}
-          <div class="cstm_sneak_item_description">
-            {{ block.settings.description }}
-          </div>
-        {% endif %}
-      </div>
-    {% endif %}
-  {% endfor %}
-</div>
-
-    {% comment %} {% when 'sneak_in_image' %}
+    {% when 'sneak_in_image' %}
       {% if block.settings.image != blank %}
         <div class="ai-parasite-item"><img src="{{ block.settings.image | img_url: 'master' }}" alt=""></div>
       {% endif %}
@@ -192,7 +167,7 @@
       <div class="ai-parasite-item-title">{{ block.settings.title }}</div>
 
     {% when 'sneak_in_description' %}
-      <div class="ai-parasite-item-description">{{ block.settings.description }}</div> {% endcomment %}
+      <div class="ai-parasite-item-description">{{ block.settings.description }}</div>
 
     {% when 'bottom_line' %}
       <div class="ai-parasite-bottom-title" style="--bottom-title-size: {{ block.settings.bottom_title_size }}px;">
