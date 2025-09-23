@@ -504,12 +504,12 @@
             {% assign text_setting = item_prefix | append: '_text' %}
             {% assign title_content = block.settings[title_setting] %}
             {% assign text_content = block.settings[text_setting] %}
-            {% assign icon_setting = icon_array[forloop.index0] %}
+            {% assign timeline_icon = icon_array[forloop.index0] %}
             
             {% if title_content != blank or text_content != blank %}
               <div class="ai-timeline__item-{{ ai_gen_id }}">
                 <div class="ai-timeline__circle-{{ ai_gen_id }}">
-                  {% if block.settings[icon_setting] %}
+                  {% if block.settings[timeline_icon] %}
                     <img src="{{ block.settings.timeline_icon_1 | image_url }}" 
                          alt="Timeline Icon" 
                          width="{{ block.settings.timeline_icon_size | default: 30 }}"
