@@ -163,10 +163,10 @@
         {% if block.settings.image != blank %}
           <div class="ai-parasite-item"><img src="{{ block.settings.image | img_url: 'master' }}" alt=""></div>
         {% endif %}
-
+  </div>
       {% when 'sneak_in_title' %}
         <div class="ai-parasite-item-title">{{ block.settings.title }}</div>
-      </div>
+    
       {% when 'sneak_in_description' %}
         <div class="ai-parasite-item-description">{{ block.settings.description }}</div>
     
