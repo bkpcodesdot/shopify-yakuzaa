@@ -644,6 +644,23 @@
             "margin_bottom": 0
           }
         },
+        "header_eHXwt4": {
+          "type": "header",
+          "settings": {
+            "title_text": "<p>Your Resilia Reset  Timeline</p>",
+            "title_highlight_text": "Reset",
+            "use_section_colors": true,
+            "title_size": 38,
+            "title_color": "#000000",
+            "title_highlight_color": "#e26900",
+            "section_subtitle": "While some people notice results within days, Resilia is designed to support a full-body reset that works from the inside out. Here's what you can typically expect when taken consistently:",
+            "subtitle_size": 16,
+            "subtitle_color": "#000000",
+            "subtitle_margin_top": 5,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
         "timeline_7nanPa": {
           "type": "timeline",
           "settings": {
@@ -655,6 +672,10 @@
             "timeline_item_3_text": "Full gut reset in progress: mood, sleep, and focus all improve.",
             "timeline_item_4_title": "Month 3: Lasting Balance",
             "timeline_item_4_text": "Long-term balance, fewer flare-ups, immune strength restored.",
+            "timeline_icon_1": "shopify://shop_images/head_green.svg",
+            "timeline_icon_2": "shopify://shop_images/green_shield.svg",
+            "timeline_icon_3": "shopify://shop_images/green_hand.svg",
+            "timeline_icon_4": "shopify://shop_images/green_digestive.svg",
             "timeline_icon_size": 24,
             "timeline_dot_color": "#22c55e",
             "timeline_line_color": "#22c55e",
@@ -738,6 +759,7 @@
         "icon_bullet_list_6qT4CP",
         "article_image_nbUm4r",
         "article_description_AnRKNC",
+        "header_eHXwt4",
         "timeline_7nanPa",
         "comparison_table_RDiF6b",
         "cta_4atiJ7"
