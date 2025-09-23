@@ -385,90 +385,6 @@
         "highlight_color": "#e26900"
       }
     },
-    "ai_parasite_info_JjQbD7": {
-      "type": "ai-parasite-info",
-      "blocks": {
-        "heading_enTN7r": {
-          "type": "heading",
-          "settings": {
-            "main_title": "How Do Parasites and Candida Get Inside Us?",
-            "highlight_text": "Parasites and Candida",
-            "title_size": 36,
-            "title_color": "#000000",
-            "highlight_color": "#ff6b35"
-          }
-        },
-        "intro_KyFDz6": {
-          "type": "intro",
-          "settings": {
-            "intro_text": "<p>You don’t have to eat raw meat or visit a third-world country to get infected. It’s easier than you think</p><p><br/>When most people hear the word <strong>“parasite,”</strong> they think of contaminated food in far-off places.</p><p>But here’s the truth:</p><p><em><strong>Parasites, yeast (like Candida), and harmful microbes are all around us, </strong></em>even in the cleanest environments. And many of us are unknowingly exposed to them every single day.</p>",
-            "text_size": 16,
-            "text_color": "#333333"
-          }
-        },
-        "main_image_69Dn4Q": {
-          "type": "main_image",
-          "settings": {
-            "main_image": "shopify://shop_images/parasites_microbes.webp",
-            "image_border_radius": 2
-          }
-        },
-        "subsection_title_4frJGj": {
-          "type": "subsection_title",
-          "settings": {
-            "subsection_title": "How parasites and candida sneak in:",
-            "subsection_title_size": 24
-          }
-        },
-        "bottom_line_ptYxjq": {
-          "type": "bottom_line",
-          "settings": {
-            "bottom_line_title": "Bottom line?",
-            "bottom_line_text": "<p>Even if you eat clean, exercise, and take care of yourself, you may still be hosting hidden invaders that are draining your energy, disrupting your digestion, and triggering long-term inflammation.</p>",
-            "bottom_title_size": 22
-          }
-        },
-        "cta_FakPyH": {
-          "type": "cta",
-          "settings": {
-            "cta_text": "TRY RESILIA RISK-FREE",
-            "cta_link": "",
-            "button_background": "#f58220",
-            "button_text_color": "#ffffff",
-            "button_text_size": 16,
-            "button_padding": 16,
-            "button_border_radius": 8
-          }
-        }
-      },
-      "block_order": [
-        "heading_enTN7r",
-        "intro_KyFDz6",
-        "main_image_69Dn4Q",
-        "subsection_title_4frJGj",
-        "bottom_line_ptYxjq",
-        "cta_FakPyH"
-      ],
-      "name": "Parasite info (blocks)",
-      "settings": {
-        "section_background": "#ffffff",
-        "title_color": "#000000",
-        "highlight_color": "#ff6b35",
-        "text_color": "#333333",
-        "title_size": 36,
-        "text_size": 16,
-        "image_border_radius": 8,
-        "subsection_title_size": 24,
-        "bottom_title_size": 22,
-        "button_background": "#ff6b35",
-        "button_hover_background": "#e55a2b",
-        "button_text_color": "#ffffff",
-        "button_text_size": 16,
-        "button_padding": 16,
-        "button_border_radius": 8,
-        "section_padding": 30
-      }
-    },
     "symptoms_list_section_hmNRWJ": {
       "type": "symptoms-list-section",
       "disabled": true,
@@ -864,6 +780,97 @@
         "legacy_button_padding": 12,
         "legacy_button_border_radius": 8
       }
+    },
+    "ai_parasite_info_JjQbD7": {
+      "type": "ai-parasite-info",
+      "blocks": {
+        "heading_enTN7r": {
+          "type": "heading",
+          "settings": {
+            "main_title": "How Do Parasites and Candida Get Inside Us?",
+            "highlight_text": "Parasites and Candida",
+            "title_size": 36,
+            "title_color": "#000000",
+            "highlight_color": "#ff6b35"
+          }
+        },
+        "intro_KyFDz6": {
+          "type": "intro",
+          "settings": {
+            "intro_text": "<p>You don’t have to eat raw meat or visit a third-world country to get infected. It’s easier than you think</p><p><br/>When most people hear the word <strong>“parasite,”</strong> they think of contaminated food in far-off places.</p><p>But here’s the truth:</p><p><em><strong>Parasites, yeast (like Candida), and harmful microbes are all around us, </strong></em>even in the cleanest environments. And many of us are unknowingly exposed to them every single day.</p>",
+            "text_size": 16,
+            "text_color": "#333333"
+          }
+        },
+        "main_image_69Dn4Q": {
+          "type": "main_image",
+          "settings": {
+            "main_image": "shopify://shop_images/parasites_microbes.webp",
+            "image_border_radius": 2
+          }
+        },
+        "sneak_in_image_HxmwiT": {
+          "type": "sneak_in_image",
+          "settings": {
+            "image": "shopify://shop_images/contaminated_food.webp"
+          }
+        },
+        "subsection_title_4frJGj": {
+          "type": "subsection_title",
+          "settings": {
+            "subsection_title": "How parasites and candida sneak in:",
+            "subsection_title_size": 24
+          }
+        },
+        "bottom_line_ptYxjq": {
+          "type": "bottom_line",
+          "settings": {
+            "bottom_line_title": "Bottom line?",
+            "bottom_line_text": "<p>Even if you eat clean, exercise, and take care of yourself, you may still be hosting hidden invaders that are draining your energy, disrupting your digestion, and triggering long-term inflammation.</p>",
+            "bottom_title_size": 22
+          }
+        },
+        "cta_FakPyH": {
+          "type": "cta",
+          "settings": {
+            "cta_text": "TRY RESILIA RISK-FREE",
+            "cta_link": "",
+            "button_background": "#f58220",
+            "button_text_color": "#ffffff",
+            "button_text_size": 16,
+            "button_padding": 16,
+            "button_border_radius": 8
+          }
+        }
+      },
+      "block_order": [
+        "heading_enTN7r",
+        "intro_KyFDz6",
+        "main_image_69Dn4Q",
+        "sneak_in_image_HxmwiT",
+        "subsection_title_4frJGj",
+        "bottom_line_ptYxjq",
+        "cta_FakPyH"
+      ],
+      "name": "Parasite info (blocks)",
+      "settings": {
+        "section_background": "#ffffff",
+        "title_color": "#000000",
+        "highlight_color": "#ff6b35",
+        "text_color": "#333333",
+        "title_size": 36,
+        "text_size": 16,
+        "image_border_radius": 8,
+        "subsection_title_size": 24,
+        "bottom_title_size": 22,
+        "button_background": "#ff6b35",
+        "button_hover_background": "#e55a2b",
+        "button_text_color": "#ffffff",
+        "button_text_size": 16,
+        "button_padding": 16,
+        "button_border_radius": 8,
+        "section_padding": 30
+      }
     }
   },
   "order": [
@@ -873,8 +880,8 @@
     "advertorial_section_8N3Jyg",
     "health_campaign_EigqCV",
     "before_after_article_7qDrek",
-    "ai_parasite_info_JjQbD7",
     "symptoms_list_section_hmNRWJ",
-    "ai_symptoms_ihE6tW"
+    "ai_symptoms_ihE6tW",
+    "ai_parasite_info_JjQbD7"
   ]
 }
