@@ -497,60 +497,97 @@
         </style>
         
         <div class="ai-timeline__content-{{ ai_gen_id }}">
-          {% assign timeline_items = 'timeline_item_1,timeline_item_2,timeline_item_3,timeline_item_4' | split: ',' %}
-          
-          {% for item_prefix in timeline_items %}
-            {% assign title_setting = item_prefix | append: '_title' %}
-            {% assign text_setting = item_prefix | append: '_text' %}
-            {% assign title_content = block.settings[title_setting] %}
-            {% assign text_content = block.settings[text_setting] %}
-            {% assign timeline_icon = icon_array[forloop.index0] %}
-            
-            {% if title_content != blank or text_content != blank %}
-              <div class="ai-timeline__item-{{ ai_gen_id }}">
-                <div class="ai-timeline__circle-{{ ai_gen_id }}">
-                  {% if block.settings[timeline_icon] %}
-                    <img src="{{ block.settings.timeline_icon_1 | image_url }}" 
-                         alt="Timeline Icon" 
-                         width="{{ block.settings.timeline_icon_size | default: 30 }}"
-                         height="{{ block.settings.timeline_icon_size | default: 30 }}">
-                  {% else %}
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z"/>
-                    </svg>
-                  {% endif %}
-                </div>
-                
-                {% if title_content != blank %}
-                  <div class="timline-inner">
-                 <div class="timeline-image">
-  {% if section.settings.timeline_item_1_icon %}
-  <img src="{{ section.settings.timeline_item_1_icon | img_url: '100x' }}" alt="{{ section.settings.timeline_item_1_title }}">
-{% endif %}
-{% if section.settings.timeline_item_2_icon %}
-  <img src="{{ section.settings.timeline_item_2_icon | img_url: '100x' }}" alt="{{ section.settings.timeline_item_1_title }}">
-{% endif %}
-{% if section.settings.timeline_item_3_icon %}
-  <img src="{{ section.settings.timeline_item_3_icon | img_url: '100x' }}" alt="{{ section.settings.timeline_item_1_title }}">
-{% endif %}
-{% if section.settings.timeline_item_4_icon %}
-  <img src="{{ section.settings.timeline_item_4_icon | img_url: '100x' }}" alt="{{ section.settings.timeline_item_1_title }}">
-{% endif %}
 
-
-                  <div class="timline-details">
-                    <h3 class="ai-timeline__title-{{ ai_gen_id }}">{{ title_content }}</h3>
-                 </div>
-                </div>
-                {% endif %}
-                
-                {% if text_content != blank %}
-                  <p class="ai-timeline__text-{{ ai_gen_id }}">{{ text_content }}</p>
-                {% endif %}
-              </div>
-            {% endif %}
-          {% endfor %}
+  <!-- Timeline Item 1 -->
+  {% if section.settings.timeline_item_1_title or section.settings.timeline_item_1_text or section.settings.timeline_item_1_icon %}
+    <div class="ai-timeline__item-{{ ai_gen_id }}">
+      <div class="timeline-inner">
+        {% if section.settings.timeline_item_1_icon %}
+          <div class="timeline-image">
+            <img src="{{ section.settings.timeline_item_1_icon | img_url: '100x' }}" 
+                 alt="{{ section.settings.timeline_item_1_title }}">
+          </div>
+        {% endif %}
+        <div class="timeline-details">
+          {% if section.settings.timeline_item_1_title %}
+            <h3 class="ai-timeline__title-{{ ai_gen_id }}">{{ section.settings.timeline_item_1_title }}</h3>
+          {% endif %}
+          {% if section.settings.timeline_item_1_text %}
+            <p class="ai-timeline__text-{{ ai_gen_id }}">{{ section.settings.timeline_item_1_text }}</p>
+          {% endif %}
         </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Timeline Item 2 -->
+  {% if section.settings.timeline_item_2_title or section.settings.timeline_item_2_text or section.settings.timeline_item_2_icon %}
+    <div class="ai-timeline__item-{{ ai_gen_id }}">
+      <div class="timeline-inner">
+        {% if section.settings.timeline_item_2_icon %}
+          <div class="timeline-image">
+            <img src="{{ section.settings.timeline_item_2_icon | img_url: '100x' }}" 
+                 alt="{{ section.settings.timeline_item_2_title }}">
+          </div>
+        {% endif %}
+        <div class="timeline-details">
+          {% if section.settings.timeline_item_2_title %}
+            <h3 class="ai-timeline__title-{{ ai_gen_id }}">{{ section.settings.timeline_item_2_title }}</h3>
+          {% endif %}
+          {% if section.settings.timeline_item_2_text %}
+            <p class="ai-timeline__text-{{ ai_gen_id }}">{{ section.settings.timeline_item_2_text }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Timeline Item 3 -->
+  {% if section.settings.timeline_item_3_title or section.settings.timeline_item_3_text or section.settings.timeline_item_3_icon %}
+    <div class="ai-timeline__item-{{ ai_gen_id }}">
+      <div class="timeline-inner">
+        {% if section.settings.timeline_item_3_icon %}
+          <div class="timeline-image">
+            <img src="{{ section.settings.timeline_item_3_icon | img_url: '100x' }}" 
+                 alt="{{ section.settings.timeline_item_3_title }}">
+          </div>
+        {% endif %}
+        <div class="timeline-details">
+          {% if section.settings.timeline_item_3_title %}
+            <h3 class="ai-timeline__title-{{ ai_gen_id }}">{{ section.settings.timeline_item_3_title }}</h3>
+          {% endif %}
+          {% if section.settings.timeline_item_3_text %}
+            <p class="ai-timeline__text-{{ ai_gen_id }}">{{ section.settings.timeline_item_3_text }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Timeline Item 4 -->
+  {% if section.settings.timeline_item_4_title or section.settings.timeline_item_4_text or section.settings.timeline_item_4_icon %}
+    <div class="ai-timeline__item-{{ ai_gen_id }}">
+      <div class="timeline-inner">
+        {% if section.settings.timeline_item_4_icon %}
+          <div class="timeline-image">
+            <img src="{{ section.settings.timeline_item_4_icon | img_url: '100x' }}" 
+                 alt="{{ section.settings.timeline_item_4_title }}">
+          </div>
+        {% endif %}
+        <div class="timeline-details">
+          {% if section.settings.timeline_item_4_title %}
+            <h3 class="ai-timeline__title-{{ ai_gen_id }}">{{ section.settings.timeline_item_4_title }}</h3>
+          {% endif %}
+          {% if section.settings.timeline_item_4_text %}
+            <p class="ai-timeline__text-{{ ai_gen_id }}">{{ section.settings.timeline_item_4_text }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+</div>
+
       </div>
     </div>
 
