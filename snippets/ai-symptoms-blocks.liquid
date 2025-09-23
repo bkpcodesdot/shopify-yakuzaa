@@ -524,8 +524,8 @@
                 {% if title_content != blank %}
                   <div class="timline-inner">
                  <div class="timeline-image">
-  {% if block.settings.timeline_item_1_icon %}
-  <img src="{{ block.settings.timeline_item_1_icon | img_url: '100x' }}" alt="{{ block.settings.timeline_item_1_title }}">
+  {% if section.settings.timeline_item_1_icon %}
+  <img src="{{ section.settings.timeline_item_1_icon | img_url: '100x' }}" alt="{{ section.settings.timeline_item_1_title }}">
 {% endif %}
 {% if block.settings.timeline_item_2_icon %}
   <img src="{{ block.settings.timeline_item_2_icon | img_url: '100x' }}" alt="{{ block.settings.timeline_item_1_title }}">
