@@ -148,31 +148,32 @@
       ">
         {{ block.settings.intro_text }}
       </div>
-
+<div class="cstm_sneak">
     {% when 'main_image' %}
       <div class="ai-parasite-main-image" style="--image-border-radius: {{ block.settings.image_border_radius }}px;">
         {% if block.settings.main_image != blank %}
           <img src="{{ block.settings.main_image | img_url: 'master' }}" alt="">
         {% endif %}
       </div>
-
+<div class="card-data">
     {% when 'subsection_title' %}
       <div class="ai-parasite-subsection-title" style="--subsection-title-size: {{ block.settings.subsection_title_size }}px;">
         {{ block.settings.subsection_title }}
       </div>
-    <div class="cstm_sneak">
+       </div>
+        </div>
       {% when 'sneak_in_image' %}
         {% if block.settings.image != blank %}
           <div class="ai-parasite-item"><img src="{{ block.settings.image | img_url: 'master' }}" alt=""></div>
         {% endif %}
-<div class="card-data">
+
       {% when 'sneak_in_title' %}
         <div class="ai-parasite-item-title">{{ block.settings.title }}</div>
 
       {% when 'sneak_in_description' %}
         <div class="ai-parasite-item-description">{{ block.settings.description }}</div>
-      </div>
-    </div>
+     
+ 
     {% when 'bottom_line' %}
       <div class="ai-parasite-bottom-title" style="--bottom-title-size: {{ block.settings.bottom_title_size }}px;">
         {{ block.settings.bottom_line_title }}
