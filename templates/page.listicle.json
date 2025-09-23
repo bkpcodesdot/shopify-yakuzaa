@@ -837,7 +837,15 @@
           "settings": {
             "image": "shopify://shop_images/antibiotic_use.avif",
             "title": "Antibiotic Use",
-            "description": "<p>Antibiotics wipe out both bad and good bacteria, leaving your gut defenseless and giving yeast like Candida a chance to overgrow.<br/><br/></p>"
+            "description": "<p>Antibiotics wipe out both bad and good bacteria, leaving your gut defenseless and giving yeast like Candida a chance to overgrow.</p>"
+          }
+        },
+        "sneak_in_item_3E7gHn": {
+          "type": "sneak_in_item",
+          "settings": {
+            "image": "shopify://shop_images/pets.avif",
+            "title": "Pets and Animals",
+            "description": "<p>Dogs and cats (especially those that go outside) often carry parasite eggs in their fur. These can spread to your hands, your food, or your bed.</p>"
           }
         },
         "subsection_title_4frJGj": {
@@ -873,6 +881,7 @@
         "intro_KyFDz6",
         "main_image_69Dn4Q",
         "sneak_in_item_f8dEhN",
+        "sneak_in_item_3E7gHn",
         "subsection_title_4frJGj",
         "bottom_line_ptYxjq",
         "cta_FakPyH"
