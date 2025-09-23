@@ -832,16 +832,12 @@
             "image_border_radius": 2
           }
         },
-        "sneak_in_image_HxmwiT": {
-          "type": "sneak_in_image",
+        "sneak_in_item_f8dEhN": {
+          "type": "sneak_in_item",
           "settings": {
-            "image": "shopify://shop_images/contaminated_food.webp"
-          }
-        },
-        "sneak_in_description_wFrqDa": {
-          "type": "sneak_in_description",
-          "settings": {
-            "description": "<p>Even in the U.S., tap water, unwashed produce, and undercooked meat can carry parasite eggs or fungi that settle in your digestive tract.</p>"
+            "image": "shopify://shop_images/antibiotic_use.avif",
+            "title": "Antibiotic Use",
+            "description": "<p>Antibiotics wipe out both bad and good bacteria, leaving your gut defenseless and giving yeast like Candida a chance to overgrow.<br/><br/></p>"
           }
         },
         "subsection_title_4frJGj": {
@@ -876,8 +872,7 @@
         "heading_enTN7r",
         "intro_KyFDz6",
         "main_image_69Dn4Q",
-        "sneak_in_image_HxmwiT",
-        "sneak_in_description_wFrqDa",
+        "sneak_in_item_f8dEhN",
         "subsection_title_4frJGj",
         "bottom_line_ptYxjq",
         "cta_FakPyH"
