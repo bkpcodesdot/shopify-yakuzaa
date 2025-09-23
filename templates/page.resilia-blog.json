@@ -716,6 +716,132 @@
         "cta_button_radius": 8
       }
     },
+    "ai_parasite_info_9J9ewh": {
+      "type": "ai-parasite-info",
+      "blocks": {
+        "heading_zeaatR": {
+          "type": "heading",
+          "settings": {
+            "main_title": "How Do Get Inside Us?Parasites and Candida",
+            "highlight_text": "Get Inside Us?Parasites and Candida",
+            "title_size": 36,
+            "title_color": "",
+            "highlight_color": ""
+          }
+        },
+        "intro_gYe9rV": {
+          "type": "intro",
+          "settings": {
+            "intro_text": "<p>You don’t have to eat raw meat or visit a third-world country to get infected. It’s easier than you think</p><p><br/>When most people hear the word <strong>“parasite,”</strong> they think of contaminated food in far-off places.</p><p>But here’s the truth:</p><p><em><strong>Parasites, yeast (like Candida), and harmful microbes are all around us, </strong></em>even in the cleanest environments. And many of us are unknowingly exposed to them every single day.</p>",
+            "text_size": 16,
+            "text_color": ""
+          }
+        },
+        "main_image_3C8f6h": {
+          "type": "main_image",
+          "settings": {
+            "main_image": "shopify://shop_images/parasites_microbes.webp",
+            "image_border_radius": 8
+          }
+        },
+        "subsection_title_iEtCfR": {
+          "type": "subsection_title",
+          "settings": {
+            "subsection_title": "How parasites and candida sneak in:",
+            "subsection_title_size": 24
+          }
+        },
+        "sneak_in_image_D4mydj": {
+          "type": "sneak_in_image",
+          "settings": {
+            "image": "shopify://shop_images/contaminated_food.webp"
+          }
+        },
+        "sneak_in_title_iL3Ubi": {
+          "type": "sneak_in_title",
+          "settings": {
+            "title": "Contaminated Food"
+          }
+        },
+        "sneak_in_description_DUhhXw": {
+          "type": "sneak_in_description",
+          "settings": {
+            "description": "<p>Even in the U.S., tap water, unwashed produce, and undercooked meat can carry parasite eggs or fungi that settle in your digestive tract.<br/><br/></p>"
+          }
+        },
+        "sneak_in_image_xG3Aqx": {
+          "type": "sneak_in_image",
+          "settings": {
+            "image": "shopify://shop_images/pets.avif"
+          }
+        },
+        "sneak_in_title_gpD7ty": {
+          "type": "sneak_in_title",
+          "settings": {
+            "title": "Pets and Animals"
+          }
+        },
+        "sneak_in_description_mf6DKM": {
+          "type": "sneak_in_description",
+          "settings": {
+            "description": "<p>Dogs and cats (especially those that go outside) often carry parasite eggs in their fur. These can spread to your hands, your food, or your bed.</p>"
+          }
+        },
+        "bottom_line_NnNzJf": {
+          "type": "bottom_line",
+          "settings": {
+            "bottom_line_title": "Bottom line?",
+            "bottom_line_text": "<p>Even if you eat clean, exercise, and take care of yourself, you may still be hosting hidden invaders that are draining your energy, disrupting your digestion, and triggering long-term inflammation.</p>",
+            "bottom_title_size": 22
+          }
+        },
+        "cta_BahKDV": {
+          "type": "cta",
+          "settings": {
+            "cta_text": "TRY RESILIA RISK-FREE",
+            "cta_link": "",
+            "button_background": "",
+            "button_text_color": "",
+            "button_text_size": 16,
+            "button_padding": 16,
+            "button_border_radius": 8
+          }
+        }
+      },
+      "block_order": [
+        "heading_zeaatR",
+        "intro_gYe9rV",
+        "main_image_3C8f6h",
+        "subsection_title_iEtCfR",
+        "sneak_in_image_D4mydj",
+        "sneak_in_title_iL3Ubi",
+        "sneak_in_description_DUhhXw",
+        "sneak_in_image_xG3Aqx",
+        "sneak_in_title_gpD7ty",
+        "sneak_in_description_mf6DKM",
+        "bottom_line_NnNzJf",
+        "cta_BahKDV"
+      ],
+      "name": "Parasite info (blocks)",
+      "settings": {
+        "section_background": "#ffffff",
+        "title_color": "#000000",
+        "highlight_color": "#ff6b35",
+        "text_color": "#333333",
+        "title_size": 36,
+        "text_size": 16,
+        "image_border_radius": 8,
+        "subsection_title_size": 24,
+        "bottom_title_size": 22,
+        "button_background": "#ff6b35",
+        "button_hover_background": "#e55a2b",
+        "button_text_color": "#ffffff",
+        "button_text_size": 16,
+        "button_padding": 16,
+        "button_border_radius": 8,
+        "section_padding": 50
+      }
+    },
     "symptoms_list_section_FTtLjq": {
       "type": "symptoms-list-section",
       "name": "Symptoms list",
@@ -1280,6 +1406,7 @@
     "section_c9EAaG",
     "blog_artical_section_E8pjA6",
     "health_awareness_section_iPAWDy",
+    "ai_parasite_info_9J9ewh",
     "symptoms_list_section_FTtLjq",
     "parasite_candida_info_dEdQ9n",
     "ide_section_test_4rfFkU",

@@ -420,45 +420,6 @@
             "subsection_title_size": 24
           }
         },
-        "sneak_in_item_xijmrP": {
-          "type": "sneak_in_item",
-          "settings": {
-            "image": "shopify://shop_images/contaminated_food.webp",
-            "title": "Contaminated Food",
-            "description": "<p>Even in the U.S., tap water, unwashed produce, and undercooked meat can carry parasite eggs or fungi that settle in your digestive tract.</p>",
-            "item_title_size": 18,
-            "item_title_color": "#111111",
-            "description_size": 16,
-            "item_border_radius": 8,
-            "item_background": "#f9f9f9"
-          }
-        },
-        "sneak_in_item_WaYYMG": {
-          "type": "sneak_in_item",
-          "settings": {
-            "image": "shopify://shop_images/pets.avif",
-            "title": "Pets and Animals",
-            "description": "<p>Dogs and cats (especially those that go outside) often carry parasite eggs in their fur. These can spread to your hands, your food, or your bed.</p>",
-            "item_title_size": 18,
-            "item_title_color": "#111111",
-            "description_size": 16,
-            "item_border_radius": 8,
-            "item_background": "#f9f9f9"
-          }
-        },
-        "sneak_in_item_Hxb3pd": {
-          "type": "sneak_in_item",
-          "settings": {
-            "image": "shopify://shop_images/antibiotic_use.avif",
-            "title": "Antibiotic Use",
-            "description": "<p>Antibiotics wipe out both bad and good bacteria, leaving your gut defenseless and giving yeast like Candida a chance to overgrow.</p>",
-            "item_title_size": 18,
-            "item_title_color": "#111111",
-            "description_size": 16,
-            "item_border_radius": 8,
-            "item_background": "#f9f9f9"
-          }
-        },
         "bottom_line_ptYxjq": {
           "type": "bottom_line",
           "settings": {
@@ -485,35 +446,19 @@
         "intro_KyFDz6",
         "main_image_69Dn4Q",
         "subsection_title_4frJGj",
-        "sneak_in_item_xijmrP",
-        "sneak_in_item_WaYYMG",
-        "sneak_in_item_Hxb3pd",
         "bottom_line_ptYxjq",
         "cta_FakPyH"
       ],
       "name": "Parasite info (blocks)",
       "settings": {
-        "main_title": "How Do Parasites and Candida Get Inside Us?",
-        "highlight_text": "Parasites and Candida",
-        "intro_text": "<p>Understanding how these harmful organisms enter our bodies is the <strong>first step</strong> in protecting ourselves.</p>",
-        "main_image": "shopify://shop_images/parasites_microbes.webp",
-        "subsection_title": "How parasites and candida sneak in:",
-        "subsection_title_size": 24,
-        "bottom_line_title": "Bottom line?",
-        "bottom_line_text": "<p>These organisms are everywhere. The key is <strong>supporting your body's defenses</strong>.</p>",
-        "cta_text": "TRY RESILIA RISK-FREE",
-        "cta_link": "",
         "section_background": "#ffffff",
         "title_color": "#000000",
         "highlight_color": "#ff6b35",
         "text_color": "#333333",
-        "item_background": "#f9f9f9",
         "title_size": 36,
         "text_size": 16,
         "image_border_radius": 8,
-        "item_border_radius": 8,
-        "item_title_size": 18,
-        "item_title_color": "#111111",
+        "subsection_title_size": 24,
         "bottom_title_size": 22,
         "button_background": "#ff6b35",
         "button_hover_background": "#e55a2b",
