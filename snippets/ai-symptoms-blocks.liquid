@@ -389,19 +389,25 @@
           {% if list_items.size > 1 %}
             <ul>
               {% for item in list_items %}
-                {% unless forloop.first %}
-                  {% assign clean_item = item | split: '</li>' | first | strip %}
-                  {% if clean_item != blank %}
-                    <li>
-                      {% if block.settings.bullet_icon %}
-                        <img src="{{ block.settings.bullet_icon | image_url }}" alt="Bullet Icon" class="bullet-icon" width="{{ block.settings.icon_size | default: 20 }}" height="{{ block.settings.icon_size | default: 20 }}">
-                      {% else %}
-                        <span class="bullet-icon" style="font-size: {{ block.settings.icon_size | default: 20 }}px; color: {{ block.settings.list_text_color | default: '#333333' }};">•</span>
-                      {% endif %}
-                      <span class="bullet-text">{{ clean_item }}</span>
-                    </li>
-                  {% endif %}
-                {% endunless %}
+               {% for block in section.blocks %}
+  {% assign clean_item = block.settings.bullet_text | strip %}
+  {% if clean_item != blank %}
+    <li>
+      {% if block.settings.bullet_icon %}
+        <img 
+          src="{{ block.settings.bullet_icon | image_url }}" 
+          alt="Bullet Icon" 
+          class="bullet-icon" 
+          width="{{ block.settings.icon_size | default: 20 }}" 
+          height="{{ block.settings.icon_size | default: 20 }}">
+      {% else %}
+        <span class="bullet-icon" style="font-size: {{ block.settings.icon_size | default: 20 }}px; color: {{ block.settings.list_text_color | default: '#333333' }};">•</span>
+      {% endif %}
+      <span class="bullet-text">{{ clean_item }}</span>
+    </li>
+  {% endif %}
+{% endfor %}
+
               {% endfor %}
             </ul>
           {% else %}
