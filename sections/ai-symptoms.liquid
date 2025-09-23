@@ -7,7 +7,13 @@
     font-family: {{ section.settings.custom_font.family }}, {{ section.settings.custom_font.fallback_families }} !important;
   }
 {% endif %}
-
+.timline-inner {
+    display: flex;
+    /* align-items: center; */
+    gap: 16px;
+    border-bottom: 1px solid black;
+    margin-bottom: 12px;
+}
 /* Reset Default Browser Margins for All Block Content */
 .ai-symptoms-section-{{ ai_gen_id }} .ai-article-heading__text-{{ ai_gen_id }} *,
 .ai-symptoms-section-{{ ai_gen_id }} .ai-article-description__text-{{ ai_gen_id }} *,
