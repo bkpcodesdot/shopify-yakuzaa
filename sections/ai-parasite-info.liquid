@@ -326,11 +326,13 @@ ai-testimonial-grid-{{ section.id }}{
           {{ block.settings.description | raw }}
         </div>
 
-    {% when 'testimonial_item' %}
-    {% comment %} Create grid wrapper before first testimonial item {% endcomment %}
-   
+  {% when 'testimonial_item' %}
+    {% comment %} Create grid wrapper only once before the first testimonial {% endcomment %}
+    {% if forloop.first %}
         <div class="ai-testimonial-grid-{{ section.id }}" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+    {% endif %}
     
+    {% comment %} Individual testimonial card {% endcomment %}
     <div class="ai-testimonial-card-{{ section.id }}" style="
         background-color: #F8F9FA;
         border: 1px solid #016401;
@@ -358,7 +360,11 @@ ai-testimonial-grid-{{ section.id }}{
             </div>
         </div>
     </div>
-     </div>
+    
+    {% comment %} Close grid wrapper after the last testimonial {% endcomment %}
+    {% if forloop.last %}
+        </div>
+    {% endif %}
   
 
       {% when 'testimonial_cta' %}
