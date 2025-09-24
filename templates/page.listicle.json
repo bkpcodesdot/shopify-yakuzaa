@@ -790,9 +790,31 @@
             "title_color": "#111111",
             "title_highlight_color": "#e26900",
             "section_subtitle": "If you're still feeling “off” despite eating clean, sleeping well, or taking other supplements… your body could be fighting a hidden battle you can’t see, but you can stop it.<br><br>Resilia™ gives you a simple, natural way to fight back by helping your body eliminate parasites, candida, and gut disruptors at the source. No guesswork. No harsh chemicals. Just a clean, science-backed formula that supports total-body balance from the inside out.<br><br>With just 2 softgels a day, you can begin resetting your gut, calming inflammation, and finally feeling like yourself again.",
-            "subtitle_size": 16,
+            "subtitle_size": 17,
             "subtitle_color": "#000000",
             "subtitle_margin_top": 5,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "article_image_8AeLfa": {
+          "type": "article_image",
+          "settings": {
+            "article_image": "shopify://shop_images/oil_of_oregano_2_desktop.webp",
+            "border_radius": 8,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "icon_bullet_list_k4zTxC": {
+          "type": "icon_bullet_list",
+          "settings": {
+            "list_content": "<ul><li>100% Natural, Plant-Based Ingredients</li><li>Clinically Supported Formula</li><li>Only 2 Softgels a Day strength<br/></li><li>Made in the USA in a GMP-Certified Facility</li><li>Trusted by Thousands with Real Results</li></ul>",
+            "icon_size": 20,
+            "list_font_size": 16,
+            "list_text_color": "#333333",
+            "line_height": 1.4,
+            "item_spacing": 12,
             "margin_top": 0,
             "margin_bottom": 0
           }
@@ -817,7 +839,9 @@
         "header_MRimF4",
         "comparison_table_RDiF6b",
         "cta_4atiJ7",
-        "header_67ThLh"
+        "header_67ThLh",
+        "article_image_8AeLfa",
+        "icon_bullet_list_k4zTxC"
       ],
       "name": "Advertorial 2",
       "settings": {
