@@ -779,6 +779,23 @@
             "margin_top": 0,
             "margin_bottom": 0
           }
+        },
+        "header_67ThLh": {
+          "type": "header",
+          "settings": {
+            "title_text": "<p>Start Reclaiming Your Gut Health Today</p>",
+            "title_highlight_text": "Reclaiming",
+            "use_section_colors": true,
+            "title_size": 38,
+            "title_color": "#111111",
+            "title_highlight_color": "#e26900",
+            "section_subtitle": "If you're still feeling “off” despite eating clean, sleeping well, or taking other supplements… your body could be fighting a hidden battle you can’t see, but you can stop it.<br><br>Resilia™ gives you a simple, natural way to fight back by helping your body eliminate parasites, candida, and gut disruptors at the source. No guesswork. No harsh chemicals. Just a clean, science-backed formula that supports total-body balance from the inside out.<br><br>With just 2 softgels a day, you can begin resetting your gut, calming inflammation, and finally feeling like yourself again.",
+            "subtitle_size": 16,
+            "subtitle_color": "#000000",
+            "subtitle_margin_top": 5,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
         }
       },
       "block_order": [
@@ -799,7 +816,8 @@
         "cta_EiQiVV",
         "header_MRimF4",
         "comparison_table_RDiF6b",
-        "cta_4atiJ7"
+        "cta_4atiJ7",
+        "header_67ThLh"
       ],
       "name": "Advertorial 2",
       "settings": {
