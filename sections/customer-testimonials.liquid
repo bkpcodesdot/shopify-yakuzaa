@@ -79,6 +79,121 @@
       "id": "section_background_color",
       "label": "Section Background",
       "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "title_font_size",
+      "label": "Title Font Size (px)",
+      "default": 36
+
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#666666"
+    },
+    {
+      "type": "number",
+      "id": "description_font_size",
+      "label": "Description Font Size (px)",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Testimonial Card Background",
+      "default": "#F8F9FA"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Testimonial Card Border Color",
+      "default": "#016401"
+    },
+    {
+      "type": "number",
+      "id": "card_border_radius",
+      "label": "Card Border Radius (px)",
+      "default": 5
+    },
+    {
+      "type": "color",
+      "id": "quote_color",
+      "label": "Quote Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "quote_font_size",
+      "label": "Quote Font Size (px)",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "name_color",
+      "label": "Customer Name Color",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "name_font_size",
+      "label": "Customer Name Font Size (px)",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "verified_color",
+      "label": "Verified Label Color",
+      "default": "#666666"
+    },
+    {
+      "type": "number",
+      "id": "verified_font_size",
+      "label": "Verified Label Font Size (px)",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button Background Color",
+      "default": "#FF6B35"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "number",
+      "id": "button_font_size",
+      "label": "Button Font Size (px)",
+      "default": 16
+    },
+    {
+      "type": "number",
+      "id": "button_border_radius",
+      "label": "Button Border Radius (px)",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background_color",
+      "label": "Button Hover Background Color",
+      "default": "#E55A2B"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button Hover Text Color",
+      "default": "#FFFFFF"
     }
   ],
   "blocks": [
@@ -110,19 +225,49 @@
       "type": "testimonial",
       "name": "Testimonial",
       "settings": [
-        { "type": "textarea", "id": "quote", "label": "Quote" },
-        { "type": "text", "id": "name", "label": "Name" },
-        { "type": "text", "id": "age", "label": "Age" },
-        { "type": "image_picker", "id": "icon", "label": "Customer Icon" },
-        { "type": "text", "id": "verified_label", "label": "Verified Label", "default": "Verified Customer" }
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name"
+        },
+        {
+          "type": "text",
+          "id": "age",
+          "label": "Age"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Customer Icon"
+        },
+        {
+          "type": "text",
+          "id": "verified_label",
+          "label": "Verified Label",
+          "default": "Verified Customer"
+        }
       ]
     },
     {
       "type": "cta",
       "name": "CTA Button",
       "settings": [
-        { "type": "text", "id": "button_text", "label": "Button Text", "default": "TRY NOW" },
-        { "type": "url", "id": "button_link", "label": "Button Link" }
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "TRY NOW"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
       ]
     }
   ],
@@ -131,13 +276,24 @@
     {
       "name": "Customer Testimonials Preset",
       "blocks": [
-        { "type": "title" },
-        { "type": "description" },
-        { "type": "testimonial" },
-        { "type": "testimonial" },
-        { "type": "cta" }
+        {
+          "type": "title"
+        },
+        {
+          "type": "description"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "cta"
+        }
       ]
     }
   ]
 }
+
 {% endschema %}
