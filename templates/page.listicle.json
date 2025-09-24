@@ -960,31 +960,21 @@
             "description_font_size": 18
           }
         },
-        "testimonial_item_7rb4Eg": {
-          "type": "testimonial_item",
-          "settings": {
-            "quote": "“This little softgel is magic. I’ve tried everything for my gut, and nothing worked like Resilia.”",
-            "name": "Claire L.",
-            "age": "40 yo",
-            "verified_label": "Verified Customer"
-          }
-        },
-        "testimonial_item_teBTd3": {
-          "type": "testimonial_item",
-          "settings": {
-            "quote": "“This little softgel is magic. I’ve tried everything for my gut, and nothing worked like Resilia.”",
-            "name": "Claire L.",
-            "age": "40 yo",
-            "verified_label": "Verified Customer"
-          }
-        },
         "testimonial_item_FnzYdC": {
           "type": "testimonial_item",
           "settings": {
-            "quote": "“This little softgel is magic. I’ve tried everything for my gut, and nothing worked like Resilia.”",
-            "name": "Claire L.",
-            "age": "40 yo",
-            "verified_label": "Verified Customer"
+            "quote_1": "“This little softgel is magic. I’ve tried everything for my gut, and nothing worked like Resilia.”",
+            "name_1": "Jenna B.",
+            "age_1": "42 y.o.",
+            "verified_label_1": "Verified Customer",
+            "quote_2": "“This little softgel is magic. I’ve tried everything for my gut, and nothing worked like Resilia.”",
+            "name_2": "Jenna B.",
+            "age_2": "42 y.o.",
+            "verified_label_2": "Verified Customer",
+            "quote_3": "“This little softgel is magic. I’ve tried everything for my gut, and nothing worked like Resilia.”",
+            "name_3": "Jenna B.",
+            "age_3": "42 y.o.",
+            "verified_label_3": "Verified Customer"
           }
         },
         "testimonial_cta_y8tTNR": {
@@ -1010,8 +1000,6 @@
         "cta_FakPyH",
         "testimonial_title_ttcEb6",
         "testimonial_description_4D9DbT",
-        "testimonial_item_7rb4Eg",
-        "testimonial_item_teBTd3",
         "testimonial_item_FnzYdC",
         "testimonial_cta_y8tTNR"
       ],
