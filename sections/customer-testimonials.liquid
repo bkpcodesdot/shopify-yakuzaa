@@ -1,168 +1,86 @@
-{% comment %}
-  Customer Testimonials Section
-{% endcomment %}
+{% comment %} Customer Testimonials Section {% endcomment %}
 
-<div class="ai-testimonials-{{ section.id }}">
-  {% render 'customer-testimonials-content', section: section %}
-</div>
+<section class="ai-testimonials-{{ section.id }}">
+  {% render 'customer-testimonials-blocks', section: section %}
+</section>
 
 <style>
-.ai-testimonials-{{ section.id }} {
-  padding: 0px 20px;
-  max-width: 726px;
-  margin: 0 auto;
-  background-color: {{ section.settings.section_background_color }};
-}
-.ai-testimonials-header-{{ section.id }} {
-  margin-bottom: 10px;
-}
-.ai-testimonials-title-{{ section.id }} {
-  font-size: {{ section.settings.title_font_size }}px;
-  font-weight: bold;
-  color: {{ section.settings.title_color }};
-  margin: 0 0 20px 0;
-  line-height: 1.2;
-}
-.ai-testimonials-title-{{ section.id }} strong {
-  color: {{ section.settings.highlight_color }};
-}
-.ai-testimonials-description-{{ section.id }} {
-  font-size: {{ section.settings.description_font_size }}px;
-  color: {{ section.settings.description_color }};
-  line-height: 1.6;
-  max-width: 600px;
-}
-.ai-testimonials-grid-{{ section.id }} {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 50px;
-}
-.ai-testimonial-card-{{ section.id }} {
-  background-color: {{ section.settings.card_background_color }};
-  border:1px solid #016401;
-  border-radius: 5px;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 200px;
-
-}
-.ai-testimonial-quote-{{ section.id }} {
-  font-size: 20px;
-  color: black;
-  line-height: 1.5;
-  margin-bottom: 18px;
-  flex-grow: 1;
-}
-.ai-testimonial-footer-{{ section.id }} {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  margin-top: auto;
-}
-.ai-testimonial-icon-{{ section.id }} {
-  width: {{ section.settings.icon_size }}px;
-  height: {{ section.settings.icon_size }}px;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-.ai-testimonial-icon-{{ section.id }} img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-.ai-testimonial-icon-placeholder-{{ section.id }} {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.ai-testimonial-icon-placeholder-{{ section.id }} svg {
-  width: 60%;
-  height: 60%;
-  fill: {{ section.settings.highlight_color }};
-}
-.ai-testimonial-customer-{{ section.id }} {}
-.ai-testimonial-name-{{ section.id }} {
-  font-size: {{ section.settings.name_font_size }}px;
-  font-weight: bold;
-  color: {{ section.settings.name_color }};
-  margin: 0 0 4px 0;
-  line-height: 1.2;
-}
-.ai-testimonial-verified-{{ section.id }} {
-  font-size: {{ section.settings.verified_font_size }}px;
-  color: {{ section.settings.verified_color }};
-  margin: 0;
-  line-height: 1.2;
-}
-.ai-testimonials-cta-{{ section.id }} {
-  text-align: center;
-}
-.ai-testimonials-button-{{ section.id }} {
-  display: block;
-  width: 100%;
-  padding: 18px 40px;
-  background-color: {{ section.settings.button_background_color }};
-  color: {{ section.settings.button_text_color }};
-  text-decoration: none;
-  font-size: {{ section.settings.button_font_size }}px;
-  font-weight: bold;
-  border-radius: {{ section.settings.button_border_radius }}px;
-  text-align: center;
-  transition: background-color 0.3s ease;
-  border: none;
-  cursor: pointer;
-}
-.ai-testimonials-button-{{ section.id }}:hover {
-  background-color: {{ section.settings.button_hover_color }};
-  color:#EE882F;
-  border:1px solid #EE882F;
-
-}
-
-@media screen and (max-width: 768px) {
   .ai-testimonials-{{ section.id }} {
-    padding: 40px 15px;
-  }
-  .ai-testimonials-grid-{{ section.id }} {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    margin-bottom: 40px;
-  }
-  .ai-testimonial-card-{{ section.id }} {
-    padding: 25px 20px;
-    min-height: auto;
+    padding: 0px 20px;
+    max-width: 726px;
+    margin: 0 auto;
+    background-color: {{ section.settings.section_background_color }};
   }
   .ai-testimonials-title-{{ section.id }} {
-    font-size: {{ section.settings.title_font_size | times: 0.8 }}px;
-  }
-  .ai-testimonials-button-{{ section.id }} {
-    padding: 16px 30px;
-  }
-}
-@media screen and (max-width: 576px) {
-  .ai-testimonial-quote-{{ section.id }} {
-    font-size:15px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 20px;
   }
   .ai-testimonials-description-{{ section.id }} {
-    font-size:15px;
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
   }
-  .ai-testimonials-header-{{ section.id }} {
-    margin-bottom:10px;
+  .ai-testimonial-card-{{ section.id }} {
+    background-color: #F8F9FA;
+    border: 1px solid #016401;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
   }
-}
-
+  .ai-testimonial-quote-{{ section.id }} {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  .ai-testimonial-footer-{{ section.id }} {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .ai-testimonial-icon-{{ section.id }} img {
+    width: 40px;
+    height: 40px;
+  }
+  .ai-testimonial-name-{{ section.id }} {
+    font-weight: bold;
+    font-size: 14px;
+    color: #000;
+  }
+  .ai-testimonial-verified-{{ section.id }} {
+    font-size: 12px;
+    color: #666;
+  }
+  .ai-testimonials-cta-{{ section.id }} {
+    text-align: center;
+    margin-top: 40px;
+  }
+  .ai-testimonials-button-{{ section.id }} {
+    background-color: #FF6B35;
+    color: white;
+    padding: 16px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+  }
+  .ai-testimonials-button-{{ section.id }}:hover {
+    background-color: #E55A2B;
+    color: #fff;
+  }
 </style>
 
 {% schema %}
 {
   "name": "Customer Testimonials",
-  "settings": [],
+  "settings": [
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section Background",
+      "default": "#ffffff"
+    }
+  ],
   "blocks": [
     {
       "type": "title",
@@ -172,7 +90,7 @@
           "type": "richtext",
           "id": "title",
           "label": "Title",
-          "default": "<p>What Customers Are <span>Saying</span> After Trying Resilia</p>"
+          "default": "<p>What Customers Are Saying</p>"
         }
       ]
     },
@@ -184,7 +102,7 @@
           "type": "richtext",
           "id": "description",
           "label": "Description",
-          "default": "<p>Real customers sharing their experiences with our product.</p>"
+          "default": "<p>Real customers. Real feedback. Real results.</p>"
         }
       ]
     },
@@ -193,25 +111,25 @@
       "name": "Testimonial",
       "settings": [
         { "type": "textarea", "id": "quote", "label": "Quote" },
-        { "type": "text", "id": "name", "label": "Customer name" },
-        { "type": "text", "id": "age", "label": "Customer age" },
-        { "type": "image_picker", "id": "icon", "label": "Icon" },
-        { "type": "text", "id": "verified_label", "label": "Verified label", "default": "Verified Customer" }
+        { "type": "text", "id": "name", "label": "Name" },
+        { "type": "text", "id": "age", "label": "Age" },
+        { "type": "image_picker", "id": "icon", "label": "Customer Icon" },
+        { "type": "text", "id": "verified_label", "label": "Verified Label", "default": "Verified Customer" }
       ]
     },
     {
       "type": "cta",
       "name": "CTA Button",
       "settings": [
-        { "type": "text", "id": "button_text", "label": "Button Text", "default": "TRY RESILIA RISK-FREE" },
+        { "type": "text", "id": "button_text", "label": "Button Text", "default": "TRY NOW" },
         { "type": "url", "id": "button_link", "label": "Button Link" }
       ]
     }
   ],
-  "max_blocks": 20,
+  "max_blocks": 10,
   "presets": [
     {
-      "name": "Customer Testimonials-new",
+      "name": "Customer Testimonials Preset",
       "blocks": [
         { "type": "title" },
         { "type": "description" },
@@ -222,5 +140,4 @@
     }
   ]
 }
-
 {% endschema %}
