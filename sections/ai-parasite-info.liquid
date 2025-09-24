@@ -322,7 +322,6 @@
         <div class="ai-testimonials-description-{{ section.id }}" style="margin-bottom: 30px; font-size:{{ block.settings.description_font_size }}">
           {{ block.settings.description | raw }}
         </div>
-
 {% when 'testimonial_item' %}
 <div class="testimonial-inner">
   <div class="ai-testimonial-grid-{{ section.id }} {{ section.settings.custom_class }}" 
@@ -370,13 +369,8 @@
         </div>
       {% endif %}
     {% endfor %}
-
   </div>
 </div>
-
-
-   
-  
 
       {% when 'testimonial_cta' %}
         <div class="ai-testimonials-cta-{{ section.id }}" style="text-align: center; margin-top: 40px;">
