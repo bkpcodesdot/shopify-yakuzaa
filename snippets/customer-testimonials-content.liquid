@@ -13,9 +13,8 @@
           {{ block.settings.description }}
         </div>
       {% endif %}
-<div class="testimonial-inner">
+
     {% when 'testimonial' %}
-        
       <div class="ai-testimonial-card-{{ section.id }}">
         {% if block.settings.quote != blank %}
           <div class="ai-testimonial-quote-{{ section.id }}">
@@ -44,7 +43,7 @@
           </div>
         </div>
       </div>
-</div>
+
     {% when 'cta' %}
       {% if block.settings.button_text != blank %}
         <div class="ai-testimonials-cta-{{ section.id }}">
