@@ -200,18 +200,7 @@
     }
   ],
   "blocks": [
-    {
-      "type": "title",
-      "name": "Title",
-      "settings": [
-        {
-          "type": "richtext",
-          "id": "title",
-          "label": "Title",
-          "default": "<p>What Customers Are Saying</p>"
-        }
-      ]
-    },
+  
     {
       "type": "description",
       "name": "Description",
@@ -256,6 +245,45 @@
         }
       ]
     },
+    {
+  "type": "title",
+  "name": "Title",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>What Customers Are Saying</p>"
+    },
+    {
+      "type": "text",
+      "id": "highlight_text",
+      "label": "Text to Highlight"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title Font Size",
+      "min": 10,
+      "max": 80,
+      "step": 1,
+      "default": 36
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight Color",
+      "default": "#FF6B35"
+    }
+  ]
+},
+
     {
       "type": "cta",
       "name": "CTA Button",
