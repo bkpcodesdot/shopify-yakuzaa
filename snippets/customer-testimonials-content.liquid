@@ -9,10 +9,10 @@
       --title-color: {{ block.settings.title_color }};
       --highlight-color: {{ block.settings.highlight_color }};
     ">
-      {{ block.settings.title |  '<span class="highlight">' | append: block.settings.highlight_text | append: '</span>' | raw }}
+      {{ block.settings.title '<span class="highlight">' | append: block.settings.highlight_text | append: '</span>' | raw }}
     </h2>
   {% endif %}
-
+  
       {% when 'description' %}
         {% if block.settings.description != blank %}
           <div class="ai-testimonials-description-{{ section.id }}">
