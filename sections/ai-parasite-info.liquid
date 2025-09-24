@@ -323,6 +323,7 @@
         </div>
 
       {% when 'testimonial_item' %}
+        <div class="ai-testimonial-grid-{{ section.id }}" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
         <div class="ai-testimonial-card-{{ section.id }}" style="
           background-color: #F8F9FA;
           border: 1px solid #016401;
@@ -352,6 +353,7 @@
               </div>
             </div>
           </div>
+        </div>
         </div>
 
       {% when 'testimonial_cta' %}
