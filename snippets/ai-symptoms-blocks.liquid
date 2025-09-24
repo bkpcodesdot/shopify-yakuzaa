@@ -384,30 +384,21 @@
           }
         </style>
         
-        <div class="ai-icon-bullet-list__content-{{ ai_gen_id }}">
-          {% assign list_items = block.settings.list_content | split: '<li>' %}
-          {% if list_items.size > 1 %}
-            <ul>
-              {% for item in list_items %}
-                {% unless forloop.first %}
-                  {% assign clean_item = item | split: '</li>' | first | strip %}
-                  {% if clean_item != blank %}
-                    <li>
-                      {% if block.settings.bullet_icon %}
-                        <img src="{{ block.settings.bullet_icon | image_url }}" alt="Bullet Icon" class="bullet-icon" width="{{ block.settings.icon_size | default: 20 }}" height="{{ block.settings.icon_size | default: 20 }}">
-                      {% else %}
-                        <span class="bullet-icon" style="font-size: {{ block.settings.icon_size | default: 20 }}px; color: {{ block.settings.list_text_color | default: '#333333' }};">•</span>
-                      {% endif %}
-                      <span class="bullet-text">{{ clean_item }}</span>
-                    </li>
-                  {% endif %}
-                {% endunless %}
-              {% endfor %}
-            </ul>
-          {% else %}
-            {{ block.settings.list_content | default: '<ul><li>Add your list items here</li></ul>' }}
-          {% endif %}
-        </div>
+       <ul class="bullet-list-group" style="margin-top: {{ block.settings.margin_top }}px; margin-bottom: {{ block.settings.margin_bottom }}px;">
+  {% for item in list_items %}
+    <li class="bullet-item" style="margin-bottom: {{ block.settings.item_spacing }}px; font-size: {{ block.settings.list_font_size }}px; line-height: {{ block.settings.line_height }};">
+      <span class="bullet-icon" style="flex: 0 0 25%; margin-right: 0.5rem;">
+        {% if block.settings.bullet_icon %}
+          <img src="{{ block.settings.bullet_icon | image_url }}" alt="Bullet Icon" width="{{ block.settings.icon_size }}" height="{{ block.settings.icon_size }}">
+        {% else %}
+          <span style="font-size: {{ block.settings.icon_size }}px; color: {{ block.settings.list_text_color }}">•</span>
+        {% endif %}
+      </span>
+      <span class="bullet-text" style="flex: 0 0 75%;">{{ clean_item }}</span>
+    </li>
+  {% endfor %}
+</ul>
+
       </div>
     </div>
 
