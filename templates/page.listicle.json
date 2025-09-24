@@ -988,16 +988,6 @@
             "button_padding": 16,
             "button_border_radius": 8
           }
-        },
-        "heading_bRVW6K": {
-          "type": "heading",
-          "settings": {
-            "main_title": "Start Reclaiming Your Gut Health Today",
-            "highlight_text": "",
-            "title_size": 36,
-            "title_color": "",
-            "highlight_color": ""
-          }
         }
       },
       "block_order": [
@@ -1016,8 +1006,7 @@
         "testimonial_title_ttcEb6",
         "testimonial_description_4D9DbT",
         "testimonial_item_FnzYdC",
-        "cta_JhWVkQ",
-        "heading_bRVW6K"
+        "cta_JhWVkQ"
       ],
       "name": "Parasite info (blocks)",
       "settings": {
