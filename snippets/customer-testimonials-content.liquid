@@ -2,12 +2,13 @@
 {% for block in section.blocks %}
   {% if block.type != 'testimonial' %}
     {% case block.type %}
-      {% when 'title' %}
+ {% when 'title' %}
   {% if block.settings.title != blank %}
     <h2 class="ai-testimonials-title-{{ section.id }}">
       {{ block.settings.title | replace: block.settings.highlight_text, '<span class="highlight">' | append: block.settings.highlight_text | append: '</span>' | raw }}
     </h2>
   {% endif %}
+
 
 
       {% when 'description' %}
