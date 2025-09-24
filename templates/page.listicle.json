@@ -1006,6 +1006,13 @@
             "text_size": 18,
             "text_color": ""
           }
+        },
+        "main_image_QP4HEB": {
+          "type": "main_image",
+          "settings": {
+            "main_image": "shopify://shop_images/oil_of_oregano_2_desktop.webp",
+            "image_border_radius": 8
+          }
         }
       },
       "block_order": [
@@ -1026,7 +1033,8 @@
         "testimonial_item_FnzYdC",
         "cta_JhWVkQ",
         "heading_rxmNND",
-        "intro_warqam"
+        "intro_warqam",
+        "main_image_QP4HEB"
       ],
       "name": "Parasite info (blocks)",
       "settings": {
