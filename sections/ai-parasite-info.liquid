@@ -326,7 +326,7 @@
   {% when 'testimonial_item' %}
     <div class="testimonial-inner">
    <div class="ai-testimonial-grid-{{ section.id }}" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-  {% for block in section.blocks %}
+  
     {% if block.type == 'testimonial_item' %}
       <div class="ai-testimonial-card-{{ section.id }}">
         {% if block.settings.quote != blank %}
@@ -357,7 +357,7 @@
         </div>
       </div>
     {% endif %}
-  {% endfor %}
+
 </div>
 </div>
    
