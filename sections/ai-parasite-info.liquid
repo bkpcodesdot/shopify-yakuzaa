@@ -319,7 +319,7 @@
     </h2>
 
       {% when 'testimonial_description' %}
-        <div class="ai-testimonials-description-{{ section.id }}" style="margin-bottom: 30px; font-size:{{ block.settings.description_font_size }}">
+        <div class="ai-testimonials-description-{{ section.id }}" style="margin-bottom: 30px; font-size:{{ block.settings.description_font_size }};">
           {{ block.settings.description | raw }}
         </div>
 {% when 'testimonial_item' %}
