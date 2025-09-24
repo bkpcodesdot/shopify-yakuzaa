@@ -328,9 +328,8 @@ ai-testimonial-grid-{{ section.id }}{
 
     {% when 'testimonial_item' %}
     {% comment %} Create grid wrapper before first testimonial item {% endcomment %}
-    {% if forloop.first %}
+   
         <div class="ai-testimonial-grid-{{ section.id }}" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-    {% endif %}
     
     <div class="ai-testimonial-card-{{ section.id }}" style="
         background-color: #F8F9FA;
@@ -359,7 +358,7 @@ ai-testimonial-grid-{{ section.id }}{
             </div>
         </div>
     </div>
-    
+     </div>
     {% comment %} Close grid wrapper after last testimonial item {% endcomment %}
     {% if forloop.last %}
         </div>
