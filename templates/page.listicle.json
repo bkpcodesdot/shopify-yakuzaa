@@ -948,7 +948,7 @@
           "settings": {
             "title": "<p>What Customers Are Saying After Trying Resilia</p>",
             "highlight_text": "Saying",
-            "title_size": 36,
+            "title_size": 34,
             "title_color": "#000000",
             "highlight_color": "#ff6b35"
           }
@@ -956,7 +956,7 @@
         "testimonial_description_4D9DbT": {
           "type": "testimonial_description",
           "settings": {
-            "description": "<p>Real customers. Real feedback. Real results.</p>"
+            "description": "<p>For many customers, Resilia was the breakthrough they didn’t know they needed. After months of struggling with unexplained symptoms like bloating, fatigue, sugar cravings, and skin flare-ups, thousands have turned to Resilia and found a simple, natural solution that actually works.</p>"
           }
         },
         "testimonial_item_7rb4Eg": {
