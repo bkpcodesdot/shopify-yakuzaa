@@ -247,103 +247,135 @@
     {"type":"range","id":"button_border_radius","label":"Button border radius","min":0,"max":30,"step":1,"unit":"px","default":8},
     {"type":"range","id":"section_padding","label":"Section padding","min":20,"max":100,"step":5,"unit":"px","default":50}
   ],
- "blocks":[
-  {
-    "type":"heading",
-    "name":"Heading",
-    "settings":[
-      {"type":"text","id":"main_title","label":"Main title"},
-      {"type":"text","id":"highlight_text","label":"Highlight text"},
-      {"type":"range","id":"title_size","label":"Title font size","min":20,"max":60,"default":36},
-      {"type":"color","id":"title_color","label":"Title color"},
-      {"type":"color","id":"highlight_color","label":"Highlight color"}
-    ]
-  },
-  {
-    "type":"intro",
-    "name":"Intro",
-    "settings":[
-      {"type":"richtext","id":"intro_text","label":"Intro text"},
-      {"type":"range","id":"text_size","label":"Intro font size","min":12,"max":24,"default":16},
-      {"type":"color","id":"text_color","label":"Intro color"}
-    ]
-  },
-  {
-    "type":"main_image",
-    "name":"Main image",
-    "settings":[
-      {"type":"image_picker","id":"main_image","label":"Main image"},
-      {"type":"range","id":"image_border_radius","label":"Main image border radius","min":0,"max":30,"default":8}
-    ]
-  },
-  {
-    "type":"subsection_title",
-    "name":"Subsection title",
-    "settings":[
-      {"type":"text","id":"subsection_title","label":"Subsection title"},
-      {"type":"range","id":"subsection_title_size","label":"Subsection title size","min":12,"max":40,"default":24}
-    ]
-  },
-  {
-    "type": "sneak_in_item",
-    "name": "Sneak-in Item",
-    "settings": [
-      {
-        "type": "image_picker",
-        "id": "image",
-        "label": "Image"
-      },
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Title"
-      },
-      {
-        "type": "richtext",
-        "id": "description",
-        "label": "Description"
-      }
-    ]
-  },
-  {
-    "type":"bottom_line",
-    "name":"Bottom line",
-    "settings":[
-      {"type":"text","id":"bottom_line_title","label":"Bottom line title"},
-      {"type":"richtext","id":"bottom_line_text","label":"Bottom line text"},
-      {"type":"range","id":"bottom_title_size","label":"Bottom title size","min":16,"max":36,"default":22}
-    ]
-  },
-  {
-    "type":"cta",
-    "name":"CTA",
-    "settings":[
-      {"type":"text","id":"cta_text","label":"CTA text"},
-      {"type":"url","id":"cta_link","label":"CTA link"},
-      {"type":"color","id":"button_background","label":"Button background"},
-      {"type":"color","id":"button_text_color","label":"Button text color"},
-      {"type":"range","id":"button_text_size","label":"Button text size","min":12,"max":24,"default":16},
-      {"type":"range","id":"button_padding","label":"Button padding","min":8,"max":30,"default":16},
-      {"type":"range","id":"button_border_radius","label":"Button border radius","min":0,"max":30,"default":8}
-    ]
-  }
-],
-
- "presets": [
-  {
-    "name": "Parasite info (blocks)",
-    "blocks": [
-      { "type": "heading" },
-      { "type": "intro" },
-      { "type": "main_image" },
-      { "type": "subsection_title" },
-      { "type": "sneak_in_item" },
-      { "type": "sneak_in_item" },
-      { "type": "sneak_in_item" },
-      { "type": "bottom_line" },
-      { "type": "cta" }
-    ]
-  }
-]
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {"type":"text","id":"main_title","label":"Main title"},
+        {"type":"text","id":"highlight_text","label":"Highlight text"},
+        {"type":"range","id":"title_size","label":"Title font size","min":20,"max":60,"default":36},
+        {"type":"color","id":"title_color","label":"Title color"},
+        {"type":"color","id":"highlight_color","label":"Highlight color"}
+      ]
+    },
+    {
+      "type": "intro",
+      "name": "Intro",
+      "settings": [
+        {"type":"richtext","id":"intro_text","label":"Intro text"},
+        {"type":"range","id":"text_size","label":"Intro font size","min":12,"max":24,"default":16},
+        {"type":"color","id":"text_color","label":"Intro color"}
+      ]
+    },
+    {
+      "type": "main_image",
+      "name": "Main image",
+      "settings": [
+        {"type":"image_picker","id":"main_image","label":"Main image"},
+        {"type":"range","id":"image_border_radius","label":"Main image border radius","min":0,"max":30,"default":8}
+      ]
+    },
+    {
+      "type": "subsection_title",
+      "name": "Subsection title",
+      "settings": [
+        {"type":"text","id":"subsection_title","label":"Subsection title"},
+        {"type":"range","id":"subsection_title_size","label":"Subsection title size","min":12,"max":40,"default":24}
+      ]
+    },
+    {
+      "type": "sneak_in_item",
+      "name": "Sneak-in Item",
+      "settings": [
+        {"type":"image_picker","id":"image","label":"Image"},
+        {"type":"text","id":"title","label":"Title"},
+        {"type":"richtext","id":"description","label":"Description"}
+      ]
+    },
+    {
+      "type": "bottom_line",
+      "name": "Bottom line",
+      "settings": [
+        {"type":"text","id":"bottom_line_title","label":"Bottom line title"},
+        {"type":"richtext","id":"bottom_line_text","label":"Bottom line text"},
+        {"type":"range","id":"bottom_title_size","label":"Bottom title size","min":16,"max":36,"default":22}
+      ]
+    },
+    {
+      "type": "cta",
+      "name": "CTA",
+      "settings": [
+        {"type":"text","id":"cta_text","label":"CTA text"},
+        {"type":"url","id":"cta_link","label":"CTA link"},
+        {"type":"color","id":"button_background","label":"Button background"},
+        {"type":"color","id":"button_text_color","label":"Button text color"},
+        {"type":"range","id":"button_text_size","label":"Button text size","min":12,"max":24,"default":16},
+        {"type":"range","id":"button_padding","label":"Button padding","min":8,"max":30,"default":16},
+        {"type":"range","id":"button_border_radius","label":"Button border radius","min":0,"max":30,"default":8}
+      ]
+    },
+    {
+      "type": "testimonial_title",
+      "name": "Testimonial Title",
+      "settings": [
+        {"type": "richtext", "id": "title", "label": "Title", "default": "<p>What Customers Are Saying</p>"},
+        {"type": "text", "id": "highlight_text", "label": "Text to Highlight"},
+        {"type": "range", "id": "title_size", "label": "Title Font Size", "min": 10, "max": 80, "step": 1, "default": 36},
+        {"type": "color", "id": "title_color", "label": "Title Color", "default": "#000000"},
+        {"type": "color", "id": "highlight_color", "label": "Highlight Color", "default": "#FF6B35"}
+      ]
+    },
+    {
+      "type": "testimonial_description",
+      "name": "Testimonial Description",
+      "settings": [
+        {"type": "richtext", "id": "description", "label": "Description", "default": "<p>Real customers. Real feedback. Real results.</p>"}
+      ]
+    },
+    {
+      "type": "testimonial_item",
+      "name": "Testimonial",
+      "settings": [
+        {"type": "textarea", "id": "quote", "label": "Quote"},
+        {"type": "text", "id": "name", "label": "Name"},
+        {"type": "text", "id": "age", "label": "Age"},
+        {"type": "image_picker", "id": "icon", "label": "Customer Icon"},
+        {"type": "text", "id": "verified_label", "label": "Verified Label", "default": "Verified Customer"}
+      ]
+    },
+    {
+      "type": "testimonial_cta",
+      "name": "Testimonial CTA",
+      "settings": [
+        {"type": "text", "id": "button_text", "label": "Button Text", "default": "TRY NOW"},
+        {"type": "url", "id": "button_link", "label": "Button Link"}
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Parasite info (blocks)",
+      "blocks": [
+        {"type": "heading"},
+        {"type": "intro"},
+        {"type": "main_image"},
+        {"type": "subsection_title"},
+        {"type": "sneak_in_item"},
+        {"type": "sneak_in_item"},
+        {"type": "sneak_in_item"},
+        {"type": "bottom_line"},
+        {"type": "cta"},
+        {"type": "testimonial_title"},
+        {"type": "testimonial_description"},
+        {"type": "testimonial_item"},
+        {"type": "testimonial_item"},
+        {"type": "testimonial_item"},
+        {"type": "testimonial_cta"}
+      ]
+    }
+  ]
 }
+
+
 {% endschema %}
