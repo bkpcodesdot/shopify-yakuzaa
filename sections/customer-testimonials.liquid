@@ -7,7 +7,6 @@
 </div>
 
 {% style %}
-{% style %}
 .ai-testimonials-{{ section.id }} {
   padding: 0px 20px;
   max-width: 726px;
@@ -157,180 +156,38 @@
     margin-bottom:10px;
   }
 }
-{% endstyle %}
+
 {% endstyle %}
 
 {% schema %}
 {
   "name": "Customer Testimonials",
-  "settings": [
-    {
-      "type": "richtext",
-      "id": "title",
-      "label": "Title",
-      "default": "<p>What Customers Are <span>Saying</span> After Trying Resilia</p>"
-    },
-    {
-      "type": "color",
-      "id": "title_color",
-      "label": "Title color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "highlight_color",
-      "label": "Highlight color",
-      "default": "#FF6B35"
-    },
-    {
-      "type": "range",
-      "id": "title_font_size",
-      "label": "Title font size",
-      "min": 20,
-      "max": 60,
-      "step": 2,
-      "unit": "px",
-      "default": 36
-    },
-    {
-      "type": "color",
-      "id": "card_background_color",
-      "label": "Card background",
-      "default": "#F8F9FA"
-    },
-    {
-      "type": "color",
-      "id": "card_border_color",
-      "label": "Card border color",
-      "default": "#4CAF50"
-    },
-    {
-      "type": "richtext",
-      "id": "description",
-      "label": "Description",
-      "default": "<p>Real customers sharing their experiences with our product. See what they have to say about the results they've achieved and how it has transformed their daily routine.</p>"
-    },
-    {
-      "type": "color",
-      "id": "description_color",
-      "label": "Description color",
-      "default": "#666666"
-    },
-    {
-      "type": "range",
-      "id": "description_font_size",
-      "label": "Description font size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "text",
-      "id": "verified_label",
-      "label": "Verified label",
-      "default": "Verified Customer"
-    },
-    {
-      "type": "color",
-      "id": "name_color",
-      "label": "Name color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "verified_color",
-      "label": "Verified text color",
-      "default": "#666666"
-    },
-    {
-      "type": "range",
-      "id": "name_font_size",
-      "label": "Name font size",
-      "min": 12,
-      "max": 18,
-      "step": 1,
-      "unit": "px",
-      "default": 14
-    },
-    {
-      "type": "range",
-      "id": "verified_font_size",
-      "label": "Verified text font size",
-      "min": 10,
-      "max": 16,
-      "step": 1,
-      "unit": "px",
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "icon_size",
-      "label": "Icon size",
-      "min": 16,
-      "max": 40,
-      "step": 2,
-      "unit": "px",
-      "default": 24
-    },
-    {
-      "type": "text",
-      "id": "button_text",
-      "label": "Button text",
-      "default": "TRY RESILIA RISK-FREE"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button link"
-    },
-    {
-      "type": "color",
-      "id": "button_background_color",
-      "label": "Button background",
-      "default": "#FF6B35"
-    },
-    {
-      "type": "color",
-      "id": "button_hover_color",
-      "label": "Button hover color",
-      "default": "#E55A2B"
-    },
-    {
-      "type": "color",
-      "id": "button_text_color",
-      "label": "Button text color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "range",
-      "id": "button_font_size",
-      "label": "Button font size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "button_border_radius",
-      "label": "Button border radius",
-      "min": 0,
-      "max": 30,
-      "step": 2,
-      "unit": "px",
-      "default": 8
-    },
-    {
-      "type": "color",
-      "id": "section_background_color",
-      "label": "Section background",
-      "default": "#FFFFFF"
-    }
-  ],
+  "settings": [],
   "blocks": [
+    {
+      "type": "title",
+      "name": "Title",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "title",
+          "label": "Title",
+          "default": "<p>What Customers Are <span>Saying</span> After Trying Resilia</p>"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Real customers sharing their experiences with our product.</p>"
+        }
+      ]
+    },
     {
       "type": "testimonial",
       "name": "Testimonial",
@@ -338,11 +195,32 @@
         { "type": "textarea", "id": "quote", "label": "Quote" },
         { "type": "text", "id": "name", "label": "Customer name" },
         { "type": "text", "id": "age", "label": "Customer age" },
-        { "type": "image_picker", "id": "icon", "label": "Icon" }
+        { "type": "image_picker", "id": "icon", "label": "Icon" },
+        { "type": "text", "id": "verified_label", "label": "Verified label", "default": "Verified Customer" }
+      ]
+    },
+    {
+      "type": "cta",
+      "name": "CTA Button",
+      "settings": [
+        { "type": "text", "id": "button_text", "label": "Button Text", "default": "TRY RESILIA RISK-FREE" },
+        { "type": "url", "id": "button_link", "label": "Button Link" }
       ]
     }
   ],
-  "max_blocks": 10,
-  "presets": [{ "name": "Customer Testimonials-new" }]
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Customer Testimonials",
+      "blocks": [
+        { "type": "title" },
+        { "type": "description" },
+        { "type": "testimonial" },
+        { "type": "testimonial" },
+        { "type": "cta" }
+      ]
+    }
+  ]
 }
+
 {% endschema %}
