@@ -956,7 +956,8 @@
         "testimonial_description_4D9DbT": {
           "type": "testimonial_description",
           "settings": {
-            "description": "<p>For many customers, Resilia was the breakthrough they didn’t know they needed. After months of struggling with unexplained symptoms like bloating, fatigue, sugar cravings, and skin flare-ups, thousands have turned to Resilia and found a simple, natural solution that actually works.</p>"
+            "description": "<p>For many customers, Resilia was the breakthrough they didn’t know they needed. After months of struggling with unexplained symptoms like bloating, fatigue, sugar cravings, and skin flare-ups, thousands have turned to Resilia and found a simple, natural solution that actually works.</p>",
+            "description_font_size": 17
           }
         },
         "testimonial_item_7rb4Eg": {
