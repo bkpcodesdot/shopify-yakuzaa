@@ -325,8 +325,9 @@
 
   {% when 'testimonial_item' %}
     <div class="testimonial-inner">
-   <div class="ai-testimonial-grid-{{ section.id }} {{ section.settings.custom_class }}" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-
+  <!-- Add this to your section file -->
+<div class="ai-testimonial-grid-{{ section.id }} {{ section.settings.custom_class }}">
+  {% for block in section.blocks %}
     {% if block.type == 'testimonial_item' %}
       <div class="ai-testimonial-card-{{ section.id }}">
         {% if block.settings.quote != blank %}
@@ -357,8 +358,62 @@
         </div>
       </div>
     {% endif %}
-
+  {% endfor %}
 </div>
+
+<style>
+  .ai-testimonial-grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+  }
+  
+  .ai-testimonial-card-{{ section.id }} {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .ai-testimonial-quote-{{ section.id }} {
+    font-style: italic;
+    margin-bottom: 15px;
+  }
+  
+  .ai-testimonial-footer-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .ai-testimonial-icon-{{ section.id }} img,
+  .ai-testimonial-icon-placeholder-{{ section.id }} {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e0e0e0;
+  }
+  
+  .ai-testimonial-name-{{ section.id }} {
+    font-weight: bold;
+  }
+  
+  .ai-testimonial-verified-{{ section.id }} {
+    font-size: 0.8em;
+    color: #666;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .ai-testimonial-grid-{{ section.id }} {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
 </div>
    
   
