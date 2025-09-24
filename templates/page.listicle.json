@@ -997,26 +997,26 @@
           "type": "testimonial",
           "settings": {
             "quote": "“This little softgel is magic. I’ve tried everything for my gut, and nothing worked like Resilia.”",
-            "name": "",
-            "age": "",
+            "name": "Jenna B.",
+            "age": "40 yo",
             "verified_label": "Verified Customer"
           }
         },
         "testimonial_y9tzeq": {
           "type": "testimonial",
           "settings": {
-            "quote": "",
-            "name": "",
-            "age": "",
+            "quote": "“I thought I had brain fog from aging. Turns out it was parasites. Resilia gave me my clarity back.\"",
+            "name": "Claire L.",
+            "age": "50 yo",
             "verified_label": "Verified Customer"
           }
         },
         "testimonial_7kEY77": {
           "type": "testimonial",
           "settings": {
-            "quote": "",
-            "name": "",
-            "age": "",
+            "quote": "“My cravings were GONE in 3 days. I’ve lost 6 pounds of bloat without changing my diet.”",
+            "name": "Mark M.",
+            "age": "35 yo",
             "verified_label": "Verified Customer"
           }
         },
