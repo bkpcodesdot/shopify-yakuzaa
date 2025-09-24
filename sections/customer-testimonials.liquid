@@ -3,26 +3,10 @@
 {% endcomment %}
 
 <div class="ai-testimonials-{{ section.id }}">
-  <div class="ai-testimonials-header-{{ section.id }}">
-    {% render 'title-block', section: section %}
-    {% render 'description-block', section: section %}
-  </div>
-
-  <div class="ai-testimonials-grid-{{ section.id }}">
-    {% for block in section.blocks %}
-      {% if block.type == 'testimonial' %}
-        {% render 'testimonial-block', block: block, section: section %}
-      {% endif %}
-    {% endfor %}
-  </div>
-
-  {% if section.settings.button_text != blank %}
-    <div class="ai-testimonials-cta-{{ section.id }}">
-      {% render 'cta-button', section: section %}
-    </div>
-  {% endif %}
+  {% render 'customer-testimonials-content', section: section %}
 </div>
 
+{% style %}
 {% style %}
 .ai-testimonials-{{ section.id }} {
   padding: 0px 20px;
@@ -173,7 +157,7 @@
     margin-bottom:10px;
   }
 }
-
+{% endstyle %}
 {% endstyle %}
 
 {% schema %}
@@ -351,19 +335,14 @@
       "type": "testimonial",
       "name": "Testimonial",
       "settings": [
-        {"type": "textarea", "id": "quote", "label": "Quote"},
-        {"type": "text", "id": "name", "label": "Customer name"},
-        {"type": "text", "id": "age", "label": "Customer age"},
-        {"type": "image_picker", "id": "icon", "label": "Icon"}
+        { "type": "textarea", "id": "quote", "label": "Quote" },
+        { "type": "text", "id": "name", "label": "Customer name" },
+        { "type": "text", "id": "age", "label": "Customer age" },
+        { "type": "image_picker", "id": "icon", "label": "Icon" }
       ]
     }
   ],
   "max_blocks": 10,
-  "presets": [
-    {
-      "name": "Customer Testimonials-new"
-    }
-  ]
+  "presets": [{ "name": "Customer Testimonials" }]
 }
 {% endschema %}
-
