@@ -984,7 +984,11 @@
         "title_n3ddeX": {
           "type": "title",
           "settings": {
-            "title": "<p>What Customers Are Saying After Trying Resilia  </p>"
+            "title": "<p>What Customers Are Saying After Trying Resilia  </p>",
+            "highlight_text": "Saying",
+            "title_size": 34,
+            "title_color": "#000000",
+            "highlight_color": "#ff6b35"
           }
         },
         "description_BqKci3": {
@@ -1046,7 +1050,6 @@
         "card_background_color": "#f8f9fa",
         "card_border_color": "#016401",
         "card_border_radius": 5,
-        "highlight_text": "",
         "quote_color": "#000000",
         "quote_font_size": 18,
         "name_color": "#000000",
