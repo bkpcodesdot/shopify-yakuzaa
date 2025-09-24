@@ -383,10 +383,8 @@
             padding: 0 !important;
           }
         </style>
-    <div class="ai-icon-bullet-list__content-{{ ai_gen_id }}">
-  {% comment %} Define your icons array - add as many as needed {% endcomment %}
-  {% assign icons = 'icon1.svg,icon2.svg,icon3.svg,icon4.svg,icon5.svg' | split: ',' %}
-  
+        
+       <div class="ai-icon-bullet-list__content-{{ ai_gen_id }}">
   {% assign list_items = block.settings.list_content | split: '<li>' %}
   {% if list_items.size > 1 %}
     <ul>
@@ -394,16 +392,26 @@
         {% unless forloop.first %}
           {% assign clean_item = item | split: '</li>' | first | strip %}
           {% if clean_item != blank %}
-            {% assign icon_index = forloop.index0 %}
-            {% assign current_icon = icons[icon_index] %}
-            <li>
-              {% if current_icon and current_icon != blank %}
-                <img src="{{ current_icon | asset_url }}" alt="Bullet Icon" class="bullet-icon" width="{{ block.settings.icon_size | default: 20 }}" height="{{ block.settings.icon_size | default: 20 }}">
-              {% else %}
-                <span class="bullet-icon" style="font-size: {{ block.settings.icon_size | default: 20 }}px; color: {{ block.settings.list_text_color | default: '#333333' }};">•</span>
-              {% endif %}
-              <span class="bullet-text">{{ clean_item }}</span>
-            </li>
+            {% comment %} Check if item contains icon markup like [icon:filename.svg] {% endcomment %}
+            {% if clean_item contains '[icon:' %}
+              {% assign icon_parts = clean_item | split: '[icon:' %}
+              {% assign icon_and_text = icon_parts[1] | split: ']' %}
+              {% assign icon_filename = icon_and_text[0] %}
+              {% assign text_content = icon_and_text[1] %}
+              <li>
+                <img src="{{ icon_filename | asset_url }}" alt="Bullet Icon" class="bullet-icon" width="{{ block.settings.icon_size | default: 20 }}" height="{{ block.settings.icon_size | default: 20 }}">
+                <span class="bullet-text">{{ text_content | strip }}</span>
+              </li>
+            {% else %}
+              <li>
+                {% if block.settings.bullet_icon %}
+                  <img src="{{ block.settings.bullet_icon | image_url }}" alt="Bullet Icon" class="bullet-icon" width="{{ block.settings.icon_size | default: 20 }}" height="{{ block.settings.icon_size | default: 20 }}">
+                {% else %}
+                  <span class="bullet-icon" style="font-size: {{ block.settings.icon_size | default: 20 }}px; color: {{ block.settings.list_text_color | default: '#333333' }};">•</span>
+                {% endif %}
+                <span class="bullet-text">{{ clean_item }}</span>
+              </li>
+            {% endif %}
           {% endif %}
         {% endunless %}
       {% endfor %}
@@ -411,7 +419,6 @@
   {% else %}
     {{ block.settings.list_content | default: '<ul><li>Add your list items here</li></ul>' }}
   {% endif %}
-</div>
 </div>
       </div>
     </div>
