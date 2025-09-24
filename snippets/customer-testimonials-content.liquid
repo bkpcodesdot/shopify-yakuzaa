@@ -12,9 +12,8 @@
       {% when 'description' %}
         {% if block.settings.description != blank %}
           <div class="ai-testimonials-description-{{ section.id }}">
-  {{ block.settings.description | replace: block.settings.highlight_text, '<span class="highlight">' | append: block.settings.highlight_text | append: '</span>' | raw }}
-</div>
-
+            {{ block.settings.description }}
+          </div>
         {% endif %}
 
       
