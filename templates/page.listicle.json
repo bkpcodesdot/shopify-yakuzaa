@@ -1041,7 +1041,7 @@
         "section_background_color": "#ffffff",
         "title_color": "#000000",
         "title_font_size": 34,
-        "description_color": "#666666",
+        "description_color": "#000000",
         "description_font_size": 16,
         "card_background_color": "#f8f9fa",
         "card_border_color": "#016401",
