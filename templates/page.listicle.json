@@ -1011,6 +1011,15 @@
             "verified_label": "Verified Customer"
           }
         },
+        "testimonial_7kEY77": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "",
+            "name": "",
+            "age": "",
+            "verified_label": "Verified Customer"
+          }
+        },
         "cta_LNMgpx": {
           "type": "cta",
           "settings": {
@@ -1024,6 +1033,7 @@
         "description_BqKci3",
         "testimonial_AaFQtY",
         "testimonial_y9tzeq",
+        "testimonial_7kEY77",
         "cta_LNMgpx"
       ],
       "name": "Customer Testimonials Preset",
