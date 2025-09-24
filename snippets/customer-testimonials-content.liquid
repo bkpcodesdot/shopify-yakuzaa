@@ -4,13 +4,14 @@
     {% case block.type %}
 {% when 'title' %}
   {% if block.settings.title != blank %}
-    <h2 class="ai-testimonials-title-{{ section.id }}" style="
-      --title-size: {{ block.settings.title_size }}px;
-      --title-color: {{ block.settings.title_color }};
-      --highlight-color: {{ block.settings.highlight_color }};
-    ">
-      {{ block.settings.title | replace: block.settings.highlight_text, '<span class="highlight">' | append: block.settings.highlight_text | append: '</span>' | raw }}
-    </h2>
+   <h2 class="ai-testimonials-title-{{ section.id }}" style="
+  --title-size: {{ block.settings.title_size }}px;
+  --title-color: {{ block.settings.title_color }};
+  --highlight-color: {{ block.settings.highlight_color }};
+">
+  {{ block.settings.title | replace: block.settings.highlight_text, '<span class="highlight">' | append: block.settings.highlight_text | append: '</span>' | raw }}
+</h2>
+
   {% endif %}
   
       {% when 'description' %}
