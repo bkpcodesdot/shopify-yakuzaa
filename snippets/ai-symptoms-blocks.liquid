@@ -384,31 +384,32 @@
           }
         </style>
         
-        <div class="ai-icon-bullet-list-{{ ai_gen_id }}">
-  <ul class="ai-icon-bullet-list__content-{{ ai_gen_id }}">
-    {% for i in (1..5) %}
-      {% assign icon_key = 'icon_' | append: i %}
-      {% assign text_key = 'text_' | append: i %}
-      {% assign icon = block.settings[icon_key] %}
-      {% assign text = block.settings[text_key] %}
-      {% if text != blank %}
-        <li style="display: flex; align-items: center; margin-bottom: 12px;">
-          {% if icon %}
-            <img src="{{ icon | image_url }}" 
-                 alt="Bullet Icon {{ i }}" 
-                 class="bullet-icon"
-                 style="width: {{ block.settings.icon_size }}px; height: {{ block.settings.icon_size }}px; margin-right: 10px;">
+        <div class="ai-icon-bullet-list__content-{{ ai_gen_id }}">
+          {% assign list_items = block.settings.list_content | split: '<li>' %}
+          {% if list_items.size > 1 %}
+            <ul>
+              {% for item in list_items %}
+                {% unless forloop.first %}
+                  {% assign clean_item = item | split: '</li>' | first | strip %}
+                  {% if clean_item != blank %}
+                    <li>
+                      {% if block.settings.bullet_icon %}
+                        <img src="{{ block.settings.bullet_icon | image_url }}" alt="Bullet Icon" class="bullet-icon" width="{{ block.settings.icon_size | default: 20 }}" height="{{ block.settings.icon_size | default: 20 }}">
+                      {% else %}
+                        <span class="bullet-icon" style="font-size: {{ block.settings.icon_size | default: 20 }}px; color: {{ block.settings.list_text_color | default: '#333333' }};">•</span>
+                      {% endif %}
+                      <span class="bullet-text">{{ clean_item }}</span>
+                    </li>
+                  {% endif %}
+                {% endunless %}
+              {% endfor %}
+            </ul>
           {% else %}
-            <span style="font-size: {{ block.settings.icon_size }}px; margin-right: 10px;">•</span>
+            {{ block.settings.list_content | default: '<ul><li>Add your list items here</li></ul>' }}
           {% endif %}
-          <span style="font-size: {{ block.settings.font_size }}px; color: {{ block.settings.text_color }};">
-            {{ text }}
-          </span>
-        </li>
-      {% endif %}
-    {% endfor %}
-  </ul>
-</div>
+        </div>
+      </div>
+    </div>
 
   {% when 'timeline' %}
     <div class="ai-timeline-{{ ai_gen_id }}"
