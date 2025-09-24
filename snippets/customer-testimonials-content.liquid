@@ -1,0 +1,68 @@
+{%- comment -%}
+  Full Testimonials Section Content
+  Includes:
+  - Title
+  - Description
+  - Testimonial cards (loop)
+  - CTA Button
+{%- endcomment -%}
+
+<div class="ai-testimonials-header-{{ section.id }}">
+  {% if section.settings.title != blank %}
+    <h2 class="ai-testimonials-title-{{ section.id }}">
+      {{ section.settings.title }}
+    </h2>
+  {% endif %}
+
+  {% if section.settings.description != blank %}
+    <div class="ai-testimonials-description-{{ section.id }}">
+      {{ section.settings.description }}
+    </div>
+  {% endif %}
+</div>
+
+<div class="ai-testimonials-grid-{{ section.id }}">
+  {% for block in section.blocks %}
+    {% if block.type == 'testimonial' %}
+      <div class="ai-testimonial-card-{{ section.id }}">
+        {% if block.settings.quote != blank %}
+          <div class="ai-testimonial-quote-{{ section.id }}">
+            {{ block.settings.quote }}
+          </div>
+        {% endif %}
+
+        <div class="ai-testimonial-footer-{{ section.id }}">
+          <div class="ai-testimonial-icon-{{ section.id }}">
+            {% if block.settings.icon %}
+              <img src="{{ block.settings.icon | image_url: width: 50 }}" alt="Customer verification icon" loading="lazy">
+            {% else %}
+              <div class="ai-testimonial-icon-placeholder-{{ section.id }}">
+                <!-- You can paste your SVG icon here -->
+                ✅
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="ai-testimonial-customer-{{ section.id }}">
+            {% if block.settings.name or block.settings.age %}
+              <div class="ai-testimonial-name-{{ section.id }}">
+                {{ block.settings.name }}{% if block.settings.age != blank %}, {{ block.settings.age }}{% endif %}
+              </div>
+            {% endif %}
+            <div class="ai-testimonial-verified-{{ section.id }}">
+              {{ section.settings.verified_label }}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% if section.settings.button_text != blank %}
+  <div class="ai-testimonials-cta-{{ section.id }}">
+    <a href="{{ section.settings.button_link }}" class="ai-testimonials-button-{{ section.id }}">
+      {{ section.settings.button_text }}
+    </a>
+  </div>
+{% endif %}
