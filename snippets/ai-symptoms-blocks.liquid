@@ -339,80 +339,77 @@
       </div>
     </div>
 
-  <!-- sections/image-text-sets.liquid -->
-{% when 'image_text_set' %}
-  <div class="image-text-set image-text-set-{{ block.id }}">
-    <div class="image-text-set__inner">
-      {% if block.settings.image %}
-        <div class="image-text-set__image">
-          <img 
-            src="{{ block.settings.image | image_url: width: 400 }}" 
-            alt="{{ block.settings.heading | escape }}" 
-            loading="lazy"
-            width="400"
-            height="auto"
-          >
-        </div>
-      {% endif %}
-      
-      <div class="image-text-set__content">
-        {% if block.settings.heading != blank %}
-          <h3 class="image-text-set__heading">
-            {{ block.settings.heading }}
-          </h3>
-        {% endif %}
+  {% when 'icon_bullet_list' %}
+    <div class="ai-icon-bullet-list-{{ ai_gen_id }}"
+         style="margin: {{ block.settings.margin_top | default: 0 }}px auto {{ block.settings.margin_bottom | default: 0 }}px;
+                width: 100%;" {{ block.shopify_attributes }}>
+      <div class="ai-icon-bullet-list__container-{{ ai_gen_id }}"
+           style="max-width: 728px;
+                  margin: 0 auto;">
         
-        {% if block.settings.text != blank %}
-          <p class="image-text-set__text">
-            {{ block.settings.text }}
-          </p>
-        {% endif %}
+        <style>
+          .ai-icon-bullet-list__content-{{ ai_gen_id }} ul {
+            list-style: none !important;
+            padding-left: 0 !important;
+            margin: 0 !important;
+          }
+          
+          .ai-icon-bullet-list__content-{{ ai_gen_id }} li {
+            display: flex !important;
+            align-items: flex-start !important;
+            margin-bottom: {{ block.settings.item_spacing | default: 12 }}px !important;
+            padding: 0 !important;
+            font-size: {{ block.settings.list_font_size | default: 16 }}px !important;
+            color: {{ block.settings.list_text_color | default: '#333333' }} !important;
+            line-height: {{ block.settings.line_height | default: 1.4 }} !important;
+          }
+          
+          .ai-icon-bullet-list__content-{{ ai_gen_id }} li:last-child {
+            margin-bottom: 0 !important;
+          }
+          
+          .ai-icon-bullet-list__content-{{ ai_gen_id }} .bullet-icon {
+            width: {{ block.settings.icon_size | default: 20 }}px !important;
+            height: {{ block.settings.icon_size | default: 20 }}px !important;
+            margin-right: 12px !important;
+            flex-shrink: 0 !important;
+            margin-top: 2px !important;
+            object-fit: contain !important;
+          }
+          
+          .ai-icon-bullet-list__content-{{ ai_gen_id }} .bullet-text {
+            flex: 1 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+          }
+        </style>
+        
+        <div class="ai-icon-bullet-list__content-{{ ai_gen_id }}">
+          {% assign list_items = block.settings.list_content | split: '<li>' %}
+          {% if list_items.size > 1 %}
+            <ul>
+              {% for item in list_items %}
+                {% unless forloop.first %}
+                  {% assign clean_item = item | split: '</li>' | first | strip %}
+                  {% if clean_item != blank %}
+                    <li>
+                      {% if block.settings.bullet_icon %}
+                        <img src="{{ block.settings.bullet_icon | image_url }}" alt="Bullet Icon" class="bullet-icon" width="{{ block.settings.icon_size | default: 20 }}" height="{{ block.settings.icon_size | default: 20 }}">
+                      {% else %}
+                        <span class="bullet-icon" style="font-size: {{ block.settings.icon_size | default: 20 }}px; color: {{ block.settings.list_text_color | default: '#333333' }};">•</span>
+                      {% endif %}
+                      <span class="bullet-text">{{ clean_item }}</span>
+                    </li>
+                  {% endif %}
+                {% endunless %}
+              {% endfor %}
+            </ul>
+          {% else %}
+            {{ block.settings.list_content | default: '<ul><li>Add your list items here</li></ul>' }}
+          {% endif %}
+        </div>
       </div>
     </div>
-  </div>
-
-  <style>
-    .image-text-set-{{ block.id }} .image-text-set__inner {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-      margin-bottom: 40px;
-    }
-    .image-text-set-{{ block.id }} .image-text-set__image img {
-      max-width: 180px;
-      border-radius: 12px;
-      object-fit: cover;
-    }
-    .image-text-set-{{ block.id }} .image-text-set__content {
-      flex: 1;
-    }
-    .image-text-set-{{ block.id }} .image-text-set__heading {
-      margin: 0 0 8px;
-      font-size: 20px;
-      font-weight: 600;
-      color: #222;
-    }
-    .image-text-set-{{ block.id }} .image-text-set__text {
-      margin: 0;
-      font-size: 16px;
-      line-height: 1.5;
-      color: #555;
-    }
-    @media (max-width: 768px) {
-      .image-text-set-{{ block.id }} .image-text-set__inner {
-        flex-direction: column;
-        text-align: center;
-      }
-      .image-text-set-{{ block.id }} .image-text-set__image img {
-        margin-bottom: 16px;
-      }
-    }
-  </style>
-
-
-    
-  </div>
-</section>
 
   {% when 'timeline' %}
     <div class="ai-timeline-{{ ai_gen_id }}"
