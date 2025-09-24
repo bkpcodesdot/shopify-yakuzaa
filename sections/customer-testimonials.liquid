@@ -56,14 +56,17 @@
     margin-top: 40px;
   }
   .ai-testimonials-button-{{ section.id }} {
-    background-color:{{block.settings.button_font_size }};
+    background-color: {{ block.settings.button_background_color | default: '#008700' }};
     color: white;
     padding: 16px 32px;
     border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
-    display: block;
-  }
+    display: inline-block;
+    text-align: center;
+    font-size: {{ block.settings.button_font_size | default: 16 }}px;
+}
+
   .ai-testimonials-button-{{ section.id }}:hover {
     background-color: #E55A2B;
     color: #fff;
