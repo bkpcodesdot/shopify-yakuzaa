@@ -751,42 +751,6 @@
             "subsection_title_size": 24
           }
         },
-        "sneak_in_image_D4mydj": {
-          "type": "sneak_in_image",
-          "settings": {
-            "image": "shopify://shop_images/contaminated_food.webp"
-          }
-        },
-        "sneak_in_title_iL3Ubi": {
-          "type": "sneak_in_title",
-          "settings": {
-            "title": "Contaminated Food"
-          }
-        },
-        "sneak_in_description_DUhhXw": {
-          "type": "sneak_in_description",
-          "settings": {
-            "description": "<p>Even in the U.S., tap water, unwashed produce, and undercooked meat can carry parasite eggs or fungi that settle in your digestive tract.<br/><br/></p>"
-          }
-        },
-        "sneak_in_image_xG3Aqx": {
-          "type": "sneak_in_image",
-          "settings": {
-            "image": "shopify://shop_images/pets.avif"
-          }
-        },
-        "sneak_in_title_gpD7ty": {
-          "type": "sneak_in_title",
-          "settings": {
-            "title": "Pets and Animals"
-          }
-        },
-        "sneak_in_description_mf6DKM": {
-          "type": "sneak_in_description",
-          "settings": {
-            "description": "<p>Dogs and cats (especially those that go outside) often carry parasite eggs in their fur. These can spread to your hands, your food, or your bed.</p>"
-          }
-        },
         "bottom_line_NnNzJf": {
           "type": "bottom_line",
           "settings": {
@@ -813,12 +777,6 @@
         "intro_gYe9rV",
         "main_image_3C8f6h",
         "subsection_title_iEtCfR",
-        "sneak_in_image_D4mydj",
-        "sneak_in_title_iL3Ubi",
-        "sneak_in_description_DUhhXw",
-        "sneak_in_image_xG3Aqx",
-        "sneak_in_title_gpD7ty",
-        "sneak_in_description_mf6DKM",
         "bottom_line_NnNzJf",
         "cta_BahKDV"
       ],
@@ -1286,7 +1244,6 @@
         "testimonial_wWkgNw",
         "testimonial_9Yw4za"
       ],
-      "disabled": true,
       "name": "Customer Testimonials",
       "settings": {
         "title": "<p>What Customers Are <strong>Saying</strong> After Trying Resilia</p>",
