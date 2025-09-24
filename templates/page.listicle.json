@@ -984,7 +984,7 @@
         "title_n3ddeX": {
           "type": "title",
           "settings": {
-            "title": "<p>What Customers Are Saying</p>"
+            "title": "<p>What Customers Are<strong>  Saying</strong></p>"
           }
         },
         "description_BqKci3": {
@@ -996,7 +996,7 @@
         "testimonial_AaFQtY": {
           "type": "testimonial",
           "settings": {
-            "quote": "",
+            "quote": "“This little softgel is magic. I’ve tried everything for my gut, and nothing worked like Resilia.”",
             "name": "",
             "age": "",
             "verified_label": "Verified Customer"
