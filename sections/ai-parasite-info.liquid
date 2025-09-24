@@ -323,43 +323,50 @@
           {{ block.settings.description | raw }}
         </div>
 
-  {% when 'testimonial_item' %}
-    <div class="testimonial-inner">
-   <div class="ai-testimonial-grid-{{ section.id }} {{ section.settings.custom_class }}" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-
-    {% if block.type == 'testimonial_item' %}
-      <div class="ai-testimonial-card-{{ section.id }}">
-        {% if block.settings.quote != blank %}
-          <div class="ai-testimonial-quote-{{ section.id }}">
-            {{ block.settings.quote }}
-          </div>
-        {% endif %}
-
-        <div class="ai-testimonial-footer-{{ section.id }}">
-          <div class="ai-testimonial-icon-{{ section.id }}">
-            {% if block.settings.icon %}
-              <img src="{{ block.settings.icon | image_url: width: 50 }}" alt="Customer verification icon" loading="lazy">
-            {% else %}
-              <div class="ai-testimonial-icon-placeholder-{{ section.id }}">✅</div>
-            {% endif %}
-          </div>
-
-          <div class="ai-testimonial-customer-{{ section.id }}">
-            {% if block.settings.name or block.settings.age %}
-              <div class="ai-testimonial-name-{{ section.id }}">
-                {{ block.settings.name }}{% if block.settings.age != blank %}, {{ block.settings.age }}{% endif %}
+{% when 'testimonial_item' %}
+  <div class="testimonial-inner">
+    
+    {% for i in (1..3) %}
+      <div class="ai-testimonial-grid-{{ section.id }}-{{ i }}" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+        
+        {% for block in section.blocks %}
+          {% if block.type == 'testimonial_item' %}
+            <div class="ai-testimonial-card-{{ section.id }}-{{ i }}">
+              {% if block.settings.quote != blank %}
+                <div class="ai-testimonial-quote-{{ section.id }}-{{ i }}">
+                  {{ block.settings.quote }}
+                </div>
+              {% endif %}
+ 
+              <div class="ai-testimonial-footer-{{ section.id }}-{{ i }}">
+                <div class="ai-testimonial-icon-{{ section.id }}-{{ i }}">
+                  {% if block.settings.icon %}
+                    <img src="{{ block.settings.icon | image_url: width: 50 }}" alt="Customer verification icon" loading="lazy">
+                  {% else %}
+                    <div class="ai-testimonial-icon-placeholder-{{ section.id }}-{{ i }}">✅</div>
+                  {% endif %}
+                </div>
+ 
+                <div class="ai-testimonial-customer-{{ section.id }}-{{ i }}">
+                  {% if block.settings.name or block.settings.age %}
+                    <div class="ai-testimonial-name-{{ section.id }}-{{ i }}">
+                      {{ block.settings.name }}{% if block.settings.age != blank %}, {{ block.settings.age }}{% endif %}
+                    </div>
+                  {% endif %}
+                  <div class="ai-testimonial-verified-{{ section.id }}-{{ i }}">
+                    {{ block.settings.verified_label | default: "Verified Customer" }}
+                  </div>
+                </div>
               </div>
-            {% endif %}
-            <div class="ai-testimonial-verified-{{ section.id }}">
-              {{ block.settings.verified_label | default: "Verified Customer" }}
             </div>
-          </div>
-        </div>
-      </div>
-    {% endif %}
-
-</div>
-</div>
+          {% endif %}
+        {% endfor %}
+        
+      </div> <!-- End ai-testimonial-grid-{{ i }} -->
+ 
+    {% endfor %}
+    
+  </div> <!-- End testimonial-inner -->
    
   
 
