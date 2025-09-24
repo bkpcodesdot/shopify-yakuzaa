@@ -222,13 +222,21 @@
         {{ block.settings.cta_text }}
       </a>
 {% when 'testimonial_title' %}
-        <div class="ai-testimonials-title-{{ section.id }}" style="
-          font-size: {{ block.settings.title_size }}px;
-          color: {{ block.settings.title_color }};
-          margin-bottom: 20px;
-        ">
-          {{ block.settings.title | raw }}
-        </div>
+        <h2 class="ai-testimonials-title-{{ section.id }}" style="
+      --title-size: {{ block.settings.title_size }}px;
+      --title-color: {{ block.settings.title_color }};
+      --highlight-color: {{ block.settings.highlight_color }};
+    ">
+      {% assign full_title = block.settings.title %}
+      {% assign highlight_word = block.settings.highlight_text %}
+      
+      {% if highlight_word != blank and full_title contains highlight_word %}
+        {% assign parts = full_title | split: highlight_word %}
+        {{ parts[0] }}<span class="highlight">{{ highlight_word }}</span>{{ parts[1] }}
+      {% else %}
+        {{ full_title }}
+      {% endif %}
+    </h2>
 
       {% when 'testimonial_description' %}
         <div class="ai-testimonials-description-{{ section.id }}" style="margin-bottom: 30px;">
