@@ -15,42 +15,34 @@
       {% endif %}
 
     {% when 'testimonial' %}
-     <div class="ai-testimonial-grid-{{ section.id }}" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-  {% for block in section.blocks %}
-    <div class="ai-testimonial-card-{{ section.id }}" style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; background: #fff;">
-      
-      {% if block.settings.quote != blank %}
-        <div class="ai-testimonial-quote-{{ section.id }}" style="margin-bottom: 15px;">
-          {{ block.settings.quote }}
-        </div>
-      {% endif %}
+      <div class="ai-testimonial-card-{{ section.id }}">
+        {% if block.settings.quote != blank %}
+          <div class="ai-testimonial-quote-{{ section.id }}">
+            {{ block.settings.quote }}
+          </div>
+        {% endif %}
 
-      <div class="ai-testimonial-footer-{{ section.id }}" style="display: flex; align-items: center; gap: 10px;">
-        
-        <div class="ai-testimonial-icon-{{ section.id }}">
-          {% if block.settings.icon %}
-            <img src="{{ block.settings.icon | image_url: width: 50 }}" alt="Customer verification icon" loading="lazy" style="border-radius: 50%;">
-          {% else %}
-            <div class="ai-testimonial-icon-placeholder-{{ section.id }}" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; background: #eee; border-radius: 50%;">✅</div>
-          {% endif %}
-        </div>
+        <div class="ai-testimonial-footer-{{ section.id }}">
+          <div class="ai-testimonial-icon-{{ section.id }}">
+            {% if block.settings.icon %}
+              <img src="{{ block.settings.icon | image_url: width: 50 }}" alt="Customer verification icon" loading="lazy">
+            {% else %}
+              <div class="ai-testimonial-icon-placeholder-{{ section.id }}">✅</div>
+            {% endif %}
+          </div>
 
-        <div class="ai-testimonial-customer-{{ section.id }}">
-          {% if block.settings.name or block.settings.age %}
-            <div class="ai-testimonial-name-{{ section.id }}" style="font-weight: bold;">
-              {{ block.settings.name }}{% if block.settings.age != blank %}, {{ block.settings.age }}{% endif %}
+          <div class="ai-testimonial-customer-{{ section.id }}">
+            {% if block.settings.name or block.settings.age %}
+              <div class="ai-testimonial-name-{{ section.id }}">
+                {{ block.settings.name }}{% if block.settings.age != blank %}, {{ block.settings.age }}{% endif %}
+              </div>
+            {% endif %}
+            <div class="ai-testimonial-verified-{{ section.id }}">
+              {{ block.settings.verified_label }}
             </div>
-          {% endif %}
-          <div class="ai-testimonial-verified-{{ section.id }}" style="font-size: 12px; color: #777;">
-            {{ block.settings.verified_label }}
           </div>
         </div>
-
       </div>
-    </div>
-  {% endfor %}
-</div>
-
 
     {% when 'cta' %}
       {% if block.settings.button_text != blank %}
