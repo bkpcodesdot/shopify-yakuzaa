@@ -20,6 +20,13 @@
       {% endif %}
     </h2>
   {% endif %}
+  
+      {% when 'description' %}
+        {% if block.settings.description != blank %}
+          <div class="ai-testimonials-description-{{ section.id }}">
+            {{ block.settings.description }}
+          </div>
+        {% endif %}
 
       
 
