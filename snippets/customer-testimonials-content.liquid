@@ -16,17 +16,7 @@
           </div>
         {% endif %}
 
-      {% when 'cta' %}
-        {% if block.settings.button_text != blank %}
-          <div class="ai-testimonials-cta-{{ section.id }}">
-            <a href="{{ block.settings.button_link }}" class="ai-testimonials-button-{{ section.id }}">
-              {{ block.settings.button_text }}
-            </a>
-          </div>
-        {% endif %}
-    {% endcase %}
-  {% endif %}
-{% endfor %}
+      
 
 {% comment %} Then the testimonial grid {% endcomment %}
 <div class="ai-testimonial-grid-{{ section.id }}" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
@@ -63,3 +53,14 @@
     {% endif %}
   {% endfor %}
 </div>
+{% when 'cta' %}
+        {% if block.settings.button_text != blank %}
+          <div class="ai-testimonials-cta-{{ section.id }}">
+            <a href="{{ block.settings.button_link }}" class="ai-testimonials-button-{{ section.id }}">
+              {{ block.settings.button_text }}
+            </a>
+          </div>
+        {% endif %}
+    {% endcase %}
+  {% endif %}
+{% endfor %}
