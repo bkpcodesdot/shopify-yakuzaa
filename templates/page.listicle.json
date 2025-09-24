@@ -1090,6 +1090,7 @@
         "testimonial_7kEY77",
         "cta_LNMgpx"
       ],
+      "disabled": true,
       "name": "Customer Testimonials Preset",
       "settings": {
         "section_background_color": "#ffffff",
