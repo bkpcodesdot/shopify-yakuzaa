@@ -29,10 +29,9 @@
         {% endif %}
 
 {% comment %} Then the testimonial grid {% endcomment %}
-   {% if block.type == 'testimonial' %}
 <div class="ai-testimonial-grid-{{ section.id }}" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
   {% for block in section.blocks %}
-  
+    {% if block.type == 'testimonial' %}
       <div class="ai-testimonial-card-{{ section.id }}">
         {% if block.settings.quote != blank %}
           <div class="ai-testimonial-quote-{{ section.id }}">
@@ -61,9 +60,8 @@
           </div>
         </div>
       </div>
-    
+    {% endif %}
   {% endfor %}
-  {% endif %}
 </div>
 {% when 'cta' %}
         {% if block.settings.button_text != blank %}
