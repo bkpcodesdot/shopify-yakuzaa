@@ -980,9 +980,9 @@
         "testimonial_item_FnzYdC": {
           "type": "testimonial_item",
           "settings": {
-            "quote": "",
-            "name": "",
-            "age": "",
+            "quote": "“This little softgel is magic. I’ve tried everything for my gut, and nothing worked like Resilia.”",
+            "name": "Claire L.",
+            "age": "40 yo",
             "verified_label": "Verified Customer"
           }
         },
