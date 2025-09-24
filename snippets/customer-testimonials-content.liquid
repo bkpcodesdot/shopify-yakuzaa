@@ -9,20 +9,17 @@
       --title-color: {{ block.settings.title_color }};
       --highlight-color: {{ block.settings.highlight_color }};
     ">
-      {% if block.settings.highlight_text != blank %}
-        {{ block.settings.title | replace: block.settings.highlight_text, '<span class="highlight">' | append: block.settings.highlight_text | append: '</span>' | replace: block.settings.highlight_text, '' | raw }}
+      {% assign full_title = block.settings.title %}
+      {% assign highlight_word = block.settings.highlight_text %}
+      
+      {% if highlight_word != blank and full_title contains highlight_word %}
+        {% assign parts = full_title | split: highlight_word %}
+        {{ parts[0] }}<span class="highlight">{{ highlight_word }}</span>{{ parts[1] }}
       {% else %}
-        {{ block.settings.title }}
+        {{ full_title }}
       {% endif %}
     </h2>
   {% endif %}
-  
-      {% when 'description' %}
-        {% if block.settings.description != blank %}
-          <div class="ai-testimonials-description-{{ section.id }}">
-            {{ block.settings.description }}
-          </div>
-        {% endif %}
 
       
 
