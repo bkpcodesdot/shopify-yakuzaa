@@ -372,6 +372,21 @@
   </div>
 </div>
 
+      {% when 'testimonial_cta' %}
+        <div class="ai-testimonials-cta-{{ section.id }}" style="text-align: center; margin-top: 40px;">
+          <a href="{{ block.settings.button_link }}" class="ai-testimonials-button-{{ section.id }}" style="
+            background-color: {{ block.settings.button_background_color | default: '#EE882F' }};
+            color: {{ block.settings.button_text_color | default: '#fff' }};
+            padding: {{ block.settings.button_padding | default: 16 }}px;
+            border-radius: {{ block.settings.button_border_radius | default: 8 }}px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: {{ block.settings.button_font_size | default: 16 }}px;
+            display: block;
+          ">
+            {{ block.settings.button_text }}
+          </a>
+        </div>
   {% endcase %}
 {% endfor %}
 
