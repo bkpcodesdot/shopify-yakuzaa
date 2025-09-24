@@ -340,79 +340,76 @@
     </div>
 
   <!-- sections/image-text-sets.liquid -->
-{% when 'icon_bullet_list' %}
-<section class="image-text-sets" style="padding: 40px 0;">
-  <div class="image-text-sets__container page-width">
-    
-    {% for block in section.blocks %}
-      <div class="image-text-set image-text-set-{{ block.id }}">
-        <div class="image-text-set__inner">
-          {% if block.settings.image %}
-            <div class="image-text-set__image">
-              <img 
-                src="{{ block.settings.image | image_url: width: 400 }}" 
-                alt="{{ block.settings.text | escape }}" 
-                loading="lazy"
-                width="400"
-                height="auto"
-              >
-            </div>
-          {% endif %}
-          
-          <div class="image-text-set__content">
-            {% if block.settings.heading != blank %}
-              <h3 class="image-text-set__heading">
-                {{ block.settings.heading }}
-              </h3>
-            {% endif %}
-            
-            {% if block.settings.text != blank %}
-              <p class="image-text-set__text">
-                {{ block.settings.text }}
-              </p>
-            {% endif %}
-          </div>
+{% when 'image_text_set' %}
+  <div class="image-text-set image-text-set-{{ block.id }}">
+    <div class="image-text-set__inner">
+      {% if block.settings.image %}
+        <div class="image-text-set__image">
+          <img 
+            src="{{ block.settings.image | image_url: width: 400 }}" 
+            alt="{{ block.settings.heading | escape }}" 
+            loading="lazy"
+            width="400"
+            height="auto"
+          >
         </div>
+      {% endif %}
+      
+      <div class="image-text-set__content">
+        {% if block.settings.heading != blank %}
+          <h3 class="image-text-set__heading">
+            {{ block.settings.heading }}
+          </h3>
+        {% endif %}
+        
+        {% if block.settings.text != blank %}
+          <p class="image-text-set__text">
+            {{ block.settings.text }}
+          </p>
+        {% endif %}
       </div>
+    </div>
+  </div>
 
-      <style>
-        .image-text-set-{{ block.id }} .image-text-set__inner {
-          display: flex;
-          gap: 20px;
-          align-items: center;
-          margin-bottom: 40px;
-        }
-        .image-text-set-{{ block.id }} .image-text-set__image img {
-          max-width: 180px;
-          border-radius: 12px;
-          object-fit: cover;
-        }
-        .image-text-set-{{ block.id }} .image-text-set__content {
-          flex: 1;
-        }
-        .image-text-set-{{ block.id }} .image-text-set__heading {
-          margin: 0 0 8px;
-          font-size: 20px;
-          font-weight: 600;
-          color: #222;
-        }
-        .image-text-set-{{ block.id }} .image-text-set__text {
-          margin: 0;
-          font-size: 16px;
-          line-height: 1.5;
-          color: #555;
-        }
-        @media (max-width: 768px) {
-          .image-text-set-{{ block.id }} .image-text-set__inner {
-            flex-direction: column;
-            text-align: center;
-          }
-          .image-text-set-{{ block.id }} .image-text-set__image img {
-            margin-bottom: 16px;
-          }
-        }
-      </style>
-    {% endfor %}
+  <style>
+    .image-text-set-{{ block.id }} .image-text-set__inner {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    .image-text-set-{{ block.id }} .image-text-set__image img {
+      max-width: 180px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+    .image-text-set-{{ block.id }} .image-text-set__content {
+      flex: 1;
+    }
+    .image-text-set-{{ block.id }} .image-text-set__heading {
+      margin: 0 0 8px;
+      font-size: 20px;
+      font-weight: 600;
+      color: #222;
+    }
+    .image-text-set-{{ block.id }} .image-text-set__text {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #555;
+    }
+    @media (max-width: 768px) {
+      .image-text-set-{{ block.id }} .image-text-set__inner {
+        flex-direction: column;
+        text-align: center;
+      }
+      .image-text-set-{{ block.id }} .image-text-set__image img {
+        margin-bottom: 16px;
+      }
+    }
+  </style>
+
+
     
   </div>
 </section>
