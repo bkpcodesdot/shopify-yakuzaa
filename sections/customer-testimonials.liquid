@@ -78,6 +78,10 @@
     background-color:{{ block.settings.button_hover_background_color }};
     color: {{ block.settings.button_hover_text_color }};
   }
+  @media screen and (max-width: 576px) {
+    .ai-testimonial-grid-{{ section.id }}{
+    grid-template-columns: repeat(1, 1fr);}
+    }
 </style>
 
 {% schema %}
