@@ -348,40 +348,30 @@
                   margin: 0 auto;">
         
         <style>
-          .ai-icon-bullet-list__content-{{ ai_gen_id }} ul {
-            list-style: none !important;
-            padding-left: 0 !important;
-            margin: 0 !important;
-          }
-          
-          .ai-icon-bullet-list__content-{{ ai_gen_id }} li {
-            display: flex !important;
-            align-items: flex-start !important;
-            margin-bottom: {{ block.settings.item_spacing | default: 12 }}px !important;
-            padding: 0 !important;
-            font-size: {{ block.settings.list_font_size | default: 16 }}px !important;
-            color: {{ block.settings.list_text_color | default: '#333333' }} !important;
-            line-height: {{ block.settings.line_height | default: 1.4 }} !important;
-          }
-          
-          .ai-icon-bullet-list__content-{{ ai_gen_id }} li:last-child {
-            margin-bottom: 0 !important;
-          }
-          
-          .ai-icon-bullet-list__content-{{ ai_gen_id }} .bullet-icon {
-            width: {{ block.settings.icon_size | default: 20 }}px !important;
-            height: {{ block.settings.icon_size | default: 20 }}px !important;
-            margin-right: 12px !important;
-            flex-shrink: 0 !important;
-            margin-top: 2px !important;
-            object-fit: contain !important;
-          }
-          
-          .ai-icon-bullet-list__content-{{ ai_gen_id }} .bullet-text {
-            flex: 1 !important;
-            margin: 0 !important;
-            padding: 0 !important;
-          }
+          .icon-bullets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    align-items: start;
+  }
+
+  .icon-bullet-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .icon-bullet-item img.bullet-icon {
+    flex-shrink: 0;
+    object-fit: contain;
+    border-radius: 8px; /* optional for rounded icons */
+  }
+
+  .icon-bullet-item .bullet-text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.4;
+  }
         </style>
         
     <div class="ai-icon-bullet-list__content-{{ section.id }}">
