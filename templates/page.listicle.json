@@ -620,24 +620,6 @@
             "icon_size": 20
           }
         },
-        "icon_bullet_list_aXQbNd": {
-          "type": "icon_bullet_list",
-          "settings": {
-            "item_icon": "shopify://shop_images/green_gut.svg",
-            "item_text": "Reduce inflammation and bloating",
-            "text_color": "#333333",
-            "icon_size": 25
-          }
-        },
-        "icon_bullet_list_ngVACB": {
-          "type": "icon_bullet_list",
-          "settings": {
-            "item_icon": "shopify://shop_images/green_plant.svg",
-            "item_text": "Your feature text here",
-            "text_color": "#333333",
-            "icon_size": 40
-          }
-        },
         "article_image_nbUm4r": {
           "type": "article_image",
           "settings": {
@@ -882,8 +864,6 @@
         "article_description_fMxJmj",
         "article_image_LwyLCn",
         "icon_bullet_list_6qT4CP",
-        "icon_bullet_list_aXQbNd",
-        "icon_bullet_list_ngVACB",
         "article_image_nbUm4r",
         "article_description_AnRKNC",
         "cta_PB8nLh",
