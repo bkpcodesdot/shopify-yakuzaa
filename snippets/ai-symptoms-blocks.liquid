@@ -338,175 +338,141 @@
         </div>
       </div>
     </div>
+{% when 'feature_group' %}
+  <div class="ai-feature-group-{{ section.id }}"
+       style="margin: {{ block.settings.margin_top | default: 0 }}px auto {{ block.settings.margin_bottom | default: 0 }}px;
+              width: 100%;" {{ block.shopify_attributes }}>
+    <div class="ai-feature-group__container-{{ section.id }}"
+         style="max-width: 728px;
+                margin: 0 auto;">
+      
+      <style>
+        .ai-feature-group__content-{{ section.id }} .feature-bullets-grid {
+          display: flex;
+          flex-direction: column;
+          gap: {{ block.settings.item_spacing | default: 15 }}px;
+          max-width: 600px;
+        }
 
-  {% when 'feature_group' %}
-    <div class="ai-icon-bullet-list-{{ ai_gen_id }}"
-         style="margin: {{ block.settings.margin_top | default: 0 }}px auto {{ block.settings.margin_bottom | default: 0 }}px;
-                width: 100%;" {{ block.shopify_attributes }}>
-      <div class="ai-icon-bullet-list__container-{{ ai_gen_id }}"
-           style="max-width: 728px;
-                  margin: 0 auto;">
-        
-        <style>
-          .icon-bullets-grid {
-    display:flex;
-    gap: 20px;
-    align-items: start;
-  }
+        .ai-feature-group__content-{{ section.id }} .feature-bullet-item {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 8px 0;
+        }
 
-  .icon-bullet-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
+        .ai-feature-group__content-{{ section.id }} .feature-bullet-icon {
+          flex-shrink: 0;
+          object-fit: contain;
+        }
 
-  .icon-bullet-item img.bullet-icon {
-    flex-shrink: 0;
-    object-fit: contain;
-    border-radius: 8px; /* optional for rounded icons */
-  }
+        .ai-feature-group__content-{{ section.id }} .feature-bullet-text {
+          flex: 1;
+          margin: 0;
+          line-height: 1.4;
+          font-weight: 500;
+        }
 
-  .icon-bullet-item .bullet-text {
-    margin: 0;
-    font-size: 16px;
-    line-height: 1.4;
-  }
-        </style>
-<style>
-  .ai-icon-bullet-list__content-{{ section.id }} .icon-bullets-grid {
-    display: flex;
-    flex-direction: column;
-    gap: {{ block.settings.item_spacing | default: 15 }}px;
-    max-width: 600px;
-  }
+        @media (max-width: 768px) {
+          .ai-feature-group__content-{{ section.id }} .feature-bullets-grid {
+            gap: 12px;
+          }
+        }
+      </style>
 
-  .ai-icon-bullet-list__content-{{ section.id }} .icon-bullet-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 8px 0;
-  }
+      <div class="ai-feature-group__content-{{ section.id }}">
+        <div class="feature-bullets-grid">
+          
+          {% comment %} Feature 1 {% endcomment %}
+          {% if block.settings.feature_1_text != blank %}
+            <div class="feature-bullet-item">
+              {% if block.settings.feature_1_icon %}
+                <img 
+                  src="{{ block.settings.feature_1_icon | image_url }}" 
+                  alt="Feature 1" 
+                  class="feature-bullet-icon"
+                  style="width: {{ block.settings.icon_size | default: 24 }}px; height: {{ block.settings.icon_size | default: 24 }}px;"
+                  loading="lazy">
+              {% endif %}
+              <p class="feature-bullet-text" style="color: {{ block.settings.text_color | default: '#333' }}; font-size: {{ block.settings.text_size | default: 16 }}px;">
+                {{ block.settings.feature_1_text }}
+              </p>
+            </div>
+          {% endif %}
 
-  .ai-icon-bullet-list__content-{{ section.id }} .bullet-icon {
-    flex-shrink: 0;
-    object-fit: contain;
-  }
+          {% comment %} Feature 2 {% endcomment %}
+          {% if block.settings.feature_2_text != blank %}
+            <div class="feature-bullet-item">
+              {% if block.settings.feature_2_icon %}
+                <img 
+                  src="{{ block.settings.feature_2_icon | image_url }}" 
+                  alt="Feature 2" 
+                  class="feature-bullet-icon"
+                  style="width: {{ block.settings.icon_size | default: 24 }}px; height: {{ block.settings.icon_size | default: 24 }}px;"
+                  loading="lazy">
+              {% endif %}
+              <p class="feature-bullet-text" style="color: {{ block.settings.text_color | default: '#333' }}; font-size: {{ block.settings.text_size | default: 16 }}px;">
+                {{ block.settings.feature_2_text }}
+              </p>
+            </div>
+          {% endif %}
 
-  .ai-icon-bullet-list__content-{{ section.id }} .bullet-text {
-    flex: 1;
-    margin: 0;
-    line-height: 1.4;
-    font-weight: 500;
-  }
+          {% comment %} Feature 3 {% endcomment %}
+          {% if block.settings.feature_3_text != blank %}
+            <div class="feature-bullet-item">
+              {% if block.settings.feature_3_icon %}
+                <img 
+                  src="{{ block.settings.feature_3_icon | image_url }}" 
+                  alt="Feature 3" 
+                  class="feature-bullet-icon"
+                  style="width: {{ block.settings.icon_size | default: 24 }}px; height: {{ block.settings.icon_size | default: 24 }}px;"
+                  loading="lazy">
+              {% endif %}
+              <p class="feature-bullet-text" style="color: {{ block.settings.text_color | default: '#333' }}; font-size: {{ block.settings.text_size | default: 16 }}px;">
+                {{ block.settings.feature_3_text }}
+              </p>
+            </div>
+          {% endif %}
 
-  @media (max-width: 768px) {
-    .ai-icon-bullet-list__content-{{ section.id }} .icon-bullets-grid {
-      gap: 12px;
-    }
-  }
-</style>
-<div class="ai-icon-bullet-list__content-{{ section.id }}">
-  {% if section.blocks.size > 0 %}
-    <div class="icon-bullets-grid">
-      {% for block in section.blocks %}
-        {% if block.type == 'feature_group' %}
-          <div {{ block.shopify_attributes }} style="margin-top: {{ block.settings.margin_top | default: 0 }}px; margin-bottom: {{ block.settings.margin_bottom | default: 0 }}px;">
-            
-            {% comment %} Feature 1 {% endcomment %}
-            {% if block.settings.feature_1_text != blank %}
-              <div class="icon-bullet-item">
-                {% if block.settings.feature_1_icon %}
-                  <img 
-                    src="{{ block.settings.feature_1_icon | image_url }}" 
-                    alt="Feature 1" 
-                    class="bullet-icon"
-                    style="width: {{ block.settings.icon_size | default: 24 }}px; height: {{ block.settings.icon_size | default: 24 }}px;"
-                    loading="lazy">
-                {% endif %}
-                <p class="bullet-text" style="color: {{ block.settings.text_color | default: '#333' }}; font-size: {{ block.settings.text_size | default: 16 }}px;">
-                  {{ block.settings.feature_1_text }}
-                </p>
-              </div>
-            {% endif %}
+          {% comment %} Feature 4 {% endcomment %}
+          {% if block.settings.feature_4_text != blank %}
+            <div class="feature-bullet-item">
+              {% if block.settings.feature_4_icon %}
+                <img 
+                  src="{{ block.settings.feature_4_icon | image_url }}" 
+                  alt="Feature 4" 
+                  class="feature-bullet-icon"
+                  style="width: {{ block.settings.icon_size | default: 24 }}px; height: {{ block.settings.icon_size | default: 24 }}px;"
+                  loading="lazy">
+              {% endif %}
+              <p class="feature-bullet-text" style="color: {{ block.settings.text_color | default: '#333' }}; font-size: {{ block.settings.text_size | default: 16 }}px;">
+                {{ block.settings.feature_4_text }}
+              </p>
+            </div>
+          {% endif %}
 
-            {% comment %} Feature 2 {% endcomment %}
-            {% if block.settings.feature_2_text != blank %}
-              <div class="icon-bullet-item">
-                {% if block.settings.feature_2_icon %}
-                  <img 
-                    src="{{ block.settings.feature_2_icon | image_url }}" 
-                    alt="Feature 2" 
-                    class="bullet-icon"
-                    style="width: {{ block.settings.icon_size | default: 24 }}px; height: {{ block.settings.icon_size | default: 24 }}px;"
-                    loading="lazy">
-                {% endif %}
-                <p class="bullet-text" style="color: {{ block.settings.text_color | default: '#333' }}; font-size: {{ block.settings.text_size | default: 16 }}px;">
-                  {{ block.settings.feature_2_text }}
-                </p>
-              </div>
-            {% endif %}
+          {% comment %} Feature 5 {% endcomment %}
+          {% if block.settings.feature_5_text != blank %}
+            <div class="feature-bullet-item">
+              {% if block.settings.feature_5_icon %}
+                <img 
+                  src="{{ block.settings.feature_5_icon | image_url }}" 
+                  alt="Feature 5" 
+                  class="feature-bullet-icon"
+                  style="width: {{ block.settings.icon_size | default: 24 }}px; height: {{ block.settings.icon_size | default: 24 }}px;"
+                  loading="lazy">
+              {% endif %}
+              <p class="feature-bullet-text" style="color: {{ block.settings.text_color | default: '#333' }}; font-size: {{ block.settings.text_size | default: 16 }}px;">
+                {{ block.settings.feature_5_text }}
+              </p>
+            </div>
+          {% endif %}
 
-            {% comment %} Feature 3 {% endcomment %}
-            {% if block.settings.feature_3_text != blank %}
-              <div class="icon-bullet-item">
-                {% if block.settings.feature_3_icon %}
-                  <img 
-                    src="{{ block.settings.feature_3_icon | image_url }}" 
-                    alt="Feature 3" 
-                    class="bullet-icon"
-                    style="width: {{ block.settings.icon_size | default: 24 }}px; height: {{ block.settings.icon_size | default: 24 }}px;"
-                    loading="lazy">
-                {% endif %}
-                <p class="bullet-text" style="color: {{ block.settings.text_color | default: '#333' }}; font-size: {{ block.settings.text_size | default: 16 }}px;">
-                  {{ block.settings.feature_3_text }}
-                </p>
-              </div>
-            {% endif %}
-
-            {% comment %} Feature 4 {% endcomment %}
-            {% if block.settings.feature_4_text != blank %}
-              <div class="icon-bullet-item">
-                {% if block.settings.feature_4_icon %}
-                  <img 
-                    src="{{ block.settings.feature_4_icon | image_url }}" 
-                    alt="Feature 4" 
-                    class="bullet-icon"
-                    style="width: {{ block.settings.icon_size | default: 24 }}px; height: {{ block.settings.icon_size | default: 24 }}px;"
-                    loading="lazy">
-                {% endif %}
-                <p class="bullet-text" style="color: {{ block.settings.text_color | default: '#333' }}; font-size: {{ block.settings.text_size | default: 16 }}px;">
-                  {{ block.settings.feature_4_text }}
-                </p>
-              </div>
-            {% endif %}
-
-            {% comment %} Feature 5 {% endcomment %}
-            {% if block.settings.feature_5_text != blank %}
-              <div class="icon-bullet-item">
-                {% if block.settings.feature_5_icon %}
-                  <img 
-                    src="{{ block.settings.feature_5_icon | image_url }}" 
-                    alt="Feature 5" 
-                    class="bullet-icon"
-                    style="width: {{ block.settings.icon_size | default: 24 }}px; height: {{ block.settings.icon_size | default: 24 }}px;"
-                    loading="lazy">
-                {% endif %}
-                <p class="bullet-text" style="color: {{ block.settings.text_color | default: '#333' }}; font-size: {{ block.settings.text_size | default: 16 }}px;">
-                  {{ block.settings.feature_5_text }}
-                </p>
-              </div>
-            {% endif %}
-
-          </div>
-        {% endif %}
-      {% endfor %}
-    </div>
-  {% endif %}
-</div>
-
-
+        </div>
       </div>
+
     </div>
+  </div>
 
   {% when 'timeline' %}
     <div class="ai-timeline-{{ ai_gen_id }}"
