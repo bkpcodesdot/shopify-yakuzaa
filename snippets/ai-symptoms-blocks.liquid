@@ -338,14 +338,35 @@
         </div>
       </div>
     </div>
-
+{% comment %} 
   {% when 'icon_bullet_list' %}
     <div class="ai-icon-bullet-list-{{ ai_gen_id }}"
          style="margin: {{ block.settings.margin_top | default: 0 }}px auto {{ block.settings.margin_bottom | default: 0 }}px;
                 width: 100%;" {{ block.shopify_attributes }}>
       <div class="ai-icon-bullet-list__container-{{ ai_gen_id }}"
            style="max-width: 728px;
-                  margin: 0 auto;">
+                  margin: 0 auto;"> {% endcomment %}
+                  {% when 'icon_bullet_list' %}
+  <div class="ai-product-showcase__wrapper-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+    <div class="ai-product-showcase__column-{{ ai_gen_id }}">
+      {% if block.settings.column_image %}
+        <img 
+          src="{{ block.settings.column_image | image_url: width: 400 }}" 
+          alt="{{ block.settings.column_title | escape }}">
+      {% endif %}
+      {% if block.settings.column_title != blank %}
+        <h4 class="ai-product-showcase__column-title-{{ ai_gen_id }}">
+          {{ block.settings.column_title }}
+        </h4>
+      {% endif %}
+      {% if block.settings.column_content != blank %}
+        <div class="ai-product-showcase__column-content-{{ ai_gen_id }}">
+          {{ block.settings.column_content }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
         
         <style>
           .ai-icon-bullet-list__content-{{ ai_gen_id }} ul {
