@@ -341,86 +341,37 @@
     },
 
   {
-  "type": "icon_bullet_list",
-  "name": "Icon Bullet List",
-  "settings": [
-    {
-      "type": "richtext",
-      "id": "list_content",
-      "label": "List Content",
-      "default": "<ul><li>Eliminate parasites and candida naturally</li><li>Reduce inflammation and bloating</li><li>Restore gut balance and immune strength</li><li>Improve energy, focus, and mental clarity</li><li>Stop sugar cravings at the root</li></ul>"
-    },
-    {
-      "type": "image_picker",
-      "id": "bullet_icon",
-      "label": "Bullet Icon"
-    },
-    {
-      "type": "range",
-      "id": "icon_size",
-      "label": "Icon Size (px)",
-      "min": 12,
-      "max": 32,
-      "step": 1,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "list_font_size",
-      "label": "Text Font Size (px)",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "color",
-      "id": "list_text_color",
-      "label": "Text Color",
-      "default": "#333333"
-    },
-    {
-      "type": "range",
-      "id": "line_height",
-      "label": "Line Height",
-      "min": 1.0,
-      "max": 2.0,
-      "step": 0.1,
-      "default": 1.4
-    },
-    {
-      "type": "range",
-      "id": "item_spacing",
-      "label": "Item Spacing (px)",
-      "min": 8,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "margin_top",
-      "label": "Top Margin (px)",
-      "min": -50,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "margin_bottom",
-      "label": "Bottom Margin (px)",
-      "min": -50,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 0
-    }
-  ]
+      "type": "icon_bullet_list",
+      "name": "Icon Bullet List",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "item_icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "item_text",
+          "label": "Text",
+          "default": "Your feature text here"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#333333"
+        },
+        {
+          "type": "range",
+          "id": "icon_size",
+          "min": 20,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "label": "Icon Size",
+          "default": 40
+        }
+      ]
 },
 
 
@@ -578,11 +529,14 @@
           }
         },
         {
-          "type": "icon_bullet_list",
-          "settings": {
-            "list_content": "<ul><li>Eliminate parasites and candida naturally</li><li>Reduce inflammation and bloating</li><li>Restore gut balance and immune strength</li><li>Improve energy, focus, and mental clarity</li><li>Stop sugar cravings at the root</li></ul>"
-          }
-        },
+  "type": "icon_bullet_list",
+  "settings": {
+    "item_icon": "shopify:\/\/shop_images\/your-icon.png",
+    "item_text": "Eliminate parasites and candida naturally",
+    "text_color": "#333333",
+    "icon_size": 40
+  }
+},
         {
           "type": "timeline",
           "settings": {
