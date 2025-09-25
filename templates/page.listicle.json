@@ -611,13 +611,25 @@
             "margin_bottom": 0
           }
         },
-        "icon_bullet_list_6qT4CP": {
-          "type": "icon_bullet_list",
+        "feature_group_ETxja9": {
+          "type": "feature_group",
           "settings": {
-            "item_icon": "shopify://shop_images/green_sugar.svg",
-            "item_text": "Eliminate parasites and candida naturally",
+            "feature_1_icon": "shopify://shop_images/green_sugar.svg",
+            "feature_1_text": "Eliminate parasites and candida naturally",
+            "feature_2_icon": "shopify://shop_images/green_gut.svg",
+            "feature_2_text": "Reduce inflammation and bloating",
+            "feature_3_icon": "shopify://shop_images/green_plant.svg",
+            "feature_3_text": "Restore gut balance and immune strength",
+            "feature_4_icon": "shopify://shop_images/green_enegergy.svg",
+            "feature_4_text": "Improve energy, focus, and mental clarity",
+            "feature_5_icon": "shopify://shop_images/green_hand.svg",
+            "feature_5_text": "Stop sugar cravings at the root",
+            "icon_size": 24,
+            "text_size": 16,
             "text_color": "#333333",
-            "icon_size": 20
+            "item_spacing": 15,
+            "margin_top": 0,
+            "margin_bottom": 0
           }
         },
         "icon_bullet_list_6tJ7tq": {
@@ -864,7 +876,7 @@
         "header_HtBe6Y",
         "article_description_fMxJmj",
         "article_image_LwyLCn",
-        "icon_bullet_list_6qT4CP",
+        "feature_group_ETxja9",
         "icon_bullet_list_6tJ7tq",
         "article_image_nbUm4r",
         "article_description_AnRKNC",
