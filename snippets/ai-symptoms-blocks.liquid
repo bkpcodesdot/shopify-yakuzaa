@@ -384,26 +384,27 @@
           }
         </style>
         
-        <div class="ai-icon-bullet-list__content-{{ ai_gen_id }}">
-  <div class="icon-bullets-grid">
-    {% for block in section.blocks %}
-      {% if block.type == 'icon_bullet_list' %}
-        <div class="icon-bullet-item">
-          {% if block.settings.item_icon %}
-            <img 
-              src="{{ block.settings.item_icon | image_url }}" 
-              alt="Icon" 
-              class="bullet-icon" 
-              width="{{ block.settings.icon_size | default: 40 }}" 
-              height="{{ block.settings.icon_size | default: 40 }}">
-          {% endif %}
-          <span class="bullet-text" style="color: {{ block.settings.text_color | default: '#333' }}">
-            {{ block.settings.item_text }}
-          </span>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
+    <div class="ai-icon-bullet-list__content-{{ section.id }}">
+  {% if section.blocks.size > 0 %}
+    <div class="icon-bullets-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'icon_bullet_list' %}
+          <div class="icon-bullet-item" {{ block.shopify_attributes }}>
+            {% if block.settings.item_icon %}
+              <img 
+                src="{{ block.settings.item_icon | image_url }}" 
+                alt="Icon" 
+                class="bullet-icon"
+                style="width: {{ block.settings.icon_size | default: 40 }}px; height: {{ block.settings.icon_size | default: 40 }}px;">
+            {% endif %}
+            <p class="bullet-text" style="color: {{ block.settings.text_color | default: '#333' }};">
+              {{ block.settings.item_text }}
+            </p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
 </div>
 
       </div>
