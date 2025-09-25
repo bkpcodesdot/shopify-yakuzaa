@@ -391,7 +391,6 @@
 {% endfor %}
 
 </div>
-
 {% schema %}
 {
   "name": "Parasite info (blocks)",
@@ -497,101 +496,52 @@
       "name": "Testimonial Description",
       "settings": [
         {"type": "richtext", "id": "description", "label": "Description", "default": "<p>Real customers. Real feedback. Real results.</p>"},
-         {
-      "type": "number",
-      "id": "description_font_size",
-      "label": "Description Font Size (px)",
-      "default": 16
-    }
+        {"type": "number", "id": "description_font_size", "label": "Description Font Size (px)", "default": 16}
       ]
     },
     {
-  "type": "testimonial_item",
-  "name": "Testimonial Group",
-  "settings": [
-    {
-      "type": "text",
-      "id": "quote_1",
-      "label": "Quote 1"
-    },
-    {
-      "type": "image_picker",
-      "id": "icon_1",
-      "label": "Icon 1"
-    },
-    {
-      "type": "text",
-      "id": "name_1",
-      "label": "Name 1"
-    },
-    {
-      "type": "text",
-      "id": "age_1",
-      "label": "Age 1"
-    },
-    {
-      "type": "text",
-      "id": "verified_label_1",
-      "label": "Verified Label 1",
-      "default": "Verified Customer"
-    },
+      "type": "testimonial_item",
+      "name": "Testimonial Group",
+      "settings": [
+        {"type": "text","id": "quote_1","label": "Quote 1"},
+        {"type": "image_picker","id": "icon_1","label": "Icon 1"},
+        {"type": "text","id": "name_1","label": "Name 1"},
+        {"type": "text","id": "age_1","label": "Age 1"},
+        {"type": "text","id": "verified_label_1","label": "Verified Label 1","default": "Verified Customer"},
 
-    {
-      "type": "text",
-      "id": "quote_2",
-      "label": "Quote 2"
-    },
-    {
-      "type": "image_picker",
-      "id": "icon_2",
-      "label": "Icon 2"
-    },
-    {
-      "type": "text",
-      "id": "name_2",
-      "label": "Name 2"
-    },
-    {
-      "type": "text",
-      "id": "age_2",
-      "label": "Age 2"
-    },
-    {
-      "type": "text",
-      "id": "verified_label_2",
-      "label": "Verified Label 2",
-      "default": "Verified Customer"
-    },
+        {"type": "text","id": "quote_2","label": "Quote 2"},
+        {"type": "image_picker","id": "icon_2","label": "Icon 2"},
+        {"type": "text","id": "name_2","label": "Name 2"},
+        {"type": "text","id": "age_2","label": "Age 2"},
+        {"type": "text","id": "verified_label_2","label": "Verified Label 2","default": "Verified Customer"},
 
-    {
-      "type": "text",
-      "id": "quote_3",
-      "label": "Quote 3"
+        {"type": "text","id": "quote_3","label": "Quote 3"},
+        {"type": "image_picker","id": "icon_3","label": "Icon 3"},
+        {"type": "text","id": "name_3","label": "Name 3"},
+        {"type": "text","id": "age_3","label": "Age 3"},
+        {"type": "text","id": "verified_label_3","label": "Verified Label 3","default": "Verified Customer"}
+      ]
     },
     {
-      "type": "image_picker",
-      "id": "icon_3",
-      "label": "Icon 3"
-    },
-    {
-      "type": "text",
-      "id": "name_3",
-      "label": "Name 3"
-    },
-    {
-      "type": "text",
-      "id": "age_3",
-      "label": "Age 3"
-    },
-    {
-      "type": "text",
-      "id": "verified_label_3",
-      "label": "Verified Label 3",
-      "default": "Verified Customer"
-    }
-  ]
-},
+      "type": "icon_bullet_group",
+      "name": "Icon Bullet Group",
+      "settings": [
+        {"type": "image_picker","id": "icon_1","label": "Icon 1"},
+        {"type": "text","id": "text_1","label": "Text 1"},
 
+        {"type": "image_picker","id": "icon_2","label": "Icon 2"},
+        {"type": "text","id": "text_2","label": "Text 2"},
+
+        {"type": "image_picker","id": "icon_3","label": "Icon 3"},
+        {"type": "text","id": "text_3","label": "Text 3"},
+
+        {"type": "image_picker","id": "icon_4","label": "Icon 4"},
+        {"type": "text","id": "text_4","label": "Text 4"},
+
+        {"type": "image_picker","id": "icon_5","label": "Icon 5"},
+        {"type": "text","id": "text_5","label": "Text 5"}
+      ]
+    },
     {
       "type": "testimonial_cta",
       "name": "Testimonial CTA",
@@ -617,13 +567,11 @@
         {"type": "testimonial_title"},
         {"type": "testimonial_description"},
         {"type": "testimonial_item"},
-        {"type": "testimonial_item"},
-        {"type": "testimonial_item"},
+        {"type": "icon_bullet_group"},
         {"type": "testimonial_cta"}
       ]
     }
   ]
 }
-
-
 {% endschema %}
+
