@@ -627,7 +627,7 @@
             "icon_size": 24,
             "text_size": 16,
             "text_color": "#333333",
-            "item_spacing": 15,
+            "item_spacing": 11,
             "margin_top": 0,
             "margin_bottom": 0
           }
@@ -832,10 +832,15 @@
         "feature_group_QUzfPe": {
           "type": "feature_group",
           "settings": {
+            "feature_1_icon": "shopify://shop_images/leaves_green.png",
             "feature_1_text": "Eliminate parasites and candida naturally",
+            "feature_2_icon": "shopify://shop_images/tube_green.png",
             "feature_2_text": "Reduce inflammation and bloating",
+            "feature_3_icon": "shopify://shop_images/green_hand.svg",
             "feature_3_text": "Restore gut balance and immune strength",
+            "feature_4_icon": "shopify://shop_images/green_digestive.svg",
             "feature_4_text": "Improve energy, focus, and mental clarity",
+            "feature_5_icon": "shopify://shop_images/green_shield.svg",
             "feature_5_text": "Stop sugar cravings at the root",
             "icon_size": 24,
             "text_size": 16,
