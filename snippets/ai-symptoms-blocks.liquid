@@ -372,29 +372,36 @@
     line-height: 1.4;
   }
         </style>
-        
-    <div class="ai-icon-bullet-list__content-{{ section.id }}">
+<div class="ai-icon-bullet-list__content-{{ section.id }}">
   {% if section.blocks.size > 0 %}
     <div class="icon-bullets-grid">
-      {% for block in section.blocks %}
+      {% assign point_number = 1 %}
+      {% for block in section.blocks limit:5 %}
         {% if block.type == 'icon_bullet_list' %}
           <div class="icon-bullet-item" {{ block.shopify_attributes }}>
+            <p class="bullet-point" style="font-weight: bold; margin-bottom: 5px;">
+              Point - {{ point_number }}
+            </p>
+            
             {% if block.settings.item_icon %}
               <img 
                 src="{{ block.settings.item_icon | image_url }}" 
                 alt="Icon" 
                 class="bullet-icon"
-                style="width: {{ block.settings.icon_size | default: 40 }}px; height: {{ block.settings.icon_size | default: 40 }}px;">
+                style="width: {{ block.settings.icon_size | default: 40 }}px; height: {{ block.settings.icon_size | default: 40 }}px; margin-bottom: 5px;">
             {% endif %}
+            
             <p class="bullet-text" style="color: {{ block.settings.text_color | default: '#333' }};">
               {{ block.settings.item_text }}
             </p>
           </div>
+          {% assign point_number = point_number | plus: 1 %}
         {% endif %}
       {% endfor %}
     </div>
   {% endif %}
 </div>
+
 
       </div>
     </div>
