@@ -385,29 +385,27 @@
         </style>
         
         <div class="ai-icon-bullet-list__content-{{ ai_gen_id }}">
-          {% assign list_items = block.settings.list_content | split: '<li>' %}
-          {% if list_items.size > 1 %}
-            <ul>
-              {% for item in list_items %}
-                {% unless forloop.first %}
-                  {% assign clean_item = item | split: '</li>' | first | strip %}
-                  {% if clean_item != blank %}
-                    <li>
-                      {% if block.settings.bullet_icon %}
-                        <img src="{{ block.settings.bullet_icon | image_url }}" alt="Bullet Icon" class="bullet-icon" width="{{ block.settings.icon_size | default: 20 }}" height="{{ block.settings.icon_size | default: 20 }}">
-                      {% else %}
-                        <span class="bullet-icon" style="font-size: {{ block.settings.icon_size | default: 20 }}px; color: {{ block.settings.list_text_color | default: '#333333' }};">•</span>
-                      {% endif %}
-                      <span class="bullet-text">{{ clean_item }}</span>
-                    </li>
-                  {% endif %}
-                {% endunless %}
-              {% endfor %}
-            </ul>
-          {% else %}
-            {{ block.settings.list_content | default: '<ul><li>Add your list items here</li></ul>' }}
+  <div class="icon-bullets-grid">
+    {% for block in section.blocks %}
+      {% if block.type == 'icon_bullet_item' %}
+        <div class="icon-bullet-item">
+          {% if block.settings.item_icon %}
+            <img 
+              src="{{ block.settings.item_icon | image_url }}" 
+              alt="Icon" 
+              class="bullet-icon" 
+              width="{{ block.settings.icon_size | default: 40 }}" 
+              height="{{ block.settings.icon_size | default: 40 }}">
           {% endif %}
+          <span class="bullet-text" style="color: {{ block.settings.text_color | default: '#333' }}">
+            {{ block.settings.item_text }}
+          </span>
         </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
       </div>
     </div>
 
