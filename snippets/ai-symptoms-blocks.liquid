@@ -373,10 +373,10 @@
   }
         </style>
 <style>
-.ai-icon-bullet-list__content-{{ section.id }} .icon-bullets-grid {
+  .ai-icon-bullet-list__content-{{ section.id }} .icon-bullets-grid {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: {{ block.settings.item_spacing | default: 15 }}px;
     max-width: 600px;
   }
 
