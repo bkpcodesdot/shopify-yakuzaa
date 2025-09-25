@@ -141,7 +141,7 @@
     { "type": "checkbox", "id": "override_global_colors", "label": "Override Global Section Colors", "default": false, "info": "Use custom colors instead of global theme colors" },
     { "type": "checkbox", "id": "override_global_typography", "label": "Override Global Typography", "default": false, "info": "Use custom fonts instead of global theme fonts" },
     { "type": "font_picker", "id": "custom_font", "label": "Custom Font Family", "default": "system_ui_n4", "info": "Custom font for all text in this section" },
-
+    
     { "type": "header", "content": "Button Settings" },
     { "type": "range", "id": "button_font_size", "label": "Button Font Size (px)", "min": 12, "max": 24, "step": 1, "unit": "px", "default": 16 },
     { "type": "range", "id": "button_vertical_padding", "label": "Button Vertical Padding (px)", "min": 8, "max": 30, "step": 1, "unit": "px", "default": 12 },
@@ -153,7 +153,7 @@
     { "type": "range", "id": "button_border_width", "label": "Button Border Width (px)", "min": 0, "max": 5, "step": 1, "unit": "px", "default": 2 },
     { "type": "checkbox", "id": "button_show_arrow", "label": "Show Arrow Icon", "default": false, "info": "Display arrow icon after button text" },
     { "type": "range", "id": "button_arrow_size", "label": "Arrow Icon Size (px)", "min": 12, "max": 24, "step": 1, "unit": "px", "default": 16 },
-
+    
     { "type": "header", "content": "General styling" },
     { "type": "color", "id": "section_background", "label": "Section background", "default": "#ffffff" },
     { "type": "range", "id": "section_padding", "label": "Section padding (px)", "min": 10, "max": 120, "step": 2, "default": 40 },
@@ -193,42 +193,345 @@
       "type": "header",
       "name": "Header",
       "settings": [
-        { "type": "text", "id": "header_title", "label": "Header Title", "default": "Your Main Title" },
-        { "type": "text", "id": "header_subtitle", "label": "Header Subtitle", "default": "Your subtitle goes here" }
+        { "type": "richtext", "id": "title_text", "label": "Title Text", "default": "<p>Symptoms That Could Be a Sign of Imbalance</p>" },
+        { "type": "text", "id": "title_highlight_text", "label": "Highlight Text", "info": "Text to highlight within the title" },
+        { "type": "checkbox", "id": "use_section_colors", "label": "Use Section Colors", "default": true, "info": "Use section-level colors instead of custom colors" },
+        { "type": "range", "id": "title_size", "label": "Title size (px)", "min": 18, "max": 48, "step": 1, "default": 38 },
+        { "type": "color", "id": "title_color", "label": "Title color", "default": "#111111" },
+        { "type": "color", "id": "title_highlight_color", "label": "Title highlight color", "default": "#e26900" },
+        { "type": "text", "id": "section_subtitle", "label": "Subtitle", "default": "And why you shouldn't ignore them." },
+        { "type": "range", "id": "subtitle_size", "label": "Subtitle size (px)", "min": 12, "max": 22, "step": 1, "default": 16 },
+        { "type": "color", "id": "subtitle_color", "label": "Subtitle color", "default": "#666666" },
+        { "type": "range", "id": "subtitle_margin_top", "label": "Subtitle Top Margin (px)", "min": 0, "max": 30, "step": 1, "unit": "px", "default": 5 },
+        { "type": "range", "id": "margin_top", "label": "Top Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 },
+        { "type": "range", "id": "margin_bottom", "label": "Bottom Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 }
       ]
     },
+
     {
       "type": "symptom",
       "name": "Feature",
       "settings": [
-        { "type": "text", "id": "symptom_title", "label": "Feature Title", "default": "Key Feature" },
-        { "type": "textarea", "id": "symptom_description", "label": "Feature Description", "default": "Explain the feature or symptom in detail here." }
+        { "type": "text", "id": "symptom_title", "label": "Feature Title", "default": "Amazing Feature" },
+        { "type": "richtext", "id": "symptom_description", "label": "Description", "default": "<p>Feature description goes here...</p>" },
+        { "type": "text", "id": "symptom_science_text", "label": "Supporting text", "default": "Additional supporting information" },
+        { "type": "image_picker", "id": "symptom_icon", "label": "Feature icon" },
+        { "type": "checkbox", "id": "use_section_colors", "label": "Use Section Colors", "default": true, "info": "Use section-level colors instead of custom colors" },
+        { "type": "color", "id": "custom_background_color", "label": "Custom Background Color", "default": "#ffffff" },
+        { "type": "color", "id": "custom_border_color", "label": "Custom Border Color", "default": "#ff6b35" },
+        { "type": "color", "id": "custom_title_color", "label": "Custom Title Color", "default": "#111111" },
+        { "type": "color", "id": "custom_description_color", "label": "Custom Description Color", "default": "#666666" },
+        { "type": "color", "id": "custom_science_color", "label": "Custom Supporting Text Color", "default": "#999999" },
+        { "type": "range", "id": "symptom_title_size", "label": "Title size (px)", "min": 14, "max": 28, "default": 18 },
+        { "type": "range", "id": "description_size", "label": "Description size (px)", "min": 12, "max": 20, "default": 14 },
+        { "type": "range", "id": "science_text_size", "label": "Supporting text size (px)", "min": 10, "max": 18, "default": 13 },
+        { "type": "range", "id": "science_icon_size", "label": "Feature icon size (px)", "min": 12, "max": 24, "default": 16 },
+        { "type": "range", "id": "custom_border_width", "label": "Custom Border Width (px)", "min": 0, "max": 10, "step": 1, "unit": "px", "default": 2 },
+        { "type": "checkbox", "id": "show_supporting_divider", "label": "Show Supporting Text Divider", "default": true, "info": "Display divider line below supporting text" },
+        { "type": "color", "id": "custom_divider_color", "label": "Custom Divider Color", "default": "#ff6b35" },
+        { "type": "range", "id": "margin_top", "label": "Top Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 },
+        { "type": "range", "id": "margin_bottom", "label": "Bottom Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 }
       ]
     },
+
     {
       "type": "cta",
       "name": "CTA Button",
       "settings": [
-        { "type": "text", "id": "cta_text", "label": "Button Text", "default": "Shop Now" },
-        { "type": "url", "id": "cta_link", "label": "Button Link" }
+        { "type": "text", "id": "cta_text", "label": "CTA Button Text", "default": "TRY RESILIA RISK-FREE" },
+        { "type": "url", "id": "cta_link", "label": "CTA Button Link" },
+        { "type": "checkbox", "id": "use_section_button_style", "label": "Use Section Button Style", "default": true, "info": "Use section-level button styling instead of custom styling" },
+        { "type": "color", "id": "cta_background", "label": "Custom CTA Background", "default": "#ff6b35" },
+        { "type": "color", "id": "cta_text_color", "label": "Custom CTA Text Color", "default": "#ffffff" },
+        { "type": "color", "id": "cta_border_color", "label": "Custom CTA Border Color", "default": "#ff6b35" },
+        { "type": "range", "id": "cta_font_size", "label": "Custom CTA Font Size", "min": 12, "max": 20, "default": 16 },
+        { "type": "range", "id": "cta_border_radius", "label": "Custom CTA Border Radius", "min": 0, "max": 30, "default": 8 },
+        { "type": "range", "id": "cta_border_width", "label": "Custom CTA Border Width", "min": 0, "max": 5, "default": 2 },
+        { "type": "range", "id": "margin_top", "label": "Top Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 },
+        { "type": "range", "id": "margin_bottom", "label": "Bottom Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 }
+      ]
+    },
+
+    {
+      "type": "article_heading",
+      "name": "Article Heading",
+      "settings": [
+        { "type": "richtext", "id": "heading_text", "label": "Heading Text", "default": "<p>Article Heading</p>" },
+        { "type": "text", "id": "highlight_text", "label": "Highlight Text", "info": "Text to highlight within the heading" },
+        { "type": "range", "id": "heading_font_size", "label": "Heading Font Size (px)", "min": 12, "max": 72, "step": 1, "default": 38 },
+        { "type": "color", "id": "text_color", "label": "Text Color", "default": "#000000" },
+        { "type": "color", "id": "highlight_color", "label": "Highlight Text Color", "default": "#e26900" },
+        { "type": "select", "id": "text_alignment", "label": "Text Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "left" },
+        { "type": "range", "id": "margin_top", "label": "Top Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 },
+        { "type": "range", "id": "margin_bottom", "label": "Bottom Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 }
       ]
     },
     {
-      "type": "icon_bullet_list",
-      "name": "Icon Bullet List",
+      "type": "article_description",
+      "name": "Article Description",
       "settings": [
+        { "type": "textarea", "id": "description_text", "label": "Description Text", "default": "Article description goes here." },
+        { "type": "range", "id": "description_font_size", "label": "Description Font Size (px)", "min": 12, "max": 32, "step": 1, "default": 20 },
+        { "type": "color", "id": "text_color", "label": "Text Color", "default": "#000000" },
+        { "type": "select", "id": "text_alignment", "label": "Text Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "left" },
+        { "type": "range", "id": "margin_top", "label": "Top Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 },
+        { "type": "range", "id": "margin_bottom", "label": "Bottom Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 }
+      ]
+    },
+    {
+      "type": "article_author",
+      "name": "Article Author",
+      "settings": [
+        { "type": "image_picker", "id": "author_image", "label": "Author Image" },
+        { "type": "richtext", "id": "author_name", "label": "Author Name", "default": "<p>Author Name</p>" },
+        { "type": "text", "id": "publish_date", "label": "Publish Date", "default": "Publication Date" },
+        { "type": "color", "id": "text_color", "label": "Text Color", "default": "#000000" },
+        { "type": "select", "id": "text_alignment", "label": "Text Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ], "default": "left" },
+        { "type": "range", "id": "margin_top", "label": "Top Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 },
+        { "type": "range", "id": "margin_bottom", "label": "Bottom Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 }
+      ]
+    },
+    {
+      "type": "article_image",
+      "name": "Image",
+      "settings": [
+        { "type": "image_picker", "id": "article_image", "label": "Image" },
+        { "type": "range", "id": "border_radius", "label": "Border Radius (px)", "min": 0, "max": 50, "step": 1, "unit": "px", "default": 8 },
+        { "type": "range", "id": "margin_top", "label": "Top Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 },
+        { "type": "range", "id": "margin_bottom", "label": "Bottom Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 }
+      ]
+    },
+    {
+      "type": "article_reading_time",
+      "name": "Article Reading Time",
+      "settings": [
+        { "type": "text", "id": "reading_time_text", "label": "Reading Time Text", "default": "Estimated 5-7 Minute Read" },
+        { "type": "color", "id": "reading_time_bg_color", "label": "Reading Time Background Color", "default": "#f0f0f0" },
+        { "type": "color", "id": "reading_time_text_color", "label": "Reading Time Text Color", "default": "#085e03" },
+        { "type": "color", "id": "reading_time_border_color", "label": "Reading Time Border Color", "default": "#085e03" },
+        { "type": "range", "id": "reading_time_border_width", "label": "Reading Time Border Width", "min": 0, "max": 4, "step": 1, "unit": "px", "default": 1 },
+        { "type": "range", "id": "margin_top", "label": "Top Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 },
+        { "type": "range", "id": "margin_bottom", "label": "Bottom Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 }
+      ]
+    },
+    {
+      "type": "divider_line",
+      "name": "Divider Line",
+      "settings": [
+        { "type": "range", "id": "divider_width", "label": "Divider Width (%)", "min": 10, "max": 100, "step": 5, "unit": "%", "default": 100 },
+        { "type": "range", "id": "divider_height", "label": "Divider Height (px)", "min": 1, "max": 10, "step": 1, "unit": "px", "default": 1 },
+        { "type": "color", "id": "divider_color", "label": "Divider Color", "default": "#e0e0e0" },
+        { "type": "select", "id": "divider_alignment", "label": "Divider Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+        { "type": "range", "id": "margin_top", "label": "Top Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 20 },
+        { "type": "range", "id": "margin_bottom", "label": "Bottom Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 20 }
+      ]
+    },
+    {
+      "type": "text_block",
+      "name": "Text Block",
+      "settings": [
+        { "type": "richtext", "id": "text_content", "label": "Text Content", "default": "<p>Add your text content here.</p>" },
+        { "type": "range", "id": "text_font_size", "label": "Text Font Size (px)", "min": 12, "max": 32, "step": 1, "default": 16 },
+        { "type": "color", "id": "text_color", "label": "Text Color", "default": "#000000" },
+        { "type": "select", "id": "text_alignment", "label": "Text Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+        { "type": "range", "id": "line_height", "label": "Line Height", "min": 1.0, "max": 2.5, "step": 0.1, "default": 1.5 },
+        { "type": "range", "id": "margin_top", "label": "Top Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 },
+        { "type": "range", "id": "margin_bottom", "label": "Bottom Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 }
+      ]
+    },
+
+  {
+  "type": "icon_bullet_list",
+  "name": "Icon Bullet List",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "list_content",
+      "label": "List Content",
+      "default": "<ul><li>Eliminate parasites and candida naturally</li><li>Reduce inflammation and bloating</li><li>Restore gut balance and immune strength</li><li>Improve energy, focus, and mental clarity</li><li>Stop sugar cravings at the root</li></ul>"
+    },
+    {
+      "type": "image_picker",
+      "id": "bullet_icon",
+      "label": "Bullet Icon"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon Size (px)",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "list_font_size",
+      "label": "Text Font Size (px)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "list_text_color",
+      "label": "Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "line_height",
+      "label": "Line Height",
+      "min": 1.0,
+      "max": 2.0,
+      "step": 0.1,
+      "default": 1.4
+    },
+    {
+      "type": "range",
+      "id": "item_spacing",
+      "label": "Item Spacing (px)",
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Top Margin (px)",
+      "min": -50,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Bottom Margin (px)",
+      "min": -50,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ]
+},
+
+
+    {
+      "type": "timeline",
+      "name": "Timeline",
+      "settings": [
+       { "type": "text", "id": "timeline_item_1_title", "label": "Timeline Item 1 - Title", "default": "Week 1–2: Relief Begins" },
+{ "type": "text", "id": "timeline_item_1_text", "label": "Timeline Item 1 - Description", "default": "Bloating decreases, digestion improves, cravings reduce." },
+{ "type": "image_picker", "id": "timeline_item_1_icon", "label": "Timeline Item 1 - Icon" },
+
+{ "type": "text", "id": "timeline_item_2_title", "label": "Timeline Item 2 - Title", "default": "Week 3–4: Energy & Clarity" },
+{ "type": "text", "id": "timeline_item_2_text", "label": "Timeline Item 2 - Description", "default": "Energy returns, skin begins clearing, brain fog fades." },
+{ "type": "image_picker", "id": "timeline_item_2_icon", "label": "Timeline Item 2 - Icon" },
+
+{ "type": "text", "id": "timeline_item_3_title", "label": "Timeline Item 3 - Title", "default": "Month 2: Gut Reset in Motion" },
+{ "type": "text", "id": "timeline_item_3_text", "label": "Timeline Item 3 - Description", "default": "Full gut reset in progress: mood, sleep, and focus all improve." },
+{ "type": "image_picker", "id": "timeline_item_3_icon", "label": "Timeline Item 3 - Icon" },
+
+{ "type": "text", "id": "timeline_item_4_title", "label": "Timeline Item 4 - Title", "default": "Month 3: Lasting Balance" },
+{ "type": "text", "id": "timeline_item_4_text", "label": "Timeline Item 4 - Description", "default": "Long-term balance, fewer flare-ups, immune strength restored." },
+{ "type": "image_picker", "id": "timeline_item_4_icon", "label": "Timeline Item 4 - Icon" },
+
         {
-          "type": "richtext",
-          "id": "list_content",
-          "label": "List Content",
-          "default": "<ul><li>Eliminate parasites and candida naturally</li><li>Reduce inflammation and bloating</li><li>Restore gut balance and immune strength</li><li>Improve energy, focus, and mental clarity</li><li>Stop sugar cravings at the root</li></ul>"
-        },
-        { "type": "image_picker", "id": "bullet_icon", "label": "Bullet Icon" },
-        { "type": "range", "id": "icon_size", "label": "Icon Size (px)", "min": 12, "max": 32, "step": 1, "unit": "px", "default": 20 },
-        { "type": "range", "id": "list_font_size", "label": "Text Font Size (px)", "min": 12, "max": 24, "step": 1, "unit": "px", "default": 16 },
-        { "type": "color", "id": "list_text_color", "label": "Text Color", "default": "#333333" },
-        { "type": "range", "id": "line_height", "label": "Line Height", "min": 1.0, "max": 2.0, "step": 0.1, "default": 1.4 },
-        { "type": "range", "id": "item_spacing", "label": "Item Spacing (px)", "min": 8, "max": 30, "step": 1, "unit": "px", "default": 12 },
+  "type": "image_picker",
+  "id": "timeline_icon",
+  "label": "Timeline Icon"
+},
+
+        { "type": "range", "id": "timeline_icon_size", "label": "Icon Size (px)", "min": 20, "max": 60, "step": 2, "unit": "px", "default": 40 },
+        { "type": "color", "id": "timeline_dot_color", "label": "Timeline Dot Color", "default": "#22c55e" },
+        { "type": "color", "id": "timeline_line_color", "label": "Timeline Line Color", "default": "#22c55e" },
+        { "type": "range", "id": "timeline_dot_size", "label": "Timeline Circle Size (px)", "min": 20, "max": 50, "step": 2, "unit": "px", "default": 30 },
+        { "type": "range", "id": "timeline_line_width", "label": "Timeline Line Width (px)", "min": 1, "max": 5, "step": 1, "unit": "px", "default": 2 },
+        { "type": "range", "id": "timeline_spacing", "label": "Timeline Item Spacing (px)", "min": 20, "max": 60, "step": 2, "unit": "px", "default": 40 },
+        { "type": "range", "id": "timeline_title_size", "label": "Title Font Size (px)", "min": 16, "max": 28, "step": 1, "unit": "px", "default": 20 },
+        { "type": "color", "id": "timeline_title_color", "label": "Title Color", "default": "#1f2937" },
+        { "type": "range", "id": "timeline_text_size", "label": "Text Font Size (px)", "min": 12, "max": 20, "step": 1, "unit": "px", "default": 16 },
+        { "type": "color", "id": "timeline_text_color", "label": "Text Color", "default": "#6b7280" },
+        { "type": "color", "id": "timeline_background_color", "label": "Item Background Color", "default": "#f9fafb" },
+        { "type": "range", "id": "timeline_border_radius", "label": "Item Border Radius (px)", "min": 0, "max": 20, "step": 1, "unit": "px", "default": 8 },
+        { "type": "range", "id": "margin_top", "label": "Top Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 },
+        { "type": "range", "id": "margin_bottom", "label": "Bottom Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 }
+      ]
+    },
+{
+  "type": "timeline_item",
+  "name": "Timeline Item",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "timeline_icon",
+      "label": "Timeline Icon"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    }
+  ]
+},
+
+    {
+      "type": "comparison_table",
+      "name": "Product Comparison Table",
+      "settings": [
+        { "type": "header", "content": "Content" },
+        { "type": "image_picker", "id": "product_image", "label": "Product image" },
+        
+        { "type": "header", "content": "Table Style" },
+        { "type": "font_picker", "id": "table_font", "label": "Table font", "default": "inter_n4" },
+        { "type": "range", "id": "table_font_size", "min": 12, "max": 20, "step": 1, "unit": "px", "label": "Table font size", "default": 14 },
+        { "type": "color", "id": "table_text_color", "label": "Table text color", "default": "#000000" },
+        { "type": "color", "id": "table_border_color", "label": "Table border color", "default": "#e0e0e0" },
+        { "type": "range", "id": "table_border_radius", "min": 0, "max": 20, "step": 1, "unit": "px", "label": "Table border radius", "default": 8 },
+        { "type": "checkbox", "id": "enable_alternating_rows", "label": "Enable alternating row colors", "default": true },
+        { "type": "color", "id": "table_row_alt_background", "label": "Alternating row background", "default": "#f9f9f9" },
+        
+        { "type": "header", "content": "Column Colors" },
+        { "type": "color", "id": "product_column_background", "label": "Product column background", "default": "#f0f8ff" },
+        { "type": "color", "id": "feature_column_background", "label": "Feature column background", "default": "#ffffff" },
+        { "type": "color", "id": "competitor_column_background", "label": "Competitor column background", "default": "#fff8f0" },
+        
+        { "type": "header", "content": "Icons" },
+        { "type": "range", "id": "icon_size", "min": 12, "max": 30, "step": 1, "unit": "px", "label": "Icon size", "default": 17 },
+        { "type": "color", "id": "check_icon_color", "label": "Check icon color", "default": "#00aa00" },
+        { "type": "color", "id": "cross_icon_color", "label": "Cross icon color", "default": "#cc0000" },
+        
+        { "type": "header", "content": "Features" },
+        { "type": "text", "id": "feature_1", "label": "Feature 1", "default": "Premium Quality" },
+        { "type": "select", "id": "competitor_1", "label": "Competitor has feature 1", "options": [ {"value": "check", "label": "Yes"}, {"value": "cross", "label": "No"} ], "default": "cross" },
+        { "type": "text", "id": "feature_2", "label": "Feature 2", "default": "24/7 Support" },
+        { "type": "select", "id": "competitor_2", "label": "Competitor has feature 2", "options": [ {"value": "check", "label": "Yes"}, {"value": "cross", "label": "No"} ], "default": "cross" },
+        { "type": "text", "id": "feature_3", "label": "Feature 3", "default": "Money Back Guarantee" },
+        { "type": "select", "id": "competitor_3", "label": "Competitor has feature 3", "options": [ {"value": "check", "label": "Yes"}, {"value": "cross", "label": "No"} ], "default": "cross" },
+        { "type": "text", "id": "feature_4", "label": "Feature 4" },
+        { "type": "select", "id": "competitor_4", "label": "Competitor has feature 4", "options": [ {"value": "check", "label": "Yes"}, {"value": "cross", "label": "No"} ], "default": "cross" },
+        { "type": "text", "id": "feature_5", "label": "Feature 5" },
+        { "type": "select", "id": "competitor_5", "label": "Competitor has feature 5", "options": [ {"value": "check", "label": "Yes"}, {"value": "cross", "label": "No"} ], "default": "cross" },
+        { "type": "text", "id": "feature_6", "label": "Feature 6" },
+        { "type": "select", "id": "competitor_6", "label": "Competitor has feature 6", "options": [ {"value": "check", "label": "Yes"}, {"value": "cross", "label": "No"} ], "default": "cross" },
+        { "type": "text", "id": "feature_7", "label": "Feature 7" },
+        { "type": "select", "id": "competitor_7", "label": "Competitor has feature 7", "options": [ {"value": "check", "label": "Yes"}, {"value": "cross", "label": "No"} ], "default": "cross" },
+        { "type": "text", "id": "feature_8", "label": "Feature 8" },
+        { "type": "select", "id": "competitor_8", "label": "Competitor has feature 8", "options": [ {"value": "check", "label": "Yes"}, {"value": "cross", "label": "No"} ], "default": "cross" },
+        
         { "type": "range", "id": "margin_top", "label": "Top Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 },
         { "type": "range", "id": "margin_bottom", "label": "Bottom Margin (px)", "min": -50, "max": 50, "step": 1, "unit": "px", "default": 0 }
       ]
@@ -237,8 +540,78 @@
 
   "presets": [
     {
-      "name": "Advertorial 2 Default",
-      "category": "Custom Sections"
+      "name": "Advertorial 2",
+      "blocks": [
+        {
+          "type": "header",
+          "settings": {
+            "title_text": "<p>Symptoms That Could Be a Sign of Imbalance</p>",
+            "title_highlight_text": "Imbalance",
+            "section_subtitle": "And why you shouldn't ignore them."
+          }
+        },
+        {
+          "type": "symptom",
+          "settings": {
+            "symptom_title": "Chronic Fatigue",
+            "symptom_description": "<p>Feeling tired all the time, even after a full night's sleep.</p>",
+            "symptom_science_text": "Low B12 and iron levels are common culprits",
+            "show_supporting_divider": true
+          }
+        },
+        {
+          "type": "symptom",
+          "settings": {
+            "symptom_title": "Digestive Issues",
+            "symptom_description": "<p>Bloating, irregular bowel movements, or stomach discomfort may signal an imbalanced gut microbiome.</p>",
+            "symptom_science_text": "70% of immune function starts in the gut",
+            "show_supporting_divider": true
+          }
+        },
+        {
+          "type": "symptom",
+          "settings": {
+            "symptom_title": "Brain Fog",
+            "symptom_description": "<p>Mental cloudiness, poor concentration, and memory issues.</p>",
+            "symptom_science_text": "Omega-3s are crucial for brain function",
+            "show_supporting_divider": true
+          }
+        },
+        {
+          "type": "icon_bullet_list",
+          "settings": {
+            "list_content": "<ul><li>Eliminate parasites and candida naturally</li><li>Reduce inflammation and bloating</li><li>Restore gut balance and immune strength</li><li>Improve energy, focus, and mental clarity</li><li>Stop sugar cravings at the root</li></ul>"
+          }
+        },
+        {
+          "type": "timeline",
+          "settings": {
+            "timeline_item_1_title": "Week 1–2: Relief Begins",
+            "timeline_item_1_text": "Bloating decreases, digestion improves, cravings reduce.",
+            "timeline_item_2_title": "Week 3–4: Energy & Clarity",
+            "timeline_item_2_text": "Energy returns, skin begins clearing, brain fog fades.",
+            "timeline_item_3_title": "Month 2: Gut Reset in Motion",
+            "timeline_item_3_text": "Full gut reset in progress: mood, sleep, and focus all improve.",
+            "timeline_item_4_title": "Month 3: Lasting Balance",
+            "timeline_item_4_text": "Long-term balance, fewer flare-ups, immune strength restored."
+          }
+        },
+        {
+          "type": "comparison_table",
+          "settings": {
+            "feature_1": "Premium Quality",
+            "feature_2": "24/7 Support",
+            "feature_3": "Money Back Guarantee"
+          }
+        },
+        {
+          "type": "cta",
+          "settings": {
+            "cta_text": "TRY RESILIA RISK-FREE",
+            "cta_link": "#"
+          }
+        }
+      ]
     }
   ]
 }
