@@ -1,0 +1,90 @@
+{%- style -%}
+  .beef-organ-section-{{ section.id }} {
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
+    background-color: {{ section.settings.background_color }};
+  }
+  
+  .beef-organ-section-{{ section.id }} .section-heading {
+    color: {{ section.settings.heading_color }};
+    font-size: {{ section.settings.heading_size }}px;
+    text-align: {{ section.settings.heading_alignment }};
+    margin-bottom: 30px;
+  }
+  
+  .beef-organ-section-{{ section.id }} .benefits-list {
+    color: {{ section.settings.text_color }};
+    font-size: {{ section.settings.text_size }}px;
+    margin-bottom: 40px;
+    text-align: {{ section.settings.text_alignment }};
+  }
+  
+  .beef-organ-section-{{ section.id }} .organs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .beef-organ-section-{{ section.id }} .organ-item {
+    text-align: center;
+    padding: 20px;
+    background: {{ section.settings.card_background }};
+    border-radius: 8px;
+    border: 1px solid {{ section.settings.card_border }};
+  }
+  
+  .beef-organ-section-{{ section.id }} .organ-image {
+    max-width: 80px;
+    margin: 0 auto 15px;
+  }
+  
+  .beef-organ-section-{{ section.id }} .organ-name {
+    color: {{ section.settings.organ_name_color }};
+    font-size: {{ section.settings.organ_name_size }}px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .beef-organ-section-{{ section.id }} {
+      padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
+    }
+    
+    .beef-organ-section-{{ section.id }} .organs-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+{%- endstyle -%}
+
+<div class="beef-organ-section-{{ section.id }}">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="section-heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    
+    <div class="benefits-list">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'benefit' -%}
+            <div class="benefit-item">{{ block.settings.benefit_text }}</div>
+          {%- when 'spacer' -%}
+            <div style="height: {{ block.settings.spacer_height }}px;"></div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+    
+    <div class="organs-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'organ' -%}
+          <div class="organ-item">
+            {%- if block.settings.organ_image != blank -%}
+              <div class="organ-image">
+                <img src="{{ block.settings.organ_image | img_url: '200x200' }}" alt="{{ block.settings.organ_name }}" loading="lazy">
+              </div>
+            {%- endif -%}
+            <p class="organ-name">{{ block.settings.organ_name }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
