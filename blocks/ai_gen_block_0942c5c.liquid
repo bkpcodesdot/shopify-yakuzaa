@@ -430,12 +430,14 @@
 
         <div class="ai-primal-queen-testimonial-{{ ai_gen_id }}">
           <div class="ai-primal-queen-testimonial-header-{{ ai_gen_id }}">
-            {% if block.settings.profile_image %}
+            {% if block.settings.profile_image_1 %}
               <img 
-                src="{{ block.settings.profile_image | image_url: width: 100 }}" 
-                alt="{{ block.settings.profile_image.alt | escape }}"
+                src="{{ block.settings.profile_image_1 | image_url: width: 100 }}" 
+                alt="{{ block.settings.profile_image_1.alt | escape }}"
                 class="ai-primal-queen-profile-image-{{ ai_gen_id }}"
                 loading="lazy"
+                width=""
+                height=""
               >
             {% else %}
               <div class="ai-primal-queen-profile-placeholder-{{ ai_gen_id }}">
@@ -446,7 +448,7 @@
             {% endif %}
             <div class="ai-primal-queen-reviewer-info-{{ ai_gen_id }}">
               <div class="ai-primal-queen-reviewer-name-{{ ai_gen_id }}">
-                {{ block.settings.reviewer_name }}
+                {{ block.settings.reviewer_name_1 }}
                 <svg class="ai-primal-queen-verified-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
                 </svg>
@@ -462,7 +464,53 @@
           </div>
           
           <p class="ai-primal-queen-review-text-{{ ai_gen_id }}">
-            {{ block.settings.review_text }}
+            {{ block.settings.review_text_1 }}
+          </p>
+          
+          <div class="ai-primal-queen-dots-{{ ai_gen_id }}">
+            {% for i in (1..5) %}
+              <div class="ai-primal-queen-dot-{{ ai_gen_id }} {% if i == 4 %}active{% endif %}"></div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="ai-primal-queen-testimonial-{{ ai_gen_id }}">
+          <div class="ai-primal-queen-testimonial-header-{{ ai_gen_id }}">
+            {% if block.settings.profile_image_2 %}
+              <img 
+                src="{{ block.settings.profile_image_2 | image_url: width: 100 }}" 
+                alt="{{ block.settings.profile_image_2.alt | escape }}"
+                class="ai-primal-queen-profile-image-{{ ai_gen_id }}"
+                loading="lazy"
+                width=""
+                height=""
+              >
+            {% else %}
+              <div class="ai-primal-queen-profile-placeholder-{{ ai_gen_id }}">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+              </div>
+            {% endif %}
+            <div class="ai-primal-queen-reviewer-info-{{ ai_gen_id }}">
+              <div class="ai-primal-queen-reviewer-name-{{ ai_gen_id }}">
+                {{ block.settings.reviewer_name_2 }}
+                <svg class="ai-primal-queen-verified-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                </svg>
+              </div>
+              <div class="ai-primal-queen-stars-{{ ai_gen_id }}">
+                {% for i in (1..5) %}
+                  <svg class="ai-primal-queen-star-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          
+          <p class="ai-primal-queen-review-text-{{ ai_gen_id }}">
+            {{ block.settings.review_text_2 }}
           </p>
           
           <div class="ai-primal-queen-dots-{{ ai_gen_id }}">
@@ -625,19 +673,36 @@
     },
     {
       "type": "image_picker",
-      "id": "profile_image",
-      "label": "Profile image"
+      "id": "profile_image_1",
+      "label": "Profile image 1"
     },
     {
       "type": "text",
-      "id": "reviewer_name",
-      "label": "Reviewer name",
+      "id": "reviewer_name_1",
+      "label": "Reviewer name 1",
       "default": "Olivia T."
     },
     {
       "type": "textarea",
-      "id": "review_text",
-      "label": "Review text",
+      "id": "review_text_1",
+      "label": "Review text 1",
+      "default": "This product completely transformed my energy levels and hormone balance. I feel like a new person!"
+    },
+    {
+      "type": "image_picker",
+      "id": "profile_image_2",
+      "label": "Profile image 2"
+    },
+    {
+      "type": "text",
+      "id": "reviewer_name_2",
+      "label": "Reviewer name 2",
+      "default": "Olivia T."
+    },
+    {
+      "type": "textarea",
+      "id": "review_text_2",
+      "label": "Review text 2",
       "default": "This product completely transformed my energy levels and hormone balance. I feel like a new person!"
     }
   ],
