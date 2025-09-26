@@ -69,7 +69,7 @@
         "subheading_9wPbwH": {
           "type": "subheading",
           "settings": {
-            "text": "Here’s Why <b>Beef Organ Superfoods</b> Are The Secret to Balancing Hormones & All Day Energy"
+            "text": "Here’s Why Beef Organ Superfoods Are The Secret to Balancing Hormones & All Day Energy"
           }
         },
         "button_Q46wFM": {
@@ -91,31 +91,6 @@
             "review_text": "I feel more energized and even have less bloating. And most importantly, it’s helped in the bedroom",
             "reviewer_name": "Emma L."
           }
-        },
-        "organ_supplement_Fbne8x": {
-          "type": "organ_supplement",
-          "settings": {
-            "organ_name": "Beef Liver",
-            "organ_description": "<p>Rich in essential vitamins and minerals...</p>",
-            "organ_benefits": "High in Vitamin A, B12, and Iron",
-            "use_section_colors": true,
-            "custom_background_color": "#ffffff",
-            "custom_border_color": "#8b0000",
-            "custom_title_color": "#8b0000",
-            "custom_description_color": "#333333",
-            "custom_benefits_color": "#666666",
-            "organ_title_size": 18,
-            "description_size": 14,
-            "benefits_text_size": 13,
-            "organ_icon_size": 60,
-            "custom_border_width": 2,
-            "show_benefits_divider": true,
-            "custom_divider_color": "#8b0000",
-            "margin_top": 0,
-            "margin_bottom": 0,
-            "enable_hover_effect": true,
-            "organ_link": ""
-          }
         }
       },
       "block_order": [
@@ -123,8 +98,7 @@
         "subheading_9wPbwH",
         "button_Q46wFM",
         "guarantee_46mDL6",
-        "review_QVTKc9",
-        "organ_supplement_Fbne8x"
+        "review_QVTKc9"
       ],
       "name": "Primal Queen Hero",
       "settings": {
