@@ -391,7 +391,7 @@
         </h2>
 
         <h1 class="ai-primal-queen-main-headline-{{ ai_gen_id }}">
-          <span class="pink-text">{{ block.settings.main_headline_pink }}</span>
+          <span class="pink-text">{{ block.settings.main_headline_pink_1 }}<strong>{{ block.settings.main_headline_pink_2 }}</strong></span>
           <span class="purple-text">{{ block.settings.main_headline_purple }}</span>
         </h1>
 
@@ -541,8 +541,14 @@
     },
     {
       "type": "text",
-      "id": "main_headline_pink",
-      "label": "Main headline (pink text)",
+      "id": "main_headline_pink_1",
+      "label": "Main headline (purple text) 1",
+      "default": "Here's Why"
+    },
+    {
+      "type": "text",
+      "id": "main_headline_pink_2",
+      "label": "Main headline (pink text) 2",
       "default": "Here's Why Beef Organ Superfoods Are The Secret to"
     },
     {
