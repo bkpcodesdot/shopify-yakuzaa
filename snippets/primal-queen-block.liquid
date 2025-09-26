@@ -19,13 +19,15 @@
   {% when 'review' %}
     <div class="primal-queen-review">
       {% if block.settings.avatar %}
-        <img src="{{ block.settings.avatar | img_url: '100x' }}" alt="{{ block.settings.reviewer_name }}" class="primal-queen-avatar">
+        <img src="{{ block.settings.avatar | img_url: '100x' }}" alt="{{ block.settings.reviewer_name }}" class="primal-queen-avatar" width="" height="">
       {% endif %}
       <blockquote>{{ block.settings.review_text }}</blockquote>
       <p class="primal-queen-reviewer">{{ block.settings.reviewer_name }}</p>
     </div>
-{% when 'Breef-organ-block' %}
-    {% render 'beef-organ-snippet', block: block, section: section %}
+
+{% when 'organ_supplement' %}
+     {% render 'beef-organ-snippet', block: block, section: section %}
+
 {% endcase %}
 
  
