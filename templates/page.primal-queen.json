@@ -183,7 +183,7 @@
             "image_border_radius": 12,
             "person_name": "John Doe",
             "person_designation": "Creative Director",
-            "overlay_background_color": "rgba(0,0,0,0.8)",
+            "overlay_background_color": "#000000cc",
             "overlay_text_color": "#ffffff",
             "bottom_image_height": 80,
             "heading": "Our Creative Process",
@@ -206,6 +206,27 @@
             "bottom_text_color": "#000000"
           },
           "blocks": {}
+        },
+        "ai_about_second_4dKGgM": {
+          "type": "ai-about-second",
+          "name": "Transformation story",
+          "settings": {
+            "story_paragraph_1": "<p>At <strong>24</strong>, I was struggling with constant fatigue and brain fog. I felt like I was living in a haze, barely making it through each day. My energy levels were so low that even simple tasks felt <strong>overwhelming</strong>.</p>",
+            "story_paragraph_2": "<p>I tried everything - different diets, supplements, even changing my sleep schedule. Nothing seemed to work, and I was starting to lose hope. My confidence was at an <strong>all-time low</strong>.</p>",
+            "story_paragraph_3": "<p>Now at <strong>30</strong>, I'm a completely different person. I wake up energized, my mind is clear, and I feel confident in my own skin. This journey taught me that real transformation comes from within, and I'm <strong>grateful</strong> for every step of the process.</p>",
+            "image_height": 400,
+            "background_color": "#ffffff",
+            "text_color": "#000000",
+            "bold_text_color": "#000000",
+            "text_size": 16,
+            "section_padding": 40,
+            "content_gap": 40,
+            "border_radius": 12,
+            "image_border_radius": 8,
+            "image_border_width": 0,
+            "image_border_color": "#e6e6e6"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
@@ -213,7 +234,8 @@
         "ai_gen_block_9e38d0f_dgrUgQ",
         "ai_gen_block_0942c5c_4N9m9b",
         "ai_gen_block_b33e825_MV9k8T",
-        "ai_about_block_NGpHFg"
+        "ai_about_block_NGpHFg",
+        "ai_about_second_4dKGgM"
       ],
       "settings": {
         "content_direction": "column",
