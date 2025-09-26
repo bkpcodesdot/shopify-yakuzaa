@@ -536,7 +536,7 @@
                     <h3 class="ai-primal-queen-hero-testimonial-name-{{ ai_gen_id }}">
                       {{ testimonial_name }}
                       {% if block.settings.show_verified_checkmark %}
-                        <img src="{{ block.settings.verify_mark_icon }}" width="17px" height="17px">
+                        <img src="{{ block.settings.verify_mark_icon | image_url }}" width="17px" height="17px">
                       {% endif %}
                     </h3>
                     <div class="ai-primal-queen-hero-testimonial-stars-{{ ai_gen_id }}">
