@@ -480,6 +480,7 @@
       {% endif %}
 
       {% if block.settings.button_text != blank %}
+      <div class="btn_wrapper">
         <a href="{{ block.settings.button_link }}" class="ai-primal-queen-hero-button-{{ ai_gen_id }}">
           {% if block.settings.show_crown_button %}
             {% comment %} <svg class="ai-primal-queen-hero-button-crown-{{ ai_gen_id }}" viewBox="0 0 24 24">
@@ -490,6 +491,7 @@
           {% endif %}
           {{ block.settings.button_text }}
         </a>
+      </div>    
       {% endif %}
 
       <div class="ai-primal-queen-hero-guarantees-{{ ai_gen_id }}">
