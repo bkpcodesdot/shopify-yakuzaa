@@ -1,87 +1,153 @@
-{% case block.type %}
-
-  {% when 'heading' %}
-    <h4 class="primal-queen-heading">{{ block.settings.text }}</h4>
-
-  {% when 'subheading' %}
-    <h2 class="primal-queen-subheading">
-      {{ block.settings.text }}
-    </h2>
-
-  {% when 'button' %}
-    <a href="{{ block.settings.link }}" class="primal-queen-btn">
-      {{ block.settings.label }}
-    </a>
-
-  {% when 'guarantee' %}
-    <p class="primal-queen-guarantee">{{ block.settings.text }}</p>
-
-  {% when 'review' %}
-    <div class="primal-queen-review">
-      {% if block.settings.avatar %}
-        <img src="{{ block.settings.avatar | img_url: '100x' }}" alt="{{ block.settings.reviewer_name }}" class="primal-queen-avatar" width="" height="">
+<!-- sections/primal-queen-section.liquid -->
+<section class="primal-queen-section">
+  <div class="pq-container">
+    
+    <!-- Left Content -->
+    <div class="pq-left">
+      {% if section.settings.logo != blank %}
+        <img class="pq-logo" src="{{ section.settings.logo | img_url: '200x' }}" alt="Logo">
       {% endif %}
-      <blockquote>{{ block.settings.review_text }}</blockquote>
-      <p class="primal-queen-reviewer">{{ block.settings.reviewer_name }}</p>
+      
+      <p class="pq-attention">⚠️ {{ section.settings.attention_text }}</p>
+      
+      <h2 class="pq-heading">
+        {{ section.settings.heading }}
+        <span>{{ section.settings.highlight_text }}</span>
+      </h2>
+      
+      <p class="pq-subheading">{{ section.settings.subheading }}</p>
+      
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link }}" class="pq-btn">
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+      
+      <div class="pq-guarantees">
+        <span>✔ 365-Day Money Back Guarantee</span>
+        <span>✔ Free Shipping*</span>
+      </div>
+      
+      <div class="pq-testimonial">
+        <img class="pq-avatar" src="{{ section.settings.testimonial_img | img_url: '80x' }}" alt="testimonial">
+        <div class="pq-testimonial-content">
+          <p>{{ section.settings.testimonial_text }}</p>
+          <strong>{{ section.settings.testimonial_name }}</strong>
+          <div class="pq-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+      </div>
     </div>
-
-{% when 'organ_supplement' %}
-    <div class="beef-organ-snipt">
-        {% render 'beef-organ-snippet', block: block, section: section %}
+    
+    <!-- Right Content (Video) -->
+    <div class="pq-right">
+      <div class="pq-video-wrapper">
+        {% if section.settings.video_url != blank %}
+          <video autoplay loop muted playsinline>
+            <source src="{{ section.settings.video_url }}" type="video/mp4">
+          </video>
+        {% endif %}
+      </div>
     </div>
-{% endcase %}
+    
+  </div>
+</section>
 
- 
 <style>
-  .primal-queen-heading {
-    color: #7a0044;
-    font-weight: 700;
-    margin-bottom: 15px;
-  }
-
-  .primal-queen-subheading {
-    font-size: 28px;
-    font-weight: 800;
-    color: #2a003f;
-    margin-bottom: 20px;
-  }
-
-  .primal-queen-btn {
-    display: inline-block;
-    background: #00c853;
-    color: white;
-    padding: 15px 30px;
-    border-radius: 6px;
-    font-weight: bold;
-    margin: 20px 0;
-    text-decoration: none;
-  }
-
-  .primal-queen-guarantee {
-    font-size: 14px;
-    color: #444;
-  }
-
-  .primal-queen-review {
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 20px;
-    background: white;
-  }
-
-  .primal-queen-avatar {
-    border-radius: 50%;
-    margin-bottom: 10px;
-  }
-
-  .primal-queen-review blockquote {
-    font-style: italic;
-    margin: 0 0 10px;
-  }
-
-  .primal-queen-reviewer {
-    font-weight: bold;
-    color: #d81b60;
-  }
+.primal-queen-section {
+  padding: 50px 20px;
+  background: #ffeef6;
+}
+.pq-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+  flex-wrap: wrap;
+}
+.pq-left {
+  flex: 1 1 50%;
+  padding: 20px;
+}
+.pq-logo {
+  max-width: 160px;
+  margin-bottom: 10px;
+}
+.pq-attention {
+  color: #e60073;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.pq-heading {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.pq-heading span {
+  color: #e60073;
+}
+.pq-subheading {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.pq-btn {
+  display: inline-block;
+  background: #00cc44;
+  color: #fff;
+  padding: 12px 25px;
+  font-weight: bold;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+.pq-guarantees {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.pq-guarantees span {
+  display: block;
+  margin-bottom: 5px;
+}
+.pq-testimonial {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  background: #fff;
+}
+.pq-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.pq-testimonial-content p {
+  margin: 0 0 5px;
+  font-size: 14px;
+}
+.pq-stars {
+  color: #ff66b2;
+  font-size: 18px;
+}
+.pq-right {
+  flex: 1 1 45%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+.pq-video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 50%/30%;
+  overflow: hidden;
+  background: radial-gradient(circle at center, #ff4081, #e60073);
+}
+.pq-video-wrapper video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 </style>
