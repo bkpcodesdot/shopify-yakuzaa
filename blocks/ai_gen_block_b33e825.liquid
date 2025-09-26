@@ -536,16 +536,7 @@
                     <h3 class="ai-primal-queen-hero-testimonial-name-{{ ai_gen_id }}">
                       {{ testimonial_name }}
                       {% if block.settings.show_verified_checkmark %}
-                        <svg class="w-[18px] h-[18px] max-sm:w-[11px] max-sm:h-[11px]" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                          <g clip-path="url(#clip0_44_2975)">
-                          <path d="M17.25 9L15.42 6.9075L15.675 4.14L12.9675 3.525L11.55 1.125L9 2.22L6.45 1.125L5.0325 3.5175L2.325 4.125L2.58 6.9L0.75 9L2.58 11.0925L2.325 13.8675L5.0325 14.4825L6.45 16.875L9 15.7725L11.55 16.8675L12.9675 14.475L15.675 13.86L15.42 11.0925L17.25 9ZM7.035 12.0075L5.25 10.2075C4.9575 9.915 4.9575 9.4425 5.25 9.15L5.3025 9.0975C5.595 8.805 6.075 8.805 6.3675 9.0975L7.575 10.3125L11.4375 6.4425C11.73 6.15 12.21 6.15 12.5025 6.4425L12.555 6.495C12.8475 6.7875 12.8475 7.26 12.555 7.5525L8.115 12.0075C7.8075 12.3 7.335 12.3 7.035 12.0075Z" fill="#2F0147"></path>
-                          </g>
-                          <defs>
-                          <clipPath id="clip0_44_2975">
-                          <rect width="18" height="18" fill="white"></rect>
-                          </clipPath>
-                          </defs>
-                        </svg>
+                        <img src="{{ block.settings.verify_mark_icon }}" width="17px" height="17px">
                       {% endif %}
                     </h3>
                     <div class="ai-primal-queen-hero-testimonial-stars-{{ ai_gen_id }}">
@@ -1046,6 +1037,11 @@
     {
       "type": "header",
       "content": "Guarantees"
+    },
+    {
+      "type": "image_picker",
+      "id": "verify_mark_icon",
+      "label": "Review verify mark icon"
     },
     {
       "type": "text",
