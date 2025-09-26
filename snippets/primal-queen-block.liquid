@@ -1,18 +1,82 @@
-{% comment %}
-  Snippet: Primal Queen Block
-  Each block markup is rendered here.
-{% endcomment %}
+{% case block.type %}
 
-<div class="primal-queen-block" id="block-{{ block.id }}">
-  {% if block.settings.image %}
-    <img src="{{ block.settings.image | img_url: '600x' }}" alt="{{ block.settings.title | escape }}" width="" height="">
-  {% endif %}
-  
-  {% if block.settings.title != blank %}
-    <h3>{{ block.settings.title }}</h3>
-  {% endif %}
-  
-  {% if block.settings.text != blank %}
-    <p>{{ block.settings.text }}</p>
-  {% endif %}
-</div>
+  {% when 'heading' %}
+    <h4 class="primal-queen-heading">{{ block.settings.text }}</h4>
+
+  {% when 'subheading' %}
+    <h2 class="primal-queen-subheading">
+      {{ block.settings.text }}
+    </h2>
+
+  {% when 'button' %}
+    <a href="{{ block.settings.link }}" class="primal-queen-btn">
+      {{ block.settings.label }}
+    </a>
+
+  {% when 'guarantee' %}
+    <p class="primal-queen-guarantee">{{ block.settings.text }}</p>
+
+  {% when 'review' %}
+    <div class="primal-queen-review">
+      {% if block.settings.avatar %}
+        <img src="{{ block.settings.avatar | img_url: '100x' }}" alt="{{ block.settings.reviewer_name }}" class="primal-queen-avatar">
+      {% endif %}
+      <blockquote>{{ block.settings.review_text }}</blockquote>
+      <p class="primal-queen-reviewer">{{ block.settings.reviewer_name }}</p>
+    </div>
+
+{% endcase %}
+
+<style>
+  .primal-queen-heading {
+    color: #7a0044;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+
+  .primal-queen-subheading {
+    font-size: 28px;
+    font-weight: 800;
+    color: #2a003f;
+    margin-bottom: 20px;
+  }
+
+  .primal-queen-btn {
+    display: inline-block;
+    background: #00c853;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 6px;
+    font-weight: bold;
+    margin: 20px 0;
+    text-decoration: none;
+  }
+
+  .primal-queen-guarantee {
+    font-size: 14px;
+    color: #444;
+  }
+
+  .primal-queen-review {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    background: white;
+  }
+
+  .primal-queen-avatar {
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+
+  .primal-queen-review blockquote {
+    font-style: italic;
+    margin: 0 0 10px;
+  }
+
+  .primal-queen-reviewer {
+    font-weight: bold;
+    color: #d81b60;
+  }
+</style>

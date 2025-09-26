@@ -1,103 +1,164 @@
-{% comment %}
-  Section: Primal Queen
-  This file wraps the section, handles CSS, schema, and renders blocks using the snippet.
-{% endcomment %}
-
-<section class="primal-queen-section">
-  <div class="primal-queen-wrapper">
-    {% for block in section.blocks %}
-      {% render 'primal-queen-block', block: block, section: section, index: forloop.index %}
-    {% endfor %}
+<section class="primal-queen-hero">
+  <div class="primal-queen-container">
+    <div class="primal-queen-left">
+      {% for block in section.blocks %}
+        {% render 'primal-queen-block', block: block %}
+      {% endfor %}
+    </div>
+    <div class="primal-queen-right">
+      {% if section.settings.main_image != blank %}
+        <div class="primal-queen-image-frame">
+          <img src="{{ section.settings.main_image | img_url: '800x' }}" alt="Hero Image">
+        </div>
+      {% endif %}
+    </div>
   </div>
 </section>
 
 <style>
-  .primal-queen-section {
+  .primal-queen-hero {
+    background: {{ section.settings.bg_color }};
     padding: 60px 20px;
-    background: {{ section.settings.background_color }};
   }
 
-  .primal-queen-wrapper {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+  .primal-queen-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: auto;
+    gap: 40px;
+    flex-wrap: wrap;
   }
 
-  .primal-queen-block {
+  .primal-queen-left {
+    flex: 1 1 50%;
+  }
+
+  .primal-queen-right {
+    flex: 1 1 50%;
     text-align: center;
-    background: #fff;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    transition: transform 0.2s ease-in-out;
   }
 
-  .primal-queen-block:hover {
-    transform: translateY(-5px);
+  .primal-queen-image-frame {
+    border: 3px solid #000;
+    border-radius: 50% / 15%;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
   }
 
-  .primal-queen-block img {
+  .primal-queen-image-frame img {
     max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-
-  .primal-queen-block h3 {
-    margin-top: 15px;
-    font-size: 20px;
-    font-weight: 600;
-  }
-
-  .primal-queen-block p {
-    margin-top: 10px;
-    font-size: 16px;
-    color: #555;
+    display: block;
   }
 </style>
 
 {% schema %}
 {
-  "name": "Primal Queen",
+  "name": "Primal Queen Hero",
   "settings": [
     {
       "type": "color",
-      "id": "background_color",
+      "id": "bg_color",
       "label": "Background Color",
-      "default": "#f9f9f9"
+      "default": "#fff0f6"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main Right Image"
     }
   ],
   "blocks": [
     {
-      "type": "content_block",
-      "name": "Content Block",
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Heading Text",
+          "default": "⚠ ATTENTION: 82% Of Women Suffer From Imbalanced Hormones & Low Energy"
+        }
+      ]
+    },
+    {
+      "type": "subheading",
+      "name": "Subheading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Subheading Text",
+          "default": "Here’s Why <b>Beef Organ Superfoods</b> Are The Secret to Balancing Hormones & All Day Energy"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "CTA Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Button Label",
+          "default": "UNLOCK YOUR TRUE POWER"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button Link"
+        }
+      ]
+    },
+    {
+      "type": "guarantee",
+      "name": "Guarantee Line",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Guarantee Text",
+          "default": "365-Day Money Back Guarantee • Free Shipping*"
+        }
+      ]
+    },
+    {
+      "type": "review",
+      "name": "Customer Review",
       "settings": [
         {
           "type": "image_picker",
-          "id": "image",
-          "label": "Image"
+          "id": "avatar",
+          "label": "Reviewer Image"
         },
         {
           "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Block Title"
+          "id": "review_text",
+          "label": "Review Text",
+          "default": "I feel more energized and even have less bloating. And most importantly, it’s helped in the bedroom"
         },
         {
-          "type": "textarea",
-          "id": "text",
-          "label": "Description",
-          "default": "Add a description for this block."
+          "type": "text",
+          "id": "reviewer_name",
+          "label": "Reviewer Name",
+          "default": "Emma L."
         }
       ]
     }
   ],
-  "max_blocks": 8,
   "presets": [
     {
-      "name": "Primal Queen",
-      "category": "Custom Sections"
+      "name": "Primal Queen Hero",
+      "category": "Custom Sections",
+      "blocks": [
+        { "type": "heading" },
+        { "type": "subheading" },
+        { "type": "button" },
+        { "type": "guarantee" },
+        { "type": "review" }
+      ]
     }
   ]
 }
