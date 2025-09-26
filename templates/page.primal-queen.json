@@ -55,6 +55,7 @@
         },
         "ai_gen_block_0942c5c_4N9m9b": {
           "type": "ai_gen_block_0942c5c",
+          "disabled": true,
           "settings": {
             "logo_image": "shopify://shop_images/svgviewer-png-output.png",
             "main_background_image": "shopify://shop_images/banner_2000x912-2.webp",
