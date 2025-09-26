@@ -367,7 +367,46 @@
     height: 60%;
     opacity: 0.5;
   }
+  .btn_wrapper::before {
+    content: '';
+        width: 15px;
+        height: 15px;
+        display: block;
+        position: absolute;
+        border: 2px solid #40A754;
+        left: -5px;
+        top: -5px;
+        border-right: none;
+        border-bottom: none;
+}
+.btn_wrapper::after{
+    content: '';
+        width: 15px;
+        height: 15px;
+        display: block;
+        position: absolute;
+        border: 2px solid #40A754;
+        right: -7px;
+        top: -7px;
+        border-bottom: none;
+        border-left: none;
+    }
+.btn_wrapper{
+    position: relative;
+}
 
+.btn_wrapper img::before{
+    ontent: '';
+        width: 15px;
+        height: 15px;
+        display: block;
+        position: absolute;
+        border: 2px solid #40A754;
+        left: -7px;
+        bottom: -7px;
+        border-right: none;
+        border-top: none;
+}
   .ai-primal-queen-hero-video-{{ ai_gen_id }} {
     width: 100%;
     height: 100%;
@@ -480,17 +519,19 @@
       {% endif %}
 
       {% if block.settings.button_text != blank %}
-      <div class="btn_wrapper">
-        <a href="{{ block.settings.button_link }}" class="ai-primal-queen-hero-button-{{ ai_gen_id }}">
-          {% if block.settings.show_crown_button %}
-            {% comment %} <svg class="ai-primal-queen-hero-button-crown-{{ ai_gen_id }}" viewBox="0 0 24 24">
-              <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm2.7-2h8.6l.9-5.4-2.1 1.7L12 8l-3.1 2.3-2.1-1.7L7.7 14z"/>
-            </svg> {% endcomment %}
+       <div class="btn_wrapper_wrapper">
+        <div class="btn_wrapper">
+          <a href="{{ block.settings.button_link }}" class="ai-primal-queen-hero-button-{{ ai_gen_id }}">
+            {% if block.settings.show_crown_button %}
+              {% comment %} <svg class="ai-primal-queen-hero-button-crown-{{ ai_gen_id }}" viewBox="0 0 24 24">
+                <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm2.7-2h8.6l.9-5.4-2.1 1.7L12 8l-3.1 2.3-2.1-1.7L7.7 14z"/>
+              </svg> {% endcomment %}
 
-            <img src="{{ block.settings.button_crown_icon | image_url }}" class="button_crown_icon" width="20px" height="20px" style="width:20px;">
-          {% endif %}
-          {{ block.settings.button_text }}
-        </a>
+              <img src="{{ block.settings.button_crown_icon | image_url }}" class="button_crown_icon" width="20px" height="20px" style="width:20px;">
+            {% endif %}
+            {{ block.settings.button_text }}
+          </a>
+        </div>  
       </div>    
       {% endif %}
 
