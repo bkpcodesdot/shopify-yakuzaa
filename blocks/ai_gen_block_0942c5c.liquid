@@ -400,13 +400,14 @@
           <span class="pink-text">{{ block.settings.main_headline_pink_1 }}<span>{{ block.settings.main_headline_pink_2 }}</span></span>
           <span class="purple-text">{{ block.settings.main_headline_purple }}</span>
         </h1>
-
-        <a href="{{ block.settings.cta_link }}" class="ai-primal-queen-cta-button-{{ ai_gen_id }}">
-          <svg class="ai-primal-queen-cta-crown-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M5 16L3 7l5.5 4L12 4l3.5 7L21 7l-2 9H5zm2.7-2h8.6l.9-4.4L14 12l-2-4-2 4-3.2-2.4L7.7 14z"/>
-          </svg>
-          {{ block.settings.cta_text }}
-        </a>
+        <span class="btn-wrapper">
+          <a href="{{ block.settings.cta_link }}" class="ai-primal-queen-cta-button-{{ ai_gen_id }}">
+            <svg class="ai-primal-queen-cta-crown-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M5 16L3 7l5.5 4L12 4l3.5 7L21 7l-2 9H5zm2.7-2h8.6l.9-4.4L14 12l-2-4-2 4-3.2-2.4L7.7 14z"/>
+            </svg>
+            {{ block.settings.cta_text }}
+          </a>
+        </span>
 
         <div class="ai-primal-queen-guarantees-{{ ai_gen_id }}">
           <div class="ai-primal-queen-guarantee-item-{{ ai_gen_id }}">
