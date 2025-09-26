@@ -323,6 +323,10 @@
     pointer-events: none;
   }
 
+  .ai-primal-queen-hero-main-wrapper-{{ ai_gen_id }} {
+    width: 100%;
+  }
+
   @media screen and (max-width: 768px) {
     .ai-primal-queen-hero-container-{{ ai_gen_id }} {
       grid-template-columns: 1fr;
@@ -349,7 +353,6 @@
     }
   }
 {% endstyle %}
-
 <div class="ai-primal-queen-hero-main-wrapper-{{ ai_gen_id }}" style="background-color: {{ block.settings.main_bg_color }}">
   <div class="ai-primal-queen-hero-{{ ai_gen_id }}" {{ block.shopify_attributes }} style="background-image: url('{{ block.settings.main_background_image | image_url }}');background-position: center center; background-size: contain;">
     <div class="ai-primal-queen-background-splatter-{{ ai_gen_id }}"></div>
