@@ -1,0 +1,704 @@
+{% doc %}
+  @prompt
+    Create a Shopify custom section with the following layout and full editability in the theme editor:
+    
+    Two-column layout (desktop), stacked on mobile.
+    
+    Left Column (Image Block)
+    
+    Uploadable image with rounded corners.
+    
+    A bottom overlay bar containing Name (bold) and Designation (sub-text).
+    
+    The image should have a slide-in animation (left to right) when visible.
+    
+    Right Column (Content Block)
+    
+    Editable heading/title (H2) – bold and prominent.
+    
+    Editable paragraph description (multi-line).
+    
+    A list of 4 items each containing:
+    2 item in one row
+    Small icon upload (SVG/PNG).
+    
+    Bold text label next to icon.
+    
+    A final bold text line at the bottom (separate field in schema).
+    
+    Responsive rules:
+    
+    On mobile → image on top, content block below.
+    
+    Maintain padding and spacing so text/icons remain aligned.
+    
+    Schema settings:
+    
+    Image upload
+    
+    Text fields for Name + Designation
+    
+    Title (H2)
+    
+    Description (Richtext)
+    
+    4 Repeater Blocks → (Icon + Text)
+    
+    Bottom bold text field
+    
+    Styling:
+    
+    Colors, spacing, typography should be customizable from schema (at least heading color, icon color, and overlay background).
+    
+    - make sure left side two image main image bottom side image also like befiore color-image so left side 2 image one main image bottom side color image
+    image and right side ration like 30/70, no not like that brand color im said that main image bottom side before image adding option also available 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-two-column-section-{{ ai_gen_id }} {
+    padding: {{ block.settings.section_padding_top }}px 20px {{ block.settings.section_padding_bottom }}px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-two-column-container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: {{ block.settings.column_gap }}px;
+    align-items: center;
+  }
+
+  .ai-image-column-{{ ai_gen_id }} {
+    position: relative;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .ai-image-column-{{ ai_gen_id }}.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .ai-main-image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    margin-bottom: 15px;
+    z-index: 1;
+  }
+
+  .ai-main-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    object-fit: cover;
+  }
+
+  .ai-main-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 300px;
+    background-color: #f4f4f4;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-main-image-placeholder-{{ ai_gen_id }} svg {
+    width: 80px;
+    height: 80px;
+    opacity: 0.5;
+  }
+
+  .ai-overlay-bar-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: {{ block.settings.overlay_background_color }};
+    padding: 15px 20px;
+    border-radius: 0 0 {{ block.settings.image_border_radius }}px {{ block.settings.image_border_radius }}px;
+    text-align: center;
+  }
+
+  .ai-overlay-name-{{ ai_gen_id }} {
+    font-weight: bold;
+    color: {{ block.settings.overlay_text_color }};
+    margin: 0 0 5px;
+    font-size: 24px;
+  }
+
+  .ai-overlay-designation-{{ ai_gen_id }} {
+    color: {{ block.settings.overlay_text_color }};
+    margin: 0;
+    font-size: 15px;
+    opacity: 1;
+    text-transform: uppercase;
+  }
+
+  .ai-bottom-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: {{ block.settings.bottom_image_height }}px;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    object-fit: cover;
+    position: absolute;
+    top: auto;
+    bottom: 3px;
+    z-index: 0;
+    left: -180px;
+  }
+
+  .ai-bottom-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: {{ block.settings.bottom_image_height }}px;
+    background-color: #f4f4f4;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-bottom-image-placeholder-{{ ai_gen_id }} svg {
+    width: 40px;
+    height: 40px;
+    opacity: 0.5;
+  }
+
+  .ai-bottom-image-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #999;
+    text-align: center;
+  }
+
+  .ai-content-column-{{ ai_gen_id }} {
+    padding-left: {{ block.settings.content_padding }}px;
+  }
+
+  .ai-content-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    font-weight: bold;
+    color: {{ block.settings.heading_color }};
+    margin: 0 0 20px;
+    line-height: 1.2;
+  }
+
+  .ai-content-description-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    margin: 0 0 30px;
+    line-height: 1.6;
+    font-size: {{ block.settings.text_size }}px;
+  }
+
+  .ai-features-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .ai-feature-item-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .ai-feature-icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-feature-icon-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .ai-feature-icon-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.icon_placeholder_color }};
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-feature-icon-placeholder-{{ ai_gen_id }} svg {
+    width: 16px;
+    height: 16px;
+    opacity: 0.5;
+  }
+
+  .ai-feature-text-{{ ai_gen_id }} {
+    font-weight: bold;
+    color: {{ block.settings.feature_text_color }};
+    font-size: {{ block.settings.feature_text_size }}px;
+  }
+
+  .ai-bottom-text-{{ ai_gen_id }} {
+    font-weight: bold;
+    color: {{ block.settings.bottom_text_color }};
+    font-size: {{ block.settings.bottom_text_size }}px;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-two-column-container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .ai-content-column-{{ ai_gen_id }} {
+      padding-left: 0;
+    }
+
+    .ai-features-grid-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+
+    .ai-content-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.8 }}px;
+    }
+  }
+{% endstyle %}
+
+<two-column-section-{{ ai_gen_id }}
+  class="ai-two-column-section-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-two-column-container-{{ ai_gen_id }}">
+    <div class="ai-image-column-{{ ai_gen_id }}" data-animate>
+      <div class="ai-main-image-wrapper-{{ ai_gen_id }}">
+        {% if block.settings.main_image %}
+          <img
+            src="{{ block.settings.main_image | image_url: width: 600 }}"
+            alt="{{ block.settings.main_image.alt | escape }}"
+            class="ai-main-image-{{ ai_gen_id }}"
+            loading="lazy"
+            width="{{ block.settings.main_image.width }}"
+            height="{{ block.settings.main_image.height }}"
+          >
+        {% else %}
+          <div class="ai-main-image-placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+
+        <div class="ai-overlay-bar-{{ ai_gen_id }}">
+          {% if block.settings.person_name != blank %}
+            <h3 class="ai-overlay-name-{{ ai_gen_id }}">{{ block.settings.person_name }}</h3>
+          {% endif %}
+          {% if block.settings.person_designation != blank %}
+            <p class="ai-overlay-designation-{{ ai_gen_id }}">{{ block.settings.person_designation }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+      {% if block.settings.bottom_image %}
+        <img
+          src="{{ block.settings.bottom_image | image_url: width: 600 }}"
+          alt="{{ block.settings.bottom_image.alt | escape }}"
+          class="ai-bottom-image-{{ ai_gen_id }}"
+          loading="lazy"
+          width="{{ block.settings.bottom_image.width }}"
+          height="{{ block.settings.bottom_image.height }}"
+        >
+      {% else %}
+        <div class="ai-bottom-image-placeholder-{{ ai_gen_id }}">
+          {{ 'image' | placeholder_svg_tag }}
+          <div class="ai-bottom-image-empty-state-{{ ai_gen_id }}">
+            Add bottom image
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="ai-content-column-{{ ai_gen_id }}">
+      {% if block.settings.heading != blank %}
+        <h2 class="ai-content-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+      {% endif %}
+
+      {% if block.settings.description != blank %}
+        <div class="ai-content-description-{{ ai_gen_id }}">{{ block.settings.description }}</div>
+      {% endif %}
+
+      <div class="ai-features-grid-{{ ai_gen_id }}">
+        {% for i in (1..4) %}
+          {% liquid
+            assign icon_key = 'feature_' | append: i | append: '_icon'
+            assign text_key = 'feature_' | append: i | append: '_text'
+            assign feature_icon = block.settings[icon_key]
+            assign feature_text = block.settings[text_key]
+          %}
+
+          {% if feature_text != blank %}
+            <div class="ai-feature-item-{{ ai_gen_id }}">
+              <div class="ai-feature-icon-{{ ai_gen_id }}">
+                {% if feature_icon %}
+                  <img
+                    src="{{ feature_icon | image_url: width: 100 }}"
+                    alt="{{ feature_text | escape }}"
+                    loading="lazy"
+                  >
+                {% else %}
+                  <div class="ai-feature-icon-placeholder-{{ ai_gen_id }}">
+                    {{ 'image' | placeholder_svg_tag }}
+                  </div>
+                {% endif %}
+              </div>
+              <span class="ai-feature-text-{{ ai_gen_id }}">{{ feature_text }}</span>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      {% if block.settings.bottom_text != blank %}
+        <p class="ai-bottom-text-{{ ai_gen_id }}">{{ block.settings.bottom_text }}</p>
+      {% endif %}
+    </div>
+  </div>
+</two-column-section-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class TwoColumnSection{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.setupIntersectionObserver();
+      }
+
+      setupIntersectionObserver() {
+        const animateElement = this.querySelector('[data-animate]');
+        
+        if (!animateElement) return;
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.2,
+          rootMargin: '0px 0px -50px 0px'
+        });
+
+        observer.observe(animateElement);
+      }
+    }
+
+    customElements.define('two-column-section-{{ ai_gen_id }}', TwoColumnSection{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Two column image content",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Column gap",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Main image"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main image"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Image border radius",
+      "default": 12
+    },
+    {
+      "type": "text",
+      "id": "person_name",
+      "label": "Name",
+      "default": "John Doe"
+    },
+    {
+      "type": "text",
+      "id": "person_designation",
+      "label": "Designation",
+      "default": "Creative Director"
+    },
+    {
+      "type": "color",
+      "id": "overlay_background_color",
+      "label": "Overlay background",
+      "default": "rgba(0,0,0,0.8)"
+    },
+    {
+      "type": "color",
+      "id": "overlay_text_color",
+      "label": "Overlay text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Bottom image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottom_image",
+      "label": "Bottom image"
+    },
+    {
+      "type": "range",
+      "id": "bottom_image_height",
+      "min": 60,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "label": "Bottom image height",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Creative Process"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 36
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>We believe in creating meaningful designs that connect with your audience and drive results. Our team combines creativity with strategic thinking to deliver exceptional outcomes.</p>"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "content_padding",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Content left padding",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Feature 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_1_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "feature_1_text",
+      "label": "Text",
+      "default": "Creative Design"
+    },
+    {
+      "type": "header",
+      "content": "Feature 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_2_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "feature_2_text",
+      "label": "Text",
+      "default": "Strategic Planning"
+    },
+    {
+      "type": "header",
+      "content": "Feature 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_3_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "feature_3_text",
+      "label": "Text",
+      "default": "Brand Development"
+    },
+    {
+      "type": "header",
+      "content": "Feature 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_4_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "feature_4_text",
+      "label": "Text",
+      "default": "Digital Marketing"
+    },
+    {
+      "type": "header",
+      "content": "Feature styling"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 20,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "icon_placeholder_color",
+      "label": "Icon placeholder color",
+      "default": "#f0f0f0"
+    },
+    {
+      "type": "range",
+      "id": "feature_text_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Feature text size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "feature_text_color",
+      "label": "Feature text color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Bottom text"
+    },
+    {
+      "type": "text",
+      "id": "bottom_text",
+      "label": "Bottom text",
+      "default": "Ready to transform your brand?"
+    },
+    {
+      "type": "range",
+      "id": "bottom_text_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom text size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "bottom_text_color",
+      "label": "Bottom text color",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Two column image content"
+    }
+  ]
+}
+{% endschema %}
