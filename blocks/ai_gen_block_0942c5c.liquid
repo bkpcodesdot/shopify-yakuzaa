@@ -7,7 +7,8 @@
 
 {% style %}
   .ai-primal-queen-hero-main-wrapper-{{ ai_gen_id }} {
-    margin: 0 auto;
+    margin: 0 auto !important;
+
   }
   .ai-primal-queen-hero-{{ ai_gen_id }} {
     background-color: #FFEEF3;
@@ -357,8 +358,8 @@
     }
   }
 {% endstyle %}
-<div class="ai-primal-queen-hero-main-wrapper-{{ ai_gen_id }} page-width" style="background-color: {{ block.settings.main_bg_color }}">
-  <div class="ai-primal-queen-hero-{{ ai_gen_id }}" {{ block.shopify_attributes }} style="background-image: url('{{ block.settings.main_background_image | image_url }}');background-position: center center; background-size: contain;">
+<div class="ai-primal-queen-hero-main-wrapper-{{ ai_gen_id }}" style="background-color: {{ block.settings.main_bg_color }}">
+  <div class="ai-primal-queen-hero-{{ ai_gen_id }} page-width" {{ block.shopify_attributes }} style="background-image: url('{{ block.settings.main_background_image | image_url }}');background-position: center center; background-size: contain;">
     <div class="ai-primal-queen-background-splatter-{{ ai_gen_id }}"></div>
     
     <div class="ai-primal-queen-hero-container-{{ ai_gen_id }}">
