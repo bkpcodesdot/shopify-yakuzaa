@@ -1,0 +1,104 @@
+{% comment %}
+  Section: Primal Queen
+  This file wraps the section, handles CSS, schema, and renders blocks using the snippet.
+{% endcomment %}
+
+<section class="primal-queen-section">
+  <div class="primal-queen-wrapper">
+    {% for block in section.blocks %}
+      {% render 'primal-queen-block', block: block, section: section, index: forloop.index %}
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+  .primal-queen-section {
+    padding: 60px 20px;
+    background: {{ section.settings.background_color }};
+  }
+
+  .primal-queen-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .primal-queen-block {
+    text-align: center;
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .primal-queen-block:hover {
+    transform: translateY(-5px);
+  }
+
+  .primal-queen-block img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .primal-queen-block h3 {
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .primal-queen-block p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #555;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Primal Queen",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f9f9f9"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content_block",
+      "name": "Content Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Block Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Add a description for this block."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Primal Queen",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}
