@@ -24,9 +24,11 @@
       <blockquote>{{ block.settings.review_text }}</blockquote>
       <p class="primal-queen-reviewer">{{ block.settings.reviewer_name }}</p>
     </div>
-
+{% when 'Breef-organ-block' %}
+    {% render 'beef-organ-snippet', block: block, section: section %}
 {% endcase %}
 
+ 
 <style>
   .primal-queen-heading {
     color: #7a0044;
