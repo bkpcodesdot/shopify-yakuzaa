@@ -503,8 +503,16 @@
       height: {{ block.settings.wave_height | times: 0.8 }}px;
     }
   }
-
+  .ai-primal-queen-hero-media-{{ ai_gen_id }}.is-mobile{
+    display: none;
+  }
   @media screen and (max-width: 767px) {
+    .ai-primal-queen-hero-media-{{ ai_gen_id }}.is-mobile{
+      display: block;
+    }
+    .ai-primal-queen-hero-media-{{ ai_gen_id }}{
+      display: none;
+    }
     .ai-primal-queen-hero-media-{{ ai_gen_id }} {
       padding: 25px;
     }
@@ -585,7 +593,40 @@
           </svg>
         {% endif %}
       </div>
-
+              <div class="ai-primal-queen-hero-media-{{ ai_gen_id }} is-mobile">
+      <div class="ai-primal-queen-hero-oval-container-{{ ai_gen_id }}">
+        <div class="ai-primal-queen-hero-splatter-{{ ai_gen_id }}"></div>
+        <div class="ai-primal-queen-hero-media-content-{{ ai_gen_id }}">
+          {% if block.settings.video_url != blank %}
+            <video 
+              class="ai-primal-queen-hero-video-{{ ai_gen_id }}"
+              autoplay
+              muted
+              loop
+              playsinline
+            >
+              <source src="{{ block.settings.video_url }}" type="video/mp4">
+            </video>
+          {% elsif block.settings.woman_image %}
+            <img 
+              src="{{ block.settings.woman_image | image_url: width: 600 }}" 
+              alt="Woman drinking water"
+              class="ai-primal-queen-hero-woman-image-{{ ai_gen_id }}"
+              width="600"
+              height="600"
+              loading="lazy"
+            >
+          {% else %}
+            <div class="ai-primal-queen-hero-woman-placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+          {% if block.settings.show_one_week_text %}
+            <div class="ai-primal-queen-hero-one-week-{{ ai_gen_id }}">{{ block.settings.one_week_text }}</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
       {% if block.settings.attention_text != blank %}
         <div class="ai-primal-queen-hero-attention-{{ ai_gen_id }}">{{ block.settings.attention_text }}</div>
       {% endif %}
