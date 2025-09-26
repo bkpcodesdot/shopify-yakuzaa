@@ -12,8 +12,30 @@
     "17588763879f34472d": {
       "type": "_blocks",
       "blocks": {
+        "ai_gen_block_da97295_eK7Ccy": {
+          "type": "ai_gen_block_da97295",
+          "settings": {
+            "logo_image": "shopify://shop_images/svgviewer-png-output.png",
+            "logo_text": "",
+            "show_crown_icon": false,
+            "attention_headline": "⚠️ ATTENTION: 82% Of Women Suffer From Imbalanced Hormones & Low Energy",
+            "main_headline_pink": "Here's Why Beef Organ Superfoods Are The Secret to",
+            "main_headline_purple": "Balancing Hormones & All Day Energy",
+            "cta_text": "UNLOCK YOUR TRUE POWER",
+            "cta_link": "",
+            "guarantee_1": "365-Day Money Back Guarantee",
+            "guarantee_2": "Free Shipping +",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/1e0c9ab8095b450582acd29a69882b0f.mp4",
+            "show_video_controls": false,
+            "one_week_text": "ONE WEEK",
+            "reviewer_name": "Olivia T.",
+            "review_text": "This product completely transformed my energy levels and hormone balance. I feel like a new person after just one week!"
+          },
+          "blocks": {}
+        },
         "ai_gen_block_9e38d0f_dgrUgQ": {
           "type": "ai_gen_block_9e38d0f",
+          "disabled": true,
           "settings": {
             "logo_text": "",
             "attention_headline": "⚠️ ATTENTION: 82% Of Women Suffer From Imbalanced Hormones & Low Energy",
@@ -32,6 +54,7 @@
         }
       },
       "block_order": [
+        "ai_gen_block_da97295_eK7Ccy",
         "ai_gen_block_9e38d0f_dgrUgQ"
       ],
       "settings": {
