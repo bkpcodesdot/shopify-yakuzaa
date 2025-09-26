@@ -485,6 +485,8 @@
             <svg class="ai-primal-queen-hero-button-crown-{{ ai_gen_id }}" viewBox="0 0 24 24">
               <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm2.7-2h8.6l.9-5.4-2.1 1.7L12 8l-3.1 2.3-2.1-1.7L7.7 14z"/>
             </svg>
+
+            <img src="{{ block.settings.button_crown_icon }}" class="button_crown_icon">
           {% endif %}
           {{ block.settings.button_text }}
         </a>
@@ -1046,6 +1048,11 @@
       "id": "show_crown_button",
       "label": "Show crown icon in button",
       "default": true
+    },
+     {
+      "type": "image_picker",
+      "id": "button_crown_icon",
+      "label": "button crown icon",
     },
     {
       "type": "header",
