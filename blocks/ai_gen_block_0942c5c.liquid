@@ -350,142 +350,143 @@
   }
 {% endstyle %}
 
-<div class="ai-primal-queen-hero-{{ ai_gen_id }}" {{ block.shopify_attributes }} style="background-image: url('{{ block.settings.main_background_image | image_url }}');background-position: center center; background-size: contain;">
-  <div class="ai-primal-queen-background-splatter-{{ ai_gen_id }}"></div>
-  
-  <div class="ai-primal-queen-hero-container-{{ ai_gen_id }}">
-    <div class="ai-primal-queen-hero-left-{{ ai_gen_id }}">
-      <div class="ai-primal-queen-logo-{{ ai_gen_id }}">
-        {% if block.settings.logo_image %}
-          <img 
-            src="{{ block.settings.logo_image | image_url: width: 200 }}" 
-            alt="{{ block.settings.logo_image.alt | escape }}"
-            class="ai-primal-queen-logo-image-{{ ai_gen_id }}"
-            loading="lazy"
-            width=""
-            height=""
-          >
-        {% else %}
-          <span class="ai-primal-queen-logo-text-{{ ai_gen_id }}">{{ block.settings.logo_text }}</span>
-          <svg class="ai-primal-queen-logo-crown-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
+<div class="ai-primal-queen-hero-main-wrapper-{{ ai_gen_id }}" style="background-color: {{ block.settings.main_bg_color }}">
+  <div class="ai-primal-queen-hero-{{ ai_gen_id }}" {{ block.shopify_attributes }} style="background-image: url('{{ block.settings.main_background_image | image_url }}');background-position: center center; background-size: contain;">
+    <div class="ai-primal-queen-background-splatter-{{ ai_gen_id }}"></div>
+    
+    <div class="ai-primal-queen-hero-container-{{ ai_gen_id }}">
+      <div class="ai-primal-queen-hero-left-{{ ai_gen_id }}">
+        <div class="ai-primal-queen-logo-{{ ai_gen_id }}">
+          {% if block.settings.logo_image %}
+            <img 
+              src="{{ block.settings.logo_image | image_url: width: 200 }}" 
+              alt="{{ block.settings.logo_image.alt | escape }}"
+              class="ai-primal-queen-logo-image-{{ ai_gen_id }}"
+              loading="lazy"
+              width=""
+              height=""
+            >
+          {% else %}
+            <span class="ai-primal-queen-logo-text-{{ ai_gen_id }}">{{ block.settings.logo_text }}</span>
+            <svg class="ai-primal-queen-logo-crown-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M5 16L3 7l5.5 4L12 4l3.5 7L21 7l-2 9H5zm2.7-2h8.6l.9-4.4L14 12l-2-4-2 4-3.2-2.4L7.7 14z"/>
+            </svg>
+          {% endif %}
+        </div>
+
+        <h2 class="ai-primal-queen-attention-headline-{{ ai_gen_id }}">
+          {{ block.settings.attention_headline }}
+        </h2>
+
+        <h1 class="ai-primal-queen-main-headline-{{ ai_gen_id }}">
+          <span class="pink-text">{{ block.settings.main_headline_pink }}</span>
+          <span class="purple-text">{{ block.settings.main_headline_purple }}</span>
+        </h1>
+
+        <a href="{{ block.settings.cta_link }}" class="ai-primal-queen-cta-button-{{ ai_gen_id }}">
+          <svg class="ai-primal-queen-cta-crown-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
             <path d="M5 16L3 7l5.5 4L12 4l3.5 7L21 7l-2 9H5zm2.7-2h8.6l.9-4.4L14 12l-2-4-2 4-3.2-2.4L7.7 14z"/>
           </svg>
-        {% endif %}
-      </div>
+          {{ block.settings.cta_text }}
+        </a>
 
-      <h2 class="ai-primal-queen-attention-headline-{{ ai_gen_id }}">
-        {{ block.settings.attention_headline }}
-      </h2>
-
-      <h1 class="ai-primal-queen-main-headline-{{ ai_gen_id }}">
-        <span class="pink-text">{{ block.settings.main_headline_pink }}</span>
-        <span class="purple-text">{{ block.settings.main_headline_purple }}</span>
-      </h1>
-
-      <a href="{{ block.settings.cta_link }}" class="ai-primal-queen-cta-button-{{ ai_gen_id }}">
-        <svg class="ai-primal-queen-cta-crown-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M5 16L3 7l5.5 4L12 4l3.5 7L21 7l-2 9H5zm2.7-2h8.6l.9-4.4L14 12l-2-4-2 4-3.2-2.4L7.7 14z"/>
-        </svg>
-        {{ block.settings.cta_text }}
-      </a>
-
-      <div class="ai-primal-queen-guarantees-{{ ai_gen_id }}">
-        <div class="ai-primal-queen-guarantee-item-{{ ai_gen_id }}">
-          <svg class="ai-primal-queen-checkmark-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-          </svg>
-          <span>{{ block.settings.guarantee_1 }}</span>
-        </div>
-        <div class="ai-primal-queen-guarantee-item-{{ ai_gen_id }}">
-          <svg class="ai-primal-queen-checkmark-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-          </svg>
-          <span>{{ block.settings.guarantee_2 }}</span>
-        </div>
-      </div>
-
-      <div class="ai-primal-queen-testimonial-{{ ai_gen_id }}">
-        <div class="ai-primal-queen-testimonial-header-{{ ai_gen_id }}">
-          {% if block.settings.profile_image %}
-            <img 
-              src="{{ block.settings.profile_image | image_url: width: 100 }}" 
-              alt="{{ block.settings.profile_image.alt | escape }}"
-              class="ai-primal-queen-profile-image-{{ ai_gen_id }}"
-              loading="lazy"
-            >
-          {% else %}
-            <div class="ai-primal-queen-profile-placeholder-{{ ai_gen_id }}">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-              </svg>
-            </div>
-          {% endif %}
-          <div class="ai-primal-queen-reviewer-info-{{ ai_gen_id }}">
-            <div class="ai-primal-queen-reviewer-name-{{ ai_gen_id }}">
-              {{ block.settings.reviewer_name }}
-              <svg class="ai-primal-queen-verified-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-              </svg>
-            </div>
-            <div class="ai-primal-queen-stars-{{ ai_gen_id }}">
-              {% for i in (1..5) %}
-                <svg class="ai-primal-queen-star-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                </svg>
-              {% endfor %}
-            </div>
+        <div class="ai-primal-queen-guarantees-{{ ai_gen_id }}">
+          <div class="ai-primal-queen-guarantee-item-{{ ai_gen_id }}">
+            <svg class="ai-primal-queen-checkmark-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+            </svg>
+            <span>{{ block.settings.guarantee_1 }}</span>
+          </div>
+          <div class="ai-primal-queen-guarantee-item-{{ ai_gen_id }}">
+            <svg class="ai-primal-queen-checkmark-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+            </svg>
+            <span>{{ block.settings.guarantee_2 }}</span>
           </div>
         </div>
-        
-        <p class="ai-primal-queen-review-text-{{ ai_gen_id }}">
-          {{ block.settings.review_text }}
-        </p>
-        
-        <div class="ai-primal-queen-dots-{{ ai_gen_id }}">
-          {% for i in (1..5) %}
-            <div class="ai-primal-queen-dot-{{ ai_gen_id }} {% if i == 4 %}active{% endif %}"></div>
-          {% endfor %}
+
+        <div class="ai-primal-queen-testimonial-{{ ai_gen_id }}">
+          <div class="ai-primal-queen-testimonial-header-{{ ai_gen_id }}">
+            {% if block.settings.profile_image %}
+              <img 
+                src="{{ block.settings.profile_image | image_url: width: 100 }}" 
+                alt="{{ block.settings.profile_image.alt | escape }}"
+                class="ai-primal-queen-profile-image-{{ ai_gen_id }}"
+                loading="lazy"
+              >
+            {% else %}
+              <div class="ai-primal-queen-profile-placeholder-{{ ai_gen_id }}">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+              </div>
+            {% endif %}
+            <div class="ai-primal-queen-reviewer-info-{{ ai_gen_id }}">
+              <div class="ai-primal-queen-reviewer-name-{{ ai_gen_id }}">
+                {{ block.settings.reviewer_name }}
+                <svg class="ai-primal-queen-verified-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                </svg>
+              </div>
+              <div class="ai-primal-queen-stars-{{ ai_gen_id }}">
+                {% for i in (1..5) %}
+                  <svg class="ai-primal-queen-star-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          
+          <p class="ai-primal-queen-review-text-{{ ai_gen_id }}">
+            {{ block.settings.review_text }}
+          </p>
+          
+          <div class="ai-primal-queen-dots-{{ ai_gen_id }}">
+            {% for i in (1..5) %}
+              <div class="ai-primal-queen-dot-{{ ai_gen_id }} {% if i == 4 %}active{% endif %}"></div>
+            {% endfor %}
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="ai-primal-queen-hero-right-{{ ai_gen_id }}">
-      <div class="ai-primal-queen-image-container-{{ ai_gen_id }}">
-        <div class="ai-primal-queen-paint-splatter-{{ ai_gen_id }}"></div>
-        <div class="ai-primal-queen-oval-frame-{{ ai_gen_id }}">
-          {% if block.settings.video_url != blank %}
-            <div class="ai-primal-queen-video-container-{{ ai_gen_id }}">
-              <video 
-                class="ai-primal-queen-video-{{ ai_gen_id }}"
-                autoplay 
-                muted 
-                loop 
-                playsinline
+      <div class="ai-primal-queen-hero-right-{{ ai_gen_id }}">
+        <div class="ai-primal-queen-image-container-{{ ai_gen_id }}">
+          <div class="ai-primal-queen-paint-splatter-{{ ai_gen_id }}"></div>
+          <div class="ai-primal-queen-oval-frame-{{ ai_gen_id }}">
+            {% if block.settings.video_url != blank %}
+              <div class="ai-primal-queen-video-container-{{ ai_gen_id }}">
+                <video 
+                  class="ai-primal-queen-video-{{ ai_gen_id }}"
+                  autoplay 
+                  muted 
+                  loop 
+                  playsinline
+                >
+                  <source src="{{ block.settings.video_url }}" type="video/mp4">
+                </video>
+              </div>
+            {% elsif block.settings.woman_image %}
+              <img 
+                src="{{ block.settings.woman_image | image_url: width: 400 }}" 
+                alt="{{ block.settings.woman_image.alt | escape }}"
+                class="ai-primal-queen-woman-image-{{ ai_gen_id }}"
+                loading="lazy"
               >
-                <source src="{{ block.settings.video_url }}" type="video/mp4">
-              </video>
+            {% else %}
+              <div class="ai-primal-queen-woman-placeholder-{{ ai_gen_id }}">
+                {{ 'image' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+            <div class="ai-primal-queen-one-week-badge-{{ ai_gen_id }}">
+              {{ block.settings.badge_text }}
             </div>
-          {% elsif block.settings.woman_image %}
-            <img 
-              src="{{ block.settings.woman_image | image_url: width: 400 }}" 
-              alt="{{ block.settings.woman_image.alt | escape }}"
-              class="ai-primal-queen-woman-image-{{ ai_gen_id }}"
-              loading="lazy"
-            >
-          {% else %}
-            <div class="ai-primal-queen-woman-placeholder-{{ ai_gen_id }}">
-              {{ 'image' | placeholder_svg_tag }}
-            </div>
-          {% endif %}
-          <div class="ai-primal-queen-one-week-badge-{{ ai_gen_id }}">
-            {{ block.settings.badge_text }}
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 {% schema %}
 {
   "name": "Primal Queen hero",
@@ -504,6 +505,11 @@
       "type": "image_picker",
       "id": "main_background_image",
       "label": "Main Background Image"
+    },
+    {
+      "type": "color",
+      "id": "main_bg_color",
+      "label": "Main Background Color"
     },
     {
       "type": "text",
