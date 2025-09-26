@@ -588,13 +588,13 @@
   <div class="timline-inner">
     <div class="timeline-image">
       {% if block.settings.timeline_item_1_icon %}
-        <img src="{{ block.settings.timeline_item_1_icon | img_url: '100x' }}" alt="{{ block.settings.timeline_item_1_title }}">
+        <img src="{{ block.settings.timeline_item_1_icon | img_url: '100x' }}" alt="{{ block.settings.timeline_item_1_title }}" width="" height="">
       {% elsif block.settings.timeline_item_2_icon %}
-        <img src="{{ block.settings.timeline_item_2_icon | img_url: '100x' }}" alt="{{ block.settings.timeline_item_2_title }}">
+        <img src="{{ block.settings.timeline_item_2_icon | img_url: '100x' }}" alt="{{ block.settings.timeline_item_2_title }}" width="" height="">
       {% elsif block.settings.timeline_item_3_icon %}
-        <img src="{{ block.settings.timeline_item_3_icon | img_url: '100x' }}" alt="{{ block.settings.timeline_item_3_title }}">
+        <img src="{{ block.settings.timeline_item_3_icon | img_url: '100x' }}" alt="{{ block.settings.timeline_item_3_title }}" width="" height="">
       {% elsif section.settings.timeline_item_4_icon %}
-        <img src="{{ section.settings.timeline_item_4_icon | img_url: '100x' }}" alt="{{ section.settings.timeline_item_4_title }}">
+        <img src="{{ section.settings.timeline_item_4_icon | img_url: '100x' }}" alt="{{ section.settings.timeline_item_4_title }}" width="" height="">
       {% endif %}
     </div>
 
