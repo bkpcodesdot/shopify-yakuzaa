@@ -1,7 +1,18 @@
-<section class=>
-  <div class="">
-    {% for block in section.blocks %}
-      {% render 'primal-queen-block', block: block, section: section, index: forloop.index %}
-    {% endfor %}
-  </div>
-</section>
+{% comment %}
+  Snippet: Primal Queen Block
+  Each block markup is rendered here.
+{% endcomment %}
+
+<div class="primal-queen-block" id="block-{{ block.id }}">
+  {% if block.settings.image %}
+    <img src="{{ block.settings.image | img_url: '600x' }}" alt="{{ block.settings.title | escape }}" width="" height="">
+  {% endif %}
+  
+  {% if block.settings.title != blank %}
+    <h3>{{ block.settings.title }}</h3>
+  {% endif %}
+  
+  {% if block.settings.text != blank %}
+    <p>{{ block.settings.text }}</p>
+  {% endif %}
+</div>
