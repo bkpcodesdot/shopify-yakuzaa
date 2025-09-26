@@ -1,6 +1,624 @@
+{% doc %}
+  @prompt
+    Create Shopify section with background #FFEEF3; top-left logo "PRIMAL QUEEN" in pink with crown symbol; bold dark purple headline "⚠️ ATTENTION: 82% Of Women Suffer From Imbalanced Hormones & Low Energy"; larger heading with pink #FF6F91 and dark purple text "Here’s Why Beef Organ Superfoods Are The Secret to Balancing Hormones & All Day Energy"; bright green #009933 button with white text "UNLOCK YOUR TRUE POWER" and crown icon; under button two green check marks with text "365-Day Money Back Guarantee" and "Free Shipping +"; right side oval black outline containing red-haired woman image drinking water, yellow pink paint splatter behind oval; inside oval bottom center white uppercase "ONE WEEK"; testimonial box with purple border, circular profile image, left italic review text dark gray, reviewer name "Olivia T." in pink bold with verified checkmark icon; 5 pink stars rating; below testimonial five dots fourth pink others gray; clean, sans-serif font; fully responsive; consistent spacing; subtle yellow pink paint splatter low opacity behind oval
+    make sure add logo image option and right side video url add option and pink background full width bith bottom cove , move testimonial to left side just after the guarantees section, make bacgruond curvy from bottom
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-primal-queen-hero-{{ ai_gen_id }} {
+    background-color: #FFEEF3;
+    width: 100%;
+    padding: 40px 20px 80px;
+    position: relative;
+    overflow: hidden;
+    font-family: {{ settings.type_body_font.family }}, sans-serif;
+  }
+
+  .ai-primal-queen-hero-{{ ai_gen_id }}::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: #FFEEF3;
+    clip-path: ellipse(100% 100% at 50% 0%);
+    z-index: 3;
+  }
+
+  .ai-primal-queen-hero-container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ai-primal-queen-hero-left-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .ai-primal-queen-logo-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .ai-primal-queen-logo-text-{{ ai_gen_id }} {
+    font-size: 24px;
+    font-weight: 700;
+    color: #FF6F91;
+    letter-spacing: 1px;
+  }
+
+  .ai-primal-queen-logo-crown-{{ ai_gen_id }} {
+    width: 28px;
+    height: 28px;
+    color: #FF6F91;
+  }
+
+  .ai-primal-queen-logo-image-{{ ai_gen_id }} {
+    max-height: 60px;
+    width: auto;
+  }
+
+  .ai-primal-queen-attention-headline-{{ ai_gen_id }} {
+    font-size: 18px;
+    font-weight: 700;
+    color: #4A0E4E;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+
+  .ai-primal-queen-main-headline-{{ ai_gen_id }} {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+
+  .ai-primal-queen-main-headline-{{ ai_gen_id }} .pink-text {
+    color: #FF6F91;
+  }
+
+  .ai-primal-queen-main-headline-{{ ai_gen_id }} .purple-text {
+    color: #4A0E4E;
+  }
+
+  .ai-primal-queen-cta-button-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #009933;
+    color: white;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  .ai-primal-queen-cta-button-{{ ai_gen_id }}:hover {
+    background-color: #007a29;
+  }
+
+  .ai-primal-queen-cta-crown-{{ ai_gen_id }} {
+    width: 20px;
+    height: 20px;
+  }
+
+  .ai-primal-queen-guarantees-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .ai-primal-queen-guarantee-item-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #009933;
+    font-weight: 600;
+  }
+
+  .ai-primal-queen-checkmark-{{ ai_gen_id }} {
+    width: 20px;
+    height: 20px;
+    color: #009933;
+  }
+
+  .ai-primal-queen-testimonial-{{ ai_gen_id }} {
+    background-color: white;
+    border: 2px solid #9B59B6;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .ai-primal-queen-testimonial-header-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .ai-primal-queen-profile-image-{{ ai_gen_id }} {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .ai-primal-queen-profile-placeholder-{{ ai_gen_id }} {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-primal-queen-profile-placeholder-{{ ai_gen_id }} svg {
+    width: 30px;
+    height: 30px;
+    color: #999;
+  }
+
+  .ai-primal-queen-reviewer-info-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ai-primal-queen-reviewer-name-{{ ai_gen_id }} {
+    font-weight: 700;
+    color: #FF6F91;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .ai-primal-queen-verified-icon-{{ ai_gen_id }} {
+    width: 16px;
+    height: 16px;
+    color: #009933;
+  }
+
+  .ai-primal-queen-stars-{{ ai_gen_id }} {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 8px;
+  }
+
+  .ai-primal-queen-star-{{ ai_gen_id }} {
+    width: 16px;
+    height: 16px;
+    color: #FF6F91;
+  }
+
+  .ai-primal-queen-review-text-{{ ai_gen_id }} {
+    font-style: italic;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .ai-primal-queen-dots-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .ai-primal-queen-dot-{{ ai_gen_id }} {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-primal-queen-dot-{{ ai_gen_id }}.active {
+    background-color: #FF6F91;
+  }
+
+  .ai-primal-queen-hero-right-{{ ai_gen_id }} {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .ai-primal-queen-image-container-{{ ai_gen_id }} {
+    position: relative;
+    width: 300px;
+    height: 400px;
+  }
+
+  .ai-primal-queen-paint-splatter-{{ ai_gen_id }} {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: radial-gradient(ellipse at center, rgba(255, 239, 91, 0.3) 0%, rgba(255, 111, 145, 0.2) 50%, transparent 70%);
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  .ai-primal-queen-oval-frame-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 3px solid #000000;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-primal-queen-woman-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-primal-queen-woman-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+  }
+
+  .ai-primal-queen-woman-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+  }
+
+  .ai-primal-queen-video-container-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .ai-primal-queen-video-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-primal-queen-one-week-badge-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    color: #000;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    z-index: 3;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .ai-primal-queen-background-splatter-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse 800px 400px at 70% 50%, rgba(255, 239, 91, 0.1) 0%, rgba(255, 111, 145, 0.05) 40%, transparent 70%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-primal-queen-hero-container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      text-align: center;
+    }
+
+    .ai-primal-queen-main-headline-{{ ai_gen_id }} {
+      font-size: 28px;
+    }
+
+    .ai-primal-queen-attention-headline-{{ ai_gen_id }} {
+      font-size: 16px;
+    }
+
+    .ai-primal-queen-image-container-{{ ai_gen_id }} {
+      width: 250px;
+      height: 320px;
+    }
+
+    .ai-primal-queen-cta-button-{{ ai_gen_id }} {
+      font-size: 16px;
+      padding: 14px 28px;
+    }
+
+    .ai-primal-queen-hero-{{ ai_gen_id }}::after {
+      height: 60px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-primal-queen-hero-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-primal-queen-background-splatter-{{ ai_gen_id }}"></div>
+  
+  <div class="ai-primal-queen-hero-container-{{ ai_gen_id }}">
+    <div class="ai-primal-queen-hero-left-{{ ai_gen_id }}">
+      <div class="ai-primal-queen-logo-{{ ai_gen_id }}">
+        {% if block.settings.logo_image %}
+          <img 
+            src="{{ block.settings.logo_image | image_url: width: 200 }}" 
+            alt="{{ block.settings.logo_image.alt | escape }}"
+            class="ai-primal-queen-logo-image-{{ ai_gen_id }}"
+            loading="lazy"
+          >
+        {% else %}
+          <span class="ai-primal-queen-logo-text-{{ ai_gen_id }}">{{ block.settings.logo_text }}</span>
+          <svg class="ai-primal-queen-logo-crown-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M5 16L3 7l5.5 4L12 4l3.5 7L21 7l-2 9H5zm2.7-2h8.6l.9-4.4L14 12l-2-4-2 4-3.2-2.4L7.7 14z"/>
+          </svg>
+        {% endif %}
+      </div>
+
+      <h2 class="ai-primal-queen-attention-headline-{{ ai_gen_id }}">
+        {{ block.settings.attention_headline }}
+      </h2>
+
+      <h1 class="ai-primal-queen-main-headline-{{ ai_gen_id }}">
+        <span class="pink-text">{{ block.settings.main_headline_pink }}</span>
+        <span class="purple-text">{{ block.settings.main_headline_purple }}</span>
+      </h1>
+
+      <a href="{{ block.settings.cta_link }}" class="ai-primal-queen-cta-button-{{ ai_gen_id }}">
+        <svg class="ai-primal-queen-cta-crown-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M5 16L3 7l5.5 4L12 4l3.5 7L21 7l-2 9H5zm2.7-2h8.6l.9-4.4L14 12l-2-4-2 4-3.2-2.4L7.7 14z"/>
+        </svg>
+        {{ block.settings.cta_text }}
+      </a>
+
+      <div class="ai-primal-queen-guarantees-{{ ai_gen_id }}">
+        <div class="ai-primal-queen-guarantee-item-{{ ai_gen_id }}">
+          <svg class="ai-primal-queen-checkmark-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+          </svg>
+          <span>{{ block.settings.guarantee_1 }}</span>
+        </div>
+        <div class="ai-primal-queen-guarantee-item-{{ ai_gen_id }}">
+          <svg class="ai-primal-queen-checkmark-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+          </svg>
+          <span>{{ block.settings.guarantee_2 }}</span>
+        </div>
+      </div>
+
+      <div class="ai-primal-queen-testimonial-{{ ai_gen_id }}">
+        <div class="ai-primal-queen-testimonial-header-{{ ai_gen_id }}">
+          {% if block.settings.profile_image %}
+            <img 
+              src="{{ block.settings.profile_image | image_url: width: 100 }}" 
+              alt="{{ block.settings.profile_image.alt | escape }}"
+              class="ai-primal-queen-profile-image-{{ ai_gen_id }}"
+              loading="lazy"
+            >
+          {% else %}
+            <div class="ai-primal-queen-profile-placeholder-{{ ai_gen_id }}">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+              </svg>
+            </div>
+          {% endif %}
+          <div class="ai-primal-queen-reviewer-info-{{ ai_gen_id }}">
+            <div class="ai-primal-queen-reviewer-name-{{ ai_gen_id }}">
+              {{ block.settings.reviewer_name }}
+              <svg class="ai-primal-queen-verified-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+              </svg>
+            </div>
+            <div class="ai-primal-queen-stars-{{ ai_gen_id }}">
+              {% for i in (1..5) %}
+                <svg class="ai-primal-queen-star-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        
+        <p class="ai-primal-queen-review-text-{{ ai_gen_id }}">
+          {{ block.settings.review_text }}
+        </p>
+        
+        <div class="ai-primal-queen-dots-{{ ai_gen_id }}">
+          {% for i in (1..5) %}
+            <div class="ai-primal-queen-dot-{{ ai_gen_id }} {% if i == 4 %}active{% endif %}"></div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-primal-queen-hero-right-{{ ai_gen_id }}">
+      <div class="ai-primal-queen-image-container-{{ ai_gen_id }}">
+        <div class="ai-primal-queen-paint-splatter-{{ ai_gen_id }}"></div>
+        <div class="ai-primal-queen-oval-frame-{{ ai_gen_id }}">
+          {% if block.settings.video_url != blank %}
+            <div class="ai-primal-queen-video-container-{{ ai_gen_id }}">
+              <video 
+                class="ai-primal-queen-video-{{ ai_gen_id }}"
+                autoplay 
+                muted 
+                loop 
+                playsinline
+              >
+                <source src="{{ block.settings.video_url }}" type="video/mp4">
+              </video>
+            </div>
+          {% elsif block.settings.woman_image %}
+            <img 
+              src="{{ block.settings.woman_image | image_url: width: 400 }}" 
+              alt="{{ block.settings.woman_image.alt | escape }}"
+              class="ai-primal-queen-woman-image-{{ ai_gen_id }}"
+              loading="lazy"
+            >
+          {% else %}
+            <div class="ai-primal-queen-woman-placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+          <div class="ai-primal-queen-one-week-badge-{{ ai_gen_id }}">
+            {{ block.settings.badge_text }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Primal Queen hero",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo image"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo text",
+      "default": "PRIMAL QUEEN"
+    },
+    {
+      "type": "header",
+      "content": "Headlines"
+    },
+    {
+      "type": "text",
+      "id": "attention_headline",
+      "label": "Attention headline",
+      "default": "⚠️ ATTENTION: 82% Of Women Suffer From Imbalanced Hormones & Low Energy"
+    },
+    {
+      "type": "text",
+      "id": "main_headline_pink",
+      "label": "Main headline (pink text)",
+      "default": "Here's Why Beef Organ Superfoods Are The Secret to"
+    },
+    {
+      "type": "text",
+      "id": "main_headline_purple",
+      "label": "Main headline (purple text)",
+      "default": "Balancing Hormones & All Day Energy"
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button text",
+      "default": "UNLOCK YOUR TRUE POWER"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Guarantees"
+    },
+    {
+      "type": "text",
+      "id": "guarantee_1",
+      "label": "First guarantee",
+      "default": "365-Day Money Back Guarantee"
+    },
+    {
+      "type": "text",
+      "id": "guarantee_2",
+      "label": "Second guarantee",
+      "default": "Free Shipping +"
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "image_picker",
+      "id": "woman_image",
+      "label": "Woman image"
+    },
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "Video URL"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "ONE WEEK"
+    },
+    {
+      "type": "header",
+      "content": "Testimonial"
+    },
+    {
+      "type": "image_picker",
+      "id": "profile_image",
+      "label": "Profile image"
+    },
+    {
+      "type": "text",
+      "id": "reviewer_name",
+      "label": "Reviewer name",
+      "default": "Olivia T."
+    },
+    {
+      "type": "textarea",
+      "id": "review_text",
+      "label": "Review text",
+      "default": "This product completely transformed my energy levels and hormone balance. I feel like a new person!"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Primal Queen hero"
+    }
+  ]
+}
 {% endschema %}
