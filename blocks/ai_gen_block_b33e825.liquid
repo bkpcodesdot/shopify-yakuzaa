@@ -593,6 +593,10 @@
           </svg>
         {% endif %}
       </div>
+              
+      {% if block.settings.attention_text != blank %}
+        <div class="ai-primal-queen-hero-attention-{{ ai_gen_id }}">{{ block.settings.attention_text }}</div>
+      {% endif %}
               <div class="ai-primal-queen-hero-media-{{ ai_gen_id }} is-mobile">
       <div class="ai-primal-queen-hero-oval-container-{{ ai_gen_id }}">
         <div class="ai-primal-queen-hero-splatter-{{ ai_gen_id }}"></div>
@@ -627,10 +631,6 @@
         </div>
       </div>
     </div>
-      {% if block.settings.attention_text != blank %}
-        <div class="ai-primal-queen-hero-attention-{{ ai_gen_id }}">{{ block.settings.attention_text }}</div>
-      {% endif %}
-
       {% if block.settings.main_heading != blank %}
         <h1 class="ai-primal-queen-hero-main-heading-{{ ai_gen_id }}">
           {{ block.settings.main_heading | replace: '[purple]', '<span class="purple-text">' | replace: '[/purple]', '</span>' }}
