@@ -20,6 +20,7 @@
   }
 .ai-primal-queen-hero-{{ ai_gen_id }} .btn-wrapper{
   position: relative;
+  display: inline;
 }
   .ai-primal-queen-hero-container-{{ ai_gen_id }} {
     max-width: 1200px;
@@ -105,12 +106,13 @@
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-bottom: 16px;
+    {% comment %} margin-bottom: 16px; {% endcomment %}
     text-transform: uppercase;
     width: fit-content;
     flex-direction: row-reverse;
+    
   }
-
+  
   .ai-primal-queen-cta-button-{{ ai_gen_id }}:hover {
     background-color: #007a29;
   }
