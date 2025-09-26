@@ -58,47 +58,6 @@
     },
     "section_ReaGkN": {
       "type": "section",
-      "blocks": {
-        "ai_gen_block_5dd758e_XiWn6c": {
-          "type": "ai_gen_block_5dd758e",
-          "settings": {
-            "image": "shopify://shop_images/oil_of_oregano_2_desktop.webp",
-            "image_width": 50,
-            "image_aspect_ratio": "4/3",
-            "image_border_radius": 8,
-            "heading": "Image with text",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "button_text": "Learn more",
-            "button_link": "",
-            "reverse_layout": false,
-            "vertical_alignment": "center",
-            "content_gap": 40,
-            "mobile_content_gap": 20,
-            "section_padding": 40,
-            "heading_size": 32,
-            "mobile_heading_size": 24,
-            "text_size": 16,
-            "mobile_text_size": 14,
-            "heading_margin": 15,
-            "text_margin": 20,
-            "heading_color": "#000000",
-            "text_color": "#000000",
-            "button_text_size": 14,
-            "button_border_radius": 14,
-            "button_border_width": 0,
-            "button_background": "#000000",
-            "button_text_color": "#ffffff",
-            "button_border_color": "#000000",
-            "button_hover_background": "#333333",
-            "button_hover_text_color": "#ffffff",
-            "button_hover_border_color": "#333333"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_5dd758e_XiWn6c"
-      ],
       "name": "t:names.custom_section",
       "settings": {
         "content_direction": "column",
