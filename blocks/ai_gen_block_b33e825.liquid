@@ -298,9 +298,10 @@
   .ai-primal-queen-hero-oval-container-{{ ai_gen_id }} {
     position: relative;
     width: {{ block.settings.oval_width }}px;
-    height: {{ block.settings.oval_height }}px;
+    {% comment %} height: {{ block.settings.oval_height }}px; {% endcomment %}
+    height: 666px;
     border: {{ block.settings.oval_border_width }}px solid {{ block.settings.oval_border_color }};
-    border-radius: 50%;
+    border-radius: 200px;
     overflow: hidden;
     background-color: {{ block.settings.oval_background_color }};
   }
