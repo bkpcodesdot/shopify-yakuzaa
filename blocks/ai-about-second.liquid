@@ -1,0 +1,349 @@
+{% doc %}
+  @prompt
+    Generate a before-and-after transformation testimonial section for a Shopify health or wellness store. Use the following structure and layout:
+    
+    1. Layout:
+    
+    Left side: motivational personal story in paragraph format.
+    
+    Right side: two images side by side labeled "Before" and "After" with ages shown below (e.g., "Age 24" and "Age 30").
+    
+    2. Tone:
+    
+    Honest, relatable, and emotional.
+    
+    Show a personal struggle and transformation without sounding overly dramatic.
+    
+    End with an empowering, positive note about personal growth.
+    
+    3. Style:
+    
+    Conversational and first-person.
+    
+    Simple, clear language with short paragraphs.
+    
+    4. Editable Variables:
+    
+    Age before: [e.g., 24]
+    
+    Age after: [e.g., 30]
+    
+    Before image URL: [insert your image URL or placeholder]
+    
+    After image URL: [insert your image URL or placeholder]
+    
+    Main struggle: [e.g., weight gain, brain fog, low energy, emotional instability]
+    
+    Turning point age: [e.g., 28]
+    
+    New identity or role: [e.g., low-key health fanatic, fitness lover, mindful eater]
+    
+    5. Output format:
+    
+    Structured HTML section ready for use in a Shopify Custom HTML block.
+    
+    Responsive layout for mobile and desktop.
+    
+    Use inline CSS styles for layout and font styling.
+    
+    Make the image captions ("Before"/"After") and ages styled with rounded labels and a background color., right side only one image because before-after image combine 
+    and here not main heading only description 3 and please make it some eliment bold option in descirtion also
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-transformation-testimonial-{{ ai_gen_id }} {
+    padding: {{ block.settings.section_padding }}px;
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-transformation-content-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: {{ block.settings.content_gap }}px;
+    align-items: center;
+  }
+
+  .ai-transformation-story-{{ ai_gen_id }} {
+    padding-right: 20px;
+  }
+
+  .ai-transformation-story-{{ ai_gen_id }} .story-text {
+    font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+    font-weight: {{ settings.type_body_font.weight }};
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .ai-transformation-story-{{ ai_gen_id }} .story-text:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-transformation-story-{{ ai_gen_id }} .story-text strong {
+    font-weight: 700;
+    color: {{ block.settings.bold_text_color }};
+  }
+
+  .ai-transformation-image-container-{{ ai_gen_id }} {
+    position: relative;
+    text-align: center;
+  }
+
+  .ai-transformation-image-{{ ai_gen_id }} {
+    width: 100%;
+    object-fit: cover;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    border: {{ block.settings.image_border_width }}px solid {{ block.settings.image_border_color }};
+  }
+
+  .ai-transformation-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: {{ block.settings.image_height }}px;
+    background-color: #f4f4f4;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    border: {{ block.settings.image_border_width }}px solid {{ block.settings.image_border_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-transformation-image-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-transformation-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-transformation-content-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .ai-transformation-story-{{ ai_gen_id }} {
+      padding-right: 0;
+      order: 2;
+    }
+
+    .ai-transformation-image-container-{{ ai_gen_id }} {
+      order: 1;
+    }
+
+    .ai-transformation-story-{{ ai_gen_id }} .story-text {
+      font-size: {{ block.settings.text_size | times: 0.9 }}px;
+    }
+
+    .ai-transformation-image-{{ ai_gen_id }},
+    .ai-transformation-image-placeholder-{{ ai_gen_id }} {
+      height: {{ block.settings.image_height | times: 0.8 }}px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .ai-transformation-image-{{ ai_gen_id }},
+    .ai-transformation-image-placeholder-{{ ai_gen_id }} {
+      height: {{ block.settings.image_height | times: 0.7 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-transformation-testimonial-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-transformation-content-{{ ai_gen_id }}">
+    <div class="ai-transformation-story-{{ ai_gen_id }}">
+      {% if block.settings.story_paragraph_1 != blank %}
+        <div class="story-text">{{ block.settings.story_paragraph_1 }}</div>
+      {% endif %}
+
+      {% if block.settings.story_paragraph_2 != blank %}
+        <div class="story-text">{{ block.settings.story_paragraph_2 }}</div>
+      {% endif %}
+
+      {% if block.settings.story_paragraph_3 != blank %}
+        <div class="story-text">{{ block.settings.story_paragraph_3 }}</div>
+      {% endif %}
+    </div>
+
+    <div class="ai-transformation-image-container-{{ ai_gen_id }}">
+      {% if block.settings.transformation_image %}
+        <img
+          src="{{ block.settings.transformation_image | image_url: width: 600 }}"
+          alt="Before and after transformation"
+          class="ai-transformation-image-{{ ai_gen_id }}"
+          loading="lazy"
+          width="600"
+          height="{{ block.settings.image_height }}"
+        >
+      {% else %}
+        <div class="ai-transformation-image-placeholder-{{ ai_gen_id }}">
+          {{ 'image' | placeholder_svg_tag }}
+          <div class="ai-transformation-empty-state-{{ ai_gen_id }}">
+            Add before/after image
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Transformation story",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "richtext",
+      "id": "story_paragraph_1",
+      "label": "Description 1",
+      "default": "<p>At <strong>24</strong>, I was struggling with constant fatigue and brain fog. I felt like I was living in a haze, barely making it through each day. My energy levels were so low that even simple tasks felt <strong>overwhelming</strong>.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "story_paragraph_2",
+      "label": "Description 2",
+      "default": "<p>I tried everything - different diets, supplements, even changing my sleep schedule. Nothing seemed to work, and I was starting to lose hope. My confidence was at an <strong>all-time low</strong>.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "story_paragraph_3",
+      "label": "Description 3",
+      "default": "<p>Now at <strong>30</strong>, I'm a completely different person. I wake up energized, my mind is clear, and I feel confident in my own skin. This journey taught me that real transformation comes from within, and I'm <strong>grateful</strong> for every step of the process.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "transformation_image",
+      "label": "Before/after image"
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "min": 200,
+      "max": 600,
+      "step": 20,
+      "unit": "px",
+      "label": "Image height",
+      "default": 400
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "bold_text_color",
+      "label": "Bold text color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "min": 20,
+      "max": 80,
+      "step": 10,
+      "unit": "px",
+      "label": "Section padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "content_gap",
+      "min": 20,
+      "max": 80,
+      "step": 10,
+      "unit": "px",
+      "label": "Content gap",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Section border radius",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Image style"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Image border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "image_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Image border width",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "image_border_color",
+      "label": "Image border color",
+      "default": "#e6e6e6"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Transformation story"
+    }
+  ]
+}
+{% endschema %}
