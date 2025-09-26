@@ -57,7 +57,7 @@
     background-color: {{ block.settings.background_color }};
     border-radius: {{ block.settings.border_radius }}px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0;
   }
 
   .ai-transformation-content-{{ ai_gen_id }} {
@@ -143,6 +143,8 @@
 
     .ai-transformation-image-container-{{ ai_gen_id }} {
       order: 1;
+      max-width: 70%;
+      margin: auto;
     }
 
     .ai-transformation-story-{{ ai_gen_id }} .story-text {
@@ -159,6 +161,9 @@
     .ai-transformation-image-{{ ai_gen_id }},
     .ai-transformation-image-placeholder-{{ ai_gen_id }} {
       height: {{ block.settings.image_height | times: 0.7 }}px;
+    }
+    .ai-transformation-image-container-arfhyqjdlrmnivmrieaigenblock960976ca78ckp {
+      max-width: 100%;
     }
   }
 {% endstyle %}
