@@ -599,44 +599,9 @@
       {% endif %}
               
       {% if block.settings.main_heading != blank %}
-       
         <h1 class="ai-primal-queen-hero-main-heading-{{ ai_gen_id }}">
           {{ block.settings.main_heading | replace: '[purple]', '<span class="purple-text">' | replace: '[/purple]', '</span>' }}
         </h1>
-        <div class="ai-primal-queen-hero-media-{{ ai_gen_id }} is-mobile">
-      <div class="ai-primal-queen-hero-oval-container-{{ ai_gen_id }}">
-        <div class="ai-primal-queen-hero-splatter-{{ ai_gen_id }}"></div>
-        <div class="ai-primal-queen-hero-media-content-{{ ai_gen_id }}">
-          {% if block.settings.video_url != blank %}
-            <video 
-              class="ai-primal-queen-hero-video-{{ ai_gen_id }}"
-              autoplay
-              muted
-              loop
-              playsinline
-            >
-              <source src="{{ block.settings.video_url }}" type="video/mp4">
-            </video>
-          {% elsif block.settings.woman_image %}
-            <img 
-              src="{{ block.settings.woman_image | image_url: width: 600 }}" 
-              alt="Woman drinking water"
-              class="ai-primal-queen-hero-woman-image-{{ ai_gen_id }}"
-              width="600"
-              height="600"
-              loading="lazy"
-            >
-          {% else %}
-            <div class="ai-primal-queen-hero-woman-placeholder-{{ ai_gen_id }}">
-              {{ 'image' | placeholder_svg_tag }}
-            </div>
-          {% endif %}
-          {% if block.settings.show_one_week_text %}
-            <div class="ai-primal-queen-hero-one-week-{{ ai_gen_id }}">{{ block.settings.one_week_text }}</div>
-          {% endif %}
-        </div>
-      </div>
-    </div>
       {% endif %}
 
       {% if block.settings.button_text != blank %}
