@@ -140,7 +140,7 @@
             "one_week_text_size": 12,
             "one_week_background_color": "#ffffff",
             "one_week_text_color": "#000000",
-            "testimonial_auto_slide_duration": 5,
+            "testimonial_auto_slide_duration": 10,
             "testimonial_border_color": "#ff6f91",
             "testimonial_background_color": "#ffffff",
             "testimonial_border_radius": 12,

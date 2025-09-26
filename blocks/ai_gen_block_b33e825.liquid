@@ -664,7 +664,7 @@
       startAutoSlide() {
         this.autoSlideInterval = setInterval(() => {
           this.nextTestimonial();
-        }, {{ block.settings.testimonial_auto_slide_duration | times: 1000 }});
+        }, {{ block.settings.testimonial_auto_slide_duration | times: 10000 }});
       }
 
       resetAutoSlide() {
