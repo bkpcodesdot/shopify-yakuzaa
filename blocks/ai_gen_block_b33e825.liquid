@@ -819,148 +819,127 @@
 </style>
 
 <script>
-  (function () {
-    class PrimalQueenHero{{ ai_gen_id }} extends HTMLElement {
-      constructor() {
-        super();
-        this.currentTestimonial = 1;
-        this.testimonialCount = 0;
-        this.autoSlideInterval = null;
-
-        // swipe tracking
-        this.startX = 0;
-        this.currentX = 0;
-        this.isDragging = false;
-      }
-
-      connectedCallback() {
-        this.track = this.querySelector('.ai-primal-queen-hero-track-{{ ai_gen_id }}');
-        this.testimonials = this.querySelectorAll('.ai-primal-queen-hero-testimonial-{{ ai_gen_id }}');
-        this.dots = this.querySelectorAll('.ai-primal-queen-hero-dot-{{ ai_gen_id }}');
-        this.testimonialCount = this.testimonials.length;
-
-        if (this.testimonialCount > 1) {
-          this.setupEventListeners();
-          this.setupSwipe();
-          this.updateSlide();
-          this.startAutoSlide();
-        }
-      }
-
-      disconnectedCallback() {
-        if (this.autoSlideInterval) {
-          clearInterval(this.autoSlideInterval);
-        }
-      }
-
-      setupEventListeners() {
-        this.dots.forEach((dot, index) => {
-          dot.addEventListener('click', () => {
-            this.showTestimonial(index + 1);
-            this.resetAutoSlide();
-          });
-        });
-      }
-
-      setupSwipe() {
-        this.addEventListener('touchstart', (e) => {
-          this.startDrag(e.touches[0].clientX);
-        });
-        this.addEventListener('touchmove', (e) => {
-          this.onDrag(e.touches[0].clientX);
-        });
-        this.addEventListener('touchend', () => {
-          this.endDrag();
-        });
-
-        this.addEventListener('mousedown', (e) => {
-          e.preventDefault();
-          this.startDrag(e.clientX);
-        });
-        this.addEventListener('mousemove', (e) => {
-          if (this.isDragging) this.onDrag(e.clientX);
-        });
-        this.addEventListener('mouseup', () => {
-          this.endDrag();
-        });
-        this.addEventListener('mouseleave', () => {
-          if (this.isDragging) this.endDrag();
-        });
-      }
-
-      startDrag(x) {
-        this.isDragging = true;
-        this.startX = x;
-        this.currentX = x;
-        this.track.style.transition = "none"; // disable smooth during drag
-      }
-
-      onDrag(x) {
-        if (!this.isDragging) return;
-        this.currentX = x;
-        const delta = this.currentX - this.startX;
-        const offset = -((this.currentTestimonial - 1) * this.offsetWidth) + delta;
-        this.track.style.transform = `translateX(${offset}px)`;
-      }
-
-      endDrag() {
-        if (!this.isDragging) return;
-        const delta = this.currentX - this.startX;
-        if (Math.abs(delta) > 50) {
-          if (delta < 0) {
-            this.nextTestimonial();
-          } else {
-            this.prevTestimonial();
-          }
-        } else {
-          this.updateSlide(); // snap back
-        }
-        this.isDragging = false;
-        this.startX = this.currentX = 0;
-      }
-
-      showTestimonial(index) {
-        this.currentTestimonial = index;
-        this.updateSlide();
-      }
-
-      updateSlide() {
-        const offset = -((this.currentTestimonial - 1) * this.offsetWidth);
-        this.track.style.transition = "transform 0.5s ease";
-        this.track.style.transform = `translateX(${offset}px)`;
-
-        this.dots.forEach((dot, i) => {
-          dot.classList.toggle('active', i === this.currentTestimonial - 1);
-        });
-      }
-
-      nextTestimonial() {
-        const next = this.currentTestimonial >= this.testimonialCount ? 1 : this.currentTestimonial + 1;
-        this.showTestimonial(next);
-      }
-
-      prevTestimonial() {
-        const prev = this.currentTestimonial <= 1 ? this.testimonialCount : this.currentTestimonial - 1;
-        this.showTestimonial(prev);
-      }
-
-      startAutoSlide() {
-        this.autoSlideInterval = setInterval(() => {
-          this.nextTestimonial();
-        }, {{ block.settings.testimonial_auto_slide_duration | times: 1000 }}); // 1000 = 1s
-      }
-
-      resetAutoSlide() {
-        if (this.autoSlideInterval) {
-          clearInterval(this.autoSlideInterval);
-          this.startAutoSlide();
-        }
-      }
+(function () {
+  class PrimalQueenHero{{ ai_gen_id }} extends HTMLElement {
+    constructor() {
+      super();
+      this.currentIndex = 0;
+      this.slides = [];
+      this.dots = [];
+      this.track = null;
+      this.slideWidth = 0;
+      this.isDragging = false;
+      this.startX = 0;
+      this.currentX = 0;
+      this.autoTimer = null;
+      this.autoMs = ({{ block.settings.testimonial_auto_slide_duration | default: 5 }}) * 1000;
     }
 
-    customElements.define('primal-queen-hero-{{ ai_gen_id }}', PrimalQueenHero{{ ai_gen_id }});
-  })();
+    connectedCallback() {
+      this.track = this.querySelector('.ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }}');
+      this.slides = Array.from(this.querySelectorAll('.ai-primal-queen-hero-testimonial-{{ ai_gen_id }}'));
+      this.dots = Array.from(this.querySelectorAll('.ai-primal-queen-hero-dot-{{ ai_gen_id }}'));
+      if (!this.track || this.slides.length <= 1) return;
+
+      this.updateSize();
+      this.goTo(0, true);
+      this.bindEvents();
+      this.startAuto();
+    }
+
+    disconnectedCallback() {
+      this.stopAuto();
+    }
+
+    updateSize() {
+      this.slideWidth = this.clientWidth;
+    }
+
+    bindEvents() {
+      this.addEventListener('pointerdown', this.onPointerDown.bind(this), { passive: true });
+      this.addEventListener('pointermove', this.onPointerMove.bind(this), { passive: true });
+      this.addEventListener('pointerup', this.onPointerUp.bind(this));
+      this.addEventListener('pointercancel', this.onPointerUp.bind(this));
+      window.addEventListener('resize', () => {
+        this.updateSize();
+        this.goTo(this.currentIndex, true);
+      });
+
+      this.dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+          this.goTo(idx);
+          this.resetAuto();
+        });
+      });
+    }
+
+    onPointerDown(e) {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      this.isDragging = true;
+      this.startX = e.clientX;
+      this.currentX = e.clientX;
+      this.track.style.transition = 'none';
+      this.stopAuto();
+    }
+
+    onPointerMove(e) {
+      if (!this.isDragging) return;
+      this.currentX = e.clientX;
+      const delta = this.currentX - this.startX;
+      const offset = -(this.currentIndex * this.slideWidth) + delta;
+      this.track.style.transform = `translateX(${offset}px)`;
+    }
+
+    onPointerUp(e) {
+      if (!this.isDragging) return;
+      this.isDragging = false;
+      const delta = this.currentX - this.startX;
+      const threshold = this.slideWidth * 0.2;
+      if (delta > threshold) {
+        this.prev();
+      } else if (delta < -threshold) {
+        this.next();
+      } else {
+        this.goTo(this.currentIndex);
+      }
+      this.track.style.transition = 'transform 0.5s ease';
+      this.resetAuto();
+    }
+
+    goTo(index, instant = false) {
+      if (index < 0) index = this.slides.length - 1;
+      if (index >= this.slides.length) index = 0;
+      this.currentIndex = index;
+      const offset = -(this.currentIndex * this.slideWidth);
+      this.track.style.transition = instant ? 'none' : 'transform 0.5s ease';
+      this.track.style.transform = `translateX(${offset}px)`;
+
+      this.slides.forEach((s, i) => s.classList.toggle('active', i === this.currentIndex));
+      this.dots.forEach((d, i) => d.classList.toggle('active', i === this.currentIndex));
+    }
+
+    next() { this.goTo(this.currentIndex + 1); }
+    prev() { this.goTo(this.currentIndex - 1); }
+
+    startAuto() {
+      this.stopAuto();
+      if (this.autoMs > 0) {
+        this.autoTimer = setInterval(() => this.next(), this.autoMs);
+      }
+    }
+    stopAuto() {
+      if (this.autoTimer) clearInterval(this.autoTimer);
+    }
+    resetAuto() {
+      this.stopAuto();
+      this.startAuto();
+    }
+  }
+
+  customElements.define('primal-queen-hero-{{ ai_gen_id }}', PrimalQueenHero{{ ai_gen_id }});
+})();
 </script>
+
 
 
 
