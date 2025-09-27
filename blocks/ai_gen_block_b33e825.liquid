@@ -797,6 +797,27 @@
   </div>
 </primal-queen-hero-{{ ai_gen_id }}>
 
+<style>
+  primal-queen-hero-{{ ai_gen_id }} {
+    display: block;
+    overflow: hidden;
+    position: relative;
+  }
+  .ai-primal-queen-hero-track-{{ ai_gen_id }} {
+    display: flex;
+    transition: transform 0.5s ease;
+    will-change: transform;
+  }
+  .ai-primal-queen-hero-testimonial-{{ ai_gen_id }} {
+    min-width: 100%;
+    flex-shrink: 0;
+  }
+  /* optional: dot styling */
+  .ai-primal-queen-hero-dot-{{ ai_gen_id }}.active {
+    background: black;
+  }
+</style>
+
 <script>
   (function () {
     class PrimalQueenHero{{ ai_gen_id }} extends HTMLElement {
@@ -808,11 +829,12 @@
 
         // swipe tracking
         this.startX = 0;
-        this.endX = 0;
+        this.currentX = 0;
         this.isDragging = false;
       }
 
       connectedCallback() {
+        this.track = this.querySelector('.ai-primal-queen-hero-track-{{ ai_gen_id }}');
         this.testimonials = this.querySelectorAll('.ai-primal-queen-hero-testimonial-{{ ai_gen_id }}');
         this.dots = this.querySelectorAll('.ai-primal-queen-hero-dot-{{ ai_gen_id }}');
         this.testimonialCount = this.testimonials.length;
@@ -820,6 +842,7 @@
         if (this.testimonialCount > 1) {
           this.setupEventListeners();
           this.setupSwipe();
+          this.updateSlide();
           this.startAutoSlide();
         }
       }
@@ -840,73 +863,75 @@
       }
 
       setupSwipe() {
-        const slider = this; // current element
-
-        // Touch events
         this.addEventListener('touchstart', (e) => {
-          this.startX = e.touches[0].clientX;
-          this.isDragging = true;
+          this.startDrag(e.touches[0].clientX);
         });
-
         this.addEventListener('touchmove', (e) => {
-          if (!this.isDragging) return;
-          this.endX = e.touches[0].clientX;
+          this.onDrag(e.touches[0].clientX);
         });
-
         this.addEventListener('touchend', () => {
-          if (!this.isDragging) return;
-          this.handleSwipe();
-          this.isDragging = false;
+          this.endDrag();
         });
 
-        // Mouse drag events
         this.addEventListener('mousedown', (e) => {
-          this.startX = e.clientX;
-          this.isDragging = true;
+          e.preventDefault();
+          this.startDrag(e.clientX);
         });
-
         this.addEventListener('mousemove', (e) => {
-          if (!this.isDragging) return;
-          this.endX = e.clientX;
+          if (this.isDragging) this.onDrag(e.clientX);
         });
-
         this.addEventListener('mouseup', () => {
-          if (!this.isDragging) return;
-          this.handleSwipe();
-          this.isDragging = false;
+          this.endDrag();
         });
-
         this.addEventListener('mouseleave', () => {
-          if (this.isDragging) {
-            this.handleSwipe();
-            this.isDragging = false;
-          }
+          if (this.isDragging) this.endDrag();
         });
       }
 
-      handleSwipe() {
-        const distance = this.endX - this.startX;
-        if (Math.abs(distance) > 50) { // threshold to avoid accidental taps
-          if (distance < 0) {
-            this.nextTestimonial(); // swipe left -> next
+      startDrag(x) {
+        this.isDragging = true;
+        this.startX = x;
+        this.currentX = x;
+        this.track.style.transition = "none"; // disable smooth during drag
+      }
+
+      onDrag(x) {
+        if (!this.isDragging) return;
+        this.currentX = x;
+        const delta = this.currentX - this.startX;
+        const offset = -((this.currentTestimonial - 1) * this.offsetWidth) + delta;
+        this.track.style.transform = `translateX(${offset}px)`;
+      }
+
+      endDrag() {
+        if (!this.isDragging) return;
+        const delta = this.currentX - this.startX;
+        if (Math.abs(delta) > 50) {
+          if (delta < 0) {
+            this.nextTestimonial();
           } else {
-            this.prevTestimonial(); // swipe right -> previous
+            this.prevTestimonial();
           }
-          this.resetAutoSlide();
+        } else {
+          this.updateSlide(); // snap back
         }
-        this.startX = this.endX = 0;
+        this.isDragging = false;
+        this.startX = this.currentX = 0;
       }
 
       showTestimonial(index) {
-        this.testimonials.forEach((testimonial, i) => {
-          testimonial.classList.toggle('active', i === index - 1);
-        });
+        this.currentTestimonial = index;
+        this.updateSlide();
+      }
+
+      updateSlide() {
+        const offset = -((this.currentTestimonial - 1) * this.offsetWidth);
+        this.track.style.transition = "transform 0.5s ease";
+        this.track.style.transform = `translateX(${offset}px)`;
 
         this.dots.forEach((dot, i) => {
-          dot.classList.toggle('active', i === index - 1);
+          dot.classList.toggle('active', i === this.currentTestimonial - 1);
         });
-
-        this.currentTestimonial = index;
       }
 
       nextTestimonial() {
@@ -922,7 +947,7 @@
       startAutoSlide() {
         this.autoSlideInterval = setInterval(() => {
           this.nextTestimonial();
-        }, {{ block.settings.testimonial_auto_slide_duration | times: 10000 }});
+        }, {{ block.settings.testimonial_auto_slide_duration | times: 1000 }}); // 1000 = 1s
       }
 
       resetAutoSlide() {
@@ -936,6 +961,7 @@
     customElements.define('primal-queen-hero-{{ ai_gen_id }}', PrimalQueenHero{{ ai_gen_id }});
   })();
 </script>
+
 
 
 {% schema %}
