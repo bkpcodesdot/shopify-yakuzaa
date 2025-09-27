@@ -798,13 +798,18 @@
 </primal-queen-hero-{{ ai_gen_id }}>
 
 <script>
-  (function() {
+  (function () {
     class PrimalQueenHero{{ ai_gen_id }} extends HTMLElement {
       constructor() {
         super();
         this.currentTestimonial = 1;
         this.testimonialCount = 0;
         this.autoSlideInterval = null;
+
+        // swipe tracking
+        this.startX = 0;
+        this.endX = 0;
+        this.isDragging = false;
       }
 
       connectedCallback() {
@@ -814,6 +819,7 @@
 
         if (this.testimonialCount > 1) {
           this.setupEventListeners();
+          this.setupSwipe();
           this.startAutoSlide();
         }
       }
@@ -833,6 +839,64 @@
         });
       }
 
+      setupSwipe() {
+        const slider = this; // current element
+
+        // Touch events
+        this.addEventListener('touchstart', (e) => {
+          this.startX = e.touches[0].clientX;
+          this.isDragging = true;
+        });
+
+        this.addEventListener('touchmove', (e) => {
+          if (!this.isDragging) return;
+          this.endX = e.touches[0].clientX;
+        });
+
+        this.addEventListener('touchend', () => {
+          if (!this.isDragging) return;
+          this.handleSwipe();
+          this.isDragging = false;
+        });
+
+        // Mouse drag events
+        this.addEventListener('mousedown', (e) => {
+          this.startX = e.clientX;
+          this.isDragging = true;
+        });
+
+        this.addEventListener('mousemove', (e) => {
+          if (!this.isDragging) return;
+          this.endX = e.clientX;
+        });
+
+        this.addEventListener('mouseup', () => {
+          if (!this.isDragging) return;
+          this.handleSwipe();
+          this.isDragging = false;
+        });
+
+        this.addEventListener('mouseleave', () => {
+          if (this.isDragging) {
+            this.handleSwipe();
+            this.isDragging = false;
+          }
+        });
+      }
+
+      handleSwipe() {
+        const distance = this.endX - this.startX;
+        if (Math.abs(distance) > 50) { // threshold to avoid accidental taps
+          if (distance < 0) {
+            this.nextTestimonial(); // swipe left -> next
+          } else {
+            this.prevTestimonial(); // swipe right -> previous
+          }
+          this.resetAutoSlide();
+        }
+        this.startX = this.endX = 0;
+      }
+
       showTestimonial(index) {
         this.testimonials.forEach((testimonial, i) => {
           testimonial.classList.toggle('active', i === index - 1);
@@ -848,6 +912,11 @@
       nextTestimonial() {
         const next = this.currentTestimonial >= this.testimonialCount ? 1 : this.currentTestimonial + 1;
         this.showTestimonial(next);
+      }
+
+      prevTestimonial() {
+        const prev = this.currentTestimonial <= 1 ? this.testimonialCount : this.currentTestimonial - 1;
+        this.showTestimonial(prev);
       }
 
       startAutoSlide() {
@@ -867,6 +936,7 @@
     customElements.define('primal-queen-hero-{{ ai_gen_id }}', PrimalQueenHero{{ ai_gen_id }});
   })();
 </script>
+
 
 {% schema %}
 {
