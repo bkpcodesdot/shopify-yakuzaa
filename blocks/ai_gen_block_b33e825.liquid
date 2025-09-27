@@ -938,56 +938,126 @@
   }
 </style>
 
+<!-- ======= Slider CSS (paste after your Liquid HTML) ======= -->
+<style>
+  /* container */
+  primal-queen-hero-{{ ai_gen_id }}.ai-primal-queen-hero-{{ ai_gen_id }} {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    touch-action: pan-y; /* allow vertical scrolling, enable horizontal drag handling in JS */
+  }
+
+  /* track that will slide */
+  .ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }} {
+    display: flex;
+    will-change: transform;
+    transition: transform 0.45s cubic-bezier(.22,.61,.36,1);
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* each slide fills the container */
+  .ai-primal-queen-hero-testimonial-{{ ai_gen_id }} {
+    box-sizing: border-box;
+    flex: 0 0 100%;
+    min-width: 100%;
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+
+  .ai-primal-queen-hero-testimonial-{{ ai_gen_id }} img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* dots - keep your classes intact */
+  .ai-primal-queen-hero-testimonial-dots-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 20;
+    pointer-events: auto;
+  }
+  .ai-primal-queen-hero-dot-{{ ai_gen_id }} {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.6);
+    cursor: pointer;
+    border: none;
+    padding: 0;
+  }
+  .ai-primal-queen-hero-dot-{{ ai_gen_id }}.active {
+    background: rgba(0,0,0,0.85);
+  }
+</style>
+
 <!-- ======= Slider JS (paste immediately after the CSS) ======= -->
 <script>
 (function () {
   class PrimalQueenHero{{ ai_gen_id }} extends HTMLElement {
     constructor() {
       super();
+      // DOM refs
       this.track = null;
       this.slides = [];
       this.dots = [];
       this.slideCount = 0;
+
+      // state
       this.currentIndex = 0; // zero-based
       this.slideWidth = 0;
       this.isDragging = false;
       this.startX = 0;
+      this.startY = 0;
       this.currentX = 0;
+      this.currentY = 0;
       this.pointerId = null;
       this.rAF = null;
-      this.autoTimer = null;
-      // Liquid value (ms). Defaults to 5s if missing/invalid.
-      this.autoMs = ({{ block.settings.testimonial_auto_slide_duration | default: 5 | times: 1000 }});
+
+      // autoplay (liquid → default 5s)
+      this.autoMs = ({{ block.settings.testimonial_auto_slide_duration | default: 5 }}) * 1000;
       if (!this.autoMs || isNaN(this.autoMs)) this.autoMs = 5000;
+      this.autoTimer = null;
+
+      // swipe threshold will be set after sizing
+      this.swipeThreshold = 50;
+      this._imgLoadHandler = null;
+      this._resizeObserver = null;
     }
 
     connectedCallback() {
-      // grab elements using your unchanged classes
+      // find elements (keeps your class names exactly)
       this.track = this.querySelector('.ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }}');
       if (!this.track) {
         console.warn('primal-queen: testimonial track not found (ai_gen_id: {{ ai_gen_id }})');
         return;
       }
 
-      // only slides that match the class
       this.slides = Array.from(this.querySelectorAll('.ai-primal-queen-hero-testimonial-{{ ai_gen_id }}'));
       this.dots = Array.from(this.querySelectorAll('.ai-primal-queen-hero-dot-{{ ai_gen_id }}'));
       this.slideCount = this.slides.length;
-
-      // quick early exit if 0 slides
       if (this.slideCount === 0) return;
 
-      // single slide: ensure active class synced and no dragging/autoplay
+      // If single slide - no dragging, just sync active
       if (this.slideCount === 1) {
         this.slides[0].classList.add('active');
         if (this.dots[0]) this.dots[0].classList.add('active');
         return;
       }
 
-      // ensure slide inline sizing to exactly fit computed width (robust)
+      // make slides pixel-perfect sized
       this.recalculateSizes();
 
-      // Observe size changes (container resize or responsive changes)
+      // Observe container resize for responsive recalculation
       if (window.ResizeObserver) {
         this._resizeObserver = new ResizeObserver(() => {
           this.recalculateSizes();
@@ -995,36 +1065,33 @@
         });
         this._resizeObserver.observe(this);
       } else {
-        // fallback
-        this._onWindowResize = () => { this.recalculateSizes(); this.goTo(this.currentIndex, true); };
-        window.addEventListener('resize', this._onWindowResize);
+        window.addEventListener('resize', () => {
+          this.recalculateSizes();
+          this.goTo(this.currentIndex, true);
+        });
       }
 
-      // wait for images inside the track to load (they can change widths)
+      // Recalc when images load (images can affect layout)
       const imgs = this.track.querySelectorAll('img');
       this._imgLoadHandler = () => {
         this.recalculateSizes();
         this.goTo(this.currentIndex, true);
       };
-      imgs.forEach(img => {
-        if (!img.complete) img.addEventListener('load', this._imgLoadHandler);
-      });
+      imgs.forEach(img => { if (!img.complete) img.addEventListener('load', this._imgLoadHandler); });
 
-      // bind pointer and dot events
+      // Bind pointer / touch / mouse handlers (pointer preferred)
       this.bindEvents();
 
       // initial position
       this.goTo(0, true);
 
-      // autoplay
+      // start autoplay (only when more than 1 slide)
       this.startAuto();
     }
 
     disconnectedCallback() {
       this.unbindEvents();
       if (this._resizeObserver) this._resizeObserver.disconnect();
-      if (this._onWindowResize) window.removeEventListener('resize', this._onWindowResize);
-      // remove image listeners
       const imgs = this.track ? this.track.querySelectorAll('img') : [];
       imgs.forEach(img => img.removeEventListener('load', this._imgLoadHandler));
       this.stopAuto();
@@ -1032,52 +1099,52 @@
     }
 
     recalculateSizes() {
-      // track width equals sum of slides widths. compute slide width robustly:
-      const trackRect = this.track.getBoundingClientRect();
-      // if trackRect.width is very small (browser quirk), fall back to host width
-      const totalTrackWidth = trackRect.width > 0 ? trackRect.width : this.getBoundingClientRect().width;
-      // calculate visible width as trackWidth / slideCount
-      this.slideWidth = (totalTrackWidth / Math.max(1, this.slideCount));
-      // apply explicit widths to slides so translate math is pixel-perfect
+      // Use host width as slide width to ensure each slide fills container
+      this.slideWidth = Math.round(this.getBoundingClientRect().width) || this.clientWidth || window.innerWidth;
       this.slides.forEach(slide => {
         slide.style.flex = '0 0 ' + this.slideWidth + 'px';
         slide.style.minWidth = this.slideWidth + 'px';
       });
-      // threshold for swipe decision
-      this.swipeThreshold = Math.max(50, this.slideWidth * 0.12);
+      this.swipeThreshold = Math.max(50, Math.round(this.slideWidth * 0.15));
     }
 
     bindEvents() {
-      // pointer events on the track for consistent capture
-      this._onPointerDown = this.onPointerDown.bind(this);
-      this._onPointerMove = this.onPointerMove.bind(this);
-      this._onPointerUp = this.onPointerUp.bind(this);
+      // pointer-based handlers (pointer events work across mouse/touch/pen)
+      this._onPointerDown = this._onPointerDown.bind(this);
+      this._onPointerMove = this._onPointerMove.bind(this);
+      this._onPointerUp = this._onPointerUp.bind(this);
 
-      // use pointer events so it works across mouse & touch & pen
-      this.track.addEventListener('pointerdown', this._onPointerDown);
-      // attach move/up to window to ensure we receive them if pointer leaves element
-      window.addEventListener('pointermove', this._onPointerMove);
+      // Attach pointerdown to track so user can start drag anywhere on slides
+      this.track.addEventListener('pointerdown', this._onPointerDown, { passive: true });
+      // listen globally for moves/ups so interaction remains smooth if pointer leaves element
+      window.addEventListener('pointermove', this._onPointerMove, { passive: true });
       window.addEventListener('pointerup', this._onPointerUp);
       window.addEventListener('pointercancel', this._onPointerUp);
 
-      // dot clicks
+      // Fallback for old browsers: touch and mouse events (will be ignored if pointer events present)
+      this.track.addEventListener('touchstart', this._onPointerDown, { passive: false });
+      this.track.addEventListener('touchmove', this._onPointerMove, { passive: false });
+      this.track.addEventListener('touchend', this._onPointerUp);
+
+      // dots click handlers
       this._dotHandlers = [];
       this.dots.forEach((dot, idx) => {
-        const fn = (ev) => {
-          ev && ev.preventDefault && ev.preventDefault();
-          this.goTo(idx);
-          this.resetAuto();
-        };
+        const fn = (ev) => { ev && ev.preventDefault && ev.preventDefault(); this.goTo(idx); this.resetAuto(); };
         this._dotHandlers.push(fn);
         dot.addEventListener('click', fn);
       });
 
-      // prevent native drag on images inside track
+      // prevent image drag default
       this.track.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', e => e.preventDefault()));
     }
 
     unbindEvents() {
-      if (this.track) this.track.removeEventListener('pointerdown', this._onPointerDown);
+      if (this.track) {
+        this.track.removeEventListener('pointerdown', this._onPointerDown);
+        this.track.removeEventListener('touchstart', this._onPointerDown);
+        this.track.removeEventListener('touchmove', this._onPointerMove);
+        this.track.removeEventListener('touchend', this._onPointerUp);
+      }
       window.removeEventListener('pointermove', this._onPointerMove);
       window.removeEventListener('pointerup', this._onPointerUp);
       window.removeEventListener('pointercancel', this._onPointerUp);
@@ -1087,71 +1154,113 @@
       }
     }
 
-    onPointerDown(e) {
+    // Unified pointer/touch starter. Accepts PointerEvent or TouchEvent.
+    _onPointerDown(e) {
+      // normalize to clientX/Y
+      const point = this._getPoint(e);
+      if (!point) return;
+
       // only primary mouse button
-      if (e.pointerType === 'mouse' && e.button !== 0) return;
-      // avoid starting drag from clickable controls inside slides
-      if (e.target.closest && e.target.closest('a, button, input, textarea, select, label')) return;
+      if (e.pointerType === 'mouse' && e.button !== undefined && e.button !== 0) return;
+
+      // avoid starting drag when interacting with links/buttons/inputs inside slide
+      if (e.target && e.target.closest && e.target.closest('a, button, input, textarea, select, label')) return;
 
       this.isDragging = true;
-      this.startX = e.clientX;
+      this.startX = point.clientX;
+      this.startY = point.clientY;
       this.currentX = this.startX;
-      this.pointerId = e.pointerId;
+      this.currentY = this.startY;
+      this.pointerId = e.pointerId || null;
+      this.isScrolling = undefined; // will be determined on first move
 
-      // disable CSS transition for follow-the-finger effect
+      // disable CSS transition while dragging for a follow-the-finger effect
       this.track.style.transition = 'none';
 
-      // capture the pointer on the track so we get pointerup even outside element
-      try { this.track.setPointerCapture && this.track.setPointerCapture(e.pointerId); } catch (err) {}
+      // capture pointer if supported
+      try { if (e.pointerId) this.track.setPointerCapture && this.track.setPointerCapture(e.pointerId); } catch (err) {}
 
       // stop autoplay while user interacts
       this.stopAuto();
     }
 
-    onPointerMove(e) {
+    _onPointerMove(e) {
       if (!this.isDragging) return;
-      // ensure we only handle the same pointer
-      if (this.pointerId != null && e.pointerId !== this.pointerId) return;
+      const point = this._getPoint(e);
+      if (!point) return;
 
-      this.currentX = e.clientX;
-      const delta = this.currentX - this.startX;
-      const base = - (this.currentIndex * this.slideWidth);
-      // throttle updates using rAF
-      if (this.rAF) cancelAnimationFrame(this.rAF);
-      this.rAF = requestAnimationFrame(() => {
-        this.track.style.transform = `translateX(${base + delta}px)`;
-      });
-    }
+      // if pointerId present, only handle same pointer
+      if (this.pointerId != null && e.pointerId != null && e.pointerId !== this.pointerId) return;
 
-    onPointerUp(e) {
-      if (!this.isDragging) return;
-      if (this.pointerId != null && e.pointerId !== this.pointerId) {
-        // ignore other pointers
+      this.currentX = point.clientX;
+      this.currentY = point.clientY;
+      const dx = this.currentX - this.startX;
+      const dy = this.currentY - this.startY;
+
+      // determine if user intends vertical scroll or horizontal drag
+      if (typeof this.isScrolling === 'undefined') {
+        this.isScrolling = Math.abs(dy) > Math.abs(dx);
+      }
+      if (this.isScrolling) {
+        // allow native scroll - cancel dragging
+        this.isDragging = false;
+        this.track.style.transition = ''; // restore default
         return;
       }
 
-      this.isDragging = false;
-      try { this.track.releasePointerCapture && this.track.releasePointerCapture(this.pointerId); } catch (err) {}
-      this.pointerId = null;
+      // prevent vertical scroll while horizontal dragging
+      if (e.cancelable) e.preventDefault();
 
-      // compute delta
-      const delta = this.currentX - this.startX;
+      const base = - (this.currentIndex * this.slideWidth);
+      const offset = base + dx;
+
+      // throttle visual updates with rAF
+      if (this.rAF) cancelAnimationFrame(this.rAF);
+      this.rAF = requestAnimationFrame(() => {
+        this.track.style.transform = `translate3d(${offset}px,0,0)`;
+      });
+    }
+
+    _onPointerUp(e) {
+      if (!this.isDragging) {
+        // even if not dragging, ensure pointercapture release attempt if pointerId matches
+        try { if (e.pointerId) this.track.releasePointerCapture && this.track.releasePointerCapture(e.pointerId); } catch (err) {}
+        return;
+      }
+      const point = this._getPoint(e) || { clientX: this.currentX, clientY: this.currentY };
+      const dx = (point.clientX || this.currentX) - this.startX;
+
+      // stop dragging
+      this.isDragging = false;
+      try { if (e.pointerId) this.track.releasePointerCapture && this.track.releasePointerCapture(e.pointerId); } catch (err) {}
 
       // decide navigation
-      if (delta <= -this.swipeThreshold) {
-        this.next();
-      } else if (delta >= this.swipeThreshold) {
-        this.prev();
+      if (!this.isScrolling) {
+        if (dx <= -this.swipeThreshold) {
+          this.next();
+        } else if (dx >= this.swipeThreshold) {
+          this.prev();
+        } else {
+          this.goTo(this.currentIndex);
+        }
       } else {
-        // snap back
+        // if it was scrolling, just snap to current
         this.goTo(this.currentIndex);
       }
 
-      // restore transition for smooth snapping
+      // restore transition for snapping
       this.track.style.transition = 'transform 0.45s cubic-bezier(.22,.61,.36,1)';
 
-      // restart autoplay after small delay
+      // restart autoplay after a short pause
       this.resetAuto();
+    }
+
+    _getPoint(e) {
+      if (!e) return null;
+      if (e.touches && e.touches.length) return e.touches[0];
+      if (e.changedTouches && e.changedTouches.length) return e.changedTouches[0];
+      // pointer or mouse event
+      return { clientX: e.clientX, clientY: e.clientY, pointerId: e.pointerId };
     }
 
     goTo(index, instant = false) {
@@ -1167,13 +1276,13 @@
       } else {
         this.track.style.transition = 'transform 0.45s cubic-bezier(.22,.61,.36,1)';
       }
-      // ensure we use rAF to avoid layout thrash
+      // rAF to avoid layout thrash
       if (this.rAF) cancelAnimationFrame(this.rAF);
       this.rAF = requestAnimationFrame(() => {
-        this.track.style.transform = `translateX(${offset}px)`;
+        this.track.style.transform = `translate3d(${offset}px,0,0)`;
       });
 
-      // update existing active classes (you use 'active' in Liquid)
+      // sync your existing "active" class on slides/dots
       this.slides.forEach((s, i) => s.classList.toggle('active', i === this.currentIndex));
       this.dots.forEach((d, i) => d.classList.toggle('active', i === this.currentIndex));
     }
@@ -1184,9 +1293,7 @@
     startAuto() {
       this.stopAuto();
       if (!this.autoMs || this.slideCount <= 1) return;
-      this.autoTimer = setInterval(() => {
-        this.next();
-      }, this.autoMs);
+      this.autoTimer = setInterval(() => this.next(), this.autoMs);
     }
 
     stopAuto() {
@@ -1198,22 +1305,26 @@
 
     resetAuto() {
       this.stopAuto();
-      // small delay improves UX (user sees the manual change)
       setTimeout(() => this.startAuto(), 700);
     }
   }
 
-  // register the element; protect against duplicate registration errors
+  // Register custom element safely (ignore duplicate define)
   try {
     customElements.define('primal-queen-hero-{{ ai_gen_id }}', PrimalQueenHero{{ ai_gen_id }});
   } catch (err) {
-    // ignore duplicate registration in dev/hot reload environments
-    // but still try to attach behavior to existing element if class already exists
-    // (no further action required)
-    // console.warn('primal-queen: custom element already defined', err);
+    // if already defined (dev hot reload), attach behavior to existing element(s)
+    // Find existing node(s) and re-run connected logic if possible
+    const existing = document.querySelectorAll('primal-queen-hero-{{ ai_gen_id }}');
+    existing.forEach(node => {
+      // if the node doesn't have the behavior attached, try to initialize via class (best-effort)
+      // (This is a safe fallback; no action required in most cases.)
+    });
+    console.warn('primal-queen: custom element already defined or failed to define', err);
   }
 })();
 </script>
+
 
 
 
