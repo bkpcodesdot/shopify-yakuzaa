@@ -877,14 +877,73 @@
   }
 </style>
 
-<!-- ====== Slider JS (paste after the section markup) ====== -->
+<!-- ======= Slider CSS (paste after your Liquid HTML) ======= -->
+<style>
+  /* container: allow vertical scroll, handle horizontal drag on slider */
+  primal-queen-hero-{{ ai_gen_id }}.ai-primal-queen-hero-{{ ai_gen_id }} {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    touch-action: pan-y; /* allow vertical scroll, we handle horizontal dragging */
+  }
+
+  /* track -> acts as sliding row */
+  .ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }} {
+    display: flex;
+    will-change: transform;
+    transition: transform 0.45s cubic-bezier(.22,.61,.36,1);
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* slide occupies full viewport of the slider */
+  .ai-primal-queen-hero-testimonial-{{ ai_gen_id }} {
+    box-sizing: border-box;
+    flex: 0 0 100%;
+    min-width: 100%;
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+
+  /* ensure images inside slides behave */
+  .ai-primal-queen-hero-testimonial-{{ ai_gen_id }} img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* dots (keeps your classes unchanged) */
+  .ai-primal-queen-hero-testimonial-dots-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 20;
+    pointer-events: auto;
+  }
+  .ai-primal-queen-hero-dot-{{ ai_gen_id }} {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.6);
+    cursor: pointer;
+    border: none;
+    padding: 0;
+  }
+  .ai-primal-queen-hero-dot-{{ ai_gen_id }}.active {
+    background: rgba(0,0,0,0.85);
+  }
+</style>
+
+<!-- ======= Slider JS (paste immediately after the CSS) ======= -->
 <script>
 (function () {
   class PrimalQueenHero{{ ai_gen_id }} extends HTMLElement {
     constructor() {
       super();
-
-      // state
       this.track = null;
       this.slides = [];
       this.dots = [];
@@ -894,103 +953,118 @@
       this.isDragging = false;
       this.startX = 0;
       this.currentX = 0;
+      this.pointerId = null;
+      this.rAF = null;
       this.autoTimer = null;
-      this.autoMs = {{ block.settings.testimonial_auto_slide_duration | default: 5 | times: 1000 }};
-      // ensure sensible fallback
+      // Liquid value (ms). Defaults to 5s if missing/invalid.
+      this.autoMs = ({{ block.settings.testimonial_auto_slide_duration | default: 5 | times: 1000 }});
       if (!this.autoMs || isNaN(this.autoMs)) this.autoMs = 5000;
     }
 
     connectedCallback() {
+      // grab elements using your unchanged classes
       this.track = this.querySelector('.ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }}');
-      this.slides = Array.from(this.querySelectorAll('.ai-primal-queen-hero-testimonial-{{ ai_gen_id }}'));
-      this.dots = Array.from(this.querySelectorAll('.ai-primal-queen-hero-dot-{{ ai_gen_id }}'));
-      this.slideCount = this.slides.length;
-
       if (!this.track) {
         console.warn('primal-queen: testimonial track not found (ai_gen_id: {{ ai_gen_id }})');
         return;
       }
 
-      // Prepare slide inline styles to ensure exact full-width behavior
-      this.slides.forEach(slide => {
-        slide.style.flex = '0 0 100%';
-        slide.style.minWidth = '100%';
-      });
+      // only slides that match the class
+      this.slides = Array.from(this.querySelectorAll('.ai-primal-queen-hero-testimonial-{{ ai_gen_id }}'));
+      this.dots = Array.from(this.querySelectorAll('.ai-primal-queen-hero-dot-{{ ai_gen_id }}'));
+      this.slideCount = this.slides.length;
 
-      // If there are no slides or only one, still set first dot/active
+      // quick early exit if 0 slides
       if (this.slideCount === 0) return;
+
+      // single slide: ensure active class synced and no dragging/autoplay
       if (this.slideCount === 1) {
         this.slides[0].classList.add('active');
         if (this.dots[0]) this.dots[0].classList.add('active');
         return;
       }
 
-      // sizing (and responsive handling)
-      this.updateSize();
-      // observe element resize (handles responsive layout & container width changes)
-      this.resizeObserver = new ResizeObserver(() => {
-        this.updateSize();
-        // snap to the current slide without animation on resize
-        this.goTo(this.currentIndex, true);
-      });
-      this.resizeObserver.observe(this);
+      // ensure slide inline sizing to exactly fit computed width (robust)
+      this.recalculateSizes();
 
-      // wait for images to load inside the track, then recalc width
+      // Observe size changes (container resize or responsive changes)
+      if (window.ResizeObserver) {
+        this._resizeObserver = new ResizeObserver(() => {
+          this.recalculateSizes();
+          this.goTo(this.currentIndex, true);
+        });
+        this._resizeObserver.observe(this);
+      } else {
+        // fallback
+        this._onWindowResize = () => { this.recalculateSizes(); this.goTo(this.currentIndex, true); };
+        window.addEventListener('resize', this._onWindowResize);
+      }
+
+      // wait for images inside the track to load (they can change widths)
       const imgs = this.track.querySelectorAll('img');
-      this._imgLoadedHandler = () => {
-        this.updateSize();
+      this._imgLoadHandler = () => {
+        this.recalculateSizes();
         this.goTo(this.currentIndex, true);
       };
       imgs.forEach(img => {
-        if (!img.complete) img.addEventListener('load', this._imgLoadedHandler);
+        if (!img.complete) img.addEventListener('load', this._imgLoadHandler);
       });
 
-      // bind pointer + click handlers
+      // bind pointer and dot events
       this.bindEvents();
 
-      // ensure initial state
+      // initial position
       this.goTo(0, true);
 
-      // start autoplay if there are more than 1 slide
-      if (this.slideCount > 1) this.startAuto();
+      // autoplay
+      this.startAuto();
     }
 
     disconnectedCallback() {
       this.unbindEvents();
-      if (this.resizeObserver) this.resizeObserver.disconnect();
-      if (this._imgLoadedHandler) {
-        const imgs = this.track ? this.track.querySelectorAll('img') : [];
-        imgs.forEach(img => img.removeEventListener('load', this._imgLoadedHandler));
-      }
+      if (this._resizeObserver) this._resizeObserver.disconnect();
+      if (this._onWindowResize) window.removeEventListener('resize', this._onWindowResize);
+      // remove image listeners
+      const imgs = this.track ? this.track.querySelectorAll('img') : [];
+      imgs.forEach(img => img.removeEventListener('load', this._imgLoadHandler));
       this.stopAuto();
+      if (this.rAF) cancelAnimationFrame(this.rAF);
     }
 
-    updateSize() {
-      // calculate visible width of the custom element (container)
-      this.slideWidth = this.getBoundingClientRect().width || this.clientWidth || window.innerWidth;
-      // threshold for recognizing a swipe
+    recalculateSizes() {
+      // track width equals sum of slides widths. compute slide width robustly:
+      const trackRect = this.track.getBoundingClientRect();
+      // if trackRect.width is very small (browser quirk), fall back to host width
+      const totalTrackWidth = trackRect.width > 0 ? trackRect.width : this.getBoundingClientRect().width;
+      // calculate visible width as trackWidth / slideCount
+      this.slideWidth = (totalTrackWidth / Math.max(1, this.slideCount));
+      // apply explicit widths to slides so translate math is pixel-perfect
+      this.slides.forEach(slide => {
+        slide.style.flex = '0 0 ' + this.slideWidth + 'px';
+        slide.style.minWidth = this.slideWidth + 'px';
+      });
+      // threshold for swipe decision
       this.swipeThreshold = Math.max(50, this.slideWidth * 0.12);
     }
 
     bindEvents() {
-      // pointer events for drag (works for mouse + touch + pen)
+      // pointer events on the track for consistent capture
       this._onPointerDown = this.onPointerDown.bind(this);
       this._onPointerMove = this.onPointerMove.bind(this);
       this._onPointerUp = this.onPointerUp.bind(this);
-      this.addEventListener('pointerdown', this._onPointerDown);
-      this.addEventListener('pointermove', this._onPointerMove);
-      this.addEventListener('pointerup', this._onPointerUp);
-      this.addEventListener('pointercancel', this._onPointerUp);
 
-      // window resize fallback (already handled by ResizeObserver, but keep for older browsers)
-      this._onWindowResize = () => { this.updateSize(); this.goTo(this.currentIndex, true); };
-      window.addEventListener('resize', this._onWindowResize);
+      // use pointer events so it works across mouse & touch & pen
+      this.track.addEventListener('pointerdown', this._onPointerDown);
+      // attach move/up to window to ensure we receive them if pointer leaves element
+      window.addEventListener('pointermove', this._onPointerMove);
+      window.addEventListener('pointerup', this._onPointerUp);
+      window.addEventListener('pointercancel', this._onPointerUp);
 
-      // clickable dots
+      // dot clicks
       this._dotHandlers = [];
       this.dots.forEach((dot, idx) => {
-        const fn = (e) => {
-          e.preventDefault && e.preventDefault();
+        const fn = (ev) => {
+          ev && ev.preventDefault && ev.preventDefault();
           this.goTo(idx);
           this.resetAuto();
         };
@@ -998,59 +1072,72 @@
         dot.addEventListener('click', fn);
       });
 
-      // prevent default drag-img behavior inside slides (so pointer drag is smooth)
+      // prevent native drag on images inside track
       this.track.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', e => e.preventDefault()));
     }
 
     unbindEvents() {
-      this.removeEventListener('pointerdown', this._onPointerDown);
-      this.removeEventListener('pointermove', this._onPointerMove);
-      this.removeEventListener('pointerup', this._onPointerUp);
-      this.removeEventListener('pointercancel', this._onPointerUp);
-      window.removeEventListener('resize', this._onWindowResize);
+      if (this.track) this.track.removeEventListener('pointerdown', this._onPointerDown);
+      window.removeEventListener('pointermove', this._onPointerMove);
+      window.removeEventListener('pointerup', this._onPointerUp);
+      window.removeEventListener('pointercancel', this._onPointerUp);
 
       if (this._dotHandlers && this.dots) {
-        this.dots.forEach((dot, i) => {
-          dot.removeEventListener('click', this._dotHandlers[i]);
-        });
+        this.dots.forEach((d, i) => d.removeEventListener('click', this._dotHandlers[i]));
       }
     }
 
     onPointerDown(e) {
-      // only primary button for mouse
+      // only primary mouse button
       if (e.pointerType === 'mouse' && e.button !== 0) return;
-      // avoid starting drag from interactive controls inside a slide
+      // avoid starting drag from clickable controls inside slides
       if (e.target.closest && e.target.closest('a, button, input, textarea, select, label')) return;
 
       this.isDragging = true;
       this.startX = e.clientX;
-      this.currentX = e.clientX;
-      // temporarily disable transition for 'follow finger' effect
+      this.currentX = this.startX;
+      this.pointerId = e.pointerId;
+
+      // disable CSS transition for follow-the-finger effect
       this.track.style.transition = 'none';
 
-      // capture pointer so pointerup fires even if pointer leaves the element
-      try { e.target.setPointerCapture && e.target.setPointerCapture(e.pointerId); } catch (err) {}
+      // capture the pointer on the track so we get pointerup even outside element
+      try { this.track.setPointerCapture && this.track.setPointerCapture(e.pointerId); } catch (err) {}
 
-      // pause autoplay while user interacts
+      // stop autoplay while user interacts
       this.stopAuto();
     }
 
     onPointerMove(e) {
       if (!this.isDragging) return;
+      // ensure we only handle the same pointer
+      if (this.pointerId != null && e.pointerId !== this.pointerId) return;
+
       this.currentX = e.clientX;
       const delta = this.currentX - this.startX;
       const base = - (this.currentIndex * this.slideWidth);
-      this.track.style.transform = `translateX(${base + delta}px)`;
+      // throttle updates using rAF
+      if (this.rAF) cancelAnimationFrame(this.rAF);
+      this.rAF = requestAnimationFrame(() => {
+        this.track.style.transform = `translateX(${base + delta}px)`;
+      });
     }
 
     onPointerUp(e) {
       if (!this.isDragging) return;
-      try { e.target.releasePointerCapture && e.target.releasePointerCapture(e.pointerId); } catch (err) {}
-      this.isDragging = false;
+      if (this.pointerId != null && e.pointerId !== this.pointerId) {
+        // ignore other pointers
+        return;
+      }
 
+      this.isDragging = false;
+      try { this.track.releasePointerCapture && this.track.releasePointerCapture(this.pointerId); } catch (err) {}
+      this.pointerId = null;
+
+      // compute delta
       const delta = this.currentX - this.startX;
 
-      // decide navigation based on threshold
+      // decide navigation
       if (delta <= -this.swipeThreshold) {
         this.next();
       } else if (delta >= this.swipeThreshold) {
@@ -1060,10 +1147,10 @@
         this.goTo(this.currentIndex);
       }
 
-      // restore transition for smooth animation
-      this.track.style.transition = 'transform 0.5s ease';
+      // restore transition for smooth snapping
+      this.track.style.transition = 'transform 0.45s cubic-bezier(.22,.61,.36,1)';
 
-      // restart autoplay after short delay
+      // restart autoplay after small delay
       this.resetAuto();
     }
 
@@ -1078,11 +1165,15 @@
       if (instant) {
         this.track.style.transition = 'none';
       } else {
-        this.track.style.transition = 'transform 0.5s ease';
+        this.track.style.transition = 'transform 0.45s cubic-bezier(.22,.61,.36,1)';
       }
-      this.track.style.transform = `translateX(${offset}px)`;
+      // ensure we use rAF to avoid layout thrash
+      if (this.rAF) cancelAnimationFrame(this.rAF);
+      this.rAF = requestAnimationFrame(() => {
+        this.track.style.transform = `translateX(${offset}px)`;
+      });
 
-      // sync active classes (keeps your existing 'active' class usage)
+      // update existing active classes (you use 'active' in Liquid)
       this.slides.forEach((s, i) => s.classList.toggle('active', i === this.currentIndex));
       this.dots.forEach((d, i) => d.classList.toggle('active', i === this.currentIndex));
     }
@@ -1107,19 +1198,23 @@
 
     resetAuto() {
       this.stopAuto();
+      // small delay improves UX (user sees the manual change)
       setTimeout(() => this.startAuto(), 700);
     }
   }
 
-  // register element (wrapped in try/catch to avoid duplicate registration errors)
+  // register the element; protect against duplicate registration errors
   try {
     customElements.define('primal-queen-hero-{{ ai_gen_id }}', PrimalQueenHero{{ ai_gen_id }});
   } catch (err) {
-    // safe fallback for dev hot-reload or duplicate define
-    console.warn('primal-queen: custom element already defined or failed to define', err);
+    // ignore duplicate registration in dev/hot reload environments
+    // but still try to attach behavior to existing element if class already exists
+    // (no further action required)
+    // console.warn('primal-queen: custom element already defined', err);
   }
 })();
 </script>
+
 
 
 
