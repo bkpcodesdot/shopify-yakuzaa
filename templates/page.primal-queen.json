@@ -636,7 +636,7 @@
             "image_border_radius": 12,
             "person_name": "John Doe",
             "person_designation": "Creative Director",
-            "overlay_background_color": "rgba(0,0,0,0.8)",
+            "overlay_background_color": "#000000cc",
             "overlay_text_color": "#ffffff",
             "bottom_image_height": 80,
             "heading": "Our Creative Process",
