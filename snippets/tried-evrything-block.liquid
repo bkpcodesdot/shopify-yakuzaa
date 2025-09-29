@@ -180,145 +180,28 @@
       </div>
 
     {% elsif block.type == 'organ_supplement' %}
-      <!-- Organ Supplement Block -->
+      <!-- Organ Supplement Block - CORRECTED -->
       <style>
-      .organ-supplement-organ_supplement_Ap7hHX {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    background-color: rgb(255 243 247);
-    /* background-color: #ffffff; */
-    border: 30px solid #ed1f81;
-    border-radius: 8px;
-    border-image-source: url('https://cdn.shopify.com/s/files/1/0727/8169/3085/files/food_benefit_bg.webp?v=1759143766');
-    padding: 20px;
-    max-width: 1200px;
-    /* border: 4px solid black; */
-    border-image-slice: 30;
-    padding: 0 0 10px;
-    margin-left: auto;
-    margin-right: auto;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-.image-text-flex-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.image-text-item {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 15px;
-  background: #f9f9f7;
-  border-radius: 8px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.image-text-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.image-container {
-  flex-shrink: 0;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 6px;
-}
-
-.placeholder-image {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f5f5f5;
-  border-radius: 6px;
-  border: 1px dashed #ddd;
-}
-
-.text-container {
-  flex: 1;
-}
-
-.organ-point {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #2a2a2a;
-  font-weight: 500;
-}
-
-.organ-point .icon {
-  flex-shrink: 0;
-  margin-top: 2px;
-  color: #4a8c3a;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  .image-text-item {
-    gap: 12px;
-    padding: 12px;
-  }
-  
-  .image-container {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .organ-point {
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 480px) {
-  .image-text-flex-container {
-    gap: 15px;
-  }
-  
-  .image-text-item {
-    flex-direction: column;
-    text-align: center;
-    gap: 10px;
-  }
-  
-  .organ-point {
-    justify-content: center;
-  }
-}
-
+        .organ-supplement-{{ block.id }} {
+          margin-top: 0px;
+          margin-bottom: 0px;
+          background-color: rgb(255 243 247);
+          border: 30px solid #ed1f81;
+          border-radius: 8px;
+          border-image-source: url('https://cdn.shopify.com/s/files/1/0727/8169/3085/files/food_benefit_bg.webp?v=1759143766');
+          padding: 20px;
+          max-width: 1200px;
+          border-image-slice: 30;
+          padding: 0 0 10px;
+          margin-left: auto;
+          margin-right: auto;
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
 
         .organ-supplement-{{ block.id }} .organ-header {
-          {% comment %} display: flex; {% endcomment %}
-          align-items: center;
-          gap: 15px;
-          margin-bottom: 15px;
-        }
-
-        .organ-supplement-{{ block.id }} .organ-icon {
-          flex-shrink: 0;
-        }
-
-        .organ-supplement-{{ block.id }} .organ-icon img {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
+          text-align: center;
+          margin-bottom: 30px;
         }
 
         .organ-supplement-{{ block.id }} .organ-title {
@@ -329,101 +212,137 @@
           {% endif %}
           font-size: {{ block.settings.organ_title_size }}px;
           font-weight: bold;
-          margin: 0;
+          margin: 20px 0;
         }
 
-        .organ-supplement-{{ block.id }} .organ-description {
-          {% if block.settings.use_section_colors %}
-            color: {{ section.settings.text_color }};
-          {% else %}
-            color: {{ block.settings.custom_description_color }};
-          {% endif %}
-          font-size: {{ block.settings.description_size }}px;
+        .organ-supplement-{{ block.id }} .organ-details {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 40px;
+          align-items: start;
+          margin-top: 30px;
+        }
+
+        .organ-supplement-{{ block.id }} .image-text-flex-container {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .organ-supplement-{{ block.id }} .image-text-item {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          padding: 12px;
+          background: #ffffff;
+          border-radius: 8px;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .organ-supplement-{{ block.id }} .image-text-item:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .organ-supplement-{{ block.id }} .image-container {
+          flex-shrink: 0;
+          width: 50px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .organ-supplement-{{ block.id }} .image-container img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 6px;
+        }
+
+        .organ-supplement-{{ block.id }} .placeholder-image {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #f5f5f5;
+          border-radius: 6px;
+          border: 1px dashed #ddd;
+        }
+
+        .organ-supplement-{{ block.id }} .organ-point {
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+          font-size: 16px;
           line-height: 1.5;
-          margin-bottom: 15px;
-        }
-   .organ-points-group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.organ-point {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.organ-point .icon {
-    flex-shrink: 0;
-    color: #8B0000;
-    background: #ff699f;
-    padding: 3px;
-    border-radius: 100%;
-    height: 19px;
-}
-.organ-point img {
-  object-fit: contain;
-  flex-shrink: 0;
-}
-.organ-points-group{
-font-size:20px;}
-
-  .organ-points-group {
-   
-  }
-  
-  .organ-point {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    font-size: 18px;
-    line-height: 1.5;
-    color: #2a2a2a;
-  }
-  
-  .organ-point .icon {
-    flex-shrink: 0;
-    margin-top: 4px;
-    color: #4a8c3a;
-  }
-.organ-point svg {
-  flex-shrink: 0;
-  color:white; /* or inherit from parent */
-}
-.organ-details {
-    grid-template-columns: 1fr 1fr;
-    display: grid;
-    justify-content: space-between;
-    margin-top:50px;
-}
-        .organ-supplement-{{ block.id }} .organ-benefits {
-          {% if block.settings.use_section_colors %}
-            color: {{ section.settings.text_color }};
-          {% else %}
-            color: {{ block.settings.custom_benefits_color }};
-          {% endif %}
-          font-size: {{ block.settings.benefits_text_size }}px;
-          font-style: italic;
-          margin-bottom: 15px;
+          color: #2a2a2a;
+          font-weight: 500;
         }
 
-        {% if block.settings.show_benefits_divider %}
-          .organ-supplement-{{ block.id }} .benefits-divider {
-            height: 2px;
-            {% if block.settings.use_section_colors %}
-              background-color: {{ section.settings.point_color }};
-            {% else %}
-              background-color: {{ block.settings.custom_divider_color }};
-            {% endif %}
-            margin: 15px 0;
-            width: 50px;
+        .organ-supplement-{{ block.id }} .organ-point .icon {
+          flex-shrink: 0;
+          margin-top: 2px;
+          color: #8B0000;
+          background: #ff699f;
+          padding: 3px;
+          border-radius: 100%;
+          height: 19px;
+          width: 19px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .organ-supplement-{{ block.id }} .organ-icon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .organ-supplement-{{ block.id }} .organ-icon img {
+          max-width: 200px;
+          height: auto;
+          object-fit: contain;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+          .organ-supplement-{{ block.id }} .organ-details {
+            grid-template-columns: 1fr;
+            gap: 30px;
           }
-        {% endif %}
-        
-        .organ-supplement-{{ block.id }} p {
-          margin: 0;
-          line-height: 1.6;
+          
+          .organ-supplement-{{ block.id }} .image-text-item {
+            gap: 12px;
+            padding: 10px;
+          }
+          
+          .organ-supplement-{{ block.id }} .image-container {
+            width: 40px;
+            height: 40px;
+          }
+          
+          .organ-supplement-{{ block.id }} .organ-point {
+            font-size: 14px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .organ-supplement-{{ block.id }} .image-text-flex-container {
+            gap: 12px;
+          }
+          
+          .organ-supplement-{{ block.id }} .image-text-item {
+            flex-direction: column;
+            text-align: center;
+            gap: 8px;
+          }
+          
+          .organ-supplement-{{ block.id }} .organ-point {
+            justify-content: center;
+          }
         }
       </style>
 
@@ -433,50 +352,55 @@ font-size:20px;}
 
       <div class="organ-supplement-{{ block.id }}" {{ block.shopify_attributes }}>
         <div class="organ-header">
-         <h3 class="organ-title">{{ block.settings.organ_name }}</h3>
-         <div class="organ-details">
- <div class="image-text-flex-container">
-  {% for i in (1..5) %}
-    {% assign image_setting = 'image_' | append: i %}
-    {% assign text_setting = 'text_' | append: i %}
-    
-    <div class="image-text-item">
-      <div class="image-container">
-        {% if block.settings[image_setting] != blank %}
-          <img src="{{ block.settings[image_setting] | img_url: '200x' }}" alt="Benefit {{ i }}" loading="lazy">
-        {% else %}
-          <div class="placeholder-image">
-            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="50" height="50" fill="#f5f5f5"/>
-              <path d="M25 15L30 22H32L25 15ZM25 15L18 22H20L25 15ZM25 15V35M15 25H35" stroke="#ccc" stroke-width="2"/>
-            </svg>
+          <h3 class="organ-title">{{ block.settings.organ_name }}</h3>
+        </div>
+        
+        <div class="organ-details">
+          <div class="image-text-flex-container">
+            {% for i in (1..5) %}
+              {% assign image_setting = 'image_' | append: i %}
+              {% assign text_setting = 'text_' | append: i %}
+              
+              {% if block.settings[text_setting] != blank %}
+                <div class="image-text-item">
+                  <div class="image-container">
+                    {% if block.settings[image_setting] != blank %}
+                      <img src="{{ block.settings[image_setting] | img_url: '100x100', crop: 'center' }}" alt="Benefit {{ i }}" loading="lazy" width="100" height="100">
+                    {% else %}
+                      <div class="placeholder-image">
+                        <svg width="30" height="30" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect width="50" height="50" fill="#f5f5f5"/>
+                          <path d="M25 15L30 22H32L25 15ZM25 15L18 22H20L25 15ZM25 15V35M15 25H35" stroke="#ccc" stroke-width="2"/>
+                        </svg>
+                      </div>
+                    {% endif %}
+                  </div>
+                  
+                  <div class="text-container">
+                    <div class="organ-point">
+                      <span class="icon">
+                        <svg width="13" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1 5.5L5.5 10L15 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      {{ block.settings[text_setting] }}
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
           </div>
-        {% endif %}
-      </div>
-      
-      <div class="text-container">
-        {% if block.settings[text_setting] != blank %}
-          <div class="organ-point">
-            <span class="icon">
-              <svg width="13" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 5.5L5.5 10L15 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            {{ block.settings[text_setting] }}
-          </div>
-        {% endif %}
-      </div>
-    </div>
-  {% endfor %}
-</div>
 
-            <div class="organ-icon">
-              <img src="{{ block.settings.organ_icon | img_url: '200x200' }}" alt="{{ block.settings.organ_name }}" loading="lazy">
-            </div>
-    
+          <div class="organ-icon">
+            {% if block.settings.organ_icon != blank %}
+              <img src="{{ block.settings.organ_icon | img_url: '300x300' }}" alt="{{ block.settings.organ_name }}" loading="lazy" width="300" height="300">
+            {% else %}
+              <div style="background: #f0f0f0; padding: 40px; text-align: center; border-radius: 8px;">
+                <p style="color: #999;">Upload organ icon</p>
+              </div>
+            {% endif %}
           </div>
         </div>
-  
       </div>
 
       {% if block.settings.organ_link != blank %}
