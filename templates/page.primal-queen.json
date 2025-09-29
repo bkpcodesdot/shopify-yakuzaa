@@ -835,7 +835,7 @@
             "margin_top": 40,
             "margin_bottom": 40,
             "padding": 40,
-            "text_alignment": "center"
+            "text_alignment": "left"
           }
         }
       },
