@@ -336,7 +336,7 @@ font-size:20px;
 <div class="organ-points-group">
   {% for p in points %}
     {% assign cleaned = p | remove: '<p>' %}
-    {% if cleaned != blank %}
+   
       <div class="organ-point">
         <span class="icon">
           <svg width="13" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -345,7 +345,7 @@ font-size:20px;
         </span>
         {{ cleaned }}
       </div>
-    {% endif %}
+
   {% endfor %}
 </div>
 
