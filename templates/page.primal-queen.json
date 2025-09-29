@@ -780,7 +780,7 @@
             "organ_description": "<p>Rich in essential vitamins and minerals...</p>",
             "organ_benefits": "High in Vitamin A, B12, and Iron",
             "organ_icon": "shopify://shop_images/Screenshot_40.png",
-            "organ_point": "<p>13 vitamins<br/></p>",
+            "organ_point": "<p><br/></p>",
             "use_section_colors": true,
             "custom_background_color": "#ffffff",
             "custom_border_color": "#8b0000",

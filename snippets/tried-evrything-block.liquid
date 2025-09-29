@@ -264,11 +264,12 @@
   flex-shrink: 0;
 }
 .organ-points-group{
-font-size:20px;
- display: flex;
-    flex-direction: column;
-    gap: 16px;}
+font-size:20px;}
 
+  .organ-points-group {
+   
+  }
+  
   .organ-point {
     display: flex;
     align-items: flex-start;
@@ -278,7 +279,7 @@ font-size:20px;
     color: #2a2a2a;
   }
   
- .organ-point .icon {
+  .organ-point .icon {
     flex-shrink: 0;
     margin-top: 4px;
     color: #4a8c3a;
@@ -331,11 +332,11 @@ font-size:20px;
         <div class="organ-header">
          <h3 class="organ-title">{{ block.settings.organ_name }}</h3>
          <div class="organ-details">
- <div class="organ-points-group">
-       
-          {{ section.settings.organ_point | replace: '<p>', '<div class="organ-point"><span class="icon"><svg width="13" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5.5L5.5 10L15 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' | replace: '</p>', '</div>' }}
-
-      </div>
+  <div class="organ-points-group">
+  {% if block.settings.organ_point != blank %}
+    {{ block.settings.organ_point | replace: '<p>', '<div class="organ-point"><span class="icon"><svg width="13" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5.5L5.5 10L15 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' | replace: '</p>', '</div>' }}
+  {% endif %}
+</div>
 
             <div class="organ-icon">
               <img src="{{ block.settings.organ_icon | img_url: '200x200' }}" alt="{{ block.settings.organ_name }}" loading="lazy">
