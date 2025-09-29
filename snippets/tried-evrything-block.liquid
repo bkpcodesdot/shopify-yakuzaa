@@ -1,6 +1,6 @@
 <div class="tried-everything-section" style="background-color: {{ section.settings.background_color | default: '#ffffff' }};">
   {% for block in section.blocks %}
-    {% if block.type == 'tried_everything' %}
+  
       <!-- Tried Everything Block -->
       <style>
         .tried-everything-{{ block.id }} {
@@ -154,7 +154,7 @@
         </div>
       </div>
 
-    {% elsif block.type == 'content_block' %}
+   
       <!-- Content Block -->
       <style>
         .content-block-{{ block.id }} {
@@ -179,7 +179,6 @@
         {{ block.settings.content }}
       </div>
 
-    {% elsif block.type == 'organ_supplement' %}
       <!-- Organ Supplement Block -->
       <style>
         .organ-supplement-{{ block.id }} {
@@ -312,6 +311,6 @@
         </a>
       {% endif %}
 
-    {% endif %}
+
   {% endfor %}
 </div>
