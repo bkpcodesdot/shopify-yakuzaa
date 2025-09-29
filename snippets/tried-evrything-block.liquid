@@ -108,6 +108,12 @@
     font-size: 18px;
 }
         }
+         @media (max-width: 576px) {
+          .tried-everything-{{ block.id }} .content-wrapper {
+            grid-template-columns: 1fr;
+            gap: 30px;
+          }
+         }
       </style>
 
       <div class="tried-everything-{{ block.id }}" {{ block.shopify_attributes }}>
