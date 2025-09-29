@@ -509,7 +509,109 @@
           </div>
         </div>
       </div>
+ {% elsif block.type == 'single_capsule' %}
+      <!-- Single Capsule Block -->
+      <style>
+        .single-capsule-{{ block.id }} {
+          background-color: {{ block.settings.background_color }};
+          color: {{ block.settings.text_color }};
+          margin-top: {{ block.settings.margin_top }}px;
+          margin-bottom: {{ block.settings.margin_bottom }}px;
+          padding: {{ block.settings.padding }}px 20px;
+          text-align: {{ block.settings.text_alignment }};
+        }
 
+        .single-capsule-{{ block.id }} .capsule-container {
+          max-width: 800px;
+          margin: 0 auto;
+        }
+
+        .single-capsule-{{ block.id }} .main-heading {
+          font-size: {{ block.settings.main_heading_size }}px;
+          font-weight: bold;
+          line-height: 1.2;
+          margin-bottom: 20px;
+        }
+
+        .single-capsule-{{ block.id }} .subheading {
+          font-size: {{ block.settings.subheading_size }}px;
+          font-style: italic;
+          margin-bottom: 30px;
+          color: {{ block.settings.accent_color }};
+        }
+
+        .single-capsule-{{ block.id }} .question-section {
+          margin-top: 40px;
+        }
+
+        .single-capsule-{{ block.id }} .question-text {
+          font-size: {{ block.settings.question_size }}px;
+          font-weight: bold;
+          margin-bottom: 10px;
+        }
+
+        .single-capsule-{{ block.id }} .answer-text {
+          font-size: {{ block.settings.question_size | minus: 4 }}px;
+          font-weight: normal;
+          color: {{ block.settings.accent_color }};
+        }
+
+        @media (max-width: 768px) {
+          .single-capsule-{{ block.id }} .main-heading {
+            font-size: {{ block.settings.main_heading_size | minus: 8 }}px;
+          }
+          
+          .single-capsule-{{ block.id }} .question-text {
+            font-size: {{ block.settings.question_size | minus: 4 }}px;
+          }
+          
+          .single-capsule-{{ block.id }} .answer-text {
+            font-size: {{ block.settings.question_size | minus: 8 }}px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .single-capsule-{{ block.id }} {
+            padding: {{ block.settings.padding | divided_by: 2 }}px 15px;
+          }
+          
+          .single-capsule-{{ block.id }} .main-heading {
+            font-size: {{ block.settings.main_heading_size | minus: 12 }}px;
+          }
+        }
+      </style>
+
+      <div class="single-capsule-{{ block.id }}" {{ block.shopify_attributes }}>
+        <div class="capsule-container">
+          <div class="main-heading">
+            {% if block.settings.main_heading_line1 != blank %}
+              <div>{{ block.settings.main_heading_line1 }}</div>
+            {% endif %}
+            {% if block.settings.main_heading_line2 != blank %}
+              <div>{{ block.settings.main_heading_line2 }}</div>
+            {% endif %}
+            {% if block.settings.main_heading_line3 != blank %}
+              <div>{{ block.settings.main_heading_line3 }}</div>
+            {% endif %}
+          </div>
+          
+          {% if block.settings.subheading != blank %}
+            <div class="subheading">{{ block.settings.subheading }}</div>
+          {% endif %}
+          
+          <div class="question-section">
+            {% if block.settings.question_text != blank %}
+              <div class="question-text">{{ block.settings.question_text }}</div>
+            {% endif %}
+            
+            {% if block.settings.answer_text != blank %}
+              <div class="answer-text">{{ block.settings.answer_text }}</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+</div>
     {% endif %}
   {% endfor %}
 </div>
