@@ -1,6 +1,6 @@
 <div class="tried-everything-section" style="background-color: {{ section.settings.background_color | default: '#ffffff' }};">
   {% for block in section.blocks %}
-    {% if block.type == 'tried_everything' %}
+    
       <style>
         .tried-everything-{{ block.id }} {
           margin-top: {{ block.settings.margin_top | default: 0 }}px;
@@ -154,7 +154,7 @@
         </div>
       </div>
 
-    {% elsif block.type == 'content_block' %}
+    
       <style>
         .content-block-{{ block.id }} {
           margin-top: {{ block.settings.content_margin_top }}px;
@@ -172,6 +172,5 @@
       <div class="content-block-{{ block.id }}" {{ block.shopify_attributes }}>
         {{ block.settings.content }}
       </div>
-    {% endif %}
   {% endfor %}
 </div>
