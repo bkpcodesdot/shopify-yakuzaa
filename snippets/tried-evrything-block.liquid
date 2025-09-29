@@ -332,10 +332,39 @@ font-size:20px;}
         <div class="organ-header">
          <h3 class="organ-title">{{ block.settings.organ_name }}</h3>
          <div class="organ-details">
-  <div class="organ-points-group">
-  {% if block.settings.organ_point != blank %}
-    {{ block.settings.organ_point | replace: '<p>', '<div class="organ-point"><span class="icon"><svg width="13" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5.5L5.5 10L15 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' | replace: '</p>', '</div>' }}
-  {% endif %}
+ <div class="image-text-flex-container">
+  {% for i in (1..5) %}
+    {% assign image_setting = 'image_' | append: i %}
+    {% assign text_setting = 'text_' | append: i %}
+    
+    <div class="image-text-item">
+      <div class="image-container">
+        {% if block.settings[image_setting] != blank %}
+          <img src="{{ block.settings[image_setting] | img_url: '200x' }}" alt="Benefit {{ i }}" loading="lazy">
+        {% else %}
+          <div class="placeholder-image">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="50" height="50" fill="#f5f5f5"/>
+              <path d="M25 15L30 22H32L25 15ZM25 15L18 22H20L25 15ZM25 15V35M15 25H35" stroke="#ccc" stroke-width="2"/>
+            </svg>
+          </div>
+        {% endif %}
+      </div>
+      
+      <div class="text-container">
+        {% if block.settings[text_setting] != blank %}
+          <div class="organ-point">
+            <span class="icon">
+              <svg width="13" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 5.5L5.5 10L15 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            {{ block.settings[text_setting] }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
 </div>
 
             <div class="organ-icon">
