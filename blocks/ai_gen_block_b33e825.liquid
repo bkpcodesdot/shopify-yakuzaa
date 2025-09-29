@@ -578,21 +578,30 @@
   }
   
 
-.ai-primal-queen-hero-testimonial-{{ ai_gen_id }} {
-  position: absolute;
-  top: 0;
-  left: 0;
+.ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }} {
+  position: relative;
   width: 100%;
+  height: auto; /* ensures container takes space of active testimonial */
+  overflow: hidden;
+}
+
+.ai-primal-queen-hero-testimonial-{{ ai_gen_id }} {
   transition: opacity 0.5s ease-in-out;
   opacity: 0;
-  z-index: 1;
   pointer-events: none;
 }
 
 .ai-primal-queen-hero-testimonial-{{ ai_gen_id }}.active {
   opacity: 1;
-  z-index: 2;
+  position: relative; /* active slide takes normal layout space */
   pointer-events: auto;
+}
+
+.ai-primal-queen-hero-testimonial-{{ ai_gen_id }}.inactive {
+  position: absolute; /* non-active slides positioned absolutely */
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 
