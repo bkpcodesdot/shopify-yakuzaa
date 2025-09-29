@@ -1,3 +1,4 @@
+{% render 'tried-evrything-block' %}
 {% schema %}
 {
   "name": "Tried Everything Section",
@@ -57,207 +58,6 @@
           "default": "I Tried Everything From:"
         },
         {
-          "type": "range",
-          "id": "margin_top",
-          "label": "Margin Top (px)",
-          "min": 0,
-          "max": 100,
-          "step": 5,
-          "default": 0
-        },
-        {
-          "type": "range",
-          "id": "margin_bottom",
-          "label": "Margin Bottom (px)",
-          "min": 0,
-          "max": 100,
-          "step": 5,
-          "default": 0
-        },
-        {
-          "type": "range",
-          "id": "container_width",
-          "label": "Container Width (px)",
-          "min": 800,
-          "max": 1400,
-          "step": 20,
-          "default": 1200
-        },
-        {
-          "type": "range",
-          "id": "section_padding",
-          "label": "Section Padding (px)",
-          "min": 20,
-          "max": 100,
-          "step": 5,
-          "default": 40
-        },
-        {
-          "type": "range",
-          "id": "content_gap",
-          "label": "Content Gap (px)",
-          "min": 20,
-          "max": 100,
-          "step": 5,
-          "default": 40
-        },
-        {
-          "type": "range",
-          "id": "heading_margin_bottom",
-          "label": "Heading Margin Bottom (px)",
-          "min": 10,
-          "max": 60,
-          "step": 5,
-          "default": 30
-        },
-        {
-          "type": "range",
-          "id": "heading_weight",
-          "label": "Heading Font Weight",
-          "min": 300,
-          "max": 900,
-          "step": 100,
-          "default": 700
-        },
-        {
-          "type": "range",
-          "id": "items_gap",
-          "label": "Items Gap (px)",
-          "min": 10,
-          "max": 40,
-          "step": 2,
-          "default": 16
-        },
-        {
-          "type": "range",
-          "id": "bullet_size",
-          "label": "Bullet Size (px)",
-          "min": 4,
-          "max": 20,
-          "step": 1,
-          "default": 8
-        },
-        {
-          "type": "range",
-          "id": "item_text_weight",
-          "label": "Item Text Weight",
-          "min": 300,
-          "max": 900,
-          "step": 100,
-          "default": 400
-        },
-        {
-          "type": "range",
-          "id": "image_border_radius",
-          "label": "Image Border Radius (px)",
-          "min": 0,
-          "max": 50,
-          "step": 2,
-          "default": 0
-        },
-        {
-          "type": "checkbox",
-          "id": "show_x_marks",
-          "label": "Show X Marks on Image",
-          "default": false
-        },
-        {
-          "type": "range",
-          "id": "x_mark_size",
-          "label": "X Mark Size (px)",
-          "min": 20,
-          "max": 80,
-          "step": 5,
-          "default": 40
-        },
-        {
-          "type": "range",
-          "id": "x_mark_thickness",
-          "label": "X Mark Thickness (px)",
-          "min": 2,
-          "max": 10,
-          "step": 1,
-          "default": 4
-        },
-        {
-          "type": "color",
-          "id": "x_mark_color",
-          "label": "X Mark Color",
-          "default": "#ff1493"
-        },
-        {
-          "type": "range",
-          "id": "x_mark_1_top",
-          "label": "X Mark 1 Top Position (%)",
-          "min": 0,
-          "max": 100,
-          "step": 5,
-          "default": 10
-        },
-        {
-          "type": "range",
-          "id": "x_mark_1_left",
-          "label": "X Mark 1 Left Position (%)",
-          "min": 0,
-          "max": 100,
-          "step": 5,
-          "default": 10
-        },
-        {
-          "type": "range",
-          "id": "x_mark_2_top",
-          "label": "X Mark 2 Top Position (%)",
-          "min": 0,
-          "max": 100,
-          "step": 5,
-          "default": 5
-        },
-        {
-          "type": "range",
-          "id": "x_mark_2_right",
-          "label": "X Mark 2 Right Position (%)",
-          "min": 0,
-          "max": 100,
-          "step": 5,
-          "default": 5
-        },
-        {
-          "type": "range",
-          "id": "x_mark_3_top",
-          "label": "X Mark 3 Top Position (%)",
-          "min": 0,
-          "max": 100,
-          "step": 5,
-          "default": 50
-        },
-        {
-          "type": "range",
-          "id": "x_mark_3_left",
-          "label": "X Mark 3 Left Position (%)",
-          "min": 0,
-          "max": 100,
-          "step": 5,
-          "default": 15
-        },
-        {
-          "type": "range",
-          "id": "x_mark_4_bottom",
-          "label": "X Mark 4 Bottom Position (%)",
-          "min": 0,
-          "max": 100,
-          "step": 5,
-          "default": 10
-        },
-        {
-          "type": "range",
-          "id": "x_mark_4_right",
-          "label": "X Mark 4 Right Position (%)",
-          "min": 0,
-          "max": 100,
-          "step": 5,
-          "default": 10
-        },
-        {
           "type": "text",
           "id": "item_1",
           "label": "Item 1",
@@ -309,6 +109,17 @@
           "type": "image_picker",
           "id": "main_image",
           "label": "Main Image"
+        },
+        {
+          "type": "select",
+          "id": "image_alignment",
+          "label": "Image Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
         }
       ]
     },
