@@ -201,13 +201,6 @@
     cursor: pointer;
 }
 
-        {% if block.settings.enable_hover_effect %}
-          .organ-supplement-{{ block.id }}:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-          }
-        {% endif %}
-
         .organ-supplement-{{ block.id }} .organ-header {
           {% comment %} display: flex; {% endcomment %}
           align-items: center;
