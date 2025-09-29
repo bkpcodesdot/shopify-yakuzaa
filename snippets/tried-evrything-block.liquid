@@ -250,7 +250,10 @@
           line-height: 1.5;
           margin-bottom: 15px;
         }
-
+.organ-details {
+    display: flex;
+    justify-content: space-around;
+}
         .organ-supplement-{{ block.id }} .organ-benefits {
           {% if block.settings.use_section_colors %}
             color: {{ section.settings.text_color }};
