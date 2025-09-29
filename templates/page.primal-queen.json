@@ -748,7 +748,7 @@
       "settings": {
         "background_color": "#ffffff",
         "heading_color": "#2f0147",
-        "heading_font_size": 28,
+        "heading_font_size": 21,
         "text_color": "#000000",
         "text_font_size": 21,
         "point_color": "#ed1f81"
