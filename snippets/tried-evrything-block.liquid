@@ -287,12 +287,12 @@
 
       <div class="organ-supplement-{{ block.id }}" {{ block.shopify_attributes }}>
         <div class="organ-header">
-          {% if block.settings.organ_icon != blank %}
+         <h3 class="organ-title">{{ block.settings.organ_name }}</h3>
             <div class="organ-icon">
               <img src="{{ block.settings.organ_icon | img_url: '200x200' }}" alt="{{ block.settings.organ_name }}" loading="lazy">
             </div>
-          {% endif %}
-          <h3 class="organ-title">{{ block.settings.organ_name }}</h3>
+    
+          
         </div>
         
         {% if block.settings.organ_description != blank %}
