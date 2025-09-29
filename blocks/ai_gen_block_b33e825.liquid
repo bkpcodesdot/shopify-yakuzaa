@@ -858,7 +858,7 @@
 
       showTestimonial(index) {
         this.testimonials.forEach((testimonial, i) => {
-          testimonial.style.opacity = i === index - 1 ? 1 : 0;
+          testimonial.style.opacity = i === index - 1 ? 1 : 1;
           testimonial.style.zIndex = i === index - 1 ? 2 : 1;
           testimonial.style.pointerEvents = i === index - 1 ? 'auto' : 'none';
         });
