@@ -820,6 +820,7 @@
           "type": "single_capsule",
           "settings": {
             "main_heading_line1": "One Single Capsule with Every Meal",
+            "image_capsul": "shopify://shop_images/s1_prblm_lady2_1.webp",
             "main_heading_line2": "That Provides The Exact Beef Organ",
             "main_heading_line3": "Superfoods You Need.",
             "subheading": "100% formulated by women, for women (sorry guys!)",
