@@ -1,7 +1,7 @@
 
-{% for block in section.blocks %}
-  {% case block.type %}
-    {% when 'tried_everything' %}
+
+  {% for block in section.blocks %}
+    {% if block.type == 'tried_everything' %}
         <style>
          .tried-everything-{{ block.id }} {
     margin-top: {{ block.settings.margin_top | default: 0 }}px;
@@ -195,5 +195,5 @@
     </div>
   </div>
 </div>
-  {% endcase %}
-{% endfor %}
+  {% endif %}
+  {% endfor %}
