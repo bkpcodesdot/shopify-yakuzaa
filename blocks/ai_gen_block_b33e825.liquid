@@ -816,13 +816,12 @@
     </div>
   </div>
 </primal-queen-hero-{{ ai_gen_id }}>
-
 <script>
   (function() {
     class PrimalQueenHero{{ ai_gen_id }} extends HTMLElement {
       constructor() {
         super();
-        this.currentTestimonial = 0; // 0-based index
+        this.currentTestimonial = 0; // 0-based
         this.testimonials = [];
         this.dots = [];
         this.autoSlideInterval = null;
@@ -839,7 +838,7 @@
         this.testimonialCount = this.testimonials.length;
 
         if (this.testimonialCount > 1) {
-          this.showTestimonial(this.currentTestimonial); // initial
+          this.showTestimonial(this.currentTestimonial, true); // initial
           this.setupEventListeners();
           this.setupDrag();
           this.startAutoSlide();
@@ -850,19 +849,25 @@
         if (this.autoSlideInterval) clearInterval(this.autoSlideInterval);
       }
 
-      // ---------------- Fade display ----------------
-      showTestimonial(index) {
+      showTestimonial(index, initial = false) {
         this.testimonials.forEach((t, i) => {
-          t.style.opacity = i === index ? '1' : '0';
-          t.style.zIndex = i === index ? '2' : '1';
-          t.style.pointerEvents = i === index ? 'auto' : 'none';
+          if (i === index) {
+            t.classList.add('active');
+            t.classList.remove('inactive');
+          } else {
+            t.classList.remove('active');
+            t.classList.add('inactive');
+          }
         });
 
-        this.dots.forEach((d, i) => {
-          d.classList.toggle('active', i === index);
-        });
-
+        this.dots.forEach((d, i) => d.classList.toggle('active', i === index));
         this.currentTestimonial = index;
+
+        if (initial) {
+          // Ensure first slide is visible immediately without fade delay
+          const active = this.testimonials[index];
+          active.style.opacity = '1';
+        }
       }
 
       nextTestimonial() {
@@ -875,7 +880,6 @@
         this.showTestimonial(prev);
       }
 
-      // ---------------- Auto-slide ----------------
       startAutoSlide() {
         this.autoSlideInterval = setInterval(() => {
           this.nextTestimonial();
@@ -889,7 +893,6 @@
         }
       }
 
-      // ---------------- Dots ----------------
       setupEventListeners() {
         this.dots.forEach((dot, i) => {
           dot.addEventListener('click', () => {
@@ -899,7 +902,6 @@
         });
       }
 
-      // ---------------- Drag/Swipe ----------------
       setupDrag() {
         const container = this.querySelector('.ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }}');
 
@@ -930,7 +932,6 @@
         if (!this.isDragging) return;
         this.isDragging = false;
 
-        // Swipe threshold
         if (this.movedBy < -50) this.nextTestimonial();
         else if (this.movedBy > 50) this.prevTestimonial();
       }
