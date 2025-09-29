@@ -406,62 +406,102 @@
         </a>
       {% endif %}
 
+    {% elsif block.type == 'problem_section' %}
+      <!-- Problem Section Block -->
+      <style>
+        .problem-section-{{ block.id }} {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 40px 20px;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .problem-content-wrapper-{{ block.id }} {
+          display: flex;
+          gap: 40px;
+          flex-wrap: wrap;
+          width: 100%;
+        }
+
+        .text-side-{{ block.id }} {
+          flex: 1 1 50%;
+          min-width: 300px;
+        }
+
+        .text-side-{{ block.id }} h2 {
+          font-size: {{ section.settings.heading_font_size }}px;
+          color: {{ section.settings.heading_color }};
+          margin-bottom: 20px;
+        }
+
+        .text-side-{{ block.id }} p {
+          font-size: {{ section.settings.text_font_size }}px;
+          color: {{ section.settings.text_color }};
+          line-height: 1.6;
+          margin-bottom: 15px;
+        }
+
+        .image-side-{{ block.id }} {
+          flex: 1 1 40%;
+          max-width: 400px;
+        }
+
+        .image-side-{{ block.id }} img {
+          width: 100%;
+          border-radius: 10px;
+          border: 3px solid purple;
+        }
+
+        @media (max-width: 768px) {
+          .problem-section-{{ block.id }} {
+            padding: 20px;
+          }
+          
+          .problem-content-wrapper-{{ block.id }} {
+            flex-direction: column;
+            gap: 30px;
+          }
+          
+          .image-side-{{ block.id }} {
+            max-width: 100%;
+          }
+        }
+      </style>
+
+      <div class="problem-section-{{ block.id }}" {{ block.shopify_attributes }}>
+        <div class="problem-content-wrapper-{{ block.id }}">
+          <div class="text-side-{{ block.id }}">
+            {% if block.settings.heading_text != blank %}
+              <h2>{{ block.settings.heading_text }}</h2>
+            {% endif %}
+            
+            {% if block.settings.paragraph_text_1 != blank %}
+              <p>{{ block.settings.paragraph_text_1 }}</p>
+            {% endif %}
+            
+            {% if block.settings.paragraph_text_2 != blank %}
+              <p>{{ block.settings.paragraph_text_2 }}</p>
+            {% endif %}
+            
+            {% if block.settings.bold_text != blank %}
+              <p><strong>{{ block.settings.bold_text }}</strong>{{ block.settings.after_bold_text }}</p>
+            {% endif %}
+          </div>
+
+          <div class="image-side-{{ block.id }}">
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | img_url: '600x600' }}" alt="Problem Image" loading="lazy" />
+            {% else %}
+              <div style="background: #f0f0f0; padding: 60px 20px; text-align: center; border-radius: 10px; border: 3px solid purple;">
+                <p style="color: #999;">Upload problem image</p>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
     {% endif %}
   {% endfor %}
 </div>
-
-  <style>
-  .problem-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 40px 20px;
-}
-
-.problem-content-wrapper {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.text-side {
-  flex: 1 1 50%;
-}
-
-.image-side {
-  flex: 1 1 40%;
-  max-width: 400px;
-}
-
-.image-side img {
-  width: 100%;
-  border-radius: 10px;
-  border: 3px solid purple;
-}
-</style>
-<!-- sections/problem-section.liquid -->
-<section class="problem-section">
-  <div class="problem-content-wrapper">
-    <div class="text-side">
-      {% for block in section.blocks %}
-        {% case block.type %}
-          {% when 'heading' %}
-            <h2>{{ block.settings.heading_text }}</h2>
-
-          {% when 'paragraph' %}
-            <p>{{ block.settings.paragraph_text }}</p>
-
-          {% when 'bold_text' %}
-            <p><strong>{{ block.settings.bold_text }}</strong>{{ block.settings.after_bold_text }}</p>
-        {% endcase %}
-      {% endfor %}
-    </div>
-
-    <div class="image-side">
-      {% if section.settings.image != blank %}
-        <img src="{{ section.settings.image | img_url: 'medium' }}" alt="Problem Image" />
-      {% endif %}
-    </div>
-  </div>
-</section>
-
