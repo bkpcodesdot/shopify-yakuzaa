@@ -804,12 +804,24 @@
             "enable_hover_effect": true,
             "organ_link": ""
           }
+        },
+        "problem_section_FYwizq": {
+          "type": "problem_section",
+          "settings": {
+            "image": "shopify://shop_images/s1_prblm_lady1_1.jpg",
+            "heading_text": "Here's The Problem...",
+            "paragraph_text_1": "Eating beef organs is not fun (and yes, I tried it myself)",
+            "paragraph_text_2": "Plus, sourcing high-quality, grass-fed, and grass-finished organs is nearly impossible.",
+            "bold_text": "That's when Primal Queen movement was born",
+            "after_bold_text": "(which is now an army of thousands of Queens that have taken back their health)."
+          }
         }
       },
       "block_order": [
         "tried_everything_zxjxiJ",
         "content_block_Ntg4qK",
-        "organ_supplement_Ap7hHX"
+        "organ_supplement_Ap7hHX",
+        "problem_section_FYwizq"
       ],
       "name": "Tried Everything Section",
       "settings": {
