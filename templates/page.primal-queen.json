@@ -736,13 +736,24 @@
             "item_6": "Probiotics",
             "item_7": "Keto",
             "item_8": "Zumba & More",
-            "main_image": "shopify://shop_images/s1_tried_img_1.webp",
-            "image_alignment": "center"
+            "main_image": "shopify://shop_images/s1_tried_img_1.webp"
+          }
+        },
+        "content_block_Ntg4qK": {
+          "type": "content_block",
+          "settings": {
+            "content": "<p>Add additional content here</p>",
+            "content_color": "#333333",
+            "content_font_size": 16,
+            "content_alignment": "left",
+            "content_margin_top": 20,
+            "content_margin_bottom": 20
           }
         }
       },
       "block_order": [
-        "tried_everything_zxjxiJ"
+        "tried_everything_zxjxiJ",
+        "content_block_Ntg4qK"
       ],
       "name": "Tried Everything Section",
       "settings": {
