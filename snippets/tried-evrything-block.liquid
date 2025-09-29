@@ -264,8 +264,25 @@
   flex-shrink: 0;
 }
 .organ-points-group{
-font-size:20px;}
+font-size:20px;
+ display: flex;
+    flex-direction: column;
+    gap: 16px;}
 
+  .organ-point {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #2a2a2a;
+  }
+  
+  .organ-point .icon {
+    flex-shrink: 0;
+    margin-top: 4px;
+    color: #4a8c3a;
+  }
 .organ-point svg {
   flex-shrink: 0;
   color:white; /* or inherit from parent */
