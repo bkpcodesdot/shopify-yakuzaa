@@ -333,7 +333,7 @@ font-size:20px;
          <div class="organ-details">
  <div class="organ-points-group">
       
-          {{ section.settings.organ_point | replace: '<p>', '<div class="organ-point"><span class="icon"><svg width="13" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5.5L5.5 10L15 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' | replace: '</p>', '</div>' }}
+          {{ block.settings.organ_point | replace: '<p>', '<div class="organ-point"><span class="icon"><svg width="13" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5.5L5.5 10L15 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' | replace: '</p>', '</div>' }}
        
       </div>
 
