@@ -904,8 +904,8 @@
         this.isDragging = false;
         const movedBy = this.currentTranslate - this.prevTranslate;
 
-        if (movedBy < -50) this.nextTestimonial();
-        else if (movedBy > 50) {
+        if (movedBy < -10) this.nextTestimonial();
+        else if (movedBy > 10) {
           const prev = this.currentTestimonial <= 1 ? this.testimonialCount : this.currentTestimonial - 1;
           this.showTestimonial(prev);
         } else {
