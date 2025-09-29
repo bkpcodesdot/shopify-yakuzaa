@@ -175,3 +175,146 @@
     {% endif %}
   {% endfor %}
 </div>
+
+<div class="beef-organ-section-{{ section.id }}">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="section-heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'benefit_block' -%}
+        <div class="benefits-list">
+          {%- for benefit_block in section.blocks -%}
+            {%- if benefit_block.type == 'benefit_item' -%}
+              <div class="benefit-item">{{ benefit_block.settings.benefit_text }}</div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      
+      {%- elsif block.type == 'organs_grid' -%}
+        <div class="organs-grid">
+          {%- for organ_block in section.blocks -%}
+            {%- if organ_block.type == 'organ_item' -%}
+              <div class="organ-item">
+                {%- if organ_block.settings.organ_image != blank -%}
+                  <div class="organ-image">
+                    <img src="{{ organ_block.settings.organ_image | img_url: '200x200' }}" alt="{{ organ_block.settings.organ_name }}" loading="lazy">
+                  </div>
+                {%- endif -%}
+                <p class="organ-name">{{ organ_block.settings.organ_name }}</p>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      
+      {%- elsif block.type == 'spacer_block' -%}
+        <div class="spacer" style="height: {{ block.settings.spacer_height }}px;"></div>
+      
+      {%- elsif block.type == 'content_block' -%}
+        <div class="content-block">
+          {%- if block.settings.content_heading != blank -%}
+            <h3 class="content-heading">{{ block.settings.content_heading }}</h3>
+          {%- endif -%}
+          {%- if block.settings.content_text != blank -%}
+            <div class="content-text">{{ block.settings.content_text }}</div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{%- style -%}
+  .beef-organ-section-{{ section.id }} {
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
+    background-color: {{ section.settings.background_color }};
+  }
+  
+  .beef-organ-section-{{ section.id }} .section-heading {
+    color: {{ section.settings.heading_color }};
+    font-size: {{ section.settings.heading_size }}px;
+    text-align: {{ section.settings.heading_alignment }};
+    margin-bottom: 30px;
+  }
+  
+  .beef-organ-section-{{ section.id }} .benefits-list {
+    color: {{ section.settings.text_color }};
+    font-size: {{ section.settings.text_size }}px;
+    margin-bottom: 40px;
+    text-align: {{ section.settings.text_alignment }};
+  }
+  
+  .beef-organ-section-{{ section.id }} .benefit-item {
+    margin-bottom: 10px;
+  }
+  
+  .beef-organ-section-{{ section.id }} .organs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  
+  .beef-organ-section-{{ section.id }} .organ-item {
+    text-align: center;
+    padding: 20px;
+    background: {{ section.settings.card_background }};
+    border-radius: 8px;
+    border: 1px solid {{ section.settings.card_border }};
+  }
+  
+  .beef-organ-section-{{ section.id }} .organ-image {
+    max-width: 80px;
+    margin: 0 auto 15px;
+  }
+  
+  .beef-organ-section-{{ section.id }} .organ-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+  
+  .beef-organ-section-{{ section.id }} .organ-name {
+    color: {{ section.settings.organ_name_color }};
+    font-size: {{ section.settings.organ_name_size }}px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .beef-organ-section-{{ section.id }} .content-block {
+    margin-bottom: 30px;
+    text-align: {{ section.settings.text_alignment }};
+  }
+  
+  .beef-organ-section-{{ section.id }} .content-heading {
+    color: {{ section.settings.heading_color }};
+    font-size: {{ section.settings.heading_size | times: 0.8 }}px;
+    margin-bottom: 15px;
+  }
+  
+  .beef-organ-section-{{ section.id }} .content-text {
+    color: {{ section.settings.text_color }};
+    font-size: {{ section.settings.text_size }}px;
+    line-height: 1.6;
+  }
+  
+  .beef-organ-section-{{ section.id }} .spacer {
+    width: 100%;
+    clear: both;
+  }
+
+  @media (max-width: 768px) {
+    .beef-organ-section-{{ section.id }} {
+      padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
+    }
+    
+    .beef-organ-section-{{ section.id }} .organs-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .beef-organ-section-{{ section.id }} .content-heading {
+      font-size: {{ section.settings.heading_size | times: 0.7 }}px;
+    }
+  }
+{%- endstyle -%}
