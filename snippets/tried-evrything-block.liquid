@@ -331,20 +331,24 @@ font-size:20px;
         <div class="organ-header">
          <h3 class="organ-title">{{ block.settings.organ_name }}</h3>
          <div class="organ-details">
+{% assign points = section.settings.organ_point | split: '</p>' %}
+
 <div class="organ-points-group">
-  {% for point in section.settings.organ_points %}
-    {% if point != blank %}
+  {% for p in points %}
+    {% assign cleaned = p | remove: '<p>' %}
+    {% if cleaned != blank %}
       <div class="organ-point">
         <span class="icon">
           <svg width="13" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 5.5L5.5 10L15 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </span>
-        {{ point }}
+        {{ cleaned }}
       </div>
     {% endif %}
   {% endfor %}
 </div>
+
 
 
             <div class="organ-icon">
