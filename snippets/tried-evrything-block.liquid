@@ -432,13 +432,13 @@
 
         .text-side-{{ block.id }} h2 {
           font-size: {{ block.settings.problem_font_size }}px;
-          color: {{ block.settings.heading_color }};
+          color: {{ block.settings.problem_font_color }};
           margin-bottom: 20px;
         }
 
         .text-side-{{ block.id }} p {
-          font-size: {{ section.settings.text_font_size }}px;
-          color: {{ section.settings.problem_font_color }};
+          font-size: {{ block.settings.text_font_size }}px;
+          color: {{ block.settings.problem_font_color }};
           line-height: 1.6;
           margin-bottom: 15px;
         }
