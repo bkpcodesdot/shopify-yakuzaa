@@ -787,7 +787,7 @@
             "custom_title_color": "#8b0000",
             "custom_description_color": "#333333",
             "custom_benefits_color": "#666666",
-            "organ_title_size": 21,
+            "organ_title_size": 28,
             "description_size": 20,
             "benefits_text_size": 16,
             "organ_icon_size": 60,
