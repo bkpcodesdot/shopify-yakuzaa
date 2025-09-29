@@ -122,15 +122,74 @@
           "default": "center"
         }
       ]
+    },
+    {
+      "type": "content_block",
+      "name": "Content Block",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Block Content",
+          "default": "<p>Add additional content here</p>"
+        },
+        {
+          "type": "color",
+          "id": "content_color",
+          "label": "Text Color",
+          "default": "#333333"
+        },
+        {
+          "type": "range",
+          "id": "content_font_size",
+          "label": "Font Size (px)",
+          "min": 12,
+          "max": 40,
+          "step": 1,
+          "default": 16
+        },
+        {
+          "type": "select",
+          "id": "content_alignment",
+          "label": "Text Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" },
+            { "value": "justify", "label": "Justify" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "range",
+          "id": "content_margin_top",
+          "label": "Margin Top (px)",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "default": 20
+        },
+        {
+          "type": "range",
+          "id": "content_margin_bottom",
+          "label": "Margin Bottom (px)",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "default": 20
+        }
+      ]
     }
   ],
-  "max_blocks": 1,
   "presets": [
     {
       "name": "Tried Everything Section",
       "blocks": [
         {
           "type": "tried_everything"
+        },
+        {
+          "type": "content_block"
         }
       ]
     }
