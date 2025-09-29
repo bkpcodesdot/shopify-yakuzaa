@@ -577,6 +577,24 @@
     }
   }
   
+
+  .ai-primal-queen-hero-testimonial-{{ ai_gen_id }} {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: opacity 0.6s ease-in-out;
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.ai-primal-queen-hero-testimonial-{{ ai_gen_id }}.active {
+  opacity: 1;
+  z-index: 2;
+  pointer-events: auto;
+}
+
 {% endstyle %}
 
 <primal-queen-hero-{{ ai_gen_id }} class="ai-primal-queen-hero-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
@@ -806,16 +824,13 @@
         this.testimonialCount = 0;
         this.autoSlideInterval = null;
 
-        // For drag functionality
+        // Drag/swipe
         this.isDragging = false;
         this.startX = 0;
-        this.currentTranslate = 0;
-        this.prevTranslate = 0;
-        this.animationID = 0;
+        this.movedBy = 0;
       }
 
       connectedCallback() {
-        this.slider = this.querySelector('.ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }}');
         this.testimonials = this.querySelectorAll('.ai-primal-queen-hero-testimonial-{{ ai_gen_id }}');
         this.dots = this.querySelectorAll('.ai-primal-queen-hero-dot-{{ ai_gen_id }}');
         this.testimonialCount = this.testimonials.length;
@@ -823,13 +838,13 @@
         if (this.testimonialCount > 1) {
           this.setupEventListeners();
           this.setupDrag();
+          this.showTestimonial(this.currentTestimonial); // initial fade
           this.startAutoSlide();
         }
       }
 
       disconnectedCallback() {
         if (this.autoSlideInterval) clearInterval(this.autoSlideInterval);
-        cancelAnimationFrame(this.animationID);
       }
 
       setupEventListeners() {
@@ -843,7 +858,9 @@
 
       showTestimonial(index) {
         this.testimonials.forEach((testimonial, i) => {
-          testimonial.classList.toggle('active', i === index - 1);
+          testimonial.style.opacity = i === index - 1 ? 1 : 0;
+          testimonial.style.zIndex = i === index - 1 ? 2 : 1;
+          testimonial.style.pointerEvents = i === index - 1 ? 'auto' : 'none';
         });
 
         this.dots.forEach((dot, i) => {
@@ -851,12 +868,16 @@
         });
 
         this.currentTestimonial = index;
-        this.updateSliderPosition();
       }
 
       nextTestimonial() {
         const next = this.currentTestimonial >= this.testimonialCount ? 1 : this.currentTestimonial + 1;
         this.showTestimonial(next);
+      }
+
+      prevTestimonial() {
+        const prev = this.currentTestimonial <= 1 ? this.testimonialCount : this.currentTestimonial - 1;
+        this.showTestimonial(prev);
       }
 
       startAutoSlide() {
@@ -872,62 +893,47 @@
         }
       }
 
-      // ---------------- Drag Support ----------------
+      // ---------------- Drag triggers fade ----------------
       setupDrag() {
-        this.slider.addEventListener('mousedown', this.touchStart.bind(this));
-        this.slider.addEventListener('mouseup', this.touchEnd.bind(this));
-        this.slider.addEventListener('mouseleave', this.touchEnd.bind(this));
-        this.slider.addEventListener('mousemove', this.touchMove.bind(this));
+        const container = this.querySelector('.ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }}');
 
-        // For mobile
-        this.slider.addEventListener('touchstart', this.touchStart.bind(this), { passive: true });
-        this.slider.addEventListener('touchend', this.touchEnd.bind(this));
-        this.slider.addEventListener('touchmove', this.touchMove.bind(this), { passive: true });
+        container.addEventListener('mousedown', this.dragStart.bind(this));
+        container.addEventListener('mousemove', this.dragMove.bind(this));
+        container.addEventListener('mouseup', this.dragEnd.bind(this));
+        container.addEventListener('mouseleave', this.dragEnd.bind(this));
+
+        container.addEventListener('touchstart', this.dragStart.bind(this), { passive: true });
+        container.addEventListener('touchmove', this.dragMove.bind(this), { passive: true });
+        container.addEventListener('touchend', this.dragEnd.bind(this));
       }
 
-      touchStart(event) {
+      dragStart(event) {
         this.isDragging = true;
         this.startX = event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
-        cancelAnimationFrame(this.animationID);
+        this.movedBy = 0;
         this.resetAutoSlide();
       }
 
-      touchMove(event) {
+      dragMove(event) {
         if (!this.isDragging) return;
         const currentX = event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
-        const deltaX = currentX - this.startX;
-        this.currentTranslate = this.prevTranslate + deltaX;
-        this.slider.style.transform = `translateX(${this.currentTranslate}px)`;
+        this.movedBy = currentX - this.startX;
       }
 
-      touchEnd() {
+      dragEnd() {
         if (!this.isDragging) return;
         this.isDragging = false;
-        const movedBy = this.currentTranslate - this.prevTranslate;
 
-        if (movedBy < -50) this.nextTestimonial();
-        else if (movedBy > 50) {
-          const prev = this.currentTestimonial <= 1 ? this.testimonialCount : this.currentTestimonial - 1;
-          this.showTestimonial(prev);
-        } else {
-          this.showTestimonial(this.currentTestimonial); // snap back
-        }
-
-        this.prevTranslate = 0;
-        this.slider.style.transform = 'translateX(0)';
-      }
-
-      updateSliderPosition() {
-        // Optional: animate the slider to active testimonial
-        this.testimonials.forEach((testimonial, index) => {
-          testimonial.style.display = index === this.currentTestimonial - 1 ? 'block' : 'none';
-        });
+        // Swipe threshold
+        if (this.movedBy < -50) this.nextTestimonial(); // swipe left
+        else if (this.movedBy > 50) this.prevTestimonial(); // swipe right
       }
     }
 
     customElements.define('primal-queen-hero-{{ ai_gen_id }}', PrimalQueenHero{{ ai_gen_id }});
   })();
 </script>
+
 
 
 
