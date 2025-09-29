@@ -1,6 +1,9 @@
 
-<style>
-  .tried-everything-{{ block.id }} {
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'tried_everything' %}
+        <style>
+         .tried-everything-{{ block.id }} {
     margin-top: {{ block.settings.margin_top | default: 0 }}px;
     margin-bottom: {{ block.settings.margin_bottom | default: 0 }}px;
   }
@@ -104,9 +107,7 @@
     }
   }
 </style>
-{% for block in section.blocks %}
-  {% case block.type %}
-    {% when 'tried_everything' %}
+
 <div class="tried-everything-{{ block.id }}" {{ block.shopify_attributes }}>
   <div class="container">
     <div class="content-wrapper">
