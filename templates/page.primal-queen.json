@@ -772,11 +772,38 @@
             "content_margin_top": 20,
             "content_margin_bottom": 20
           }
+        },
+        "organ_supplement_Ap7hHX": {
+          "type": "organ_supplement",
+          "settings": {
+            "organ_name": "Beef Liver",
+            "organ_description": "<p>Rich in essential vitamins and minerals...</p>",
+            "organ_benefits": "High in Vitamin A, B12, and Iron",
+            "organ_icon": "shopify://shop_images/Screenshot_40.png",
+            "use_section_colors": true,
+            "custom_background_color": "#ffffff",
+            "custom_border_color": "#8b0000",
+            "custom_title_color": "#8b0000",
+            "custom_description_color": "#333333",
+            "custom_benefits_color": "#666666",
+            "organ_title_size": 18,
+            "description_size": 14,
+            "benefits_text_size": 13,
+            "organ_icon_size": 60,
+            "custom_border_width": 2,
+            "show_benefits_divider": true,
+            "custom_divider_color": "#8b0000",
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "enable_hover_effect": true,
+            "organ_link": ""
+          }
         }
       },
       "block_order": [
         "tried_everything_zxjxiJ",
-        "content_block_Ntg4qK"
+        "content_block_Ntg4qK",
+        "organ_supplement_Ap7hHX"
       ],
       "name": "Tried Everything Section",
       "settings": {
