@@ -809,33 +809,14 @@
           "type": "problem_section",
           "settings": {
             "image": "shopify://shop_images/s1_prblm_lady1_1.jpg",
+            "problem_font_size": 40,
+            "problem_font_color": "#2f0147",
+            "text_font_size_one": 20,
             "heading_text": "Here's The Problem...",
             "paragraph_text_1": "Eating beef organs is not fun (and yes, I tried it myself)",
             "paragraph_text_2": "Plus, sourcing high-quality, grass-fed, and grass-finished organs is nearly impossible.",
             "bold_text": "That's when Primal Queen movement was born",
             "after_bold_text": "(which is now an army of thousands of Queens that have taken back their health)."
-          }
-        },
-        "single_capsule_XQcFk7": {
-          "type": "single_capsule",
-          "settings": {
-            "main_heading_line1": "One Single Capsule with Every Meal",
-            "image_capsul": "shopify://shop_images/s1_prblm_lady2_1.webp",
-            "main_heading_line2": "That Provides The Exact Beef Organ",
-            "main_heading_line3": "Superfoods You Need.",
-            "subheading": "100% formulated by women, for women (sorry guys!)",
-            "question_text": "What are the beef organ superfoods in Primal Queen?",
-            "answer_text": "Glad you asked!",
-            "background_color": "#ffffff",
-            "text_color": "#000000",
-            "accent_color": "#8b0000",
-            "main_heading_size": 32,
-            "subheading_size": 18,
-            "question_size": 24,
-            "margin_top": 40,
-            "margin_bottom": 40,
-            "padding": 40,
-            "text_alignment": "left"
           }
         }
       },
@@ -843,8 +824,7 @@
         "tried_everything_zxjxiJ",
         "content_block_Ntg4qK",
         "organ_supplement_Ap7hHX",
-        "problem_section_FYwizq",
-        "single_capsule_XQcFk7"
+        "problem_section_FYwizq"
       ],
       "name": "Tried Everything Section",
       "settings": {
