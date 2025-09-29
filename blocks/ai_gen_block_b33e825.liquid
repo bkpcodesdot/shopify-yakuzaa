@@ -815,13 +815,15 @@
     </div>
   </div>
 </primal-queen-hero-{{ ai_gen_id }}>
+
 <script>
   (function() {
     class PrimalQueenHero{{ ai_gen_id }} extends HTMLElement {
       constructor() {
         super();
-        this.currentTestimonial = 1;
-        this.testimonialCount = 0;
+        this.currentTestimonial = 0; // 0-based index
+        this.testimonials = [];
+        this.dots = [];
         this.autoSlideInterval = null;
 
         // Drag/swipe
@@ -831,14 +833,14 @@
       }
 
       connectedCallback() {
-        this.testimonials = this.querySelectorAll('.ai-primal-queen-hero-testimonial-{{ ai_gen_id }}');
-        this.dots = this.querySelectorAll('.ai-primal-queen-hero-dot-{{ ai_gen_id }}');
+        this.testimonials = Array.from(this.querySelectorAll('.ai-primal-queen-hero-testimonial-{{ ai_gen_id }}'));
+        this.dots = Array.from(this.querySelectorAll('.ai-primal-queen-hero-dot-{{ ai_gen_id }}'));
         this.testimonialCount = this.testimonials.length;
 
         if (this.testimonialCount > 1) {
+          this.showTestimonial(this.currentTestimonial); // initial
           this.setupEventListeners();
           this.setupDrag();
-          this.showTestimonial(this.currentTestimonial); // initial fade
           this.startAutoSlide();
         }
       }
@@ -847,39 +849,32 @@
         if (this.autoSlideInterval) clearInterval(this.autoSlideInterval);
       }
 
-      setupEventListeners() {
-        this.dots.forEach((dot, index) => {
-          dot.addEventListener('click', () => {
-            this.showTestimonial(index + 1);
-            this.resetAutoSlide();
-          });
-        });
-      }
-
+      // ---------------- Fade display ----------------
       showTestimonial(index) {
-        this.testimonials.forEach((testimonial, i) => {
-          testimonial.style.opacity = i === index - 1 ? 1 : 1;
-          testimonial.style.zIndex = i === index - 1 ? 2 : 1;
-          testimonial.style.pointerEvents = i === index - 1 ? 'auto' : 'none';
+        this.testimonials.forEach((t, i) => {
+          t.style.opacity = i === index ? '1' : '0';
+          t.style.zIndex = i === index ? '2' : '1';
+          t.style.pointerEvents = i === index ? 'auto' : 'none';
         });
 
-        this.dots.forEach((dot, i) => {
-          dot.classList.toggle('active', i === index - 1);
+        this.dots.forEach((d, i) => {
+          d.classList.toggle('active', i === index);
         });
 
         this.currentTestimonial = index;
       }
 
       nextTestimonial() {
-        const next = this.currentTestimonial >= this.testimonialCount ? 1 : this.currentTestimonial + 1;
+        const next = (this.currentTestimonial + 1) % this.testimonialCount;
         this.showTestimonial(next);
       }
 
       prevTestimonial() {
-        const prev = this.currentTestimonial <= 1 ? this.testimonialCount : this.currentTestimonial - 1;
+        const prev = (this.currentTestimonial - 1 + this.testimonialCount) % this.testimonialCount;
         this.showTestimonial(prev);
       }
 
+      // ---------------- Auto-slide ----------------
       startAutoSlide() {
         this.autoSlideInterval = setInterval(() => {
           this.nextTestimonial();
@@ -893,7 +888,17 @@
         }
       }
 
-      // ---------------- Drag triggers fade ----------------
+      // ---------------- Dots ----------------
+      setupEventListeners() {
+        this.dots.forEach((dot, i) => {
+          dot.addEventListener('click', () => {
+            this.showTestimonial(i);
+            this.resetAutoSlide();
+          });
+        });
+      }
+
+      // ---------------- Drag/Swipe ----------------
       setupDrag() {
         const container = this.querySelector('.ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }}');
 
@@ -925,14 +930,15 @@
         this.isDragging = false;
 
         // Swipe threshold
-        if (this.movedBy < -50) this.nextTestimonial(); // swipe left
-        else if (this.movedBy > 50) this.prevTestimonial(); // swipe right
+        if (this.movedBy < -50) this.nextTestimonial();
+        else if (this.movedBy > 50) this.prevTestimonial();
       }
     }
 
     customElements.define('primal-queen-hero-{{ ai_gen_id }}', PrimalQueenHero{{ ai_gen_id }});
   })();
 </script>
+
 
 
 
