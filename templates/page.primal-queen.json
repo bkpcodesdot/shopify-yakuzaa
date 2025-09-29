@@ -720,12 +720,38 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
+    },
+    "tried_everything_HpChKa": {
+      "type": "tried-everything",
+      "blocks": {
+        "tried_everything_zxjxiJ": {
+          "type": "tried_everything",
+          "settings": {
+            "heading": "I Tried Everything From:",
+            "item_1": "Low Carb",
+            "item_2": "Paleo",
+            "item_3": "Plant Based",
+            "item_4": "Green Drinks",
+            "item_5": "Green Juice & Powders",
+            "item_6": "Probiotics",
+            "item_7": "Keto",
+            "item_8": "Zumba & More",
+            "main_image": "shopify://shop_images/s1_tried_img_1.webp"
+          }
+        }
+      },
+      "block_order": [
+        "tried_everything_zxjxiJ"
+      ],
+      "name": "Tried Everything Section",
+      "settings": {}
     }
   },
   "order": [
     "17588763879f34472d",
     "main",
     "blocks_xL3Lyb",
-    "primal_queen_section_fggrCK"
+    "primal_queen_section_fggrCK",
+    "tried_everything_HpChKa"
   ]
 }
