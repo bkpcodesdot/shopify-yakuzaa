@@ -1,9 +1,51 @@
-
-{% render 'tried-evrything-block',%}
+{% render 'tried-evrything-block' %}
 {% schema %}
 {
   "name": "Tried Everything Section",
-  "settings": [],
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading Font Size (px)",
+      "min": 12,
+      "max": 60,
+      "step": 1,
+      "default": 28
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Item Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "text_font_size",
+      "label": "Item Font Size (px)",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "point_color",
+      "label": "Bullet/Point Color",
+      "default": "#ff0000"
+    }
+  ],
   "blocks": [
     {
       "type": "tried_everything",
@@ -67,8 +109,18 @@
           "type": "image_picker",
           "id": "main_image",
           "label": "Main Image"
+        },
+        {
+          "type": "select",
+          "id": "image_alignment",
+          "label": "Image Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
         }
-        // You can continue adding other settings here...
       ]
     }
   ],
