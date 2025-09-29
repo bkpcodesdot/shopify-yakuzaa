@@ -1,6 +1,7 @@
 <div class="tried-everything-section" style="background-color: {{ section.settings.background_color | default: '#ffffff' }};">
   {% for block in section.blocks %}
-
+    {% if block.type == 'tried_everything' %}
+      <!-- Tried Everything Block -->
       <style>
         .tried-everything-{{ block.id }} {
           margin-top: {{ block.settings.margin_top }}px;
@@ -153,7 +154,8 @@
         </div>
       </div>
 
-
+    {% elsif block.type == 'content_block' %}
+      <!-- Content Block -->
       <style>
         .content-block-{{ block.id }} {
           margin-top: {{ block.settings.content_margin_top }}px;
@@ -177,7 +179,8 @@
         {{ block.settings.content }}
       </div>
 
-
+    {% elsif block.type == 'organ_supplement' %}
+      <!-- Organ Supplement Block -->
       <style>
         .organ-supplement-{{ block.id }} {
           margin-top: {{ block.settings.margin_top }}px;
@@ -309,5 +312,6 @@
         </a>
       {% endif %}
 
+    {% endif %}
   {% endfor %}
 </div>
