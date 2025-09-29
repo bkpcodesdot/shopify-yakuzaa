@@ -810,6 +810,8 @@
           "settings": {
             "image": "shopify://shop_images/s1_prblm_lady1_1.jpg",
             "problem_font_size": 40,
+            "problem_font_color": "#2f0147",
+            "text_font_size_one": 20,
             "heading_text": "Here's The Problem...",
             "paragraph_text_1": "Eating beef organs is not fun (and yes, I tried it myself)",
             "paragraph_text_2": "Plus, sourcing high-quality, grass-fed, and grass-finished organs is nearly impossible.",
