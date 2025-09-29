@@ -182,26 +182,24 @@
     {% elsif block.type == 'organ_supplement' %}
       <!-- Organ Supplement Block -->
       <style>
-        .organ-supplement-{{ block.id }} {
-          margin-top: {{ block.settings.margin_top }}px;
-          margin-bottom: {{ block.settings.margin_bottom }}px;
-          {% if block.settings.use_section_colors %}
-            background-color: {{ section.settings.background_color }};
-            border: 1px solid {{ section.settings.point_color }};
-          {% else %}
-            background-color: {{ block.settings.custom_background_color }};
-            border: {{ block.settings.custom_border_width }}px solid {{ block.settings.custom_border_color }};
-          {% endif %}
-          border-radius: 8px;
-          padding: 20px;
-          max-width: 1200px;
-          margin-left: auto;
-          margin-right: auto;
-          transition: all 0.3s ease;
-          {% if block.settings.enable_hover_effect %}
-            cursor: pointer;
-          {% endif %}
-        }
+      .organ-supplement-organ_supplement_Ap7hHX {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: rgb(255 243 247);
+    /* background-color: #ffffff; */
+    border: 30px solid #ed1f81;
+    border-radius: 8px;
+    border-image-source: url('https://cdn.shopify.com/s/files/1/0727/8169/3085/files/food_benefit_bg.webp?v=1759143766');
+    padding: 20px;
+    max-width: 1200px;
+    /* border: 4px solid black; */
+    border-image-slice: 30;
+    padding: 0 0 10px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
 
         {% if block.settings.enable_hover_effect %}
           .organ-supplement-{{ block.id }}:hover {
