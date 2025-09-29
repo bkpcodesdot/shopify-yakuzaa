@@ -188,7 +188,7 @@
     border-radius: {{ block.settings.testimonial_border_radius }}px;
     padding: 20px;
     background-color: {{ block.settings.testimonial_background_color }};
-    display: none;
+    {% comment %} display: none; {% endcomment %}
   }
 
   .ai-primal-queen-hero-testimonial-{{ ai_gen_id }}.active {
