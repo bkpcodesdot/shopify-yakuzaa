@@ -806,13 +806,16 @@
         this.testimonialCount = 0;
         this.autoSlideInterval = null;
 
-        // Drag
+        // For drag functionality
         this.isDragging = false;
         this.startX = 0;
-        this.movedBy = 0;
+        this.currentTranslate = 0;
+        this.prevTranslate = 0;
+        this.animationID = 0;
       }
 
       connectedCallback() {
+        this.slider = this.querySelector('.ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }}');
         this.testimonials = this.querySelectorAll('.ai-primal-queen-hero-testimonial-{{ ai_gen_id }}');
         this.dots = this.querySelectorAll('.ai-primal-queen-hero-dot-{{ ai_gen_id }}');
         this.testimonialCount = this.testimonials.length;
@@ -820,13 +823,13 @@
         if (this.testimonialCount > 1) {
           this.setupEventListeners();
           this.setupDrag();
-          this.showTestimonial(this.currentTestimonial); // initial
           this.startAutoSlide();
         }
       }
 
       disconnectedCallback() {
         if (this.autoSlideInterval) clearInterval(this.autoSlideInterval);
+        cancelAnimationFrame(this.animationID);
       }
 
       setupEventListeners() {
@@ -840,15 +843,7 @@
 
       showTestimonial(index) {
         this.testimonials.forEach((testimonial, i) => {
-          if (i === index - 1) {
-            testimonial.style.opacity = 1;
-            testimonial.style.zIndex = 2;
-            testimonial.style.pointerEvents = 'auto';
-          } else {
-            testimonial.style.opacity = 0;
-            testimonial.style.zIndex = 1;
-            testimonial.style.pointerEvents = 'none';
-          }
+          testimonial.classList.toggle('active', i === index - 1);
         });
 
         this.dots.forEach((dot, i) => {
@@ -856,16 +851,12 @@
         });
 
         this.currentTestimonial = index;
+        this.updateSliderPosition();
       }
 
       nextTestimonial() {
         const next = this.currentTestimonial >= this.testimonialCount ? 1 : this.currentTestimonial + 1;
         this.showTestimonial(next);
-      }
-
-      prevTestimonial() {
-        const prev = this.currentTestimonial <= 1 ? this.testimonialCount : this.currentTestimonial - 1;
-        this.showTestimonial(prev);
       }
 
       startAutoSlide() {
@@ -881,46 +872,62 @@
         }
       }
 
-      // ---------------- Drag ----------------
+      // ---------------- Drag Support ----------------
       setupDrag() {
-        const container = this.querySelector('.ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }}');
+        this.slider.addEventListener('mousedown', this.touchStart.bind(this));
+        this.slider.addEventListener('mouseup', this.touchEnd.bind(this));
+        this.slider.addEventListener('mouseleave', this.touchEnd.bind(this));
+        this.slider.addEventListener('mousemove', this.touchMove.bind(this));
 
-        container.addEventListener('mousedown', this.dragStart.bind(this));
-        container.addEventListener('mousemove', this.dragMove.bind(this));
-        container.addEventListener('mouseup', this.dragEnd.bind(this));
-        container.addEventListener('mouseleave', this.dragEnd.bind(this));
-
-        container.addEventListener('touchstart', this.dragStart.bind(this), { passive: true });
-        container.addEventListener('touchmove', this.dragMove.bind(this), { passive: true });
-        container.addEventListener('touchend', this.dragEnd.bind(this));
+        // For mobile
+        this.slider.addEventListener('touchstart', this.touchStart.bind(this), { passive: true });
+        this.slider.addEventListener('touchend', this.touchEnd.bind(this));
+        this.slider.addEventListener('touchmove', this.touchMove.bind(this), { passive: true });
       }
 
-      dragStart(event) {
+      touchStart(event) {
         this.isDragging = true;
         this.startX = event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
-        this.movedBy = 0;
+        cancelAnimationFrame(this.animationID);
         this.resetAutoSlide();
       }
 
-      dragMove(event) {
+      touchMove(event) {
         if (!this.isDragging) return;
         const currentX = event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
-        this.movedBy = currentX - this.startX;
+        const deltaX = currentX - this.startX;
+        this.currentTranslate = this.prevTranslate + deltaX;
+        this.slider.style.transform = `translateX(${this.currentTranslate}px)`;
       }
 
-      dragEnd() {
+      touchEnd() {
         if (!this.isDragging) return;
         this.isDragging = false;
+        const movedBy = this.currentTranslate - this.prevTranslate;
 
-        if (this.movedBy < -50) this.nextTestimonial();
-        else if (this.movedBy > 50) this.prevTestimonial();
+        if (movedBy < -50) this.nextTestimonial();
+        else if (movedBy > 50) {
+          const prev = this.currentTestimonial <= 1 ? this.testimonialCount : this.currentTestimonial - 1;
+          this.showTestimonial(prev);
+        } else {
+          this.showTestimonial(this.currentTestimonial); // snap back
+        }
+
+        this.prevTranslate = 0;
+        this.slider.style.transform = 'translateX(0)';
+      }
+
+      updateSliderPosition() {
+        // Optional: animate the slider to active testimonial
+        this.testimonials.forEach((testimonial, index) => {
+          testimonial.style.display = index === this.currentTestimonial - 1 ? 'block' : 'none';
+        });
       }
     }
 
     customElements.define('primal-queen-hero-{{ ai_gen_id }}', PrimalQueenHero{{ ai_gen_id }});
   })();
 </script>
-
 
 
 {% schema %}
