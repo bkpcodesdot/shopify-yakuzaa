@@ -1,4 +1,3 @@
-{% render 'tried-evrything-block' %}
 {% schema %}
 {
   "name": "Tried Everything Section",
@@ -369,6 +368,161 @@
           "default": 20
         }
       ]
+    },
+    {
+      "type": "organ_supplement",
+      "name": "Organ Supplement",
+      "settings": [
+        {
+          "type": "text",
+          "id": "organ_name",
+          "label": "Organ Name",
+          "default": "Beef Liver"
+        },
+        {
+          "type": "richtext",
+          "id": "organ_description",
+          "label": "Organ Description",
+          "default": "<p>Rich in essential vitamins and minerals...</p>"
+        },
+        {
+          "type": "text",
+          "id": "organ_benefits",
+          "label": "Key Benefits",
+          "default": "High in Vitamin A, B12, and Iron"
+        },
+        {
+          "type": "image_picker",
+          "id": "organ_icon",
+          "label": "Organ Icon"
+        },
+        {
+          "type": "checkbox",
+          "id": "use_section_colors",
+          "label": "Use Section Colors",
+          "default": true,
+          "info": "Use section-level colors instead of custom colors"
+        },
+        {
+          "type": "color",
+          "id": "custom_background_color",
+          "label": "Custom Background Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "custom_border_color",
+          "label": "Custom Border Color",
+          "default": "#8B0000"
+        },
+        {
+          "type": "color",
+          "id": "custom_title_color",
+          "label": "Custom Title Color",
+          "default": "#8B0000"
+        },
+        {
+          "type": "color",
+          "id": "custom_description_color",
+          "label": "Custom Description Color",
+          "default": "#333333"
+        },
+        {
+          "type": "color",
+          "id": "custom_benefits_color",
+          "label": "Custom Benefits Color",
+          "default": "#666666"
+        },
+        {
+          "type": "range",
+          "id": "organ_title_size",
+          "label": "Title Size (px)",
+          "min": 14,
+          "max": 28,
+          "step": 1,
+          "default": 18
+        },
+        {
+          "type": "range",
+          "id": "description_size",
+          "label": "Description Size (px)",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "default": 14
+        },
+        {
+          "type": "range",
+          "id": "benefits_text_size",
+          "label": "Benefits Text Size (px)",
+          "min": 10,
+          "max": 18,
+          "step": 1,
+          "default": 13
+        },
+        {
+          "type": "range",
+          "id": "organ_icon_size",
+          "label": "Organ Icon Size (px)",
+          "min": 24,
+          "max": 100,
+          "step": 2,
+          "default": 60
+        },
+        {
+          "type": "range",
+          "id": "custom_border_width",
+          "label": "Custom Border Width (px)",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "default": 2
+        },
+        {
+          "type": "checkbox",
+          "id": "show_benefits_divider",
+          "label": "Show Benefits Divider",
+          "default": true,
+          "info": "Display divider line below benefits text"
+        },
+        {
+          "type": "color",
+          "id": "custom_divider_color",
+          "label": "Custom Divider Color",
+          "default": "#8B0000"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Top Margin (px)",
+          "min": -50,
+          "max": 50,
+          "step": 1,
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Bottom Margin (px)",
+          "min": -50,
+          "max": 50,
+          "step": 1,
+          "default": 0
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_hover_effect",
+          "label": "Enable Hover Effect",
+          "default": true,
+          "info": "Add hover animation to organ card"
+        },
+        {
+          "type": "url",
+          "id": "organ_link",
+          "label": "Organ Product Link",
+          "info": "Link to product page for this organ"
+        }
+      ]
     }
   ],
   "presets": [
@@ -380,6 +534,9 @@
         },
         {
           "type": "content_block"
+        },
+        {
+          "type": "organ_supplement"
         }
       ]
     }
