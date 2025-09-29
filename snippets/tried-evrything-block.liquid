@@ -409,6 +409,36 @@
     {% endif %}
   {% endfor %}
 </div>
+
+  <style>
+  .problem-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.problem-content-wrapper {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.text-side {
+  flex: 1 1 50%;
+}
+
+.image-side {
+  flex: 1 1 40%;
+  max-width: 400px;
+}
+
+.image-side img {
+  width: 100%;
+  border-radius: 10px;
+  border: 3px solid purple;
+}
+</style>
 <!-- sections/problem-section.liquid -->
 <section class="problem-section">
   <div class="problem-content-wrapper">
