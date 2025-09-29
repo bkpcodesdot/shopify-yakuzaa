@@ -767,7 +767,7 @@
           "settings": {
             "content": "<p>And don’t get me wrong…<br/><br/>Some of those things are good and I still do them! <strong>But they weren’t the game changer I was looking for.</strong><br/><br/>I wanted to find what had the biggest impact while also being easy to do and not costing me a fortune. <br/><br/> I know I’m asking for a lot here, but I just knew it had to be out there.<br/><br/><strong>I went on a hunt (pun intended) to find what gives the MOST nutrition without:</strong><br/></p><ul><li>Nasty green drinks that over promise and under deliver</li><li>Taking a handful of pills</li><li>Spending half my day doing it</li></ul>",
             "content_color": "#000000",
-            "content_font_size": 16,
+            "content_font_size": 21,
             "content_alignment": "left",
             "content_margin_top": 20,
             "content_margin_bottom": 20
@@ -781,6 +781,11 @@
             "organ_benefits": "High in Vitamin A, B12, and Iron",
             "organ_icon": "shopify://shop_images/Screenshot_40.png",
             "organ_point": "",
+            "text_1": "13 vitamins",
+            "text_2": "9 essential minerals",
+            "text_3": "Natural omega 3 fatty acids",
+            "text_4": "Straight from the source rather than lab-made",
+            "text_5": "Original superfood from our ancestors",
             "use_section_colors": true,
             "custom_background_color": "#ffffff",
             "custom_border_color": "#8b0000",
@@ -799,28 +804,12 @@
             "enable_hover_effect": true,
             "organ_link": ""
           }
-        },
-        "block_NtLEmD": {
-          "type": "block",
-          "settings": {
-            "image_1": "shopify://shop_images/check_1.png",
-            "text_1": "13 vitamins",
-            "image_2": "shopify://shop_images/check_1.png",
-            "text_2": "9 essential minerals",
-            "image_3": "shopify://shop_images/check_1.png",
-            "text_3": "Natural omega 3 fatty acids",
-            "image_4": "shopify://shop_images/check_1.png",
-            "text_4": "Straight from the source rather than lab-made",
-            "image_5": "shopify://shop_images/check_1.png",
-            "text_5": "Original superfood from our ancestors"
-          }
         }
       },
       "block_order": [
         "tried_everything_zxjxiJ",
         "content_block_Ntg4qK",
-        "organ_supplement_Ap7hHX",
-        "block_NtLEmD"
+        "organ_supplement_Ap7hHX"
       ],
       "name": "Tried Everything Section",
       "settings": {
