@@ -829,11 +829,11 @@
   </div>
 </primal-queen-hero-{{ ai_gen_id }}>
 <script>
-  (function() {
+  (function () {
     class PrimalQueenHero{{ ai_gen_id }} extends HTMLElement {
       constructor() {
         super();
-        this.currentTestimonial = 0; // 0-based
+        this.currentTestimonial = 1; // Start at 1 because 0 is the cloned last
         this.testimonials = [];
         this.dots = [];
         this.autoSlideInterval = null;
@@ -845,12 +845,37 @@
       }
 
       connectedCallback() {
-        this.testimonials = Array.from(this.querySelectorAll('.ai-primal-queen-hero-testimonial-{{ ai_gen_id }}'));
+        const slider = this.querySelector('.ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }}');
+        this.originalTestimonials = Array.from(this.querySelectorAll('.ai-primal-queen-hero-testimonial-{{ ai_gen_id }}'));
         this.dots = Array.from(this.querySelectorAll('.ai-primal-queen-hero-dot-{{ ai_gen_id }}'));
-        this.testimonialCount = this.testimonials.length;
+        this.testimonialCount = this.originalTestimonials.length;
+
+        // Create wrapper
+        let wrapper = slider.querySelector('.ai-primal-queen-hero-testimonial-wrapper-{{ ai_gen_id }}');
+        if (!wrapper) {
+          wrapper = document.createElement('div');
+          wrapper.className = 'ai-primal-queen-hero-testimonial-wrapper-{{ ai_gen_id }}';
+          slider.appendChild(wrapper);
+        }
+        this.wrapper = wrapper;
+
+        // Clone slides for infinite effect
+        const firstClone = this.originalTestimonials[0].cloneNode(true);
+        const lastClone = this.originalTestimonials[this.testimonialCount - 1].cloneNode(true);
+
+        wrapper.appendChild(firstClone);
+        this.originalTestimonials.forEach(t => wrapper.appendChild(t));
+        wrapper.insertBefore(lastClone, wrapper.firstChild);
+
+        // Now set full testimonial list including clones
+        this.testimonials = Array.from(wrapper.children);
+
+        // Initial position (first actual testimonial)
+        this.setWrapperTransition(false);
+        this.setTranslateX(this.currentTestimonial);
+        this.updateSliderHeight();
 
         if (this.testimonialCount > 1) {
-          this.showTestimonial(this.currentTestimonial, true); // initial
           this.setupEventListeners();
           this.setupDrag();
           this.startAutoSlide();
@@ -861,35 +886,65 @@
         if (this.autoSlideInterval) clearInterval(this.autoSlideInterval);
       }
 
-      showTestimonial(index, initial = false) {
-        this.testimonials.forEach((t, i) => {
-          if (i === index) {
-            t.classList.add('active');
-            t.classList.remove('inactive');
-          } else {
-            t.classList.remove('active');
-            t.classList.add('inactive');
-          }
-        });
+      setWrapperTransition(enable) {
+        this.wrapper.style.transition = enable ? 'transform 0.5s ease-in-out' : 'none';
+      }
 
-        this.dots.forEach((d, i) => d.classList.toggle('active', i === index));
+      setTranslateX(index) {
+        const offset = -index * 100;
+        this.wrapper.style.transform = `translateX(${offset}%)`;
+      }
+
+      showTestimonial(index) {
+        this.setWrapperTransition(true);
+        this.setTranslateX(index);
         this.currentTestimonial = index;
+        this.updateDots();
+        this.updateSliderHeight();
+      }
 
-        if (initial) {
-          // Ensure first slide is visible immediately without fade delay
-          const active = this.testimonials[index];
-          active.style.opacity = '1';
+      updateDots() {
+        const realIndex = (this.currentTestimonial - 1 + this.testimonialCount) % this.testimonialCount;
+        this.dots.forEach((d, i) => d.classList.toggle('active', i === realIndex));
+      }
+
+      updateSliderHeight() {
+        const activeSlide = this.testimonials[this.currentTestimonial];
+        const sliderContainer = this.querySelector('.ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }}');
+        if (activeSlide && sliderContainer) {
+          const newHeight = activeSlide.offsetHeight;
+          sliderContainer.style.height = newHeight + 'px';
         }
       }
 
       nextTestimonial() {
-        const next = (this.currentTestimonial + 1) % this.testimonialCount;
-        this.showTestimonial(next);
+        if (this.currentTestimonial >= this.testimonialCount) {
+          this.showTestimonial(this.currentTestimonial + 1);
+          setTimeout(() => {
+            this.setWrapperTransition(false);
+            this.currentTestimonial = 1;
+            this.setTranslateX(this.currentTestimonial);
+            this.updateDots();
+            this.updateSliderHeight();
+          }, 510);
+        } else {
+          this.showTestimonial(this.currentTestimonial + 1);
+        }
       }
 
       prevTestimonial() {
-        const prev = (this.currentTestimonial - 1 + this.testimonialCount) % this.testimonialCount;
-        this.showTestimonial(prev);
+        if (this.currentTestimonial <= 0) {
+          this.showTestimonial(this.currentTestimonial - 1);
+          setTimeout(() => {
+            this.setWrapperTransition(false);
+            this.currentTestimonial = this.testimonialCount;
+            this.setTranslateX(this.currentTestimonial);
+            this.updateDots();
+            this.updateSliderHeight();
+          }, 510);
+        } else {
+          this.showTestimonial(this.currentTestimonial - 1);
+        }
       }
 
       startAutoSlide() {
@@ -908,7 +963,7 @@
       setupEventListeners() {
         this.dots.forEach((dot, i) => {
           dot.addEventListener('click', () => {
-            this.showTestimonial(i);
+            this.showTestimonial(i + 1); // Because 0 is the cloned last slide
             this.resetAutoSlide();
           });
         });
@@ -931,6 +986,7 @@
         this.isDragging = true;
         this.startX = event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
         this.movedBy = 0;
+        this.setWrapperTransition(false);
         this.resetAutoSlide();
       }
 
@@ -938,14 +994,24 @@
         if (!this.isDragging) return;
         const currentX = event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
         this.movedBy = currentX - this.startX;
+
+        const percentage = (this.movedBy / this.offsetWidth) * 100;
+        const offset = -this.currentTestimonial * 100 + percentage;
+        this.wrapper.style.transform = `translateX(${offset}%)`;
       }
 
       dragEnd() {
         if (!this.isDragging) return;
         this.isDragging = false;
+        this.setWrapperTransition(true);
 
-        if (this.movedBy < -50) this.nextTestimonial();
-        else if (this.movedBy > 50) this.prevTestimonial();
+        if (this.movedBy < -50) {
+          this.nextTestimonial();
+        } else if (this.movedBy > 50) {
+          this.prevTestimonial();
+        } else {
+          this.showTestimonial(this.currentTestimonial); // snap back
+        }
       }
     }
 
