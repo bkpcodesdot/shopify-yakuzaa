@@ -568,8 +568,10 @@
     }
 
     .ai-primal-queen-hero-oval-container-{{ ai_gen_id }} {
-      width: {{ block.settings.oval_width | times: 0.6 }}px;
-      height: {{ block.settings.oval_height | times: 0.6 }}px;
+      {% comment %} width: {{ block.settings.oval_width | times: 0.6 }}px;
+      height: {{ block.settings.oval_height | times: 0.6 }}px; {% endcomment %}
+      width: 325px;
+      height: 518px;
     }
 
     .ai-primal-queen-hero-{{ ai_gen_id }}::after {
