@@ -622,10 +622,51 @@
             "testimonial_5_rating": 5
           },
           "blocks": {}
+        },
+        "ai_about_block_edURAB": {
+          "type": "ai-about-block",
+          "name": "About the founder block",
+          "settings": {
+            "section_padding_top": 60,
+            "section_padding_bottom": 60,
+            "column_gap": 40,
+            "background_color": "#ffffff",
+            "main_image": "shopify://shop_images/founder_img.webp",
+            "image_border_radius": 12,
+            "person_name": "John Doe",
+            "person_designation": "Creative Director",
+            "overlay_background_color": "rgba(0,0,0,0.8)",
+            "overlay_text_color": "#ffffff",
+            "bottom_image_height": 80,
+            "heading": "Our Creative Process",
+            "heading_size": 36,
+            "heading_color": "#000000",
+            "description": "<p>We believe in creating meaningful designs that connect with your audience and drive results. Our team combines creativity with strategic thinking to deliver exceptional outcomes.</p>",
+            "text_size": 16,
+            "text_color": "#666666",
+            "content_padding": 20,
+            "feature_1_icon": "shopify://shop_images/founder_point_cross_19x19_3e00945d-bc26-46f7-b5b4-73f473198fcb.png",
+            "feature_1_text": "Creative Design",
+            "feature_2_icon": "shopify://shop_images/founder_point_cross_19x19_3e00945d-bc26-46f7-b5b4-73f473198fcb.png",
+            "feature_2_text": "Strategic Planning",
+            "feature_3_icon": "shopify://shop_images/founder_point_cross_19x19_3e00945d-bc26-46f7-b5b4-73f473198fcb.png",
+            "feature_3_text": "Brand Development",
+            "feature_4_icon": "shopify://shop_images/founder_point_cross_19x19_3e00945d-bc26-46f7-b5b4-73f473198fcb.png",
+            "feature_4_text": "Digital Marketing",
+            "icon_size": 32,
+            "icon_placeholder_color": "#f0f0f0",
+            "feature_text_size": 16,
+            "feature_text_color": "#000000",
+            "bottom_text": "Ready to transform your brand?",
+            "bottom_text_size": 18,
+            "bottom_text_color": "#000000"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "ai_gen_block_b33e825_JNjnLH"
+        "ai_gen_block_b33e825_JNjnLH",
+        "ai_about_block_edURAB"
       ],
       "name": "Primal-Queen-page",
       "settings": {
