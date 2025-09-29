@@ -104,7 +104,9 @@
     }
   }
 </style>
-
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'tried_everything' %}
 <div class="tried-everything-{{ block.id }}" {{ block.shopify_attributes }}>
   <div class="container">
     <div class="content-wrapper">
@@ -192,3 +194,5 @@
     </div>
   </div>
 </div>
+  {% endcase %}
+{% endfor %}
