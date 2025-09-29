@@ -1,38 +1,37 @@
 <div class="tried-everything-section" style="background-color: {{ section.settings.background_color | default: '#ffffff' }};">
   {% for block in section.blocks %}
     {% if block.type == 'tried_everything' %}
-      <!-- Tried Everything Block Code (same as before) -->
       <style>
         .tried-everything-{{ block.id }} {
-          margin-top: {{ block.settings.margin_top | default: 0 }}px;
-          margin-bottom: {{ block.settings.margin_bottom | default: 0 }}px;
+          margin-top: {{ block.settings.margin_top }}px;
+          margin-bottom: {{ block.settings.margin_bottom }}px;
         }
 
         .tried-everything-{{ block.id }} .container {
-          max-width: {{ block.settings.container_width | default: 1200 }}px;
+          max-width: {{ block.settings.container_width }}px;
           margin: 0 auto;
-          padding: {{ block.settings.section_padding | default: 40 }}px 20px;
+          padding: {{ block.settings.section_padding }}px 20px;
         }
 
         .tried-everything-{{ block.id }} .content-wrapper {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: {{ block.settings.content_gap | default: 40 }}px;
+          gap: {{ block.settings.content_gap }}px;
           align-items: center;
         }
 
         .tried-everything-{{ block.id }} .text-content h2 {
-          font-size: {{ section.settings.heading_font_size | default: 32 }}px;
-          color: {{ section.settings.heading_color | default: '#000000' }};
-          margin-bottom: {{ block.settings.heading_margin_bottom | default: 30 }}px;
+          font-size: {{ section.settings.heading_font_size }}px;
+          color: {{ section.settings.heading_color }};
+          margin-bottom: {{ block.settings.heading_margin_bottom }}px;
           line-height: 1.2;
-          font-weight: {{ block.settings.heading_weight | default: 700 }};
+          font-weight: {{ block.settings.heading_weight }};
         }
 
         .tried-everything-{{ block.id }} .items-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: {{ block.settings.items_gap | default: 16 }}px;
+          gap: {{ block.settings.items_gap }}px;
         }
 
         .tried-everything-{{ block.id }} .item {
@@ -42,17 +41,17 @@
         }
 
         .tried-everything-{{ block.id }} .bullet {
-          width: {{ block.settings.bullet_size | default: 8 }}px;
-          height: {{ block.settings.bullet_size | default: 8 }}px;
-          background-color: {{ section.settings.point_color | default: '#ff1493' }};
+          width: {{ block.settings.bullet_size }}px;
+          height: {{ block.settings.bullet_size }}px;
+          background-color: {{ section.settings.point_color }};
           border-radius: 50%;
           flex-shrink: 0;
         }
 
         .tried-everything-{{ block.id }} .item-text {
-          font-size: {{ section.settings.text_font_size | default: 16 }}px;
-          color: {{ section.settings.text_color | default: '#333333' }};
-          font-weight: {{ block.settings.item_text_weight | default: 400 }};
+          font-size: {{ section.settings.text_font_size }}px;
+          color: {{ section.settings.text_color }};
+          font-weight: {{ block.settings.item_text_weight }};
           line-height: 1.4;
         }
 
@@ -64,13 +63,13 @@
           width: 100%;
           height: auto;
           display: block;
-          border-radius: {{ block.settings.image_border_radius | default: 0 }}px;
+          border-radius: {{ block.settings.image_border_radius }}px;
         }
 
         .tried-everything-{{ block.id }} .x-mark {
           position: absolute;
-          width: {{ block.settings.x_mark_size | default: 40 }}px;
-          height: {{ block.settings.x_mark_size | default: 40 }}px;
+          width: {{ block.settings.x_mark_size }}px;
+          height: {{ block.settings.x_mark_size }}px;
         }
 
         .tried-everything-{{ block.id }} .x-mark::before,
@@ -78,8 +77,8 @@
           content: '';
           position: absolute;
           width: 100%;
-          height: {{ block.settings.x_mark_thickness | default: 4 }}px;
-          background-color: {{ block.settings.x_mark_color | default: '#ff1493' }};
+          height: {{ block.settings.x_mark_thickness }}px;
+          background-color: {{ block.settings.x_mark_color }};
           top: 50%;
           left: 0;
         }
@@ -99,7 +98,7 @@
           }
 
           .tried-everything-{{ block.id }} .text-content h2 {
-            font-size: {{ section.settings.heading_font_size | default: 32 | minus: 8 }}px;
+            font-size: {{ section.settings.heading_font_size | minus: 8 }}px;
           }
 
           .tried-everything-{{ block.id }} .items-grid {
@@ -140,10 +139,10 @@
                 >
                 
                 {% if block.settings.show_x_marks %}
-                  <span class="x-mark" style="top: {{ block.settings.x_mark_1_top | default: 10 }}%; left: {{ block.settings.x_mark_1_left | default: 10 }}%;"></span>
-                  <span class="x-mark" style="top: {{ block.settings.x_mark_2_top | default: 5 }}%; right: {{ block.settings.x_mark_2_right | default: 5 }}%;"></span>
-                  <span class="x-mark" style="top: {{ block.settings.x_mark_3_top | default: 50 }}%; left: {{ block.settings.x_mark_3_left | default: 15 }}%;"></span>
-                  <span class="x-mark" style="bottom: {{ block.settings.x_mark_4_bottom | default: 10 }}%; right: {{ block.settings.x_mark_4_right | default: 10 }}%;"></span>
+                  <span class="x-mark" style="top: {{ block.settings.x_mark_1_top }}%; left: {{ block.settings.x_mark_1_left }}%;"></span>
+                  <span class="x-mark" style="top: {{ block.settings.x_mark_2_top }}%; right: {{ block.settings.x_mark_2_right }}%;"></span>
+                  <span class="x-mark" style="top: {{ block.settings.x_mark_3_top }}%; left: {{ block.settings.x_mark_3_left }}%;"></span>
+                  <span class="x-mark" style="bottom: {{ block.settings.x_mark_4_bottom }}%; right: {{ block.settings.x_mark_4_right }}%;"></span>
                 {% endif %}
               {% else %}
                 <div style="background: #f0f0f0; padding: 60px 20px; text-align: center; border-radius: 8px;">
@@ -156,7 +155,6 @@
       </div>
 
     {% elsif block.type == 'content_block' %}
-      <!-- Content Block Code (same as before) -->
       <style>
         .content-block-{{ block.id }} {
           margin-top: {{ block.settings.content_margin_top }}px;
@@ -169,6 +167,11 @@
           margin-right: auto;
           padding: 0 20px;
         }
+        
+        .content-block-{{ block.id }} p {
+          margin: 0;
+          line-height: 1.6;
+        }
       </style>
 
       <div class="content-block-{{ block.id }}" {{ block.shopify_attributes }}>
@@ -176,7 +179,6 @@
       </div>
 
     {% elsif block.type == 'organ_supplement' %}
-      <!-- Organ Supplement Block Code -->
       <style>
         .organ-supplement-{{ block.id }} {
           margin-top: {{ block.settings.margin_top }}px;
@@ -270,10 +272,15 @@
             width: 50px;
           }
         {% endif %}
+        
+        .organ-supplement-{{ block.id }} p {
+          margin: 0;
+          line-height: 1.6;
+        }
       </style>
 
       {% if block.settings.organ_link != blank %}
-        <a href="{{ block.settings.organ_link }}" class="organ-link" style="text-decoration: none; color: inherit;">
+        <a href="{{ block.settings.organ_link }}" class="organ-link" style="text-decoration: none; color: inherit; display: block;">
       {% endif %}
 
       <div class="organ-supplement-{{ block.id }}" {{ block.shopify_attributes }}>
