@@ -153,6 +153,25 @@
           </div>
         </div>
       </div>
+
+    {% elsif block.type == 'content_block' %}
+      <style>
+        .content-block-{{ block.id }} {
+          margin-top: {{ block.settings.content_margin_top }}px;
+          margin-bottom: {{ block.settings.content_margin_bottom }}px;
+          color: {{ block.settings.content_color }};
+          font-size: {{ block.settings.content_font_size }}px;
+          text-align: {{ block.settings.content_alignment }};
+          max-width: 1200px;
+          margin-left: auto;
+          margin-right: auto;
+          padding: 0 20px;
+        }
+      </style>
+
+      <div class="content-block-{{ block.id }}" {{ block.shopify_attributes }}>
+        {{ block.settings.content }}
+      </div>
     {% endif %}
   {% endfor %}
 </div>
