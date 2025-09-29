@@ -674,7 +674,6 @@
     {
       "type": "problem_section",
       "name": "Problem Section",
-      "limit": 1,
       "settings": [
         {
           "type": "image_picker",
@@ -684,6 +683,30 @@
         {
           "type": "header",
           "content": "Content Blocks"
+        },
+        {
+          "type": "range",
+          "id": "problem_font_size",
+          "label": "Font Size (px)",
+          "min": 12,
+          "max": 40,
+          "step": 1,
+          "default": 16
+        },
+         {
+          "type": "color",
+          "id": "problem_font_color",
+          "label": "Font color",
+          "default": "#2F0147"
+        },
+         {
+          "type": "range",
+          "id": "text_font_size_one",
+          "label": "Font Size (px)",
+          "min": 12,
+          "max": 30,
+          "step": 1,
+          "default":20
         },
         {
           "type": "text",
@@ -716,143 +739,6 @@
           "default": " (which is now an army of thousands of Queens that have taken back their health)."
         }
       ]
-    },
-    {
-      "type": "single_capsule",
-      "name": "Single Capsule Block",
-      "settings": [
-        {
-          "type": "header",
-          "content": "Main Content"
-        },
-        {
-          "type": "text",
-          "id": "main_heading_line1",
-          "label": "Main Heading Line 1",
-          "default": "One Single Capsule with Every Meal"
-        },
-        {
-          "type": "text",
-          "id": "main_heading_line2",
-          "label": "Main Heading Line 2",
-          "default": "That Provides The Exact Beef Organ"
-        }, {
-          "type": "image_picker",
-          "id": "image_capsul",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "main_heading_line3",
-          "label": "Main Heading Line 3",
-          "default": "Superfoods You Need."
-        },
-        {
-          "type": "text",
-          "id": "subheading",
-          "label": "Subheading",
-          "default": "100% formulated by women, for women (sorry guys!)"
-        },
-        {
-          "type": "text",
-          "id": "question_text",
-          "label": "Question Text",
-          "default": "What are the beef organ superfoods in Primal Queen?"
-        },
-        {
-          "type": "text",
-          "id": "answer_text",
-          "label": "Answer Text",
-          "default": "Glad you asked!"
-        },
-        {
-          "type": "header",
-          "content": "Styling"
-        },
-        {
-          "type": "color",
-          "id": "background_color",
-          "label": "Background Color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "color",
-          "id": "text_color",
-          "label": "Text Color",
-          "default": "#000000"
-        },
-        {
-          "type": "color",
-          "id": "accent_color",
-          "label": "Accent Color",
-          "default": "#8B0000"
-        },
-        {
-          "type": "range",
-          "id": "main_heading_size",
-          "label": "Main Heading Size (px)",
-          "min": 20,
-          "max": 60,
-          "step": 1,
-          "default": 32
-        },
-        {
-          "type": "range",
-          "id": "subheading_size",
-          "label": "Subheading Size (px)",
-          "min": 14,
-          "max": 30,
-          "step": 1,
-          "default": 18
-        },
-        {
-          "type": "range",
-          "id": "question_size",
-          "label": "Question Size (px)",
-          "min": 16,
-          "max": 40,
-          "step": 1,
-          "default": 24
-        },
-        {
-          "type": "range",
-          "id": "margin_top",
-          "label": "Margin Top (px)",
-          "min": 0,
-          "max": 100,
-          "step": 5,
-          "default": 40
-        },
-        {
-          "type": "range",
-          "id": "margin_bottom",
-          "label": "Margin Bottom (px)",
-          "min": 0,
-          "max": 100,
-          "step": 5,
-          "default": 40
-        },
-        {
-          "type": "range",
-          "id": "padding",
-          "label": "Padding (px)",
-          "min": 20,
-          "max": 100,
-          "step": 5,
-          "default": 40
-        },
-        {
-          "type": "select",
-          "id": "text_alignment",
-          "label": "Text Alignment",
-          "options": [
-            { "value": "left", "label": "Left" },
-            { "value": "center", "label": "Center" },
-            { "value": "right", "label": "Right" }
-          ],
-          "default": "center"
-        }
-      ]
     }
   ],
   "presets": [
@@ -870,9 +756,6 @@
         },
         {
           "type": "problem_section"
-        },
-        {
-          "type": "single_capsule"
         }
       ]
     }
