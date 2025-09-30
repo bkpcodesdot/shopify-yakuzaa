@@ -593,23 +593,16 @@ gap:40px;
         <div class="capsule-container">
           <div class="capsule-content">
           <div class="main-heading">
-  {% if block.settings.main_heading_line1 != blank 
-     or block.settings.main_heading_line2 != blank 
-     or block.settings.main_heading_line3 != blank %}
-    <h4>
-      {% if block.settings.main_heading_line1 != blank %}
-        {{ block.settings.main_heading_line1 }}
-      {% endif %}
-      {% if block.settings.main_heading_line2 != blank %}
-        <strong>{{ block.settings.main_heading_line2 }}</strong>
-      {% endif %}
-      {% if block.settings.main_heading_line3 != blank %}
-        {{ block.settings.main_heading_line3 }}
-      {% endif %}
-    </h4>
-  {% endif %}
-</div>
-
+            {% if block.settings.main_heading_line1 != blank %}
+              <div>{{ block.settings.main_heading_line1 }}</div>
+            {% endif %}
+            {% if block.settings.main_heading_line2 != blank %}
+              <div>{{ block.settings.main_heading_line2 }}</div>
+            {% endif %}
+            {% if block.settings.main_heading_line3 != blank %}
+              <div>{{ block.settings.main_heading_line3 }}</div>
+            {% endif %}
+          </div>
           
           {% if block.settings.subheading != blank %}
             <div class="subheading">{{ block.settings.subheading }}</div>
