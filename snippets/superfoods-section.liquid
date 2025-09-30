@@ -7,17 +7,21 @@
       {% endif %}
       
       <div class="promise-items">
-        {% for i in (1..6) %}
-          {% assign icon_image = block.settings['icon_' | append: i] %}
-          {% assign icon_text  = block.settings['icon_text_' | append: i] %}
-          
-          {% if icon_image != blank and icon_text != blank %}
-            <div class="promise-item">
-              <img src="{{ icon_image | img_url: '100x100' }}" alt="{{ icon_text }}">
-              <span class="item-text">{{ icon_text }}</span>
-            </div>
-          {% endif %}
-        {% endfor %}
+       {% for i in (1..6) %}
+  {% assign icon_key = 'icon_' | append: i %}
+  {% assign icon_text_key = 'icon_text_' | append: i %}
+
+  {% assign icon_image = block.settings[icon_key] %}
+  {% assign icon_text  = block.settings[icon_text_key] %}
+
+  {% if icon_image != blank and icon_text != blank %}
+    <div class="promise-item">
+      <img src="{{ icon_image | img_url: '100x100' }}" alt="{{ icon_text }}">
+      <span class="item-text">{{ icon_text }}</span>
+    </div>
+  {% endif %}
+{% endfor %}
+
       </div>
       
     </div>
