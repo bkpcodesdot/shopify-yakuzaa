@@ -660,6 +660,17 @@ flex: 1 1 30%;
       </div>
 
 </div>
+
+{% comment %}-------superfood-card-section------- {% endcomment %}
+
+<div class="superfoods-section-{{ block.id }}" {{ block.shopify_attributes }}>
+<div class="superfood-heading">
+  {% if block.settings.food_heading != blank %}
+  {{ block.settings.food_heading }}
+  {% endif %}
+</div>
+
+</div>
     {% endif %}
   {% endfor %}
 </div>
