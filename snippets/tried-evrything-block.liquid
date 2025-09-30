@@ -954,13 +954,12 @@
 
   .ai-primal-queen-hero-oval-container-{{ ai_gen_id }} {
     position: relative;
-    width: {{ block.settings.oval_width }}px;
+
    
     {% comment %} height: 666px; {% endcomment %}
     {% comment %} border: {{ block.settings.oval_border_width }}px solid {{ block.settings.oval_border_color }}; {% endcomment %}
     border-radius: 259px;
     overflow: hidden;
-    background-color: {{ block.settings.oval_background_color }};
   }
 
   .ai-primal-queen-hero-splatter-{{ ai_gen_id }} {
@@ -1268,11 +1267,6 @@
         {% endif %}
         {% if block.settings.logo_text != blank %}
           <span class="ai-primal-queen-hero-logo-text-{{ ai_gen_id }}">{{ block.settings.logo_text }}</span>
-        {% endif %}
-        {% if block.settings.show_crown_logo %}
-          <svg class="ai-primal-queen-hero-crown-{{ ai_gen_id }}" viewBox="0 0 24 24">
-            <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm2.7-2h8.6l.9-5.4-2.1 1.7L12 8l-3.1 2.3-2.1-1.7L7.7 14z"/>
-          </svg>
         {% endif %}
       </div>
       
