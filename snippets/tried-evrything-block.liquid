@@ -362,9 +362,7 @@
           flex: 1 1 50%;
           min-width: 300px;
         }
-.image-side-problem_section_RhdHXF {
-    flex: 1 1 30%;
-}
+
         .text-side-{{ block.id }} h2 {
           font-size: {{ block.settings.problem_font_size }}px;
           color: {{ block.settings.problem_font_color }};
@@ -1455,7 +1453,529 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 {% endif %}
+{% elsif block.type == 'hero_testimonial' %}
+      <!-- Hero Testimonial Block -->
+      <style>
+        .hero-testimonial-{{ block.id }} {
+          background-color: {{ block.settings.background_color }};
+          padding: {{ block.settings.section_padding_top }}px 20px {{ block.settings.section_padding_bottom }}px;
+          position: relative;
+          overflow: hidden;
+        }
+        .hero-container-{{ block.id }} {
+          max-width: 1170px;
+          margin: 0 auto;
+          display: flex;
+          align-items: center;
+          gap: 60px;
+          flex-wrap: wrap;
+        }
+        .hero-left-{{ block.id }} {
+          flex: 1 1 50%;
+          min-width: 300px;
+        }
+        .hero-logo-{{ block.id }} {
+          margin-bottom: 30px;
+        }
+        .hero-logo-{{ block.id }} img {
+          max-width: {{ block.settings.logo_width }}px;
+          height: auto;
+        }
+        .hero-attention-box-{{ block.id }} {
+          background: {{ block.settings.attention_box_bg }};
+          border: 2px solid {{ block.settings.attention_box_border }};
+          border-radius: {{ block.settings.attention_box_radius }}px;
+          padding: 15px 20px;
+          margin-bottom: 25px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+        .hero-attention-box-{{ block.id }} .warning-icon {
+          font-size: 24px;
+          flex-shrink: 0;
+        }
+        .hero-attention-box-{{ block.id }} p {
+          margin: 0;
+          font-size: {{ block.settings.attention_text_size }}px;
+          color: {{ block.settings.attention_text_color }};
+          font-weight: 600;
+          line-height: 1.4;
+        }
+        .hero-heading-{{ block.id }} {
+          font-size: {{ block.settings.heading_font_size }}px;
+          color: {{ block.settings.heading_color }};
+          font-weight: 700;
+          line-height: 1.2;
+          margin-bottom: 20px;
+        }
+        .hero-heading-{{ block.id }} .pink-text {
+          color: {{ block.settings.heading_pink_color }};
+        }
+        .hero-heading-{{ block.id }} .dark-text {
+          color: {{ block.settings.heading_dark_color }};
+        }
+        .hero-cta-button-{{ block.id }} {
+          background: {{ block.settings.button_bg_color }};
+          color: {{ block.settings.button_text_color }};
+          font-size: {{ block.settings.button_font_size }}px;
+          font-weight: 700;
+          padding: 18px 40px;
+          border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
+          border-radius: {{ block.settings.button_border_radius }}px;
+          cursor: pointer;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          transition: all 0.3s ease;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin-bottom: 15px;
+        }
+        .hero-cta-button-{{ block.id }}:hover {
+          background: {{ block.settings.button_hover_bg }};
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .hero-guarantees-{{ block.id }} {
+          display: flex;
+          gap: 20px;
+          flex-wrap: wrap;
+          margin-top: 15px;
+        }
+        .guarantee-item-{{ block.id }} {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: {{ block.settings.guarantee_text_size }}px;
+          color: {{ block.settings.guarantee_text_color }};
+          font-weight: 500;
+        }
+        .guarantee-item-{{ block.id }} .check-icon {
+          color: {{ block.settings.guarantee_icon_color }};
+          font-size: 18px;
+        }
+        .testimonial-slider-wrapper-{{ block.id }} {
+          margin-top: 25px;
+          position: relative;
+        }
+        .testimonial-slider-{{ block.id }} {
+          overflow: hidden;
+          position: relative;
+        }
+        .testimonial-track-{{ block.id }} {
+          display: flex;
+          transition: transform 0.5s ease;
+        }
+        .hero-testimonial-card-{{ block.id }} {
+          background: {{ block.settings.testimonial_bg }};
+          border: 2px solid {{ block.settings.testimonial_border }};
+          border-radius: {{ block.settings.testimonial_radius }}px;
+          padding: 20px;
+          display: flex;
+          gap: 15px;
+          align-items: flex-start;
+          min-width: 100%;
+          flex-shrink: 0;
+        }
+        .testimonial-avatar-{{ block.id }} {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          overflow: hidden;
+          flex-shrink: 0;
+        }
+        .testimonial-avatar-{{ block.id }} img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .testimonial-content-{{ block.id }} {
+          flex: 1;
+        }
+        .testimonial-content-{{ block.id }} p {
+          font-size: {{ block.settings.testimonial_text_size }}px;
+          color: {{ block.settings.testimonial_text_color }};
+          font-style: italic;
+          line-height: 1.5;
+          margin: 0 0 10px 0;
+        }
+        .testimonial-footer-{{ block.id }} {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+        .testimonial-author-{{ block.id }} {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+        .testimonial-author-{{ block.id }} .name {
+          font-size: {{ block.settings.testimonial_name_size }}px;
+          color: {{ block.settings.testimonial_name_color }};
+          font-weight: 600;
+        }
+        .testimonial-author-{{ block.id }} .verified {
+          width: 18px;
+          height: 18px;
+        }
+        .testimonial-stars-{{ block.id }} {
+          color: {{ block.settings.star_color }};
+          font-size: 20px;
+          letter-spacing: 2px;
+        }
+        .testimonial-dots-{{ block.id }} {
+          display: flex;
+          gap: 8px;
+          justify-content: center;
+          margin-top: 15px;
+        }
+        .testimonial-dots-{{ block.id }} .dot {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: {{ block.settings.dot_inactive_color }};
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+        .testimonial-dots-{{ block.id }} .dot.active {
+          background: {{ block.settings.dot_active_color }};
+          width: 12px;
+          height: 12px;
+        }
+        .hero-right-{{ block.id }} {
+          flex: 1 1 40%;
+          min-width: 300px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .hero-video-frame-{{ block.id }} {
+          position: relative;
+          width: 100%;
+          max-width: 400px;
+        }
+        .hero-video-container-{{ block.id }} {
+          border: {{ block.settings.video_border_width }}px solid {{ block.settings.video_border_color }};
+          border-radius: 50%;
+          overflow: hidden;
+          aspect-ratio: 1;
+          position: relative;
+        }
+        .hero-video-container-{{ block.id }} video,
+        .hero-video-container-{{ block.id }} iframe {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .hero-video-label-{{ block.id }} {
+          position: absolute;
+          bottom: 30px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: {{ block.settings.label_bg_color }};
+          color: {{ block.settings.label_text_color }};
+          padding: 12px 30px;
+          border-radius: 30px;
+          font-size: {{ block.settings.label_font_size }}px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          white-space: nowrap;
+        }
+        @media (max-width: 1024px) {
+          .hero-container-{{ block.id }} {
+            gap: 40px;
+          }
+          .hero-heading-{{ block.id }} {
+            font-size: calc({{ block.settings.heading_font_size }}px * 0.85);
+          }
+        }
+        @media (max-width: 768px) {
+          .hero-container-{{ block.id }} {
+            flex-direction: column;
+            gap: 30px;
+          }
+          .hero-heading-{{ block.id }} {
+            font-size: calc({{ block.settings.heading_font_size }}px * 0.7);
+          }
+          .hero-cta-button-{{ block.id }} {
+            width: 100%;
+            justify-content: center;
+            padding: 16px 30px;
+            font-size: calc({{ block.settings.button_font_size }}px * 0.9);
+          }
+          .hero-guarantees-{{ block.id }} {
+            flex-direction: column;
+            gap: 10px;
+          }
+          .hero-video-frame-{{ block.id }} {
+            max-width: 320px;
+          }
+          .hero-video-label-{{ block.id }} {
+            font-size: calc({{ block.settings.label_font_size }}px * 0.85);
+            padding: 10px 20px;
+            bottom: 20px;
+          }
+          .hero-attention-box-{{ block.id }} p {
+            font-size: calc({{ block.settings.attention_text_size }}px * 0.9);
+          }
+        }
+        @media (max-width: 480px) {
+          .hero-testimonial-{{ block.id }} {
+            padding: 30px 15px;
+          }
+          .hero-video-frame-{{ block.id }} {
+            max-width: 280px;
+          }
+          .hero-testimonial-card-{{ block.id }} {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+          }
+          .testimonial-footer-{{ block.id }} {
+            justify-content: center;
+          }
+        }
+      </style>
+      <div class="hero-testimonial-{{ block.id }}" {{ block.shopify_attributes }}>
+        <div class="hero-container-{{ block.id }}">
+          <div class="hero-left-{{ block.id }}">
+            {% if block.settings.logo_image != blank %}
+              <div class="hero-logo-{{ block.id }}">
+                <img src="{{ block.settings.logo_image | img_url: '400x' }}" alt="Logo" />
+              </div>
+            {% endif %}
+            
+            {% if block.settings.attention_text != blank %}
+              <div class="hero-attention-box-{{ block.id }}">
+                <span class="warning-icon">⚠️</span>
+                <p>{{ block.settings.attention_text }}</p>
+              </div>
+            {% endif %}
+            
+            <h1 class="hero-heading-{{ block.id }}">
+              {% if block.settings.heading_line_1 != blank %}
+                <span class="pink-text">{{ block.settings.heading_line_1 }}</span><br>
+              {% endif %}
+              {% if block.settings.heading_line_2 != blank %}
+                <span class="pink-text">{{ block.settings.heading_line_2 }}</span>
+              {% endif %}
+              {% if block.settings.heading_line_3 != blank %}
+                <span class="dark-text"> {{ block.settings.heading_line_3 }}</span>
+              {% endif %}
+            </h1>
+            
+            {% if block.settings.button_text != blank %}
+              <a href="{{ block.settings.button_url }}" class="hero-cta-button-{{ block.id }}">
+                {{ block.settings.button_text }}
+                {% if block.settings.button_icon %}
+                  <span>👑</span>
+                {% endif %}
+              </a>
+            {% endif %}
+            
+            <div class="hero-guarantees-{{ block.id }}">
+              {% if block.settings.guarantee_1 != blank %}
+                <div class="guarantee-item-{{ block.id }}">
+                  <span class="check-icon">✓</span>
+                  <span>{{ block.settings.guarantee_1 }}</span>
+                </div>
+              {% endif %}
+              {% if block.settings.guarantee_2 != blank %}
+                <div class="guarantee-item-{{ block.id }}">
+                  <span class="check-icon">✓</span>
+                  <span>{{ block.settings.guarantee_2 }}</span>
+                </div>
+              {% endif %}
+            </div>
+            
+            {% if block.settings.show_testimonial %}
+              <div class="testimonial-slider-wrapper-{{ block.id }}">
+                <div class="testimonial-slider-{{ block.id }}">
+                  <div class="testimonial-track-{{ block.id }}" id="testimonialTrack{{ block.id }}">
+                    <!-- Testimonial 1 -->
+                    {% if block.settings.testimonial_text_1 != blank %}
+                      <div class="hero-testimonial-card-{{ block.id }}">
+                        <div class="testimonial-avatar-{{ block.id }}">
+                          {% if block.settings.testimonial_avatar_1 != blank %}
+                            <img src="{{ block.settings.testimonial_avatar_1 | img_url: '120x120' }}" alt="{{ block.settings.testimonial_author_1 }}" />
+                          {% else %}
+                            <div style="width: 100%; height: 100%; background: #ddd;"></div>
+                          {% endif %}
+                        </div>
+                        <div class="testimonial-content-{{ block.id }}">
+                          <p>"{{ block.settings.testimonial_text_1 }}"</p>
+                          <div class="testimonial-footer-{{ block.id }}">
+                            <div class="testimonial-author-{{ block.id }}">
+                              <span class="name">{{ block.settings.testimonial_author_1 }}</span>
+                              {% if block.settings.show_verified_badge %}
+                                <svg class="verified" viewBox="0 0 24 24" fill="currentColor" style="color: #1DA1F2;">
+                                  <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z"/>
+                                </svg>
+                              {% endif %}
+                            </div>
+                            <div class="testimonial-stars-{{ block.id }}">★★★★★</div>
+                          </div>
+                        </div>
+                      </div>
+                    {% endif %}
+                    
+                    <!-- Testimonial 2 -->
+                    {% if block.settings.testimonial_text_2 != blank %}
+                      <div class="hero-testimonial-card-{{ block.id }}">
+                        <div class="testimonial-avatar-{{ block.id }}">
+                          {% if block.settings.testimonial_avatar_2 != blank %}
+                            <img src="{{ block.settings.testimonial_avatar_2 | img_url: '120x120' }}" alt="{{ block.settings.testimonial_author_2 }}" />
+                          {% else %}
+                            <div style="width: 100%; height: 100%; background: #ddd;"></div>
+                          {% endif %}
+                        </div>
+                        <div class="testimonial-content-{{ block.id }}">
+                          <p>"{{ block.settings.testimonial_text_2 }}"</p>
+                          <div class="testimonial-footer-{{ block.id }}">
+                            <div class="testimonial-author-{{ block.id }}">
+                              <span class="name">{{ block.settings.testimonial_author_2 }}</span>
+                              {% if block.settings.show_verified_badge %}
+                                <svg class="verified" viewBox="0 0 24 24" fill="currentColor" style="color: #1DA1F2;">
+                                  <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z"/>
+                                </svg>
+                              {% endif %}
+                            </div>
+                            <div class="testimonial-stars-{{ block.id }}">★★★★★</div>
+                          </div>
+                        </div>
+                      </div>
+                    {% endif %}
+                    
+                    <!-- Testimonial 3 -->
+                    {% if block.settings.testimonial_text_3 != blank %}
+                      <div class="hero-testimonial-card-{{ block.id }}">
+                        <div class="testimonial-avatar-{{ block.id }}">
+                          {% if block.settings.testimonial_avatar_3 != blank %}
+                            <img src="{{ block.settings.testimonial_avatar_3 | img_url: '120x120' }}" alt="{{ block.settings.testimonial_author_3 }}" />
+                          {% else %}
+                            <div style="width: 100%; height: 100%; background: #ddd;"></div>
+                          {% endif %}
+                        </div>
+                        <div class="testimonial-content-{{ block.id }}">
+                          <p>"{{ block.settings.testimonial_text_3 }}"</p>
+                          <div class="testimonial-footer-{{ block.id }}">
+                            <div class="testimonial-author-{{ block.id }}">
+                              <span class="name">{{ block.settings.testimonial_author_3 }}</span>
+                              {% if block.settings.show_verified_badge %}
+                                <svg class="verified" viewBox="0 0 24 24" fill="currentColor" style="color: #1DA1F2;">
+                                  <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z"/>
+                                </svg>
+                              {% endif %}
+                            </div>
+                            <div class="testimonial-stars-{{ block.id }}">★★★★★</div>
+                          </div>
+                        </div>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="testimonial-dots-{{ block.id }}" id="testimonialDots{{ block.id }}">
+                  <div class="dot active" data-index="0"></div>
+                  <div class="dot" data-index="1"></div>
+                  <div class="dot" data-index="2"></div>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+          
+          <div class="hero-right-{{ block.id }}">
+            <div class="hero-video-frame-{{ block.id }}">
+              <div class="hero-video-container-{{ block.id }}">
+                {% if block.settings.video_type == 'upload' and block.settings.video_file != blank %}
+                  <video autoplay muted loop playsinline>
+                    <source src="{{ block.settings.video_file }}" type="video/mp4">
+                  </video>
+                {% elsif block.settings.video_type == 'youtube' and block.settings.youtube_url != blank %}
+                  {% assign video_id = block.settings.youtube_url | split: 'v=' | last | split: '&' | first %}
+                  <iframe 
+                    src="https://www.youtube.com/embed/{{ video_id }}?autoplay=1&mute=1&loop=1&playlist={{ video_id }}&controls=0&showinfo=0&rel=0" 
+                    frameborder="0" 
+                    allow="autoplay; encrypted-media" 
+                    allowfullscreen>
+                  </iframe>
+                {% elsif block.settings.video_type == 'vimeo' and block.settings.vimeo_url != blank %}
+                  {% assign video_id = block.settings.vimeo_url | split: '/' | last %}
+                  <iframe 
+                    src="https://player.vimeo.com/video/{{ video_id }}?autoplay=1&muted=1&loop=1&background=1" 
+                    frameborder="0" 
+                    allow="autoplay; fullscreen" 
+                    allowfullscreen>
+                  </iframe>
+                {% else %}
+                  <div style="width: 100%; height: 100%; background: #f0f0f0; display: flex; align-items: center; justify-content: center;">
+                    <p style="color: #999; text-align: center; padding: 20px;">Upload video or add video URL</p>
+                  </div>
+                {% endif %}
+              </div>
+              {% if block.settings.video_label != blank %}
+                <div class="hero-video-label-{{ block.id }}">
+                  {{ block.settings.video_label }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <script>
+        (function() {
+          const trackId = 'testimonialTrack{{ block.id }}';
+          const dotsId = 'testimonialDots{{ block.id }}';
+          const track = document.getElementById(trackId);
+          const dotsContainer = document.getElementById(dotsId);
+          
+          if (!track || !dotsContainer) return;
+          
+          const dots = dotsContainer.querySelectorAll('.dot');
+          let currentIndex = 0;
+          let autoplayInterval;
+          
+          function updateSlider(index) {
+            currentIndex = index;
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            
+            dots.forEach((dot, i) => {
+              dot.classList.toggle('active', i === currentIndex);
+            });
+          }
+          
+          function nextSlide() {
+            const nextIndex = (currentIndex + 1) % 3;
+            updateSlider(nextIndex);
+          }
+          
+          function startAutoplay() {
+            autoplayInterval = setInterval(nextSlide, 5000);
+          }
+          
+          function stopAutoplay() {
+            clearInterval(autoplayInterval);
+          }
+          
+          dots.forEach(dot => {
+            dot.addEventListener('click', function() {
+              stopAutoplay();
+              updateSlider(parseInt(this.dataset.index));
+              startAutoplay();
+            });
+          });
+          
+          startAutoplay();
+          
+          track.addEventListener('mouseenter', stopAutoplay);
+          track.addEventListener('mouseleave', startAutoplay);
+        })();
+      </script>
 {% elsif block.type == 'founder_story' %}
       <!-- Founder Story Block -->
       <style>
@@ -1681,354 +2201,6 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
         </div>
       </div>
-
-
-      {% elsif block.type == 'hero_testimonial' %}
-      <!-- Hero Testimonial Block -->
-      <style>
-        .hero-testimonial-{{ block.id }} {
-          background-color: {{ block.settings.background_color }};
-          padding: {{ block.settings.section_padding_top }}px 20px {{ block.settings.section_padding_bottom }}px;
-          position: relative;
-          overflow: hidden;
-        }
-        .hero-container-{{ block.id }} {
-          max-width: 1170px;
-          margin: 0 auto;
-          display: flex;
-          align-items: center;
-          gap: 60px;
-          flex-wrap: wrap;
-        }
-        .hero-left-{{ block.id }} {
-          flex: 1 1 50%;
-          min-width: 300px;
-        }
-        .hero-logo-{{ block.id }} {
-          margin-bottom: 30px;
-        }
-        .hero-logo-{{ block.id }} img {
-          max-width: {{ block.settings.logo_width }}px;
-          height: auto;
-        }
-        .hero-attention-box-{{ block.id }} {
-          background: {{ block.settings.attention_box_bg }};
-          border: 2px solid {{ block.settings.attention_box_border }};
-          border-radius: {{ block.settings.attention_box_radius }}px;
-          padding: 15px 20px;
-          margin-bottom: 25px;
-          display: flex;
-          align-items: center;
-          gap: 12px;
-        }
-        .hero-attention-box-{{ block.id }} .warning-icon {
-          font-size: 24px;
-          flex-shrink: 0;
-        }
-        .hero-attention-box-{{ block.id }} p {
-          margin: 0;
-          font-size: {{ block.settings.attention_text_size }}px;
-          color: {{ block.settings.attention_text_color }};
-          font-weight: 600;
-          line-height: 1.4;
-        }
-        .hero-heading-{{ block.id }} {
-          font-size: {{ block.settings.heading_font_size }}px;
-          color: {{ block.settings.heading_color }};
-          font-weight: 700;
-          line-height: 1.2;
-          margin-bottom: 20px;
-        }
-        .hero-heading-{{ block.id }} .pink-text {
-          color: {{ block.settings.heading_pink_color }};
-        }
-        .hero-heading-{{ block.id }} .dark-text {
-          color: {{ block.settings.heading_dark_color }};
-        }
-        .hero-cta-button-{{ block.id }} {
-          background: {{ block.settings.button_bg_color }};
-          color: {{ block.settings.button_text_color }};
-          font-size: {{ block.settings.button_font_size }}px;
-          font-weight: 700;
-          padding: 18px 40px;
-          border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
-          border-radius: {{ block.settings.button_border_radius }}px;
-          cursor: pointer;
-          text-decoration: none;
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          transition: all 0.3s ease;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          margin-bottom: 15px;
-        }
-        .hero-cta-button-{{ block.id }}:hover {
-          background: {{ block.settings.button_hover_bg }};
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        .hero-guarantees-{{ block.id }} {
-          display: flex;
-          gap: 20px;
-          flex-wrap: wrap;
-          margin-top: 15px;
-        }
-        .guarantee-item-{{ block.id }} {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-size: {{ block.settings.guarantee_text_size }}px;
-          color: {{ block.settings.guarantee_text_color }};
-          font-weight: 500;
-        }
-        .guarantee-item-{{ block.id }} .check-icon {
-          color: {{ block.settings.guarantee_icon_color }};
-          font-size: 18px;
-        }
-        .hero-testimonial-card-{{ block.id }} {
-          background: {{ block.settings.testimonial_bg }};
-          border: 2px solid {{ block.settings.testimonial_border }};
-          border-radius: {{ block.settings.testimonial_radius }}px;
-          padding: 20px;
-          margin-top: 25px;
-          display: flex;
-          gap: 15px;
-          align-items: flex-start;
-        }
-        .testimonial-avatar-{{ block.id }} {
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-          overflow: hidden;
-          flex-shrink: 0;
-        }
-        .testimonial-avatar-{{ block.id }} img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-        .testimonial-content-{{ block.id }} {
-          flex: 1;
-        }
-        .testimonial-content-{{ block.id }} p {
-          font-size: {{ block.settings.testimonial_text_size }}px;
-          color: {{ block.settings.testimonial_text_color }};
-          font-style: italic;
-          line-height: 1.5;
-          margin: 0 0 10px 0;
-        }
-        .testimonial-footer-{{ block.id }} {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-        .testimonial-author-{{ block.id }} {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-        .testimonial-author-{{ block.id }} .name {
-          font-size: {{ block.settings.testimonial_name_size }}px;
-          color: {{ block.settings.testimonial_name_color }};
-          font-weight: 600;
-        }
-        .testimonial-author-{{ block.id }} .verified {
-          width: 18px;
-          height: 18px;
-        }
-        .testimonial-stars-{{ block.id }} {
-          color: {{ block.settings.star_color }};
-          font-size: 20px;
-          letter-spacing: 2px;
-        }
-        .testimonial-dots-{{ block.id }} {
-          display: flex;
-          gap: 8px;
-          justify-content: center;
-          margin-top: 15px;
-        }
-        .testimonial-dots-{{ block.id }} .dot {
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          background: {{ block.settings.dot_inactive_color }};
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-        .testimonial-dots-{{ block.id }} .dot.active {
-          background: {{ block.settings.dot_active_color }};
-          width: 12px;
-          height: 12px;
-        }
-        .hero-right-{{ block.id }} {
-          flex: 1 1 40%;
-          min-width: 300px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        .hero-image-frame-{{ block.id }} {
-          position: relative;
-          width: 100%;
-          max-width: 400px;
-        }
-        .hero-image-container-{{ block.id }} {
-          border: {{ block.settings.image_border_width }}px solid {{ block.settings.image_border_color }};
-          border-radius: 50%;
-          overflow: hidden;
-          aspect-ratio: 1;
-          position: relative;
-        }
-        .hero-image-container-{{ block.id }} img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-        .hero-image-label-{{ block.id }} {
-          position: absolute;
-          bottom: 30px;
-          left: 50%;
-          transform: translateX(-50%);
-          background: {{ block.settings.label_bg_color }};
-          color: {{ block.settings.label_text_color }};
-          padding: 12px 30px;
-          border-radius: 30px;
-          font-size: {{ block.settings.label_font_size }}px;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          white-space: nowrap;
-        }
-        @media (max-width: 768px) {
-          .hero-container-{{ block.id }} {
-            flex-direction: column;
-            gap: 40px;
-          }
-          .hero-heading-{{ block.id }} {
-            font-size: calc({{ block.settings.heading_font_size }}px * 0.7);
-          }
-          .hero-cta-button-{{ block.id }} {
-            width: 100%;
-            justify-content: center;
-          }
-          .hero-guarantees-{{ block.id }} {
-            flex-direction: column;
-            gap: 10px;
-          }
-          .hero-image-frame-{{ block.id }} {
-            max-width: 300px;
-          }
-        }
-      </style>
-      <div class="hero-testimonial-{{ block.id }}" {{ block.shopify_attributes }}>
-        <div class="hero-container-{{ block.id }}">
-          <div class="hero-left-{{ block.id }}">
-            {% if block.settings.logo_image != blank %}
-              <div class="hero-logo-{{ block.id }}">
-                <img src="{{ block.settings.logo_image | img_url: '400x' }}" alt="Logo" />
-              </div>
-            {% endif %}
-            
-            {% if block.settings.attention_text != blank %}
-              <div class="hero-attention-box-{{ block.id }}">
-                <span class="warning-icon">⚠️</span>
-                <p>{{ block.settings.attention_text }}</p>
-              </div>
-            {% endif %}
-            
-            <h1 class="hero-heading-{{ block.id }}">
-              {% if block.settings.heading_line_1 != blank %}
-                <span class="pink-text">{{ block.settings.heading_line_1 }}</span><br>
-              {% endif %}
-              {% if block.settings.heading_line_2 != blank %}
-                <span class="pink-text">{{ block.settings.heading_line_2 }}</span>
-              {% endif %}
-              {% if block.settings.heading_line_3 != blank %}
-                <span class="dark-text"> {{ block.settings.heading_line_3 }}</span>
-              {% endif %}
-            </h1>
-            
-            {% if block.settings.button_text != blank %}
-              <a href="{{ block.settings.button_url }}" class="hero-cta-button-{{ block.id }}">
-                {{ block.settings.button_text }}
-                {% if block.settings.button_icon %}
-                  <span>👑</span>
-                {% endif %}
-              </a>
-            {% endif %}
-            
-            <div class="hero-guarantees-{{ block.id }}">
-              {% if block.settings.guarantee_1 != blank %}
-                <div class="guarantee-item-{{ block.id }}">
-                  <span class="check-icon">✓</span>
-                  <span>{{ block.settings.guarantee_1 }}</span>
-                </div>
-              {% endif %}
-              {% if block.settings.guarantee_2 != blank %}
-                <div class="guarantee-item-{{ block.id }}">
-                  <span class="check-icon">✓</span>
-                  <span>{{ block.settings.guarantee_2 }}</span>
-                </div>
-              {% endif %}
-            </div>
-            
-            {% if block.settings.show_testimonial %}
-              <div class="hero-testimonial-card-{{ block.id }}">
-                <div class="testimonial-avatar-{{ block.id }}">
-                  {% if block.settings.testimonial_avatar != blank %}
-                    <img src="{{ block.settings.testimonial_avatar | img_url: '120x120' }}" alt="{{ block.settings.testimonial_author }}" />
-                  {% else %}
-                    <div style="width: 100%; height: 100%; background: #ddd;"></div>
-                  {% endif %}
-                </div>
-                <div class="testimonial-content-{{ block.id }}">
-                  <p>"{{ block.settings.testimonial_text }}"</p>
-                  <div class="testimonial-footer-{{ block.id }}">
-                    <div class="testimonial-author-{{ block.id }}">
-                      <span class="name">{{ block.settings.testimonial_author }}</span>
-                      {% if block.settings.show_verified_badge %}
-                        <svg class="verified" viewBox="0 0 24 24" fill="currentColor" style="color: #1DA1F2;">
-                          <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z"/>
-                        </svg>
-                      {% endif %}
-                    </div>
-                    <div class="testimonial-stars-{{ block.id }}">
-                      ★★★★★
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="testimonial-dots-{{ block.id }}">
-                <div class="dot"></div>
-                <div class="dot active"></div>
-                <div class="dot"></div>
-              </div>
-            {% endif %}
-          </div>
-          
-          <div class="hero-right-{{ block.id }}">
-            <div class="hero-image-frame-{{ block.id }}">
-              <div class="hero-image-container-{{ block.id }}">
-                {% if block.settings.hero_image != blank %}
-                  <img src="{{ block.settings.hero_image | img_url: '800x800' }}" alt="Hero Image" />
-                {% else %}
-                  <div style="width: 100%; height: 100%; background: #f0f0f0; display: flex; align-items: center; justify-content: center;">
-                    <p style="color: #999;">Upload hero image</p>
-                  </div>
-                {% endif %}
-              </div>
-              {% if block.settings.image_label != blank %}
-                <div class="hero-image-label-{{ block.id }}">
-                  {{ block.settings.image_label }}
-                </div>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      </div>
     {% endif %}
-
-    
   {% endfor %}
 </div>
