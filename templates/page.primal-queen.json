@@ -876,8 +876,8 @@
             "closing_text_size": 16,
             "badge_name_size": 24,
             "badge_title_size": 12,
-            "section_padding_top": 60,
-            "section_padding_bottom": 60
+            "section_padding_top": 20,
+            "section_padding_bottom": 20
           }
         }
       },
