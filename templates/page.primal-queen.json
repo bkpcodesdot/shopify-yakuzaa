@@ -1036,6 +1036,40 @@
             "padding": 40,
             "text_alignment": "left"
           }
+        },
+        "superfoods_section_xA64Bt": {
+          "type": "superfoods_section",
+          "settings": {
+            "main_heading": "<p>Primal Queen's  Female-Focused Organ <br> Superfoods are Hands Down <strong>THE MOST </strong> <br>  Nutrient-Rich On The Planet</p>",
+            "sub_heading": "Here’s why we hand-picked these 6 beef organs",
+            "organ_image_1": "shopify://shop_images/s2_nutrient_box_img6.avif",
+            "organ_text_1": "4.2X MORE Vitamin A than lettuce",
+            "organ_image_2": "shopify://shop_images/s2_nutrient_box_img3.avif",
+            "organ_text_2": "4.2X MORE Vitamin A than lettuce",
+            "organ_image_3": "shopify://shop_images/s2_nutrient_box_img2_new_format.avif",
+            "organ_text_3": "4.2X MORE Vitamin A than lettuce",
+            "organ_image_4": "shopify://shop_images/s2_nutrient_box_img4.avif",
+            "organ_text_4": "4.2X MORE Vitamin A than lettuce",
+            "organ_image_5": "shopify://shop_images/s2_nutrient_box_img5-v2.avif",
+            "organ_text_5": "4.2X MORE Vitamin A than lettuce",
+            "organ_image_6": "shopify://shop_images/s2_nutrient_box_img2_new_format.avif",
+            "organ_text_6": "4.2X MORE Vitamin A than lettuce",
+            "cta_label": "UNLOCK YOUR TRUE POWER",
+            "cta_link": "#",
+            "promise_heading": "No Hormones",
+            "icon_1": "shopify://shop_images/promise_icon4.png",
+            "icon_text_1": "No Hormones",
+            "icon_2": "shopify://shop_images/promise_icon6.png",
+            "icon_text_2": "No Hormones",
+            "icon_3": "shopify://shop_images/promise_icon1.png",
+            "icon_text_3": "No Hormones",
+            "icon_4": "shopify://shop_images/promise_icon3.png",
+            "icon_text_4": "No Hormones",
+            "icon_5": "shopify://shop_images/promise_icon5.png",
+            "icon_text_5": "No Hormones",
+            "icon_6": "shopify://shop_images/promise_icon6_1.png",
+            "icon_text_6": "No Hormones"
+          }
         }
       },
       "block_order": [
@@ -1046,7 +1080,8 @@
         "content_block_Ntg4qK",
         "organ_supplement_Ap7hHX",
         "problem_section_FYwizq",
-        "single_capsule_yxfhFB"
+        "single_capsule_yxfhFB",
+        "superfoods_section_xA64Bt"
       ],
       "name": "Tried Everything Section",
       "settings": {
