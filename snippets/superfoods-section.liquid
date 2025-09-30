@@ -1,71 +1,69 @@
+```liquid
 <section class="primal-queen-section">
   {% for block in section.blocks %}
-    {% case block.type %}
+    <div class="combined-container block-{{ forloop.index }}">
+      
+      {%- comment -%} ===== ORGAN COMPARISON ===== {%- endcomment -%}
+      {% if block.settings.main_heading != blank %}
+        <h2 class="organ-heading">{{ block.settings.main_heading }}</h2>
+      {% endif %}
+      {% if block.settings.sub_heading != blank %}
+        <p class="organ-subheading">{{ block.settings.sub_heading }}</p>
+      {% endif %}
 
-      {% when 'organ_block' %}
-        <div class="organ-container block-{{ forloop.index }}">
-          {% if block.settings.heading != blank %}
-            <h2 class="organ-heading">{{ block.settings.heading }}</h2>
-          {% endif %}
-          {% if block.settings.subheading != blank %}
-            <p class="organ-subheading">{{ block.settings.subheading }}</p>
-          {% endif %}
+      <div class="organ-items">
+        {% for i in (1..6) %}
+          {% assign organ_image_key = 'organ_image_' | append: i %}
+          {% assign organ_vs_image_key = 'organ_vs_image_' | append: i %}
+          {% assign organ_text_key = 'organ_text_' | append: i %}
 
-          <div class="organ-items">
-            {% for i in (1..6) %}
-              {% assign icon_key = 'organ_icon_' | append: i %}
-              {% assign title_key = 'organ_title_' | append: i %}
-              {% assign compare_key = 'organ_compare_' | append: i %}
-              {% assign note_key = 'organ_note_' | append: i %}
+          {% assign organ_image = block.settings[organ_image_key] %}
+          {% assign organ_vs_image = block.settings[organ_vs_image_key] %}
+          {% assign organ_text = block.settings[organ_text_key] %}
 
-              {% assign organ_icon = block.settings[icon_key] %}
-              {% assign organ_title = block.settings[title_key] %}
-              {% assign organ_compare = block.settings[compare_key] %}
-              {% assign organ_note = block.settings[note_key] %}
-
-              {% if organ_icon != blank %}
-                <div class="organ-item">
-                  <div class="organ-top">
-                    <img src="{{ organ_icon | img_url: '150x150' }}" alt="{{ organ_title }}">
-                    <span class="organ-title">{{ organ_title }}</span>
-                  </div>
-                  {% if organ_compare != blank %}
-                    <span class="organ-vs">vs</span>
-                    <span class="organ-compare">{{ organ_compare }}</span>
-                  {% endif %}
-                  {% if organ_note != blank %}
-                    <div class="organ-note">{{ organ_note }}</div>
-                  {% endif %}
-                </div>
-              {% endif %}
-            {% endfor %}
+          {% if organ_image != blank and organ_vs_image != blank and organ_text != blank %}
+          <div class="organ-item">
+            <div class="organ-imgs">
+              <div class="img-wrapper">
+                <img src="{{ organ_image | img_url: '150x150' }}" alt="Organ">
+              </div>
+              <span class="vs-text">vs</span>
+              <div class="img-wrapper">
+                <img src="{{ organ_vs_image | img_url: '150x150' }}" alt="Veggie">
+              </div>
+            </div>
+            <p class="organ-desc">{{ organ_text }}</p>
           </div>
-        </div>
-
-      {% when 'promise_block' %}
-        <div class="promise-container block-{{ forloop.index }}">
-          {% if block.settings.heading != blank %}
-            <h2 class="promise-heading">{{ block.settings.heading }}</h2>
           {% endif %}
+        {% endfor %}
+      </div>
 
-          <div class="promise-items">
-            {% for i in (1..6) %}
-              {% assign icon_key = 'icon_' | append: i %}
-              {% assign icon_text_key = 'icon_text_' | append: i %}
-
-              {% assign icon_image = block.settings[icon_key] %}
-              {% assign icon_text  = block.settings[icon_text_key] %}
-
-              {% if icon_image != blank and icon_text != blank %}
-                <div class="promise-item">
-                  <img src="{{ icon_image | img_url: '100x100' }}" alt="{{ icon_text }}">
-                  <span class="item-text">{{ icon_text }}</span>
-                </div>
-              {% endif %}
-            {% endfor %}
-          </div>
+      {% if block.settings.cta_label != blank and block.settings.cta_link != blank %}
+        <div class="cta-wrapper">
+          <a href="{{ block.settings.cta_link }}" class="cta-btn">{{ block.settings.cta_label }}</a>
         </div>
-    {% endcase %}
+      {% endif %}
+
+      {%- comment -%} ===== PROMISE SECTION ===== {%- endcomment -%}
+      {% if block.settings.promise_heading != blank %}
+        <h2 class="promise-heading">{{ block.settings.promise_heading }}</h2>
+      {% endif %}
+
+      <div class="promise-items">
+        {% for i in (1..6) %}
+          {% assign icon_key = 'icon_' | append: i %}
+          {% assign icon_text_key = 'icon_text_' | append: i %}
+          {% assign icon_image = block.settings[icon_key] %}
+          {% assign icon_text = block.settings[icon_text_key] %}
+          {% if icon_image != blank and icon_text != blank %}
+          <div class="promise-item">
+            <img src="{{ icon_image | img_url: '100x100' }}" alt="{{ icon_text }}">
+            <span class="item-text">{{ icon_text }}</span>
+          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
   {% endfor %}
 </section>
 
@@ -75,61 +73,72 @@
   text-align: center;
 }
 
-/* Organ Section */
+/* ===== ORGAN SECTION ===== */
 .organ-heading {
   font-size: 28px;
   font-weight: 700;
-  margin-bottom: 15px;
   color: #3b0a55;
+  margin-bottom: 15px;
 }
 .organ-subheading {
   font-size: 16px;
-  margin-bottom: 30px;
   color: #555;
+  margin-bottom: 30px;
 }
 .organ-items {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
   gap: 20px;
-  margin-bottom: 40px;
+  justify-content: center;
 }
 .organ-item {
-  border: 2px solid #a64ca6;
-  border-radius: 12px;
-  padding: 20px;
+  border: 2px solid #6a1b9a;
+  border-radius: 10px;
+  padding: 15px;
   background: #fff;
 }
-.organ-top {
+.organ-imgs {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
 }
-.organ-title {
+.organ-imgs .img-wrapper img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+.vs-text {
   font-weight: bold;
-  margin-top: 10px;
+  color: #ff4081;
 }
-.organ-vs {
-  display: block;
-  margin: 10px 0;
-  font-weight: bold;
-  color: #444;
-}
-.organ-compare {
+.organ-desc {
   font-size: 14px;
-  color: #555;
-}
-.organ-note {
-  margin-top: 10px;
-  font-size: 13px;
+  color: #3b0a55;
   font-weight: 600;
-  color: #a64ca6;
+}
+.cta-wrapper {
+  margin: 20px 0;
+}
+.cta-btn {
+  background: #00c853;
+  color: #fff;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-block;
+}
+.cta-btn:hover {
+  background: #009624;
 }
 
-/* Promise Section */
+/* ===== PROMISE SECTION ===== */
 .promise-heading {
   font-size: 24px;
   font-weight: 700;
-  margin-bottom: 30px;
+  margin: 30px 0;
   color: #3b0a55;
 }
 .promise-items {
