@@ -848,8 +848,13 @@
             "food_heading": "Superfoods Rich in Nutrients",
             "food_subtitle": "Packed with vitamins and minerals",
             "nutrient_heading": "Vitamin C",
+            "nutrient_icon": "shopify://shop_images/promise_icon2.webp",
             "nutri_bottomline": "Boosts Immunity and Skin Health",
-            "nutri_title": "More Nutrients"
+            "nutri_title": "More Nutrients",
+            "nutrient_icon_1": "shopify://shop_images/promise_icon6.png",
+            "nutrient_icon_2": "shopify://shop_images/promise_icon1.png",
+            "nutrient_icon_3": "shopify://shop_images/promise_icon3.png",
+            "nutrient_icon_4": "shopify://shop_images/promise_icon5.png"
           }
         }
       },
