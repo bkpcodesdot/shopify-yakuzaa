@@ -686,6 +686,9 @@ flex: 1 1 30%;
   <div class="nutrient-image">
      <img src="{{ block.settings.image_nutrient | img_url: '600x600' }}"  loading="lazy" />
   </div>
+  <div class="nutri-bottomline">
+    {{block.type.nutri_bottomline }}
+  </div>
 </div>
 </div>
     {% endif %}
