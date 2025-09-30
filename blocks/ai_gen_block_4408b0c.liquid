@@ -1,65 +1,10 @@
-{% doc %}
-  @prompt
-    Create a Shopify section called "Facility Video Section".
-    
-    🔹 Layout
-    
-    Centered video player (with image/video picker in customizer).
-    
-    Rounded video frame with border (pink border).
-    
-    Background splash effect behind the video (customizable color).
-    
-    Section heading above the video (rich text, editable).
-    
-    Icons with text below the video (3 items):
-    
-    Icon picker (checkmark style default).
-    
-    Custom text (e.g., GMP Certified, Lab Tested, USA Facility).
-    
-    Text color editable (default black).
-    
-    🔹 Customization Options
-    
-    Background color for section.
-    
-    Border radius for video frame.
-    
-    Heading text size & color.
-    
-    Icon color & text color.
-    
-    Padding & margin controls.
-    
-    🔹 Responsiveness
-    
-    On desktop: heading → video → icon row.
-    
-    On mobile: heading → video → stacked icons (center aligned).
-    
-    ⚡This will replicate exactly like your screenshot:
-    
-    Title: Primal Queen's State-Of-The-Art Facility in NY
-    
-    Oval rounded video with pink border + splash background.
-    
-    3 icons with text underneath., video height set max-height: 577px; & video backgroud sectiion wit hbackground-color: #ffffff;
-        border-color: #ff69b4;
-        border-width: 5px;
-        width: 400px;
-        border-radius: 200px;, GMP Certified
-    
-    Lab Tested
-    
-    USA Facility 
-    this set with ong image not arrow remove arrow add png or image, GMP Certified
-    
-    Lab Tested
-    
-    USA Facility with icon are set in side by side flex position
+{% comment %}
+  Facility Video Section
+  - Centered video player with rounded border
+  - Pink border with splash background effect
+  - 3 customizable icons with text below video
+{% endcomment %}
 
-{% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
 {% style %}
@@ -86,12 +31,7 @@
     display: inline-block;
     margin: 0 0 {{ block.settings.video_margin_bottom }}px;
   }
-#shopify-block-AcEs3VlhUWmZweE5Ce__ai_gen_block_4408b0c_HUYDmP {
-  width: 100%;
-}
-.ai-blog-text-atgkxakdiyu1jvwnkwaigenblock60577e4gnd73a p strong {
-  color:#E32875;
-}
+
   .ai-facility-video-section__splash-bg-{{ ai_gen_id }} {
     position: absolute;
     top: 50%;
@@ -213,6 +153,7 @@
     text-align: left;
   }
 
+  /* Mobile Responsive */
   @media screen and (max-width: 768px) {
     .ai-facility-video-section-{{ ai_gen_id }} {
       padding: {{ block.settings.section_padding_top | times: 0.7 }}px 15px {{ block.settings.section_padding_bottom | times: 0.7 }}px;
@@ -256,6 +197,7 @@
 
 <div class="ai-facility-video-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
   <div class="ai-facility-video-section__container-{{ ai_gen_id }}">
+    
     {% if block.settings.heading != blank %}
       <div class="ai-facility-video-section__heading-{{ ai_gen_id }}">
         {{ block.settings.heading }}
@@ -268,17 +210,18 @@
       <div class="ai-facility-video-section__video-container-{{ ai_gen_id }}">
         {% if block.settings.video_url != blank %}
           <video 
-            class="ai-facility-video-section__video-{{ ai_gen_id }}"
+            class="ai-facility-video-section__video-{{ ai_gen_id }}" 
             controls
             {% if block.settings.video_autoplay %}autoplay{% endif %}
             {% if block.settings.video_muted %}muted{% endif %}
-            {% if block.settings.video_loop %}loop{% endif %}>
+            {% if block.settings.video_loop %}loop{% endif %}
+          >
             <source src="{{ block.settings.video_url }}" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         {% elsif block.settings.featured_image %}
-          <img
-            src="{{ block.settings.featured_image | image_url: width: 800 }}"
+          <img 
+            src="{{ block.settings.featured_image | image_url: width: 800 }}" 
             alt="{{ block.settings.featured_image.alt | escape }}"
             class="ai-facility-video-section__video-{{ ai_gen_id }}"
             loading="lazy"
@@ -308,8 +251,8 @@
         {% if icon_text != blank %}
           <div class="ai-facility-video-section__icon-item-{{ ai_gen_id }}">
             {% if icon_image %}
-              <img
-                src="{{ icon_image | image_url: width: 100 }}"
+              <img 
+                src="{{ icon_image | image_url: width: 100 }}" 
                 alt="{{ icon_image.alt | escape }}"
                 class="ai-facility-video-section__icon-{{ ai_gen_id }}"
                 loading="lazy"
@@ -331,12 +274,13 @@
         {% endif %}
       {% endfor %}
     </div>
+
   </div>
 </div>
 
 {% schema %}
 {
-  "name": "Facility video section",
+  "name": "Facility Video Section",
   "settings": [
     {
       "type": "header",
@@ -357,12 +301,12 @@
     {
       "type": "image_picker",
       "id": "featured_image",
-      "label": "Fallback image",
+      "label": "Fallback Image",
       "info": "This image will be shown if no video URL is provided"
     },
     {
       "type": "header",
-      "content": "Video settings"
+      "content": "Video Settings"
     },
     {
       "type": "checkbox",
@@ -389,12 +333,12 @@
     {
       "type": "image_picker",
       "id": "icon_1_image",
-      "label": "Icon 1 image"
+      "label": "Icon 1 Image"
     },
     {
       "type": "text",
       "id": "icon_1_text",
-      "label": "Icon 1 text",
+      "label": "Icon 1 Text",
       "default": "GMP Certified"
     },
     {
@@ -404,12 +348,12 @@
     {
       "type": "image_picker",
       "id": "icon_2_image",
-      "label": "Icon 2 image"
+      "label": "Icon 2 Image"
     },
     {
       "type": "text",
       "id": "icon_2_text",
-      "label": "Icon 2 text",
+      "label": "Icon 2 Text",
       "default": "Lab Tested"
     },
     {
@@ -419,12 +363,12 @@
     {
       "type": "image_picker",
       "id": "icon_3_image",
-      "label": "Icon 3 image"
+      "label": "Icon 3 Image"
     },
     {
       "type": "text",
       "id": "icon_3_text",
-      "label": "Icon 3 text",
+      "label": "Icon 3 Text",
       "default": "USA Facility"
     },
     {
@@ -434,25 +378,25 @@
     {
       "type": "color",
       "id": "section_background_color",
-      "label": "Section background",
+      "label": "Section Background",
       "default": "#ffffff"
     },
     {
       "type": "color",
       "id": "heading_color",
-      "label": "Heading color",
+      "label": "Heading Color",
       "default": "#000000"
     },
     {
       "type": "color",
       "id": "splash_background_color",
-      "label": "Splash background color",
+      "label": "Splash Background Color",
       "default": "#ff69b4"
     },
     {
       "type": "color",
       "id": "icon_text_color",
-      "label": "Icon text color",
+      "label": "Icon Text Color",
       "default": "#000000"
     },
     {
@@ -466,7 +410,7 @@
       "max": 60,
       "step": 2,
       "unit": "px",
-      "label": "Heading font size",
+      "label": "Heading Font Size",
       "default": 36
     },
     {
@@ -476,7 +420,7 @@
       "max": 24,
       "step": 1,
       "unit": "px",
-      "label": "Icon text size",
+      "label": "Icon Text Size",
       "default": 16
     },
     {
@@ -490,7 +434,7 @@
       "max": 80,
       "step": 5,
       "unit": "px",
-      "label": "Icon size",
+      "label": "Icon Size",
       "default": 50
     },
     {
@@ -500,7 +444,7 @@
       "max": 80,
       "step": 5,
       "unit": "px",
-      "label": "Icons spacing",
+      "label": "Icons Spacing",
       "default": 40
     },
     {
@@ -514,7 +458,7 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "label": "Section top padding",
+      "label": "Section Top Padding",
       "default": 60
     },
     {
@@ -524,7 +468,7 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "label": "Section bottom padding",
+      "label": "Section Bottom Padding",
       "default": 60
     },
     {
@@ -534,7 +478,7 @@
       "max": 60,
       "step": 5,
       "unit": "px",
-      "label": "Heading bottom margin",
+      "label": "Heading Bottom Margin",
       "default": 30
     },
     {
@@ -544,13 +488,13 @@
       "max": 80,
       "step": 5,
       "unit": "px",
-      "label": "Video bottom margin",
+      "label": "Video Bottom Margin",
       "default": 40
     }
   ],
   "presets": [
     {
-      "name": "Facility video section"
+      "name": "Facility Video Section"
     }
   ]
 }
