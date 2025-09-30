@@ -841,6 +841,16 @@
             "padding": 40,
             "text_alignment": "left"
           }
+        },
+        "superfoods_block_FR3yhD": {
+          "type": "superfoods_block",
+          "settings": {
+            "food_heading": "Superfoods Rich in Nutrients",
+            "food_subtitle": "Packed with vitamins and minerals",
+            "nutrient_heading": "Vitamin C",
+            "nutri_bottomline": "Boosts Immunity and Skin Health",
+            "nutri_title": "More Nutrients"
+          }
         }
       },
       "block_order": [
@@ -848,7 +858,8 @@
         "content_block_Ntg4qK",
         "organ_supplement_Ap7hHX",
         "problem_section_FYwizq",
-        "single_capsule_yxfhFB"
+        "single_capsule_yxfhFB",
+        "superfoods_block_FR3yhD"
       ],
       "name": "Tried Everything Section",
       "settings": {
