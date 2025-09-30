@@ -93,7 +93,7 @@
 
         @media (max-width: 768px) {
           .tried-everything-{{ block.id }} .content-wrapper {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 30px;
           }
 
@@ -102,21 +102,9 @@
           }
 
           .tried-everything-{{ block.id }} .items-grid {
-            grid-template-columns: 1fr 1fr;
-          }
-          .tried-everything-tried_everything_zxjxiJ .item-text {
-    font-size: 18px;
-}
-        }
-         @media (max-width: 576px) {
-          .tried-everything-{{ block.id }} .content-wrapper {
             grid-template-columns: 1fr;
-            gap: 30px;
           }
-             .tried-everything-tried_everything_zxjxiJ .item-text {
-    font-size: 17px;
-}
-         }
+        }
       </style>
 
       <div class="tried-everything-{{ block.id }}" {{ block.shopify_attributes }}>
@@ -181,19 +169,14 @@
           padding: 0 20px;
         }
     
-        .content-block-{{ block.id }} ul{
-        padding:0 0 0 20px;
-      } 
+        .content-block-{{ block.id }} ul {
+          padding: 0 0 0 20px;
+        } 
+        
         .content-block-{{ block.id }} p {
           margin: 0;
           line-height: 1.6;
         }
-             @media (max-width: 576px) {
-        .content-block-content_block_Ntg4qK {
-    font-size: 17px;
-    
-}
-}
       </style>
 
       <div class="content-block-{{ block.id }}" {{ block.shopify_attributes }}>
@@ -201,7 +184,7 @@
       </div>
 
     {% elsif block.type == 'organ_supplement' %}
-      <!-- Organ Supplement Block - CORRECTED -->
+      <!-- Organ Supplement Block -->
       <style>
         .organ-supplement-{{ block.id }} {
           margin-top: 0px;
@@ -211,7 +194,7 @@
           border-radius: 8px;
           border-image-source: url('https://cdn.shopify.com/s/files/1/0727/8169/3085/files/food_benefit_bg.webp?v=1759143766');
           padding: 20px;
-          max-width:1170px;
+          max-width: 1170px;
           border-image-slice: 30;
           padding: 0 0 10px;
           margin-left: auto;
@@ -256,21 +239,6 @@
           border-radius: 8px;
           transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .organ-supplement-{{ block.id }} .image-container {
-          flex-shrink: 0;
-          width: 50px;
-          height: 50px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .organ-supplement-{{ block.id }} .image-container img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          border-radius: 6px;
-        }
 
         .organ-supplement-{{ block.id }} .organ-point {
           display: flex;
@@ -285,7 +253,7 @@
         .organ-supplement-{{ block.id }} .organ-point .icon {
           flex-shrink: 0;
           margin-top: 2px;
-          color:white;
+          color: white;
           background: #ff699f;
           padding: 3px;
           border-radius: 100%;
@@ -308,51 +276,19 @@
           object-fit: contain;
         }
 
-        /* Responsive design */
         @media (max-width: 768px) {
           .organ-supplement-{{ block.id }} .organ-details {
             grid-template-columns: 1fr;
             gap: 30px;
           }
-          .organ-supplement-organ_supplement_Ap7hHX .organ-title {
-
-    font-size: 30px;
-    
-}
-.organ-supplement-organ_supplement_Ap7hHX .organ-icon {
- justify-content: start; 
-}
+          
           .organ-supplement-{{ block.id }} .image-text-item {
             gap: 12px;
             padding: 10px;
           }
           
-          .organ-supplement-{{ block.id }} .image-container {
-            width: 40px;
-            height: 40px;
-          }
-          
           .organ-supplement-{{ block.id }} .organ-point {
-            font-size: 14px;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .organ-supplement-{{ block.id }} .image-text-flex-container {
-            gap: 12px;
-          }
-    
-          .organ-supplement-{{ block.id }} .image-text-item {
-            flex-direction: column;
-            text-align: center;
-            gap: 8px;
-          }
-                .organ-supplement-organ_supplement_Ap7hHX .image-text-item {
-    flex-direction: row;
-    gap: 8px;
-}
-          .organ-supplement-{{ block.id }} .organ-point {
-            justify-content: center;
+            font-size: 16px;
           }
         }
       </style>
@@ -369,12 +305,9 @@
         <div class="organ-details">
           <div class="image-text-flex-container">
             {% for i in (1..5) %}
-              {% assign image_setting = 'image_' | append: i %}
               {% assign text_setting = 'text_' | append: i %}
-              
               {% if block.settings[text_setting] != blank %}
                 <div class="image-text-item">
-                  
                   <div class="text-container">
                     <div class="organ-point">
                       <span class="icon">
@@ -429,25 +362,7 @@
           flex: 1 1 50%;
           min-width: 300px;
         }
-        .problem-section-problem_section_FYwizq{
-        position:relative;
-      }
-.image-side-problem_section_FYwizq::before {
-    content: '';
-    position: absolute;
-    background: url('https://cdn.shopify.com/s/files/1/0727/8169/3085/files/problem_row_bfr_1.webp?v=1759210497');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 100%;
-    /* position: absolute; */
-    top: 12px;
-    left: 67%;
-    z-index: -1;
-    max-width: 376px;
-    min-height: 314px;
-}
+
         .text-side-{{ block.id }} h2 {
           font-size: {{ block.settings.problem_font_size }}px;
           color: {{ block.settings.problem_font_color }};
@@ -456,15 +371,13 @@
 
         .text-side-{{ block.id }} p {
           font-size: {{ block.settings.text_font_size_one }}px;
-          color: {{block.settings.text_color }};
+          color: #333;
           line-height: 1.6;
           margin-bottom: 15px;
         }
 
         .image-side-{{ block.id }} {
           flex: 1 1 40%;
-          z-index:99999;
-
         }
 
         .image-side-{{ block.id }} img {
@@ -482,18 +395,6 @@
             flex-direction: column;
             gap: 30px;
           }
-          
-          .image-side-{{ block.id }} {
-            max-width: 100%;
-          }
-        }
-                @media (max-width: 576px) {
-         .text-side-{{ block.id }} p {
-          font-size:17px;
-         }
-         .text-side-{{ block.id }} h2 {
-          font-size:22px;
-         }
         }
       </style>
 
@@ -528,7 +429,8 @@
           </div>
         </div>
       </div>
- {% elsif block.type == 'single_capsule' %}
+
+    {% elsif block.type == 'single_capsule' %}
       <!-- Single Capsule Block -->
       <style>
         .single-capsule-{{ block.id }} {
@@ -537,52 +439,42 @@
           margin-top: {{ block.settings.margin_top }}px;
           margin-bottom: {{ block.settings.margin_bottom }}px;
           padding: {{ block.settings.padding }}px 20px;
-          text-align: {{ block.settings.text_alignment }};
         }
 
         .single-capsule-{{ block.id }} .capsule-container {
           max-width: 1170px;
-          display:flex;
-gap:40px;
+          display: flex;
+          gap: 40px;
           margin: 0 auto;
         }
-        .main-heading{
-        display:flex;
-      }
-      .capsule-highlight strong{
-        color:{{ block.settings.highlight_color }};
-      }
-        .capsul-image{
-flex: 1 1 30%;
-}
-        .image-side-{{ block.id }} img {
- width: 100%;
+
+        .single-capsule-{{ block.id }} .main-heading {
+          display: flex;
+          gap: 10px;
+          border-bottom: 1px solid #ffc4c4;
+          border-top: 1px solid #ffc4c4;
+          padding: 15px 0;
+          margin-bottom: 20px;
+        }
+
+        .single-capsule-{{ block.id }} .capsule-highlight strong {
+          color: {{ block.settings.highlight_color }};
+        }
+
+        .single-capsule-{{ block.id }} .capsul-image img {
+          width: 100%;
           border-radius: 10px;
           border: 5px solid #2f0147;
         }
-        .single-capsule-{{ block.id }} .main-heading {
+
+        .single-capsule-{{ block.id }} .main-heading div {
           font-size: {{ block.settings.main_heading_size }}px;
           font-weight: bold;
           line-height: 1.2;
-          padding:15px 0;
-          margin-bottom: 20px;
-          gap:10px;
-          border-bottom:1px solid #ffc4c4;
-          border-top:1px solid #ffc4c4;
-        }
-        .capsule-content{
-            flex: 1 1 40%;
-        }
-.capsul-image img{
-    border-radius: 10px;
-    border: 5px solid #2f0147;
-}
-        .single-capsule-{{ block.id }} .subheading {
-          font-size: {{ block.settings.subheading_size }}px;
         }
 
-        .single-capsule-{{ block.id }} .question-section {
-          margin-top: 10px;
+        .single-capsule-{{ block.id }} .subheading {
+          font-size: {{ block.settings.subheading_size }}px;
         }
 
         .single-capsule-{{ block.id }} .question-text {
@@ -592,33 +484,11 @@ flex: 1 1 30%;
 
         .single-capsule-{{ block.id }} .answer-text {
           font-size: {{ block.settings.question_size | minus: 4 }}px;
-          font-weight: normal;
-        }
-.single-capsule-single_capsule_yxfhFB .answer-text {
-    font-size: 20px;
-    font-weight: normal;
-}
-        @media (max-width: 768px) {
-          .single-capsule-{{ block.id }} .main-heading {
-            font-size: {{ block.settings.main_heading_size | minus: 8 }}px;
-          }
-          
-          .single-capsule-{{ block.id }} .question-text {
-            font-size: {{ block.settings.question_size | minus: 4 }}px;
-          }
-          
-          .single-capsule-{{ block.id }} .answer-text {
-            font-size: {{ block.settings.question_size | minus: 8 }}px;
-          }
         }
 
-        @media (max-width: 480px) {
-          .single-capsule-{{ block.id }} {
-            padding: {{ block.settings.padding | divided_by: 2 }}px 15px;
-          }
-          
-          .single-capsule-{{ block.id }} .main-heading {
-            font-size: {{ block.settings.main_heading_size | minus: 12 }}px;
+        @media (max-width: 768px) {
+          .single-capsule-{{ block.id }} .capsule-container {
+            flex-direction: column;
           }
         }
       </style>
@@ -626,131 +496,152 @@ flex: 1 1 30%;
       <div class="single-capsule-{{ block.id }}" {{ block.shopify_attributes }}>
         <div class="capsule-container">
           <div class="capsule-content">
-          <div class="main-heading">
-            <div class="heading-image">
-              <img src="{{ block.settings.image_heading | img_url: '600x600' }}" alt="Problem Image" loading="lazy" />
+            <div class="main-heading">
+              {% if block.settings.image_heading != blank %}
+                <div class="heading-image">
+                  <img src="{{ block.settings.image_heading | img_url: '100x100' }}" alt="Heading icon" loading="lazy" />
+                </div>
+              {% endif %}
+              <div class="heading-box">
+                {% if block.settings.main_heading_line1 != blank %}
+                  <div>{{ block.settings.main_heading_line1 }}</div>
+                {% endif %}
+                {% if block.settings.main_heading_line2 != blank %}
+                  <div class="capsule-highlight">{{ block.settings.main_heading_line2 }}</div>
+                {% endif %}
+              </div>
             </div>
-            <div class="heading-box">
-            {% if block.settings.main_heading_line1 != blank %}
-              <div>{{ block.settings.main_heading_line1 }}</div>
-            {% endif %}
-            {% if block.settings.main_heading_line2 != blank %}
-              <div class="capsule-highlight">{{ block.settings.main_heading_line2 }}</div>
-            {% endif %}
-    
-          </div>
-          </div>
-          
-          {% if block.settings.subheading != blank %}
-            <div class="subheading">{{ block.settings.subheading }}</div>
-          {% endif %}
-          
-          <div class="question-section">
-            {% if block.settings.question_text != blank %}
-              <div class="question-text">{{ block.settings.question_text }}</div>
+            
+            {% if block.settings.subheading != blank %}
+              <div class="subheading">{{ block.settings.subheading }}</div>
             {% endif %}
             
-            {% if block.settings.answer_text != blank %}
-              <div class="answer-text">{{ block.settings.answer_text }}</div>
+            <div class="question-section">
+              {% if block.settings.question_text != blank %}
+                <div class="question-text">{{ block.settings.question_text }}</div>
+              {% endif %}
+              
+              {% if block.settings.answer_text != blank %}
+                <div class="answer-text">{{ block.settings.answer_text }}</div>
+              {% endif %}
+            </div>
+          </div>
+          
+          <div class="capsul-image">
+            {% if block.settings.image_capsul != blank %}
+              <img src="{{ block.settings.image_capsul | img_url: '600x600' }}" alt="Capsule image" loading="lazy" />
             {% endif %}
           </div>
         </div>
-        <div class="capsul-image">
-           <img src="{{ block.settings.image_capsul | img_url: '600x600' }}" alt="Problem Image" loading="lazy" />
       </div>
 
-</div>
+    {% elsif block.type == 'nutrient_card' %}
+      <!-- Nutrient Card Block -->
+      <style>
+        .superfoods-section {
+          text-align: center;
+          padding: 50px 20px;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+        
+        .superfood-heading h2 {
+          font-size: 28px;
+          font-weight: 700;
+          margin-bottom: 10px;
+          color: #111;
+        }
+        
+        .superfood-heading .subtitle {
+          font-size: 16px;
+          color: #555;
+          margin-bottom: 30px;
+        }
+        
+        .nutrient-rich {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 20px;
+          margin-top: 30px;
+        }
+        
+        .nutrient-card {
+          background: #fff;
+          border-radius: 16px;
+          padding: 20px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          transition: 0.3s;
+        }
+        
+        .nutrient-card:hover {
+          transform: translateY(-5px);
+        }
+        
+        .nutrient-title {
+          font-size: 18px;
+          font-weight: bold;
+          margin-bottom: 15px;
+        }
+        
+        .nutrient-images {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 15px;
+        }
+        
+        .nutrient-images img {
+          max-width: 80px;
+          height: auto;
+        }
+        
+        .vs {
+          font-weight: bold;
+          font-size: 16px;
+          color: #e6007a;
+        }
+        
+        .nutri-bottomline {
+          font-size: 14px;
+          color: #e6007a;
+          font-weight: 500;
+        }
+      </style>
 
-{% comment %}-------superfood-card-section------- {% endcomment %}
-
-<section class="superfoods-section">
-  <div class="superfood-heading">
-    {% if section.settings.food_heading != blank %}
-      <h2>{{ section.settings.food_heading }}</h2>
-    {% endif %}
-    <div class="subtitle">{{ section.settings.food_subtitle }}</div>
-  </div>
-
-  <div class="nutrient-rich">
-    {% for block in section.blocks %}
-      {% if block.type == 'nutrient_card' %}
-        <div class="nutrient-card" {{ block.shopify_attributes }}>
-          <div class="nutrient-item">
-            <div class="nutrient-title">{{ block.settings.nutrient_heading }}</div>
-          </div>
-          <div class="nutrient-images">
-            {% if block.settings.nutrient_image %}
-              <img src="{{ block.settings.nutrient_image | img_url: '300x300' }}" loading="lazy" alt="{{ block.settings.nutrient_heading }}">
+      {% if forloop.first %}
+        <section class="superfoods-section">
+          <div class="superfood-heading">
+            {% if section.settings.food_heading != blank %}
+              <h2>{{ section.settings.food_heading }}</h2>
             {% endif %}
-            {% if block.settings.vs_image %}
-              <span class="vs">VS</span>
-              <img src="{{ block.settings.vs_image | img_url: '300x300' }}" loading="lazy" alt="vs">
-            {% endif %}
+            <div class="subtitle">{{ section.settings.food_subtitle }}</div>
           </div>
-          <div class="nutri-bottomline">{{ block.settings.nutri_bottomline }}</div>
-        </div>
+
+          <div class="nutrient-rich">
       {% endif %}
-    {% endfor %}
-  </div>
-</section>
 
-<style>
-.superfoods-section {
-  text-align: center;
-  padding: 50px 20px;
-}
-.superfood-heading h2 {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  color: #111;
-}
-.superfood-heading .subtitle {
-  font-size: 16px;
-  color: #555;
-  margin-bottom: 30px;
-}
-.nutrient-rich {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-}
-.nutrient-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: 0.3s;
-}
-.nutrient-card:hover {
-  transform: translateY(-5px);
-}
-.nutrient-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-.nutrient-images {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-.nutrient-images img {
-  max-width: 80px;
-}
-.vs {
-  font-weight: bold;
-  font-size: 16px;
-  color: #e6007a;
-}
-.nutri-bottomline {
-  font-size: 14px;
-  margin-top: 10px;
-  color: #e6007a;
-}
-</style>
-   
-</div>
- {% endif %}
+      <div class="nutrient-card" {{ block.shopify_attributes }}>
+        <div class="nutrient-item">
+          <div class="nutrient-title">{{ block.settings.nutrient_heading }}</div>
+        </div>
+        <div class="nutrient-images">
+          {% if block.settings.nutrient_image %}
+            <img src="{{ block.settings.nutrient_image | img_url: '300x300' }}" loading="lazy" alt="{{ block.settings.nutrient_heading }}">
+          {% endif %}
+          {% if block.settings.vs_image %}
+            <span class="vs">VS</span>
+            <img src="{{ block.settings.vs_image | img_url: '300x300' }}" loading="lazy" alt="Comparison">
+          {% endif %}
+        </div>
+        <div class="nutri-bottomline">{{ block.settings.nutri_bottomline }}</div>
+      </div>
+
+      {% if forloop.last %}
+          </div>
+        </section>
+      {% endif %}
+
+    {% endif %}
   {% endfor %}
+</div>
