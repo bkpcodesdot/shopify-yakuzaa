@@ -949,6 +949,7 @@
             "wave_color": "#ffffff",
             "wave_height": 60,
             "wave_flip": false,
+            "logo_image": "shopify://shop_images/svgviewer-png-output.png",
             "logo_text": "PRIMAL QUEEN",
             "logo_font": "inter_n7",
             "logo_text_size": 24,
