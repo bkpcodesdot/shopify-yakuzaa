@@ -1,0 +1,56 @@
+{% section 'superfoods-section' %}
+
+{% schema %}
+{
+  "name": "Superfoods Section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "superfood_block",
+      "name": "Superfood Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "food_heading",
+          "label": "Food Heading",
+          "default": "Superfood Heading"
+        },
+        {
+          "type": "text",
+          "id": "food_subtitle",
+          "label": "Food Subtitle",
+          "default": "Subtitle goes here"
+        },
+        {
+          "type": "text",
+          "id": "nutrient_heading",
+          "label": "Nutrient Heading",
+          "default": "Nutrient Name"
+        },
+        {
+          "type": "image_picker",
+          "id": "nutrient_image",
+          "label": "Nutrient Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "vs_image",
+          "label": "VS Image"
+        },
+        {
+          "type": "text",
+          "id": "nutri_bottomline",
+          "label": "Bottom Line Text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Superfoods Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
