@@ -429,7 +429,20 @@
           flex: 1 1 50%;
           min-width: 300px;
         }
-
+.image-side-problem_section_FYwizq img::before {
+    content: '';
+    position: absolute;
+    background: url('https://cdn.shopify.com/s/files/1/0727/8169/3085/files/problem_row_bfr_1.webp?v=1759210497');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    /* position: absolute; */
+    right: -44px;
+    top: 31px;
+    z-index: -1;
+}
         .text-side-{{ block.id }} h2 {
           font-size: {{ block.settings.problem_font_size }}px;
           color: {{ block.settings.problem_font_color }};
