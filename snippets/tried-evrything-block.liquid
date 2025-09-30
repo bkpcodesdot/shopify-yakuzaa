@@ -1431,94 +1431,25 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const heroBlock = document.querySelector('.primal-queen-hero-{{ block.id }}');
-    if (!heroBlock) return;
+document.addEventListener("DOMContentLoaded", function () {
+  const blockId = "{{ block.id }}";
+  const testimonials = document.querySelectorAll(`.primal-queen-hero-testimonial-${blockId}`);
+  const dots = document.querySelectorAll(`.primal-queen-hero-dot-${blockId}`);
 
-    class PrimalQueenHero {
-      constructor(block) {
-        this.block = block;
-        this.currentTestimonial = 0;
-        this.testimonials = [];
-        this.dots = [];
-        this.autoSlideInterval = null;
-        this.init();
-      }
+  if (testimonials.length && dots.length) {
+    dots.forEach(dot => {
+      dot.addEventListener("click", () => {
+        const index = dot.getAttribute("data-testimonial");
 
-      init() {
-        const slider = this.block.querySelector('.primal-queen-hero-testimonial-slider-{{ block.id }}');
-        this.testimonials = Array.from(this.block.querySelectorAll('.primal-queen-hero-testimonial-{{ block.id }}'));
-        this.dots = Array.from(this.block.querySelectorAll('.primal-queen-hero-dot-{{ block.id }}'));
-        
-        if (this.testimonials.length > 1) {
-          this.setupEventListeners();
-          this.startAutoSlide();
-        }
-      }
+        testimonials.forEach(t => t.classList.remove("active"));
+        dots.forEach(d => d.classList.remove("active"));
 
-      showTestimonial(index) {
-        // Hide all testimonials
-        this.testimonials.forEach(testimonial => {
-          testimonial.classList.remove('active');
-        });
-        
-        // Show current testimonial
-        this.testimonials[index].classList.add('active');
-        
-        // Update dots
-        this.dots.forEach((dot, i) => {
-          dot.classList.toggle('active', i === index);
-        });
-        
-        this.currentTestimonial = index;
-      }
-
-      nextTestimonial() {
-        let nextIndex = this.currentTestimonial + 1;
-        if (nextIndex >= this.testimonials.length) {
-          nextIndex = 0;
-        }
-        this.showTestimonial(nextIndex);
-      }
-
-      startAutoSlide() {
-        this.autoSlideInterval = setInterval(() => {
-          this.nextTestimonial();
-        }, {{ block.settings.testimonial_auto_slide_duration | default: 5 | times: 1000 }});
-      }
-
-      setupEventListeners() {
-        this.dots.forEach((dot, index) => {
-          dot.addEventListener('click', () => {
-            this.showTestimonial(index);
-            this.resetAutoSlide();
-          });
-        });
-
-        // Pause auto-slide on hover
-        const slider = this.block.querySelector('.primal-queen-hero-testimonial-section-{{ block.id }}');
-        slider.addEventListener('mouseenter', () => {
-          if (this.autoSlideInterval) {
-            clearInterval(this.autoSlideInterval);
-          }
-        });
-
-        slider.addEventListener('mouseleave', () => {
-          this.startAutoSlide();
-        });
-      }
-
-      resetAutoSlide() {
-        if (this.autoSlideInterval) {
-          clearInterval(this.autoSlideInterval);
-          this.startAutoSlide();
-        }
-      }
-    }
-
-    // Initialize the hero block
-    new PrimalQueenHero(heroBlock);
-  });
+        document.querySelector(`.primal-queen-hero-testimonial-${blockId}[data-testimonial="${index}"]`).classList.add("active");
+        dot.classList.add("active");
+      });
+    });
+  }
+});
 </script>
 {% endif %}
     {% endif %}
