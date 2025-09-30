@@ -723,6 +723,22 @@
     },
     "superfood_sectionn_YpPH6W": {
       "type": "superfood-sectionn",
+      "blocks": {
+        "superfood_block_VHwbHp": {
+          "type": "superfood_block",
+          "settings": {
+            "food_heading": "Superfood Heading",
+            "food_subtitle": "Subtitle goes here",
+            "nutrient_heading": "Nutrient Name",
+            "nutrient_image": "shopify://shop_images/promise_icon3.png",
+            "vs_image": "shopify://shop_images/promise_icon1.png",
+            "nutri_bottomline": "try"
+          }
+        }
+      },
+      "block_order": [
+        "superfood_block_VHwbHp"
+      ],
       "name": "Superfoods Section",
       "settings": {}
     },
