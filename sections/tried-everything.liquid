@@ -1,5 +1,3 @@
-{% render 'tried-evrything-block' %}
-
 {% schema %}
 {
   "name": "Tried Everything Section",
@@ -45,9 +43,823 @@
       "id": "point_color",
       "label": "Bullet/Point Color",
       "default": "#ff0000"
+    },
+    {
+      "type": "text",
+      "id": "food_heading",
+      "label": "Superfoods Heading",
+      "default": "Superfoods Rich in Nutrients"
+    },
+    {
+      "type": "text",
+      "id": "food_subtitle",
+      "label": "Superfoods Subtitle",
+      "default": "Packed with vitamins and minerals"
     }
   ],
   "blocks": [
+    {
+      "type": "primal_queen_hero",
+      "name": "Primal Queen Hero",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Section settings"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background color",
+          "default": "#FFEEF3"
+        },
+        {
+          "type": "image_picker",
+          "id": "background_image",
+          "label": "Background image"
+        },
+        {
+          "type": "select",
+          "id": "background_image_position",
+          "label": "Background image position",
+          "options": [
+            {
+              "value": "center center",
+              "label": "Center"
+            },
+            {
+              "value": "top center",
+              "label": "Top center"
+            },
+            {
+              "value": "bottom center",
+              "label": "Bottom center"
+            },
+            {
+              "value": "left center",
+              "label": "Left center"
+            },
+            {
+              "value": "right center",
+              "label": "Right center"
+            },
+            {
+              "value": "top left",
+              "label": "Top left"
+            },
+            {
+              "value": "top right",
+              "label": "Top right"
+            },
+            {
+              "value": "bottom left",
+              "label": "Bottom left"
+            },
+            {
+              "value": "bottom right",
+              "label": "Bottom right"
+            }
+          ],
+          "default": "center center"
+        },
+        {
+          "type": "color",
+          "id": "background_gradient_color",
+          "label": "Background gradient color",
+          "default": "#FFE0E8"
+        },
+        {
+          "type": "range",
+          "id": "background_gradient_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 10,
+          "unit": "%",
+          "label": "Background gradient opacity",
+          "default": 30
+        },
+        {
+          "type": "text",
+          "id": "background_overlay_opacity",
+          "label": "Background overlay opacity",
+          "default": "80",
+          "info": "Hex opacity value (00-FF). Used when background image is set."
+        },
+        {
+          "type": "range",
+          "id": "section_padding_top",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "label": "Section padding top",
+          "default": 60
+        },
+        {
+          "type": "range",
+          "id": "section_padding_bottom",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "label": "Section padding bottom",
+          "default": 60
+        },
+        {
+          "type": "range",
+          "id": "content_spacing",
+          "min": 10,
+          "max": 50,
+          "step": 5,
+          "unit": "px",
+          "label": "Content spacing",
+          "default": 25
+        },
+        {
+          "type": "header",
+          "content": "Wave bottom"
+        },
+        {
+          "type": "color",
+          "id": "wave_color",
+          "label": "Wave color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "range",
+          "id": "wave_height",
+          "min": 20,
+          "max": 120,
+          "step": 10,
+          "unit": "px",
+          "label": "Wave height",
+          "default": 60
+        },
+        {
+          "type": "checkbox",
+          "id": "wave_flip",
+          "label": "Flip wave direction",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Logo"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo_image",
+          "label": "Logo image"
+        },
+        {
+          "type": "text",
+          "id": "logo_text",
+          "label": "Logo text",
+          "default": "PRIMAL QUEEN"
+        },
+        {
+          "type": "font_picker",
+          "id": "logo_font",
+          "label": "Logo font",
+          "default": "inter_n7"
+        },
+        {
+          "type": "range",
+          "id": "logo_text_size",
+          "min": 12,
+          "max": 36,
+          "step": 2,
+          "unit": "px",
+          "label": "Logo text size",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "logo_size",
+          "min": 30,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "label": "Logo image size",
+          "default": 50
+        },
+        {
+          "type": "color",
+          "id": "logo_color",
+          "label": "Logo color",
+          "default": "#FF6F91"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_crown_logo",
+          "label": "Show crown symbol",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "crown_size",
+          "min": 16,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "label": "Crown size",
+          "default": 28
+        },
+        {
+          "type": "header",
+          "content": "Attention text"
+        },
+        {
+          "type": "text",
+          "id": "attention_text",
+          "label": "Attention text",
+          "default": "⚠️ ATTENTION: 82% Of Women Suffer From Imbalanced Hormones & Low Energy"
+        },
+        {
+          "type": "font_picker",
+          "id": "heading_font",
+          "label": "Heading font",
+          "default": "inter_n7"
+        },
+        {
+          "type": "range",
+          "id": "attention_text_size",
+          "min": 14,
+          "max": 32,
+          "step": 2,
+          "unit": "px",
+          "label": "Attention text size",
+          "default": 20
+        },
+        {
+          "type": "color",
+          "id": "attention_text_color",
+          "label": "Attention text color",
+          "default": "#4A1A4A"
+        },
+        {
+          "type": "header",
+          "content": "Main heading"
+        },
+        {
+          "type": "text",
+          "id": "main_heading",
+          "label": "Main heading",
+          "default": "Here's Why Beef Organ Superfoods Are The Secret to Balancing Hormones & [purple]All Day Energy[/purple]"
+        },
+        {
+          "type": "range",
+          "id": "main_heading_size",
+          "min": 20,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "label": "Main heading size",
+          "default": 36
+        },
+        {
+          "type": "color",
+          "id": "main_heading_pink_color",
+          "label": "Main heading pink color",
+          "default": "#FF6F91"
+        },
+        {
+          "type": "color",
+          "id": "main_heading_purple_color",
+          "label": "Main heading purple color",
+          "default": "#4A1A4A"
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "UNLOCK YOUR TRUE POWER"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "font_picker",
+          "id": "button_font",
+          "label": "Button font",
+          "default": "inter_n7"
+        },
+        {
+          "type": "range",
+          "id": "button_text_size",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Button text size",
+          "default": 16
+        },
+        {
+          "type": "color",
+          "id": "button_color",
+          "label": "Button color",
+          "default": "#009933"
+        },
+        {
+          "type": "color",
+          "id": "button_hover_color",
+          "label": "Button hover color",
+          "default": "#007A2A"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button text color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "range",
+          "id": "button_padding_vertical",
+          "min": 8,
+          "max": 24,
+          "step": 2,
+          "unit": "px",
+          "label": "Button padding vertical",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "button_padding_horizontal",
+          "min": 16,
+          "max": 48,
+          "step": 4,
+          "unit": "px",
+          "label": "Button padding horizontal",
+          "default": 32
+        },
+        {
+          "type": "range",
+          "id": "button_border_radius",
+          "min": 0,
+          "max": 30,
+          "step": 2,
+          "unit": "px",
+          "label": "Button border radius",
+          "default": 8
+        },
+        {
+          "type": "checkbox",
+          "id": "show_crown_button",
+          "label": "Show crown icon in button",
+          "default": true
+        },
+        {
+          "type": "image_picker",
+          "id": "button_crown_icon",
+          "label": "button crown icon"
+        },
+        {
+          "type": "header",
+          "content": "Guarantees"
+        },
+        {
+          "type": "image_picker",
+          "id": "verify_mark_icon",
+          "label": "Review verify mark icon"
+        },
+        {
+          "type": "text",
+          "id": "guarantee_1_text",
+          "label": "Guarantee 1 text",
+          "default": "365-Day Money Back Guarantee"
+        },
+        {
+          "type": "text",
+          "id": "guarantee_2_text",
+          "label": "Guarantee 2 text",
+          "default": "Free Shipping +"
+        },
+        {
+          "type": "font_picker",
+          "id": "guarantee_font",
+          "label": "Guarantee font",
+          "default": "inter_n4"
+        },
+        {
+          "type": "range",
+          "id": "guarantee_text_size",
+          "min": 12,
+          "max": 18,
+          "step": 1,
+          "unit": "px",
+          "label": "Guarantee text size",
+          "default": 14
+        },
+        {
+          "type": "color",
+          "id": "guarantee_text_color",
+          "label": "Guarantee text color",
+          "default": "#4A1A4A"
+        },
+        {
+          "type": "color",
+          "id": "guarantee_check_color",
+          "label": "Guarantee check color",
+          "default": "#009933"
+        },
+        {
+          "type": "header",
+          "content": "Media oval"
+        },
+        {
+          "type": "image_picker",
+          "id": "woman_image",
+          "label": "Woman image"
+        },
+        {
+          "type": "url",
+          "id": "video_url",
+          "label": "Video URL"
+        },
+        {
+          "type": "range",
+          "id": "oval_width",
+          "min": 200,
+          "max": 500,
+          "step": 20,
+          "unit": "px",
+          "label": "Oval width",
+          "default": 400
+        },
+        {
+          "type": "range",
+          "id": "oval_height",
+          "min": 200,
+          "max": 500,
+          "step": 20,
+          "unit": "px",
+          "label": "Oval height",
+          "default": 400
+        },
+        {
+          "type": "color",
+          "id": "oval_border_color",
+          "label": "Oval border color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "oval_border_width",
+          "min": 1,
+          "max": 8,
+          "step": 1,
+          "unit": "px",
+          "label": "Oval border width",
+          "default": 3
+        },
+        {
+          "type": "color",
+          "id": "oval_background_color",
+          "label": "Oval background color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "header",
+          "content": "Paint splatter"
+        },
+        {
+          "type": "color",
+          "id": "splatter_color_1",
+          "label": "Splatter color 1",
+          "default": "#FFE066"
+        },
+        {
+          "type": "color",
+          "id": "splatter_color_2",
+          "label": "Splatter color 2",
+          "default": "#FF6F91"
+        },
+        {
+          "type": "range",
+          "id": "splatter_opacity",
+          "min": 10,
+          "max": 60,
+          "step": 5,
+          "unit": "%",
+          "label": "Splatter opacity",
+          "default": 25
+        },
+        {
+          "type": "header",
+          "content": "One week text"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_one_week_text",
+          "label": "Show one week text",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "one_week_text",
+          "label": "One week text",
+          "default": "ONE WEEK"
+        },
+        {
+          "type": "font_picker",
+          "id": "one_week_font",
+          "label": "One week font",
+          "default": "inter_n7"
+        },
+        {
+          "type": "range",
+          "id": "one_week_text_size",
+          "min": 10,
+          "max": 18,
+          "step": 1,
+          "unit": "px",
+          "label": "One week text size",
+          "default": 12
+        },
+        {
+          "type": "color",
+          "id": "one_week_background_color",
+          "label": "One week background color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "one_week_text_color",
+          "label": "One week text color",
+          "default": "#000000"
+        },
+        {
+          "type": "header",
+          "content": "Testimonials"
+        },
+        {
+          "type": "range",
+          "id": "testimonial_auto_slide_duration",
+          "min": 3,
+          "max": 10,
+          "step": 1,
+          "unit": "s",
+          "label": "Auto slide duration",
+          "default": 5
+        },
+        {
+          "type": "color",
+          "id": "testimonial_border_color",
+          "label": "Testimonial border color",
+          "default": "#FF6F91"
+        },
+        {
+          "type": "color",
+          "id": "testimonial_background_color",
+          "label": "Testimonial background color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "range",
+          "id": "testimonial_border_radius",
+          "min": 0,
+          "max": 20,
+          "step": 2,
+          "unit": "px",
+          "label": "Testimonial border radius",
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "testimonial_avatar_size",
+          "min": 40,
+          "max": 80,
+          "step": 5,
+          "unit": "px",
+          "label": "Avatar size",
+          "default": 50
+        },
+        {
+          "type": "font_picker",
+          "id": "testimonial_name_font",
+          "label": "Name font",
+          "default": "inter_n7"
+        },
+        {
+          "type": "range",
+          "id": "testimonial_name_size",
+          "min": 12,
+          "max": 18,
+          "step": 1,
+          "unit": "px",
+          "label": "Name size",
+          "default": 14
+        },
+        {
+          "type": "color",
+          "id": "testimonial_name_color",
+          "label": "Name color",
+          "default": "#FF6F91"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_verified_checkmark",
+          "label": "Show verified checkmark",
+          "default": true
+        },
+        {
+          "type": "color",
+          "id": "verified_check_color",
+          "label": "Verified check color",
+          "default": "#009933"
+        },
+        {
+          "type": "font_picker",
+          "id": "testimonial_text_font",
+          "label": "Testimonial text font",
+          "default": "inter_n4"
+        },
+        {
+          "type": "range",
+          "id": "testimonial_text_size",
+          "min": 12,
+          "max": 18,
+          "step": 1,
+          "unit": "px",
+          "label": "Testimonial text size",
+          "default": 14
+        },
+        {
+          "type": "color",
+          "id": "testimonial_text_color",
+          "label": "Testimonial text color",
+          "default": "#666666"
+        },
+        {
+          "type": "color",
+          "id": "star_color",
+          "label": "Star color",
+          "default": "#FF6F91"
+        },
+        {
+          "type": "color",
+          "id": "dot_active_color",
+          "label": "Active dot color",
+          "default": "#FF6F91"
+        },
+        {
+          "type": "color",
+          "id": "dot_inactive_color",
+          "label": "Inactive dot color",
+          "default": "#CCCCCC"
+        },
+        {
+          "type": "header",
+          "content": "Testimonial 1"
+        },
+        {
+          "type": "textarea",
+          "id": "testimonial_1_text",
+          "label": "Testimonial text",
+          "default": "This product completely changed my energy levels! I feel amazing and my hormones are finally balanced."
+        },
+        {
+          "type": "text",
+          "id": "testimonial_1_name",
+          "label": "Customer name",
+          "default": "Olivia T."
+        },
+        {
+          "type": "image_picker",
+          "id": "testimonial_1_avatar",
+          "label": "Customer avatar"
+        },
+        {
+          "type": "range",
+          "id": "testimonial_1_rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Rating",
+          "default": 5
+        },
+        {
+          "type": "header",
+          "content": "Testimonial 2"
+        },
+        {
+          "type": "textarea",
+          "id": "testimonial_2_text",
+          "label": "Testimonial text",
+          "default": "I've tried everything but nothing worked like this. My energy is through the roof!"
+        },
+        {
+          "type": "text",
+          "id": "testimonial_2_name",
+          "label": "Customer name",
+          "default": "Sarah M."
+        },
+        {
+          "type": "image_picker",
+          "id": "testimonial_2_avatar",
+          "label": "Customer avatar"
+        },
+        {
+          "type": "range",
+          "id": "testimonial_2_rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Rating",
+          "default": 5
+        },
+        {
+          "type": "header",
+          "content": "Testimonial 3"
+        },
+        {
+          "type": "textarea",
+          "id": "testimonial_3_text",
+          "label": "Testimonial text",
+          "default": "Finally found something that actually works! My mood and energy are so much better."
+        },
+        {
+          "type": "text",
+          "id": "testimonial_3_name",
+          "label": "Customer name",
+          "default": "Jessica L."
+        },
+        {
+          "type": "image_picker",
+          "id": "testimonial_3_avatar",
+          "label": "Customer avatar"
+        },
+        {
+          "type": "range",
+          "id": "testimonial_3_rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Rating",
+          "default": 5
+        },
+        {
+          "type": "header",
+          "content": "Testimonial 4"
+        },
+        {
+          "type": "textarea",
+          "id": "testimonial_4_text",
+          "label": "Testimonial text"
+        },
+        {
+          "type": "text",
+          "id": "testimonial_4_name",
+          "label": "Customer name"
+        },
+        {
+          "type": "image_picker",
+          "id": "testimonial_4_avatar",
+          "label": "Customer avatar"
+        },
+        {
+          "type": "range",
+          "id": "testimonial_4_rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Rating",
+          "default": 5
+        },
+        {
+          "type": "header",
+          "content": "Testimonial 5"
+        },
+        {
+          "type": "textarea",
+          "id": "testimonial_5_text",
+          "label": "Testimonial text"
+        },
+        {
+          "type": "text",
+          "id": "testimonial_5_name",
+          "label": "Customer name"
+        },
+        {
+          "type": "image_picker",
+          "id": "testimonial_5_avatar",
+          "label": "Customer avatar"
+        },
+        {
+          "type": "range",
+          "id": "testimonial_5_rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Rating",
+          "default": 5
+        }
+      ]
+    },
     {
       "type": "tried_everything",
       "name": "Tried Everything Block",
@@ -314,7 +1126,6 @@
         }
       ]
     },
-    
     {
       "type": "content_block",
       "name": "Content Block",
@@ -369,87 +1180,6 @@
           "max": 100,
           "step": 5,
           "default": 20
-        }
-      ]
-    },
-    {
-      "type": "image_text_block",
-      "name": "Image with Text Items",
-      "settings": [
-        {
-          "type": "header",
-          "content": "Item 1"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_1",
-          "label": "Image 1"
-        },
-        {
-          "type": "text",
-          "id": "text_1",
-          "label": "Text 1",
-          "default": "13 vitamins"
-        },
-        {
-          "type": "header",
-          "content": "Item 2"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_2",
-          "label": "Image 2"
-        },
-        {
-          "type": "text",
-          "id": "text_2",
-          "label": "Text 2",
-          "default": "9 essential minerals"
-        },
-        {
-          "type": "header",
-          "content": "Item 3"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_3",
-          "label": "Image 3"
-        },
-        {
-          "type": "text",
-          "id": "text_3",
-          "label": "Text 3",
-          "default": "Natural omega 3 fatty acids"
-        },
-        {
-          "type": "header",
-          "content": "Item 4"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_4",
-          "label": "Image 4"
-        },
-        {
-          "type": "text",
-          "id": "text_4",
-          "label": "Text 4",
-          "default": "Straight from the source rather than lab-made"
-        },
-        {
-          "type": "header",
-          "content": "Item 5"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_5",
-          "label": "Image 5"
-        },
-        {
-          "type": "text",
-          "id": "text_5",
-          "label": "Text 5",
-          "default": "Original superfood from our ancestors"
         }
       ]
     },
@@ -694,20 +1424,20 @@
           "step": 1,
           "default": 16
         },
-         {
+        {
           "type": "color",
           "id": "problem_font_color",
           "label": "Font color",
           "default": "#2F0147"
         },
-         {
+        {
           "type": "range",
           "id": "text_font_size_one",
           "label": "Font Size (px)",
           "min": 12,
           "max": 30,
           "step": 1,
-          "default":20
+          "default": 20
         },
         {
           "type": "text",
@@ -741,7 +1471,7 @@
         }
       ]
     },
-   {
+    {
       "type": "single_capsule",
       "name": "Single Capsule Block",
       "settings": [
@@ -755,12 +1485,12 @@
           "label": "Main Heading Line 1",
           "default": "One Single Capsule with Every Meal"
         },
-      {
-  "type": "richtext",
-  "id": "main_heading_line2",
-  "label": "Main Heading Line 2",
-  "default": "<p>That Provides The Exact Beef Organ</p>"
-},
+        {
+          "type": "richtext",
+          "id": "main_heading_line2",
+          "label": "Main Heading Line 2",
+          "default": "<p>That Provides The Exact Beef Organ</p>"
+        },
         {
           "type": "text",
           "id": "subheading",
@@ -778,7 +1508,7 @@
           "id": "image_heading",
           "label": "Image"
         },
-          {
+        {
           "type": "image_picker",
           "id": "image_capsul",
           "label": "Image"
@@ -798,6 +1528,12 @@
           "id": "background_color",
           "label": "Background Color",
           "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "highlight_color",
+          "label": "Highlight Color",
+          "default": "#000000"
         },
         {
           "type": "color",
@@ -856,7 +1592,6 @@
           "step": 5,
           "default": 40
         },
-
         {
           "type": "range",
           "id": "padding",
@@ -878,27 +1613,47 @@
           "default": "center"
         }
       ]
+    },
+    {
+      "type": "nutrient_card",
+      "name": "Nutrient Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "nutrient_heading",
+          "label": "Nutrient Heading",
+          "default": "Vitamin C"
+        },
+        {
+          "type": "image_picker",
+          "id": "nutrient_image",
+          "label": "Nutrient Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "vs_image",
+          "label": "VS Image"
+        },
+        {
+          "type": "text",
+          "id": "nutri_bottomline",
+          "label": "Bottom Line Text",
+          "default": "Boosts Immunity and Skin Health"
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Tried Everything Section",
+      "name": "Tried Everything + Superfoods",
       "blocks": [
-        {
-          "type": "tried_everything"
-        },
-        {
-          "type": "content_block"
-        },
-        {
-          "type": "organ_supplement"
-        },
-        {
-          "type": "problem_section"
-        },
-        {
-          "type": "single_capsule"
-        }
+        { "type": "primal_queen_hero" },
+        { "type": "tried_everything" },
+        { "type": "content_block" },
+        { "type": "organ_supplement" },
+        { "type": "problem_section" },
+        { "type": "single_capsule" },
+        { "type": "nutrient_card" }
       ]
     }
   ]
