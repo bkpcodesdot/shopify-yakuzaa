@@ -721,6 +721,11 @@
         "padding-block-end": 0
       }
     },
+    "superfood_sectionn_YpPH6W": {
+      "type": "superfood-sectionn",
+      "name": "Superfoods Section",
+      "settings": {}
+    },
     "tried_everything_HpChKa": {
       "type": "tried-everything",
       "blocks": {
@@ -967,6 +972,7 @@
     "main",
     "blocks_xL3Lyb",
     "primal_queen_section_fggrCK",
+    "superfood_sectionn_YpPH6W",
     "tried_everything_HpChKa"
   ]
 }
