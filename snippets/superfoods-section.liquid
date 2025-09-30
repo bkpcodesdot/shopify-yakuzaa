@@ -1,9 +1,8 @@
-
 <section class="primal-queen-section">
   {% for block in section.blocks %}
     <div class="combined-container block-{{ forloop.index }}">
       
-      {%- comment -%} ===== ORGAN COMPARISON ===== {%- endcomment -%}
+      {%- comment -%} ===== ORGAN SECTION ===== {%- endcomment -%}
       {% if block.settings.main_heading != blank %}
         <h2 class="organ-heading">{{ block.settings.main_heading }}</h2>
       {% endif %}
@@ -14,23 +13,15 @@
       <div class="organ-items">
         {% for i in (1..6) %}
           {% assign organ_image_key = 'organ_image_' | append: i %}
-          {% assign organ_vs_image_key = 'organ_vs_image_' | append: i %}
           {% assign organ_text_key = 'organ_text_' | append: i %}
 
           {% assign organ_image = block.settings[organ_image_key] %}
-          {% assign organ_vs_image = block.settings[organ_vs_image_key] %}
           {% assign organ_text = block.settings[organ_text_key] %}
 
-          {% if organ_image != blank and organ_vs_image != blank and organ_text != blank %}
+          {% if organ_image != blank and organ_text != blank %}
           <div class="organ-item">
-            <div class="organ-imgs">
-              <div class="img-wrapper">
-                <img src="{{ organ_image | img_url: '150x150' }}" alt="Organ">
-              </div>
-              <span class="vs-text">vs</span>
-              <div class="img-wrapper">
-                <img src="{{ organ_vs_image | img_url: '150x150' }}" alt="Veggie">
-              </div>
+            <div class="organ-imgs-single">
+              <img src="{{ organ_image | img_url: '300x300' }}" alt="Organ Image">
             </div>
             <p class="organ-desc">{{ organ_text }}</p>
           </div>
@@ -97,21 +88,12 @@
   padding: 15px;
   background: #fff;
 }
-.organ-imgs {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 10px;
-}
-.organ-imgs .img-wrapper img {
-  width: 70px;
-  height: 70px;
+.organ-imgs-single img {
+  width: 100%;
+  height: auto;
   object-fit: contain;
-}
-.vs-text {
-  font-weight: bold;
-  color: #ff4081;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 .organ-desc {
   font-size: 14px;
@@ -165,3 +147,4 @@
   text-align: center;
 }
 </style>
+
