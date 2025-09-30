@@ -1,53 +1,44 @@
-{% render 'superfoods-section' %}
-
+```liquid
 {% schema %}
 {
-  "name": "Primal Queen Section",
+  "name": "Primal Queen Full Section",
   "settings": [],
   "blocks": [
     {
-      "type": "organ_block",
-      "name": "Organ Block",
+      "type": "combined_block",
+      "name": "Organ + Promise",
       "settings": [
-        { "type": "text", "id": "heading", "label": "Heading", "default": "Primal Queen's Female-Focused Organ Superfoods are Hands Down THE MOST Nutrient-Rich On The Planet" },
-        { "type": "text", "id": "subheading", "label": "Subheading", "default": "Here’s why we hand-picked these 6 beef organs" },
+        { "type": "text", "id": "main_heading", "label": "Main Heading", "default": "Primal Queen's Female-Focused Organ Superfoods" },
+        { "type": "text", "id": "sub_heading", "label": "Sub Heading", "default": "Here’s why we hand-picked these 6 beef organs" },
 
-        { "type": "image_picker", "id": "organ_icon_1", "label": "Organ 1 Image" },
-        { "type": "text", "id": "organ_title_1", "label": "Organ 1 Title", "default": "Beef Liver" },
-        { "type": "text", "id": "organ_compare_1", "label": "Organ 1 Compare Text", "default": "vs Lettuce" },
-        { "type": "text", "id": "organ_note_1", "label": "Organ 1 Note", "default": "4.2X MORE Vitamin A" },
+        { "type": "image_picker", "id": "organ_image_1", "label": "Organ Image 1" },
+        { "type": "image_picker", "id": "organ_vs_image_1", "label": "VS Image 1" },
+        { "type": "text", "id": "organ_text_1", "label": "Comparison Text 1", "default": "Comparison text" },
 
-        { "type": "image_picker", "id": "organ_icon_2", "label": "Organ 2 Image" },
-        { "type": "text", "id": "organ_title_2", "label": "Organ 2 Title", "default": "Beef Heart" },
-        { "type": "text", "id": "organ_compare_2", "label": "Organ 2 Compare Text", "default": "vs Cauliflower" },
-        { "type": "text", "id": "organ_note_2", "label": "Organ 2 Note", "default": "40,000X MORE CoQ10" },
+        { "type": "image_picker", "id": "organ_image_2", "label": "Organ Image 2" },
+        { "type": "image_picker", "id": "organ_vs_image_2", "label": "VS Image 2" },
+        { "type": "text", "id": "organ_text_2", "label": "Comparison Text 2", "default": "Comparison text" },
 
-        { "type": "image_picker", "id": "organ_icon_3", "label": "Organ 3 Image" },
-        { "type": "text", "id": "organ_title_3", "label": "Organ 3 Title", "default": "Beef Kidney" },
-        { "type": "text", "id": "organ_compare_3", "label": "Organ 3 Compare Text", "default": "vs Kale" },
-        { "type": "text", "id": "organ_note_3", "label": "Organ 3 Note", "default": "3.4X MORE Iron" },
+        { "type": "image_picker", "id": "organ_image_3", "label": "Organ Image 3" },
+        { "type": "image_picker", "id": "organ_vs_image_3", "label": "VS Image 3" },
+        { "type": "text", "id": "organ_text_3", "label": "Comparison Text 3", "default": "Comparison text" },
 
-        { "type": "image_picker", "id": "organ_icon_4", "label": "Organ 4 Image" },
-        { "type": "text", "id": "organ_title_4", "label": "Organ 4 Title", "default": "Beef Uterus" },
-        { "type": "text", "id": "organ_compare_4", "label": "Organ 4 Compare Text", "default": "vs Spinach" },
-        { "type": "text", "id": "organ_note_4", "label": "Organ 4 Note", "default": "100X MORE Vitamin B12" },
+        { "type": "image_picker", "id": "organ_image_4", "label": "Organ Image 4" },
+        { "type": "image_picker", "id": "organ_vs_image_4", "label": "VS Image 4" },
+        { "type": "text", "id": "organ_text_4", "label": "Comparison Text 4", "default": "Comparison text" },
 
-        { "type": "image_picker", "id": "organ_icon_5", "label": "Organ 5 Image" },
-        { "type": "text", "id": "organ_title_5", "label": "Organ 5 Title", "default": "Beef Fallopian Tubes" },
-        { "type": "text", "id": "organ_compare_5", "label": "Organ 5 Compare Text", "default": "vs Broccoli" },
-        { "type": "text", "id": "organ_note_5", "label": "Organ 5 Note", "default": "11.25X MORE Zinc" },
+        { "type": "image_picker", "id": "organ_image_5", "label": "Organ Image 5" },
+        { "type": "image_picker", "id": "organ_vs_image_5", "label": "VS Image 5" },
+        { "type": "text", "id": "organ_text_5", "label": "Comparison Text 5", "default": "Comparison text" },
 
-        { "type": "image_picker", "id": "organ_icon_6", "label": "Organ 6 Image" },
-        { "type": "text", "id": "organ_title_6", "label": "Organ 6 Title", "default": "Beef Ovaries" },
-        { "type": "text", "id": "organ_compare_6", "label": "Organ 6 Compare Text", "default": "vs Oats" },
-        { "type": "text", "id": "organ_note_6", "label": "Organ 6 Note", "default": "2.2X MORE Selenium" }
-      ]
-    },
-    {
-      "type": "promise_block",
-      "name": "Promise Block",
-      "settings": [
-        { "type": "text", "id": "heading", "label": "Section Heading", "default": "Primal Queen Promise" },
+        { "type": "image_picker", "id": "organ_image_6", "label": "Organ Image 6" },
+        { "type": "image_picker", "id": "organ_vs_image_6", "label": "VS Image 6" },
+        { "type": "text", "id": "organ_text_6", "label": "Comparison Text 6", "default": "Comparison text" },
+
+        { "type": "text", "id": "cta_label", "label": "CTA Label", "default": "UNLOCK YOUR TRUE POWER" },
+        { "type": "url", "id": "cta_link", "label": "CTA Link", "default": "/" },
+
+        { "type": "text", "id": "promise_heading", "label": "Promise Heading", "default": "Primal Queen Promise" },
 
         { "type": "image_picker", "id": "icon_1", "label": "Icon 1" },
         { "type": "text", "id": "icon_text_1", "label": "Icon 1 Text", "default": "Grass Fed" },
@@ -69,11 +60,16 @@
       ]
     }
   ],
+  "max_blocks": 1,
   "presets": [
     {
-      "name": "Primal Queen Section",
-      "category": "Custom"
+      "name": "Primal Queen Full Section",
+      "category": "Custom",
+      "blocks": [
+        { "type": "combined_block" }
+      ]
     }
   ]
 }
 {% endschema %}
+```
