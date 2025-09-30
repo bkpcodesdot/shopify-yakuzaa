@@ -2,53 +2,43 @@
 
 {% schema %}
 {
-  "name": "Superfoods Section",
+  "name": "Primal Queen Promise",
   "settings": [],
   "blocks": [
     {
-      "type": "superfood_block",
-      "name": "Superfood Block",
+      "type": "promise_block",
+      "name": "Promise Block",
       "settings": [
         {
           "type": "text",
-          "id": "food_heading",
-          "label": "Food Heading",
-          "default": "Superfood Heading"
+          "id": "heading",
+          "label": "Section Heading",
+          "default": "Primal Queen Promise"
         },
-        {
-          "type": "text",
-          "id": "food_subtitle",
-          "label": "Food Subtitle",
-          "default": "Subtitle goes here"
-        },
-        {
-          "type": "text",
-          "id": "nutrient_heading",
-          "label": "Nutrient Heading",
-          "default": "Nutrient Name"
-        },
-        {
-          "type": "image_picker",
-          "id": "nutrient_image",
-          "label": "Nutrient Image"
-        },
-        {
-          "type": "image_picker",
-          "id": "vs_image",
-          "label": "VS Image"
-        },
-        {
-          "type": "text",
-          "id": "nutri_bottomline",
-          "label": "Bottom Line Text"
-        }
+        { "type": "image_picker", "id": "icon_1", "label": "Icon 1" },
+        { "type": "text", "id": "icon_text_1", "label": "Icon 1 Text", "default": "Grass Fed" },
+
+        { "type": "image_picker", "id": "icon_2", "label": "Icon 2" },
+        { "type": "text", "id": "icon_text_2", "label": "Icon 2 Text", "default": "Pasture Raised" },
+
+        { "type": "image_picker", "id": "icon_3", "label": "Icon 3" },
+        { "type": "text", "id": "icon_text_3", "label": "Icon 3 Text", "default": "No Hormones" },
+
+        { "type": "image_picker", "id": "icon_4", "label": "Icon 4" },
+        { "type": "text", "id": "icon_text_4", "label": "Icon 4 Text", "default": "No Antibiotics" },
+
+        { "type": "image_picker", "id": "icon_5", "label": "Icon 5" },
+        { "type": "text", "id": "icon_text_5", "label": "Icon 5 Text", "default": "Gluten Free" },
+
+        { "type": "image_picker", "id": "icon_6", "label": "Icon 6" },
+        { "type": "text", "id": "icon_text_6", "label": "Icon 6 Text", "default": "Non-GMO" }
       ]
     }
   ],
-  "max_blocks": 20,
+  "max_blocks": 1,
   "presets": [
     {
-      "name": "Superfoods Section",
+      "name": "Primal Queen Promise",
       "category": "Custom"
     }
   ]
