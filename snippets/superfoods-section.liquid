@@ -1,8 +1,9 @@
+```liquid
 <section class="primal-queen-section">
   {% for block in section.blocks %}
     <div class="combined-container block-{{ forloop.index }}">
       
-      {%- comment -%} ===== ORGAN COMPARISON ===== {%- endcomment -%}
+      {%- comment -%} ===== ORGAN CARDS ===== {%- endcomment -%}
       {% if block.settings.main_heading != blank %}
         <h2 class="organ-heading">{{ block.settings.main_heading }}</h2>
       {% endif %}
@@ -10,28 +11,34 @@
         <p class="organ-subheading">{{ block.settings.sub_heading }}</p>
       {% endif %}
 
-      <div class="organ-items">
+      <div class="organ-grid">
         {% for i in (1..6) %}
-          {% assign organ_image_key = 'organ_image_' | append: i %}
-          {% assign organ_vs_image_key = 'organ_vs_image_' | append: i %}
-          {% assign organ_text_key = 'organ_text_' | append: i %}
+          {% assign card_img_key = 'organ_card_image_' | append: i %}
+          {% assign card_title_key = 'organ_card_title_' | append: i %}
+          {% assign card_icon_key = 'organ_card_icon_' | append: i %}
+          {% assign card_text_key = 'organ_card_text_' | append: i %}
 
-          {% assign organ_image = block.settings[organ_image_key] %}
-          {% assign organ_vs_image = block.settings[organ_vs_image_key] %}
-          {% assign organ_text = block.settings[organ_text_key] %}
+          {% assign card_img = block.settings[card_img_key] %}
+          {% assign card_title = block.settings[card_title_key] %}
+          {% assign card_icon = block.settings[card_icon_key] %}
+          {% assign card_text = block.settings[card_text_key] %}
 
-          {% if organ_image != blank and organ_vs_image != blank and organ_text != blank %}
-          <div class="organ-item">
-            <div class="organ-imgs">
-              <div class="img-wrapper">
-                <img src="{{ organ_image | img_url: '150x150' }}" alt="Organ">
-              </div>
-              <span class="vs-text">vs</span>
-              <div class="img-wrapper">
-                <img src="{{ organ_vs_image | img_url: '150x150' }}" alt="Veggie">
-              </div>
+          {% if card_img != blank %}
+          <div class="organ-card">
+            <img class="card-bg" src="{{ card_img | img_url: '600x400' }}" alt="{{ card_title }}">
+
+            <div class="card-top">
+              <h3 class="card-title">{{ card_title }}</h3>
+              {% if card_icon != blank %}
+                <img src="{{ card_icon | img_url: '40x40' }}" alt="icon" class="card-icon">
+              {% endif %}
             </div>
-            <p class="organ-desc">{{ organ_text }}</p>
+
+            {% if card_text != blank %}
+            <div class="card-bottom">
+              <p>{{ card_text }}</p>
+            </div>
+            {% endif %}
           </div>
           {% endif %}
         {% endfor %}
@@ -52,11 +59,11 @@
         {% for i in (1..6) %}
           {% assign icon_key = 'icon_' | append: i %}
           {% assign icon_text_key = 'icon_text_' | append: i %}
-          {% assign icon_image = block.settings[icon_key] %}
+          {% assign icon_img = block.settings[icon_key] %}
           {% assign icon_text = block.settings[icon_text_key] %}
-          {% if icon_image != blank and icon_text != blank %}
+          {% if icon_img != blank and icon_text != blank %}
           <div class="promise-item">
-            <img src="{{ icon_image | img_url: '100x100' }}" alt="{{ icon_text }}">
+            <img src="{{ icon_img | img_url: '100x100' }}" alt="{{ icon_text }}">
             <span class="item-text">{{ icon_text }}</span>
           </div>
           {% endif %}
@@ -84,41 +91,60 @@
   color: #555;
   margin-bottom: 30px;
 }
-.organ-items {
+.organ-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
   gap: 20px;
-  justify-content: center;
 }
-.organ-item {
-  border: 2px solid #6a1b9a;
+.organ-card {
+  position: relative;
   border-radius: 10px;
-  padding: 15px;
+  overflow: hidden;
   background: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
-.organ-imgs {
+.organ-card .card-bg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.card-top {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 10px;
 }
-.organ-imgs .img-wrapper img {
-  width: 70px;
-  height: 70px;
-  object-fit: contain;
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
 }
-.vs-text {
-  font-weight: bold;
-  color: #ff4081;
+.card-icon {
+  width: 30px;
+  height: 30px;
 }
-.organ-desc {
-  font-size: 14px;
-  color: #3b0a55;
-  font-weight: 600;
+.card-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #d81b60;
+  padding: 6px 10px;
 }
+.card-bottom p {
+  font-size: 13px;
+  color: #fff;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* ===== CTA ===== */
 .cta-wrapper {
-  margin: 20px 0;
+  margin: 30px 0;
 }
 .cta-btn {
   background: #00c853;
@@ -164,3 +190,5 @@
   text-align: center;
 }
 </style>
+
+
