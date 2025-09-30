@@ -1377,19 +1377,20 @@
           {% endfor %}
         </div>
 
-        <div class="primal-queen-hero-testimonial-dots-{{ block.id }}">
-          {% for i in (1..5) %}
-            {% liquid
-              assign testimonial_text_key = 'testimonial_' | append: i | append: '_text'
-              assign testimonial_name_key = 'testimonial_' | append: i | append: '_name'
-              assign testimonial_text = block.settings[testimonial_text_key]
-              assign testimonial_name = block.settings[testimonial_name_key]
-            %}
-            {% if testimonial_text != blank and testimonial_name != blank %}
-              <div class="primal-queen-hero-dot-{{ block.id }} {% if forloop.first %}active{% endif %}" data-dot="{{ forloop.index }}"></div>
-            {% endif %}
-          {% endfor %}
-        </div>
+       <div class="primal-queen-hero-testimonial-dots-{{ block.id }}">
+  {% assign testimonial_index = 0 %}
+  {% for i in (1..5) %}
+    {% assign testimonial_text_key = 'testimonial_' | append: i | append: '_text' %}
+    {% assign testimonial_name_key = 'testimonial_' | append: i | append: '_name' %}
+    {% assign testimonial_text = block.settings[testimonial_text_key] %}
+    {% assign testimonial_name = block.settings[testimonial_name_key] %}
+
+    {% if testimonial_text != blank and testimonial_name != blank %}
+      {% assign testimonial_index = testimonial_index | plus: 1 %}
+      <div class="primal-queen-hero-dot-{{ block.id }} {% if testimonial_index == 1 %}active{% endif %}" data-testimonial="{{ testimonial_index }}"></div>
+    {% endif %}
+  {% endfor %}
+</div>
       </div>
     </div>
 

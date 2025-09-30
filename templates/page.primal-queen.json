@@ -723,29 +723,6 @@
     },
     "superfood_sectionn_YpPH6W": {
       "type": "superfood-sectionn",
-      "blocks": {
-        "promise_block_kBkUUe": {
-          "type": "promise_block",
-          "settings": {
-            "heading": "Primal Queen Promise",
-            "icon_1": "shopify://shop_images/promise_icon1.png",
-            "icon_text_1": "Grass Fed",
-            "icon_2": "shopify://shop_images/promise_icon3.png",
-            "icon_text_2": "Pasture Raised",
-            "icon_3": "shopify://shop_images/promise_icon6.png",
-            "icon_text_3": "No Hormones",
-            "icon_4": "shopify://shop_images/promise_icon4.png",
-            "icon_text_4": "No Antibiotics",
-            "icon_5": "shopify://shop_images/promise_icon1.png",
-            "icon_text_5": "Gluten Free",
-            "icon_6": "shopify://shop_images/promise_icon5.png",
-            "icon_text_6": "Non-GMO"
-          }
-        }
-      },
-      "block_order": [
-        "promise_block_kBkUUe"
-      ],
       "name": "Superfoods Section",
       "settings": {}
     },
@@ -956,11 +933,13 @@
             "testimonial_1_rating": 5,
             "testimonial_2_text": "I've tried everything but nothing worked like this. My energy is through the roof!",
             "testimonial_2_name": "Sarah M.",
+            "testimonial_2_avatar": "shopify://shop_images/s5_row_img3.jpg",
             "testimonial_2_rating": 5,
             "testimonial_3_text": "Finally found something that actually works! My mood and energy are so much better.",
             "testimonial_3_name": "Jessica L.",
+            "testimonial_3_avatar": "shopify://shop_images/s5_row_img55.png",
             "testimonial_3_rating": 5,
-            "testimonial_4_text": "",
+            "testimonial_4_text": "Finally found something that actually works! My mood and energy are so much better.",
             "testimonial_4_name": "",
             "testimonial_4_rating": 5,
             "testimonial_5_text": "",
