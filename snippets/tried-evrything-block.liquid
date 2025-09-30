@@ -649,7 +649,414 @@
   </div>
 </section>
 
-  
+  <primal-queen-hero-{{ ai_gen_id }} class="ai-primal-queen-hero-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-primal-queen-hero-container-{{ ai_gen_id }}">
+    <div class="ai-primal-queen-hero-content-{{ ai_gen_id }}">
+      <div class="ai-primal-queen-hero-logo-{{ ai_gen_id }}">
+        {% if block.settings.logo_image %}
+          <img 
+            src="{{ block.settings.logo_image | image_url: width: 200 }}" 
+            alt="{{ block.settings.logo_text | escape }}"
+            class="ai-primal-queen-hero-logo-image-{{ ai_gen_id }}"
+            width="200"
+            height="auto"
+            loading="lazy"
+          >
+        {% endif %}
+        {% if block.settings.logo_text != blank %}
+          <span class="ai-primal-queen-hero-logo-text-{{ ai_gen_id }}">{{ block.settings.logo_text }}</span>
+        {% endif %}
+        {% if block.settings.show_crown_logo %}
+          <svg class="ai-primal-queen-hero-crown-{{ ai_gen_id }}" viewBox="0 0 24 24">
+            <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm2.7-2h8.6l.9-5.4-2.1 1.7L12 8l-3.1 2.3-2.1-1.7L7.7 14z"/>
+          </svg>
+        {% endif %}
+      </div>
+      
+      {% if block.settings.attention_text != blank %}
+        <div class="ai-primal-queen-hero-attention-{{ ai_gen_id }}">{{ block.settings.attention_text }}</div>
+      {% endif %}
+
+      {% if block.settings.main_heading != blank %}
+        <h1 class="ai-primal-queen-hero-main-heading-{{ ai_gen_id }}">
+          {{ block.settings.main_heading | replace: '[purple]', '<span class="purple-text">' | replace: '[/purple]', '</span>' }}
+        </h1>
+      {% endif %}
+
+      {% if block.settings.video_url != blank %}
+              <div class="ai-primal-queen-hero-media-{{ ai_gen_id }} is-mobile">
+      <div class="ai-primal-queen-hero-oval-container-{{ ai_gen_id }}">
+        <div class="ai-primal-queen-hero-splatter-{{ ai_gen_id }}"></div>
+        <div class="ai-primal-queen-hero-media-content-{{ ai_gen_id }}">
+          {% if block.settings.video_url != blank %}
+            <video 
+              class="ai-primal-queen-hero-video-{{ ai_gen_id }}"
+              autoplay
+              muted
+              loop
+              playsinline
+            >
+              <source src="{{ block.settings.video_url }}" type="video/mp4">
+            </video>
+          {% elsif block.settings.woman_image %}
+            <img 
+              src="{{ block.settings.woman_image | image_url: width: 600 }}" 
+              alt="Woman drinking water"
+              class="ai-primal-queen-hero-woman-image-{{ ai_gen_id }}"
+              width="600"
+              height="600"
+              loading="lazy"
+            >
+          {% else %}
+            <div class="ai-primal-queen-hero-woman-placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+          {% if block.settings.show_one_week_text %}
+            <div class="ai-primal-queen-hero-one-week-{{ ai_gen_id }}">{{ block.settings.one_week_text }}</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+      {% if block.settings.button_text != blank %}
+       <div class="btn_wrapper_wrapper">
+        <div class="btn_wrapper">
+          <a href="{{ block.settings.button_link }}" class="ai-primal-queen-hero-button-{{ ai_gen_id }}">
+            {% if block.settings.show_crown_button %}
+              {% comment %} <svg class="ai-primal-queen-hero-button-crown-{{ ai_gen_id }}" viewBox="0 0 24 24">
+                <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm2.7-2h8.6l.9-5.4-2.1 1.7L12 8l-3.1 2.3-2.1-1.7L7.7 14z"/>
+              </svg> {% endcomment %}
+
+              <img src="{{ block.settings.button_crown_icon | image_url }}" class="button_crown_icon" width="20px" height="20px" style="width:20px;">
+            {% endif %}
+            {{ block.settings.button_text }}
+          </a>
+        </div>  
+      </div>    
+      {% endif %}
+
+      <div class="ai-primal-queen-hero-guarantees-{{ ai_gen_id }}">
+        {% if block.settings.guarantee_1_text != blank %}
+          <div class="ai-primal-queen-hero-guarantee-{{ ai_gen_id }}">
+            <svg class="ai-primal-queen-hero-check-{{ ai_gen_id }}" viewBox="0 0 24 24">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+            </svg>
+            <span>{{ block.settings.guarantee_1_text }}</span>
+          </div>
+        {% endif %}
+        {% if block.settings.guarantee_2_text != blank %}
+          <div class="ai-primal-queen-hero-guarantee-{{ ai_gen_id }}">
+            <svg class="ai-primal-queen-hero-check-{{ ai_gen_id }}" viewBox="0 0 24 24">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+            </svg>
+            <span>{{ block.settings.guarantee_2_text }}</span>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="ai-primal-queen-hero-testimonial-section-{{ ai_gen_id }}">
+        <div class="ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }}">
+          {% for i in (1..5) %}
+            {% liquid
+              assign testimonial_text_key = 'testimonial_' | append: i | append: '_text'
+              assign testimonial_name_key = 'testimonial_' | append: i | append: '_name'
+              assign testimonial_avatar_key = 'testimonial_' | append: i | append: '_avatar'
+              assign testimonial_rating_key = 'testimonial_' | append: i | append: '_rating'
+
+              assign testimonial_text = block.settings[testimonial_text_key]
+              assign testimonial_name = block.settings[testimonial_name_key]
+              assign testimonial_avatar = block.settings[testimonial_avatar_key]
+              assign testimonial_rating = block.settings[testimonial_rating_key]
+            %}
+
+            {% if testimonial_text != blank and testimonial_name != blank %}
+              <div class="ai-primal-queen-hero-testimonial-{{ ai_gen_id }} {% if forloop.first %}active{% endif %}" data-testimonial="{{ forloop.index }}">
+                <div class="ai-primal-queen-hero-testimonial-header-{{ ai_gen_id }}">
+                  {% if testimonial_avatar %}
+                    <img 
+                      src="{{ testimonial_avatar | image_url: width: 100 }}" 
+                      alt="{{ testimonial_name | escape }}"
+                      class="ai-primal-queen-hero-testimonial-avatar-{{ ai_gen_id }}"
+                      width="100"
+                      height="100"
+                      loading="lazy"
+                    >
+                  {% else %}
+                    <div class="ai-primal-queen-hero-testimonial-avatar-placeholder-{{ ai_gen_id }}">
+                      {{ 'image' | placeholder_svg_tag }}
+                    </div>
+                  {% endif %}
+                  
+                    <div class="right-content-wrapper">
+                       <p class="ai-primal-queen-hero-testimonial-text-{{ ai_gen_id }}">{{ testimonial_text }}</p>
+                        <div class="ai-primal-queen-hero-testimonial-info-{{ ai_gen_id }}">
+                          <h3 class="ai-primal-queen-hero-testimonial-name-{{ ai_gen_id }}">
+                            {{ testimonial_name }}
+                            {% if block.settings.show_verified_checkmark %}
+                              <img src="{{ block.settings.verify_mark_icon | image_url }}" width="17px" height="17px" class="verify_mark_icon">
+                            {% endif %}
+                          </h3>
+                          <div class="ai-primal-queen-hero-testimonial-stars-{{ ai_gen_id }}">
+                            {% for star in (1..5) %}
+                              <svg class="ai-primal-queen-hero-star-{{ ai_gen_id }}" viewBox="0 0 24 24" {% if star > testimonial_rating %}style="opacity: 0.3;"{% endif %}>
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                              </svg>
+                            {% endfor %}
+                          </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <div class="ai-primal-queen-hero-testimonial-dots-{{ ai_gen_id }}">
+          {% for i in (1..5) %}
+            {% liquid
+              assign testimonial_text_key = 'testimonial_' | append: i | append: '_text'
+              assign testimonial_name_key = 'testimonial_' | append: i | append: '_name'
+              assign testimonial_text = block.settings[testimonial_text_key]
+              assign testimonial_name = block.settings[testimonial_name_key]
+            %}
+            {% if testimonial_text != blank and testimonial_name != blank %}
+              <div class="ai-primal-queen-hero-dot-{{ ai_gen_id }} {% if forloop.first %}active{% endif %}" data-dot="{{ forloop.index }}"></div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-primal-queen-hero-media-{{ ai_gen_id }}">
+      <div class="ai-primal-queen-hero-oval-container-{{ ai_gen_id }}">
+        <div class="ai-primal-queen-hero-splatter-{{ ai_gen_id }}"></div>
+        <div class="ai-primal-queen-hero-media-content-{{ ai_gen_id }}">
+          {% if block.settings.video_url != blank %}
+            <video 
+              class="ai-primal-queen-hero-video-{{ ai_gen_id }}"
+              autoplay
+              muted
+              loop
+              playsinline
+            >
+              <source src="{{ block.settings.video_url }}" type="video/mp4">
+            </video>
+          {% elsif block.settings.woman_image %}
+            <img 
+              src="{{ block.settings.woman_image | image_url: width: 600 }}" 
+              alt="Woman drinking water"
+              class="ai-primal-queen-hero-woman-image-{{ ai_gen_id }}"
+              width="600"
+              height="600"
+              loading="lazy"
+            >
+          {% else %}
+            <div class="ai-primal-queen-hero-woman-placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+          {% if block.settings.show_one_week_text %}
+            <div class="ai-primal-queen-hero-one-week-{{ ai_gen_id }}">{{ block.settings.one_week_text }}</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</primal-queen-hero-{{ ai_gen_id }}>
+<script>
+  (function () {
+    class PrimalQueenHero{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.currentTestimonial = 1; // Start at 1 because 0 is the cloned last
+        this.testimonials = [];
+        this.dots = [];
+        this.autoSlideInterval = null;
+
+        // Drag/swipe
+        this.isDragging = false;
+        this.startX = 0;
+        this.movedBy = 0;
+      }
+
+      connectedCallback() {
+        const slider = this.querySelector('.ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }}');
+        this.originalTestimonials = Array.from(this.querySelectorAll('.ai-primal-queen-hero-testimonial-{{ ai_gen_id }}'));
+        this.dots = Array.from(this.querySelectorAll('.ai-primal-queen-hero-dot-{{ ai_gen_id }}'));
+        this.testimonialCount = this.originalTestimonials.length;
+
+        // Create wrapper
+        let wrapper = slider.querySelector('.ai-primal-queen-hero-testimonial-wrapper-{{ ai_gen_id }}');
+        if (!wrapper) {
+          wrapper = document.createElement('div');
+          wrapper.className = 'ai-primal-queen-hero-testimonial-wrapper-{{ ai_gen_id }}';
+          slider.appendChild(wrapper);
+        }
+        this.wrapper = wrapper;
+
+        // Clone slides for infinite effect
+        const firstClone = this.originalTestimonials[0].cloneNode(true);
+        const lastClone = this.originalTestimonials[this.testimonialCount - 1].cloneNode(true);
+
+        wrapper.appendChild(firstClone);
+        this.originalTestimonials.forEach(t => wrapper.appendChild(t));
+        wrapper.insertBefore(lastClone, wrapper.firstChild);
+
+        // Now set full testimonial list including clones
+        this.testimonials = Array.from(wrapper.children);
+
+        // Initial position (first actual testimonial)
+        this.setWrapperTransition(false);
+        this.setTranslateX(this.currentTestimonial);
+        this.updateSliderHeight();
+
+        if (this.testimonialCount > 1) {
+          this.setupEventListeners();
+          this.setupDrag();
+          this.startAutoSlide();
+        }
+      }
+
+      disconnectedCallback() {
+        if (this.autoSlideInterval) clearInterval(this.autoSlideInterval);
+      }
+
+      setWrapperTransition(enable) {
+        this.wrapper.style.transition = enable ? 'transform 0.5s ease-in-out' : 'none';
+      }
+
+      setTranslateX(index) {
+        const offset = -index * 100;
+        this.wrapper.style.transform = `translateX(${offset}%)`;
+      }
+
+      showTestimonial(index) {
+        this.setWrapperTransition(true);
+        this.setTranslateX(index);
+        this.currentTestimonial = index;
+        this.updateDots();
+        this.updateSliderHeight();
+      }
+
+      updateDots() {
+        const realIndex = (this.currentTestimonial - 1 + this.testimonialCount) % this.testimonialCount;
+        this.dots.forEach((d, i) => d.classList.toggle('active', i === realIndex));
+      }
+
+      updateSliderHeight() {
+        const activeSlide = this.testimonials[this.currentTestimonial];
+        const sliderContainer = this.querySelector('.ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }}');
+        if (activeSlide && sliderContainer) {
+          const newHeight = activeSlide.offsetHeight;
+          sliderContainer.style.height = newHeight + 'px';
+        }
+      }
+
+      nextTestimonial() {
+        if (this.currentTestimonial >= this.testimonialCount) {
+          this.showTestimonial(this.currentTestimonial + 1);
+          setTimeout(() => {
+            this.setWrapperTransition(false);
+            this.currentTestimonial = 1;
+            this.setTranslateX(this.currentTestimonial);
+            this.updateDots();
+            this.updateSliderHeight();
+          }, 510);
+        } else {
+          this.showTestimonial(this.currentTestimonial + 1);
+        }
+      }
+
+      prevTestimonial() {
+        if (this.currentTestimonial <= 0) {
+          this.showTestimonial(this.currentTestimonial - 1);
+          setTimeout(() => {
+            this.setWrapperTransition(false);
+            this.currentTestimonial = this.testimonialCount;
+            this.setTranslateX(this.currentTestimonial);
+            this.updateDots();
+            this.updateSliderHeight();
+          }, 510);
+        } else {
+          this.showTestimonial(this.currentTestimonial - 1);
+        }
+      }
+
+      startAutoSlide() {
+        this.autoSlideInterval = setInterval(() => {
+          this.nextTestimonial();
+        }, {{ block.settings.testimonial_auto_slide_duration | times: 10000 }});
+      }
+
+      resetAutoSlide() {
+        if (this.autoSlideInterval) {
+          clearInterval(this.autoSlideInterval);
+          this.startAutoSlide();
+        }
+      }
+
+      setupEventListeners() {
+        this.dots.forEach((dot, i) => {
+          dot.addEventListener('click', () => {
+            this.showTestimonial(i + 1); // Because 0 is the cloned last slide
+            this.resetAutoSlide();
+          });
+        });
+      }
+
+      setupDrag() {
+        const container = this.querySelector('.ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }}');
+
+        container.addEventListener('mousedown', this.dragStart.bind(this));
+        container.addEventListener('mousemove', this.dragMove.bind(this));
+        container.addEventListener('mouseup', this.dragEnd.bind(this));
+        container.addEventListener('mouseleave', this.dragEnd.bind(this));
+
+        container.addEventListener('touchstart', this.dragStart.bind(this), { passive: true });
+        container.addEventListener('touchmove', this.dragMove.bind(this), { passive: true });
+        container.addEventListener('touchend', this.dragEnd.bind(this));
+      }
+
+      dragStart(event) {
+        this.isDragging = true;
+        this.startX = event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+        this.movedBy = 0;
+        this.setWrapperTransition(false);
+        this.resetAutoSlide();
+      }
+
+      dragMove(event) {
+        if (!this.isDragging) return;
+        const currentX = event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+        this.movedBy = currentX - this.startX;
+
+        const percentage = (this.movedBy / this.offsetWidth) * 100;
+        const offset = -this.currentTestimonial * 100 + percentage;
+        this.wrapper.style.transform = `translateX(${offset}%)`;
+      }
+
+      dragEnd() {
+        if (!this.isDragging) return;
+        this.isDragging = false;
+        this.setWrapperTransition(true);
+
+        if (this.movedBy < -50) {
+          this.nextTestimonial();
+        } else if (this.movedBy > 50) {
+          this.prevTestimonial();
+        } else {
+          this.showTestimonial(this.currentTestimonial); // snap back
+        }
+      }
+    }
+
+    customElements.define('primal-queen-hero-{{ ai_gen_id }}', PrimalQueenHero{{ ai_gen_id }});
+  })();
+</script>
 
     {% endif %}
   {% endfor %}
