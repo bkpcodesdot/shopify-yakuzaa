@@ -1,42 +1,36 @@
-<section class="superfoods-section">
-  <div class="superfood-heading">
-    {% if section.settings.food_heading != blank %}
-      <h2>{{ section.settings.food_heading }}</h2>
-    {% endif %}
-    {% if section.settings.food_subtitle != blank %}
-      <div class="subtitle">{{ section.settings.food_subtitle }}</div>
-    {% endif %}
-  </div>
- 
-  <div class="nutrient-rich">
-    {% for block in section.blocks %}
-      <div class="nutrient-card" {{ block.shopify_attributes }}>
-        <div class="nutrient-item">
-          <div class="nutrient-title">{{ block.settings.nutrient_heading }}</div>
-        </div>
- 
-        <div class="nutrient-images">
-          {% if block.settings.nutrient_image != blank %}
-            <img src="{{ block.settings.nutrient_image | img_url: '300x300' }}"
-                 loading="lazy"
-                 alt="{{ block.settings.nutrient_heading }}">
-          {% endif %}
- 
-          {% if block.settings.vs_image != blank %}
-            <span class="vs">VS</span>
-            <img src="{{ block.settings.vs_image | img_url: '300x300' }}"
-                 loading="lazy"
-                 alt="Comparison">
-          {% endif %}
-        </div>
- 
-        {% if block.settings.nutri_bottomline != blank %}
-          <div class="nutri-bottomline">{{ block.settings.nutri_bottomline }}</div>
-        {% endif %}
-      </div>
-    {% endfor %}
-  </div>
-</section>
+<section class="tried-everything-section">
+  {% for block in section.blocks %}
+    <div class="tried-everything-block block-{{ forloop.index }}">
+      
+      {% if block.settings.heading != blank %}
+        <h2 class="tried-heading">{{ block.settings.heading }}</h2>
+      {% endif %}
 
+      <div class="items-list">
+        {% for i in (1..8) %}
+          {% assign item_text = block.settings['item_' | append: i] %}
+          {% if item_text != blank %}
+            <div class="item">
+              <span class="bullet"></span>
+              {{ item_text }}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      {% if block.settings.main_image != blank %}
+        <div class="main-image-wrapper">
+          <img class="main-image" src="{{ block.settings.main_image | img_url: '800x' }}" alt="Main Image">
+
+          {% if block.settings.show_x_marks %}
+            {% for n in (1..4) %}
+              <span class="x-mark x-mark-{{ n }}"></span>
+            {% endfor %}
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+</section>
 
 
