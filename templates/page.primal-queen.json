@@ -723,6 +723,37 @@
     },
     "superfood_sectionn_YpPH6W": {
       "type": "superfood-sectionn",
+      "blocks": {
+        "content_block_zfLDUK": {
+          "type": "content_block",
+          "settings": {
+            "main_heading": "Primal Queen's  Female-Focused Organ Superfoods are Hands Down THE MOST  Nutrient-Rich On The Planet",
+            "sub_heading": "Here’s why we hand-picked these 6 beef organs",
+            "organ_image_1": "shopify://shop_images/s2_nutrient_box_img6.avif",
+            "organ_vs_image_1": "shopify://shop_images/s2_nutrient_box_img3.avif",
+            "organ_text_1": "tre",
+            "organ_image_2": "shopify://shop_images/s2_nutrient_box_img5-v2.avif",
+            "organ_vs_image_2": "shopify://shop_images/s2_nutrient_box_img1.avif",
+            "organ_text_2": "",
+            "organ_text_3": "",
+            "organ_text_4": "",
+            "organ_text_5": "",
+            "organ_text_6": "",
+            "cta_label": "",
+            "cta_link": "",
+            "promise_heading": "",
+            "icon_text_1": "",
+            "icon_text_2": "",
+            "icon_text_3": "",
+            "icon_text_4": "",
+            "icon_text_5": "",
+            "icon_text_6": ""
+          }
+        }
+      },
+      "block_order": [
+        "content_block_zfLDUK"
+      ],
       "name": "Superfoods Section",
       "settings": {}
     },
@@ -876,22 +907,8 @@
             "closing_text_size": 16,
             "badge_name_size": 24,
             "badge_title_size": 12,
-            "section_padding_top": 20,
-            "section_padding_bottom": 20
-          }
-        },
-        "problem_section_RhdHXF": {
-          "type": "problem_section",
-          "settings": {
-            "image": "shopify://shop_images/s1-mid-img.webp",
-            "problem_font_size": 16,
-            "problem_font_color": "#2f0147",
-            "text_font_size_one": 20,
-            "heading_text": "",
-            "paragraph_text_1": "Every day seemed like a battle. I was tired all the time. I had brain fog consistently. My weight was a seesaw just like my emotions.",
-            "paragraph_text_2": "I did a good job hiding it, but I was tired of disguising my problems.",
-            "bold_text": "Then… everything turned around for me at the age of 28.",
-            "after_bold_text": "I turned into a low-key health fanatic."
+            "section_padding_top": 60,
+            "section_padding_bottom": 60
           }
         }
       },
@@ -901,8 +918,7 @@
         "organ_supplement_Ap7hHX",
         "problem_section_FYwizq",
         "single_capsule_yxfhFB",
-        "founder_story_cRNUtf",
-        "problem_section_RhdHXF"
+        "founder_story_cRNUtf"
       ],
       "name": "Tried Everything Section",
       "settings": {
