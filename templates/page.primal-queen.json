@@ -745,13 +745,19 @@
             "organ_text_6": "2.2X MORE Selenium than oats",
             "cta_label": "UNLOCK YOUR TRUE POWER",
             "cta_link": "#",
-            "promise_heading": "365-Day Money Back Guarantee              Free Shipping",
-            "icon_text_1": "",
-            "icon_text_2": "",
-            "icon_text_3": "",
-            "icon_text_4": "",
-            "icon_text_5": "",
-            "icon_text_6": ""
+            "promise_heading": "Primal Queen Promise",
+            "icon_1": "shopify://shop_images/promise_icon1.png",
+            "icon_text_1": "Grass Fed",
+            "icon_2": "shopify://shop_images/promise_icon2.webp",
+            "icon_text_2": "Pasture Raised",
+            "icon_3": "shopify://shop_images/promise_icon3.png",
+            "icon_text_3": "No Hormones",
+            "icon_4": "shopify://shop_images/promise_icon4.png",
+            "icon_text_4": "No Antibiotics",
+            "icon_5": "shopify://shop_images/promise_icon5.png",
+            "icon_text_5": "Gluten Free",
+            "icon_6": "shopify://shop_images/promise_icon6.png",
+            "icon_text_6": "Non-GMO"
           }
         }
       },
