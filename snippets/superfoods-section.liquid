@@ -22,7 +22,7 @@
         {% if organ_image != blank and organ_text != blank %}
         <div class="organ-item">
           <div class="organ-imgs-single">
-            <img src="{{ organ_image | img_url: '300x300' }}" alt="Organ Image">
+            <img src="{{ organ_image | img_url: 'master' }}" alt="Organ Image">
           </div>
           <p class="organ-desc">{{ organ_text }}</p>
         </div>
