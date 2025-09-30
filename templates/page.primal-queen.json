@@ -724,20 +724,27 @@
     "superfood_sectionn_YpPH6W": {
       "type": "superfood-sectionn",
       "blocks": {
-        "superfood_block_VHwbHp": {
-          "type": "superfood_block",
+        "promise_block_kBkUUe": {
+          "type": "promise_block",
           "settings": {
-            "food_heading": "Superfood Heading",
-            "food_subtitle": "Subtitle goes here",
-            "nutrient_heading": "Nutrient Name",
-            "nutrient_image": "shopify://shop_images/promise_icon3.png",
-            "vs_image": "shopify://shop_images/promise_icon1.png",
-            "nutri_bottomline": "try"
+            "heading": "Primal Queen Promise",
+            "icon_1": "shopify://shop_images/promise_icon1.png",
+            "icon_text_1": "Grass Fed",
+            "icon_2": "shopify://shop_images/promise_icon3.png",
+            "icon_text_2": "Pasture Raised",
+            "icon_3": "shopify://shop_images/promise_icon6.png",
+            "icon_text_3": "No Hormones",
+            "icon_4": "shopify://shop_images/promise_icon4.png",
+            "icon_text_4": "No Antibiotics",
+            "icon_5": "shopify://shop_images/promise_icon1.png",
+            "icon_text_5": "Gluten Free",
+            "icon_6": "shopify://shop_images/promise_icon5.png",
+            "icon_text_6": "Non-GMO"
           }
         }
       },
       "block_order": [
-        "superfood_block_VHwbHp"
+        "promise_block_kBkUUe"
       ],
       "name": "Superfoods Section",
       "settings": {}
