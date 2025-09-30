@@ -729,7 +729,7 @@
         "content_block_XGUbha": {
           "type": "content_block",
           "settings": {
-            "main_heading": "<p>Primal Queen's  Female-Focused Organ &lt;/br&gt; Superfoods are Hands Down THE MOST &lt;/br&gt;  Nutrient-Rich On The Planet</p>",
+            "main_heading": "<p>Primal Queen's  Female-Focused Organ <br> Superfoods are Hands Down <strong>THE MOST </strong> <br>  Nutrient-Rich On The Planet</p>",
             "sub_heading": "Here’s why we hand-picked these 6 beef organs",
             "organ_image_1": "shopify://shop_images/s2_nutrient_box_img1.avif",
             "organ_text_1": "4.2X MORE Vitamin A than lettuce",
