@@ -593,6 +593,10 @@ gap:40px;
         <div class="capsule-container">
           <div class="capsule-content">
           <div class="main-heading">
+            <div class="heading-image">
+              <img src="{{ block.settings.image_heading | img_url: '600x600' }}" alt="Problem Image" loading="lazy" />
+            </div>
+            <div class="heading-box">
             {% if block.settings.main_heading_line1 != blank %}
               <div>{{ block.settings.main_heading_line1 }}</div>
             {% endif %}
@@ -602,6 +606,7 @@ gap:40px;
             {% if block.settings.main_heading_line3 != blank %}
               <div>{{ block.settings.main_heading_line3 }}</div>
             {% endif %}
+          </div>
           </div>
           
           {% if block.settings.subheading != blank %}
