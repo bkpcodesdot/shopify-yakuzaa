@@ -627,6 +627,7 @@
         "ai_about_block_edURAB": {
           "type": "ai-about-block",
           "name": "About the founder block",
+          "disabled": true,
           "settings": {
             "section_padding_top": 60,
             "section_padding_bottom": 60,
@@ -667,6 +668,7 @@
         "ai_about_second_XAMC3f": {
           "type": "ai-about-second",
           "name": "Transformation story",
+          "disabled": true,
           "settings": {
             "story_paragraph_1": "<p>At <strong>24</strong>, I was struggling with constant fatigue and brain fog. I felt like I was living in a haze, barely making it through each day. My energy levels were so low that even simple tasks felt <strong>overwhelming</strong>.</p>",
             "story_paragraph_2": "<p>I tried everything - different diets, supplements, even changing my sleep schedule. Nothing seemed to work, and I was starting to lose hope. My confidence was at an <strong>all-time low</strong>.</p>",
@@ -723,43 +725,59 @@
     },
     "superfood_sectionn_YpPH6W": {
       "type": "superfood-sectionn",
-      "blocks": {
-        "content_block_zfLDUK": {
-          "type": "content_block",
-          "settings": {
-            "main_heading": "Primal Queen's  Female-Focused Organ Superfoods are Hands Down THE MOST  Nutrient-Rich On The Planet",
-            "sub_heading": "Here’s why we hand-picked these 6 beef organs",
-            "organ_image_1": "shopify://shop_images/s2_nutrient_box_img6.avif",
-            "organ_vs_image_1": "shopify://shop_images/s2_nutrient_box_img3.avif",
-            "organ_text_1": "tre",
-            "organ_image_2": "shopify://shop_images/s2_nutrient_box_img5-v2.avif",
-            "organ_vs_image_2": "shopify://shop_images/s2_nutrient_box_img1.avif",
-            "organ_text_2": "",
-            "organ_text_3": "",
-            "organ_text_4": "",
-            "organ_text_5": "",
-            "organ_text_6": "",
-            "cta_label": "",
-            "cta_link": "",
-            "promise_heading": "",
-            "icon_text_1": "",
-            "icon_text_2": "",
-            "icon_text_3": "",
-            "icon_text_4": "",
-            "icon_text_5": "",
-            "icon_text_6": ""
-          }
-        }
-      },
-      "block_order": [
-        "content_block_zfLDUK"
-      ],
       "name": "Superfoods Section",
       "settings": {}
     },
     "tried_everything_HpChKa": {
       "type": "tried-everything",
       "blocks": {
+        "founder_story_cRNUtf": {
+          "type": "founder_story",
+          "settings": {
+            "founder_image": "shopify://shop_images/founder_img.webp",
+            "founder_name": "Shelby",
+            "founder_title": "FOUNDER OF PRIMAL QUEEN!",
+            "heading_text": "Hey, I'm Shelby!",
+            "subheading_text": "Founder of Primal Queen",
+            "intro_text": "Years ago I struggled with getting optimal nutrition which led to:",
+            "problem_1": "Weight Gain",
+            "problem_2": "Inflammation",
+            "problem_3": "Hormone Imbalance",
+            "problem_4": "Low Energy",
+            "closing_text": "And more that I won't bore you with...",
+            "background_color": "#ffffff",
+            "badge_background_color": "#2f0147",
+            "badge_text_color": "#ffffff",
+            "heading_color": "#2f0147",
+            "subheading_color": "#2f0147",
+            "text_color": "#000000",
+            "icon_color": "#ec4899",
+            "splash_color": "#ec4899",
+            "heading_font_size": 46,
+            "subheading_font_size": 46,
+            "intro_text_size": 18,
+            "problem_text_size": 16,
+            "closing_text_size": 16,
+            "badge_name_size": 24,
+            "badge_title_size": 12,
+            "section_padding_top": 20,
+            "section_padding_bottom": 20
+          }
+        },
+        "problem_section_RhdHXF": {
+          "type": "problem_section",
+          "settings": {
+            "image": "shopify://shop_images/s1-mid-img.webp",
+            "problem_font_size": 16,
+            "problem_font_color": "#2f0147",
+            "text_font_size_one": 20,
+            "heading_text": "",
+            "paragraph_text_1": "Every day seemed like a battle. I was tired all the time. I had brain fog consistently. My weight was a seesaw just like my emotions.",
+            "paragraph_text_2": "I did a good job hiding it, but I was tired of disguising my problems.",
+            "bold_text": "Then… everything turned around for me at the age of 28.",
+            "after_bold_text": "I turned into a low-key health fanatic."
+          }
+        },
         "tried_everything_zxjxiJ": {
           "type": "tried_everything",
           "settings": {
@@ -877,48 +895,16 @@
             "padding": 40,
             "text_alignment": "left"
           }
-        },
-        "founder_story_cRNUtf": {
-          "type": "founder_story",
-          "settings": {
-            "founder_image": "shopify://shop_images/founder_img.webp",
-            "founder_name": "Shelby",
-            "founder_title": "FOUNDER OF PRIMAL QUEEN!",
-            "heading_text": "Hey, I'm Shelby!",
-            "subheading_text": "Founder of Primal Queen",
-            "intro_text": "Years ago I struggled with getting optimal nutrition which led to:",
-            "problem_1": "Weight Gain",
-            "problem_2": "Inflammation",
-            "problem_3": "Hormone Imbalance",
-            "problem_4": "Low Energy",
-            "closing_text": "And more that I won't bore you with...",
-            "background_color": "#ffffff",
-            "badge_background_color": "#2f0147",
-            "badge_text_color": "#ffffff",
-            "heading_color": "#2f0147",
-            "subheading_color": "#2f0147",
-            "text_color": "#000000",
-            "icon_color": "#ec4899",
-            "splash_color": "#ec4899",
-            "heading_font_size": 46,
-            "subheading_font_size": 46,
-            "intro_text_size": 18,
-            "problem_text_size": 16,
-            "closing_text_size": 16,
-            "badge_name_size": 24,
-            "badge_title_size": 12,
-            "section_padding_top": 60,
-            "section_padding_bottom": 60
-          }
         }
       },
       "block_order": [
+        "founder_story_cRNUtf",
+        "problem_section_RhdHXF",
         "tried_everything_zxjxiJ",
         "content_block_Ntg4qK",
         "organ_supplement_Ap7hHX",
         "problem_section_FYwizq",
-        "single_capsule_yxfhFB",
-        "founder_story_cRNUtf"
+        "single_capsule_yxfhFB"
       ],
       "name": "Tried Everything Section",
       "settings": {
