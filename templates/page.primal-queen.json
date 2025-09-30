@@ -823,8 +823,7 @@
           "type": "single_capsule",
           "settings": {
             "main_heading_line1": "One Single Capsule with Every Meal",
-            "main_heading_line2": "That Provides The Exact Beef Organ",
-            "main_heading_line3": "Superfoods You Need.",
+            "main_heading_line2": "<p>That Provides The Exact <strong>Beef Organ </strong><br/>Superfoods You Need.</p>",
             "subheading": "100% formulated by women, for women (sorry guys!)",
             "question_text": "What are the beef organ superfoods in Primal Queen?",
             "image_heading": "shopify://shop_images/s1_problem_row_strip_icon_d5e03198-f746-4879-85a7-4e649c3dc701.avif",
