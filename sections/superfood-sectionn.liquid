@@ -1,75 +1,70 @@
 {% render 'superfoods-section' %}
 
-
 {% schema %}
 {
-  "name": "Primal Queen Full Section",
+  "name": "Primal Queen Combined",
   "settings": [],
   "blocks": [
     {
-      "type": "combined_block",
-      "name": "Organ + Promise",
+      "type": "content_block",
+      "name": "Organ + Promise Block",
       "settings": [
-        { "type": "text", "id": "main_heading", "label": "Main Heading", "default": "Primal Queen's Female-Focused Organ Superfoods" },
-        { "type": "text", "id": "sub_heading", "label": "Sub Heading", "default": "Here’s why we hand-picked these 6 beef organs" },
+        { "type": "text", "id": "main_heading", "label": "Main Heading" },
+        { "type": "text", "id": "sub_heading", "label": "Sub Heading" },
 
         { "type": "image_picker", "id": "organ_image_1", "label": "Organ Image 1" },
-        { "type": "image_picker", "id": "organ_vs_image_1", "label": "VS Image 1" },
-        { "type": "text", "id": "organ_text_1", "label": "Comparison Text 1", "default": "Comparison text" },
+        { "type": "image_picker", "id": "organ_vs_image_1", "label": "Vs Image 1" },
+        { "type": "text", "id": "organ_text_1", "label": "Organ Text 1" },
 
         { "type": "image_picker", "id": "organ_image_2", "label": "Organ Image 2" },
-        { "type": "image_picker", "id": "organ_vs_image_2", "label": "VS Image 2" },
-        { "type": "text", "id": "organ_text_2", "label": "Comparison Text 2", "default": "Comparison text" },
+        { "type": "image_picker", "id": "organ_vs_image_2", "label": "Vs Image 2" },
+        { "type": "text", "id": "organ_text_2", "label": "Organ Text 2" },
 
         { "type": "image_picker", "id": "organ_image_3", "label": "Organ Image 3" },
-        { "type": "image_picker", "id": "organ_vs_image_3", "label": "VS Image 3" },
-        { "type": "text", "id": "organ_text_3", "label": "Comparison Text 3", "default": "Comparison text" },
+        { "type": "image_picker", "id": "organ_vs_image_3", "label": "Vs Image 3" },
+        { "type": "text", "id": "organ_text_3", "label": "Organ Text 3" },
 
         { "type": "image_picker", "id": "organ_image_4", "label": "Organ Image 4" },
-        { "type": "image_picker", "id": "organ_vs_image_4", "label": "VS Image 4" },
-        { "type": "text", "id": "organ_text_4", "label": "Comparison Text 4", "default": "Comparison text" },
+        { "type": "image_picker", "id": "organ_vs_image_4", "label": "Vs Image 4" },
+        { "type": "text", "id": "organ_text_4", "label": "Organ Text 4" },
 
         { "type": "image_picker", "id": "organ_image_5", "label": "Organ Image 5" },
-        { "type": "image_picker", "id": "organ_vs_image_5", "label": "VS Image 5" },
-        { "type": "text", "id": "organ_text_5", "label": "Comparison Text 5", "default": "Comparison text" },
+        { "type": "image_picker", "id": "organ_vs_image_5", "label": "Vs Image 5" },
+        { "type": "text", "id": "organ_text_5", "label": "Organ Text 5" },
 
         { "type": "image_picker", "id": "organ_image_6", "label": "Organ Image 6" },
-        { "type": "image_picker", "id": "organ_vs_image_6", "label": "VS Image 6" },
-        { "type": "text", "id": "organ_text_6", "label": "Comparison Text 6", "default": "Comparison text" },
+        { "type": "image_picker", "id": "organ_vs_image_6", "label": "Vs Image 6" },
+        { "type": "text", "id": "organ_text_6", "label": "Organ Text 6" },
 
-        { "type": "text", "id": "cta_label", "label": "CTA Label", "default": "UNLOCK YOUR TRUE POWER" },
-        { "type": "url", "id": "cta_link", "label": "CTA Link", "default": "/" },
+        { "type": "text", "id": "cta_label", "label": "CTA Label" },
+        { "type": "url", "id": "cta_link", "label": "CTA Link" },
 
-        { "type": "text", "id": "promise_heading", "label": "Promise Heading", "default": "Primal Queen Promise" },
+        { "type": "text", "id": "promise_heading", "label": "Promise Heading" },
 
         { "type": "image_picker", "id": "icon_1", "label": "Icon 1" },
-        { "type": "text", "id": "icon_text_1", "label": "Icon 1 Text", "default": "Grass Fed" },
+        { "type": "text", "id": "icon_text_1", "label": "Icon Text 1" },
 
         { "type": "image_picker", "id": "icon_2", "label": "Icon 2" },
-        { "type": "text", "id": "icon_text_2", "label": "Icon 2 Text", "default": "Pasture Raised" },
+        { "type": "text", "id": "icon_text_2", "label": "Icon Text 2" },
 
         { "type": "image_picker", "id": "icon_3", "label": "Icon 3" },
-        { "type": "text", "id": "icon_text_3", "label": "Icon 3 Text", "default": "No Hormones" },
+        { "type": "text", "id": "icon_text_3", "label": "Icon Text 3" },
 
         { "type": "image_picker", "id": "icon_4", "label": "Icon 4" },
-        { "type": "text", "id": "icon_text_4", "label": "Icon 4 Text", "default": "No Antibiotics" },
+        { "type": "text", "id": "icon_text_4", "label": "Icon Text 4" },
 
         { "type": "image_picker", "id": "icon_5", "label": "Icon 5" },
-        { "type": "text", "id": "icon_text_5", "label": "Icon 5 Text", "default": "Gluten Free" },
+        { "type": "text", "id": "icon_text_5", "label": "Icon Text 5" },
 
         { "type": "image_picker", "id": "icon_6", "label": "Icon 6" },
-        { "type": "text", "id": "icon_text_6", "label": "Icon 6 Text", "default": "Non-GMO" }
+        { "type": "text", "id": "icon_text_6", "label": "Icon Text 6" }
       ]
     }
   ],
-  "max_blocks": 1,
   "presets": [
     {
-      "name": "Primal Queen Full Section",
-      "category": "Custom",
-      "blocks": [
-        { "type": "combined_block" }
-      ]
+      "name": "Primal Queen Combined Preset",
+      "category": "Custom Sections"
     }
   ]
 }
