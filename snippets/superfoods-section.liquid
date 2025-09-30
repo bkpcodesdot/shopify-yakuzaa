@@ -61,9 +61,26 @@
 
 
 <style>
+    
 .primal-queen-section {
   padding: 40px 20px;
   text-align: center;
+  position: relative;
+}
+.primal-queen-section:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://cdn.shopify.com/s/files/1/0727/8169/3085/files/s2_box_before_color_1588x1176_8314d1fd-d54b-4d16-9fc6-f7e3f8c892b1.webp?v=1759217107');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.2;  /* Adjust transparency as needed */
+  z-index: -1;    /* Make sure content stays above the background */
+  border-radius: 10px; /* Optional: matches section styling */
 }
 
 .primal-queen-section .container {
