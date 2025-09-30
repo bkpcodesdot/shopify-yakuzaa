@@ -663,47 +663,91 @@ flex: 1 1 30%;
 
 {% comment %}-------superfood-card-section------- {% endcomment %}
 
-<div class="superfoods-section-{{ block.id }}" {{ block.shopify_attributes }}>
-<div class="superfood-heading">
-  {% if block.settings.food_heading != blank %}
-  {{ block.settings.food_heading }}
-  {% endif %}
-  <div class="subtitle">
-    {{ block.settings.food_subtitle }}
+<section class="superfoods-section">
+  <div class="superfood-heading">
+    {% if section.settings.food_heading != blank %}
+      <h2>{{ section.settings.food_heading }}</h2>
+    {% endif %}
+    <div class="subtitle">{{ section.settings.food_subtitle }}</div>
   </div>
-</div>
 
-<div class="nutrient-rich">
-<div class="nutrient-card">
-  <div class="nutrient-item">
-    <div class="nutrient-title">
-      {{block.settings.nutrient_heading }}
-    </div>
-    <div class="nutrient-iocn">
-      {{block.settings.nutrient_icon }}
-    </div>
+  <div class="nutrient-rich">
+    {% for block in section.blocks %}
+      {% if block.type == 'nutrient_card' %}
+        <div class="nutrient-card" {{ block.shopify_attributes }}>
+          <div class="nutrient-item">
+            <div class="nutrient-title">{{ block.settings.nutrient_heading }}</div>
+          </div>
+          <div class="nutrient-images">
+            {% if block.settings.nutrient_image %}
+              <img src="{{ block.settings.nutrient_image | img_url: '300x300' }}" loading="lazy" alt="{{ block.settings.nutrient_heading }}">
+            {% endif %}
+            {% if block.settings.vs_image %}
+              <span class="vs">VS</span>
+              <img src="{{ block.settings.vs_image | img_url: '300x300' }}" loading="lazy" alt="vs">
+            {% endif %}
+          </div>
+          <div class="nutri-bottomline">{{ block.settings.nutri_bottomline }}</div>
+        </div>
+      {% endif %}
+    {% endfor %}
   </div>
-  <div class="nutrient-image">
-     <img src="{{ block.settings.image_nutrient | img_url: '600x600' }}"  loading="lazy" />
-  </div>
-  <div class="nutri-bottomline">
-    {{block.type.nutri_bottomline }}
-  </div>
-</div>
-</div>
+</section>
 
-<div class="nutrient-icons-group">
-  <div class="nutrient-heading">
-    {{block.settings.nutri_title }}
-</div>
-<div class="nutrient-icons">
-  <div class="nutri-icon-group">
-    <img src="{{ block.settings.nutrient_icon | img_url: '600x600' }}"  loading="lazy" />
-</div>
-</div>
 <style>
-  .nutrient-item{
-  display:flex;
+.superfoods-section {
+  text-align: center;
+  padding: 50px 20px;
+}
+.superfood-heading h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #111;
+}
+.superfood-heading .subtitle {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 30px;
+}
+.nutrient-rich {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.nutrient-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+.nutrient-card:hover {
+  transform: translateY(-5px);
+}
+.nutrient-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.nutrient-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.nutrient-images img {
+  max-width: 80px;
+}
+.vs {
+  font-weight: bold;
+  font-size: 16px;
+  color: #e6007a;
+}
+.nutri-bottomline {
+  font-size: 14px;
+  margin-top: 10px;
+  color: #e6007a;
 }
 </style>
     {% endif %}
