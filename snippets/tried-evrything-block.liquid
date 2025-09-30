@@ -535,7 +535,7 @@
         </div>
       </div>
 
-    {% elsif block.type == 'nutrient_card' %}
+    {% elsif block.type == 'superfoods_block' %}
       <!-- Nutrient Card Block -->
       <style>
         .superfoods-section {
@@ -609,263 +609,918 @@
         }
       </style>
 
-      <section class="superfoods-section">
-        <div class="superfood-heading">
-          {% if section.settings.food_heading != blank %}
-            <h2>{{ section.settings.food_heading }}</h2>
+     <section class="superfoods-section">
+  <div class="superfood-heading">
+    {% if section.settings.food_heading != blank %}
+      <h2>{{ section.settings.food_heading }}</h2>
+    {% endif %}
+    {% if section.settings.food_subtitle != blank %}
+      <div class="subtitle">{{ section.settings.food_subtitle }}</div>
+    {% endif %}
+  </div>
+
+  <div class="nutrient-rich">
+    {% for block in section.blocks %}
+      <div class="nutrient-card" {{ block.shopify_attributes }}>
+        <div class="nutrient-item">
+          <div class="nutrient-title">{{ block.settings.nutrient_heading }}</div>
+        </div>
+
+        <div class="nutrient-images">
+          {% if block.settings.nutrient_image != blank %}
+            <img src="{{ block.settings.nutrient_image | img_url: '300x300' }}" 
+                 loading="lazy" 
+                 alt="{{ block.settings.nutrient_heading }}">
           {% endif %}
-          {% if section.settings.food_subtitle != blank %}
-            <div class="subtitle">{{ section.settings.food_subtitle }}</div>
+
+          {% if block.settings.vs_image != blank %}
+            <span class="vs">VS</span>
+            <img src="{{ block.settings.vs_image | img_url: '300x300' }}" 
+                 loading="lazy" 
+                 alt="Comparison">
           {% endif %}
         </div>
 
-        <div class="nutrient-rich">
-          <div class="nutrient-card" {{ block.shopify_attributes }}>
-            <div class="nutrient-item">
-              <div class="nutrient-title">{{ block.settings.nutrient_heading }}</div>
-            </div>
+        {% if block.settings.nutri_bottomline != blank %}
+          <div class="nutri-bottomline">{{ block.settings.nutri_bottomline }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
 
-            <div class="nutrient-images">
-              {% if block.settings.nutrient_image != blank %}
-                <img src="{{ block.settings.nutrient_image | img_url: '300x300' }}" 
-                     loading="lazy" 
-                     alt="{{ block.settings.nutrient_heading }}">
-              {% endif %}
+  {% if block.type == 'primal_queen_hero' %}
+<!-- Primal Queen Hero Block -->
+<style>
+  .primal-queen-hero-{{ block.id }} {
+    background-color: {{ block.settings.background_color }};
+    {% if block.settings.background_image %}
+      background-image: url('{{ block.settings.background_image | image_url: width: 1920 }}');
+      background-size: contain;
+      background-position: {{ block.settings.background_image_position }};
+      background-repeat: no-repeat;
+    {% endif %}
+    padding: {{ block.settings.section_padding_top }}px 20px {{ block.settings.section_padding_bottom }}px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
 
-              {% if block.settings.vs_image != blank %}
-                <span class="vs">VS</span>
-                <img src="{{ block.settings.vs_image | img_url: '300x300' }}" 
-                     loading="lazy" 
-                     alt="Comparison">
-              {% endif %}
-            </div>
+  .primal-queen-hero-{{ block.id }}::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    {% if block.settings.background_image %}
+      background: linear-gradient(135deg, {{ block.settings.background_color | color_modify: 'alpha', 0.8 }} 0%, {{ block.settings.background_gradient_color | color_modify: 'alpha', 0.8 }} 100%);
+    {% else %}
+      background: linear-gradient(135deg, {{ block.settings.background_color }} 0%, {{ block.settings.background_gradient_color }} 100%);
+      opacity: {{ block.settings.background_gradient_opacity | divided_by: 100.0 }};
+    {% endif %}
+    z-index: 1;
+  }
 
-            {% if block.settings.nutri_bottomline != blank %}
-              <div class="nutri-bottomline">{{ block.settings.nutri_bottomline }}</div>
-            {% endif %}
-          </div>
-        </div>
-      </section>
+  .primal-queen-hero-{{ block.id }}::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: {{ block.settings.wave_height }}px;
+    background-color: {{ block.settings.wave_color }};
+    clip-path: {% if block.settings.wave_flip %}polygon(0 100%, 100% 0, 100% 100%){% else %}polygon(0 0, 100% 100%, 100% 100%, 0 100%){% endif %};
+    z-index: 3;
+  }
 
-    {% elsif block.type == 'primal_queen_hero' %}
-      <!-- Primal Queen Hero Block -->
-      <style>
-        .primal-queen-hero-{{ block.id }} {
-          background-color: {{ block.settings.background_color }};
-          {% if block.settings.background_image %}
-            background-image: url('{{ block.settings.background_image | image_url: width: 1920 }}');
-            background-size: contain;
-            background-position: {{ block.settings.background_image_position }};
-            background-repeat: no-repeat;
-          {% endif %}
-          padding: {{ block.settings.section_padding_top }}px 20px {{ block.settings.section_padding_bottom }}px;
-          position: relative;
-          overflow: hidden;
-          width: 100%;
-        }
+  .primal-queen-hero-container-{{ block.id }} {
+    max-width: 1170px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
 
-        .primal-queen-hero-{{ block.id }}::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          {% if block.settings.background_image %}
-            background: linear-gradient(135deg, {{ block.settings.background_color }}{{ block.settings.background_overlay_opacity | prepend: '' | slice: 0, 2 }} 0%, {{ block.settings.background_gradient_color }}{{ block.settings.background_overlay_opacity | prepend: '' | slice: 0, 2 }} 100%);
-          {% else %}
-            background: linear-gradient(135deg, {{ block.settings.background_color }} 0%, {{ block.settings.background_gradient_color }} 100%);
-            opacity: {{ block.settings.background_gradient_opacity | divided_by: 100.0 }};
-          {% endif %}
-          z-index: 1;
-        }
+  .primal-queen-hero-content-{{ block.id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.content_spacing }}px;
+  }
 
-        .primal-queen-hero-container-{{ block.id }} {
-          max-width: 1170px;
-          margin: 0 auto;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 40px;
-          align-items: center;
-          position: relative;
-          z-index: 2;
-        }
+  .primal-queen-hero-logo-{{ block.id }} {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
 
-        .primal-queen-hero-content-{{ block.id }} {
-          display: flex;
-          flex-direction: column;
-          gap: {{ block.settings.content_spacing }}px;
-        }
+  .primal-queen-hero-logo-image-{{ block.id }} {
+    max-height: {{ block.settings.logo_size }}px;
+    width: auto;
+  }
 
-        .primal-queen-hero-logo-{{ block.id }} {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          margin-bottom: 20px;
-        }
+  .primal-queen-hero-logo-text-{{ block.id }} {
+    {% if block.settings.logo_font != blank %}
+      font-family: {{ block.settings.logo_font.family }}, sans-serif;
+    {% endif %}
+    font-size: {{ block.settings.logo_text_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.logo_color }};
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
 
-        .primal-queen-hero-logo-image-{{ block.id }} {
-          max-height: {{ block.settings.logo_size }}px;
-          width: auto;
-        }
+  .primal-queen-hero-crown-{{ block.id }} {
+    width: {{ block.settings.crown_size }}px;
+    height: {{ block.settings.crown_size }}px;
+    fill: {{ block.settings.logo_color }};
+  }
 
-        .primal-queen-hero-logo-text-{{ block.id }} {
-          font-family: {{ block.settings.logo_font.family }}, sans-serif;
-          font-size: {{ block.settings.logo_text_size }}px;
-          font-weight: 700;
-          color: {{ block.settings.logo_color }};
-          text-transform: uppercase;
-          letter-spacing: 1px;
-        }
+  .primal-queen-hero-attention-{{ block.id }} {
+    {% if block.settings.heading_font != blank %}
+      font-family: {{ block.settings.heading_font.family }}, sans-serif;
+    {% endif %}
+    font-size: {{ block.settings.attention_text_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.attention_text_color }};
+    line-height: 1.2;
+    margin: 0;
+  }
 
-        .primal-queen-hero-attention-{{ block.id }} {
-          font-family: {{ block.settings.heading_font.family }}, sans-serif;
-          font-size: {{ block.settings.attention_text_size }}px;
-          font-weight: 700;
-          color: {{ block.settings.attention_text_color }};
-          line-height: 1.2;
-          margin: 0;
-        }
+  .primal-queen-hero-main-heading-{{ block.id }} {
+    {% if block.settings.heading_font != blank %}
+      font-family: {{ block.settings.heading_font.family }}, sans-serif;
+    {% endif %}
+    font-size: {{ block.settings.main_heading_size }}px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0;
+    color: {{ block.settings.main_heading_pink_color }};
+  }
 
-        .primal-queen-hero-main-heading-{{ block.id }} {
-          font-family: {{ block.settings.heading_font.family }}, sans-serif;
-          font-size: {{ block.settings.main_heading_size }}px;
-          font-weight: 700;
-          line-height: 1.1;
-          margin: 0;
-          color: {{ block.settings.main_heading_pink_color }};
-        }
+  .primal-queen-hero-main-heading-{{ block.id }} .purple-text {
+    color: {{ block.settings.main_heading_purple_color }};
+  }
 
-        .primal-queen-hero-main-heading-{{ block.id }} .purple-text {
-          color: {{ block.settings.main_heading_purple_color }};
-        }
+  .primal-queen-hero-button-{{ block.id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+    border: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    {% if block.settings.button_font != blank %}
+      font-family: {{ block.settings.button_font.family }}, sans-serif;
+    {% endif %}
+    font-size: {{ block.settings.button_text_size }}px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    max-width: fit-content;
+  }
 
-        .primal-queen-hero-button-{{ block.id }} {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          background-color: {{ block.settings.button_color }};
-          color: {{ block.settings.button_text_color }};
-          padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
-          border: none;
-          border-radius: {{ block.settings.button_border_radius }}px;
-          font-family: {{ block.settings.button_font.family }}, sans-serif;
-          font-size: {{ block.settings.button_text_size }}px;
-          font-weight: 700;
-          text-decoration: none;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          max-width: fit-content;
-        }
+  .primal-queen-hero-button-{{ block.id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
 
-        .primal-queen-hero-button-{{ block.id }}:hover {
-          background-color: {{ block.settings.button_hover_color }};
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
+  .primal-queen-hero-button-crown-{{ block.id }} {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
 
-        .primal-queen-hero-guarantees-{{ block.id }} {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-        }
+  .primal-queen-hero-guarantees-{{ block.id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
 
-        .primal-queen-hero-guarantee-{{ block.id }} {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-family: {{ block.settings.guarantee_font.family }}, sans-serif;
-          font-size: {{ block.settings.guarantee_text_size }}px;
-          color: {{ block.settings.guarantee_text_color }};
-        }
+  .primal-queen-hero-guarantee-{{ block.id }} {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    {% if block.settings.guarantee_font != blank %}
+      font-family: {{ block.settings.guarantee_font.family }}, sans-serif;
+    {% endif %}
+    font-size: {{ block.settings.guarantee_text_size }}px;
+    color: {{ block.settings.guarantee_text_color }};
+  }
 
-        @media (max-width: 768px) {
-          .primal-queen-hero-container-{{ block.id }} {
-            grid-template-columns: 1fr;
-            gap: 30px;
-          }
+  .primal-queen-hero-check-{{ block.id }} {
+    width: 16px;
+    height: 16px;
+    fill: {{ block.settings.guarantee_check_color }};
+    flex-shrink: 0;
+  }
 
-          .primal-queen-hero-main-heading-{{ block.id }} {
-            font-size: {{ block.settings.main_heading_size | times: 0.7 }}px;
-          }
-        }
-      </style>
+  .primal-queen-hero-testimonial-section-{{ block.id }} {
+    margin-top: 20px;
+  }
 
-      <div class="primal-queen-hero-{{ block.id }}" {{ block.shopify_attributes }}>
-        <div class="primal-queen-hero-container-{{ block.id }}">
-          <div class="primal-queen-hero-content-{{ block.id }}">
-            <div class="primal-queen-hero-logo-{{ block.id }}">
-              {% if block.settings.logo_image %}
-                <img 
-                  src="{{ block.settings.logo_image | image_url: width: 200 }}" 
-                  alt="{{ block.settings.logo_text | escape }}"
-                  class="primal-queen-hero-logo-image-{{ block.id }}"
-                  width="200"
-                  height="auto"
-                  loading="lazy"
-                >
-              {% endif %}
-              {% if block.settings.logo_text != blank %}
-                <span class="primal-queen-hero-logo-text-{{ block.id }}">{{ block.settings.logo_text }}</span>
-              {% endif %}
-            </div>
-            
-            {% if block.settings.attention_text != blank %}
-              <div class="primal-queen-hero-attention-{{ block.id }}">{{ block.settings.attention_text }}</div>
-            {% endif %}
+  .primal-queen-hero-testimonial-slider-{{ block.id }} {
+    position: relative;
+    overflow: hidden;
+    height: auto;
+  }
 
-            {% if block.settings.main_heading != blank %}
-              <h1 class="primal-queen-hero-main-heading-{{ block.id }}">
-                {{ block.settings.main_heading | replace: '[purple]', '<span class="purple-text">' | replace: '[/purple]', '</span>' }}
-              </h1>
-            {% endif %}
+  .primal-queen-hero-testimonial-{{ block.id }} {
+    border: 2px solid {{ block.settings.testimonial_border_color }};
+    border-radius: {{ block.settings.testimonial_border_radius }}px;
+    padding: 20px;
+    background-color: {{ block.settings.testimonial_background_color }};
+    display: none;
+  }
 
-            {% if block.settings.button_text != blank %}
-              <a href="{{ block.settings.button_link }}" class="primal-queen-hero-button-{{ block.id }}">
-                {{ block.settings.button_text }}
-              </a>
-            {% endif %}
+  .primal-queen-hero-testimonial-{{ block.id }}.active {
+    display: block;
+  }
 
-            <div class="primal-queen-hero-guarantees-{{ block.id }}">
-              {% if block.settings.guarantee_1_text != blank %}
-                <div class="primal-queen-hero-guarantee-{{ block.id }}">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="{{ block.settings.guarantee_check_color }}">
-                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-                  </svg>
-                  <span>{{ block.settings.guarantee_1_text }}</span>
-                </div>
-              {% endif %}
-              {% if block.settings.guarantee_2_text != blank %}
-                <div class="primal-queen-hero-guarantee-{{ block.id }}">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="{{ block.settings.guarantee_check_color }}">
-                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-                  </svg>
-                  <span>{{ block.settings.guarantee_2_text }}</span>
-                </div>
-              {% endif %}
-            </div>
-          </div>
+  .right-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
 
-          <div class="primal-queen-hero-media-{{ block.id }}">
-            {% if block.settings.woman_image %}
-              <img 
-                src="{{ block.settings.woman_image | image_url: width: 600 }}" 
-                alt="Woman"
-                class="primal-queen-hero-woman-image-{{ block.id }}"
-                width="600"
-                height="600"
-                loading="lazy"
+  .primal-queen-hero-testimonial-header-{{ block.id }} {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .primal-queen-hero-testimonial-avatar-{{ block.id }} {
+    width: {{ block.settings.testimonial_avatar_size }}px;
+    height: {{ block.settings.testimonial_avatar_size }}px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid {{ block.settings.testimonial_border_color }};
+  }
+
+  .primal-queen-hero-testimonial-avatar-placeholder-{{ block.id }} {
+    width: {{ block.settings.testimonial_avatar_size }}px;
+    height: {{ block.settings.testimonial_avatar_size }}px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid {{ block.settings.testimonial_border_color }};
+  }
+
+  .primal-queen-hero-testimonial-avatar-placeholder-{{ block.id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.5;
+  }
+
+  .primal-queen-hero-testimonial-info-{{ block.id }} {
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .primal-queen-hero-testimonial-name-{{ block.id }} {
+    {% if block.settings.testimonial_name_font != blank %}
+      font-family: {{ block.settings.testimonial_name_font.family }}, sans-serif;
+    {% endif %}
+    font-size: {{ block.settings.testimonial_name_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.testimonial_name_color }};
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .primal-queen-hero-verified-{{ block.id }} {
+    width: 16px;
+    height: 16px;
+    fill: {{ block.settings.verified_check_color }};
+  }
+
+  .primal-queen-hero-testimonial-stars-{{ block.id }} {
+    display: flex;
+    gap: 2px;
+  }
+
+  .primal-queen-hero-star-{{ block.id }} {
+    width: 16px;
+    height: 16px;
+    fill: {{ block.settings.star_color }};
+  }
+
+  .primal-queen-hero-testimonial-text-{{ block.id }} {
+    {% if block.settings.testimonial_text_font != blank %}
+      font-family: {{ block.settings.testimonial_text_font.family }}, sans-serif;
+    {% endif %}
+    font-size: {{ block.settings.testimonial_text_size }}px;
+    font-style: italic;
+    color: {{ block.settings.testimonial_text_color }};
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .primal-queen-hero-testimonial-dots-{{ block.id }} {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .primal-queen-hero-dot-{{ block.id }} {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: {{ block.settings.dot_inactive_color }};
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .primal-queen-hero-dot-{{ block.id }}.active {
+    background-color: {{ block.settings.dot_active_color }};
+  }
+
+  .primal-queen-hero-media-{{ block.id }} {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: 1px solid;
+    width: fit-content;
+    padding: 25px;
+    border-radius: 230px;
+    margin-left: 70px;
+  }
+
+  .primal-queen-hero-oval-container-{{ block.id }} {
+    position: relative;
+    width: {{ block.settings.oval_width }}px;
+    height: {{ block.settings.oval_height }}px;
+    border-radius: 200px;
+    overflow: hidden;
+    background-color: {{ block.settings.oval_background_color }};
+  }
+
+  .primal-queen-hero-splatter-{{ block.id }} {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(ellipse at center, {{ block.settings.splatter_color_1 }} 0%, {{ block.settings.splatter_color_2 }} 50%, transparent 70%);
+    opacity: {{ block.settings.splatter_opacity | divided_by: 100.0 }};
+    z-index: 1;
+  }
+
+  .primal-queen-hero-media-content-{{ block.id }} {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .primal-queen-hero-woman-image-{{ block.id }} {
+    width: 80%;
+    height: 70%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .primal-queen-hero-woman-placeholder-{{ block.id }} {
+    width: 80%;
+    height: 70%;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .primal-queen-hero-woman-placeholder-{{ block.id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.5;
+  }
+
+  .primal-queen-hero-video-{{ block.id }} {
+    width: 100%;
+    height: 100%;
+    border-radius: 0%;
+    object-fit: cover;
+  }
+
+  .primal-queen-hero-one-week-{{ block.id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: {{ block.settings.one_week_background_color }};
+    color: {{ block.settings.one_week_text_color }};
+    padding: 8px 16px;
+    border-radius: 20px;
+    {% if block.settings.one_week_font != blank %}
+      font-family: {{ block.settings.one_week_font.family }}, sans-serif;
+    {% endif %}
+    font-size: {{ block.settings.one_week_text_size }}px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 3;
+  }
+
+  /* Button wrapper styles */
+  .btn_wrapper_wrapper {
+    position: relative;
+    display: block;
+    width: fit-content;
+  }
+
+  .btn_wrapper {
+    position: relative;
+    display: block;
+    width: fit-content;
+  }
+
+  .btn_wrapper::before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    display: block;
+    position: absolute;
+    border: 2px solid #40A754;
+    left: -5px;
+    top: -5px;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .btn_wrapper::after {
+    content: '';
+    width: 15px;
+    height: 15px;
+    display: block;
+    position: absolute;
+    border: 2px solid #40A754;
+    right: -7px;
+    top: -7px;
+    border-bottom: none;
+    border-left: none;
+  }
+
+  .btn_wrapper_wrapper::before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    display: block;
+    position: absolute;
+    border: 2px solid #40A754;
+    left: -5px;
+    bottom: -5px;
+    border-right: none;
+    border-top: none;
+  }
+
+  .btn_wrapper_wrapper::after {
+    content: '';
+    width: 15px;
+    height: 15px;
+    display: block;
+    position: absolute;
+    border: 2px solid #40A754;
+    right: -5px;
+    bottom: -5px;
+    border-left: none;
+    border-top: none;
+  }
+
+  .btn_wrapper_wrapper a {
+    box-shadow: 0 3px 3px 2px rgba(0, 0, 0, .2);
+  }
+
+  .verify_mark_icon {
+    width: 17px !important;
+    height: 17px !important;
+  }
+
+  .button_crown_icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Mobile styles */
+  .primal-queen-hero-media-{{ block.id }}.is-mobile {
+    display: none;
+  }
+
+  @media screen and (max-width: 768px) {
+    .primal-queen-hero-media-{{ block.id }} {
+      margin-left: 0px !important;
+    }
+
+    .primal-queen-hero-container-{{ block.id }} {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .primal-queen-hero-logo-{{ block.id }} {
+      justify-content: center;
+    }
+
+    .primal-queen-hero-main-heading-{{ block.id }} {
+      font-size: {{ block.settings.main_heading_size | times: 0.7 }}px;
+    }
+
+    .primal-queen-hero-attention-{{ block.id }} {
+      font-size: {{ block.settings.attention_text_size | times: 0.8 }}px;
+    }
+
+    .btn_wrapper_wrapper {
+      margin: 0 auto;
+    }
+
+    .primal-queen-hero-guarantees-{{ block.id }} {
+      align-items: center;
+    }
+
+    .primal-queen-hero-oval-container-{{ block.id }} {
+      width: {{ block.settings.oval_width | times: 0.8 }}px;
+      height: {{ block.settings.oval_height | times: 0.8 }}px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .primal-queen-hero-content-{{ block.id }} {
+      width: 100% !important;
+    }
+
+    .primal-queen-hero-one-week-{{ block.id }} {
+      display: none;
+    }
+
+    .btn_wrapper_wrapper {
+      order: 7;
+    }
+
+    .primal-queen-hero-media-{{ block.id }}.is-mobile {
+      display: block;
+      margin: 0 auto !important;
+    }
+
+    .primal-queen-hero-media-{{ block.id }} {
+      display: none;
+    }
+
+    .primal-queen-hero-testimonial-text-{{ block.id }} {
+      text-align: left;
+    }
+
+    .primal-queen-hero-testimonial-name-{{ block.id }} {
+      font-size: 12px;
+    }
+
+    .primal-queen-hero-main-heading-{{ block.id }} {
+      font-size: 26px !important;
+      line-height: 35px;
+    }
+
+    .primal-queen-hero-attention-{{ block.id }} {
+      font-size: 17px !important;
+    }
+
+    .primal-queen-hero-guarantees-{{ block.id }} {
+      justify-content: center;
+      order: 8;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .primal-queen-hero-{{ block.id }} {
+      padding: {{ block.settings.section_padding_top | times: 0.7 }}px 15px {{ block.settings.section_padding_bottom | times: 0.7 }}px;
+    }
+
+    .primal-queen-hero-attention-{{ block.id }} {
+      font-size: {{ block.settings.attention_text_size | times: 0.6 }}px;
+    }
+
+    .primal-queen-hero-main-heading-{{ block.id }} {
+      font-size: {{ block.settings.main_heading_size | times: 0.5 }}px;
+    }
+
+    .primal-queen-hero-oval-container-{{ block.id }} {
+      width: 325px;
+      height: 518px;
+    }
+  }
+</style>
+
+<div class="primal-queen-hero-{{ block.id }}" {{ block.shopify_attributes }}>
+  <div class="primal-queen-hero-container-{{ block.id }}">
+    <div class="primal-queen-hero-content-{{ block.id }}">
+      <div class="primal-queen-hero-logo-{{ block.id }}">
+        {% if block.settings.logo_image %}
+          <img 
+            src="{{ block.settings.logo_image | image_url: width: 200 }}" 
+            alt="{{ block.settings.logo_text | escape }}"
+            class="primal-queen-hero-logo-image-{{ block.id }}"
+            width="200"
+            height="auto"
+            loading="lazy"
+          >
+        {% endif %}
+        {% if block.settings.logo_text != blank %}
+          <span class="primal-queen-hero-logo-text-{{ block.id }}">{{ block.settings.logo_text }}</span>
+        {% endif %}
+        {% if block.settings.show_crown_logo %}
+          <svg class="primal-queen-hero-crown-{{ block.id }}" viewBox="0 0 24 24">
+            <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm2.7-2h8.6l.9-5.4-2.1 1.7L12 8l-3.1 2.3-2.1-1.7L7.7 14z"/>
+          </svg>
+        {% endif %}
+      </div>
+      
+      {% if block.settings.attention_text != blank %}
+        <div class="primal-queen-hero-attention-{{ block.id }}">{{ block.settings.attention_text }}</div>
+      {% endif %}
+
+      {% if block.settings.main_heading != blank %}
+        <h1 class="primal-queen-hero-main-heading-{{ block.id }}">
+          {{ block.settings.main_heading | replace: '[purple]', '<span class="purple-text">' | replace: '[/purple]', '</span>' }}
+        </h1>
+      {% endif %}
+
+      {% if block.settings.video_url != blank %}
+        <div class="primal-queen-hero-media-{{ block.id }} is-mobile">
+          <div class="primal-queen-hero-oval-container-{{ block.id }}">
+            <div class="primal-queen-hero-splatter-{{ block.id }}"></div>
+            <div class="primal-queen-hero-media-content-{{ block.id }}">
+              <video 
+                class="primal-queen-hero-video-{{ block.id }}"
+                autoplay
+                muted
+                loop
+                playsinline
               >
-            {% else %}
-              <div style="background: #f0f0f0; padding: 60px; text-align: center; border-radius: 10px;">
-                <p style="color: #999;">Upload hero image</p>
+                <source src="{{ block.settings.video_url }}" type="video/mp4">
+              </video>
+              {% if block.settings.show_one_week_text %}
+                <div class="primal-queen-hero-one-week-{{ block.id }}">{{ block.settings.one_week_text }}</div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.button_text != blank %}
+        <div class="btn_wrapper_wrapper">
+          <div class="btn_wrapper">
+            <a href="{{ block.settings.button_link }}" class="primal-queen-hero-button-{{ block.id }}">
+              {% if block.settings.show_crown_button and block.settings.button_crown_icon %}
+                <img src="{{ block.settings.button_crown_icon | image_url: width: 40 }}" class="button_crown_icon" width="20" height="20" loading="lazy">
+              {% endif %}
+              {{ block.settings.button_text }}
+            </a>
+          </div>  
+        </div>    
+      {% endif %}
+
+      <div class="primal-queen-hero-guarantees-{{ block.id }}">
+        {% if block.settings.guarantee_1_text != blank %}
+          <div class="primal-queen-hero-guarantee-{{ block.id }}">
+            <svg class="primal-queen-hero-check-{{ block.id }}" viewBox="0 0 24 24">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+            </svg>
+            <span>{{ block.settings.guarantee_1_text }}</span>
+          </div>
+        {% endif %}
+        {% if block.settings.guarantee_2_text != blank %}
+          <div class="primal-queen-hero-guarantee-{{ block.id }}">
+            <svg class="primal-queen-hero-check-{{ block.id }}" viewBox="0 0 24 24">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+            </svg>
+            <span>{{ block.settings.guarantee_2_text }}</span>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="primal-queen-hero-testimonial-section-{{ block.id }}">
+        <div class="primal-queen-hero-testimonial-slider-{{ block.id }}">
+          {% for i in (1..5) %}
+            {% liquid
+              assign testimonial_text_key = 'testimonial_' | append: i | append: '_text'
+              assign testimonial_name_key = 'testimonial_' | append: i | append: '_name'
+              assign testimonial_avatar_key = 'testimonial_' | append: i | append: '_avatar'
+              assign testimonial_rating_key = 'testimonial_' | append: i | append: '_rating'
+
+              assign testimonial_text = block.settings[testimonial_text_key]
+              assign testimonial_name = block.settings[testimonial_name_key]
+              assign testimonial_avatar = block.settings[testimonial_avatar_key]
+              assign testimonial_rating = block.settings[testimonial_rating_key]
+            %}
+
+            {% if testimonial_text != blank and testimonial_name != blank %}
+              <div class="primal-queen-hero-testimonial-{{ block.id }} {% if forloop.first %}active{% endif %}" data-testimonial="{{ forloop.index }}">
+                <div class="primal-queen-hero-testimonial-header-{{ block.id }}">
+                  {% if testimonial_avatar %}
+                    <img 
+                      src="{{ testimonial_avatar | image_url: width: 100 }}" 
+                      alt="{{ testimonial_name | escape }}"
+                      class="primal-queen-hero-testimonial-avatar-{{ block.id }}"
+                      width="100"
+                      height="100"
+                      loading="lazy"
+                    >
+                  {% else %}
+                    <div class="primal-queen-hero-testimonial-avatar-placeholder-{{ block.id }}">
+                      {{ 'image' | placeholder_svg_tag }}
+                    </div>
+                  {% endif %}
+                  
+                  <div class="right-content-wrapper">
+                    <p class="primal-queen-hero-testimonial-text-{{ block.id }}">{{ testimonial_text }}</p>
+                    <div class="primal-queen-hero-testimonial-info-{{ block.id }}">
+                      <h3 class="primal-queen-hero-testimonial-name-{{ block.id }}">
+                        {{ testimonial_name }}
+                        {% if block.settings.show_verified_checkmark and block.settings.verify_mark_icon %}
+                          <img src="{{ block.settings.verify_mark_icon | image_url: width: 34 }}" width="17" height="17" class="verify_mark_icon" loading="lazy">
+                        {% endif %}
+                      </h3>
+                      <div class="primal-queen-hero-testimonial-stars-{{ block.id }}">
+                        {% for star in (1..5) %}
+                          <svg class="primal-queen-hero-star-{{ block.id }}" viewBox="0 0 24 24" {% if star > testimonial_rating %}style="opacity: 0.3;"{% endif %}>
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                          </svg>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             {% endif %}
-          </div>
+          {% endfor %}
+        </div>
+
+        <div class="primal-queen-hero-testimonial-dots-{{ block.id }}">
+          {% for i in (1..5) %}
+            {% liquid
+              assign testimonial_text_key = 'testimonial_' | append: i | append: '_text'
+              assign testimonial_name_key = 'testimonial_' | append: i | append: '_name'
+              assign testimonial_text = block.settings[testimonial_text_key]
+              assign testimonial_name = block.settings[testimonial_name_key]
+            %}
+            {% if testimonial_text != blank and testimonial_name != blank %}
+              <div class="primal-queen-hero-dot-{{ block.id }} {% if forloop.first %}active{% endif %}" data-dot="{{ forloop.index }}"></div>
+            {% endif %}
+          {% endfor %}
         </div>
       </div>
+    </div>
+
+    <div class="primal-queen-hero-media-{{ block.id }}">
+      <div class="primal-queen-hero-oval-container-{{ block.id }}">
+        <div class="primal-queen-hero-splatter-{{ block.id }}"></div>
+        <div class="primal-queen-hero-media-content-{{ block.id }}">
+          {% if block.settings.video_url != blank %}
+            <video 
+              class="primal-queen-hero-video-{{ block.id }}"
+              autoplay
+              muted
+              loop
+              playsinline
+            >
+              <source src="{{ block.settings.video_url }}" type="video/mp4">
+            </video>
+          {% elsif block.settings.woman_image %}
+            <img 
+              src="{{ block.settings.woman_image | image_url: width: 600 }}" 
+              alt="Woman drinking water"
+              class="primal-queen-hero-woman-image-{{ block.id }}"
+              width="600"
+              height="600"
+              loading="lazy"
+            >
+          {% else %}
+            <div class="primal-queen-hero-woman-placeholder-{{ block.id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+          {% if block.settings.show_one_week_text %}
+            <div class="primal-queen-hero-one-week-{{ block.id }}">{{ block.settings.one_week_text }}</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const heroBlock = document.querySelector('.primal-queen-hero-{{ block.id }}');
+    if (!heroBlock) return;
+
+    class PrimalQueenHero {
+      constructor(block) {
+        this.block = block;
+        this.currentTestimonial = 0;
+        this.testimonials = [];
+        this.dots = [];
+        this.autoSlideInterval = null;
+        this.init();
+      }
+
+      init() {
+        const slider = this.block.querySelector('.primal-queen-hero-testimonial-slider-{{ block.id }}');
+        this.testimonials = Array.from(this.block.querySelectorAll('.primal-queen-hero-testimonial-{{ block.id }}'));
+        this.dots = Array.from(this.block.querySelectorAll('.primal-queen-hero-dot-{{ block.id }}'));
+        
+        if (this.testimonials.length > 1) {
+          this.setupEventListeners();
+          this.startAutoSlide();
+        }
+      }
+
+      showTestimonial(index) {
+        // Hide all testimonials
+        this.testimonials.forEach(testimonial => {
+          testimonial.classList.remove('active');
+        });
+        
+        // Show current testimonial
+        this.testimonials[index].classList.add('active');
+        
+        // Update dots
+        this.dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
+        });
+        
+        this.currentTestimonial = index;
+      }
+
+      nextTestimonial() {
+        let nextIndex = this.currentTestimonial + 1;
+        if (nextIndex >= this.testimonials.length) {
+          nextIndex = 0;
+        }
+        this.showTestimonial(nextIndex);
+      }
+
+      startAutoSlide() {
+        this.autoSlideInterval = setInterval(() => {
+          this.nextTestimonial();
+        }, {{ block.settings.testimonial_auto_slide_duration | default: 5 | times: 1000 }});
+      }
+
+      setupEventListeners() {
+        this.dots.forEach((dot, index) => {
+          dot.addEventListener('click', () => {
+            this.showTestimonial(index);
+            this.resetAutoSlide();
+          });
+        });
+
+        // Pause auto-slide on hover
+        const slider = this.block.querySelector('.primal-queen-hero-testimonial-section-{{ block.id }}');
+        slider.addEventListener('mouseenter', () => {
+          if (this.autoSlideInterval) {
+            clearInterval(this.autoSlideInterval);
+          }
+        });
+
+        slider.addEventListener('mouseleave', () => {
+          this.startAutoSlide();
+        });
+      }
+
+      resetAutoSlide() {
+        if (this.autoSlideInterval) {
+          clearInterval(this.autoSlideInterval);
+          this.startAutoSlide();
+        }
+      }
+    }
+
+    // Initialize the hero block
+    new PrimalQueenHero(heroBlock);
+  });
+</script>
+{% endif %}
     {% endif %}
   {% endfor %}
 </div>
