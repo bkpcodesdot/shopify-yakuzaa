@@ -879,6 +879,20 @@
             "section_padding_top": 20,
             "section_padding_bottom": 20
           }
+        },
+        "problem_section_RhdHXF": {
+          "type": "problem_section",
+          "settings": {
+            "image": "shopify://shop_images/s1-mid-img.webp",
+            "problem_font_size": 16,
+            "problem_font_color": "#2f0147",
+            "text_font_size_one": 20,
+            "heading_text": "",
+            "paragraph_text_1": "Every day seemed like a battle. I was tired all the time. I had brain fog consistently. My weight was a seesaw just like my emotions.",
+            "paragraph_text_2": "I did a good job hiding it, but I was tired of disguising my problems.",
+            "bold_text": "Then… everything turned around for me at the age of 28.",
+            "after_bold_text": "I turned into a low-key health fanatic."
+          }
         }
       },
       "block_order": [
@@ -887,7 +901,8 @@
         "organ_supplement_Ap7hHX",
         "problem_section_FYwizq",
         "single_capsule_yxfhFB",
-        "founder_story_cRNUtf"
+        "founder_story_cRNUtf",
+        "problem_section_RhdHXF"
       ],
       "name": "Tried Everything Section",
       "settings": {
