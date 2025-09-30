@@ -1,0 +1,39 @@
+<section class="superfoods-section">
+  <div class="superfood-heading">
+    {% if section.settings.food_heading != blank %}
+      <h2>{{ section.settings.food_heading }}</h2>
+    {% endif %}
+    {% if section.settings.food_subtitle != blank %}
+      <div class="subtitle">{{ section.settings.food_subtitle }}</div>
+    {% endif %}
+  </div>
+ 
+  <div class="nutrient-rich">
+    {% for block in section.blocks %}
+      <div class="nutrient-card" {{ block.shopify_attributes }}>
+        <div class="nutrient-item">
+          <div class="nutrient-title">{{ block.settings.nutrient_heading }}</div>
+        </div>
+ 
+        <div class="nutrient-images">
+          {% if block.settings.nutrient_image != blank %}
+            <img src="{{ block.settings.nutrient_image | img_url: '300x300' }}"
+                 loading="lazy"
+                 alt="{{ block.settings.nutrient_heading }}">
+          {% endif %}
+ 
+          {% if block.settings.vs_image != blank %}
+            <span class="vs">VS</span>
+            <img src="{{ block.settings.vs_image | img_url: '300x300' }}"
+                 loading="lazy"
+                 alt="Comparison">
+          {% endif %}
+        </div>
+ 
+        {% if block.settings.nutri_bottomline != blank %}
+          <div class="nutri-bottomline">{{ block.settings.nutri_bottomline }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
