@@ -1453,6 +1453,233 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 {% endif %}
+
+{% elsif block.type == 'founder_story' %}
+      <!-- Founder Story Block -->
+      <style>
+        .founder-story-{{ block.id }} {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: {{ block.settings.section_padding_top }}px 20px {{ block.settings.section_padding_bottom }}px;
+          max-width: 1170px;
+          margin: 0 auto;
+          background-color: {{ block.settings.background_color }};
+        }
+        .founder-content-wrapper-{{ block.id }} {
+          display: flex;
+          gap: 40px;
+          flex-wrap: wrap;
+          width: 100%;
+          align-items: center;
+        }
+        .founder-image-side-{{ block.id }} {
+          flex: 1 1 40%;
+          min-width: 300px;
+          position: relative;
+        }
+        .founder-image-container-{{ block.id }} {
+          background: {{ block.settings.image_background_color }};
+          border-radius: 20px;
+          padding: 20px;
+          position: relative;
+          overflow: hidden;
+        }
+        .founder-image-container-{{ block.id }} img {
+          width: 100%;
+          border-radius: 10px;
+          display: block;
+        }
+        .founder-badge-{{ block.id }} {
+          background: {{ block.settings.badge_background_color }};
+          color: {{ block.settings.badge_text_color }};
+          padding: 15px 30px;
+          text-align: center;
+          border-radius: 0 0 20px 20px;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+        }
+        .founder-badge-{{ block.id }} .name {
+          font-size: {{ block.settings.badge_name_size }}px;
+          font-weight: 700;
+          margin: 0;
+        }
+        .founder-badge-{{ block.id }} .title {
+          font-size: {{ block.settings.badge_title_size }}px;
+          font-weight: 500;
+          margin: 5px 0 0;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+        .founder-text-side-{{ block.id }} {
+          flex: 1 1 50%;
+          min-width: 300px;
+        }
+        .founder-text-side-{{ block.id }} h2 {
+          font-size: {{ block.settings.heading_font_size }}px;
+          color: {{ block.settings.heading_color }};
+          margin-bottom: 10px;
+          font-weight: 700;
+          line-height: 1.2;
+        }
+        .founder-text-side-{{ block.id }} h3 {
+          font-size: {{ block.settings.subheading_font_size }}px;
+          color: {{ block.settings.subheading_color }};
+          margin-bottom: 20px;
+          font-weight: 700;
+          line-height: 1.2;
+        }
+        .founder-text-side-{{ block.id }} .intro-text {
+          font-size: {{ block.settings.intro_text_size }}px;
+          color: {{ block.settings.text_color }};
+          margin-bottom: 20px;
+          font-weight: 500;
+        }
+        .founder-problems-list-{{ block.id }} {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 15px;
+          margin-bottom: 20px;
+        }
+        .problem-item-{{ block.id }} {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: {{ block.settings.problem_text_size }}px;
+          color: {{ block.settings.text_color }};
+          font-weight: 500;
+        }
+        .problem-item-{{ block.id }} .icon {
+          color: {{ block.settings.icon_color }};
+          font-size: 18px;
+          flex-shrink: 0;
+        }
+        .founder-text-side-{{ block.id }} .closing-text {
+          font-size: {{ block.settings.closing_text_size }}px;
+          color: {{ block.settings.text_color }};
+          font-weight: 600;
+          margin-top: 15px;
+        }
+        .decorative-elements-{{ block.id }} {
+          position: absolute;
+          top: -20px;
+          left: -30px;
+          pointer-events: none;
+        }
+        .decorative-elements-{{ block.id }} .splash {
+          width: 80px;
+          height: 80px;
+          background: {{ block.settings.splash_color }};
+          border-radius: 50% 20% 50% 20%;
+          opacity: 0.3;
+          position: absolute;
+        }
+        .decorative-elements-{{ block.id }} .splash:nth-child(2) {
+          width: 50px;
+          height: 50px;
+          top: 40px;
+          left: 20px;
+          opacity: 0.4;
+        }
+        .decorative-elements-{{ block.id }} .splash:nth-child(3) {
+          width: 30px;
+          height: 30px;
+          top: 80px;
+          left: -10px;
+          opacity: 0.5;
+        }
+        @media (max-width: 768px) {
+          .founder-story-{{ block.id }} {
+            padding: 40px 20px;
+          }
+          .founder-content-wrapper-{{ block.id }} {
+            flex-direction: column;
+            gap: 30px;
+          }
+          .founder-problems-list-{{ block.id }} {
+            grid-template-columns: 1fr;
+          }
+          .founder-text-side-{{ block.id }} h2 {
+            font-size: calc({{ block.settings.heading_font_size }}px * 0.8);
+          }
+          .founder-text-side-{{ block.id }} h3 {
+            font-size: calc({{ block.settings.subheading_font_size }}px * 0.8);
+          }
+        }
+      </style>
+      <div class="founder-story-{{ block.id }}" {{ block.shopify_attributes }}>
+        <div class="founder-content-wrapper-{{ block.id }}">
+          <div class="founder-image-side-{{ block.id }}">
+            <div class="decorative-elements-{{ block.id }}">
+              <div class="splash"></div>
+              <div class="splash"></div>
+              <div class="splash"></div>
+            </div>
+            <div class="founder-image-container-{{ block.id }}">
+              {% if block.settings.founder_image != blank %}
+                <img src="{{ block.settings.founder_image | img_url: '600x600' }}" alt="{{ block.settings.founder_name }}" loading="lazy" />
+              {% else %}
+                <div style="background: #f0f0f0; padding: 100px 20px; text-align: center; border-radius: 10px;">
+                  <p style="color: #999;">Upload founder image</p>
+                </div>
+              {% endif %}
+              <div class="founder-badge-{{ block.id }}">
+                <p class="name">{{ block.settings.founder_name | default: "Shelby" }}</p>
+                <p class="title">{{ block.settings.founder_title | default: "FOUNDER OF PRIMAL QUEEN!" }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="founder-text-side-{{ block.id }}">
+            {% if block.settings.heading_text != blank %}
+              <h2>{{ block.settings.heading_text }}</h2>
+            {% endif %}
+            
+            {% if block.settings.subheading_text != blank %}
+              <h3>{{ block.settings.subheading_text }}</h3>
+            {% endif %}
+            
+            {% if block.settings.intro_text != blank %}
+              <p class="intro-text">{{ block.settings.intro_text }}</p>
+            {% endif %}
+            
+            <div class="founder-problems-list-{{ block.id }}">
+              {% if block.settings.problem_1 != blank %}
+                <div class="problem-item-{{ block.id }}">
+                  <span class="icon">✕</span>
+                  <span>{{ block.settings.problem_1 }}</span>
+                </div>
+              {% endif %}
+              
+              {% if block.settings.problem_2 != blank %}
+                <div class="problem-item-{{ block.id }}">
+                  <span class="icon">✕</span>
+                  <span>{{ block.settings.problem_2 }}</span>
+                </div>
+              {% endif %}
+              
+              {% if block.settings.problem_3 != blank %}
+                <div class="problem-item-{{ block.id }}">
+                  <span class="icon">✕</span>
+                  <span>{{ block.settings.problem_3 }}</span>
+                </div>
+              {% endif %}
+              
+              {% if block.settings.problem_4 != blank %}
+                <div class="problem-item-{{ block.id }}">
+                  <span class="icon">✕</span>
+                  <span>{{ block.settings.problem_4 }}</span>
+                </div>
+              {% endif %}
+            </div>
+            
+            {% if block.settings.closing_text != blank %}
+              <p class="closing-text">{{ block.settings.closing_text }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
     {% endif %}
   {% endfor %}
 </div>
