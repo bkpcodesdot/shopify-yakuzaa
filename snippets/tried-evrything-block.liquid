@@ -648,6 +648,1015 @@
     {% endfor %}
   </div>
 </section>
+<style>
+.ai-primal-queen-hero-{{ ai_gen_id }} {
+    background-color: {{ block.settings.background_color }};
+    {% if block.settings.background_image %}
+      background-image: url('{{ block.settings.background_image | image_url: width: 1920 }}');
+      background-size: contain;
+      background-position: {{ block.settings.background_image_position }};
+      background-repeat: no-repeat;
+    {% endif %}
+    padding: {{ block.settings.section_padding_top }}px 20px {{ block.settings.section_padding_bottom }}px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .ai-primal-queen-hero-{{ ai_gen_id }}::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    {% if block.settings.background_image %}
+      background: linear-gradient(135deg, {{ block.settings.background_color }}{{ block.settings.background_overlay_opacity | prepend: '' | slice: 0, 2 }} 0%, {{ block.settings.background_gradient_color }}{{ block.settings.background_overlay_opacity | prepend: '' | slice: 0, 2 }} 100%);
+    {% else %}
+      background: linear-gradient(135deg, {{ block.settings.background_color }} 0%, {{ block.settings.background_gradient_color }} 100%);
+      opacity: {{ block.settings.background_gradient_opacity | divided_by: 100.0 }};
+    {% endif %}
+    z-index: 1;
+  }
+
+  .ai-primal-queen-hero-{{ ai_gen_id }}::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: {{ block.settings.wave_height }}px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' fill='%23ffeef3'/%3E%3C/svg%3E' fill='{{ block.settings.wave_color | remove: '#' | prepend: '%23' }}'/%3E%3C/svg%3E") no-repeat;
+    background-size: cover;
+    z-index: 3;
+    transform: {% if block.settings.wave_flip %}rotateX(180deg){% else %}none{% endif %};
+  }
+
+  .ai-primal-queen-hero-container-{{ ai_gen_id }} {
+    max-width: 1170px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ai-primal-queen-hero-content-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.content_spacing }}px;
+  }
+
+  .ai-primal-queen-hero-logo-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .ai-primal-queen-hero-logo-image-{{ ai_gen_id }} {
+    max-height: {{ block.settings.logo_size }}px;
+    width: auto;
+  }
+
+  .ai-primal-queen-hero-logo-text-{{ ai_gen_id }} {
+    font-family: {{ block.settings.logo_font.family }}, sans-serif;
+    font-size: {{ block.settings.logo_text_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.logo_color }};
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .ai-primal-queen-hero-crown-{{ ai_gen_id }} {
+    width: {{ block.settings.crown_size }}px;
+    height: {{ block.settings.crown_size }}px;
+    fill: {{ block.settings.logo_color }};
+  }
+
+  .ai-primal-queen-hero-attention-{{ ai_gen_id }} {
+    font-family: {{ block.settings.heading_font.family }}, sans-serif;
+    font-size: {{ block.settings.attention_text_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.attention_text_color }};
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .ai-primal-queen-hero-main-heading-{{ ai_gen_id }} {
+    font-family: {{ block.settings.heading_font.family }}, sans-serif;
+    font-size: {{ block.settings.main_heading_size }}px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0;
+    color: {{ block.settings.main_heading_pink_color }};
+  }
+
+  .ai-primal-queen-hero-main-heading-{{ ai_gen_id }} .purple-text {
+    color: {{ block.settings.main_heading_purple_color }};
+  }
+
+  .ai-primal-queen-hero-button-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+    border: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-family: {{ block.settings.button_font.family }}, sans-serif;
+    font-size: {{ block.settings.button_text_size }}px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    max-width: fit-content;
+    flex-direction: row-reverse;
+  }
+
+  .ai-primal-queen-hero-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .ai-primal-queen-hero-button-crown-{{ ai_gen_id }} {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+
+  .ai-primal-queen-hero-guarantees-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin-top: -20px;
+  }
+
+  .ai-primal-queen-hero-guarantee-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: {{ block.settings.guarantee_font.family }}, sans-serif;
+    font-size: {{ block.settings.guarantee_text_size }}px;
+    color: {{ block.settings.guarantee_text_color }};
+  }
+
+  .ai-primal-queen-hero-check-{{ ai_gen_id }} {
+    width: 16px;
+    height: 16px;
+    fill: {{ block.settings.guarantee_check_color }};
+    flex-shrink: 0;
+  }
+
+  .ai-primal-queen-hero-testimonial-section-{{ ai_gen_id }} {
+    margin-top: 0px;
+  }
+
+  .ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }} {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ai-primal-queen-hero-testimonial-{{ ai_gen_id }} {
+    border: 2px solid {{ block.settings.testimonial_border_color }};
+    border-radius: {{ block.settings.testimonial_border_radius }}px;
+    padding: 20px;
+    background-color: {{ block.settings.testimonial_background_color }};
+    {% comment %} display: none; {% endcomment %}
+  }
+
+  .ai-primal-queen-hero-testimonial-{{ ai_gen_id }}.active {
+    display: block;
+  }
+  .right-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .ai-primal-queen-hero-testimonial-header-{{ ai_gen_id }} {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+    {% comment %} flex-direction: column; {% endcomment %}
+  }
+
+  .ai-primal-queen-hero-testimonial-avatar-{{ ai_gen_id }} {
+    width: {{ block.settings.testimonial_avatar_size }}px;
+    height: {{ block.settings.testimonial_avatar_size }}px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid {{ block.settings.testimonial_border_color }};
+  }
+
+  .ai-primal-queen-hero-testimonial-avatar-placeholder-{{ ai_gen_id }} {
+    width: {{ block.settings.testimonial_avatar_size }}px;
+    height: {{ block.settings.testimonial_avatar_size }}px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid {{ block.settings.testimonial_border_color }};
+  }
+
+  .ai-primal-queen-hero-testimonial-avatar-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.5;
+  }
+
+  .ai-primal-queen-hero-testimonial-info-{{ ai_gen_id }} {
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .ai-primal-queen-hero-testimonial-name-{{ ai_gen_id }} {
+    font-family: {{ block.settings.testimonial_name_font.family }}, sans-serif;
+    font-size: {{ block.settings.testimonial_name_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.testimonial_name_color }};
+    margin: 0 0 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ai-primal-queen-hero-verified-{{ ai_gen_id }} {
+    width: 16px;
+    height: 16px;
+    fill: {{ block.settings.verified_check_color }};
+  }
+
+  .ai-primal-queen-hero-testimonial-stars-{{ ai_gen_id }} {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 8px;
+  }
+
+  .ai-primal-queen-hero-star-{{ ai_gen_id }} {
+    width: 16px;
+    height: 16px;
+    fill: {{ block.settings.star_color }};
+  }
+
+  .ai-primal-queen-hero-testimonial-text-{{ ai_gen_id }} {
+    font-family: {{ block.settings.testimonial_text_font.family }}, sans-serif;
+    font-size: {{ block.settings.testimonial_text_size }}px;
+    font-style: italic;
+    color: {{ block.settings.testimonial_text_color }};
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .ai-primal-queen-hero-testimonial-dots-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .ai-primal-queen-hero-dot-{{ ai_gen_id }} {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: {{ block.settings.dot_inactive_color }};
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-primal-queen-hero-dot-{{ ai_gen_id }}.active {
+    background-color: {{ block.settings.dot_active_color }};
+  }
+
+  .ai-primal-queen-hero-media-{{ ai_gen_id }} {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: 1px solid;
+    width: fit-content;
+    padding: 25px;
+    border-radius: 230px;
+    margin-left: 70px;
+  }
+
+  .ai-primal-queen-hero-oval-container-{{ ai_gen_id }} {
+    position: relative;
+    width: {{ block.settings.oval_width }}px;
+    height: {{ block.settings.oval_height }}px;
+    {% comment %} height: 666px; {% endcomment %}
+    {% comment %} border: {{ block.settings.oval_border_width }}px solid {{ block.settings.oval_border_color }}; {% endcomment %}
+    border-radius: 200px;
+    overflow: hidden;
+    background-color: {{ block.settings.oval_background_color }};
+  }
+
+  .ai-primal-queen-hero-splatter-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(ellipse at center, {{ block.settings.splatter_color_1 }} 0%, {{ block.settings.splatter_color_2 }} 50%, transparent 70%);
+    opacity: {{ block.settings.splatter_opacity | divided_by: 100.0 }};
+    z-index: 1;
+  }
+
+  .ai-primal-queen-hero-media-content-{{ ai_gen_id }} {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ai-primal-queen-hero-woman-image-{{ ai_gen_id }} {
+    width: 80%;
+    height: 70%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .ai-primal-queen-hero-woman-placeholder-{{ ai_gen_id }} {
+    width: 80%;
+    height: 70%;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .verify_mark_icon {
+    width: 17px !important;
+  }
+  .ai-primal-queen-hero-woman-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.5;
+  }
+  .btn_wrapper::before {
+    content: '';
+        width: 15px;
+        height: 15px;
+        display: block;
+        position: absolute;
+        border: 2px solid #40A754;
+        left: -5px;
+        top: -5px;
+        border-right: none;
+        border-bottom: none;
+}
+.btn_wrapper::after{
+    content: '';
+        width: 15px;
+        height: 15px;
+        display: block;
+        position: absolute;
+        border: 2px solid #40A754;
+        right: -7px;
+        top: -7px;
+        border-bottom: none;
+        border-left: none;
+    }
+.btn_wrapper, .btn_wrapper_wrapper{
+    position: relative;
+    display: block;
+    width: fit-content;
+}
+.btn_wrapper_wrapper::before {
+    content: '';
+        width: 15px;
+        height: 15px;
+        display: block;
+        position: absolute;
+        border: 2px solid #40A754;
+        left: -5px;
+        bottom: -5px;
+        border-right: none;
+        border-top: none;
+}
+.btn_wrapper_wrapper::after{
+          content: '';
+        width: 15px;
+        height: 15px;
+        display: block;
+        position: absolute;
+        border: 2px solid #40A754;
+        right: -5px;
+        bottom: -5px;
+        border-left: none;
+        border-top: none;
+}
+.btn_wrapper_wrapper a{
+      box-shadow: 0 3px 3px 2px rgba(0, 0, 0, .2);
+}
+.btn_wrapper img::before{
+    ontent: '';
+        width: 15px;
+        height: 15px;
+        display: block;
+        position: absolute;
+        border: 2px solid #40A754;
+        left: -7px;
+        bottom: -7px;
+        border-right: none;
+        border-top: none;
+}
+  .ai-primal-queen-hero-video-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    border-radius: 0%;
+    object-fit: cover;
+  }
+
+  .ai-primal-queen-hero-one-week-{{ ai_gen_id }} {
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: {{ block.settings.one_week_background_color }};
+    color: {{ block.settings.one_week_text_color }};
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-family: {{ block.settings.one_week_font.family }}, sans-serif;
+    font-size: {{ block.settings.one_week_text_size }}px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 3;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-primal-queen-hero-media-{{ ai_gen_id }}{
+          margin-left: 0px !important;
+    }
+    .ai-primal-queen-hero-container-{{ ai_gen_id }}{
+      display: flex;
+      gap: 20px;
+    }
+    {% comment %} .btn_wrapper_wrapper { {% endcomment %}
+      {% comment %} margin: 0 auto;
+    } {% endcomment %}
+    .ai-primal-queen-hero-logo-{{ ai_gen_id }}{
+      text-align: center;
+          {% comment %} justify-content: center; {% endcomment %}
+    }
+    .ai-primal-queen-hero-container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      {% comment %} text-align: center; {% endcomment %}
+    }
+
+    .ai-primal-queen-hero-attention-{{ ai_gen_id }} {
+      font-size: {{ block.settings.attention_text_size | times: 0.8 }}px;
+    }
+
+    .ai-primal-queen-hero-main-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.main_heading_size | times: 0.7 }}px;
+    }
+
+    .ai-primal-queen-hero-oval-container-{{ ai_gen_id }} {
+      width: {{ block.settings.oval_width | times: 0.8 }}px;
+      height: {{ block.settings.oval_height | times: 0.8 }}px;
+    }
+
+    .ai-primal-queen-hero-guarantees-{{ ai_gen_id }} {
+      align-items: center;
+      {% comment %} justify-content: center; {% endcomment %}
+      margin-top: -10px;
+    }
+
+    .ai-primal-queen-hero-{{ ai_gen_id }}::after {
+      height: {{ block.settings.wave_height | times: 0.8 }}px;
+    }
+  }
+  .ai-primal-queen-hero-media-{{ ai_gen_id }}.is-mobile{
+    display: none;
+  }
+  @media screen and (max-width: 767px) {
+    .ai-primal-queen-hero-content-{{ ai_gen_id }} {
+      width: 100% !important;
+    }
+    .ai-primal-queen-hero-one-week-{{ ai_gen_id }} {
+      display: none;
+    }
+    .btn_wrapper_wrapper {
+      order: 7;
+    }
+    .ai-primal-queen-hero-media-{{ ai_gen_id }}.is-mobile{
+      display: block;
+              margin: 0 auto !important;
+    }
+    .ai-primal-queen-hero-media-{{ ai_gen_id }}{
+      display: none;
+    }
+    .ai-primal-queen-hero-media-{{ ai_gen_id }} {
+      padding: 25px;
+    }
+    .ai-primal-queen-hero-testimonial-text-{{ ai_gen_id }} {
+      text-align: left;
+    }
+    .ai-primal-queen-hero-testimonial-name-{{ ai_gen_id }} {
+      font-size: 12px;
+    }
+    .btn_wrapper_wrapper {
+      margin: 0 auto;
+    }
+      .ai-primal-queen-hero-main-heading-{{ ai_gen_id }} {
+        font-size: 26px !important;
+        line-height: 35px;
+    }
+    .ai-primal-queen-hero-attention-{{ ai_gen_id }} {
+        font-size: 17px !important;
+    }
+    .ai-primal-queen-hero-container-{{ ai_gen_id }} {
+      flex-direction: column !important;
+    }
+   .ai-primal-queen-hero-guarantees-{{ ai_gen_id }} {
+    justify-content: center;
+    order: 8;
+  }
+  .ai-primal-queen-hero-container-{{ ai_gen_id }} {
+    text-align: center;
+  }
+      .ai-primal-queen-hero-logo-{{ ai_gen_id }} {
+        text-align: center;
+        justify-content: center;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    
+    .ai-primal-queen-hero-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_top | times: 0.7 }}px 15px {{ block.settings.section_padding_bottom | times: 0.7 }}px;
+    }
+
+    .ai-primal-queen-hero-attention-{{ ai_gen_id }} {
+      font-size: {{ block.settings.attention_text_size | times: 0.6 }}px;
+    }
+
+    .ai-primal-queen-hero-main-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.main_heading_size | times: 0.5 }}px;
+    }
+
+    .ai-primal-queen-hero-oval-container-{{ ai_gen_id }} {
+      {% comment %} width: {{ block.settings.oval_width | times: 0.6 }}px;
+      height: {{ block.settings.oval_height | times: 0.6 }}px; {% endcomment %}
+      width: 325px;
+      height: 518px;
+    }
+
+    .ai-primal-queen-hero-{{ ai_gen_id }}::after {
+      height: {{ block.settings.wave_height | times: 0.6 }}px;
+    }
+  }
+  
+
+.ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }} {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  transition: height 0.4s ease;
+}
+
+.ai-primal-queen-hero-testimonial-wrapper-{{ ai_gen_id }} {
+  display: flex;
+  width: 100%;
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
+}
+
+.ai-primal-queen-hero-testimonial-{{ ai_gen_id }} {
+  flex: 0 0 98%;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0px 1%;
+}
+
+</style>
+
+<primal-queen-hero-{{ ai_gen_id }} class="ai-primal-queen-hero-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-primal-queen-hero-container-{{ ai_gen_id }}">
+    <div class="ai-primal-queen-hero-content-{{ ai_gen_id }}">
+      <div class="ai-primal-queen-hero-logo-{{ ai_gen_id }}">
+        {% if block.settings.logo_image %}
+          <img 
+            src="{{ block.settings.logo_image | image_url: width: 200 }}" 
+            alt="{{ block.settings.logo_text | escape }}"
+            class="ai-primal-queen-hero-logo-image-{{ ai_gen_id }}"
+            width="200"
+            height="auto"
+            loading="lazy"
+          >
+        {% endif %}
+        {% if block.settings.logo_text != blank %}
+          <span class="ai-primal-queen-hero-logo-text-{{ ai_gen_id }}">{{ block.settings.logo_text }}</span>
+        {% endif %}
+        {% if block.settings.show_crown_logo %}
+          <svg class="ai-primal-queen-hero-crown-{{ ai_gen_id }}" viewBox="0 0 24 24">
+            <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm2.7-2h8.6l.9-5.4-2.1 1.7L12 8l-3.1 2.3-2.1-1.7L7.7 14z"/>
+          </svg>
+        {% endif %}
+      </div>
+      
+      {% if block.settings.attention_text != blank %}
+        <div class="ai-primal-queen-hero-attention-{{ ai_gen_id }}">{{ block.settings.attention_text }}</div>
+      {% endif %}
+
+      {% if block.settings.main_heading != blank %}
+        <h1 class="ai-primal-queen-hero-main-heading-{{ ai_gen_id }}">
+          {{ block.settings.main_heading | replace: '[purple]', '<span class="purple-text">' | replace: '[/purple]', '</span>' }}
+        </h1>
+      {% endif %}
+
+      {% if block.settings.video_url != blank %}
+              <div class="ai-primal-queen-hero-media-{{ ai_gen_id }} is-mobile">
+      <div class="ai-primal-queen-hero-oval-container-{{ ai_gen_id }}">
+        <div class="ai-primal-queen-hero-splatter-{{ ai_gen_id }}"></div>
+        <div class="ai-primal-queen-hero-media-content-{{ ai_gen_id }}">
+          {% if block.settings.video_url != blank %}
+            <video 
+              class="ai-primal-queen-hero-video-{{ ai_gen_id }}"
+              autoplay
+              muted
+              loop
+              playsinline
+            >
+              <source src="{{ block.settings.video_url }}" type="video/mp4">
+            </video>
+          {% elsif block.settings.woman_image %}
+            <img 
+              src="{{ block.settings.woman_image | image_url: width: 600 }}" 
+              alt="Woman drinking water"
+              class="ai-primal-queen-hero-woman-image-{{ ai_gen_id }}"
+              width="600"
+              height="600"
+              loading="lazy"
+            >
+          {% else %}
+            <div class="ai-primal-queen-hero-woman-placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+          {% if block.settings.show_one_week_text %}
+            <div class="ai-primal-queen-hero-one-week-{{ ai_gen_id }}">{{ block.settings.one_week_text }}</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+      {% if block.settings.button_text != blank %}
+       <div class="btn_wrapper_wrapper">
+        <div class="btn_wrapper">
+          <a href="{{ block.settings.button_link }}" class="ai-primal-queen-hero-button-{{ ai_gen_id }}">
+            {% if block.settings.show_crown_button %}
+              {% comment %} <svg class="ai-primal-queen-hero-button-crown-{{ ai_gen_id }}" viewBox="0 0 24 24">
+                <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm2.7-2h8.6l.9-5.4-2.1 1.7L12 8l-3.1 2.3-2.1-1.7L7.7 14z"/>
+              </svg> {% endcomment %}
+
+              <img src="{{ block.settings.button_crown_icon | image_url }}" class="button_crown_icon" width="20px" height="20px" style="width:20px;">
+            {% endif %}
+            {{ block.settings.button_text }}
+          </a>
+        </div>  
+      </div>    
+      {% endif %}
+
+      <div class="ai-primal-queen-hero-guarantees-{{ ai_gen_id }}">
+        {% if block.settings.guarantee_1_text != blank %}
+          <div class="ai-primal-queen-hero-guarantee-{{ ai_gen_id }}">
+            <svg class="ai-primal-queen-hero-check-{{ ai_gen_id }}" viewBox="0 0 24 24">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+            </svg>
+            <span>{{ block.settings.guarantee_1_text }}</span>
+          </div>
+        {% endif %}
+        {% if block.settings.guarantee_2_text != blank %}
+          <div class="ai-primal-queen-hero-guarantee-{{ ai_gen_id }}">
+            <svg class="ai-primal-queen-hero-check-{{ ai_gen_id }}" viewBox="0 0 24 24">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+            </svg>
+            <span>{{ block.settings.guarantee_2_text }}</span>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="ai-primal-queen-hero-testimonial-section-{{ ai_gen_id }}">
+        <div class="ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }}">
+          {% for i in (1..5) %}
+            {% liquid
+              assign testimonial_text_key = 'testimonial_' | append: i | append: '_text'
+              assign testimonial_name_key = 'testimonial_' | append: i | append: '_name'
+              assign testimonial_avatar_key = 'testimonial_' | append: i | append: '_avatar'
+              assign testimonial_rating_key = 'testimonial_' | append: i | append: '_rating'
+
+              assign testimonial_text = block.settings[testimonial_text_key]
+              assign testimonial_name = block.settings[testimonial_name_key]
+              assign testimonial_avatar = block.settings[testimonial_avatar_key]
+              assign testimonial_rating = block.settings[testimonial_rating_key]
+            %}
+
+            {% if testimonial_text != blank and testimonial_name != blank %}
+              <div class="ai-primal-queen-hero-testimonial-{{ ai_gen_id }} {% if forloop.first %}active{% endif %}" data-testimonial="{{ forloop.index }}">
+                <div class="ai-primal-queen-hero-testimonial-header-{{ ai_gen_id }}">
+                  {% if testimonial_avatar %}
+                    <img 
+                      src="{{ testimonial_avatar | image_url: width: 100 }}" 
+                      alt="{{ testimonial_name | escape }}"
+                      class="ai-primal-queen-hero-testimonial-avatar-{{ ai_gen_id }}"
+                      width="100"
+                      height="100"
+                      loading="lazy"
+                    >
+                  {% else %}
+                    <div class="ai-primal-queen-hero-testimonial-avatar-placeholder-{{ ai_gen_id }}">
+                      {{ 'image' | placeholder_svg_tag }}
+                    </div>
+                  {% endif %}
+                  
+                    <div class="right-content-wrapper">
+                       <p class="ai-primal-queen-hero-testimonial-text-{{ ai_gen_id }}">{{ testimonial_text }}</p>
+                        <div class="ai-primal-queen-hero-testimonial-info-{{ ai_gen_id }}">
+                          <h3 class="ai-primal-queen-hero-testimonial-name-{{ ai_gen_id }}">
+                            {{ testimonial_name }}
+                            {% if block.settings.show_verified_checkmark %}
+                              <img src="{{ block.settings.verify_mark_icon | image_url }}" width="17px" height="17px" class="verify_mark_icon">
+                            {% endif %}
+                          </h3>
+                          <div class="ai-primal-queen-hero-testimonial-stars-{{ ai_gen_id }}">
+                            {% for star in (1..5) %}
+                              <svg class="ai-primal-queen-hero-star-{{ ai_gen_id }}" viewBox="0 0 24 24" {% if star > testimonial_rating %}style="opacity: 0.3;"{% endif %}>
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                              </svg>
+                            {% endfor %}
+                          </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <div class="ai-primal-queen-hero-testimonial-dots-{{ ai_gen_id }}">
+          {% for i in (1..5) %}
+            {% liquid
+              assign testimonial_text_key = 'testimonial_' | append: i | append: '_text'
+              assign testimonial_name_key = 'testimonial_' | append: i | append: '_name'
+              assign testimonial_text = block.settings[testimonial_text_key]
+              assign testimonial_name = block.settings[testimonial_name_key]
+            %}
+            {% if testimonial_text != blank and testimonial_name != blank %}
+              <div class="ai-primal-queen-hero-dot-{{ ai_gen_id }} {% if forloop.first %}active{% endif %}" data-dot="{{ forloop.index }}"></div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-primal-queen-hero-media-{{ ai_gen_id }}">
+      <div class="ai-primal-queen-hero-oval-container-{{ ai_gen_id }}">
+        <div class="ai-primal-queen-hero-splatter-{{ ai_gen_id }}"></div>
+        <div class="ai-primal-queen-hero-media-content-{{ ai_gen_id }}">
+          {% if block.settings.video_url != blank %}
+            <video 
+              class="ai-primal-queen-hero-video-{{ ai_gen_id }}"
+              autoplay
+              muted
+              loop
+              playsinline
+            >
+              <source src="{{ block.settings.video_url }}" type="video/mp4">
+            </video>
+          {% elsif block.settings.woman_image %}
+            <img 
+              src="{{ block.settings.woman_image | image_url: width: 600 }}" 
+              alt="Woman drinking water"
+              class="ai-primal-queen-hero-woman-image-{{ ai_gen_id }}"
+              width="600"
+              height="600"
+              loading="lazy"
+            >
+          {% else %}
+            <div class="ai-primal-queen-hero-woman-placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+          {% if block.settings.show_one_week_text %}
+            <div class="ai-primal-queen-hero-one-week-{{ ai_gen_id }}">{{ block.settings.one_week_text }}</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</primal-queen-hero-{{ ai_gen_id }}>
+<script>
+  (function () {
+    class PrimalQueenHero{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.currentTestimonial = 1; // Start at 1 because 0 is the cloned last
+        this.testimonials = [];
+        this.dots = [];
+        this.autoSlideInterval = null;
+
+        // Drag/swipe
+        this.isDragging = false;
+        this.startX = 0;
+        this.movedBy = 0;
+      }
+
+      connectedCallback() {
+        const slider = this.querySelector('.ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }}');
+        this.originalTestimonials = Array.from(this.querySelectorAll('.ai-primal-queen-hero-testimonial-{{ ai_gen_id }}'));
+        this.dots = Array.from(this.querySelectorAll('.ai-primal-queen-hero-dot-{{ ai_gen_id }}'));
+        this.testimonialCount = this.originalTestimonials.length;
+
+        // Create wrapper
+        let wrapper = slider.querySelector('.ai-primal-queen-hero-testimonial-wrapper-{{ ai_gen_id }}');
+        if (!wrapper) {
+          wrapper = document.createElement('div');
+          wrapper.className = 'ai-primal-queen-hero-testimonial-wrapper-{{ ai_gen_id }}';
+          slider.appendChild(wrapper);
+        }
+        this.wrapper = wrapper;
+
+        // Clone slides for infinite effect
+        const firstClone = this.originalTestimonials[0].cloneNode(true);
+        const lastClone = this.originalTestimonials[this.testimonialCount - 1].cloneNode(true);
+
+        wrapper.appendChild(firstClone);
+        this.originalTestimonials.forEach(t => wrapper.appendChild(t));
+        wrapper.insertBefore(lastClone, wrapper.firstChild);
+
+        // Now set full testimonial list including clones
+        this.testimonials = Array.from(wrapper.children);
+
+        // Initial position (first actual testimonial)
+        this.setWrapperTransition(false);
+        this.setTranslateX(this.currentTestimonial);
+        this.updateSliderHeight();
+
+        if (this.testimonialCount > 1) {
+          this.setupEventListeners();
+          this.setupDrag();
+          this.startAutoSlide();
+        }
+      }
+
+      disconnectedCallback() {
+        if (this.autoSlideInterval) clearInterval(this.autoSlideInterval);
+      }
+
+      setWrapperTransition(enable) {
+        this.wrapper.style.transition = enable ? 'transform 0.5s ease-in-out' : 'none';
+      }
+
+      setTranslateX(index) {
+        const offset = -index * 100;
+        this.wrapper.style.transform = `translateX(${offset}%)`;
+      }
+
+      showTestimonial(index) {
+        this.setWrapperTransition(true);
+        this.setTranslateX(index);
+        this.currentTestimonial = index;
+        this.updateDots();
+        this.updateSliderHeight();
+      }
+
+      updateDots() {
+        const realIndex = (this.currentTestimonial - 1 + this.testimonialCount) % this.testimonialCount;
+        this.dots.forEach((d, i) => d.classList.toggle('active', i === realIndex));
+      }
+
+      updateSliderHeight() {
+        const activeSlide = this.testimonials[this.currentTestimonial];
+        const sliderContainer = this.querySelector('.ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }}');
+        if (activeSlide && sliderContainer) {
+          const newHeight = activeSlide.offsetHeight;
+          sliderContainer.style.height = newHeight + 'px';
+        }
+      }
+
+      nextTestimonial() {
+        if (this.currentTestimonial >= this.testimonialCount) {
+          this.showTestimonial(this.currentTestimonial + 1);
+          setTimeout(() => {
+            this.setWrapperTransition(false);
+            this.currentTestimonial = 1;
+            this.setTranslateX(this.currentTestimonial);
+            this.updateDots();
+            this.updateSliderHeight();
+          }, 510);
+        } else {
+          this.showTestimonial(this.currentTestimonial + 1);
+        }
+      }
+
+      prevTestimonial() {
+        if (this.currentTestimonial <= 0) {
+          this.showTestimonial(this.currentTestimonial - 1);
+          setTimeout(() => {
+            this.setWrapperTransition(false);
+            this.currentTestimonial = this.testimonialCount;
+            this.setTranslateX(this.currentTestimonial);
+            this.updateDots();
+            this.updateSliderHeight();
+          }, 510);
+        } else {
+          this.showTestimonial(this.currentTestimonial - 1);
+        }
+      }
+
+      startAutoSlide() {
+        this.autoSlideInterval = setInterval(() => {
+          this.nextTestimonial();
+        }, {{ block.settings.testimonial_auto_slide_duration | times: 10000 }});
+      }
+
+      resetAutoSlide() {
+        if (this.autoSlideInterval) {
+          clearInterval(this.autoSlideInterval);
+          this.startAutoSlide();
+        }
+      }
+
+      setupEventListeners() {
+        this.dots.forEach((dot, i) => {
+          dot.addEventListener('click', () => {
+            this.showTestimonial(i + 1); // Because 0 is the cloned last slide
+            this.resetAutoSlide();
+          });
+        });
+      }
+
+      setupDrag() {
+        const container = this.querySelector('.ai-primal-queen-hero-testimonial-slider-{{ ai_gen_id }}');
+
+        container.addEventListener('mousedown', this.dragStart.bind(this));
+        container.addEventListener('mousemove', this.dragMove.bind(this));
+        container.addEventListener('mouseup', this.dragEnd.bind(this));
+        container.addEventListener('mouseleave', this.dragEnd.bind(this));
+
+        container.addEventListener('touchstart', this.dragStart.bind(this), { passive: true });
+        container.addEventListener('touchmove', this.dragMove.bind(this), { passive: true });
+        container.addEventListener('touchend', this.dragEnd.bind(this));
+      }
+
+      dragStart(event) {
+        this.isDragging = true;
+        this.startX = event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+        this.movedBy = 0;
+        this.setWrapperTransition(false);
+        this.resetAutoSlide();
+      }
+
+      dragMove(event) {
+        if (!this.isDragging) return;
+        const currentX = event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+        this.movedBy = currentX - this.startX;
+
+        const percentage = (this.movedBy / this.offsetWidth) * 100;
+        const offset = -this.currentTestimonial * 100 + percentage;
+        this.wrapper.style.transform = `translateX(${offset}%)`;
+      }
+
+      dragEnd() {
+        if (!this.isDragging) return;
+        this.isDragging = false;
+        this.setWrapperTransition(true);
+
+        if (this.movedBy < -50) {
+          this.nextTestimonial();
+        } else if (this.movedBy > 50) {
+          this.prevTestimonial();
+        } else {
+          this.showTestimonial(this.currentTestimonial); // snap back
+        }
+      }
+    }
+
+    customElements.define('primal-queen-hero-{{ ai_gen_id }}', PrimalQueenHero{{ ai_gen_id }});
+  })();
+</script>
+
 
 {% elsif block.type == 'founder_story' %}
       <!-- Founder Story Block -->
