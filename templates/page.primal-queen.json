@@ -934,6 +934,23 @@
             "padding": 40,
             "text_alignment": "left"
           }
+        },
+        "primal_queen_hero_9AFJPD": {
+          "type": "primal_queen_hero",
+          "settings": {
+            "background_color": "#ffeef3",
+            "background_image_position": "center center",
+            "background_gradient_color": "#ffe0e8",
+            "background_gradient_opacity": 30,
+            "section_padding_top": 60,
+            "section_padding_bottom": 60,
+            "content_spacing": 25,
+            "wave_color": "#ffffff",
+            "wave_height": 60,
+            "wave_flip": false,
+            "logo_text": "PRIMAL QUEEN",
+            "logo_font": "inter_n7"
+          }
         }
       },
       "block_order": [
@@ -943,7 +960,8 @@
         "content_block_Ntg4qK",
         "organ_supplement_Ap7hHX",
         "problem_section_FYwizq",
-        "single_capsule_yxfhFB"
+        "single_capsule_yxfhFB",
+        "primal_queen_hero_9AFJPD"
       ],
       "name": "Tried Everything Section",
       "settings": {
