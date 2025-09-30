@@ -835,8 +835,8 @@
             "accent_color": "#8b0000",
             "main_heading_size": 28,
             "subheading_size": 18,
-            "question_size": 24,
-            "margin_top": 40,
+            "question_size": 20,
+            "margin_top": 20,
             "margin_bottom": 40,
             "padding": 40,
             "text_alignment": "left"
