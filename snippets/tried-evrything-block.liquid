@@ -653,6 +653,12 @@
 <style>
 .ai-primal-queen-hero-{{ ai_gen_id }} {
     background-color: {{ block.settings.background_color }};
+    {% if block.settings.background_image %}
+      background-image: url('{{ block.settings.background_image | image_url: width: 1920 }}');
+      background-size: contain;
+      background-position: {{ block.settings.background_image_position }};
+      background-repeat: no-repeat;
+    {% endif %}
     padding: {{ block.settings.section_padding_top }}px 20px {{ block.settings.section_padding_bottom }}px;
     position: relative;
     overflow: hidden;
@@ -666,8 +672,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    height:100%;
-    width:100%;
    background-image: url('{{ block.settings.background_image | image_url: width: 1920 }}');
     z-index: 1;
   }
