@@ -672,12 +672,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    {% if block.settings.background_image %}
-      background: linear-gradient(135deg, {{ block.settings.background_color }}{{ block.settings.background_overlay_opacity | prepend: '' | slice: 0, 2 }} 0%, {{ block.settings.background_gradient_color }}{{ block.settings.background_overlay_opacity | prepend: '' | slice: 0, 2 }} 100%);
-    {% else %}
-      background: linear-gradient(135deg, {{ block.settings.background_color }} 0%, {{ block.settings.background_gradient_color }} 100%);
-      opacity: {{ block.settings.background_gradient_opacity | divided_by: 100.0 }};
-    {% endif %}
+   background-image: url('{{ block.settings.background_image | image_url: width: 1920 }}');
     z-index: 1;
   }
 
