@@ -609,7 +609,7 @@
         }
       </style>
 
-      {% if forloop.first %}
+     
         <section class="superfoods-section">
           <div class="superfood-heading">
             {% if section.settings.food_heading != blank %}
@@ -619,7 +619,6 @@
           </div>
 
           <div class="nutrient-rich">
-      {% endif %}
 
       <div class="nutrient-card" {{ block.shopify_attributes }}>
         <div class="nutrient-item">
@@ -637,10 +636,9 @@
         <div class="nutri-bottomline">{{ block.settings.nutri_bottomline }}</div>
       </div>
 
-      {% if forloop.last %}
           </div>
         </section>
-      {% endif %}
+  
 
     {% endif %}
   {% endfor %}
