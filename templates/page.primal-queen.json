@@ -1012,7 +1012,7 @@
             "verified_check_color": "#009933",
             "testimonial_text_font": "inter_n4",
             "testimonial_text_size": 14,
-            "testimonial_text_color": "#666666",
+            "testimonial_text_color": "#000000",
             "star_color": "#ff6f91",
             "dot_active_color": "#ff6f91",
             "dot_inactive_color": "#cccccc",
