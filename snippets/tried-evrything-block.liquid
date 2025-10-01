@@ -706,7 +706,25 @@
         {{ block.settings.cta_label }}
       </a>
     </div>  
-  </div>    
+  </div>  
+  <div class="ai-primal-queen-hero-guarantees-{{ ai_gen_id }}">
+        {% if block.settings.guarantee_1_text != blank %}
+          <div class="ai-primal-queen-hero-guarantee-{{ ai_gen_id }}">
+            <svg class="ai-primal-queen-hero-check-{{ ai_gen_id }}" viewBox="0 0 24 24">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+            </svg>
+            <span>{{ block.settings.guarantee_1_text }}</span>
+          </div>
+        {% endif %}
+        {% if block.settings.guarantee_2_text != blank %}
+          <div class="ai-primal-queen-hero-guarantee-{{ ai_gen_id }}">
+            <svg class="ai-primal-queen-hero-check-{{ ai_gen_id }}" viewBox="0 0 24 24">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+            </svg>
+            <span>{{ block.settings.guarantee_2_text }}</span>
+          </div>
+        {% endif %}
+      </div>  
 {% endif %}
 
     {%- comment -%} ===== PROMISE SECTION ===== {%- endcomment -%}
