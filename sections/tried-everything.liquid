@@ -2926,7 +2926,51 @@
     </div>
   </div>
 </div>
-
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Counter animation function
+  function animateCounters() {
+    const counters = document.querySelectorAll('.counter-animated');
+    
+    counters.forEach(counter => {
+      const target = parseInt(counter.getAttribute('data-target'));
+      const duration = 2000; // 2 seconds
+      const step = target / (duration / 16); // 60fps
+      let current = 0;
+      
+      const originalText = counter.textContent;
+      const hasPlus = originalText.includes('+');
+      const hasPercent = originalText.includes('%');
+      
+      const updateCounter = () => {
+        current += step;
+        if (current < target) {
+          let displayValue = Math.floor(current);
+          counter.textContent = (hasPlus ? '+' : '') + displayValue + (hasPercent ? '%' : '');
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.textContent = originalText;
+        }
+      };
+      
+      // Start animation when element is in viewport
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            updateCounter();
+            observer.unobserve(entry.target);
+          }
+        });
+      });
+      
+      observer.observe(counter);
+    });
+  }
+  
+  // Initialize counter animation
+  animateCounters();
+});
+</script>
 {% comment %}--------------Timeline-section------------ {% endcomment %}
 
 {% elsif block.type == 'timeline_progress' %}
