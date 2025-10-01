@@ -3123,63 +3123,67 @@
           {% else %}
             {% assign side = 'right' %}
           {% endif %}
+<article class="timeline-item-{{ block.id }} timeline-item-{{ side }}-{{ block.id }}" data-block-id="{{ block.id }}">
+  <span class="timeline-checkpoint-{{ block.id }}" aria-hidden="true"></span>
 
-          <article class="timeline-item-{{ block.id }} timeline-item-{{ side }}-{{ block.id }}" data-block-id="{{ block.id }}">
-            <span class="timeline-checkpoint-{{ block.id }}" aria-hidden="true"></span>
+  {% if side == 'left' %}
+    <!-- LEFT side (swapped to right now) -->
+    <div class="timeline-col-{{ block.id }} timeline-col-right-{{ block.id }}">
+      {% if card %}
+        <div class="timeline-card-{{ block.id }}">
+          {% if icon != blank %}<div class="timeline-icon-{{ block.id }}">{{ icon }}</div>{% endif %}
+          <h3 class="timeline-title-{{ block.id }}">{{ title }}</h3>
+          <p class="timeline-text-{{ block.id }}">{{ text }}</p>
+        </div>
+      {% else %}
+        <div class="timeline-content-{{ block.id }}">
+          {% if icon != blank %}<div class="timeline-icon-{{ block.id }}">{{ icon }}</div>{% endif %}
+          <h3 class="timeline-title-{{ block.id }}">{{ title }}</h3>
+          <p class="timeline-text-{{ block.id }}">{{ text }}</p>
+        </div>
+      {% endif %}
+    </div>
 
-            {% if side == 'right' %}
-              <div class="timeline-col-{{ block.id }} timeline-col-left-{{ block.id }}">
-                {% if card %}
-                  <div class="timeline-card-{{ block.id }}">
-                    {% if icon != blank %}<div class="timeline-icon-{{ block.id }}">{{ icon }}</div>{% endif %}
-                    <h3 class="timeline-title-{{ block.id }}">{{ title }}</h3>
-                    <p class="timeline-text-{{ block.id }}">{{ text }}</p>
-                  </div>
-                {% else %}
-                  <div class="timeline-content-{{ block.id }}">
-                    {% if icon != blank %}<div class="timeline-icon-{{ block.id }}">{{ icon }}</div>{% endif %}
-                    <h3 class="timeline-title-{{ block.id }}">{{ title }}</h3>
-                    <p class="timeline-text-{{ block.id }}">{{ text }}</p>
-                  </div>
-                {% endif %}
-              </div>
+    <!-- RIGHT side (swapped to left now) -->
+    <div class="timeline-col-{{ block.id }} timeline-col-left-{{ block.id }} timeline-col-empty-{{ block.id }}">
+      {% if image != blank %}
+        <div class="icon-image-{{ block.id }}">
+          {{ image | image_url: width: 100 | image_tag: alt: 'Timeline Image', loading: 'lazy' }}
+        </div>
+      {% endif %}
+      <span>{{ left_title }}</span>
+    </div>
 
-              <div class="timeline-col-{{ block.id }} timeline-col-right-{{ block.id }} timeline-col-empty-{{ block.id }}">
-                {% if image != blank %}
-                  <div class="icon-image-{{ block.id }}">
-                    {{ image | image_url: width: 100 | image_tag: alt: 'Timeline Image', loading: 'lazy' }}
-                  </div>
-                {% endif %}
-                <span>{{ left_title }}</span>
-              </div>
+  {% else %}
+    <!-- RIGHT side (swapped to left now) -->
+    <div class="timeline-col-{{ block.id }} timeline-col-right-{{ block.id }} timeline-col-empty-{{ block.id }}">
+      {% if image != blank %}
+        <div class="icon-image-{{ block.id }}">
+          {{ image | image_url: width: 100 | image_tag: alt: 'Timeline Image', loading: 'lazy' }}
+        </div>
+      {% endif %}
+      <span>{{ left_title }}</span>
+    </div>
 
-            {% else %}
-              <div class="timeline-col-{{ block.id }} timeline-col-left-{{ block.id }} timeline-col-empty-{{ block.id }}">
-                {% if image != blank %}
-                  <div class="icon-image-{{ block.id }}">
-                    {{ image | image_url: width: 100 | image_tag: alt: 'Timeline Image', loading: 'lazy' }}
-                  </div>
-                {% endif %}
-                <span>{{ left_title }}</span>
-              </div>
+    <!-- LEFT side (swapped to right now) -->
+    <div class="timeline-col-{{ block.id }} timeline-col-left-{{ block.id }}">
+      {% if card %}
+        <div class="timeline-card-{{ block.id }}">
+          {% if icon != blank %}<div class="timeline-icon-{{ block.id }}">{{ icon }}</div>{% endif %}
+          <h3 class="timeline-title-{{ block.id }}">{{ title }}</h3>
+          <p class="timeline-text-{{ block.id }}">{{ text }}</p>
+        </div>
+      {% else %}
+        <div class="timeline-content-{{ block.id }}">
+          {% if icon != blank %}<div class="timeline-icon-{{ block.id }}">{{ icon }}</div>{% endif %}
+          <h3 class="timeline-title-{{ block.id }}">{{ title }}</h3>
+          <p class="timeline-text-{{ block.id }}">{{ text }}</p>
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+</article>
 
-              <div class="timeline-col-{{ block.id }} timeline-col-right-{{ block.id }}">
-                {% if card %}
-                  <div class="timeline-card-{{ block.id }}">
-                    {% if icon != blank %}<div class="timeline-icon-{{ block.id }}">{{ icon }}</div>{% endif %}
-                    <h3 class="timeline-title-{{ block.id }}">{{ title }}</h3>
-                    <p class="timeline-text-{{ block.id }}">{{ text }}</p>
-                  </div>
-                {% else %}
-                  <div class="timeline-content-{{ block.id }}">
-                    {% if icon != blank %}<div class="timeline-icon-{{ block.id }}">{{ icon }}</div>{% endif %}
-                    <h3 class="timeline-title-{{ block.id }}">{{ title }}</h3>
-                    <p class="timeline-text-{{ block.id }}">{{ text }}</p>
-                  </div>
-                {% endif %}
-              </div>
-            {% endif %}
-          </article>
         {% endif %}
       {% endfor %}
     </div>
