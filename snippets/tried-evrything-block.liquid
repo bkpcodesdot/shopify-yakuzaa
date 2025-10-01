@@ -672,21 +672,18 @@
 
         {% if organ_image != blank and organ_text != blank %}
         <div class="organ-item">
-          <div class="organ-items-wrapper">
+          <div class="organ-cards-wrapper">
   {% for i in (1..6) %}
-    {% assign organ_title_key = 'organ_title_' | append: i %}
-    {% assign organ_icon_key = 'organ_icon_' | append: i %}
-
-    {% assign organ_title = block.settings[organ_title_key] %}
-    {% assign organ_icon = block.settings[organ_icon_key] %}
+    {% assign organ_title = section.settings['organ_title_' | append: i] %}
+    {% assign organ_icon = section.settings['organ_icon_' | append: i] %}
 
     {% if organ_title != blank and organ_icon != blank %}
-      <div class="organ-item-header">
-        <div class="organ-title">
-          {{ organ_title }}
-        </div>
-        <div class="organ-icon">
-          <img src="{{ organ_icon | img_url: 'master' }}" alt="{{ organ_title }}">
+      <div class="organ-card">
+        <div class="organ-item-header">
+          <div class="organ-title">{{ organ_title }}</div>
+          <div class="organ-icon">
+            <img src="{{ organ_icon | img_url: 'master' }}" alt="{{ organ_title }}">
+          </div>
         </div>
       </div>
     {% endif %}
