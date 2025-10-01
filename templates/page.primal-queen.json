@@ -1187,6 +1187,37 @@
             "checkpoint_text_6": "",
             "checkpoint_card_6": true
           }
+        },
+        "custom_button_nqeGXt": {
+          "type": "custom_button",
+          "settings": {
+            "button_text": "UNLOCK YOUR TRUE POWER",
+            "button_link": "",
+            "button_color": "#40a754",
+            "button_hover_color": "#2e7d32",
+            "button_text_color": "#ffffff",
+            "border_color": "#40a754",
+            "button_padding_vertical": 16,
+            "button_padding_horizontal": 32,
+            "button_border_radius": 8,
+            "button_text_size": 16,
+            "button_font_weight": 700,
+            "button_text_transform": "uppercase",
+            "button_letter_spacing": 1,
+            "show_crown_button": true,
+            "button_padding_vertical_mobile": 12,
+            "button_padding_horizontal_mobile": 24,
+            "button_text_size_mobile": 14,
+            "button_text_size_small": 12,
+            "show_guarantees": true,
+            "guarantee_1_text": "365-Day Money Back Guarantee",
+            "guarantee_2_text": "Free Shipping",
+            "guarantee_3_text": "",
+            "guarantee_text_size": 14,
+            "guarantee_text_color": "#4a1a4a",
+            "guarantee_check_color": "#40a754",
+            "button_alignment": "center"
+          }
         }
       },
       "block_order": [
@@ -1200,7 +1231,8 @@
         "single_capsule_yxfhFB",
         "superfoods_section_xA64Bt",
         "facility_video_aUqfRR",
-        "timeline_progress_KgwTt8"
+        "timeline_progress_KgwTt8",
+        "custom_button_nqeGXt"
       ],
       "name": "Tried Everything Section",
       "settings": {
