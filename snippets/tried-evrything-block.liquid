@@ -541,8 +541,33 @@
         .superfoods-section {
           text-align: center;
           padding: 50px 20px;
-          max-width: 1200px;
+          max-width: 1400px;
           margin: 0 auto;
+          position: relative;
+        }
+
+        .superfoods-wrapper {
+          display: flex;
+          align-items: center;
+          gap: 30px;
+          justify-content: center;
+        }
+
+        .side-image {
+          flex-shrink: 0;
+          width: 200px;
+        }
+
+        .side-image img {
+          width: 100%;
+          height: auto;
+          border-radius: 12px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .superfoods-content {
+          flex: 1;
+          max-width: 1200px;
         }
         
         .superfood-heading h2 {
@@ -602,53 +627,92 @@
           color: #e6007a;
         }
 
-
         .nutri-bottomline {
           font-size: 14px;
           color: #e6007a;
           font-weight: 500;
         }
+
+        @media (max-width: 992px) {
+          .superfoods-wrapper {
+            flex-direction: column;
+          }
+          
+          .side-image {
+            width: 150px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .side-image {
+            display: none;
+          }
+        }
       </style>
 
      <section class="superfoods-section">
-  <div class="superfood-heading">
-    {% if section.settings.food_heading != blank %}
-      <h2>{{ section.settings.food_heading }}</h2>
-    {% endif %}
-    {% if section.settings.food_subtitle != blank %}
-      <div class="subtitle">{{ section.settings.food_subtitle }}</div>
-    {% endif %}
-  </div>
+      <div class="superfoods-wrapper">
+        <!-- Left Image -->
+        {% if section.settings.left_image != blank %}
+        <div class="side-image left-image">
+          <img src="{{ section.settings.left_image | img_url: '400x400' }}" 
+               loading="lazy" 
+               alt="Left decoration">
+        </div>
+        {% endif %}
 
-  <div class="nutrient-rich">
-    {% for block in section.blocks %}
-      <div class="nutrient-card" {{ block.shopify_attributes }}>
-        <div class="nutrient-item">
-          <div class="nutrient-title">{{ block.settings.nutrient_heading }}</div>
+        <!-- Main Content -->
+        <div class="superfoods-content">
+          <div class="superfood-heading">
+            {% if section.settings.food_heading != blank %}
+              <h2>{{ section.settings.food_heading }}</h2>
+            {% endif %}
+            {% if section.settings.food_subtitle != blank %}
+              <div class="subtitle">{{ section.settings.food_subtitle }}</div>
+            {% endif %}
+          </div>
+
+          <div class="nutrient-rich">
+            {% for block in section.blocks %}
+              <div class="nutrient-card" {{ block.shopify_attributes }}>
+                <div class="nutrient-item">
+                  <div class="nutrient-title">{{ block.settings.nutrient_heading }}</div>
+                </div>
+
+                <div class="nutrient-images">
+                  {% if block.settings.nutrient_image != blank %}
+                    <img src="{{ block.settings.nutrient_image | img_url: '300x300' }}" 
+                         loading="lazy" 
+                         alt="{{ block.settings.nutrient_heading }}">
+                  {% endif %}
+
+                  {% if block.settings.vs_image != blank %}
+                    <span class="vs">VS</span>
+                    <img src="{{ block.settings.vs_image | img_url: '300x300' }}" 
+                         loading="lazy" 
+                         alt="Comparison">
+                  {% endif %}
+                </div>
+
+                {% if block.settings.nutri_bottomline != blank %}
+                  <div class="nutri-bottomline">{{ block.settings.nutri_bottomline }}</div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
         </div>
 
-        <div class="nutrient-images">
-          {% if block.settings.nutrient_image != blank %}
-            <img src="{{ block.settings.nutrient_image | img_url: '300x300' }}" 
-                 loading="lazy" 
-                 alt="{{ block.settings.nutrient_heading }}">
-          {% endif %}
-
-          {% if block.settings.vs_image != blank %}
-            <span class="vs">VS</span>
-            <img src="{{ block.settings.vs_image | img_url: '300x300' }}" 
-                 loading="lazy" 
-                 alt="Comparison">
-          {% endif %}
+        <!-- Right Image -->
+        {% if section.settings.right_image != blank %}
+        <div class="side-image right-image">
+          <img src="{{ section.settings.right_image | img_url: '400x400' }}" 
+               loading="lazy" 
+               alt="Right decoration">
         </div>
-
-        {% if block.settings.nutri_bottomline != blank %}
-          <div class="nutri-bottomline">{{ block.settings.nutri_bottomline }}</div>
         {% endif %}
       </div>
-    {% endfor %}
-  </div>
-</section>
+    </section>
+
  {% elsif block.type == 'superfoods_section' %}
   <section class="primal-queen-section">
     <div class="container">
@@ -771,8 +835,8 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index:0;    /* Make sure content stays above the background */
-  border-radius: 10px; /* Optional: matches section styling */
+  z-index:0;
+  border-radius: 10px;
 }
 .combined-container  {
   position: relative;
