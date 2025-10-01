@@ -292,115 +292,48 @@
     "timeline_section_gxYzat": {
       "type": "Timeline-section",
       "blocks": {
-        "checkpoint_imNVNz": {
-          "type": "checkpoint",
+        "step_fcPEF7": {
+          "type": "step",
           "settings": {
-            "title": "",
-            "image": "shopify://shop_images/calendar_refactor_36x38_15a66f4a-1ba9-477e-978e-caab61e04d9d.jpg",
-            "letf_title": "1 Week",
-            "icon": "⚡",
-            "text": "<p>Likely <strong>lift in energy, mood, and cognition</strong> from consistent Vitamin B12, Zinc, and Copper.*</p>",
-            "card": true,
-            "card_bg_color": "#ffeef2",
-            "card_text_color": "#333333"
-          }
-        },
-        "checkpoint_ykMYBt": {
-          "type": "checkpoint",
-          "settings": {
-            "title": "",
-            "image": "shopify://shop_images/calendar_refactor_36x38_15a66f4a-1ba9-477e-978e-caab61e04d9d.jpg",
-            "letf_title": "1 Month",
-            "icon": "❤️",
-            "text": "<p>Likely reduction in iron deficiency leading to <strong>increase vitality</strong>, sex drive, and overall well-being.*</p>",
-            "card": true,
-            "card_bg_color": "#ffeef2",
-            "card_text_color": "#333333"
-          }
-        },
-        "checkpoint_PhG4Ki": {
-          "type": "checkpoint",
-          "settings": {
-            "title": "",
-            "image": "shopify://shop_images/calendar_refactor_36x38_15a66f4a-1ba9-477e-978e-caab61e04d9d.jpg",
-            "letf_title": "2 Month",
-            "icon": "🙂",
-            "text": "<p>Abundance of B vitamins from beef organs leads <strong>to better mood, higher energy</strong>, healthier immune system, decreased stress, and aids in red blood cell production.*</p>",
-            "card": true,
-            "card_bg_color": "#ffeef2",
-            "card_text_color": "#333333"
-          }
-        },
-        "checkpoint_FYgLUq": {
-          "type": "checkpoint",
-          "settings": {
-            "title": "",
-            "image": "shopify://shop_images/calendar_refactor_36x38_15a66f4a-1ba9-477e-978e-caab61e04d9d.jpg",
-            "letf_title": "3 Month",
-            "icon": "⭐",
-            "text": "<p>Consistent natural Vitamin A from beef organs can lead to <strong>better skin health, delayed signs of aging</strong>, reduced acne, & better vision.*</p>",
-            "card": true,
-            "card_bg_color": "#ffeef2",
-            "card_text_color": "#333333"
-          }
-        },
-        "checkpoint_PHkXAy": {
-          "type": "checkpoint",
-          "settings": {
-            "title": "",
-            "image": "shopify://shop_images/calendar_refactor_36x38_15a66f4a-1ba9-477e-978e-caab61e04d9d.jpg",
-            "letf_title": "6 Months",
-            "icon": "💪",
-            "text": "<p>Blend of vitamins, minerals, and amino acids found in beef organs peak for <strong>enhanced mental clarity, better muscle function</strong>, and improved recovery after physical activities.*</p>",
-            "card": false,
-            "card_bg_color": "#ffeef2",
-            "card_text_color": "#333333"
-          }
-        },
-        "checkpoint_49ERLL": {
-          "type": "checkpoint",
-          "settings": {
-            "title": "",
-            "image": "shopify://shop_images/calendar_refactor_36x38_15a66f4a-1ba9-477e-978e-caab61e04d9d.jpg",
-            "letf_title": "12 Week",
-            "icon": "⚡",
-            "text": "<p>Proteins that impact women's health have reached optimized levels which can result in <strong>optimal menstruation & menstrual flow</strong>, properly balanced hormones, & less menstrual cramps & hot flashes.*</p>",
-            "card": true,
-            "card_bg_color": "#ffeef2",
-            "card_text_color": "#333333"
+            "title": "Week 1–2: Relief Begins",
+            "text": "Experience noticeable relief as Resilia begins to reset your system."
           }
         }
       },
       "block_order": [
-        "checkpoint_imNVNz",
-        "checkpoint_ykMYBt",
-        "checkpoint_PhG4Ki",
-        "checkpoint_FYgLUq",
-        "checkpoint_PHkXAy",
-        "checkpoint_49ERLL"
+        "step_fcPEF7"
       ],
+      "disabled": true,
       "name": "Timeline progress ",
       "settings": {
-        "heading": "What Should I  Expect From  Consistent   Use  of Primal Queen?",
+        "heading": "<p>What Should I  Expect From  Consistent   Use  of Primal Queen?</p>",
         "heading_color": "#000000",
-        "heading_tag": "h2",
-        "left_image": "shopify://shop_images/primal-pot_518x673_8340a3f1-0f40-40ce-bbfe-a74b9d408a0d.webp",
-        "right_image": "shopify://shop_images/s4_product2_479x648_bcfa41aa-341e-4df1-996d-4e40782eda58.webp",
-        "timeline_bg_color": "#ffffff",
-        "timeline_item_bg_color": "#ffeef2",
-        "timeline_text_color": "#333333",
-        "timeline_padding_top": 50,
-        "timeline_padding_bottom": 50,
-        "timeline_margin_top": 0,
-        "timeline_margin_bottom": 0,
-        "cta_label": "Unlock Your True Power",
-        "cta_link": "",
-        "cta_bg_color": "#ff3366",
-        "cta_text_color": "#ffffff",
-        "cta_padding_top": 15,
-        "cta_padding_bottom": 15,
-        "cta_padding_left": 25,
-        "cta_padding_right": 25
+        "highlight_color": "#ff6b35",
+        "heading_size": 36,
+        "description": "<p>Follow our proven timeline to experience relief and recovery. Each step is designed to support your journey back to wellness.</p>",
+        "description_color": "#666666",
+        "description_size": 16,
+        "circle_background": "#ffffff",
+        "circle_border_color": "#4caf50",
+        "circle_inner_color": "#4caf50",
+        "circle_size": 40,
+        "circle_border_width": 3,
+        "line_color": "#4caf50",
+        "line_width": 4,
+        "card_background": "#f1f8e9",
+        "card_border_color": "#4caf50",
+        "card_border_radius": 12,
+        "card_title_color": "#000000",
+        "card_title_size": 18,
+        "card_description_color": "#333333",
+        "card_description_size": 14,
+        "button_text": "TRY RESILIA RISK-FREE",
+        "button_link": "",
+        "button_background": "#ff6b35",
+        "button_hover_background": "#e65c25",
+        "button_text_color": "#ffffff",
+        "button_border_radius": 6,
+        "button_text_size": 16
       }
     },
     "section_E8QNML": {
@@ -1042,6 +975,75 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
+    },
+    "timeline_progress_VTJtGy": {
+      "type": "timeline-progress",
+      "blocks": {
+        "checkpoint_C7Jrng": {
+          "type": "checkpoint",
+          "settings": {
+            "title": "1 Week",
+            "image": "shopify://shop_images/calendar_refactor_36x38_15a66f4a-1ba9-477e-978e-caab61e04d9d.jpg",
+            "letf_title": "",
+            "icon": "⚡",
+            "text": "Likely lift in energy, mood, and cognition.",
+            "card": true,
+            "card_bg_color": "#ffeef2",
+            "card_text_color": "#333333"
+          }
+        },
+        "checkpoint_txcqL6": {
+          "type": "checkpoint",
+          "settings": {
+            "title": "1 Month",
+            "image": "shopify://shop_images/calendar_refactor_36x38_15a66f4a-1ba9-477e-978e-caab61e04d9d.jpg",
+            "letf_title": "3 Months",
+            "icon": "🙂",
+            "text": "Abundance of B vitamins leads to better mood and energy.",
+            "card": true,
+            "card_bg_color": "#ffeef2",
+            "card_text_color": "#333333"
+          }
+        },
+        "checkpoint_gegLQF": {
+          "type": "checkpoint",
+          "settings": {
+            "title": "2 Months",
+            "letf_title": "",
+            "icon": "💪",
+            "text": "Consistent Vitamin A can help skin and vision.",
+            "card": false,
+            "card_bg_color": "#ffeef2",
+            "card_text_color": "#333333"
+          }
+        }
+      },
+      "block_order": [
+        "checkpoint_C7Jrng",
+        "checkpoint_txcqL6",
+        "checkpoint_gegLQF"
+      ],
+      "name": "Timeline Progress IDE demo test",
+      "settings": {
+        "heading": "What Should I Expect From Consistent Use? nothing",
+        "heading_color": "#000000",
+        "heading_tag": "h2",
+        "timeline_bg_color": "#ffffff",
+        "timeline_item_bg_color": "#ffeef2",
+        "timeline_text_color": "#333333",
+        "timeline_padding_top": 50,
+        "timeline_padding_bottom": 50,
+        "timeline_margin_top": 0,
+        "timeline_margin_bottom": 0,
+        "cta_label": "Unlock Your True Power",
+        "cta_link": "",
+        "cta_bg_color": "#ff3366",
+        "cta_text_color": "#ffffff",
+        "cta_padding_top": 15,
+        "cta_padding_bottom": 15,
+        "cta_padding_left": 25,
+        "cta_padding_right": 25
+      }
     }
   },
   "order": [
@@ -1052,6 +1054,7 @@
     "section_E8QNML",
     "section_PbACW4",
     "section_VnLiPX",
-    "section_Gc3NVg"
+    "section_Gc3NVg",
+    "timeline_progress_VTJtGy"
   ]
 }
