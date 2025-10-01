@@ -2932,459 +2932,185 @@
 
 {% elsif block.type == 'timeline_progress' %}
 <!-- Timeline Progress Block -->
-<style>
-  .timeline-section-{{ block.id }} {
-    padding: {{ block.settings.timeline_padding_top }}px 20px {{ block.settings.timeline_padding_bottom }}px;
-    margin-top: {{ block.settings.timeline_margin_top }}px;
-    margin-bottom: {{ block.settings.timeline_margin_bottom }}px;
-    background-color: {{ block.settings.timeline_bg_color }};
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  }
-
-  .timeline-heading-{{ block.id }} {
-    width: 100%;
-    text-align: center;
-    color: {{ block.settings.heading_color }};
-    font-weight: 700;
-    font-size: 52px;
-    margin-bottom: 30px;
-    max-width: 928px;
-    margin: 0 auto;
-  }
-
-  .timeline-wrapper-{{ block.id }} {
-    max-width: 1400px;
-    margin: 0 auto;
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-  }
-
-  .timeline-side-{{ block.id }} {
-    max-width: 500px;
-    height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #fff;
-    overflow: hidden;
-  }
-
-  .timeline-side-{{ block.id }} img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  .timeline-{{ block.id }} {
-    position: relative;
-    flex: 1 1 auto;
-    padding: 10px 20px;
-  }
-
-  .timeline-{{ block.id }}::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    transform: translateX(-50%);
-    background: linear-gradient(
-      to bottom,
-      #ff69b4 0%,
-      #ff69b4 var(--progress, 0%),
-      #3d0052 var(--progress, 0%),
-      #3d0052 100%
-    );
-    border-radius: 4px;
-  }
-
-  .timeline-checkpoint-{{ block.id }} {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    top: 0;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    color: #fff;
-  }
-
-  .timeline-checkpoint-{{ block.id }}::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    border: 4px solid #f22c9c;
-    background: #3d0052;
-  }
-.icon-image-timeline_progress_KgwTt8 {
-    width: 40px;
-    height: 40px;
-}
-  .timeline-item-{{ block.id }}.active .timeline-checkpoint-{{ block.id }}::before {
-    background: #ff699f;
-    border-color: #ff699f;
-  }
-
-  .timeline-checkpoint-{{ block.id }}::after {
-    content: "✓";
-    position: relative;
-    z-index: 3;
-    font-size: 16px;
-  }
-
- .timeline-item-{{ block.id }} {
-  display: flex;
-  align-items: flex-start;
-  gap: 60px;
-  margin: 36px 0;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  position: relative;
-}
-
-  .timeline-item-left-{{ block.id }},
-  .timeline-item-right-{{ block.id }} {
-    opacity: 0;
-    transform: translateX(50px);
-    transition: all 0.6s ease-out;
-  }
-
-  .timeline-item-left-{{ block.id }} {
-    transform: translateX(-50px);
-  }
-
-  .timeline-item-right-{{ block.id }} {
-    transform: translateX(50px);
-  }
-
-  .timeline-item-left-{{ block.id }}.active,
-  .timeline-item-right-{{ block.id }}.active {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .timeline-item-{{ block.id }} {
-    display: flex;
-    align-items: flex-start;
-    gap: 60px;
-    margin: 36px 0;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    position: relative;
-  }
-
-  .timeline-item-{{ block.id }}.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .timeline-col-{{ block.id }} {
-    width: 48%;
-    padding: 18px;
-  }
-
-  .timeline-col-empty-{{ block.id }} {
-    width: 48%;
-  }
-
-  .timeline-content-{{ block.id }} {
-    padding: 18px;
-    border-radius: 12px;
-    background: {{ block.settings.timeline_item_bg_color }};
-    color: {{ block.settings.timeline_text_color }};
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    border: 3px solid #2f0147;
-  }
-
-  .timeline-card-{{ block.id }} {
-    padding: 18px;
-    border-radius: 12px;
-    background: {{ block.settings.timeline_item_bg_color }};
-    color: {{ block.settings.timeline_text_color }};
-    font-size: 18px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    border: 3px solid #2f0147;
-  }
-
-  .timeline-icon-{{ block.id }} {
-    font-size: 20px;
-    margin-bottom: 8px;
-    display: inline-block;
-  }
-
-  .timeline-title-{{ block.id }} {
-    margin: 0 0 8px;
-    font-size: 18px;
-    color: inherit;
-  }
-
-  .timeline-text-{{ block.id }} {
-    margin: 0;
-    font-size: 18px;
-    line-height: 1.45;
-    color: inherit;
-  }
-
-  .timeline-item-left-{{ block.id }} .timeline-col-left-{{ block.id }} {
-    order: 1;
-    text-align: right;
-  }
-
-  .timeline-item-left-{{ block.id }} .timeline-col-right-{{ block.id }} {
-    order: 2;
-    text-align: left;
-    color: #2f0147;
-    font-weight: 500;
-    font-size: 45px;
-    gap: 10px;
-    align-items: center;
-    display: flex;
-    padding: 18px;
-  }
-
-  .timeline-item-right-{{ block.id }} .timeline-col-left-{{ block.id }} {
-    order: 1;
-    padding: 18px;
-    text-align: right;
-    color: #2f0147;
-    font-weight: 500;
-    font-size: 45px;
-    align-items: center;
-    gap: 10px;
-    display: flex;
-  }
-.timeline-item-{{ block.id }}.active {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: calc(var(--i, 0) * 0.2s);
-}
-  .timeline-item-right-{{ block.id }} .timeline-col-right-{{ block.id }} {
-    order: 2;
-    text-align: left;
-  }
-
-  .timeline-cta-{{ block.id }} {
-    text-align: center;
-    margin-top: 30px;
-  }
-
-  .btn-cta-{{ block.id }} {
-    background: {{ block.settings.cta_bg_color }};
-    color: {{ block.settings.cta_text_color }};
-    padding: {{ block.settings.cta_padding_top }}px {{ block.settings.cta_padding_right }}px {{ block.settings.cta_padding_bottom }}px {{ block.settings.cta_padding_left }}px;
-    border-radius: 28px;
-    text-decoration: none;
-    font-weight: 600;
-    display: inline-block;
-  }
-
-  /* Responsive Styles */
-  @media (min-width: 1000px) {
-    .timeline-side-{{ block.id }} {
-      display: block;
-    }
-  }
-
-  @media (max-width: 899px) {
-    .timeline-wrapper-{{ block.id }} {
-      display: block;
-    }
-    .timeline-side-{{ block.id }} {
-      display: none;
-    }
-    .timeline-{{ block.id }} {
-      padding: 0;
-    }
-    .timeline-item-{{ block.id }} {
-      flex-direction: column;
-      text-align: center;
-    }
-    .timeline-col-{{ block.id }},
-    .timeline-col-empty-{{ block.id }} {
-      width: 100%;
-    }
-    .timeline-{{ block.id }}::before {
-      left: 12px;
-    }
-    .timeline-checkpoint-{{ block.id }} {
-      left: 12px;
-      transform: translateX(0);
-    }
-    .timeline-item-left-{{ block.id }} .timeline-col-left-{{ block.id }},
-    .timeline-item-right-{{ block.id }} .timeline-col-right-{{ block.id }} {
-      text-align: left;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .timeline-item-{{ block.id }} {
-      flex-direction: row-reverse;
-      text-align: center;
-    }
-    .timeline-{{ block.id }}::before {
-      left: 50%;
-    }
-    .timeline-checkpoint-{{ block.id }} {
-      left: 50%;
-    }
-    .timeline-heading-{{ block.id }} {
-      font-size: 39px;
-    }
-  }
-
-  @media (max-width: 576px) {
-    .timeline-item-left-{{ block.id }} .timeline-col-right-{{ block.id }} {
-      font-size: 22px;
-    }
-    .timeline-card-{{ block.id }} {
-      padding: 9px;
-      font-size: 11px;
-    }
-    .timeline-item-right-{{ block.id }} .timeline-col-left-{{ block.id }} {
-      font-size: 22px;
-    }
-    .timeline-item-{{ block.id }} {
-      gap: 17px;
-    }
-    .timeline-heading-{{ block.id }} {
-      font-size: 19px;
-    }
-  }
-  @media (max-width: 400px) {
-  .timeline-checkpoint-{{ block.id }} {
-    width: 28px;
-    height: 28px;
-    font-size: 12px;
-  }
-}
-
-</style>
-
-<section class="timeline-section-{{ block.id }}" id="timeline-progress-{{ block.id }}">
-  {% if block.settings.heading != blank %}
-    <{{ block.settings.heading_tag }} class="timeline-heading-{{ block.id }}">{{ block.settings.heading }}</{{ block.settings.heading_tag }}>
+<section id="timeline-progress-{{ section.id }}" class="timeline-wrapper-{{ section.id }}">
+  {% if section.settings.section_heading != blank %}
+    <h2 class="timeline-heading-{{ section.id }}">{{ section.settings.section_heading }}</h2>
   {% endif %}
 
-  <div class="timeline-wrapper-{{ block.id }}">
-    {% if block.settings.left_image != blank %}
-      <div class="timeline-side-{{ block.id }} timeline-side-left-{{ block.id }}">
-        {{ block.settings.left_image | image_url: width: 800 | image_tag: loading: 'lazy' }}
-      </div>
+  {% for block in section.blocks %}
+    {% assign parity = forloop.index0 | modulo: 2 %}
+    {% assign left_title = block.settings.left_title %}
+    {% assign title = block.settings.title %}
+    {% assign text = block.settings.text %}
+    {% assign icon = block.settings.icon %}
+
+    {% if parity == 0 %}
+      <!-- Even: LEFT text | RIGHT card -->
+      <article class="timeline-item-{{ section.id }} timeline-item-left-{{ section.id }}">
+        <span class="timeline-checkpoint-{{ section.id }}"></span>
+
+        <div class="timeline-col-{{ section.id }} timeline-col-left-{{ section.id }}">
+          <span class="timeline-left-text">{{ left_title }}</span>
+        </div>
+
+        <div class="timeline-col-{{ section.id }} timeline-col-right-{{ section.id }}">
+          <div class="timeline-card-{{ section.id }}">
+            {% if icon != blank %}<div class="timeline-icon-{{ section.id }}">{{ icon }}</div>{% endif %}
+            <h3 class="timeline-title-{{ section.id }}">{{ title }}</h3>
+            <p class="timeline-text-{{ section.id }}">{{ text }}</p>
+          </div>
+        </div>
+      </article>
+
+    {% else %}
+      <!-- Odd: LEFT card | RIGHT text -->
+      <article class="timeline-item-{{ section.id }} timeline-item-right-{{ section.id }}">
+        <span class="timeline-checkpoint-{{ section.id }}"></span>
+
+        <div class="timeline-col-{{ section.id }} timeline-col-left-{{ section.id }}">
+          <div class="timeline-card-{{ section.id }}">
+            {% if icon != blank %}<div class="timeline-icon-{{ section.id }}">{{ icon }}</div>{% endif %}
+            <h3 class="timeline-title-{{ section.id }}">{{ title }}</h3>
+            <p class="timeline-text-{{ section.id }}">{{ text }}</p>
+          </div>
+        </div>
+
+        <div class="timeline-col-{{ section.id }} timeline-col-right-{{ section.id }}">
+          <span class="timeline-left-text">{{ left_title }}</span>
+        </div>
+      </article>
     {% endif %}
-
-    <div class="timeline-{{ block.id }}">
-      {% for i in (1..6) %}
-        {% assign title_key = 'checkpoint_title_' | append: i %}
-        {% assign image_key = 'checkpoint_image_' | append: i %}
-        {% assign left_title_key = 'checkpoint_left_title_' | append: i %}
-        {% assign icon_key = 'checkpoint_icon_' | append: i %}
-        {% assign text_key = 'checkpoint_text_' | append: i %}
-        {% assign card_key = 'checkpoint_card_' | append: i %}
-        
-        {% assign title = block.settings[title_key] %}
-        {% assign image = block.settings[image_key] %}
-        {% assign left_title = block.settings[left_title_key] %}
-        {% assign icon = block.settings[icon_key] %}
-        {% assign text = block.settings[text_key] %}
-        {% assign card = block.settings[card_key] %}
-
-        {% if title != blank and text != blank %}
-          {% assign parity = forloop.index0 | modulo: 2 %}
-          {% if parity == 0 %}
-            {% assign side = 'left' %}
-          {% else %}
-            {% assign side = 'right' %}
-          {% endif %}
-<article class="timeline-item-{{ block.id }} timeline-item-{{ side }}-{{ block.id }}" data-block-id="{{ block.id }}">
-  <span class="timeline-checkpoint-{{ block.id }}" aria-hidden="true"></span>
-
-  {% if side == 'left' %}
-    <!-- LEFT side (swapped to right now) -->
-    <div class="timeline-col-{{ block.id }} timeline-col-right-{{ block.id }}">
-      {% if card %}
-        <div class="timeline-card-{{ block.id }}">
-          {% if icon != blank %}<div class="timeline-icon-{{ block.id }}">{{ icon }}</div>{% endif %}
-          <h3 class="timeline-title-{{ block.id }}">{{ title }}</h3>
-          <p class="timeline-text-{{ block.id }}">{{ text }}</p>
-        </div>
-      {% else %}
-        <div class="timeline-content-{{ block.id }}">
-          {% if icon != blank %}<div class="timeline-icon-{{ block.id }}">{{ icon }}</div>{% endif %}
-          <h3 class="timeline-title-{{ block.id }}">{{ title }}</h3>
-          <p class="timeline-text-{{ block.id }}">{{ text }}</p>
-        </div>
-      {% endif %}
-    </div>
-
-    <!-- RIGHT side (swapped to left now) -->
-    <div class="timeline-col-{{ block.id }} timeline-col-left-{{ block.id }} timeline-col-empty-{{ block.id }}">
-      {% if image != blank %}
-        <div class="icon-image-{{ block.id }}">
-          {{ image | image_url: width: 100 | image_tag: alt: 'Timeline Image', loading: 'lazy' }}
-        </div>
-      {% endif %}
-      <span>{{ left_title }}</span>
-    </div>
-
-  {% else %}
-    <!-- RIGHT side (swapped to left now) -->
-    <div class="timeline-col-{{ block.id }} timeline-col-right-{{ block.id }} timeline-col-empty-{{ block.id }}">
-      {% if image != blank %}
-        <div class="icon-image-{{ block.id }}">
-          {{ image | image_url: width: 100 | image_tag: alt: 'Timeline Image', loading: 'lazy' }}
-        </div>
-      {% endif %}
-      <span>{{ left_title }}</span>
-    </div>
-
-    <!-- LEFT side (swapped to right now) -->
-    <div class="timeline-col-{{ block.id }} timeline-col-left-{{ block.id }}">
-      {% if card %}
-        <div class="timeline-card-{{ block.id }}">
-          {% if icon != blank %}<div class="timeline-icon-{{ block.id }}">{{ icon }}</div>{% endif %}
-          <h3 class="timeline-title-{{ block.id }}">{{ title }}</h3>
-          <p class="timeline-text-{{ block.id }}">{{ text }}</p>
-        </div>
-      {% else %}
-        <div class="timeline-content-{{ block.id }}">
-          {% if icon != blank %}<div class="timeline-icon-{{ block.id }}">{{ icon }}</div>{% endif %}
-          <h3 class="timeline-title-{{ block.id }}">{{ title }}</h3>
-          <p class="timeline-text-{{ block.id }}">{{ text }}</p>
-        </div>
-      {% endif %}
-    </div>
-  {% endif %}
-</article>
-
-        {% endif %}
-      {% endfor %}
-    </div>
-
-    {% if block.settings.right_image != blank %}
-      <div class="timeline-side-{{ block.id }} timeline-side-right-{{ block.id }}">
-        {{ block.settings.right_image | image_url: width: 800 | image_tag: loading: 'lazy' }}
-      </div>
-    {% endif %}
-  </div>
-
+  {% endfor %}
 </section>
 
+<style>
+/* Timeline wrapper */
+.timeline-wrapper-{{ section.id }} {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  position: relative;
+}
+.timeline-heading-{{ section.id }} {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 50px;
+  font-weight: bold;
+}
+
+/* Timeline line */
+.timeline-wrapper-{{ section.id }}::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 100%;
+  background: #e0e0e0;
+  z-index: 0;
+}
+
+/* Timeline items */
+.timeline-item-{{ section.id }} {
+  display: flex;
+  align-items: center;
+  margin: 40px 0;
+  position: relative;
+  opacity: 0; /* hidden initially */
+}
+.timeline-item-left-{{ section.id }}.active {
+  animation: slideInLeft 0.8s ease forwards;
+}
+.timeline-item-right-{{ section.id }}.active {
+  animation: slideInRight 0.8s ease forwards;
+}
+
+/* Columns */
+.timeline-col-{{ section.id }} {
+  flex: 1;
+  padding: 10px 20px;
+}
+.timeline-col-left-{{ section.id }} { text-align: right; }
+.timeline-col-right-{{ section.id }} { text-align: left; }
+
+/* Checkpoint */
+.timeline-checkpoint-{{ section.id }} {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background: #ff4081;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+/* Card styling */
+.timeline-card-{{ section.id }} {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  max-width: 300px;
+}
+.timeline-icon-{{ section.id }} {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+.timeline-title-{{ section.id }} {
+  font-size: 20px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.timeline-text-{{ section.id }} {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Left side text */
+.timeline-left-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Animations */
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .timeline-item-{{ section.id }} {
+    flex-direction: column;
+    text-align: center;
+  }
+  .timeline-col-left-{{ section.id }},
+  .timeline-col-right-{{ section.id }} {
+    text-align: center;
+  }
+  .timeline-card-{{ section.id }} {
+    margin: 10px auto;
+  }
+  .timeline-wrapper-{{ section.id }}::before {
+    left: 10px;
+    transform: none;
+  }
+  .timeline-checkpoint-{{ section.id }} {
+    left: 10px;
+    transform: none;
+  }
+}
+</style>
+
 <script>
-(function () {
-  const blockId = '{{ block.id }}';
-  
-  // Intersection Observer setup
+document.addEventListener("DOMContentLoaded", function() {
   var observer = new IntersectionObserver(function (entries, observer) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
@@ -3392,36 +3118,11 @@
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.2 });
 
-  // Select all timeline items for this specific block
-  var timelineItems = document.querySelectorAll("#timeline-progress-{{ block.id }} .timeline-item-{{ block.id }}");
-
-  timelineItems.forEach(function (item, index) {
-    if (index % 2 === 0) {
-      item.classList.add("timeline-item-left-{{ block.id }}");
-    } else {
-      item.classList.add("timeline-item-right-{{ block.id }}");
-    }
-    observer.observe(item);
-  });
-
-  // Scroll progress
-  document.addEventListener("scroll", () => {
-    const timeline = document.querySelector("#timeline-progress-{{ block.id }} .timeline-{{ block.id }}");
-    if (!timeline) return;
-
-    const rect = timeline.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    const scrollProgress = Math.min(
-      Math.max(((windowHeight - rect.top) / (rect.height + windowHeight)) * 100, 0),
-      100
-    );
-
-    timeline.style.setProperty("--progress", scrollProgress + "%");
-  });
-})();
+  document.querySelectorAll("#timeline-progress-{{ section.id }} .timeline-item-{{ section.id }}")
+    .forEach(item => observer.observe(item));
+});
 </script>
     {% endif %}
   {% endfor %}
