@@ -2778,7 +2778,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('{{ block.settings.background_image | image_url: 'master' }}');
+  background-image: url('{{ block.settings.background_image_one | image_url: 'master' }}');
   background-size: cover;
   background-position: center;
   opacity: 0.2; /* adjust transparency */
@@ -4322,7 +4322,7 @@
         },
         {
   "type": "image_picker",
-  "id": "background_image",
+  "id": "background_image-one",
   "label": "Background Image"
 },
         {
