@@ -885,6 +885,139 @@
   text-align: center;
 }
 </style>
+{% elsif block.type == 'power_button' %}
+<!-- Power Button Block -->
+<style>
+  .power-section-{{ block.id }} {
+    padding: 60px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  .power-content-{{ block.id }} {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .power-title-{{ block.id }} {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .power-buttons-{{ block.id }} {
+    margin-bottom: 30px;
+  }
+
+  .power-button-{{ block.id }} {
+    display: inline-block;
+    padding: 18px 40px;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .power-button-{{ block.id }}:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .power-features-{{ block.id }} {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .feature-item-{{ block.id }} {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    color: white;
+  }
+
+  .feature-icon-{{ block.id }} {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .feature-text-{{ block.id }} {
+    font-weight: 500;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .power-section-{{ block.id }} {
+      padding: 40px 15px;
+    }
+    
+    .power-title-{{ block.id }} {
+      font-size: 36px;
+    }
+    
+    .power-button-{{ block.id }} {
+      padding: 15px 30px;
+      font-size: 18px;
+    }
+    
+    .power-features-{{ block.id }} {
+      flex-direction: column;
+      gap: 15px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .power-title-{{ block.id }} {
+      font-size: 28px;
+    }
+    
+    .power-button-{{ block.id }} {
+      padding: 12px 25px;
+      font-size: 16px;
+    }
+  }
+</style>
+
+<div class="power-section-{{ block.id }}" style="background-color: {{ block.settings.background_color }};">
+  <div class="power-content-{{ block.id }}">
+    <h2 class="power-title-{{ block.id }}" style="color: {{ block.settings.title_color }};">
+      {{ block.settings.title }}
+    </h2>
+    
+    <div class="power-buttons-{{ block.id }}">
+      <a href="{{ block.settings.button_link }}" class="power-button-{{ block.id }}" style="background-color: {{ block.settings.button_color }}; color: {{ block.settings.button_text_color }};">
+        {{ block.settings.button_text }}
+      </a>
+    </div>
+    
+    <div class="power-features-{{ block.id }}">
+      {% if block.settings.show_guarantee %}
+      <div class="feature-item-{{ block.id }}">
+        <span class="feature-icon-{{ block.id }}">✓</span>
+        <span class="feature-text-{{ block.id }}">{{ block.settings.guarantee_text }}</span>
+      </div>
+      {% endif %}
+      
+      {% if block.settings.show_shipping %}
+      <div class="feature-item-{{ block.id }}">
+        <span class="feature-icon-{{ block.id }}">✓</span>
+        <span class="feature-text-{{ block.id }}">{{ block.settings.shipping_text }}</span>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
 
    {% elsif block.type == 'primal_queen_hero' %}
 <style>
