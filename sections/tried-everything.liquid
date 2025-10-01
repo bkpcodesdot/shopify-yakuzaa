@@ -2210,13 +2210,14 @@
     <div class="btn-wrapper-{{ block.id }}">
       <div class="btn-inner-wrapper-{{ block.id }}">
         <a href="{{ block.settings.button_link }}" class="custom-button-{{ block.id }}">
+          
+          {{ block.settings.button_text }}
           {% if block.settings.show_crown_button and block.settings.button_crown_icon != blank %}
             <img src="{{ block.settings.button_crown_icon | image_url: width: 40 }}" 
                  class="button-crown-icon-{{ block.id }}" 
                  alt="Crown icon" 
                  loading="lazy">
           {% endif %}
-          {{ block.settings.button_text }}
         </a>
       </div>
     </div>
