@@ -1120,7 +1120,7 @@
             "icon_text_color": "#000000",
             "heading_font_size": 36,
             "icon_text_size": 16,
-            "icon_size": 50,
+            "icon_size": 30,
             "icons_gap": 40,
             "block_padding_top": 60,
             "block_padding_bottom": 60,
