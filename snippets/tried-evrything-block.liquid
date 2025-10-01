@@ -663,31 +663,37 @@
     {% endif %}
 
     <div class="organ-items">
-      {% for i in (1..6) %}
-        {% assign organ_image_key = 'organ_image_' | append: i %}
-        {% assign organ_text_key = 'organ_text_' | append: i %}
+  {% for i in (1..6) %}
+    {% assign organ_image_key = 'organ_image_' | append: i %}
+    {% assign organ_text_key = 'organ_text_' | append: i %}
+    {% assign organ_title_key = 'organ_title_' | append: i %}
+    {% assign organ_icon_key = 'organ_icon_' | append: i %}
 
-        {% assign organ_image = block.settings[organ_image_key] %}
-        {% assign organ_text = block.settings[organ_text_key] %}
+    {% assign organ_image = block.settings[organ_image_key] %}
+    {% assign organ_text = block.settings[organ_text_key] %}
+    {% assign organ_title = block.settings[organ_title_key] %}
+    {% assign organ_icon = block.settings[organ_icon_key] %}
 
-        {% if organ_image != blank and organ_text != blank %}
-        <div class="organ-item">
-          <div class="organ-item-header">
-            <div class="organ-title">
-          {{block.settings.organ_title }}
-            </div>
-            <div class="organ-icon">
-               <img src="{{ organ_icon | img_url: 'master' }}" alt="Organ Image">
-            </div>
-          </div>
-          <div class="organ-imgs-single">
-            <img src="{{ organ_image | img_url: 'master' }}" alt="Organ Image">
-          </div>
-          <p class="organ-desc">{{ organ_text }}</p>
+    {% if organ_image != blank and organ_text != blank %}
+    <div class="organ-item">
+      <div class="organ-item-header">
+        <div class="organ-title">
+          {{ organ_title }}
+        </div>
+        {% if organ_icon != blank %}
+        <div class="organ-icon">
+          <img src="{{ organ_icon | img_url: 'master' }}" alt="Organ Icon">
         </div>
         {% endif %}
-      {% endfor %}
+      </div>
+      <div class="organ-imgs-single">
+        <img src="{{ organ_image | img_url: 'master' }}" alt="Organ Image">
+      </div>
+      <p class="organ-desc">{{ organ_text }}</p>
     </div>
+    {% endif %}
+  {% endfor %}
+</div>
 
     {% if block.settings.cta_label != blank and block.settings.cta_link != blank %}
   <div class="btn_wrapper_wrapper">
