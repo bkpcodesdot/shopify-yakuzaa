@@ -2767,10 +2767,13 @@
 <!-- Science Behind Section -->
 <style>
   .science-section-{{ block.id }} {
-    padding: {{ block.settings.section_padding }}px 20px;
-    background-color: {{ block.settings.background_color }};
-    position: relative;
-  }
+  position: relative;
+  padding: {{ block.settings.section_padding }}px 20px;
+  background-color: {{ block.settings.background_color }};
+  z-index: 0; /* important so ::after goes behind */
+  overflow: hidden;
+}
+
 .science-section-{{ block.id }}::after {
   content: "";
   position: absolute;
@@ -2782,7 +2785,7 @@
   background-size: cover;
   background-position: center;
   opacity: 0.2; /* adjust transparency */
-  z-index: 1;  /* keeps image behind content */
+  z-index: -1; /* push background image behind content */
 }
   .science-container-{{ block.id }} {
     max-width: 1200px;
