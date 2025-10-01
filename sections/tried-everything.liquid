@@ -3896,7 +3896,363 @@
         }
       ]
     },
-    
+    {
+  "type": "timeline_progress",
+  "name": "Timeline Progress",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "What Should I Expect From Consistent Use?"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#2f0147"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading HTML Tag",
+      "default": "h2",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left Side Decorative Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image",
+      "label": "Right Side Decorative Image"
+    },
+    {
+      "type": "color",
+      "id": "timeline_bg_color",
+      "label": "Timeline Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "timeline_item_bg_color",
+      "label": "Timeline Card Background Color",
+      "default": "#ffeef2"
+    },
+    {
+      "type": "color",
+      "id": "timeline_text_color",
+      "label": "Timeline Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "timeline_padding_top",
+      "label": "Timeline Section Padding Top (px)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "timeline_padding_bottom",
+      "label": "Timeline Section Padding Bottom (px)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "timeline_margin_top",
+      "label": "Timeline Section Margin Top (px)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "timeline_margin_bottom",
+      "label": "Timeline Section Margin Bottom (px)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA Button Label",
+      "default": "Unlock Your True Power"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Button Link"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "CTA Button Background Color",
+      "default": "#ff3366"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "CTA Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "cta_padding_top",
+      "label": "CTA Padding Top (px)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "cta_padding_bottom",
+      "label": "CTA Padding Bottom (px)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "cta_padding_left",
+      "label": "CTA Padding Left (px)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "cta_padding_right",
+      "label": "CTA Padding Right (px)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 25
+    },
+    {
+      "type": "header",
+      "content": "Timeline Checkpoints"
+    },
+    {
+      "type": "text",
+      "id": "checkpoint_title_1",
+      "label": "Step 1 Title",
+      "default": "1 Week"
+    },
+    {
+      "type": "image_picker",
+      "id": "checkpoint_image_1",
+      "label": "Step 1 Image"
+    },
+    {
+      "type": "text",
+      "id": "checkpoint_left_title_1",
+      "label": "Step 1 Left Title",
+      "default": "Week 1"
+    },
+    {
+      "type": "text",
+      "id": "checkpoint_icon_1",
+      "label": "Step 1 Icon",
+      "default": "⚡"
+    },
+    {
+      "type": "textarea",
+      "id": "checkpoint_text_1",
+      "label": "Step 1 Description",
+      "default": "Likely lift in energy, mood, and cognition from consistent use."
+    },
+    {
+      "type": "checkbox",
+      "id": "checkpoint_card_1",
+      "label": "Step 1 Display as Card",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "checkpoint_title_2",
+      "label": "Step 2 Title",
+      "default": "1 Month"
+    },
+    {
+      "type": "image_picker",
+      "id": "checkpoint_image_2",
+      "label": "Step 2 Image"
+    },
+    {
+      "type": "text",
+      "id": "checkpoint_left_title_2",
+      "label": "Step 2 Left Title",
+      "default": "Month 1"
+    },
+    {
+      "type": "text",
+      "id": "checkpoint_icon_2",
+      "label": "Step 2 Icon",
+      "default": "🙂"
+    },
+    {
+      "type": "textarea",
+      "id": "checkpoint_text_2",
+      "label": "Step 2 Description",
+      "default": "Abundance of B vitamins leads to better mood and energy."
+    },
+    {
+      "type": "checkbox",
+      "id": "checkpoint_card_2",
+      "label": "Step 2 Display as Card",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "checkpoint_title_3",
+      "label": "Step 3 Title",
+      "default": "2 Months"
+    },
+    {
+      "type": "image_picker",
+      "id": "checkpoint_image_3",
+      "label": "Step 3 Image"
+    },
+    {
+      "type": "text",
+      "id": "checkpoint_left_title_3",
+      "label": "Step 3 Left Title",
+      "default": "Month 2"
+    },
+    {
+      "type": "text",
+      "id": "checkpoint_icon_3",
+      "label": "Step 3 Icon",
+      "default": "💪"
+    },
+    {
+      "type": "textarea",
+      "id": "checkpoint_text_3",
+      "label": "Step 3 Description",
+      "default": "Consistent Vitamin A can help skin and vision."
+    },
+    {
+      "type": "checkbox",
+      "id": "checkpoint_card_3",
+      "label": "Step 3 Display as Card",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "checkpoint_title_4",
+      "label": "Step 4 Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "checkpoint_image_4",
+      "label": "Step 4 Image"
+    },
+    {
+      "type": "text",
+      "id": "checkpoint_left_title_4",
+      "label": "Step 4 Left Title"
+    },
+    {
+      "type": "text",
+      "id": "checkpoint_icon_4",
+      "label": "Step 4 Icon"
+    },
+    {
+      "type": "textarea",
+      "id": "checkpoint_text_4",
+      "label": "Step 4 Description"
+    },
+    {
+      "type": "checkbox",
+      "id": "checkpoint_card_4",
+      "label": "Step 4 Display as Card",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "checkpoint_title_5",
+      "label": "Step 5 Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "checkpoint_image_5",
+      "label": "Step 5 Image"
+    },
+    {
+      "type": "text",
+      "id": "checkpoint_left_title_5",
+      "label": "Step 5 Left Title"
+    },
+    {
+      "type": "text",
+      "id": "checkpoint_icon_5",
+      "label": "Step 5 Icon"
+    },
+    {
+      "type": "textarea",
+      "id": "checkpoint_text_5",
+      "label": "Step 5 Description"
+    },
+    {
+      "type": "checkbox",
+      "id": "checkpoint_card_5",
+      "label": "Step 5 Display as Card",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "checkpoint_title_6",
+      "label": "Step 6 Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "checkpoint_image_6",
+      "label": "Step 6 Image"
+    },
+    {
+      "type": "text",
+      "id": "checkpoint_left_title_6",
+      "label": "Step 6 Left Title"
+    },
+    {
+      "type": "text",
+      "id": "checkpoint_icon_6",
+      "label": "Step 6 Icon"
+    },
+    {
+      "type": "textarea",
+      "id": "checkpoint_text_6",
+      "label": "Step 6 Description"
+    },
+    {
+      "type": "checkbox",
+      "id": "checkpoint_card_6",
+      "label": "Step 6 Display as Card",
+      "default": true
+    }
+  ]
+},
 {
   "type": "facility_video",
   "name": "facility video Section",
