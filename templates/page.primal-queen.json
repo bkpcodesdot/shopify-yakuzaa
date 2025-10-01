@@ -1095,6 +1095,38 @@
             "icon_6": "shopify://shop_images/promise_icon6_1.png",
             "icon_text_6": "No Hormones"
           }
+        },
+        "facility_video_aUqfRR": {
+          "type": "facility_video",
+          "settings": {
+            "heading": "<h2>Primal Queen's State-Of-The-Art Facility in NY</h2>",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/639ab516e03643e5a39f57812bb0bbf5.mp4",
+            "video_autoplay": false,
+            "video_muted": true,
+            "video_loop": false,
+            "video_width": 400,
+            "video_border_radius": 200,
+            "video_border_width": 5,
+            "video_border_color": "#ff69b4",
+            "icon_1_image": "shopify://shop_images/banner_point_chk_60x60_ea523723-2a67-45a9-bf4f-5068e2b1dc09.webp",
+            "icon_1_text": "GMP Certified",
+            "icon_2_image": "shopify://shop_images/banner_point_chk_60x60_ea523723-2a67-45a9-bf4f-5068e2b1dc09.webp",
+            "icon_2_text": "Lab Tested",
+            "icon_3_image": "shopify://shop_images/banner_point_chk_60x60_ea523723-2a67-45a9-bf4f-5068e2b1dc09.webp",
+            "icon_3_text": "USA Facility",
+            "block_background_color": "#ffffff",
+            "heading_color": "#000000",
+            "splash_background_color": "#ff69b4",
+            "icon_text_color": "#000000",
+            "heading_font_size": 36,
+            "icon_text_size": 16,
+            "icon_size": 50,
+            "icons_gap": 40,
+            "block_padding_top": 60,
+            "block_padding_bottom": 60,
+            "heading_margin_bottom": 30,
+            "video_margin_bottom": 40
+          }
         }
       },
       "block_order": [
@@ -1106,7 +1138,8 @@
         "organ_supplement_Ap7hHX",
         "problem_section_FYwizq",
         "single_capsule_yxfhFB",
-        "superfoods_section_xA64Bt"
+        "superfoods_section_xA64Bt",
+        "facility_video_aUqfRR"
       ],
       "name": "Tried Everything Section",
       "settings": {
