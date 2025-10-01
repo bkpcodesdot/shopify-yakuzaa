@@ -21,6 +21,10 @@
 
         {% if organ_image != blank and organ_text != blank %}
         <div class="organ-item">
+            <div class="organic-text-icon">
+            {% comment %} provide code here {% endcomment %}
+            </div> 
+
           <div class="organ-imgs-single">
             <img src="{{ organ_image | img_url: 'master' }}" alt="Organ Image">
           </div>
