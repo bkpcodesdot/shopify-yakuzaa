@@ -2998,7 +2998,11 @@
     gap: 10px;
     display: flex;
   }
-
+.timeline-item-{{ block.id }}.active {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--i, 0) * 0.2s);
+}
   .timeline-item-right-{{ block.id }} .timeline-col-right-{{ block.id }} {
     order: 2;
     text-align: left;
@@ -3091,6 +3095,14 @@
       font-size: 19px;
     }
   }
+  @media (max-width: 400px) {
+  .timeline-checkpoint-{{ block.id }} {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+}
+
 </style>
 
 <section class="timeline-section-{{ block.id }}" id="timeline-progress-{{ block.id }}">
