@@ -2277,6 +2277,7 @@
       </div>
 
 {% comment %} Video section {% endcomment %}
+ {% elsif block.type == 'Facility_Video' %}
 {% assign ai_gen_id = block.id | replace: '_', '' | replace: '-', '' | downcase %}
 
 <style>
@@ -3416,6 +3417,258 @@
         }
       ]
     },
+{
+  "type": "Facility_Video",
+  "name": "facility video Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Primal Queen's State-Of-The-Art Facility in NY</p>"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Video URL",
+      "info": "Enter a direct link to your video file (MP4 format recommended)"
+    },
+    {
+      "type": "image_picker",
+      "id": "featured_image",
+      "label": "Fallback Image",
+      "info": "This image will be shown if no video URL is provided"
+    },
+    {
+      "type": "header",
+      "content": "Video Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "video_autoplay",
+      "label": "Autoplay video",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "video_muted",
+      "label": "Mute video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "video_loop",
+      "label": "Loop video",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "video_width",
+      "min": 250,
+      "max": 600,
+      "step": 50,
+      "unit": "px",
+      "label": "Video Width",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "video_border_radius",
+      "min": 0,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "label": "Video Border Radius",
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "video_border_width",
+      "min": 0,
+      "max": 15,
+      "step": 1,
+      "unit": "px",
+      "label": "Video Border Width",
+      "default": 5
+    },
+    {
+      "type": "color",
+      "id": "video_border_color",
+      "label": "Video Border Color",
+      "default": "#ff69b4"
+    },
+    {
+      "type": "header",
+      "content": "Icon 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_1_image",
+      "label": "Icon 1 Image"
+    },
+    {
+      "type": "text",
+      "id": "icon_1_text",
+      "label": "Icon 1 Text",
+      "default": "GMP Certified"
+    },
+    {
+      "type": "header",
+      "content": "Icon 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_2_image",
+      "label": "Icon 2 Image"
+    },
+    {
+      "type": "text",
+      "id": "icon_2_text",
+      "label": "Icon 2 Text",
+      "default": "Lab Tested"
+    },
+    {
+      "type": "header",
+      "content": "Icon 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_3_image",
+      "label": "Icon 3 Image"
+    },
+    {
+      "type": "text",
+      "id": "icon_3_text",
+      "label": "Icon 3 Text",
+      "default": "USA Facility"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "block_background_color",
+      "label": "Block Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "splash_background_color",
+      "label": "Splash Background Color",
+      "default": "#ff69b4"
+    },
+    {
+      "type": "color",
+      "id": "icon_text_color",
+      "label": "Icon Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "icon_text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Icon Text Size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Icon Size",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "icons_gap",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Icons Spacing",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "block_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Block Top Padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "block_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Block Bottom Padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "heading_margin_bottom",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Heading Bottom Margin",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "video_margin_bottom",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Video Bottom Margin",
+      "default": 40
+    }
+  ]
+},
+
     {
   "type": "power_button",
   "name": "Power Button Section",
