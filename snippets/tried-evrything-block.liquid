@@ -673,9 +673,11 @@
         {% if organ_image != blank and organ_text != blank %}
         <div class="organ-item">
           <div class="organ-item-header">
-            <div class="ornag-title">
+            <div class="organ-title">
+          {{block.settings.organ_title }}
             </div>
             <div class="organ-icon">
+               <img src="{{ organ_icon | img_url: 'master' }}" alt="Organ Image">
             </div>
           </div>
           <div class="organ-imgs-single">
