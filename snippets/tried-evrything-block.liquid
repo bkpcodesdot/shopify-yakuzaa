@@ -697,34 +697,36 @@
 </div>
 
     {% if block.settings.cta_label != blank and block.settings.cta_link != blank %}
-  <div class="btn_organ">
-    <div class="btn_organ_cta">
-      <a href="{{ block.settings.cta_link }}" class="cta-btn ai-primal-queen-hero-button-{{ ai_gen_id }}">
-        {% if block.settings.show_crown_button %}
-          <img src="{{ block.settings.button_crown_icon | image_url }}" class="button_crown_icon" width="20px" height="20px" style="width:20px;">
-        {% endif %}
-        {{ block.settings.cta_label }}
+ <div class="power-section" style="background-color: {{ block.settings.background_color }};">
+  <div class="power-content">
+    <h2 class="power-title" style="color: {{ block.settings.title_color }};">
+      {{ block.settings.title }}
+    </h2>
+    
+    <div class="power-buttons">
+      <a href="{{ block.settings.button_link }}" class="power-button" style="background-color: {{ block.settings.button_color }}; color: {{ block.settings.button_text_color }};">
+        {{ block.settings.button_text }}
       </a>
-    </div>  
-  </div>  
-  <div class="ai-primal-queen-hero-guarantees-{{ ai_gen_id }}">
-        {% if block.settings.guarantee_1_text != blank %}
-          <div class="ai-primal-queen-hero-guarantee-{{ ai_gen_id }}">
-            <svg class="ai-primal-queen-hero-check-{{ ai_gen_id }}" viewBox="0 0 24 24">
-              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-            </svg>
-            <span>{{ block.settings.guarantee_1_text }}</span>
-          </div>
-        {% endif %}
-        {% if block.settings.guarantee_2_text != blank %}
-          <div class="ai-primal-queen-hero-guarantee-{{ ai_gen_id }}">
-            <svg class="ai-primal-queen-hero-check-{{ ai_gen_id }}" viewBox="0 0 24 24">
-              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-            </svg>
-            <span>{{ block.settings.guarantee_2_text }}</span>
-          </div>
-        {% endif %}
-      </div>  
+    </div>
+    
+    <div class="power-features">
+      {% if block.settings.show_guarantee %}
+      <div class="feature-item">
+        <span class="feature-icon">✓</span>
+        <span class="feature-text">{{ block.settings.guarantee_text }}</span>
+      </div>
+      {% endif %}
+      
+      {% if block.settings.show_shipping %}
+      <div class="feature-item">
+        <span class="feature-icon">✓</span>
+        <span class="feature-text">{{ block.settings.shipping_text }}</span>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+    
 {% endif %}
 
     {%- comment -%} ===== PROMISE SECTION ===== {%- endcomment -%}
