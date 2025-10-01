@@ -799,7 +799,7 @@
   border-radius: 10px;
   margin-bottom: 10px;
 }
- .btn_wrapper::before {
+ .combined-container .btn_wrapper::before {
     content: '';
         width: 15px;
         height: 15px;
@@ -818,7 +818,7 @@
     background: #2f0147;
 }
 
-.btn_wrapper::after{
+.combined-container .btn_wrapper::after{
     content: '';
         width: 15px;
         height: 15px;
@@ -831,12 +831,12 @@
         border-left: none;
     }
     
-.btn_wrapper, .btn_wrapper_wrapper{
+.combined-container .btn_wrapper, .btn_wrapper_wrapper{
     position: relative;
     display: block;
     width: fit-content;
 }
-.btn_wrapper_wrapper::before {
+.combined-container .btn_wrapper_wrapper::before {
     content: '';
         width: 15px;
         height: 15px;
@@ -848,7 +848,7 @@
         border-right: none;
         border-top: none;
 }
-.btn_wrapper_wrapper::after{
+.combined-container .btn_wrapper_wrapper::after{
           content: '';
         width: 15px;
         height: 15px;
@@ -860,10 +860,10 @@
         border-left: none;
         border-top: none;
 }
-.btn_wrapper_wrapper a{
+.combined-container .btn_wrapper_wrapper a{
       box-shadow: 0 3px 3px 2px rgba(0, 0, 0, .2);
 }
-.btn_wrapper img::before{
+.combined-container .btn_wrapper img::before{
     ontent: '';
         width: 15px;
         height: 15px;
