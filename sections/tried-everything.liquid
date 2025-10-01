@@ -2763,7 +2763,7 @@
 </div>
 {% comment %} Science section {% endcomment %}
 
-{% if block.type == 'science_section' %}
+{% elsif block.type == 'science_section' %}
 <!-- Science Behind Section -->
 <style>
   .science-section-{{ block.id }} {
@@ -2912,7 +2912,7 @@
     </div>
   </div>
 </div>
-{% endif %}
+
 {% comment %}--------------Timeline-section------------ {% endcomment %}
 
 {% elsif block.type == 'timeline_progress' %}
