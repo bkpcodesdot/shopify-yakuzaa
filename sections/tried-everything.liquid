@@ -2277,7 +2277,7 @@
       </div>
 
 {% comment %} Video section {% endcomment %}
- {% elsif block.type == 'Facility_Video' %}
+ {% elsif block.type == 'facility_video' %}
 {% assign ai_gen_id = block.id | replace: '_', '' | replace: '-', '' | downcase %}
 
 <style>
@@ -3418,7 +3418,7 @@
       ]
     },
 {
-  "type": "Facility_Video",
+  "type": "facility_video",
   "name": "facility video Section",
   "settings": [
     {
@@ -4929,7 +4929,7 @@
         { "type": "founder_story" },
         { "type": "superfoods_section" },
          { "type": "power_button" },
-         { "type": "Facility_Video" },
+         { "type": "facility_video" },
         { "type": "nutrient_card" }
       ]
     }
