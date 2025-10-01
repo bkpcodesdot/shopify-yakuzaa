@@ -2049,7 +2049,210 @@
     customElements.define('primal-queen-hero-{{ ai_gen_id }}', PrimalQueenHero{{ ai_gen_id }});
   })();
 </script>
+{% elsif block.type == 'custom_button' %}
+<!-- Custom Button Block -->
+<style>
+  .btn-wrapper-{{ block.id }} {
+    position: relative;
+    display: block;
+    width: fit-content;
+    margin: 20px 0;
+  }
 
+  .btn-wrapper-{{ block.id }}::before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    display: block;
+    position: absolute;
+    border: 2px solid {{ block.settings.border_color | default: '#40A754' }};
+    left: -5px;
+    top: -5px;
+    border-right: none;
+    border-bottom: none;
+    z-index: 2;
+  }
+
+  .btn-wrapper-{{ block.id }}::after {
+    content: '';
+    width: 15px;
+    height: 15px;
+    display: block;
+    position: absolute;
+    border: 2px solid {{ block.settings.border_color | default: '#40A754' }};
+    right: -7px;
+    top: -7px;
+    border-bottom: none;
+    border-left: none;
+    z-index: 2;
+  }
+
+  .btn-inner-wrapper-{{ block.id }} {
+    position: relative;
+    display: block;
+    width: fit-content;
+  }
+
+  .btn-inner-wrapper-{{ block.id }}::before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    display: block;
+    position: absolute;
+    border: 2px solid {{ block.settings.border_color | default: '#40A754' }};
+    left: -5px;
+    bottom: -5px;
+    border-right: none;
+    border-top: none;
+    z-index: 2;
+  }
+
+  .btn-inner-wrapper-{{ block.id }}::after {
+    content: '';
+    width: 15px;
+    height: 15px;
+    display: block;
+    position: absolute;
+    border: 2px solid {{ block.settings.border_color | default: '#40A754' }};
+    right: -5px;
+    bottom: -5px;
+    border-left: none;
+    border-top: none;
+    z-index: 2;
+  }
+
+  .custom-button-{{ block.id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: {{ block.settings.button_color | default: '#40A754' }};
+    color: {{ block.settings.button_text_color | default: '#ffffff' }};
+    padding: {{ block.settings.button_padding_vertical | default: 16 }}px {{ block.settings.button_padding_horizontal | default: 32 }}px;
+    border: none;
+    border-radius: {{ block.settings.button_border_radius | default: 8 }}px;
+    font-family: {{ block.settings.button_font | default: 'system-ui, sans-serif' }};
+    font-size: {{ block.settings.button_text_size | default: 16 }}px;
+    font-weight: {{ block.settings.button_font_weight | default: 700 }};
+    text-decoration: none;
+    text-transform: {{ block.settings.button_text_transform | default: 'uppercase' }};
+    letter-spacing: {{ block.settings.button_letter_spacing | default: 1 }}px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 3px 2px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+  }
+
+  .custom-button-{{ block.id }}:hover {
+    background-color: {{ block.settings.button_hover_color | default: '#2E7D32' }};
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .button-crown-icon-{{ block.id }} {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .button-guarantees-{{ block.id }} {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+  }
+
+  .button-guarantee-{{ block.id }} {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: {{ block.settings.guarantee_font | default: 'system-ui, sans-serif' }};
+    font-size: {{ block.settings.guarantee_text_size | default: 14 }}px;
+    color: {{ block.settings.guarantee_text_color | default: '#4A1A4A' }};
+  }
+
+  .button-check-icon-{{ block.id }} {
+    width: 16px;
+    height: 16px;
+    fill: {{ block.settings.guarantee_check_color | default: '#40A754' }};
+    flex-shrink: 0;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .custom-button-{{ block.id }} {
+      padding: {{ block.settings.button_padding_vertical_mobile | default: 12 }}px {{ block.settings.button_padding_horizontal_mobile | default: 24 }}px;
+      font-size: {{ block.settings.button_text_size_mobile | default: 14 }}px;
+    }
+
+    .button-guarantees-{{ block.id }} {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-wrapper-{{ block.id }},
+    .btn-inner-wrapper-{{ block.id }} {
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .custom-button-{{ block.id }} {
+      padding: {{ block.settings.button_padding_vertical_small | default: 10 }}px {{ block.settings.button_padding_horizontal_small | default: 20 }}px;
+      font-size: {{ block.settings.button_text_size_small | default: 12 }}px;
+    }
+  }
+</style>
+
+<div class="custom-button-section-{{ block.id }}">
+  {% if block.settings.button_text != blank %}
+    <div class="btn-wrapper-{{ block.id }}">
+      <div class="btn-inner-wrapper-{{ block.id }}">
+        <a href="{{ block.settings.button_link }}" class="custom-button-{{ block.id }}">
+          {% if block.settings.show_crown_button and block.settings.button_crown_icon != blank %}
+            <img src="{{ block.settings.button_crown_icon | image_url: width: 40 }}" 
+                 class="button-crown-icon-{{ block.id }}" 
+                 alt="Crown icon" 
+                 loading="lazy">
+          {% endif %}
+          {{ block.settings.button_text }}
+        </a>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if block.settings.show_guarantees %}
+    <div class="button-guarantees-{{ block.id }}">
+      {% if block.settings.guarantee_1_text != blank %}
+        <div class="button-guarantee-{{ block.id }}">
+          <svg class="button-check-icon-{{ block.id }}" viewBox="0 0 24 24">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+          </svg>
+          <span>{{ block.settings.guarantee_1_text }}</span>
+        </div>
+      {% endif %}
+      
+      {% if block.settings.guarantee_2_text != blank %}
+        <div class="button-guarantee-{{ block.id }}">
+          <svg class="button-check-icon-{{ block.id }}" viewBox="0 0 24 24">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+          </svg>
+          <span>{{ block.settings.guarantee_2_text }}</span>
+        </div>
+      {% endif %}
+      
+      {% if block.settings.guarantee_3_text != blank %}
+        <div class="button-guarantee-{{ block.id }}">
+          <svg class="button-check-icon-{{ block.id }}" viewBox="0 0 24 24">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+          </svg>
+          <span>{{ block.settings.guarantee_3_text }}</span>
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
 
 {% elsif block.type == 'founder_story' %}
       <!-- Founder Story Block -->
