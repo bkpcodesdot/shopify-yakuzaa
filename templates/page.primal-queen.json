@@ -1219,6 +1219,42 @@
             "guarantee_check_color": "#40a754",
             "button_alignment": "center"
           }
+        },
+        "science_section_4HEWa6": {
+          "type": "science_section",
+          "settings": {
+            "background_color": "#ffffff",
+            "section_padding": 60,
+            "title": "The Science Behind Primal Queen",
+            "subtitle": "Reported on each home a 95-approved clinical visit",
+            "title_size": 36,
+            "title_weight": 700,
+            "title_color": "#000000",
+            "subtitle_size": 16,
+            "subtitle_weight": 400,
+            "subtitle_color": "#666666",
+            "header_spacing": 40,
+            "stats_gap": 30,
+            "stats_margin_top": 40,
+            "stat_background_color": "#f8f9fa",
+            "stat_border_radius": 12,
+            "stat_padding": 30,
+            "stat_shadow": "0 4px 12px rgba(0,0,0,0.1)",
+            "percentage_size": 48,
+            "percentage_weight": 700,
+            "percentage_color": "#2f0147",
+            "label_size": 14,
+            "label_weight": 500,
+            "label_color": "#333333",
+            "stat_1_percentage": "+36.7%",
+            "stat_1_label": "Improved Energy Levels",
+            "stat_2_percentage": "+83.3%",
+            "stat_2_label": "Better Sleep Quality",
+            "stat_3_percentage": "+40.6%",
+            "stat_3_label": "Reduced Stress",
+            "stat_4_percentage": "+27.2%",
+            "stat_4_label": "Weight Management"
+          }
         }
       },
       "block_order": [
@@ -1233,7 +1269,8 @@
         "superfoods_section_xA64Bt",
         "facility_video_aUqfRR",
         "timeline_progress_KgwTt8",
-        "custom_button_nqeGXt"
+        "custom_button_nqeGXt",
+        "science_section_4HEWa6"
       ],
       "name": "Tried Everything Section",
       "settings": {
