@@ -902,8 +902,8 @@
             "closing_text_size": 16,
             "badge_name_size": 24,
             "badge_title_size": 12,
-            "section_padding_top": 20,
-            "section_padding_bottom": 20
+            "section_padding_top": 30,
+            "section_padding_bottom": 30
           }
         },
         "problem_section_RhdHXF": {
