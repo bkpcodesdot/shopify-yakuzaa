@@ -76,6 +76,24 @@
         closest.product: closest.product
       %}
     {% endcapture %}
+{% assign faqs = shop.metaobjects.faq.values %}
+
+{% if faqs.size > 0 %}
+<section class="faq-section">
+  <div class="faq-wrapper">
+    {% for faq in faqs %}
+      <div class="faq-item">
+        <button class="faq-question">
+          {{ faq.question }}
+        </button>
+        <div class="faq-answer">
+          {{ faq.answer }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
 
     {% for block in render_order_array %}
       {% if block == 'media' and product_has_media %}
