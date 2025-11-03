@@ -406,3 +406,13 @@
   "presets": []
 }
 {% endschema %}
+<<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".faq-question").forEach(btn => {
+    btn.addEventListener("click", function () {
+      this.classList.toggle("active");
+      this.nextElementSibling.classList.toggle("show");
+    });
+  });
+});
+</script>
