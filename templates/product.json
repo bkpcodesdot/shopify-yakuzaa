@@ -246,6 +246,18 @@
               },
               "block_order": []
             },
+            "icon_gAqxhW": {
+              "type": "icon",
+              "name": "t:names.icon",
+              "settings": {
+                "icon": "price_tag",
+                "image_upload": "shopify://shop_images/Leaf.png",
+                "width": 32,
+                "link": "",
+                "open_in_new_tab": false
+              },
+              "blocks": {}
+            },
             "text_4FceQk": {
               "type": "text",
               "name": "t:names.text",
@@ -331,6 +343,7 @@
             "variant_picker_R3rGDr",
             "text_mwieCy",
             "buy_buttons_eYQEYi",
+            "icon_gAqxhW",
             "text_4FceQk",
             "text_6yLrgr",
             "text_aEtTtq"
