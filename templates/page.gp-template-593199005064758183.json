@@ -1,0 +1,76 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "gp_section_593199058382750631": {
+      "settings": {
+        "checksum": "f1fed5e9e87215a21d19fc9ad24e3c2b064a67cc24b16029dbe595fcea345ea1_1_1_1_0__1",
+        "gg-GokSRsdE_label": "Add to Cart",
+        "ggN56h-UFv1_text": "<p>$105.99</p>",
+        "ggWawAeCWaO_text": "<p>1</p>",
+        "ggYXIkPoFtg_text": "<p>Lorem ipsum dolor sit amet, consectetur</p>",
+        "gg_35Hg_e68_text": "<p>2</p>",
+        "gggpSbi6IoJ_text": "<p>Lorem ipsum dolor sit amet, consectetur</p>",
+        "ggndw0dKQ7u_text": "Lorem Ipsum&nbsp;is simply dummy text of the printing and typesetting industry",
+        "ggqGMZPz9zx_text": "<p>Lorem ipsum dolor sit amet, consectetur</p>",
+        "ggteQFlMsM6_text": "<p>Rated 4.5/5 Based on 895 Reviews</p>",
+        "ggv_MK0c2xx_text": "<p>3</p>",
+        "section_preload": "true"
+      },
+      "type": "gp-section-593199058382750631"
+    },
+    "gp_section_593199105627390887": {
+      "settings": {
+        "checksum": "34dddca256a14bd3f6441e8445a734e191bb58989b10225d189f1adb3b73f5bd_1_1_1_0__1",
+        "ggjBccAxipf_text": "As Featured In"
+      },
+      "type": "gp-section-593199105627390887"
+    },
+    "gp_section_593199125659386608": {
+      "settings": {
+        "checksum": "34c92c8c1d66fd24043f6341d6a515d8cac426c64a38b2df4aea2d2b7994b89e_1_1_1_0__1",
+        "gg3Cpy4YQZB_text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore&nbsp;</p>",
+        "gg8gNgYQieP_text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et&nbsp;</p>",
+        "ggCA87v-ke1_text": "<p>3</p>",
+        "ggFcjjDfXwd_text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>",
+        "ggZFDdP53kE_text": "The standard",
+        "ggoCmDcLlXQ_text": "<p>2</p>",
+        "ggrG4CMLmT0_text": "<p>1</p>"
+      },
+      "type": "gp-section-593199125659386608"
+    },
+    "gp_section_593199396510761895": {
+      "settings": {
+        "checksum": "19e25ff637a5b5a615a6097fab7b05e557daee84b8b20c710016559745e812b9_1_1_1_0__1",
+        "ggJ7TnAe4af_text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br><br>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"</p>",
+        "ggMnY3h1_aC_text": "<p>Lorem ipsum</p>",
+        "ggUMDaOsqeb_text": "<p>Lorem ipsum dolor sit amet</p>",
+        "ggvxY1UXjik_text": "Lorem ipsum dolor sit amet"
+      },
+      "type": "gp-section-593199396510761895"
+    },
+    "gp_section_593199397148295983": {
+      "settings": {
+        "checksum": "a364986f599abd60535d9ae4efe9836090445e75e10b8d1fdf4aa47672176a2c_1_1_1_0__1",
+        "gg18lblmMLM_label": "BUY NOW",
+        "ggFvHLde6w7_text": "<p>GemPages team of celebrated editors and independent experts tests over 10,000 products each year to find the best of the best.</p>",
+        "ggjcZQaGcPC_text": "<p>Awards &amp; Accreditations</p>"
+      },
+      "type": "gp-section-593199397148295983"
+    }
+  },
+  "order": [
+    "gp_section_593199058382750631",
+    "gp_section_593199105627390887",
+    "gp_section_593199125659386608",
+    "gp_section_593199396510761895",
+    "gp_section_593199397148295983"
+  ]
+}
