@@ -12,13 +12,6 @@
 @font-face {
   font-family: 'Barlow';
   font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/barlow/v13/7cHqv4kjgoGqM7E3_-gc4A.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Barlow';
-  font-style: normal;
   font-weight: 600;
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/barlow/v13/7cHqv4kjgoGqM7E30-8c4A.ttf) format('truetype');
@@ -31,32 +24,18 @@
   src: url(https://fonts.gstatic.com/s/barlow/v13/7cHqv4kjgoGqM7E3t-4c4A.ttf) format('truetype');
 }
 @font-face {
-  font-family: 'Cardo';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/cardo/v21/wlpygwjKBV1pqhND-aQR.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Figtree';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/figtree/v9/_Xmz-HUzqDCFdgfMsYiV_F7wfS-Bs_d_QF5e.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Figtree';
+  font-family: 'Libre Franklin';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/figtree/v9/_Xmz-HUzqDCFdgfMsYiV_F7wfS-Bs_dNQF5e.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/librefranklin/v20/jizOREVItHgc8qDIbSTKq4XkRg8T88bjFuXOnduhHMWUBw.ttf) format('truetype');
 }
 @font-face {
-  font-family: 'Figtree';
+  font-family: 'Libre Franklin';
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/figtree/v9/_Xmz-HUzqDCFdgfMsYiV_F7wfS-Bs_eYR15e.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/librefranklin/v20/jizOREVItHgc8qDIbSTKq4XkRg8T88bjFuXOnduh8MKUBw.ttf) format('truetype');
 }
 </style>
   
@@ -86,7 +65,7 @@
       style="--bottom:0px;--left:0px;--pos:static;--right:0px;--top:Auto;--z:9999"
       class="gp-flex gp-flex-col"
     >
-      <div style="--bs:none;--bw:1px 1px 1px 1px;--bc:var(--g-c-line-3, line-3);--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mt:0px;--ml:0px;--mb:0px;--pt:15px;--pl:0px;--pb:15px;--pr:0px;--mt-mobile:0px;--ml-mobile:0px;--mb-mobile:0px;--pt-mobile:15px;--pl-mobile:0px;--pb-mobile:15px;--pr-mobile:0px;--mt-tablet:0px;--ml-tablet:0px;--mb-tablet:0px;--pt-tablet:15px;--pl-tablet:0px;--pb-tablet:15px;--pr-tablet:0px;--ta:center" >
+      <div style="--bs:none;--bw:1px 1px 1px 1px;--bc:var(--g-c-line-3, line-3);--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--mt:0px;--ml:0px;--mb:0px;--pt:15px;--pl:0px;--pb:15px;--pr:0px;--mt-tablet:0px;--ml-tablet:0px;--mb-tablet:0px;--pt-tablet:15px;--pl-tablet:0px;--pb-tablet:15px;--pr-tablet:0px;--mt-mobile:0px;--ml-mobile:0px;--mb-mobile:0px;--pt-mobile:5px;--pl-mobile:0px;--pb-mobile:5px;--pr-mobile:0px;--ta:center" >
         <style>[data-id="gEUlcOPBG9"].gp-button-base::before, [data-id="gEUlcOPBG9-interaction"].gp-button-base::before {
       
     content: "";
@@ -141,10 +120,56 @@
     </gp-button>
   
       <style id="custom-css-gEUlcOPBG9">
-        button.gEUlcOPBG9 {
-background-color: : #fff !important;
-}
+         .hidden-by-top {
+    opacity: 0 !important;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity .18s ease, transform .18s ease;
+  }
       </style>
+    
+      <script id="custom-js-gEUlcOPBG9">
+        try {
+          (function(){
+  const sticky = document.querySelector('#ghX3Sk1QBz');
+  const target1 = document.querySelector('#grts6tt8Oz');
+  const target2 = document.querySelector('#gFaDV6kWAe');
+
+  if(!sticky) return;
+
+  // Track visibility of both sections
+  let visible1 = false;
+  let visible2 = false;
+
+  function updateSticky() {
+    if (visible1 || visible2) {
+      sticky.classList.add('hidden-by-top');
+    } else {
+      sticky.classList.remove('hidden-by-top');
+    }
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.target === target1) {
+        visible1 = entry.isIntersecting;
+      }
+      if (entry.target === target2) {
+        visible2 = entry.isIntersecting;
+      }
+      updateSticky();
+    });
+  }, {
+    root: null,
+    threshold: 0
+  });
+
+  if (target1) observer.observe(target1);
+  if (target2) observer.observe(target2);
+
+})();
+        } catch(err){}
+      </script>
     
     </div>
 
