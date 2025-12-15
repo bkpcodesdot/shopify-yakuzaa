@@ -284,6 +284,68 @@
     "section_TqKaRw": {
       "type": "section",
       "blocks": {
+        "collection_card_XKaGkc": {
+          "type": "collection-card",
+          "name": "t:names.collection_card",
+          "settings": {
+            "collection": "bottom",
+            "placement": "on_image",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "collection_card_gap": 10,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0
+          },
+          "blocks": {
+            "collection_title_YBKyft": {
+              "type": "collection-title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h4",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": true,
+                "background_color": "#ffffff",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "collection-card-image": {
+              "type": "_collection-card-image",
+              "static": true,
+              "settings": {
+                "image_ratio": "portrait",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "collection_title_YBKyft"
+          ]
+        },
         "collection_card_MKTEFt": {
           "type": "collection-card",
           "name": "t:names.collection_card",
@@ -292,13 +354,13 @@
             "placement": "on_image",
             "horizontal_alignment": "center",
             "vertical_alignment": "center",
-            "collection_card_gap": 8,
+            "collection_card_gap": 10,
             "inherit_color_scheme": true,
             "color_scheme": "",
             "border": "none",
             "border_width": 0,
             "border_opacity": 100,
-            "border_radius": 46
+            "border_radius": 70
           },
           "blocks": {
             "collection_title_jhzHtE": {
@@ -329,7 +391,7 @@
               "type": "_collection-card-image",
               "static": true,
               "settings": {
-                "image_ratio": "portrait",
+                "image_ratio": "square",
                 "toggle_overlay": false,
                 "overlay_color": "#00000026",
                 "overlay_style": "solid",
@@ -377,6 +439,7 @@
         }
       },
       "block_order": [
+        "collection_card_XKaGkc",
         "collection_card_MKTEFt",
         "ai_gen_block_8efee59_LhWAwM"
       ],
