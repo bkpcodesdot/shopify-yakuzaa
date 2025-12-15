@@ -284,9 +284,35 @@
     "section_TqKaRw": {
       "type": "section",
       "blocks": {
+        "collection_title_WanURw": {
+          "type": "collection-title",
+          "name": "Our Collection",
+          "settings": {
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
         "ai_gen_block_8efee59_LhWAwM": {
           "type": "ai_gen_block_8efee59",
           "name": "Product story animation",
+          "disabled": true,
           "settings": {
             "heading": "Discover the story behind our product",
             "description": "<p>Every product has a story to tell. From concept to creation, we've crafted something truly special that will transform your experience.</p>",
@@ -314,6 +340,7 @@
         }
       },
       "block_order": [
+        "collection_title_WanURw",
         "ai_gen_block_8efee59_LhWAwM"
       ],
       "name": "t:names.custom_section",
@@ -390,6 +417,7 @@
         "text_Kdzca9",
         "cta_axaxej"
       ],
+      "disabled": true,
       "name": "Advertorial sec blocks IDE",
       "settings": {
         "content_bg_color": "#ffffff"
