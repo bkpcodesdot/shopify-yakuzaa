@@ -284,26 +284,25 @@
     "section_TqKaRw": {
       "type": "section",
       "blocks": {
-        "collection_card_F3dr6A": {
+        "collection_card_MKTEFt": {
           "type": "collection-card",
           "name": "t:names.collection_card",
           "settings": {
-            "collection": "",
-            "placement": "below_image",
-            "horizontal_alignment": "flex-start",
+            "collection": "mens-collection",
+            "placement": "on_image",
+            "horizontal_alignment": "center",
             "vertical_alignment": "center",
             "collection_card_gap": 8,
             "inherit_color_scheme": true,
             "color_scheme": "",
             "border": "none",
-            "border_width": 1,
+            "border_width": 0,
             "border_opacity": 100,
-            "border_radius": 0
+            "border_radius": 46
           },
           "blocks": {
-            "collection_title_4JYCQ3": {
+            "collection_title_jhzHtE": {
               "type": "collection-title",
-              "name": "Our Collection",
               "settings": {
                 "width": "fit-content",
                 "max_width": "normal",
@@ -315,9 +314,9 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
+                "color": "var(--color-foreground-heading)",
+                "background": true,
+                "background_color": "#ffffff",
                 "corner_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
@@ -344,7 +343,7 @@
             }
           },
           "block_order": [
-            "collection_title_4JYCQ3"
+            "collection_title_jhzHtE"
           ]
         },
         "ai_gen_block_8efee59_LhWAwM": {
@@ -378,7 +377,7 @@
         }
       },
       "block_order": [
-        "collection_card_F3dr6A",
+        "collection_card_MKTEFt",
         "ai_gen_block_8efee59_LhWAwM"
       ],
       "name": "t:names.custom_section",
