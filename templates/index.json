@@ -526,10 +526,10 @@
         "content_bg_color": "#ffffff"
       }
     },
-    "collection_list_GBJFD9": {
+    "collection_list_NtGL86": {
       "type": "collection-list",
       "blocks": {
-        "group_gUNdM4": {
+        "group_Hbbhtd": {
           "type": "group",
           "name": "t:names.header",
           "settings": {
@@ -569,12 +569,12 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "text_UhLYxK": {
+            "text_78wQFe": {
               "type": "text",
               "name": "t:names.text",
               "settings": {
                 "text": "<h3>Our Collection</h3>",
-                "width": "fit-content",
+                "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "rte",
@@ -597,7 +597,7 @@
             }
           },
           "block_order": [
-            "text_UhLYxK"
+            "text_78wQFe"
           ]
         },
         "static-collection-card": {
@@ -605,9 +605,9 @@
           "name": "t:names.collection_card",
           "static": true,
           "settings": {
-            "placement": "below_image",
+            "placement": "on_image",
             "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
+            "vertical_alignment": "flex-start",
             "collection_card_gap": 8,
             "inherit_color_scheme": true,
             "color_scheme": "",
@@ -617,6 +617,31 @@
             "border_radius": 0
           },
           "blocks": {
+            "collection_title_WCwpHA": {
+              "type": "collection-title",
+              "name": "Tops",
+              "settings": {
+                "width": "100%",
+                "max_width": "narrow",
+                "alignment": "center",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": true,
+                "background_color": "#ffffff",
+                "corner_radius": 0,
+                "padding-block-start": 2,
+                "padding-block-end": 4,
+                "padding-inline-start": 8,
+                "padding-inline-end": 8
+              },
+              "blocks": {}
+            },
             "collection-card-image": {
               "type": "_collection-card-image",
               "name": "t:names.collection_card_image",
@@ -635,13 +660,15 @@
               "blocks": {}
             }
           },
-          "block_order": []
+          "block_order": [
+            "collection_title_WCwpHA"
+          ]
         }
       },
       "block_order": [
-        "group_gUNdM4"
+        "group_Hbbhtd"
       ],
-      "name": "t:names.collections_carousel",
+      "name": "t:names.collections_grid",
       "settings": {
         "collection_list": [
           "mens-collection",
@@ -649,17 +676,17 @@
           "women-collections",
           "caps"
         ],
-        "layout_type": "carousel",
+        "layout_type": "grid",
         "carousel_on_mobile": false,
         "columns": 3,
         "mobile_columns": "2",
         "mobile_card_size": "60cqw",
-        "columns_gap": 10,
+        "columns_gap": 8,
         "bento_gap": 8,
         "rows_gap": 8,
         "max_collections": 4,
         "icons_style": "arrow",
-        "icons_shape": "circle",
+        "icons_shape": "none",
         "section_width": "page-width",
         "gap": 12,
         "color_scheme": "",
@@ -674,7 +701,7 @@
           "type": "text",
           "name": "t:names.header",
           "settings": {
-            "text": "<h3>Trending Now</h3>",
+            "text": "<h3>Best Seller</h3>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -791,7 +818,7 @@
       ],
       "name": "t:names.product_recommendations",
       "settings": {
-        "product": "{{ closest.product }}",
+        "product": "light-pants",
         "recommendation_type": "related",
         "layout_type": "grid",
         "carousel_on_mobile": false,
@@ -815,7 +842,7 @@
     "product_list_fa6P9H",
     "section_TqKaRw",
     "advertorial_sec_ide_test_YxwJYA",
-    "collection_list_GBJFD9",
+    "collection_list_NtGL86",
     "product_recommendations_VF4wW4"
   ]
 }
