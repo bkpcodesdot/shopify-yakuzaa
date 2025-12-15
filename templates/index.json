@@ -61,6 +61,7 @@
       "name": "t:names.hero",
       "settings": {
         "media_type_1": "image",
+        "image_1": "shopify://shop_images/0edd33fdd68965fc644b8336ed0dd2851f73d87c.png",
         "media_type_2": "image",
         "link": "",
         "open_in_new_tab": false,
@@ -354,7 +355,7 @@
             "highlight_text": "Don't Know",
             "heading_size": 36,
             "heading_color": "#333333",
-            "heading_highlight_color": "#FF6B35"
+            "heading_highlight_color": "#ff6b35"
           }
         },
         "hero_image_7qqGtX": {
@@ -378,8 +379,8 @@
             "cta_link": "",
             "cta_font_size": 18,
             "cta_border_radius": 8,
-            "cta_bg_color": "#FF6B35",
-            "cta_text_color": "#FFFFFF"
+            "cta_bg_color": "#ff6b35",
+            "cta_text_color": "#ffffff"
           }
         }
       },
@@ -391,7 +392,7 @@
       ],
       "name": "Advertorial sec blocks IDE",
       "settings": {
-        "content_bg_color": "#FFFFFF"
+        "content_bg_color": "#ffffff"
       }
     }
   },
