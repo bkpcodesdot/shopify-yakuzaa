@@ -24,7 +24,7 @@
             "button_label": "Shop Collection",
             "button_link": "",
             "min_height_desktop": 450,
-            "min_height_mobile": 250,
+            "min_height_mobile": 200,
             "content_max_width": 1600,
             "text_max_width": 600,
             "text_alignment": "left",
