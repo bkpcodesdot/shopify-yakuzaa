@@ -69,6 +69,7 @@
       "block_order": [
         "ai_gen_block_6e49bd2_tyCiN8"
       ],
+      "disabled": true,
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -137,6 +138,7 @@
       "block_order": [
         "ai_gen_block_3d5f304_9MQKFz"
       ],
+      "disabled": true,
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
