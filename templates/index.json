@@ -9,6 +9,94 @@
  */
 {
   "sections": {
+    "1766034982ce16a3cb": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_6e49bd2_tyCiN8": {
+          "type": "ai_gen_block_6e49bd2",
+          "settings": {
+            "background_image": "shopify://shop_images/e85810582bc13a9f8785e8c1e50c8582b7f1be05.png",
+            "image_position": "right center",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "heading": "Timeless Elegance",
+            "description": "Discover our curated collection of fine jewelry, crafted with precision and passion.",
+            "button_label": "Shop Collection",
+            "button_link": "",
+            "min_height_desktop": 450,
+            "min_height_mobile": 250,
+            "content_max_width": 1600,
+            "text_max_width": 600,
+            "text_alignment": "left",
+            "text_alignment_mobile": "left",
+            "padding_vertical": 60,
+            "padding_horizontal": 40,
+            "padding_vertical_mobile": 40,
+            "padding_horizontal_mobile": 20,
+            "heading_color": "#ffffff",
+            "heading_size": 56,
+            "heading_size_mobile": 36,
+            "heading_spacing": 20,
+            "heading_spacing_mobile": 15,
+            "heading_letter_spacing": 0,
+            "heading_weight": "700",
+            "description_color": "#ffffff",
+            "description_size": 16,
+            "description_size_mobile": 14,
+            "description_spacing": 30,
+            "description_spacing_mobile": 20,
+            "description_opacity": 90,
+            "button_bg_color": "#ffffff",
+            "button_text_color": "#000000",
+            "button_border_color": "#ffffff",
+            "button_bg_hover_color": "#000000",
+            "button_text_hover_color": "#ffffff",
+            "button_border_hover_color": "#000000",
+            "button_font_size": 14,
+            "button_font_size_mobile": 14,
+            "button_font_weight": "500",
+            "button_letter_spacing": 1,
+            "button_padding_vertical": 14,
+            "button_padding_horizontal": 40,
+            "button_padding_vertical_mobile": 12,
+            "button_padding_horizontal_mobile": 35,
+            "button_border_radius": 4,
+            "button_border_width": 1
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_6e49bd2_tyCiN8"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "176587643362d420ad": {
       "type": "_blocks",
       "blocks": {
@@ -879,6 +967,7 @@
     }
   },
   "order": [
+    "1766034982ce16a3cb",
     "176587643362d420ad",
     "hero_jVaWmY",
     "product_list_fa6P9H",
