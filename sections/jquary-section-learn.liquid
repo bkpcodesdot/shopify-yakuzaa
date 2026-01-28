@@ -44,3 +44,27 @@ $("button").click(function(){
       <button>Click Me!</button>  
 </section>
 
+{% schema %}
+{
+  "name": "Primal Queen Hero",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#fff0f6"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main Right Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Primal Queen Hero",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}
