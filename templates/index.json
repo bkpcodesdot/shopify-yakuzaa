@@ -966,6 +966,14 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "jquary_section_learn_jhTrK3": {
+      "type": "jquary-section-learn",
+      "name": "JQuary Text",
+      "settings": {
+        "bg_color": "#fff0f6",
+        "main_image": "shopify://shop_images/IMG_2897_73215749-e2db-4b8e-90ae-26c7e0aa08d2.jpg"
+      }
     }
   },
   "order": [
@@ -976,6 +984,7 @@
     "advertorial_sec_ide_test_YxwJYA",
     "collection_list_NtGL86",
     "product_recommendations_VF4wW4",
-    "collection_list_tNrhJf"
+    "collection_list_tNrhJf",
+    "jquary_section_learn_jhTrK3"
   ]
 }
