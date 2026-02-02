@@ -418,6 +418,7 @@
           ]
         }
       },
+      "disabled": true,
       "name": "Featured collection",
       "settings": {
         "collection": "all",
@@ -632,6 +633,7 @@
       "block_order": [
         "group_Hbbhtd"
       ],
+      "disabled": true,
       "name": "t:names.collections_grid",
       "settings": {
         "collection_list": [
@@ -780,6 +782,7 @@
       "block_order": [
         "text_xPBxKx"
       ],
+      "disabled": true,
       "name": "t:names.product_recommendations",
       "settings": {
         "product": "light-pants",
@@ -943,6 +946,7 @@
       "block_order": [
         "group_xLrzqV"
       ],
+      "disabled": true,
       "name": "t:names.collections_carousel",
       "settings": {
         "collection_list": [
